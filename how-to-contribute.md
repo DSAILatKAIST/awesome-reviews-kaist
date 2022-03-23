@@ -1,5 +1,5 @@
 ---
-description : 글 작성 방법  
+description : 글 작성 방법(How to write)  
 ---
 
 # How to contribute?  
@@ -16,7 +16,7 @@ This writing is the guideline of how to write review.
 
 At first, you should fork the [awesome-reviews-kaist](https://github.com/DSAILatKAIST/awesome-reviews-kaist) repository to make a repository on your account.  
 
-<img width="1000" align="center" src=".gitbook/fork_1.png">  
+<img width="1200" align="center" src=".gitbook/fork_1.png">  
 
 
 ### **Write reviews on .md format**  
@@ -67,11 +67,50 @@ You should write the location of path of your own review file on SUMMARY.md.
 
 ### **Description**  
 
-메인 리뷰 파일 상단에는 description을 써주시길 바랍니다.  
-descrpition의 양식
+메인 리뷰 파일 상단에는 description 포맷을 써주시길 바랍니다.  
+descrpition을 작성할 경우 아래 그림의 "Paper Review" 글씨에 들어가게 됩니다.  
+
+You should write description format on the top of main review file.  
+Referred to above figure, "Paper Review" font will be put as you write description format.  
+
+Description 양식을 아래와 같이 지켜주시길 바랍니다.   
+You should follow the below description format.  
+
+저자 / 제목 / 학회-년도  
+Author / Title / Conference-year  
+
+**E.g.**  
+
+``` bash  
+---
+description: Li et al./ Bipartite Graph Network With Adaptive Message Passing For Unbiased Scene Graph Generation / CVPR-2021
+---   
+```  
+
+
 
 <img width="500" align="center" src=".gitbook/description.png">
 
 
 
+### **File Name**  
+
+메인 리뷰 파일명은 아래와 같은 양식을 지켜서 만들어주시길 바랍니다.  
+
+You should follow the above format to make the name of review file.  
+
+``` bash  
+학회-연도-제목
+Conference-Year-Title  
+```  
+위와 같은 양식으로 파일명에는 하이픈(-)으로 구별해주시길 바랍니다.  
+또한, 파일명은 소문자로만 구성되어야 합니다.    
+
+Following to above format, hyphen(-) is used to split the file name.  
+Also, file name should be composed of lower case.
+
+**E.g.**  
+```bash  
+cvpr-2021-bgnn
+```  
 
