@@ -16,7 +16,11 @@ From 2022 spring semester, we have been proceeding the project of paper review i
 
 또한, 동료 평가를 통하여 논문 리뷰 수준을 향상시킬 계획입니다.  
 
-Also, we are going to improve the quality of paper review by peer evaluation.
+Also, we are going to improve the quality of paper review by peer evaluation.  
+
+작성 및 제출 방법과 관련해서는 [How to contribute](https://app.gitbook.com/s/AHQ0nw6nnYCflU3RyLxw/how-to-contribute/how-to-contribute) 링크를 참고해주세요.  
+
+Please refer to following link [How to contribute](https://app.gitbook.com/s/AHQ0nw6nnYCflU3RyLxw/how-to-contribute/how-to-contribute) to understand how to submit and write.  
 
 ## Course Information    
 

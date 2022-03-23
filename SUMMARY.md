@@ -12,6 +12,7 @@
 
 * [How to contribute?](how-to-contribute.md)  
 
+* [Review Format](paper-review/template.md)  
 ---  
 
 * [DSAIL Lab](https://dsail.kaist.ac.kr/)  
