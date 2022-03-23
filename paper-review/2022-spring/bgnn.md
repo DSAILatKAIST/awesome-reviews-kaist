@@ -15,9 +15,9 @@ Scene Graph Generation은 이미지가 주어졌을 때 Scene Graph로 변환하
 
 <!-- <img width = "150" src = 'https://user-images.githubusercontent.com/55014424/136494900-8c3438f4-594a-41f3-837a-0b4e8a735e86.png'>   -->
 
-<img width = '150' src= '../../.gitbook/assets/bgnn/scene_graph_image1.png'>  
+<img width = '150' src= '../../.gitbook/2022-spring-assets/bgnn/scene_graph_image1.png'>  
 
-<img width = '150' src = '../../.gitbook/assets/bgnn/scene_graph_image2.png'>  
+<img width = '150' src = '../../.gitbook/2022-spring-assets/bgnn/scene_graph_image2.png'>  
 
 그림 출처: [CVPR 21]Energy-Based Learning For Scene Graph Generation  
 
@@ -26,7 +26,7 @@ Scene Graph Generation은 이미지가 주어졌을 때 Scene Graph로 변환하
 
 Scene Graph Generation(SGG) 할 때의 Main Challenge 중에 하나가 Predicate(e.g standing on, has)의 Distribution이 Long-Tailed로 되어있다는 점이다. SGG에서의 Benchmark Dataset 중에 하나는 "Visual Genome(VG)"이다. VG의 Image에서 나오는 Predicate를 보면 아래와 같은 Distribution을 갖고 있다.  
 
-<img width = '300' src = '../../.gitbook/assets/bgnn/scene_graph_image3.png'>  
+<img width = '300' src = '../../.gitbook/2022-spring-assets/bgnn/scene_graph_image3.png'>  
 
 그림 출처 : [CVPR 20]Unbiased Scene Graph Generation from Biased Training
 
@@ -58,7 +58,7 @@ Pcpl: Predicate-correlation perception learning for unbiased scene graph generat
 
 이 논문에서는 Introduction에서 언급한 것과 같이 Predicate의 Long Tailed Distribution Problem을 다룬다. 일반적인 Scene Graph Generation을 할 때는 모든 Node간에 Predicate가 존재한다고 가정하여 Fully Connected Graph를 만들고 진행한다. 하지만, 논문에서는 두 Node간에 Predicate가 meaningless한 경우에는 Scene Graph에게 Negative Effect를 줄 것이라고 말한다. 따라서, 이 논문에서는 두 Node간에 Meaningless한 Predicate를 골라내는 Confidence Module를 이용하게 된다. 논문에서는 아래의 그림을 보여주며 **네모**칸을 없애면 Accurate Graph를 만든다고 주장한다.  
 
-<img width = '700' src= '../../.gitbook/assets/bgnn/scene_graph_image4.png'>  
+<img width = '700' src= '../../.gitbook/2022-spring-assets/bgnn/scene_graph_image4.png'>  
 
 Confidence Module 뿐만 아니라 'Bi-Level Sampling'이라는 Sampling 기법을 이용하여 Long-Tailed Problem을 핵심적으로 다루고 있다고 할 수 있다.  
 
@@ -71,7 +71,7 @@ Confidence Module 뿐만 아니라 'Bi-Level Sampling'이라는 Sampling 기법�
 
 Image가 주어졌을 때, Entity를 아래 그림과 같이 Bipartite Graph에서 한 Group은 Entity Group으로 나타내고, 다른 한 Group은 Predicate가 존재한다. **Introduction**에서는 두 Node간에 Meaningless Predicate가 존재하면 Noise가 발생한다고 했지만, Graph Construction할 때는 먼저 두 Node간에 Predicate가 존재한다고 가정하고 시작한다. (이후에, 존재하는지 안하는지를 Modeling한다)  
 
-<img width='600' src = '../../.gitbook/assets/bgnn/scene_graph_image5.png'>  
+<img width='600' src = '../../.gitbook/2022-spring-assets/bgnn/scene_graph_image5.png'>  
 
 Bipartite Graph에 Direction을 준 이유는 Message Passing 할 때, Entity->Predicate와 Predicate->Entity의 Message Passing을 다르게 해주기 위해서다. 
   
@@ -82,7 +82,7 @@ Fully Connected Graph이기 때문에 Pair Node간에는 Predicate Proposal이 �
 
 ### 2. Relation Confidence Estimation(RCE) + Confidence Message Passing(CMP)  
 
-<img width = '700' src='../../.gitbook/assets/bgnn/scene_graph_image6.png'>  
+<img width = '700' src='../../.gitbook/2022-spring-assets/bgnn/scene_graph_image6.png'>  
 
 * RCE  
 
@@ -125,7 +125,7 @@ Entity->Predicate로 Message를 줄 때 한 번 Confidence Score로 거른 다�
 
 Train Data를 학습시킬 때 Random하게 Image를 뽑는 것이 아니라 Predicate의 Distribution에 따라 선택되게 하는 것이다. 2단계에 걸쳐서 Sampling하게 되는데, 첫 번째로 Image-level로 Image를 여러 개로 만들어낸 다음에, 두 번째로 Instance-Level Sampling으로 한 Image에서 Predicate를 일정 확률로 Drop-out시킨다.  
 
-<img width = '500' src = '../../.gitbook/assets/bgnn/scene_graph_image7.png'>  
+<img width = '500' src = '../../.gitbook/2022-spring-assets/bgnn/scene_graph_image7.png'>  
 
 * Image-Level Over-Sampling  
 
@@ -186,13 +186,13 @@ SGGen : 위의 SGCls의 조건에다가 Object Detect를 했을 때, Ground Trut
 
 이 논문은 Long-Tailed Distribution의 문제를 다루었기 때문에 Long-Tailed에 해당하는 결과를 보여준다. 뿐만 아니라 전체적인 Recall 값은 Baseline Model과 비교했을 때 좋은 성능을 보이고 있다.  
 
-<img width = '600' src= '../../.gitbook/assets/bgnn/scene_graph_image8.png'>  
+<img width = '600' src= '../../.gitbook/2022-spring-assets/bgnn/scene_graph_image8.png'>  
 
 **GPS-Net**과 **Unbias** 두 Model도 Long-Tailed Distribution을 다룬 논문이다. 그럼에도 불구하고 해당 모델이 Long-Tailed를 더 잘 잡아낸다고 볼 수 있다.  
 
 다른 Baseline과의 실험 비교한 결과(Recall)는 아래와 같다.  
 
-<img width = '700' src= '../../.gitbook/assets/bgnn/scene_graph_image9.png'>  
+<img width = '700' src= '../../.gitbook/2022-spring-assets/bgnn/scene_graph_image9.png'>  
 
 SOTA Model의 경우에는 PCPL으로 mean Recall에서는 낮지만, Recall의 경우에는 Proposed Method가 더 높은 것을 볼 수 있었다. 
 
