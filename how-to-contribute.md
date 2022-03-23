@@ -16,7 +16,7 @@ This writing is the guideline of how to write review.
 
 At first, you should fork the [awesome-reviews-kaist](https://github.com/DSAILatKAIST/awesome-reviews-kaist) repository to make a repository on your account.  
 
-<img width="1200" align="center" src=".gitbook/fork_1.png">  
+<img width="1200" align="center" src=".gitbook/fork_2.png">  
 
 
 ### **Write reviews on .md format**  
