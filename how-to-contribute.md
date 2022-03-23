@@ -16,7 +16,7 @@ This writing is the guideline of how to write review.
 
 At first, you should fork the [awesome-reviews-kaist](https://github.com/DSAILatKAIST/awesome-reviews-kaist) repository to make a repository on your account.  
 
-<img width="600" align="center" src=".gitbook/fork_1.png">  
+<img width="1000" align="center" src=".gitbook/fork_1.png">  
 
 
 ### **Write reviews on .md format**  
@@ -59,14 +59,18 @@ SUMMARY.md에 자신이 작성한 메인 리뷰 파일의 위치를 적어야 �
 SUMMARY.md file is used for recognizing the location of review file path on Gitbook.  
 You should write the location of path of your own review file on SUMMARY.md.  
 
-E.g.
+**E.g.**
 ``` bash  
 * [\[2022 Spring\] Paper Review](paper-review/README.md) 
     * [BGNN](paper-review/2022-spring/bgnn.md) # [Title](path) 
 ```  
 
-### Description  
+### **Description**  
 
+메인 리뷰 파일 상단에는 description을 써주시길 바랍니다.  
+descrpition의 양식
+
+<img width="500" align="center" src=".gitbook/description.png">
 
 
 
