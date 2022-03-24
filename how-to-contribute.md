@@ -16,7 +16,7 @@ This writing is the guideline of how to write review.
 
 At first, you should fork the [awesome-reviews-kaist](https://github.com/DSAILatKAIST/awesome-reviews-kaist) repository to make a repository on your account.  
 
-<p align="center"><img width="1200" src=".gitbook/fork_2.png"></p>  
+<p align="center"><img width="1200" src=".gitbook/main/fork_2.png"></p>  
 
 
 ### **Write reviews on .md format**  
@@ -89,7 +89,7 @@ description: Li et al./ Bipartite Graph Network With Adaptive Message Passing Fo
 
 
 
-<p align="center"><img width="500" src=".gitbook/description.png"></p>
+<p align="center"><img width="500" src=".gitbook/main/description.png"></p>
 
 
 
@@ -122,10 +122,10 @@ cvpr-2021-bgnn
 If you want to submit it, you should enter your repository which has been forked and pull request.  
 As shown in above picture, go to "Pull Requests" and click "New pull request".  
 
-<p align="center"><img width="600" src=".gitbook/pull_1.png"></p>
+<p align="center"><img width="600" src=".gitbook/main/pull_1.png"></p>
 
 제출시 **master**가 아닌 **2022-Spring** branch로 제출해주시길 바랍니다.  
   
 You should submit it to **2022-Spring** branch, not **master** branch.  
 
-<p align="center"><img width="600" src=".gitbook/pull_2.png"></p>
+<p align="center"><img width="600" src=".gitbook/main/pull_2.png"></p>
