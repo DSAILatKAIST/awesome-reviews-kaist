@@ -122,10 +122,10 @@ cvpr-2021-bgnn
 If you want to submit it, you should enter your repository which has been forked and pull request.  
 As shown in above picture, go to "Pull Requests" and click "New pull request".  
 
-<p align="center"><img width="600" src=".gitbook/main/pull_1.png"></p>
+<p align="center"><img width="1000" src=".gitbook/main/pull_1.png"></p>
 
 제출시 **master**가 아닌 **2022-Spring** branch로 제출해주시길 바랍니다.  
   
 You should submit it to **2022-Spring** branch, not **master** branch.  
 
-<p align="center"><img width="600" src=".gitbook/main/pull_2.png"></p>
+<p align="center"><img width="1000" src=".gitbook/main/pull_2.png"></p>
