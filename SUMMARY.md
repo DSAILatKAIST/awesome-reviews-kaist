@@ -14,4 +14,4 @@
 * [Review Format](paper-review/template.md)  
 ---  
 
-* [DSAIL Lab](https://dsail.kaist.ac.kr/)  
+* [DSAIL Lab](https://dsail.kaist.ac.kr/)   
