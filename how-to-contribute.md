@@ -129,3 +129,9 @@ As shown in above picture, go to "Pull Requests" and click "New pull request".
 You should submit it to **2022-Spring** branch, not **master** branch.  
 
 <p align="center"><img width="1000" src=".gitbook/main/pull_2.png"></p>
+
+### **Review Format**  
+
+리뷰 포맷은 [Review Format](https://github.com/DSAILatKAIST/awesome-reviews-kaist/blob/master/paper-review/template.md)을 통해서 확인할 수 있습니다.  
+
+You can check the review format on [Review Format](https://github.com/DSAILatKAIST/awesome-reviews-kaist/blob/master/paper-review/template.md) link.
