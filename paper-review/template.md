@@ -4,36 +4,58 @@ description : 1st author / title / conference-year(description)
 
 # **Title** 
 
-Title of paper that you are going to write   
+Title of paper that you are going to write  
 
 ## **1. Problem Definition**  
 
-Please write the problem definition on here.  
-
+Please write the problem definition on here  
 
 
 ## **2. Motivation**  
 
 Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
 
-## **3. Related Work**  
-
-Please write the related work.
-
-After writing related work, please write the discriminative idea compared to related work briefly.  
-
-## 4. Method  
-
-## 5. Experiment  
-
-## 6. Conclusion  
+After writing the motivation, please write the discriminative idea compared to existing works briefly.
 
 
-## 7. Reference & Additional Material  
-Please write the reference. If paper provides the public code or other materials, refer them.
+## **3. Method**  
+
+Please write the methodology author have proposed.  
+We recommend you to provide example for understanding it more easily.  
+
+## **4. Experiment**  
+
+In this section, please write the overall experiment results.  
+At first, write experiment setup that should be composed of contents.  
+
+### **Experiment setup**  
+* Dataset  
+* baseline  
+* Evaluation Metric  
+
+### **Result**  
+Then, show the experiment results which demonstrate the proposed method.  
+You can attach the tables or figures, but you don't have to cover all the results.  
+  
+
+
+
+## **5. Conclusion**  
+
+Please summarize the paper.  
+It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
 
 ---  
+## **Author Information**  
 
-## Author Information  
+* Author name  
+    * Affiliation  
+    * Research Topic
 
-* Author name()
+## **6. Reference & Additional materials**  
+
+Please write the reference. If paper provides the public code or other materials, refer them.  
+
+* Github Implementation  
+* Reference  
+

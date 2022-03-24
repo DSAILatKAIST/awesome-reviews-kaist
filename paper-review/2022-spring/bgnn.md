@@ -6,14 +6,12 @@ description: Li et al./ Bipartite Graph Network With Adaptive Message Passing Fo
 # \(BGNN\) Bipartite Graph Network With Adaptive Message Passing For Unbiased Scene Graph Generation \[Kor\]   
 
 
-##  1. Problem definition  
+##  **1. Problem definition**  
 
 ## Paper Topic  
 *Scene Graph Generation(SGG) in Computer Vision*  
 
 Scene Graph Generation은 이미지가 주어졌을 때 Scene Graph로 변환하는 Task를 의미한다. 예를 들어, 왼쪽의 이미지가 주어졌을 때 오른쪽 그림과 같은 Graph로 만드는 것이다. Graph의 Node은 Entity(e.g.사람, 돌)을 의미하고 Edge의 경우에는 두 Node 사이의 Edge는 Entity 사이의 Predicate(술어)를 의미한다. "**사람이 돌 위에 있다**"라고 한다면 Node는 "**사람**", "**돌**"이 될 것이고 Edge(Predicate)은 "**standing on(위에 서 있다)**"가 될 것이다.  
-
-<!-- <img width = "150" src = 'https://user-images.githubusercontent.com/55014424/136494900-8c3438f4-594a-41f3-837a-0b4e8a735e86.png'>   -->
 
 <img width = '150' src= '../../.gitbook/2022-spring-assets/bgnn/scene_graph_image1.png'>  
 
@@ -22,7 +20,7 @@ Scene Graph Generation은 이미지가 주어졌을 때 Scene Graph로 변환하
 그림 출처: [CVPR 21]Energy-Based Learning For Scene Graph Generation  
 
 
-## 2. Motivation
+## **2. Motivation**
 
 Scene Graph Generation(SGG) 할 때의 Main Challenge 중에 하나가 Predicate(e.g standing on, has)의 Distribution이 Long-Tailed로 되어있다는 점이다. SGG에서의 Benchmark Dataset 중에 하나는 "Visual Genome(VG)"이다. VG의 Image에서 나오는 Predicate를 보면 아래와 같은 Distribution을 갖고 있다.  
 
@@ -34,36 +32,8 @@ Scene Graph Generation(SGG) 할 때의 Main Challenge 중에 하나가 Predicate
 Long-Tailed Distribution을 고려하지 않고 모델링을 하게 된다면 Training에서 많이 나오는 "On, Has" 등의 Predicate가 많이 학습될 것이고, Test에서 Long Tailed에 해당하는 Predicate가 나오더라도 비슷한 의미인 경우 Head Tailed 부분의 Predicate를 맞출 것이다. 
 예를 들면 'Standing On'이 Test에 나오더라도 비슷한 의미인 'On'을 맞추게 될 것이다. 이렇게 되면 정확한 Scene Graph를 만들지 못하게 될 것이다.   
 
-### Related work
 
-#### Scene Graph Generation  
-
-아래의 3개의 논문과 같은 경우에는 Sparse Graph가 아닌 모든 Entity간에 Predicate가 연결되어 있다고 가정하여 Scene Graph를 만들어낸다. 이렇게 되면 모든 Entity Pair의 경우를 고려할 수 있겠지만, 의미 없는 Entity Pair의 Predicate를 만들어내는 것은 Noise를 발생 할 수 있다.  
-```text   
-Scene graph generation by iterative message passing(CVPR 17)  
-Scene Graph Generation from Objects, Phrases and Region Captions(ICCV 17)  
-Gps-net: Graph property sensing network for scene graph
-generation(CVPR 20)  
-```  
-#### Long-Tailed  
-
-Long-Tailed 문제로 Biased Prediction 문제를 해결해온 Effort들이 존재한다. Long Tailed Problem을 해결하기 위해 여러가지 Technique을 사용했다. 
-아래와 같은 논문의 경우에는 Loss를 새롭게 Design하여 해결하고자 했다.  
-``` text  
-Graph Density-Aware Losses for Novel Compositions in Scene Graph Generation(ECCV 17)  
-Pcpl: Predicate-correlation perception learning for unbiased scene graph generation(MM 20)
-```    
-
-### Idea
-
-이 논문에서는 Introduction에서 언급한 것과 같이 Predicate의 Long Tailed Distribution Problem을 다룬다. 일반적인 Scene Graph Generation을 할 때는 모든 Node간에 Predicate가 존재한다고 가정하여 Fully Connected Graph를 만들고 진행한다. 하지만, 논문에서는 두 Node간에 Predicate가 meaningless한 경우에는 Scene Graph에게 Negative Effect를 줄 것이라고 말한다. 따라서, 이 논문에서는 두 Node간에 Meaningless한 Predicate를 골라내는 Confidence Module를 이용하게 된다. 논문에서는 아래의 그림을 보여주며 **네모**칸을 없애면 Accurate Graph를 만든다고 주장한다.  
-
-<img width = '700' src= '../../.gitbook/2022-spring-assets/bgnn/scene_graph_image4.png'>  
-
-Confidence Module 뿐만 아니라 'Bi-Level Sampling'이라는 Sampling 기법을 이용하여 Long-Tailed Problem을 핵심적으로 다루고 있다고 할 수 있다.  
-
-
-## 3. Method
+## **3. Method**
 
 > 모델을 설명하기 전에 Scene Graph의 경우에는 'Faster-RCNN'와 같은 Object Detection Module를 사용하여 Bounding Box와 Object Class Distribution이 주어지게 된다. 주어진 Bounding Box를 Graph에서의 하나의 Node라고 생각하면 된다.   
 
@@ -154,13 +124,14 @@ Image-level로 $r_i$가 0.5로 Image 중에 Max값일 때, $c$가 강아지로 $
 
 Image-level과 Instance-level로 Bi-level Sampling을 하게 된다면 Long-Tailed Distribution을 고려하여 Sampling하게 될 것이다.   
 
-## 4. Experiment & Result
+## **4. Experiment & Result**
 
 ### Experimental Setup  
 
 * Datset  
 Scene Graph Generation을 할 경우에는 Benchmark Dataset으로 Visual Genome Dataset을 많이 사용한다. 그리고 Open Images도 사용하여 다양한 Baseline과 비교했다.   
-* Baseline  
+
+* Baseline
 1. Pcpl:Predicate-correlation perception learning for unbiased scene graph generation(MM 20) -SOTA  
 2. Neural motifs: Scene graph parsing with global contex(CVPR 18)  
 3. Graph r-cnn for scene graph generation(ECCV 18)
@@ -170,11 +141,6 @@ Scene Graph Generation을 할 경우에는 Benchmark Dataset으로 Visual Genome
 7. Gps-net: Graph property sensing network for scene graph
 generation(CVPR 20)  
 8. Unbiased scene graph generation from biased training(CVPR 20)  
-
-
-
-* Training Setup  
-Convolution Feature를 얻어내기 위해서 ResNet-101을 Backbone으로 사용했고, Faster R-CNN을 통해 Object Dectection을 진행했다. Training할 때는 위의 Parameter를 Frozen상태로 Training을 진행했다. 즉, Backbone쪽과 Detector쪽의 Parameter를 Pretrained된 것을 사용한다. 
 
 
 * Evaluation Metric : Recall@K, mean recall@K  
@@ -197,7 +163,7 @@ SGGen : 위의 SGCls의 조건에다가 Object Detect를 했을 때, Ground Trut
 SOTA Model의 경우에는 PCPL으로 mean Recall에서는 낮지만, Recall의 경우에는 Proposed Method가 더 높은 것을 볼 수 있었다. 
 
 
-## 5. Conclusion
+## **5. Conclusion**
 
 SGG에서 Long-Tailed 문제가 더 심각한데 이 논문에서는 Confidence Module를 넣어 두 Node의 Predicate가 Meaning한지를 먼저 잡아내서 Noise를 잡아낸 후, Message Passing을 하게 된다. 그리고 Bi-Level Resampling 방법을 이용하여 Long-Tailed Distribution에 맞게 Sampling한다.  
 
@@ -208,6 +174,8 @@ SGG에서 Long-Tailed 문제가 더 심각한데 이 논문에서는 Confidence 
 > 만약 Long-Tailed 문제를 Focusing하는 논문일 경우에 Recent Paper 중에 해당 문제를 다루고 있는 논문과의 비교의 필요성 존재  
 
 > Confidence Module를 통해 Live한 방법으로 Entity Pair를 잘라내는 것이 아니라, Module내에서 의미있는 Predicate가 존재하는지 학습과정에서 나오게 하는 방법론을 다른 곳에 적용 가능성 존재
+
+---  
 
 ## Author / Reviewer information
 
@@ -220,7 +188,7 @@ SGG에서 Long-Tailed 문제가 더 심각한데 이 논문에서는 Confidence 
 
 
 
-## Reference & Additional materials
+## **6. Reference & Additional materials**
 
 * [Github(Implementation)](https://github.com/SHTUPLUS/PySGG)   
 * Reference(Part)  
