@@ -22,6 +22,10 @@ Also, we are going to improve the quality of paper review by peer evaluation.
 
 Please refer to following link [How to contribute](https://app.gitbook.com/s/AHQ0nw6nnYCflU3RyLxw/how-to-contribute/how-to-contribute) to understand how to submit and write.  
 
+모든 자료는 [https://dsail.gitbook.io/dsail-review](https://dsail.gitbook.io/dsail-review/)에서 확인할 수 있습니다.  
+
+You can find the all materials in [https://dsail.gitbook.io/dsail-review](https://dsail.gitbook.io/dsail-review/) link.
+
 ## Course Information    
 
 ### Instructor  
