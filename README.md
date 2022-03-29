@@ -24,7 +24,7 @@ Please refer to following link [How to contribute](https://app.gitbook.com/s/AHQ
 
 모든 자료는 [https://dsail.gitbook.io/dsail-review](https://dsail.gitbook.io/dsail-review/)에서 확인할 수 있습니다.  
 
-You can find the all materials in [https://dsail.gitbook.io/dsail-review](https://dsail.gitbook.io/dsail-review/) link.
+You can find the all materials in [https://dsail.gitbook.io/dsail-review](https://dsail.gitbook.io/dsail-review/) link. 
 
 ## Course Information    
 
