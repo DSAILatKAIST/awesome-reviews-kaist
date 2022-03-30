@@ -39,6 +39,6 @@ You can find the all the materials in [https://dsail.gitbook.io/dsail-review](ht
 
 **인연준(Yeonjun In)** : Master student, ISysE, KAIST  
 
-**김기범(Kibum Kim)** : Master studnet, ISysE, KAIST
+**김기범(Kibum Kim)** : Master student, ISysE, KAIST
 
 
