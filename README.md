@@ -4,7 +4,6 @@ description : Paper Review
 
 # Awesome review  
 
-dasd
 
 ## Organizer  
 
