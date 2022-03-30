@@ -4,6 +4,7 @@ description : Paper Review
 
 # Awesome review  
 
+
 ## Organizer  
 
 [KAIST DSAIL](https://dsail.kaist.ac.kr/)   <img width='45' align='center' src='.gitbook/main/symbol.png'>  
@@ -39,6 +40,5 @@ You can find the all the materials in [https://dsail.gitbook.io/dsail-review](ht
 **인연준(Yeonjun In)** : Master student, ISysE, KAIST  
 
 **김기범(Kibum Kim)** : Master studnet, ISysE, KAIST
-
 
 
