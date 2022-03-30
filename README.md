@@ -20,13 +20,13 @@ description : Paper Review
 
 --
 
-From 2022 spring semester, we have been proceeding the project of paper review in **KSE527: Machine Learning For Knowledge Service Engineering**. A student will need to write reviews on 2 papers. The papers should not have been reviewed or summarized elsewhere on the internet.
+From 2022 Spring semester, we will upload reviews on recent deep learning papers as a course project of **KSE527: Machine Learning For Knowledge Service Engineering**. A student will need to write reviews on 2 papers. The papers should not have been reviewed or summarized elsewhere on the internet.
 
 Also, we are going to improve the quality of paper review by peer evaluation.  
 
-Please refer to following link [How to contribute](https://app.gitbook.com/s/AHQ0nw6nnYCflU3RyLxw/how-to-contribute/how-to-contribute) to understand how to submit and write.  
+Please refer to the following link [How to contribute](https://app.gitbook.com/s/AHQ0nw6nnYCflU3RyLxw/how-to-contribute/how-to-contribute) to understand how to submit and write.  
 
-You can find the all materials in [https://dsail.gitbook.io/dsail-review](https://dsail.gitbook.io/dsail-review/) link. 
+You can find the all the materials in [https://dsail.gitbook.io/dsail-review](https://dsail.gitbook.io/dsail-review/) link. 
 
 ## Course Information    
 
