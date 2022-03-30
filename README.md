@@ -7,7 +7,7 @@ description : Paper Review
 ## Organizer  
 
 [KAIST DSAIL](https://dsail.kaist.ac.kr/)   <img width='45' align='center' src='.gitbook/main/symbol.png'>  
-
+dadsd
 ## Introduction  
 
 **KSE527: 지식 서비스를 위한 기계학습** 수업에서는 2022년 봄학기 때부터 논문 리뷰 프로젝트를 시작합니다. 한 학기에 수강생 1명당 2편의 논문이 할당이 되어 리뷰를 남기게 됩니다. 본 리뷰는 인터넷 상에 한글로 포스팅되어 있지 않은 논문을 위주로 다루어, 최신 논문을 이해하는데 어려움을 겪는 딥러닝 입문자들에게 도움이 되는 것을 목표로 하고 있습니다. 
