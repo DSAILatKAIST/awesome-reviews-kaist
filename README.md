@@ -7,7 +7,7 @@ description : Paper Review
 
 ## Organizer  
 
-[KAIST DSAIL Labs](https://dsail.kaist.ac.kr/)   <img width='45' align='center' src='.gitbook/main/symbol.png'>  
+[KAIST DSAIL](https://dsail.kaist.ac.kr/)   <img width='45' align='center' src='.gitbook/main/symbol.png'>  
 
 ## Introduction  
 
