@@ -9,6 +9,7 @@
   * [BGNN](paper-review/2022-spring/bgnn.md)
   * [Test](paper-review/2022-spring/test.md)
   * [BGNN2](paper-review/2022-spring/bgnn2.md)
+  * [yeonjun](paper-review/2022-spring/yeonjun.md)
 
 ## How to contribute  
 
