@@ -10,6 +10,17 @@ This writing is the guideline of how to write review.
 
 ## Preparing for your manuscript  
 
+### **Follow with video**  
+
+**Fork**부터 **Pull Request**까지의 Contribution 과정을 Video를 통해서 쉽게 따라할 수 있습니다.  
+
+아래의 설명 과정에서 이해하기 어려운 부분은 Video를 참고해주시기 바랍니다.  
+
+You can easily follow the procedure of contribution from **Fork** to **Pull Request** through video.  
+If you have difficulty understanding on below explanation, please refer to video.  
+
+[[KSE527-Spring] Paper Review Submission Guideline](https://www.youtube.com/watch?v=dJTkGk9kPWE)  
+
 ### **Fork repository**  
 
 먼저, [awesome-reviews-kaist](https://github.com/DSAILatKAIST/awesome-reviews-kaist) repository를 자신의 github repository에 fork하여 추가합니다.  
