@@ -11,6 +11,7 @@
   * [BGNN2](paper-review/2022-spring/bgnn2.md)
   * [yeonjun](paper-review/2022-spring/yeonjun.md)
   * [yeonjun2](paper-review/2022-spring/yeonjun2.md)
+  * [yeonjun3](paper-review/2022-spring/yeonjun3.md)
 ## How to contribute  
 
 * [How to contribute?](how-to-contribute.md)  
