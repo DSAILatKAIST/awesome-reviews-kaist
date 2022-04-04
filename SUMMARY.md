@@ -6,6 +6,9 @@
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md)    
   * [TEST2](paper-review/2022-spring/test2.md)
+  * [BGNN](paper-review/2022-spring/bgnn.md)
+  * [Test](paper-review/2022-spring/test.md)
+  * [BGNN2](paper-review/2022-spring/bgnn2.md)
 
 ## How to contribute  
 
