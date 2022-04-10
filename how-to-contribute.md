@@ -19,7 +19,7 @@ This writing is the guideline of how to write review.
 You can easily follow the procedure of contribution from **Fork** to **Pull Request** through video.  
 If you have difficulty understanding on below explanation, please refer to video.  
 
-[[KSE527-Spring] Paper Review Submission Guideline](https://www.youtube.com/watch?v=dJTkGk9kPWE)  
+[[KSE527-Spring] Paper Review Submission Guideline](https://youtu.be/3oPv_uUPFw8)  
 
 ### **Fork repository**  
 
@@ -51,15 +51,15 @@ It is also okay to utilize your own edition.
 
 You should put the main review file(.md) on "paper-review/2022-spring" directory.  
 
-사진을 첨부한다면, ".gitbook/2022-spring-assets/\<article-id\>/\<image.png\>" 위치에 사진 파일을 넣어주세요.  
+사진을 첨부한다면, ".gitbook/2022-spring-assets/\<ReviewerName_1or2\>/\<image.png\>" 위치에 사진 파일을 넣어주세요.  
 메인 리뷰 파일에서도 사진 위치에 맞는 파일명을 넣어주세요.   
 
-If you want to put an image, you should put an image on ".gitbook/2022-spring-assets/\<article-id\>/\<image.png\>" location.  
+If you want to put an image, you should put an image on ".gitbook/2022-spring-assets/\<ReviewerName_1or2\>/\<image.png\>" location.  
 You also write the file name corresponding to image path on main review file.  
 
 **E.g.**
 ``` bash  
-<img width="140" src=".gitbook/2022-spring-assets/3/intro.png">  
+<img width="140" src=".gitbook/2022-spring-assets/HongGildong_1/intro.png">  
 ```  
 
 ### **SUMMRAY.md**  
@@ -135,7 +135,7 @@ As shown in above picture, go to "Pull Requests" and click "New pull request".
 
 <p align="center"><img width="1000" src=".gitbook/main/pull_1.png"></p>
 
-제출시 **master**가 아닌 **2022-Spring** branch로 제출해주시길 바랍니다.  
+제출할 때 반드시! **master**가 아닌 **2022-Spring** branch로 제출해주시길 바랍니다.   
   
 You should submit it to **2022-Spring** branch, not **master** branch.  
 
@@ -146,3 +146,9 @@ You should submit it to **2022-Spring** branch, not **master** branch.
 리뷰 포맷은 [Review Format](https://github.com/DSAILatKAIST/awesome-reviews-kaist/blob/master/paper-review/template.md)을 통해서 확인할 수 있습니다.  
 
 You can check the review format on [Review Format](https://github.com/DSAILatKAIST/awesome-reviews-kaist/blob/master/paper-review/template.md) link. 
+
+### Mathematical Equation  
+수학식을 작성 할 때는 \$~\$가 아닌 \$$~\$$을 통해서 작성할 수 있습니다.   
+
+When you write the mathematical equation, you can write it by \$$~\$$ expression, not \$~\$.
+
