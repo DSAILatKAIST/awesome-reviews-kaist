@@ -147,7 +147,7 @@ You should submit it to **2022-Spring** branch, not **master** branch.
 
 You can check the review format on [Review Format](https://github.com/DSAILatKAIST/awesome-reviews-kaist/blob/master/paper-review/template.md) link. 
 
-### Mathematical Equation  
+### **Mathematical Equation**  
 수학식을 작성 할 때는 \$~\$가 아닌 \$$~\$$을 통해서 작성할 수 있습니다.   
 
 When you write the mathematical equation, you can write it by \$$~\$$ expression, not \$~\$.
