@@ -4,7 +4,7 @@
 
 ## Paper Review  
 
-* [\[2022 Spring\] Paper Review](paper-review/README.md)    
+* [\[2022 Spring\] Paper Review](paper-review/README.md) 
 
 
 ## How to contribute  
