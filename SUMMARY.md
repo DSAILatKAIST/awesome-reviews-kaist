@@ -6,6 +6,7 @@
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md) 
     * [Template](paper-review/2022-spring/template.md)
+    * [AS-GCN](paper-review/2022-spring/handonghee_1.md)
 
 
 ## How to contribute  
