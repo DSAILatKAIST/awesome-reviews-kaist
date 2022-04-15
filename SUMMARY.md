@@ -4,11 +4,9 @@
 
 ## Paper Review  
 
-* [\[2022 Spring\] Paper Review](paper-review/README.md) 
-    * [Template](paper-review/2022-spring/template.md)
-    * [AS-GCN](paper-review/2022-spring/handonghee_1.md)
-
-
+* [\[2022 Spring\] Paper Review](paper-review/README.md)    
+    * [Template](paper-review/2022-spring/template.md) 
+    * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
 ## How to contribute  
 
 * [How to contribute?](how-to-contribute.md)  
