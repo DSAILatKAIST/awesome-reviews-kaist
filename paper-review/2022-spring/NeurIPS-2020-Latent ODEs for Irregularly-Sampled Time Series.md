@@ -1,21 +1,27 @@
 ---
-description : 1st author / title / conference-year(description)  
+description : Y Rubanova / Latent ODEs for Irregularly-Sampled Time Series / NeurIPS-2019(description)  
 ---
 
 # **Title** 
 
-Title of paper that you are going to write  
+Latent ODEs for Irregularly-Sampled Time Series
 
 ## **1. Problem Definition**  
 
-Please write the problem definition on here  
+> 시계열 데이터를 다루는 Deep learning에 **미분방정식 (Ordinary Differential Equation)** 을 접목시키자!  
 
+본 논문은 continuous-time dynamics를 가지는 RNN(Recurrent Neural Networks)을 ODEs(Ordinary Differential Equations)를 사용해 정의해 새로운 모델 ODE-RNN을 만들어냅니다.
+
+또한  NeurIPS에 2018년에 publish 된 '[Neural ordinary differential equations](https://arxiv.org/abs/1806.07366)' 라는 논문에서 제시한 Latent ODE model의 recognition network을 ODE-RNN으로 대체합니다. 이를 통해 관측값 사이의 임의의 time gap을 다룰 수 있습니다.
 
 ## **2. Motivation**  
 
 Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
 
 After writing the motivation, please write the discriminative idea compared to existing works briefly.
+> 기존 시계열 데이터를 다루는 RNN은 **irregurlarly-sampled time series data**를 잘 fitting하지 못한다!
+
+RNN은 high-dimensional, regularly-sampled time series data에 대해 좋은 성능을 보이나, data의 time-gap이 불규칙적인 경우 좋은 성능을 내지 못합니다.
 
 
 ## **3. Method**  
