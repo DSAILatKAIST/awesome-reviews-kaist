@@ -119,9 +119,20 @@ Sampling method $$A$$를 이용하여 최소한의 stage안에 최소한의 loss
 >전체적인 과정은 아래와 같은 식으로 표현된다.
 >![gcn](https://user-images.githubusercontent.com/89853986/163961880-ea5a6f69-1ec4-4657-982f-f5780ee24f0d.PNG)
 >
->또한 loss function은 아래와 같다. (cross-entropy를 사용하였고, $$\lambda$$는 labelled와 unlabelled cross-entropy간의 weight를 조절하는 parameter이다.)
+>또한 loss function은 아래와 같다.
+>![gcn_loss](https://user-images.githubusercontent.com/89853986/163980668-5362fe71-d151-4810-8a65-2e254dee0912.png)
 >
+>cross-entropy를 사용하였고, $$\lambda$$는 labelled와 unlabelled cross-entropy간의 weight를 조절하는 parameter이다.
 
+**UncertainGCN: Uncertainty sampling on GCN**  
+>위와 같은 방법으로 GCN을 training시키고 난 후 sampling을 진행한다. 
+>본 방법에서 unlabelled로 남아있는 data $$D_U$$에 대한 confidence score는 $$f_{\mathcal G}(v_i; D_U)$$이다.
+>일반적인 uncertainty sampling과 유사하게 UncertainGCN도 $$s_{margin}$$이라는 변수와 함께 confidence를 기반으로 sampling할 unlabelled image를 고른다.
+>기존의 labelled set인 $$D_L$$에서 고정된 $$b$$개를 querying하는 수식은 아래와 같다.
+>![uncertaingcn](https://user-images.githubusercontent.com/89853986/163984729-6eca1d63-32a8-4be4-aae5-79d7e566716a.PNG)
+>가장 uncertainty가 높은 unlabelled data를 고르려면 $$s_{margin}$$을 0과 가깝게 설정하면 된다. (이 경우 0~1 범위의 confidence 값 중 1에 가까운 image들이 선택될 것이다.)
+>이 과정이 주어진 budget 내에서 loss가 가장 작아질 때까지 반복되며, 알고리즘의 pseudo code는 아래와 같다.
+>
 
 ## **4. Experiment**  
 
