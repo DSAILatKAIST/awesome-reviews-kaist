@@ -142,7 +142,8 @@ Sampling method $$A$$를 이용하여 최소한의 stage안에 최소한의 loss
 >![uncertaingcn](https://user-images.githubusercontent.com/89853986/163984729-6eca1d63-32a8-4be4-aae5-79d7e566716a.PNG)
 >가장 uncertainty가 높은 unlabelled data를 고르려면 $$s_{margin}$$을 0과 가깝게 설정하면 된다. (이 경우 0~1 범위의 confidence 값 중 1에 가까운 image들이 선택될 것이다.)
 >이 과정이 주어진 budget 내에서 loss가 가장 작아질 때까지 반복되며, 알고리즘의 pseudo code는 아래와 같다.  
->![pseudo](https://user-images.githubusercontent.com/89853986/163986800-325ea500-c8e4-41a5-91e8-bafe6ed40a48.PNG)
+
+![pseudo](https://user-images.githubusercontent.com/89853986/163986800-325ea500-c8e4-41a5-91e8-bafe6ed40a48.PNG)
 
 **3.3.4 CoreGCN: CoreSet sampling on GCN**
 >CoreGCN은 $$l2$$ distance를 기반으로 첫번째 GCN layer에서 추출된 feature간의 거리를 계산하고, 이를 통해 sampling할 data를 선정한다.  
@@ -190,6 +191,10 @@ At first, write experiment setup that should be composed of contents.
 	>- budget : 1000 images  
 <br/>
 
+![dataset](https://user-images.githubusercontent.com/89853986/164029000-dfb9120b-2672-465d-9b22-6b5a20078663.PNG)
+
+<br/>
+
 * baseline  
 * Evaluation Metric  
 
@@ -201,7 +206,7 @@ You can attach the tables or figures, but you don't have to cover all the result
 + $$D_S$$의 크기는 모든 실험에서 10000으로 설정한다.  
 <br/>
 
-- _earner_  
+- _Learner_  
 	+ ResNet-18을 classification model로 사용  
 - _Sampler_  
 	+ 2 layers GCN을 model로 사용  
