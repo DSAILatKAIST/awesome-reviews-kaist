@@ -1,5 +1,5 @@
 ---
-description : 1st author / title / conference-year(description)  
+description : Yueting Weng / FaceSight; Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downward-Facing Camera Vision / CHI-2021  
 ---
 
 # **Title** 
