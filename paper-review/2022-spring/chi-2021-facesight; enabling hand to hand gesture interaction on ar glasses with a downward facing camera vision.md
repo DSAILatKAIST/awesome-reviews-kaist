@@ -4,7 +4,7 @@ description : Weng et al./ FaceSight; Enabling Hand-to-Face Gesture Interaction 
 
 # **Title** 
 
-Title of paper that you are going to write  
+FaceSight: Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downward-Facing Camera Vision  
 
 ## **1. Problem Definition**  
 
