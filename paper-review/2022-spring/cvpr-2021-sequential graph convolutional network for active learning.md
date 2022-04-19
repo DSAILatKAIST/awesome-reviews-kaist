@@ -45,7 +45,7 @@ task-dependent와 반대로 task에 영향을 받지 않고, 동일한 sampler�
 
 ## **3. Method**  
 
-### **Pipeline**
+### **3.1 Pipeline**
 
 저자가 제시한 method의 전체적인 _**pipeline**_ 은 아래 그림과 같다.  
 
@@ -68,18 +68,20 @@ Phase 1부터 5까지의 과정을 한번 진행하는 것이 한 cycle이다.
 다음 iteration에서는 Phase 5에서 labelling한 data를 추가하여 learner를 학습시키는 Phase 1부터 다시 cycle이 시작된다.   
 Labelling을 할 수 있는 정해진 budget에 도달할 때까지 cycle을 반복한다.  
 
-### **Learner**
+### **3.2 Learner**
 learner는 downstream task를 학습한다. 
 본 논문에서는 classification, regression task 모두에 대해 다루었다.
 
-**1. Classification**
+**3.2.1 Classification**
 >learner는 CNN image classifier를 사용한다. 특히, 비슷한 parameter complexity에 대해 좋은 성능을 보이는 ResNet-18을 model로 사용한다.
 >Minimize 해야할 loss function은 아래와 같다. (cross-entropy 사용)  
 >
 >![loss_classification](https://user-images.githubusercontent.com/89853986/163951946-d4257605-91ba-401d-94ad-b66401c9dc95.PNG)
 >
->$$M$$ 은 parameter $\Theta$를 갖고, input $x$를 output $y$로 매핑하는 deep model이고, $N_l$은 labelled training data의 개수, $f(x_i, y_i; \Theta)$는 model $M$의 posterior probability이다.
-**2. Regression**
+>$$M$$ 은 parameter $\Theta$를 갖고, input $x$를 output $y$로 매핑하는 deep model이고, $N_l$은 labelled training data의 개수, $f(x_i, y_i; \Theta)$는 model $M$의 posterior probability이다.  
+
+
+**3.2.2 Regression**
 >3D HPE task를 다루기 위해서 _DeepPrior_ 모델을 사용한다.  
 >위의 classification task와는 다르게 hand depth image로부터 3D hand joint의 위치를 regress해야한다.   
 >Minimize 해야할 loss funcion은 아래와 같다.  
@@ -90,7 +92,7 @@ learner는 downstream task를 학습한다.
 
 classification과 regression 이외의 task가 등장하더라도 전체 pipeline의 구조는 동일하게 유지한 채 learner만 바꿔주면 된다.
 
-### **Sampler**
+### **3.3 Sampler**
 앞선 pipeline에서 살펴 보았듯이 Sampler는 주어진 budget 내에서 의미있는 unlabeled data를 sampling하여 annotator에게 labelling을 요청하는 model이다.
 
 더욱 구체적인 sampler의 시나리오를 살펴보자.
@@ -101,12 +103,12 @@ unlabeled dataset $$ D_u $$ 에서 초기에 labelling할 initial batch $$ D_0 \
 
 Sampling method $$A$$를 이용하여 최소한의 stage안에 최소한의 loss를 달성하는 것이 목적인 것이다. ($$D_n$$ 은 $$n$$번째 stage에서의 labeled dataset을 의미)
 
-**Sequential GCN selection process**  
+**3.3.1 Sequential GCN selection process**  
 >- 저자가 제안한 pipeline에서 sampler는 GCN을 사용한다.  
 >- GCN의 input은 앞선 learner에서 구해진 labelled, unlabelled image들의 feature를 node로, image간의 similarity를 edge로 표현한 graph이다. Graph를 생성하고, GCN을 사용하는 목적은 message-passing을 통해 node가 갖고 있는 uncertainty를 전파시켜 higher-order representation을 하기 위함이다.  
 >- 이러한 과정을 통해 GCN은 어떤 image를 labeling 해야할지 결정하는 binary classifier의 역할을 하게된다.
 
-**Graph Convolutional Network**  
+**3.3.2 Graph Convolutional Network**  
 >1. Graph Structure 구성
 >>Graph는 node와 edge로 구성되며, node $$v \in \mathbb R^{(m\times N)}$$ 는 $$N$$개의 data (labelled, unlabelled 모두 포함)와 각각의 $$m$$ dimension feature로 표현된다.
 >>Edge는 adjacency matrix $$A$$로 표현이 가능하다. Edge는 node간의 similarity를 나타내야하므로 다음과 같은 과정을 거쳐 adjacency matrix를 구성한다. 
@@ -129,7 +131,7 @@ Sampling method $$A$$를 이용하여 최소한의 stage안에 최소한의 loss
 >
 >cross-entropy를 사용하였고, $$\lambda$$는 labelled와 unlabelled cross-entropy간의 weight를 조절하는 parameter이다.
 
-**UncertainGCN: Uncertainty sampling on GCN**  
+**3.3.3 UncertainGCN: Uncertainty sampling on GCN**  
 >위와 같은 방법으로 GCN을 training시키고 난 후 sampling을 진행한다. 
 >본 방법에서 unlabelled로 남아있는 data $$D_U$$에 대한 confidence score는 $$f_{\mathcal G}(v_i; D_U)$$이다.
 >일반적인 uncertainty sampling과 유사하게 UncertainGCN도 $$s_{margin}$$이라는 변수와 함께 confidence를 기반으로 sampling할 unlabelled image를 고른다.
@@ -139,7 +141,7 @@ Sampling method $$A$$를 이용하여 최소한의 stage안에 최소한의 loss
 >이 과정이 주어진 budget 내에서 loss가 가장 작아질 때까지 반복되며, 알고리즘의 pseudo code는 아래와 같다.  
 >![pseudo](https://user-images.githubusercontent.com/89853986/163986800-325ea500-c8e4-41a5-91e8-bafe6ed40a48.PNG)
 
-**CoreGCN: CoreSet sampling on GCN**
+**3.3.4 CoreGCN: CoreSet sampling on GCN**
 >CoreGCN은 $$l2$$ distance를 기반으로 첫번째 GCN layer에서 추출된 feature간의 거리를 계산하고, 이를 통해 sampling할 data를 선정한다.  
 >기존의 labelled set인 $$D_L$$에서 querying하는 수식은 아래와 같다.  
 >![coregcn](https://user-images.githubusercontent.com/89853986/163989195-a0e9bd2f-b5b6-4cb8-939c-b4fb3354aa65.PNG)
