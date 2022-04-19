@@ -17,6 +17,7 @@ Sequential Graph Convolutional Network for Active Learning
 - GCN의 **message-passing** 특성을 활용하여 강하게 연결된 노드를 비슷하게 embedding한다.  
 - 그 후 _CorSet_,  _uncertainty-based methods_ 등의 active learning 방법론을 적용하여 sampling할 data를 선정하고, 이를 통해 **labeling cost를 효과적으로 줄인다**.
 
+<br/>
 
 ## **2. Motivation**  
 
@@ -42,6 +43,8 @@ task-dependent와 반대로 task에 영향을 받지 않고, 동일한 sampler�
 
 본 논문에서는 task-agnostic하면서 (learner와 sampler가 구분된 model-based AL method이기 때문) labelled, unlabelled 간의 연관성을 표현하지 못한다는 VAAL, Learning Loss의 문제점을 GCN을 적용하여 해결한다.
 
+<br/>
+<br/>
 
 ## **3. Method**  
 
@@ -154,17 +157,77 @@ Sampling method $$A$$를 이용하여 최소한의 stage안에 최소한의 loss
 In this section, please write the overall experiment results.  
 At first, write experiment setup that should be composed of contents.  
 
-### **Experiment setup**  
+본 논문에서는 크게 3가지 실험을 진행하였다.
+- Image classification : RGB, grayscale의 image data 활용 
+- Regression : depth image 활용
+- Classification : RGB synthetic-generated image 활용
+
+위 실험에 대해 각각 자세히 알아보도록 하자.
+
+### **4.1 Classification**
+
+**4.1.1 Datasets and Experimental Settings**  
 * Dataset  
+	+ CIFAR-10 (RGB)
+	>- 10 classes  
+	>- 1000개의 seed labelled datas  
+	>- budget : 1000 images  
+
+	+ CIFAR-100 (RGB)
+	>- 100 classes  
+	>- 2000개의 seed labelled datas  
+	>- budget : 2000 images
+	>- 다른 data에 비해 class가 많아서 더 많은 seed labelled data와 budget을 부여함  
+
+	+ SVHN (RGB)
+	>- 10 classes  
+	>- 1000개의 seed labelled datas  
+	>- budget : 1000 images  
+	
+	+ FashionMNIST (grayscale)
+	>- 10 classes  
+	>- 1000개의 seed labelled datas  
+	>- budget : 1000 images  
+<br/>
+
 * baseline  
 * Evaluation Metric  
 
-### **Result**  
+**4.1.2 Implementation details**  
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
++ 모든 data에 대해 10번의 cycle만큼 실험 진행한다.  
++ Selection을 모든 unlabelled pooled-dataset에 대해 하는 것이 아닌, randomly selected subset $$D_S \subset D_U$$ 에서 진행한다. 이는 dataset에서 중복되는 부분이 여러번 등장하는 것을 피하기 위함이다.  
++ $$D_S$$의 크기는 모든 실험에서 10000으로 설정한다.  
+<br/>
+
+- _earner_  
+	+ ResNet-18을 classification model로 사용  
+- _Sampler_  
+	+ 2 layers GCN을 model로 사용  
+	+ $$\lambda = 1.2$$로 설정, 상대적으로 개수가 많은 unlabelled dataset에 더욱 가중치를 주기 위함이다.  
+	+ $$s_{margin} = 0.1$$로 설정  
+
+
+	
   
+**4.1.3 Compared Methods and Evaluation Metric**
 
+**4.1.4 Quantitative Comparisons**
 
+**4.1.5 Qualitative Comparisons**
+
+### **4.2 Regression**
+
+**4.2.1 Datasets and Experimental Settings**
+
+**4.2.2 Implementation details**
+
+**4.2.3 Compared Methods and Evaluation Metric**
+
+**4.2.4 Quantitative Evaluation**
+
+### **4.3 Sub-sampling of Synthetic Data**
 
 ## **5. Conclusion**  
 
