@@ -21,7 +21,7 @@ FaceSight: Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downwa
 
 AR안경을 활용한 이전 연구들은 손으로 직접 하는 제스처를 감지하는 전기적인/음성 신호를 연구했음  
 (여기에 기존연구 사진 넣어주면 좋을듯?)  
-이런 기존 연구는 제스처가 단순하거나 이산적이므로 제한됨. 
+이런 기존 연구는 제스처가 단순하거나 이산적이므로 제한됨. AR안경 상호작용을 다양하고 지속적인 제스쳐가 필요함.
 
 Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
 
