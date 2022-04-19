@@ -131,8 +131,16 @@ Sampling method $$A$$를 이용하여 최소한의 stage안에 최소한의 loss
 >기존의 labelled set인 $$D_L$$에서 고정된 $$b$$개를 querying하는 수식은 아래와 같다.
 >![uncertaingcn](https://user-images.githubusercontent.com/89853986/163984729-6eca1d63-32a8-4be4-aae5-79d7e566716a.PNG)
 >가장 uncertainty가 높은 unlabelled data를 고르려면 $$s_{margin}$$을 0과 가깝게 설정하면 된다. (이 경우 0~1 범위의 confidence 값 중 1에 가까운 image들이 선택될 것이다.)
->이 과정이 주어진 budget 내에서 loss가 가장 작아질 때까지 반복되며, 알고리즘의 pseudo code는 아래와 같다.
->
+>이 과정이 주어진 budget 내에서 loss가 가장 작아질 때까지 반복되며, 알고리즘의 pseudo code는 아래와 같다.  
+>![pseudo](https://user-images.githubusercontent.com/89853986/163986800-325ea500-c8e4-41a5-91e8-bafe6ed40a48.PNG)
+
+**CoreGCN: CoreSet sampling on GCN**
+>CoreGCN은 $$l2$$ distance를 기반으로 첫번째 GCN layer에서 추출된 feature간의 거리를 계산하고, 이를 통해 sampling할 data를 선정한다.  
+>기존의 labelled set인 $$D_L$$에서 querying하는 수식은 아래와 같다.  
+>![coregcn](https://user-images.githubusercontent.com/89853986/163989195-a0e9bd2f-b5b6-4cb8-939c-b4fb3354aa65.PNG)
+>$$\delta$$는 labelled node $$v_i$$와 unlabelled node $$v_j$$의 feature 간의 유클리디안 거리를 의미한다.  
+>즉, 위의 수식은 labelled data의 feature와 unlabelled data의 feature 간의 가장 큰 거리를 최소로 만드는 unlabelled data point를 sampling하도록 한다.
+
 
 ## **4. Experiment**  
 
