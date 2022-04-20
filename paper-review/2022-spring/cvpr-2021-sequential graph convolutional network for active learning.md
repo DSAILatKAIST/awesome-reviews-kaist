@@ -80,7 +80,7 @@ learner는 downstream task를 학습한다.
 >
 >![loss_classification](https://user-images.githubusercontent.com/89853986/163951946-d4257605-91ba-401d-94ad-b66401c9dc95.PNG)
 >
->$$M$$ 은 parameter $\Theta$를 갖고, input $x$를 output $y$로 매핑하는 deep model이고, $N_l$은 labelled training data의 개수, $f(x_i, y_i; \Theta)$는 model $M$의 posterior probability이다.  
+>![](https://latex.codecogs.com/gif.latex?M) 은 parameter ![](https://latex.codecogs.com/gif.latex?\Theta)를 갖고, input ![](https://latex.codecogs.com/gif.latex?x)를 output ![](https://latex.codecogs.com/gif.latex?y)로 매핑하는 deep model이고, ![](https://latex.codecogs.com/gif.latex?N_L)은 labelled training data의 개수, ![](https://latex.codecogs.com/gif.latex?f(x_i, y_i; \Theta))는 model ![](https://latex.codecogs.com/gif.latex?M)의 posterior probability이다.  
 
 
 **3.2.2 Regression**
@@ -90,7 +90,7 @@ learner는 downstream task를 학습한다.
 >
 >![loss_regression](https://user-images.githubusercontent.com/89853986/163951987-b123ec14-511d-4735-9104-3ad6d4da32a0.PNG)
 >
->$J$는 joint의 개수를 의미한다.
+>![](https://latex.codecogs.com/gif.latex?J)는 joint의 개수를 의미한다.
 
 classification과 regression 이외의 task가 등장하더라도 전체 pipeline의 구조는 동일하게 유지한 채 learner만 바꿔주면 된다.
 
@@ -98,12 +98,12 @@ classification과 regression 이외의 task가 등장하더라도 전체 pipelin
 앞선 pipeline에서 살펴 보았듯이 Sampler는 주어진 budget 내에서 의미있는 unlabeled data를 sampling하여 annotator에게 labelling을 요청하는 model이다.
 
 더욱 구체적인 sampler의 시나리오를 살펴보자.
-unlabeled dataset $$ D_u $$ 에서 초기에 labelling할 initial batch $$ D_0 \subset D_u $$ 를 랜덤하게 골라주는 것으로 시나리오가 시작된다. 이렇게 초기 set이 확정이 되면 그 다음부터는 pipeline에 설명된 cycle을 돌면서 sampling할 unlabeled data를 고르고, labeling을 하여 새롭게 learner를 통해 training 시키는 과정을 최소한의 budget 내에서 수행한다.
+unlabeled dataset ![](https://latex.codecogs.com/gif.latex?D_U)에서 초기에 labelling할 initial batch ![](https://latex.codecogs.com/gif.latex?D_0 \subset D_U)를 랜덤하게 골라주는 것으로 시나리오가 시작된다. 이렇게 초기 set이 확정이 되면 그 다음부터는 pipeline에 설명된 cycle을 돌면서 sampling할 unlabeled data를 고르고, labeling을 하여 새롭게 learner를 통해 training 시키는 과정을 최소한의 budget 내에서 수행한다.
 이것을 수식으로 표현하면 아래와 같다.
 
 ![sampler](https://user-images.githubusercontent.com/89853986/163953401-9b324b99-0364-451c-b653-a5cfd9e271bc.PNG)
 
-Sampling method $$A$$를 이용하여 최소한의 stage안에 최소한의 loss를 달성하는 것이 목적인 것이다. ($$D_n$$ 은 $$n$$번째 stage에서의 labeled dataset을 의미)
+Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최소한의 stage안에 최소한의 loss를 달성하는 것이 목적인 것이다. (![](https://latex.codecogs.com/gif.latex?D_n)은 ![](https://latex.codecogs.com/gif.latex?n)번째 stage에서의 labeled dataset을 의미)
 
 **3.3.1 Sequential GCN selection process**  
 >- 저자가 제안한 pipeline에서 sampler는 GCN을 사용한다.  
