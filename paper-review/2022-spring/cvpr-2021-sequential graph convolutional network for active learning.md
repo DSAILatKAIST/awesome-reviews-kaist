@@ -195,8 +195,6 @@ At first, write experiment setup that should be composed of contents.
 
 <br/>
 
-* baseline  
-* Evaluation Metric  
 
 **4.1.2 Implementation details**  
 Then, show the experiment results which demonstrate the proposed method.  
@@ -243,29 +241,86 @@ ResNet-18로 learner를 구성하여 전체 dataset을 사용하여 training을 
 
 **4.1.5 Qualitative Comparisons**
 
+실제로 각 sampling method 들이 어떠한 unlabelled data를 sampling하는지를 t-SNE plot을 통해 직접 관찰한다. 
+Stage가 진행됨에 따라 확연한 차이를 관찰하기 위해 첫번째 stage와 3단계가 더 진행된 4번째 stage를 plot하면 아래와 같다.
+
+![qualitative_classification](https://user-images.githubusercontent.com/89853986/164183015-94483f1b-97df-4382-a54a-99a797bdb0c1.PNG)
+
+첫번째 stage에서는 sampling method 간에 큰 차이가 관찰되지 않는다.
+Figure 5는 CoreSet과 UncertainGCN을 비교해놓은 그림이다. 4번째 stage에서 select한 sample을 보면, CoreSet에 비해 UncertainGCN은 더욱 class의 경계에 위치하는 sample들(uncertainty가 높은 sample)을 select한 것을 확인 가능하다.
+Figure 6은 CoreSet과 CoreGCN을 비교해놓은 그림이다. CoreGCN은 geometric information을 기반으로 하기 때문에 sample들이 몰려있는 것을 방지한다. 하지만 uncertain area로부터 message-passing을 받기 때문에 CoreSet처럼 class의 중앙에 위치하는 것은 아니다. CoreGCN은 geometric information과 uncertainty 간의 balance를 고려하여 sampling한다.
+
+
 ### **4.2 Regression**
 
 **4.2.1 Datasets and Experimental Settings**
 
+* Dataset  
+	+ ICVL (hand depth-images)
+	>- 16004개의 training set과 1600개의 test set
+	>- 매 selection stage에서 training data의 10%를 $$D_S$$로 설정
+	>- 매 selection stage에서 100개의 unlabelled data를 select
+
+<br/>
+
 **4.2.2 Implementation details**
+
+_DeepPrior_ 를 learner로 사용
+Sampler 등의 다른 요소들은 위의 classification task 때와 동일하게 유지
+Detecting hands, centre, crop 그리고 image resize를 위해 U-Net을 사용하여 pre-train
 
 **4.2.3 Compared Methods and Evaluation Metric**
 
+* baseline  
+	- **Random sampling** : 가장 기본적인 default baseline이다.
+	- **CoreSet** : geometric technique 중 가장 좋은 퍼포먼스를 보인다.
+
+* Evaluation Metric
+	- Test set에 대한 5번의 실험에서의 mean squared error의 평균과 standard deviation을 evaluation metric으로 사용하여 비교한다.
+
 **4.2.4 Quantitative Evaluation**
+
+![quantitative_regression](https://user-images.githubusercontent.com/89853986/164215933-ba9a9f4f-ae25-4d1b-b5cd-5820b1577c81.PNG)
+
+ICVL dataset을 가지고 4가지 방법으로 실험한 결과를 나타낸 그래프이다. 
+CoreGCN과 UncertainGCN이 second stage부터 다른 방법에 비해 낮은 mse를 보이며, 각각 6번째, 5번째 selection stage까지 급격히 감소하는 것을 볼 수 있다.
+이는 매우 제한된 budget 내에서도 저자가 제안한 두 방법이 다른 방법들에 비해 좋은 성능을 보일 수 있다는 것을 보여준다.
 
 ### **4.3 Sub-sampling of Synthetic Data**
 
+* Dataset  
+	+ RaFD 
+	>- StarGAN을 사용하여 generate한 face expression이다.
+	>- GAN이 실제와 매우 유사한 generated image를 생성해주지만, 모든 generated image를 바로 train data로 사용하기에는 무리가 있다.
+	>- 따라서 정확하고, 의미있는 data를 select할 필요가 있다.
+
+* Result
+
+![synthetic](https://user-images.githubusercontent.com/89853986/164217784-aaff2175-e1f7-4a43-a961-5e500f8ac43d.PNG)
+
+Random sampling에 비해 UncertainGCN이 더 작은 variance와 함께 더 좋은 accuracy를 보이고 있다. 
+Model을 train하기 위해 적은 수의 synthetic example만이 useful하다.
+
 ## **5. Conclusion**  
 
-Please summarize the paper.  
-It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
+
+
+- GCN based의 task-agnostic한 sampling method를 제시하였다. 
+- Image의 feature를 기반으로 node를, similarity를 기반으로 edge를 표현하여 graph를 생성하고, message-passing을 표현할 수 있는 GCN을 적용한다.
+- 저자가 제안한 UncertainGCN, CoreGCN은 6개의 data에 대하여 SOTA 결과를 도출하였다.
+
+* Key Idea
+	learner를 통해 1차적으로 각 data의 feature를 추출한다음 각각의 similarity를 고려하여 graph domain으로 변경하여 message-passing이 가능하도록 sampler를 design했다.
 
 ---  
 ## **Author Information**  
 
 * Author name  
     * Affiliation  
+    	Imperial College London
     * Research Topic
+	Deep Learning, Active Learning, 3D Hand Pose Estimation, Graph Neural Network
+
 
 ## **6. Reference & Additional materials**  
 
