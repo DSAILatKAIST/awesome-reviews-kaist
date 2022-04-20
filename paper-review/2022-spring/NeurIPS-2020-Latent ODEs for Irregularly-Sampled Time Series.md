@@ -1,5 +1,5 @@
 ---
-description : Y Rubanova / Latent ODEs for Irregularly-Sampled Time Series / NeurIPS-2019
+description : Y Rubanova et al./ Latent ODEs for Irregularly-Sampled Time Series / NeurIPS-2019
 ---
 
 <br/>
