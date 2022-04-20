@@ -1,5 +1,5 @@
 ---
-description : 1st author / AS-GCN: Adoptive Semantic Architecture of Graph Convolutional Networks for Text-Rich Networks / 2021 IEEE International Conference on Data Mining (ICDM)  
+description : 1st author / AS-GCN - Adoptive Semantic Architecture of Graph Convolutional Networks for Text-Rich Networks / 2021 IEEE International Conference on Data Mining (ICDM)  
 ---
 
 # AS-GCN: Adoptive Semantic Architecture of Graph Convolutional Networks for Text-Rich Networks  
