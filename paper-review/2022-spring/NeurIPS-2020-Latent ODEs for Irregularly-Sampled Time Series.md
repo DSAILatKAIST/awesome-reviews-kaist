@@ -52,12 +52,16 @@ Latent ODEs for Irregularly-Sampled Time Series
 <div align="center">
   
 ![image](https://user-images.githubusercontent.com/99710438/164024065-a992aa76-a84a-4a63-b840-a164dd414dae.png)
+ 
+_RNN과 ODE-RNN의 hidden state trajectory_
 
 </div>
 
+<br/>
+
 예를 들어, 위 사진은 `RNN`과 저자들이 제시한 `ODE-RNN`의 차이를 보여줍니다. 각 line은 hidden state의 trajectory를 나타내고 수직 점선은 observation time을 나타내는데, `RNN`은 observation이 나타날 때만 hidden state에 변화가 있어 각 observation 사이를 예측하긴 어렵습니다. 
 
-반면에 `ODE-RNN`은 각 observation 사이에도 trajectory를 fitting하며 observation이 들어올 때 마다 값을 수정해주는 것을 확인할 수 있습니다. 이런 식으로 `ODE-RNN`은 observation이 불규칙적으로 있어도 좋은 예측 성능을 보일 수 있습니다.
+반면에 `ODE-RNN`은 각 observation 사이에도 trajectory를 fitting하며 observation이 들어올 때 마다 값을 수정해주는 것을 확인할 수 있습니다. 이런 식으로 `ODE-RNN`은 **observation이 불규칙적으로 있어도 좋은 예측 성능**을 보일 수 있습니다.
 
 <br/>
 
@@ -67,7 +71,7 @@ Latent ODEs for Irregularly-Sampled Time Series
 <br/>
 
 
-> ### **Backgrounds**: What is RNN, Nerual ODE, Variational Autoencoder?
+> ### **Preliminaries**: What are RNN, Nerual ODE, Variational Autoencoder?
 
 <br/>
 
@@ -80,18 +84,23 @@ Latent ODEs for Irregularly-Sampled Time Series
 
 
 #### **1. RNN**
-RNN은 hiddent layer에서 나온 결과값을 output layer로도 보내면서, 다시 다음 hidden layer의 input으로도 보내는 특징을 가지고 있습니다. 
+`RNN`은 hiddent layer에서 나온 결과값을 output layer로도 보내면서, 다시 다음 hidden layer의 input으로도 보내는 특징을 가지고 있습니다. 
 
 아래 그림을 보시겠습니다.
 <div align="center">  
  
 ![image](https://user-images.githubusercontent.com/99710438/164171475-fe065e6c-5bbf-4c9f-bc59-37c954b9717e.png)
 
+_RNN의 구조_
+ 
 </div>  
+
+<br/>
+
 
 ![](https://latex.codecogs.com/gif.latex?x_{t}) 는 input layer의 input vector, ![](https://latex.codecogs.com/gif.latex?y_{t}) 는 output layer의 output vector입니다. 실제로는 bias ![](https://latex.codecogs.com/gif.latex?b) 도 존재할 수 있지만, 편의를 위해 생략합니다. 
 
-RNN에서 hidden layer에서 activation function을 통해 결과를 내보내는 역할을 하는 node를 셀(cell)이라고 표현합니다. 이 셀은 이전 값을 기억하려는 일종의 메모리 역할을 수행하므로 이를 **메모리 셀** 또는 **RNN 셀**이라고 합니다.
+`RNN`에서 hidden layer에서 activation function을 통해 결과를 내보내는 역할을 하는 node를 셀(cell)이라고 표현합니다. 이 셀은 이전 값을 기억하려는 일종의 메모리 역할을 수행하므로 이를 **메모리 셀** 또는 **RNN 셀**이라고 합니다.
 
 이를 식으로 나타내면 다음과 같습니다.
 
@@ -100,7 +109,9 @@ RNN에서 hidden layer에서 activation function을 통해 결과를 내보내�
 * Output layer: &nbsp; ![](https://latex.codecogs.com/gif.latex?y_{t}=f(W_{y}h_{t}+b))
 
 
-idden layer의 메모리 셀은 각각의 시점(time step)에서 바로 이전 시점에서의 메모리 셀에서 나온 값을 자신의 입력으로 사용하는 재귀적(recurrent) 활동을 하고 있습니다. 그러나 그림에서 보이듯이, RNN은 각 time step에서만 정보를 처리하므로 time step이 불규칙적이거나, 각 time step 사이의 값에 대해서는 예측 성능이 좋지 않습니다. 
+idden layer의 메모리 셀은 각각의 시점(time step)에서 바로 이전 시점에서의 메모리 셀에서 나온 값을 자신의 입력으로 사용하는 재귀적(recurrent) 활동을 하고 있습니다. 그러나 그림에서 보이듯이, `RNN`은 **각 time step에서만 정보를 처리하므로 time step이 불규칙적이거나, 각 time step 사이의 값에 대해서는 예측 성능이 좋지 않습니다**. 
+
+또한, RNN이 가진 문제를 해결한 `RNN-Decay`, `GRU` 등 다양한 모델이 있으나 본 포스팅에서 설명은 생략하겠습니다.
 
 <br/>
 
@@ -117,7 +128,7 @@ _저자들은 이런 **discrete한 hidden layer를 ODE를 사용해서 continuou
 
 #### **2. Neural Ordinary Differential Equations**
 
-Neural ODE는 continuous-time model의 일종으로, 지금까지 discrete하게 정의되었던 hidden state ![](https://latex.codecogs.com/gif.latex?h_{t}) 를 ODE initial-value problem의 solution으로 정의합니다. 이를 식으로 나타내면 다음과 같습니다.
+`Neural ODE`는 continuous-time model의 일종으로, 지금까지 discrete하게 정의되었던 hidden state &nbsp; ![](https://latex.codecogs.com/gif.latex?h_{t}) &nbsp; 를 ODE initial-value problem의 solution으로 정의합니다. 이를 식으로 나타내면 다음과 같습니다.
 
 <div align="center">
  
@@ -125,8 +136,8 @@ Neural ODE는 continuous-time model의 일종으로, 지금까지 discrete하게
  
 </div>
 
-여기서, ![](https://latex.codecogs.com/gif.latex?f_{\theta}) 는 hidden state의 dynamics를 의미하는 neural network입니다. 
-Hidden state ![](https://latex.codecogs.com/gif.latex?h(t_{0})) 는 모든 시간에 대해 정의되어있으므로, 어떠한 desired time에 대해서도 아래의 식을 통해 evaluate 될 수 있습니다.
+여기서, &nbsp; ![](https://latex.codecogs.com/gif.latex?f_{\theta}) &nbsp;  는 hidden state의 dynamics를 의미하는 neural network입니다. 
+Hidden state &nbsp; ![](https://latex.codecogs.com/gif.latex?h(t_{0})) &nbsp; 는 모든 시간에 대해 정의되어있으므로, **어떠한 desired time에 대해서도** 아래의 식을 통해 evaluate 될 수 있습니다.
 
 <div align="center">
 
@@ -134,56 +145,194 @@ Hidden state ![](https://latex.codecogs.com/gif.latex?h(t_{0})) 는 모든 시�
  
 </div>
 
+위 식으로 우리는 hidden layer를 continuous 하게 정의할 수 있으며 이 방식은 다음과 같은 장점들이 있습니다.
+
+* Discrete한 hidden layer를 사용할 때는 각 layer마다 parameter가 있었으나, 이 방식은 **하나의 parameter**(theta)로 연산 가능하여 **computational cost**가 적습니다.
+* Hidden layer가 **연속적인 하나의 layer**로 생각될 수 있으므로, interpolation이나 extrapolation 등의 예측에 뛰어납니다.
+
+
 <br/>
 
 
 #### **3. Variational Autoencoder**
 
+Variational Autoencoder(`VAE`)는 측정 불가한 분포를 갖는 어떤 잠재변수로부터 효과적인 근사 추론을 하는 것이 목적인 모델입니다. 유명한 deep generative model인 `GAN`과 같은 생성 모델의 일종이며, 구조가 `Auto-encoder`와 비슷해 이름이 이렇게 붙여졌습니다.
 
 <br/>
 
+<div align="center">
+ 
+![image](https://user-images.githubusercontent.com/99710438/164225634-2f599b17-30ff-45bf-a8be-2cc98e5f1aab.png)
+
+_VAE의 구조_
+ 
+</div>
+
+<br/>
+ 
+위 그림을 간단하게 설명하자면, 어떤 input data ![](https://latex.codecogs.com/gif.latex?x) 가 있을 때, Encoder network가 잠재변수 ![](https://latex.codecogs.com/gif.latex?z) 의 분포(평균과 분산)을 근사합니다. 만들어진 분포에서 ![](https://latex.codecogs.com/gif.latex?z) 를 sampling 하고 Decoder network는 ![](https://latex.codecogs.com/gif.latex?\hat{x}) 을 만들어냅니다.
+ 
+본 논문에서 저자들은 이 `VAE`의 구조 중 Encoder network에 `ODE-RNN`을 쓰고 Decoder network에 `RNN`을 사용한 `Latent ODE`를 소개합니다.
+
+<br/>
+
+<br/>
+
+<br/>
 
 > ### **ODE-RNN**
 
-
-
 <br/>
 
+앞서 설명드린 바와 같이, `ODE-RNN`은 `RNN`의 **discrete한 hidden layer에 ODE를 통해 continuous한 정보**를 담게 하는 모델입니다.
 
+그 방법은 굉장히 단순한데, `Neural ODE`를 사용한 hidden state를 정의해서, `RNN` cell에 정보를 흘려보내주는 겁니다. 
 
-> ### **Latent ODEs**
+`ODE-RNN`이 작동하는 원리는 아래와 같습니다.
 
 <div align="center">  
 
 ![image](https://user-images.githubusercontent.com/99710438/164017436-f435d0f4-24f9-4d66-9fcc-87ec0c1775bf.png)
+ 
+_ODE-RNN의 알고리즘_
 
 </div>  
 
+
+<br/>
+
+위 알고리즘을 설명해보면, 저자들은 **각 observation 사이의 state**을 다음과 같이 하나의 ODE의 solution으로 정의했습니다. 
+
+<div align="center">  
+
+![](https://latex.codecogs.com/gif.latex?h'_{i}=ODESolve(f_{\theta},h_{i-1},(t_{i-1},t_{i})))
+
+</div>  
+
+그리고 **각 observation의 hidden state**는 기본 `RNN`cell로 해주면, ![](https://latex.codecogs.com/gif.latex?h_{i}=RNNCELL(h'_{i},x_{i})) 과 같이 되게 됩니다. 
+
+이것이 ODE를 `RNN`에 접목시킨 아이디어의 전부입니다. 
+
+<br/>
+
+그러면 지금까지 `RNN`과 `ODE-RNN`을 알아보았는데요, 그들의 hidden state가 어떻게 정의되는지를 보면 다음과 같습니다.
+(`RNN-Decay`와 `GRU-D` 또한 `RNN`의 일종이라고 생각하시면 됩니다)
+
+<div align="center"> 
+  
+![image](https://user-images.githubusercontent.com/99710438/164017531-002e6512-f1c5-4430-904d-d19f82f2a9e4.png)
+ 
+_Definition of hidden state_ 
+  
+</div>  
+
+앞서 설명해드린 바와 같이, `RNN` 기반 모델들은 각 observation이 있을 때만 **discrete한 hidden state**가 정의되는 반면에 `ODE-RNN` 모델은 각 observation **사이 시간**도 고려합니다. 
+
+위의 모델들은 저자들이 모델의 성능을 평가하기 위한 baseline으로 사용합니다.
+
+<br/>
+
+<div align="center">  
+
+_RNN의 **Discrete한 layer** 사이에 **continuous한 하나의 ODE**로 **모든 time step의 정보**를 저장한다!_
+
+</div> 
+
+<br/>
+
+<br/>
+
+<br/>
+
+
+> ### **Latent ODEs**
+
+<br/>
+
+앞서 소개한 `RNN`이나 `ODE-RNN`은 **autoregressive model**이라고 합니다. Autoregressive model은 다음 결과가 이전 결과에 영향을 받는 모델을 의미하는데, train이 쉽고 빠른 prediction이 가능하게 합니다.
+
+하지만, autoregressive model은 **해석하기가 어렵고**, **observation이 sparse** 할 때 성능이 떨어집니다. 
+
+Autoregressive model 중 한 가지로 latent variable model이 있는데, 저자들이 본 논문에서 제시하는 `Latent ODE`가 바로 latent variable model 중 하나입니다.
+
+`Latent ODE`는 위에서 설명드린 `VAE`의 encoder에 `ODE-RNN`을 사용한 구조입니다. 
+
+`ODE-RNN`의 아이디어만큼이나 간단한데요, 먼저 구조를 그림으로 보여드리겠습니다.
+
+<div align="center">  
+  
+![image](https://user-images.githubusercontent.com/99710438/164017572-bacb1d58-885d-4659-b6cc-4c0fd5035876.png)
+  
+_Latent ODE model with an ODE-RNN encoder_
+ 
+</div>  
+
+<br/>
+
+이 모델이 prediction을 할 때, `ODE-RNN` encoder가 initial state의 posterior ![](https://latex.codecogs.com/gif.latex?q(z_{0}|{x_{i},t_{i}})) 를 근사하기 위해 time을 거슬러 backward로 작동합니다. 
+
+그리고 ![](https://latex.codecogs.com/gif.latex?z_{0}) 가 주어지면 **어떤 time point**든 ODE initial value problem을 풀어 latent state를 구할 수 있습니다.
+
+`Latent ODEs`를 구성하는 수식은 아래와 같습니다.
+
+
+
+<div align="center">  
+  
+![](https://latex.codecogs.com/gif.latex?z_{0}{\sim}p(z_{0})) 
+ 
+![](https://latex.codecogs.com/gif.latex?z_{0},...,z_{N}=ODESolve(f_{\theta},z_{0},(t_{0},...,t_{N})))
+ 
+![](https://latex.codecogs.com/gif.latex?x_{i}{\sim}p(x_{i}|z_{i})) 
+
+![](https://latex.codecogs.com/gif.latex?q(z_{0}|{x_{i},t_{i}})=N({\mu}_{z0},{\sigma}_{zo}))
+&nbsp; where &nbsp;
+![](https://latex.codecogs.com/gif.latex?{\mu}_{z0},{\sigma}_{zo}=g(ODERNN_{\phi}({x_{i},t_{i}}))) 
+ 
+</div>  
+
+<br/>
+
+간단히 설명해보면, 위에서 정의한 `ODE-RNN`을 사용해 ![](https://latex.codecogs.com/gif.latex?z_{0}) 의 conditional distribution의 평균과 표준편차를 구합니다. 이 때 conditional distribution은 구하기 쉬운 정규분포로 가정합니다. 그리고 그 분포에서 ![](https://latex.codecogs.com/gif.latex?z_{0}) 를 sampling 한 다음, ODE를 풀어 모든 time step에서의 ![](https://latex.codecogs.com/gif.latex?z_{i}) 를 구하고, 그로부터 ![](https://latex.codecogs.com/gif.latex?\hat{x}_{i})를 생성할 수 있게 됩니다.
+
+이 논문에서는 `VAE`의 encoder에 `ODE-RNN`을 쓰고 decoder에 `ODE`를 썼지만, encoder와 decoder에 다양한 모델을 적용시킬 수 있습니다. 
+
+저자들이 모델의 성능 비교를 위해 사용한 baseline의 구조들은 다음과 같습니다.
+
+<br/>
 
 
 <div align="center">  
   
 ![image](https://user-images.githubusercontent.com/99710438/164017499-a8fcab15-b16c-40bd-a0be-cf6d272cd574.png)
   
+_Different encoder-decoder architectures_
+ 
 </div>  
 
+<br/>
 
-<div align="center"> 
-  
-![image](https://user-images.githubusercontent.com/99710438/164017531-002e6512-f1c5-4430-904d-d19f82f2a9e4.png)
-  
-</div>  
+지금까지 `ODE-RNN`과 그것을 encoder로 사용한 `Latent ODEs`를 알아보았습니다. 지금부터는 두 모델의 성능을 확인해보겠습니다.
+
+<br/>
 
 <div align="center">  
-  
-![image](https://user-images.githubusercontent.com/99710438/164017572-bacb1d58-885d-4659-b6cc-4c0fd5035876.png)
-  
-</div>  
+
+_`VAE`의 encoder로 `ODE-RNN`을 사용하고, decoder로 `ODE`를 사용해 **모든 time에 대해 latent state**를 구할 수 있다!_
+
+</div> 
+
+
+<br/>
+
+<br/>
+
+<br/>
+
 
 ## **4. Experiment**  
 
-In this section, please write the overall experiment results.  
-At first, write experiment setup that should be composed of contents.  
+<br/>
 
 ### **Experiment setup**  
 * Dataset  
@@ -195,6 +344,11 @@ Then, show the experiment results which demonstrate the proposed method.
 You can attach the tables or figures, but you don't have to cover all the results.  
   
 
+<br/>
+
+<br/>
+
+<br/>
 
 
 ## **5. Conclusion**  
@@ -204,20 +358,35 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 
 Neural ODE라는 새로운 방식을 여러 방면에 접목시킨 논문들이 우후죽순 생겨나고 있습니다. 처음 시도되는 방법론이다 보니 특별한 theoretical contribution이 없어도 접목만 잘 시키면 논문이 좀 더 publish 되기가 용이한 것 같습니다. 우리도 지금 어떤 연구가 trend인지 잘 follow up하는 자세가 필요한 것 같습니다.
 
+또한 연구도 융합의 시대인 것 같습니다. 분야를 가리지 않고 여러 방법론을 창의적으로 적용하는 것이 새로운 연구의 창을 열 수 있는 것 같습니다.
+
 ---  
+
+<br/>
+
+<br/>
+
+<br/>
+
 ## **Author Information**  
 
 * Yulia Rubanova
-    * University of Toronto and the Vector Institute  
-    * Deep generative models, Time series modelling, Optimization over discrete objects, Real-world applications
+    * Affiliation: University of Toronto and the Vector Institute  
+    * Research Topic: Deep generative models, Time series modelling, Optimization over discrete objects, Real-world applications
     
 * Ricky T. Q. Chen
-    * University of Toronto and the Vector Institute
-    * Integrating structured transformations into probabilistic modeling, Tractable optimization
+    * Affiliation: University of Toronto and the Vector Institute
+    * Research Topic: Integrating structured transformations into probabilistic modeling, Tractable optimization
     
 * David Duvenaud
-    * University of Toronto and the Vector Institute
-    * Neural ODEs, Automatic chemical design, Gradient-based hyperparameter tuning, Structed latent-variable models, Convolutional networks on graphs
+    * Affiliation: University of Toronto and the Vector Institute
+    * Research Topic: Neural ODEs, Automatic chemical design, Gradient-based hyperparameter tuning, Structed latent-variable models, Convolutional networks on graphs
+
+<br/>
+
+<br/>
+
+<br/>
 
 ## **6. Reference & Additional materials**  
 
@@ -228,3 +397,4 @@ Neural ODE라는 새로운 방식을 여러 방면에 접목시킨 논문들이 
     * [Recurrent Neural Networks](https://wikidocs.net/22886)
     * [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
     * [Variational Autoencoder](https://arxiv.org/abs/1312.6114)
+    * [CS231n lecture slide](http://cs231n.stanford.edu/slides/)
