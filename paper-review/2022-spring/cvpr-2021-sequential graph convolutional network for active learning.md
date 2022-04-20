@@ -6,7 +6,6 @@ description : Razvan Caramalau / Sequential Graph Convolutional Network for Acti
 
 Sequential Graph Convolutional Network for Active Learning
 <br/>
-<div align="center">안녕</div align="center">
 <br/>
 
 
@@ -246,9 +245,9 @@ Stage가 진행됨에 따라 확연한 차이를 관찰하기 위해 첫번째 s
 
 ![qualitative_classification](https://user-images.githubusercontent.com/89853986/164183015-94483f1b-97df-4382-a54a-99a797bdb0c1.PNG)
 
-첫번째 stage에서는 sampling method 간에 큰 차이가 관찰되지 않는다.
-Figure 5는 CoreSet과 UncertainGCN을 비교해놓은 그림이다. 4번째 stage에서 select한 sample을 보면, CoreSet에 비해 UncertainGCN은 더욱 class의 경계에 위치하는 sample들(uncertainty가 높은 sample)을 select한 것을 확인 가능하다.
-Figure 6은 CoreSet과 CoreGCN을 비교해놓은 그림이다. CoreGCN은 geometric information을 기반으로 하기 때문에 sample들이 몰려있는 것을 방지한다. 하지만 uncertain area로부터 message-passing을 받기 때문에 CoreSet처럼 class의 중앙에 위치하는 것은 아니다. CoreGCN은 geometric information과 uncertainty 간의 balance를 고려하여 sampling한다.
+- 첫번째 stage에서는 sampling method 간에 큰 차이가 관찰되지 않는다.  
+- Figure 5는 CoreSet과 UncertainGCN을 비교해놓은 그림이다. 4번째 stage에서 select한 sample을 보면, CoreSet에 비해 UncertainGCN은 더욱 class의 경계에 위치하는 sample들(uncertainty가 높은 sample)을 select한 것을 확인 가능하다.  
+- Figure 6은 CoreSet과 CoreGCN을 비교해놓은 그림이다. CoreGCN은 geometric information을 기반으로 하기 때문에 sample들이 몰려있는 것을 방지한다. 하지만 uncertain area로부터 message-passing을 받기 때문에 CoreSet처럼 class의 중앙에 위치하는 것은 아니다. CoreGCN은 geometric information과 uncertainty 간의 balance를 고려하여 sampling한다.  
 
 
 ### **4.2 Regression**
@@ -265,9 +264,9 @@ Figure 6은 CoreSet과 CoreGCN을 비교해놓은 그림이다. CoreGCN은 geome
 
 **4.2.2 Implementation details**
 
-_DeepPrior_ 를 learner로 사용
-Sampler 등의 다른 요소들은 위의 classification task 때와 동일하게 유지
-Detecting hands, centre, crop 그리고 image resize를 위해 U-Net을 사용하여 pre-train
+- _DeepPrior_ 를 learner로 사용  
+- Sampler 등의 다른 요소들은 위의 classification task 때와 동일하게 유지  
+- Detecting hands, centre, crop 그리고 image resize를 위해 U-Net을 사용하여 pre-train  
 
 **4.2.3 Compared Methods and Evaluation Metric**
 
@@ -282,9 +281,9 @@ Detecting hands, centre, crop 그리고 image resize를 위해 U-Net을 사용�
 
 ![quantitative_regression](https://user-images.githubusercontent.com/89853986/164215933-ba9a9f4f-ae25-4d1b-b5cd-5820b1577c81.PNG)
 
-ICVL dataset을 가지고 4가지 방법으로 실험한 결과를 나타낸 그래프이다. 
-CoreGCN과 UncertainGCN이 second stage부터 다른 방법에 비해 낮은 mse를 보이며, 각각 6번째, 5번째 selection stage까지 급격히 감소하는 것을 볼 수 있다.
-이는 매우 제한된 budget 내에서도 저자가 제안한 두 방법이 다른 방법들에 비해 좋은 성능을 보일 수 있다는 것을 보여준다.
+- ICVL dataset을 가지고 4가지 방법으로 실험한 결과를 나타낸 그래프이다.   
+- CoreGCN과 UncertainGCN이 second stage부터 다른 방법에 비해 낮은 mse를 보이며, 각각 6번째, 5번째 selection stage까지 급격히 감소하는 것을 볼 수 있다.  
+- 이는 매우 제한된 budget 내에서도 저자가 제안한 두 방법이 다른 방법들에 비해 좋은 성능을 보일 수 있다는 것을 보여준다.  
 
 ### **4.3 Sub-sampling of Synthetic Data**
 
@@ -298,12 +297,10 @@ CoreGCN과 UncertainGCN이 second stage부터 다른 방법에 비해 낮은 mse
 
 ![synthetic](https://user-images.githubusercontent.com/89853986/164217784-aaff2175-e1f7-4a43-a961-5e500f8ac43d.PNG)
 
-Random sampling에 비해 UncertainGCN이 더 작은 variance와 함께 더 좋은 accuracy를 보이고 있다. 
-Model을 train하기 위해 적은 수의 synthetic example만이 useful하다.
+- Random sampling에 비해 UncertainGCN이 더 작은 variance와 함께 더 좋은 accuracy를 보이고 있다. 
+- Model을 train하기 위해 적은 수의 synthetic example만이 useful하다.
 
 ## **5. Conclusion**  
-
-
 
 - GCN based의 task-agnostic한 sampling method를 제시하였다. 
 - Image의 feature를 기반으로 node를, similarity를 기반으로 edge를 표현하여 graph를 생성하고, message-passing을 표현할 수 있는 GCN을 적용한다.
@@ -318,7 +315,7 @@ Model을 train하기 위해 적은 수의 synthetic example만이 useful하다.
 * Author name  
     * Affiliation  
     	Imperial College London
-    * Research Topic
+    * Research Topic  
 	Deep Learning, Active Learning, 3D Hand Pose Estimation, Graph Neural Network
 
 
