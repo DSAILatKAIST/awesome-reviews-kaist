@@ -80,7 +80,7 @@ learner는 downstream task를 학습한다.
 >
 >![loss_classification](https://user-images.githubusercontent.com/89853986/163951946-d4257605-91ba-401d-94ad-b66401c9dc95.PNG)
 >
->![](https://latex.codecogs.com/gif.latex?M) 은 parameter ![](https://latex.codecogs.com/gif.latex?\Theta)를 갖고, input ![](https://latex.codecogs.com/gif.latex?x)를 output ![](https://latex.codecogs.com/gif.latex?y)로 매핑하는 deep model이고, ![](https://latex.codecogs.com/gif.latex?N_L)은 labelled training data의 개수, ![](https://latex.codecogs.com/gif.latex?f(x_i, y_i; \Theta))는 model ![](https://latex.codecogs.com/gif.latex?M)의 posterior probability이다.  
+>![](https://latex.codecogs.com/gif.latex?M) 은 parameter ![](https://latex.codecogs.com/gif.latex?\Theta)를 갖고, input ![](https://latex.codecogs.com/gif.latex?x)를 output ![](https://latex.codecogs.com/gif.latex?y)로 매핑하는 deep model이고, ![](https://latex.codecogs.com/gif.latex?N_L)은 labelled training data의 개수, ![](https://latex.codecogs.com/gif.latex?f%28x_i%2C%20y_i%3B%20%5CTheta%29)는 model ![](https://latex.codecogs.com/gif.latex?M)의 posterior probability이다.  
 
 
 **3.2.2 Regression**
@@ -98,7 +98,7 @@ classification과 regression 이외의 task가 등장하더라도 전체 pipelin
 앞선 pipeline에서 살펴 보았듯이 Sampler는 주어진 budget 내에서 의미있는 unlabeled data를 sampling하여 annotator에게 labelling을 요청하는 model이다.
 
 더욱 구체적인 sampler의 시나리오를 살펴보자.
-unlabeled dataset ![](https://latex.codecogs.com/gif.latex?D_U)에서 초기에 labelling할 initial batch ![](https://latex.codecogs.com/gif.latex?D_0 \subset D_U)를 랜덤하게 골라주는 것으로 시나리오가 시작된다. 이렇게 초기 set이 확정이 되면 그 다음부터는 pipeline에 설명된 cycle을 돌면서 sampling할 unlabeled data를 고르고, labeling을 하여 새롭게 learner를 통해 training 시키는 과정을 최소한의 budget 내에서 수행한다.
+unlabeled dataset ![](https://latex.codecogs.com/gif.latex?D_U)에서 초기에 labelling할 initial batch ![](https://latex.codecogs.com/gif.latex?D_0%20%5Csubset%20D_U)를 랜덤하게 골라주는 것으로 시나리오가 시작된다. 이렇게 초기 set이 확정이 되면 그 다음부터는 pipeline에 설명된 cycle을 돌면서 sampling할 unlabeled data를 고르고, labeling을 하여 새롭게 learner를 통해 training 시키는 과정을 최소한의 budget 내에서 수행한다.
 이것을 수식으로 표현하면 아래와 같다.
 
 ![sampler](https://user-images.githubusercontent.com/89853986/163953401-9b324b99-0364-451c-b653-a5cfd9e271bc.PNG)
@@ -112,18 +112,18 @@ Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최�
 
 **3.3.2 Graph Convolutional Network**  
 >1. Graph Structure 구성
->>Graph는 node와 edge로 구성되며, node $$v \in \mathbb R^{(m\times N)}$$ 는 $$N$$개의 data (labelled, unlabelled 모두 포함)와 각각의 $$m$$ dimension feature로 표현된다.
->>Edge는 adjacency matrix $$A$$로 표현이 가능하다. Edge는 node간의 similarity를 나타내야하므로 다음과 같은 과정을 거쳐 adjacency matrix를 구성한다. 
->>1. learner에서 넘어온 feature를 $$l_2$$ normalize한다. 
->>2. $$S_{ij} = v_i^Tv_j, {i,j} \in N$$ (vector product를 통해 $$S_{ij}$$를 생성)
->>3. $$A = D^{-1}(S-I)+I$$ ($$S$$에서 identity matrix를 빼고, degree matrix로 normalise를 한 다음 identity matrix를 다시 더해 closest correlation을 자기 자신으로 설정)
+>>Graph는 node와 edge로 구성되며, node ![](https://latex.codecogs.com/gif.latex?v%20%5Cin%20%5Cmathbb%20R%5E%7B%28m%5Ctimes%20N%29%7D) 는 ![](https://latex.codecogs.com/gif.latex?)개의 data (labelled, unlabelled 모두 포함)와 각각의 ![](https://latex.codecogs.com/gif.latex?m) dimension feature로 표현된다.
+>>Edge는 adjacency matrix ![](https://latex.codecogs.com/gif.latex?A)로 표현이 가능하다. Edge는 node간의 similarity를 나타내야하므로 다음과 같은 과정을 거쳐 adjacency matrix를 구성한다. 
+>>1. learner에서 넘어온 feature를 ![](https://latex.codecogs.com/gif.latex?l_2) normalize한다. 
+>>2. ![](https://latex.codecogs.com/gif.latex?S_%7Bij%7D%20%3D%20v_i%5ETv_j%2C%20%7Bi%2Cj%7D%20%5Cin%20N) (vector product를 통해 ![](https://latex.codecogs.com/gif.latex?S_{ij})를 생성)
+>>3. ![](https://latex.codecogs.com/gif.latex?A%20%3D%20D%5E%7B-1%7D%28S-I%29&plus;I) (![](https://latex.codecogs.com/gif.latex?S)에서 identity matrix를 빼고, degree matrix로 normalise를 한 다음 identity matrix를 다시 더해 closest correlation을 자기 자신으로 설정)
 >2. 1st layer of GCN
 >>- Over-smoothing을 방지하기 위해 GCN을 2-layer로 쌓는다.  
->>- 첫번째 layer의 function을 $$f_{\mathcal G}^1$$로 표현한다.  
+>>- 첫번째 layer의 function을 ![](https://latex.codecogs.com/gif.latex?f_%7B%5Cmathcal%20G%7D%5E1)로 표현한다.  
 >>- 첫번째 layer는 ReLU를 activation function으로 사용한다.  
 >3. 2nd layer of GCN
 >>- 각 노드를 labelled와 unlabelled로 mapping해야하기 때문에 두번째 layer는 sigmoid를 activation function으로 사용한다.  
->>- 따라서 두번째 layer까지 거친 output은 0~1사이의 값을 가지는 길이 $$N$$의 vector이다. (0은 unlabelled, 1은 labelled를 의미)  
+>>- 따라서 두번째 layer까지 거친 output은 0~1사이의 값을 가지는 길이 ![](https://latex.codecogs.com/gif.latex?N)의 vector이다. (0은 unlabelled, 1은 labelled를 의미)  
 >
 >전체적인 과정은 아래와 같은 식으로 표현된다.
 >![gcn](https://user-images.githubusercontent.com/89853986/163961880-ea5a6f69-1ec4-4657-982f-f5780ee24f0d.PNG)
@@ -131,24 +131,24 @@ Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최�
 >또한 loss function은 아래와 같다.
 >![gcn_loss](https://user-images.githubusercontent.com/89853986/163980668-5362fe71-d151-4810-8a65-2e254dee0912.png)
 >
->cross-entropy를 사용하였고, $$\lambda$$는 labelled와 unlabelled cross-entropy간의 weight를 조절하는 parameter이다.
+>cross-entropy를 사용하였고, ![](https://latex.codecogs.com/gif.latex?\lambda)는 labelled와 unlabelled cross-entropy간의 weight를 조절하는 parameter이다.
 
 **3.3.3 UncertainGCN: Uncertainty sampling on GCN**  
 >위와 같은 방법으로 GCN을 training시키고 난 후 sampling을 진행한다. 
->본 방법에서 unlabelled로 남아있는 data $$D_U$$에 대한 confidence score는 $$f_{\mathcal G}(v_i; D_U)$$이다.
->일반적인 uncertainty sampling과 유사하게 UncertainGCN도 $$s_{margin}$$이라는 변수와 함께 confidence를 기반으로 sampling할 unlabelled image를 고른다.
->기존의 labelled set인 $$D_L$$에서 고정된 $$b$$개를 querying하는 수식은 아래와 같다.
+>본 방법에서 unlabelled로 남아있는 data ![](https://latex.codecogs.com/gif.latex?D_U)에 대한 confidence score는 ![](https://latex.codecogs.com/gif.latex?f_%7B%5Cmathcal%20G%7D%28v_i%3BD_U%29)이다.
+>일반적인 uncertainty sampling과 유사하게 UncertainGCN도 ![](https://latex.codecogs.com/gif.latex?s_{margin})이라는 변수와 함께 confidence를 기반으로 sampling할 unlabelled image를 고른다.
+>기존의 labelled set인 ![](https://latex.codecogs.com/gif.latex?D_L)에서 고정된 ![](https://latex.codecogs.com/gif.latex?b)개를 querying하는 수식은 아래와 같다.
 >![uncertaingcn](https://user-images.githubusercontent.com/89853986/163984729-6eca1d63-32a8-4be4-aae5-79d7e566716a.PNG)
->가장 uncertainty가 높은 unlabelled data를 고르려면 $$s_{margin}$$을 0과 가깝게 설정하면 된다. (이 경우 0~1 범위의 confidence 값 중 1에 가까운 image들이 선택될 것이다.)
+>가장 uncertainty가 높은 unlabelled data를 고르려면 ![](https://latex.codecogs.com/gif.latex?s_{margin})을 0과 가깝게 설정하면 된다. (이 경우 0~1 범위의 confidence 값 중 1에 가까운 image들이 선택될 것이다.)
 >이 과정이 주어진 budget 내에서 loss가 가장 작아질 때까지 반복되며, 알고리즘의 pseudo code는 아래와 같다.  
 
 ![pseudo](https://user-images.githubusercontent.com/89853986/163986800-325ea500-c8e4-41a5-91e8-bafe6ed40a48.PNG)
 
 **3.3.4 CoreGCN: CoreSet sampling on GCN**
->CoreGCN은 $$l2$$ distance를 기반으로 첫번째 GCN layer에서 추출된 feature간의 거리를 계산하고, 이를 통해 sampling할 data를 선정한다.  
->기존의 labelled set인 $$D_L$$에서 querying하는 수식은 아래와 같다.  
+>CoreGCN은 ![](https://latex.codecogs.com/gif.latex?l2) distance를 기반으로 첫번째 GCN layer에서 추출된 feature간의 거리를 계산하고, 이를 통해 sampling할 data를 선정한다.  
+>기존의 labelled set인 ![](https://latex.codecogs.com/gif.latex?D_L)에서 querying하는 수식은 아래와 같다.  
 >![coregcn](https://user-images.githubusercontent.com/89853986/163989195-a0e9bd2f-b5b6-4cb8-939c-b4fb3354aa65.PNG)
->$$\delta$$는 labelled node $$v_i$$와 unlabelled node $$v_j$$의 feature 간의 유클리디안 거리를 의미한다.  
+>![](https://latex.codecogs.com/gif.latex?\delta)는 labelled node ![](https://latex.codecogs.com/gif.latex?v_i)와 unlabelled node ![](https://latex.codecogs.com/gif.latex?v_j)의 feature 간의 유클리디안 거리를 의미한다.  
 >즉, 위의 수식은 labelled data의 feature와 unlabelled data의 feature 간의 가장 큰 거리를 최소로 만드는 unlabelled data point를 sampling하도록 한다.
 
 
@@ -199,16 +199,16 @@ At first, write experiment setup that should be composed of contents.
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
 + 모든 data에 대해 10번의 cycle만큼 실험 진행한다.  
-+ Selection을 모든 unlabelled pooled-dataset에 대해 하는 것이 아닌, randomly selected subset $$D_S \subset D_U$$ 에서 진행한다. 이는 dataset에서 중복되는 부분이 여러번 등장하는 것을 피하기 위함이다.  
-+ $$D_S$$의 크기는 모든 실험에서 10000으로 설정한다.  
++ Selection을 모든 unlabelled pooled-dataset에 대해 하는 것이 아닌, randomly selected subset ![](https://latex.codecogs.com/gif.latex?D_S%20%5Csubset%20D_U) 에서 진행한다. 이는 dataset에서 중복되는 부분이 여러번 등장하는 것을 피하기 위함이다.  
++ ![](https://latex.codecogs.com/gif.latex?D_S)의 크기는 모든 실험에서 10000으로 설정한다.  
 <br/>
 
 - _Learner_  
 	+ ResNet-18을 classification model로 사용  
 - _Sampler_  
 	+ 2 layers GCN을 model로 사용  
-	+ $$\lambda = 1.2$$로 설정, 상대적으로 개수가 많은 unlabelled dataset에 더욱 가중치를 주기 위함이다.  
-	+ $$s_{margin} = 0.1$$로 설정  
+	+ ![](https://latex.codecogs.com/gif.latex?%5Clambda%20%3D%201.2)로 설정, 상대적으로 개수가 많은 unlabelled dataset에 더욱 가중치를 주기 위함이다.  
+	+ ![](https://latex.codecogs.com/gif.latex?s_%7Bmargin%7D%20%3D%200.1)로 설정  
 
 
 	
@@ -257,7 +257,7 @@ Stage가 진행됨에 따라 확연한 차이를 관찰하기 위해 첫번째 s
 * Dataset  
 	+ ICVL (hand depth-images)
 	>- 16004개의 training set과 1600개의 test set
-	>- 매 selection stage에서 training data의 10%를 $$D_S$$로 설정
+	>- 매 selection stage에서 training data의 10%를 ![](https://latex.codecogs.com/gif.latex?D_S)로 설정
 	>- 매 selection stage에서 100개의 unlabelled data를 select
 
 <br/>
