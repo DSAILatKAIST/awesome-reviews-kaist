@@ -312,7 +312,7 @@ Stage가 진행됨에 따라 확연한 차이를 관찰하기 위해 첫번째 s
 ---  
 ## **Author Information**  
 
-* Author name  
+* Author name : **Razvan Caramalau**
     * Affiliation  
     	Imperial College London
     * Research Topic  
