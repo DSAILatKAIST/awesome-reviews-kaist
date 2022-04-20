@@ -51,7 +51,7 @@ Latent ODEs for Irregularly-Sampled Time Series
 <br/>
 <div align="center">
  
-<img src=".gitbook/2022-spring-assets/KimWonjoong_1/fig1.PNG">  
+![fig1](https://user-images.githubusercontent.com/99710438/164282561-92a1143f-2469-4b8a-aad7-435c7b6bd50f.PNG)
  
 _RNN과 ODE-RNN의 hidden state trajectory_
 
