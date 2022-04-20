@@ -217,8 +217,29 @@ You can attach the tables or figures, but you don't have to cover all the result
 	
   
 **4.1.3 Compared Methods and Evaluation Metric**
+* baseline  
+	- **Random sampling** : 가장 기본적인 default baseline이다.
+	- **CoreSet** : geometric technique 중 가장 좋은 퍼포먼스를 보인다.
+	- **VAAL & Learning Loss** : task-agnostic framework에서 SOTA baseline이다.
+	- **FeatProp** : GCN based framework에서 대표적인 baseline이다.
+
+* Evaluation Metric
+	- Test set에 대한 5번의 실험에서의 mean average accuracy를 바탕으로 evaluate한다.
 
 **4.1.4 Quantitative Comparisons**
+
+ResNet-18로 learner를 구성하여 전체 dataset을 사용하여 training을 시키면 (Active Learning 미사용) 각 dataset에서 아래와 같은 결과가 도출된다. 그리고 이것은 AL 성능의 upperbound일 것이다.  
+	- **CIFAR-10** : 93.09%  
+	- **CIFAR-100** : 73.02%  
+	- **FashionMNIST** : 93.74%  
+	- **SVHN** : 95.35%  
+
+![quantitative_classification](https://user-images.githubusercontent.com/89853986/164178431-facc4a46-a3d6-409a-9c5a-5ae3922f708e.PNG)
+
+- 위의 그래프는 각각의 dataset에서 저자가 제시한 UncertainGCN, CoreGCN과 다른 baseline method와의 성능을 비교하여 보여준다.  
+- 저자가 제시한 두가지 sampling method 모두 다른 baseline method에 비해 웃도는 성능을 보이는 것을 그래프를 보면 확인할 수 있을 것이다.  
+- 주목할만한 점은 CIFAR-100 dataset에서 CoreGCN method를 사용하면 20000개의 sampling으로 대략 69%의 accuracy를 낼 수 있는데, 이는 전체 training dataset을 모두 사용했을 때보다 4%만 낮은 수치이다. 적절한 sampling을 통해 적은 dataset을 가지고(cost 절약) 거의 비슷한 성능을 낼 수 있음을 의미한다.
+
 
 **4.1.5 Qualitative Comparisons**
 
