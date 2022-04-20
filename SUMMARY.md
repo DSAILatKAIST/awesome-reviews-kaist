@@ -5,7 +5,8 @@
 ## Paper Review  
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md)    
-    * [Latent ODEs for Irregularly-Sampled Time Series](paper-review/2022-spring/NeurIPS-2020-Latent ODEs for Irregularly-Sampled Time Series.md)
+    * [Template](paper-review/2022-spring/template.md)
+
  
 ## How to contribute  
 
