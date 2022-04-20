@@ -109,7 +109,7 @@ _RNN의 구조_
 * Output layer: &nbsp; ![](https://latex.codecogs.com/gif.latex?y_{t}=f(W_{y}h_{t}+b))
 
 
-idden layer의 메모리 셀은 각각의 시점(time step)에서 바로 이전 시점에서의 메모리 셀에서 나온 값을 자신의 입력으로 사용하는 재귀적(recurrent) 활동을 하고 있습니다. 그러나 그림에서 보이듯이, `RNN`은 **각 time step에서만 정보를 처리하므로 time step이 불규칙적이거나, 각 time step 사이의 값에 대해서는 예측 성능이 좋지 않습니다**. 
+Hidden layer의 메모리 셀은 각각의 시점(time step)에서 바로 이전 시점에서의 메모리 셀에서 나온 값을 자신의 입력으로 사용하는 재귀적(recurrent) 활동을 하고 있습니다. 그러나 그림에서 보이듯이, `RNN`은 **각 time step에서만 정보를 처리하므로 time step이 불규칙적이거나, 각 time step 사이의 값에 대해서는 예측 성능이 좋지 않습니다**. 
 
 또한, RNN이 가진 문제를 해결한 `RNN-Decay`, `GRU` 등 다양한 모델이 있으나 본 포스팅에서 설명은 생략하겠습니다.
 
@@ -190,6 +190,8 @@ _VAE의 구조_
 
 `ODE-RNN`이 작동하는 원리는 아래와 같습니다.
 
+<br/>
+
 <div align="center">  
 
 ![image](https://user-images.githubusercontent.com/99710438/164017436-f435d0f4-24f9-4d66-9fcc-87ec0c1775bf.png)
@@ -197,7 +199,6 @@ _VAE의 구조_
 _ODE-RNN의 알고리즘_
 
 </div>  
-
 
 <br/>
 
@@ -218,6 +219,8 @@ _ODE-RNN의 알고리즘_
 그러면 지금까지 `RNN`과 `ODE-RNN`을 알아보았는데요, 그들의 hidden state가 어떻게 정의되는지를 보면 다음과 같습니다.
 (`RNN-Decay`와 `GRU-D` 또한 `RNN`의 일종이라고 생각하시면 됩니다)
 
+<br/>
+
 <div align="center"> 
   
 ![image](https://user-images.githubusercontent.com/99710438/164017531-002e6512-f1c5-4430-904d-d19f82f2a9e4.png)
@@ -225,6 +228,8 @@ _ODE-RNN의 알고리즘_
 _Definition of hidden state_ 
   
 </div>  
+
+<br/>
 
 앞서 설명해드린 바와 같이, `RNN` 기반 모델들은 각 observation이 있을 때만 **discrete한 hidden state**가 정의되는 반면에 `ODE-RNN` 모델은 각 observation **사이 시간**도 고려합니다. 
 
@@ -258,6 +263,8 @@ Autoregressive model 중 한 가지로 latent variable model이 있는데, 저�
 `Latent ODE`는 위에서 설명드린 `VAE`의 encoder에 `ODE-RNN`을 사용한 구조입니다. 
 
 `ODE-RNN`의 아이디어만큼이나 간단한데요, 먼저 구조를 그림으로 보여드리겠습니다.
+
+<br/>
 
 <div align="center">  
   
@@ -329,20 +336,182 @@ _`VAE`의 encoder로 `ODE-RNN`을 사용하고, decoder로 `ODE`를 사용해 **
 
 <br/>
 
-
-## **4. Experiment**  
+> ### **Latent ODE vs. ODE-RNN**
 
 <br/>
 
+저자들은 autoregressive modle은 dynamics가 hidden state update에 따라 implicit하게 encode 된다고 하면서 이 점이 모델에 대한 해석을 어렵게 한다고 합니다.
+
+반면에, Latent variable 모델은 state를 ![](https://latex.codecogs.com/gif.latex?z_{t}) 를 통해 explicit하게 represent하고, dynamics를 generative model로 explicit하게 represent한다고 했습니다. 
+
+후에 experiment 파트에서도 Latent variable 모델이 autoregressive model보다 조금 더 좋은 성능을 내는 것을 확인할 수 있습니다.
+
+<br/>
+
+<br/>
+
+<br/>
+
+
+## **4. Experiment**  
+> 본 논문에서 저자들은 다양한 baseline과 실험을 통해 `ODE-RNN`과 `Latent ODEs`를 비교했습니다.
+
+
 ### **Experiment setup**  
-* Dataset  
+
+
+* Dataset 
+    * Toy dataset (extrapolation)
+    * MuJoCo (extrapolation, interpolation)
+    * Physionet (time-series prediction)
+    * Human Activity (time-series prediction)
+
+
 * baseline  
+    * Autoregressive model
+        1. **ODE-RNN**
+        2. RNN
+        3. RNN-Decay
+        4. RNN-Impute (missing values imputed by weighted average of previous value)
+        5. GRU-D (GRU-Decay)
+    * Encoder-Decoder model
+        1. **Latent ODE**
+        2. RNN-VAE
+        3. ODE-RNN
+
+
 * Evaluation Metric  
+    * Mean squared error
+    * AUC
+    * Accuracy
+
+<br/>
+
 
 ### **Result**  
-Then, show the experiment results which demonstrate the proposed method.  
-You can attach the tables or figures, but you don't have to cover all the results.  
-  
+
+
+* Toy dataset
+
+저자들은 1000개의 periodic trajectories를로 toy dataset을 만들었습니다. 
+
+그리고 `RNN`을 encoder로 쓴 `Latent ODE`와 `ODE-RNN`을 encoder로 쓴 `Latent ODE`로 각 trajectory의 20%를 학습시킨 뒤, 다음을 trajectory를 예측하도록(extrapolation) 했습니다.
+
+<br/>
+
+<div align="center">  
+ 
+![image](https://user-images.githubusercontent.com/99710438/164261107-8f595251-839d-4fd2-90a6-c2c71af14e24.png)
+
+_Approximate posterior smaples_
+ 
+</div>
+ 
+<br/>
+
+위 그림에서 확인할 수 있듯이, `ODE-RNN`을 encoder로 쓴 `Latent ODE`는 training data를 한참 넘는 구간을 periodic dynamics을 유지하면서 잘 extrapolate 합니다. 
+
+반면에, `RNN`을 encoder로 쓴 `Latent ODE`는 periodic dynamics를 잘 extrapolate 하지 못하는 것을 확인할 수 있습니다.
+
+<br/>
+
+* MuJoco Physics Simulation
+
+이 데이터는 어떤 물체가 껑충 뛰는 physical simulation으로 이루어져 있습니다. 각 hopper의 initial position과 velocity를 sampling 하고, 이 trajectory들은 initial state에 대한 function으로 이루어져 있습니다. 저자들은 이 데이터에 대해 interpolation과 extrapolation을 각각 진행하고, MSE를 측정했습니다.
+
+<br/>
+
+<div align="center"> 
+
+![image](https://user-images.githubusercontent.com/99710438/164263996-b1907e81-c7e9-4848-9c7c-8bae5343434b.png)
+
+_MSE(*0.01) on the MuJoCo dataset_
+
+</div>
+ 
+<br/>
+
+위 표는 각각 10, 20, 30, 50%의 observation을 주고 autoregressive 모델과 Encoder-Decoder(Latent model) 모델로 interpolation과 extapolation을 한 결과입니다.
+
+위 표에서 볼 수 있듯이, Interpolation에서는 Autoregressive 모델의 `ODE-RNN`이, Encoder-Decoder 모델의 `Latent ODE`(`ODE-RNN` encoder)가 성능이 가장 좋게 나왔습니다. 
+
+Extrapolation에는 Encoder-Decoder 모델은 같은 결과가 나왔으나 Autoregressive 모델에서는 `ODE-RNN` 모델의 성능이 좋지 않은 것을 확인할 수 있었습니다. 이는 autoregressive model은 one-step-ahead prediction을 위해 training 되었으므로 예견된 결과라고 합니다.
+
+주목할 것은 `RNN`과 `ODE-RNN`의 성능 차이가 데이터가 sparse해 질수록(observation이 적어질수록) 커진다는 것입니다. 이를 통해 ODE 기반 모델이 sparse한 데이터에도 더 적합하다는 것을 확인할 수 있었습니다.
+
+<br/>
+
+저자들은 또한 latent state의 norm이 trajectory에 따라 어떻게 변화하는지도 확인했습니다.
+
+<br/>
+
+<div align="center"> 
+ 
+![image](https://user-images.githubusercontent.com/99710438/164266880-12d49223-d6fb-4e44-9187-580a754236ba.png)
+
+_Trajectory from MuJoCo dataset & Norm of the dynamic functions_
+
+</div>
+ 
+<br/>
+
+위 그림에서 확인할 수 있듯이, `Latent ODE`는 data의 trajectory를 잘 따라가는 것을 확인할 수 있었습니다. 
+
+또한, `Latent ODE`의 norm은 trajectory가 급변할 때(hopper가 땅을 박차고 올라올 때) norm이 변하는 반면, `RNN`의 norm은 특별한 규칙 없이 변하는 것을 확인할 수 있었습니다.
+
+이는 `Latent ODE`가 `RNN`보다 hidden state에 더 유의미한 정보를 담고있는 것을 의미합니다.
+
+<br/>
+
+* Physionet
+
+이 데이터는 8000개의 time-series 포인트로 구성되어 있고, irregular time step과 sparse한 것이 특징입니다. 여기서 저자들은 observation time에 Poisson Process likelihood를 포함시켜 Latent ODE 모델과 같이 학습시켰을 때의 성능도 확인해 봤습니다.
+
+<br/>
+
+<div align="center"> 
+ 
+![image](https://user-images.githubusercontent.com/99710438/164268642-c8f5bfd2-e176-41c9-a077-dfd5f93aaff0.png)
+
+_MSE on PhysioNet, Autoregressive models_
+ 
+</div>
+
+<br/>
+
+<br/>
+
+<div align="center"> 
+ 
+![image](https://user-images.githubusercontent.com/99710438/164268796-d70189f3-e74d-4224-b3be-2bb398bc736f.png)
+
+_MSE on PhysioNet, Encoder-Decoder models_
+ 
+</div>
+
+<br/>
+
+위 테이블에서 확인할 수 있듯이, Autoregressive 모델과 Encoder-Decoder 모델에서 역시 저자들의 모델이 다른 baseline보다 좋은 성능을 내고 있습니다.
+
+<br/>
+
+* Human Activity dataset
+
+이 데이터에는 다섯가지 activity(걷기, 앉기, 눕기 등)에 대한 time series data가 포함되어 있습니다. 
+
+<br/>
+
+<div align="center"> 
+ 
+![image](https://user-images.githubusercontent.com/99710438/164271166-69bc6eb2-3159-46f3-aff4-1c48df1c9755.png)
+
+_Per-time-point classification, accuracy on Human Activity_
+ 
+</div>
+
+<br/>
+
+이 데이터에서도 저자들의 모델의 성능이 다른 모델의 성능보다 좋은 것을 확인할 수 있었습니다.
 
 <br/>
 
@@ -353,16 +522,35 @@ You can attach the tables or figures, but you don't have to cover all the result
 
 ## **5. Conclusion**  
 
-Please summarize the paper.  
-It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
+<br/>
 
-Neural ODE라는 새로운 방식을 여러 방면에 접목시킨 논문들이 우후죽순 생겨나고 있습니다. 처음 시도되는 방법론이다 보니 특별한 theoretical contribution이 없어도 접목만 잘 시키면 논문이 좀 더 publish 되기가 용이한 것 같습니다. 우리도 지금 어떤 연구가 trend인지 잘 follow up하는 자세가 필요한 것 같습니다.
+> **Summary**
 
-또한 연구도 융합의 시대인 것 같습니다. 분야를 가리지 않고 여러 방법론을 창의적으로 적용하는 것이 새로운 연구의 창을 열 수 있는 것 같습니다.
+이 논문에서는 hidden state dynamics를 `Neural ODE`로 구성한 `ODE-RNN`을 소개했습니다.
 
----  
+또한 이 모델을 `VAE`의 encoder로 사용한 `Latent ODE`도 제안했습니다. 
+
+이를 통해 지금까지 **discrete한 hidden layer**를 가졌던 모형들이 아닌, **continuous한 hidden layer**를 가진 모형으로서 기존 방법론들의 단점(irregular time step, sparse data에서 성능이 저하되는 현상)을 극복할 수 있었습니다.
+
+`Latent ODE`는 비교적 hidden state에 대한 설명력을 가지며 **observation time에 구애받지도, 전처리 과정에 data를 impute 할 필요도 없습니다**.
+
+이에 수많은 irregularly-sampled time series data에 적용 가능할 것으로 보입니다.
 
 <br/>
+
+> **내 생각...**
+
+본 논문은 2018년 NeurIPS에서 best paper를 받은 `Neural ODE`를 `RNN`과 `VAE`에 적용시킨 후속 연구입니다.  
+
+Neural ODE라는 새로운 방식을 여러 방면에 접목시킨 논문들이 우후죽순 생겨나고 있습니다. 
+
+처음 시도되는 방법론이다 보니 특별한 theoretical contribution이 없어도 접목만 잘 시키면 논문이 publish 되기가 용이한 것 같습니다. 
+
+우리도 지금 어떤 연구가 trend인지 잘 follow up하는 자세가 필요할 것입니다.
+
+또한 연구도 융합의 시대인 것 같습니다. 분야를 가리지 않고 여러 방법론을 창의적으로 녹여내는 것이 새로운 연구의 창을 열 수 있을 것입니다.
+
+---  
 
 <br/>
 
@@ -386,7 +574,6 @@ Neural ODE라는 새로운 방식을 여러 방면에 접목시킨 논문들이 
 
 <br/>
 
-<br/>
 
 ## **6. Reference & Additional materials**  
 
