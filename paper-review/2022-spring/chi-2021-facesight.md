@@ -20,7 +20,7 @@ keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision
 
 ## **2. Motivation**  
 
-AR안경을 활용한 이전 연구들은 손으로 직접 하는 제스처를 감지하는 전기적인/음성 신호를 연구했음  
+본 연구에서는 AR안경을 활용한 이전 연구들은 손으로 직접 하는 제스처를 감지하는 전기적인/음성 신호를 연구했음  
 (여기에 기존연구 사진 넣어주면 좋을듯?)  
 이런 기존 연구는 제스처가 단순하거나 이산적이므로 제한됨. AR 안경 상호작용을 풍부하게 하기 위해서는 다양하고 지속적인 제스쳐가 필요함.
 
@@ -41,6 +41,12 @@ AR안경을 활용한 이전 연구들은 손으로 직접 하는 제스처를 �
 Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
 
 After writing the motivation, please write the discriminative idea compared to existing works briefly.
+
+#### 2.1 Hand-to-Face Interaction을 활용한 기존 연구들
+
+
+[Serano et al.](https://doi.org/10.1145/2556288.2556984)는 일상적인 작업을 할 때 뺨과 이마를 활용해서 hand-to-face 상호작용을 할 수 있음을 보였다.
+
 
 
 ## **3. Method**  
