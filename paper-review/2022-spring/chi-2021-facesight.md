@@ -53,6 +53,8 @@ After writing the motivation, please write the discriminative idea compared to e
 
 ★★★★★사진 넣기
 
+[Itchy Nose](https://doi.org/10.1145/3242587.3242642)는 안경에 전극센서(electrooculography)를 부착해서 코를 밀거나 문지르는 제스처를 인식하도록 개발된 hand-to-nose 상호작용 기술이다.  
+[CheekInput](https://doi.org/10.1145/3139131.3139146), [FaceRubbing](https://doi.org/10.1145/3174910.3174924)는 안경에 
 
 ## **3. Method**  
 
