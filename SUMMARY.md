@@ -5,7 +5,7 @@
 ## Paper Review  
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md)    
-    * [Template](paper-review/2022-spring/template.md)
+    * [G-Meta](paper-review/2022-spring/G-Meta.md)
  
 ## How to contribute  
 
