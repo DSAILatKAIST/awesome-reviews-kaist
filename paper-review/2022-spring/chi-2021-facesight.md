@@ -48,7 +48,9 @@ Please write the motivation of paper. The paper would tackle the limitations or 
 
 After writing the motivation, please write the discriminative idea compared to existing works briefly.
 
-#### 2.1 Hand-to-Face Interaction을 활용한 기존 연구들
+#### 2.1 Hand-to-Face Interaction을 활용한 기존 연구들  
+
+[1] 촉각정보 기반 상호작용
 
 [Serano et al.](https://doi.org/10.1145/2556288.2556984)는 일상적인 작업을 할 때 뺨과 이마를 활용해서 hand-to-face 상호작용을 할 수 있음을 보였습니다.  
 [Lee et al.](https://doi.org/10.1145/3242587.3242642)은 얼굴에서 멀리 떨어진 귀, 목을 활용하면 hand-to-face 상호작용 설계에 적합할 수 있으며, 5개의 손을 모두 사용하는 큰 움직임보다 소수의 손가락을 사용하는 작은 움직임이 입력에 적합할 수 있음을 제안했습니다.
@@ -60,11 +62,18 @@ After writing the motivation, please write the discriminative idea compared to e
 
 ★★★★★사진 넣기
 
+[2] 청각정보 기반 상호작용
+
 [PrivateTalk](https://doi.org/10.1145/3332165.3347950)은 음성 데이터를 비교해서 사람이 손으로 입을 가리고 속삭이는 소리를 감지했고, [EarBuddy](https://doi.org/10.1145/3313831.3376836)는 뺨에 손을 두드리는 소리를 감지했습니다.
 
+★★★★★사진 넣기
 
 #### 2.3 Discriminative idea compared to existing works  
 그러나 기존에 개발된 촉각 기반의 hand-to-face 상호작용 기술들은 부자연스러울 정도로 과한 동작만을 인식했으며, 얼굴을 가볍게 쓸어내리는 등의 가벼운 동작은 인식할 수 없었다. 소리 기반의 hand-to-face 상호작용 기술 역시 감지 가능한 동작의 종류, 개수가 제한적이었으며, 뺨을 두드리는 횟수 등의 간단한 동작만 인식할 수 있었습니다.
+
+대부분의 기존 감지기술과 달리, 카메라를 활용한 시각정보 기반 상호작용 기술은 좀 더 다양하고 복잡한 동작을 인식할 수 있게 해줍니다.  
+본 연구에서는 AR 안경을 착용하여 시각정보를 기반으로 여러 종류의 동작을 인식할 수 있는 기술을 개발하였습니다.
+
 
 <br>
 ## **3. Method**  
