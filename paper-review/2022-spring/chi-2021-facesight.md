@@ -2,7 +2,7 @@
 description : Weng et al./ FaceSight; Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downward-Facing Camera Vision / Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems
 ---
 
-# **Title** 
+# **FaceSight: Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downward-Facing Camera Vision** 
 
 FaceSight: Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downward-Facing Camera Vision  
 keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision
