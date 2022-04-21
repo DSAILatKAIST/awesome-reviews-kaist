@@ -1,8 +1,8 @@
 ---
-description : 1st author / title / conference-year(description)  
+description : Emilien Dupont / COIN: COmpression with Implicit Neural Networks / 2021(ICLR)  
 ---
 
-# **Title** 
+# **Review paper, COIN: COmpression with Implicit Neural Networks ** 
 
 Title of paper that you are going to write  
 
