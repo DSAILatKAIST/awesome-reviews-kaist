@@ -1,5 +1,5 @@
 ---
-description : Emilien Dupont / COIN: COmpression with Implicit Neural Networks / 2021(ICLR)  
+description : Emilien Dupont / COIN: COmpression with Implicit Neural Networks / 2021(description)  
 ---
 
 # **Review paper, COIN: COmpression with Implicit Neural Networks ** 
