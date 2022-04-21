@@ -8,7 +8,7 @@ description : Weng et al./ FaceSight; Enabling Hand-to-Face Gesture Interaction 
 본 연구에서는 AR 환경에서 사람과 컴퓨터 간 상호작용을 돕는 새로운 기술을 소개합니다.  
 _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 
-
+<br>
 
 ## **1. Problem Definition**  
 
@@ -22,7 +22,7 @@ _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 - 얼굴을 상호작용의 매개로 사용한다는 점에서 직관적이고, 배우기 쉬우며, 넓은 공간 활용이 가능합니다
 - 
 
-
+<br>
 
 ## **2. Motivation**  
 
@@ -60,40 +60,44 @@ After writing the motivation, please write the discriminative idea compared to e
 
 ★★★★★사진 넣기
 
-[PrivateTalk](https://doi.org/10.1145/3332165.3347950)은 음성 데이터를 비교해서 사람이 손으로 입을 가리는 등 속삭이는 동작을 감지했고,
+[PrivateTalk](https://doi.org/10.1145/3332165.3347950)은 음성 데이터를 비교해서 사람이 손으로 입을 가리고 속삭이는 소리를 감지했고, [EarBuddy](https://doi.org/10.1145/3313831.3376836)는 뺨에 손을 두드리는 소리를 감지했습니다.
 
 
 #### 2.3 Discriminative idea compared to existing works  
-그러나 기존에 개발된 촉각 기반의 hand-to-face 상호작용 기술들은 부자연스러울 정도로 과한 동작만을 인식했으며, 얼굴을 가볍게 쓸어내리는 등의 가벼운 동작은 인식할 수 없었다.  
+그러나 기존에 개발된 촉각 기반의 hand-to-face 상호작용 기술들은 부자연스러울 정도로 과한 동작만을 인식했으며, 얼굴을 가볍게 쓸어내리는 등의 가벼운 동작은 인식할 수 없었다. 소리 기반의 hand-to-face 상호작용 기술 역시 감지 가능한 동작의 종류, 개수가 제한적이었으며, 뺨을 두드리는 횟수 등의 간단한 동작만 인식할 수 있었습니다.
 
-
+<br>
 ## **3. Method**  
 
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily.  
 
+<br>
 ## **4. Experiment**  
 
 In this section, please write the overall experiment results.  
 At first, write experiment setup that should be composed of contents.  
 
+<br>
 ### **Experiment setup**  
 * Dataset  
 * baseline  
 * Evaluation Metric  
 
+<br>
 ### **Result**  
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
   
 
 
-
+<br>
 ## **5. Conclusion**  
 
 Please summarize the paper.  
 It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
 
+<br>
 ---  
 ## **Author Information**  
 
