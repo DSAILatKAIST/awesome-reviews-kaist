@@ -5,6 +5,7 @@ description : Weng et al./ FaceSight; Enabling Hand-to-Face Gesture Interaction 
 # **Title** 
 
 FaceSight: Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downward-Facing Camera Vision  
+keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision
 
 ## **1. Problem Definition**  
 
