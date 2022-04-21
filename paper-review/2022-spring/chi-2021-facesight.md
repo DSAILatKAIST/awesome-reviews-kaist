@@ -26,24 +26,6 @@ _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 
 ## **2. Motivation**  
 
-AR 안경을 활용한 이전 연구들은 손으로 직접 하는 제스처를 감지하는 전기적인/음성 신호를 연구했음  
-(여기에 기존연구 사진 넣어주면 좋을듯?)  
-이런 기존 연구는 제스처가 단순하거나 이산적이므로 제한됨. AR 안경 상호작용을 풍부하게 하기 위해서는 다양하고 지속적인 제스쳐가 필요함.
-
-이러한 Research Gap을 줄이기 위해 본 연구에서는 AR 안경 다리에 적외선카메라를 접목해서 착용자의 얼굴을 캡처하는 **FaceSight** 를 개발하였음.  
-
-★★★★★Figure1 여기엥
-
-개발된 FaceSight는 아래의 3가지 이점을 갖고 있음:
- 1) 사용자의 얼굴, 손을 고해상도 이미지로 캡쳐함 → 풍부하고 섬세한 hand-to-face gesture 감지 가능
- 2) 적외선 광원의 광도를 조절해서 어두운 배경의 전경(코, 볼, 손)만 조명 가능 → 컴퓨터 비전 프로세스 단순화, 프라이버시 문제 완화
- 3) AR 안경 다리에 카메라를 부착하면 소형 폼팩터 역할을 함 → 웨어러블 기기의 실용성 증대
-
-본 연구는 아래의 3가지 기여 요소를 갖고 있음:
- 1) FaceSight개발
- 2) 21개의 제스처 세트 제시
- 3) hand-to-face gesture를 감지하기 위한 알고리즘 파이프라인 설계 및 구현
-
 Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
 
 After writing the motivation, please write the discriminative idea compared to existing works briefly.
@@ -57,8 +39,8 @@ After writing the motivation, please write the discriminative idea compared to e
 
 ★★★★★사진 넣기
 
-[Itchy Nose](https://doi.org/10.1145/3242587.3242642)는 안경에 전극센서(electrooculography)를 부착해서 코를 밀거나 문지르는 동작을 인식하도록 개발된 hand-to-nose 상호작용 기술이다.  
-[CheekInput](https://doi.org/10.1145/3139131.3139146), [FaceRubbing](https://doi.org/10.1145/3174910.3174924) 등 모자나 안경에 센서를 부착해서 얼굴을 당기고, 문지르는 동작을 인식하는 기술도 개발되었다.
+[Itchy Nose](https://doi.org/10.1145/3242587.3242642)는 안경에 전극센서(electrooculography)를 부착해서 코를 밀거나 문지르는 동작을 인식하도록 개발된 hand-to-nose 상호작용 기술입니다. 
+비슷하게 [CheekInput](https://doi.org/10.1145/3139131.3139146), [FaceRubbing](https://doi.org/10.1145/3174910.3174924) 등 모자나 안경에 센서를 부착해서 얼굴을 당기고, 문지르는 동작을 인식하는 기술도 개발되었습니다.
 
 ★★★★★사진 넣기
 
@@ -68,32 +50,62 @@ After writing the motivation, please write the discriminative idea compared to e
 
 ★★★★★사진 넣기
 
-#### 2.3 Discriminative idea compared to existing works  
-그러나 기존에 개발된 촉각 기반의 hand-to-face 상호작용 기술들은 부자연스러울 정도로 과한 동작만을 인식했으며, 얼굴을 가볍게 쓸어내리는 등의 가벼운 동작은 인식할 수 없었다. 소리 기반의 hand-to-face 상호작용 기술 역시 감지 가능한 동작의 종류, 개수가 제한적이었으며, 뺨을 두드리는 횟수 등의 간단한 동작만 인식할 수 있었습니다.
+<br>
 
-대부분의 기존 감지기술과 달리, 카메라를 활용한 시각정보 기반 상호작용 기술은 좀 더 다양하고 복잡한 동작을 인식할 수 있게 해줍니다.  
+#### 2.3 Discriminative idea compared to existing works
+
+AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정보를 기반으로 동작을 감지하는 연구들을 대부분 수행했습니다.
+그러나 기존 촉각 기반의 hand-to-face 상호작용 기술들은 부자연스러울 정도로 과한 동작만을 인식했으며, 얼굴을 가볍게 쓸어내리는 등의 가벼운 동작은 인식할 수 없었습니다.  
+소리 기반의 hand-to-face 상호작용 기술 역시 감지 가능한 동작의 종류, 개수가 제한적이었으며, 뺨을 두드리는 횟수 등의 간단한 동작만 인식할 수 있었습니다.  
+이런 기존 연구는 제스처가 단순하거나 제한되므로, AR 안경 상호작용을 풍부하게 하기 위해서는 다양한 동작 인식 기술이 필요합니다.  
+
+이러한 Research Gap을 줄이기 위해 본 연구에서는 AR 안경 다리에 적외선카메라를 접목해서 착용자의 얼굴을 캡처하는 **FaceSight** 를 개발하였습니다.  
+대부분의 기존 감지기술과 달리, **카메라를 활용한 시각정보 기반**의 상호작용 기술은 좀 더 다양하고 복잡한 동작을 인식할 수 있게 해줍니다.  
 본 연구에서는 AR 안경을 착용하여 시각정보를 기반으로 여러 종류의 동작을 인식할 수 있는 기술을 개발하였습니다.
 
 
+
+
+
+
+
+★★★★★Figure1 여기엥
+
+개발된 FaceSight는 아래의 3가지 이점을 갖고 있음:
+ 1) 사용자의 얼굴, 손을 고해상도 이미지로 캡쳐함 → 풍부하고 섬세한 hand-to-face gesture 감지 가능
+ 2) 적외선 광원의 광도를 조절해서 어두운 배경의 전경(코, 볼, 손)만 조명 가능 → 컴퓨터 비전 프로세스 단순화, 프라이버시 문제 완화
+ 3) AR 안경 다리에 카메라를 부착하면 소형 폼팩터 역할을 함 → 웨어러블 기기의 실용성 증대
+
+본 연구는 아래의 3가지 기여 요소를 갖고 있음:
+ 1) FaceSight개발
+ 2) 21개의 제스처 세트 제시
+ 3) hand-to-face gesture를 감지하기 위한 알고리즘 파이프라인 설계 및 구현
+ 4) 
+
+
 <br>
+
 ## **3. Method**  
 
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily.  
 
 <br>
+
 ## **4. Experiment**  
 
 In this section, please write the overall experiment results.  
 At first, write experiment setup that should be composed of contents.  
 
 <br>
+
 ### **Experiment setup**  
 * Dataset  
 * baseline  
 * Evaluation Metric  
 
 <br>
+
 ### **Result**  
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
@@ -101,18 +113,22 @@ You can attach the tables or figures, but you don't have to cover all the result
 
 
 <br>
+
 ## **5. Conclusion**  
 
 Please summarize the paper.  
 It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
 
 <br>
+
 ---  
 ## **Author Information**  
 
 * Author name  
     * Affiliation  
     * Research Topic
+
+<br>
 
 ## **6. Reference & Additional materials**  
 
