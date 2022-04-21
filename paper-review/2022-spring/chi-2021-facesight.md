@@ -4,8 +4,8 @@ description : Weng et al./ FaceSight; Enabling Hand-to-Face Gesture Interaction 
 
 # **FaceSight: Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downward-Facing Camera Vision** 
 
-[소개할 연구](https://doi.org/10.1145/3411764.3445484)는 2021년에 CHI (Conference on Human Factors in Computing Systems)에서 발표되었으며, 
-본 연구에서는 AR 환경에서 사람과 컴퓨터 간 상호작용을 돕는 새로운 기술을 소개합니다.  
+[소개할 연구](https://doi.org/10.1145/3411764.3445484)는 2021년에 CHI (Conference on Human Factors in Computing Systems)에서 발표되었으며,  
+AR 환경에서 사람과 컴퓨터 간 상호작용을 돕는 새로운 동작 인식 기술을 소개하고자 합니다.  
 _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 
 <br>
