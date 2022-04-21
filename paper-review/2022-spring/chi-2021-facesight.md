@@ -117,13 +117,13 @@ FaceSight에서 지원할 수 있는 hand-to-face 제스처 상호작용에 대�
  [1] 터치 위치  
  카메라 배치를 통해 FaceSight는 뺨, 코, 입, 턱을 포함한 얼굴 아랫부분의 대부분을 구분할 수 있습니다. 1) 뺨은 왼쪽과 오른쪽으로 구분되며, 2) 코는 코끝, 왼쪽과 오른쪽 코볼로구분되며, 3) 입은 왼쪽, 가운데, 오른쪽으로 구분됩니다. 이러한 걸굴 부위는 사람들이 자주 만지고 가장 자연스럽게 사용하는 부위입니다. 다만, 카메라의 위치(AR 안경코)의 제약 때문에 귀 윗부분은 상호작용에 사용할 수없다는 제한사항을 갖고 있습니다.
  
- [2] 제스처
+ [2] 제스처  
  tapping, swiping은 현대 터치스크린에서 가장 일반적이며 사용자들에게 굉장히 친숙한 입력 방법입니다. FaceSight에서는 한 번의 클릭, 두 번의 클릭, 긴 클릭(몇 초씩) 제스처를 사용합니다.  
  또한, 볼과 턱의 매끄러운 표면은 swiping 작업을 하기에 적합합니다. FaceSight에서는 뺨 한쪽을 수직으로 쓸어넘기기, 뺨 양쪽을 수직으로 쓸어넘기기, 턱을 수평으로 쓸어넘기는 제스처를 사용합니다.  
  더불어, 카메라를 사용하면 상징적인 제스처를 인식할 수 있다는 장점이 있습니다. 예를 들어, 검지와 새끼손가락을 귀에 붙이는 제스처로 전화를 걸거나, 검지를 입술에 붙여서 장치를 음소거하는 신호로 사용할 수 있습니다.  
  
- [3] 코 변형 및 손가락 접촉 횟수
- 카메라가 코 바로 위에 있어서 손가락에 의해 코가 밀리거나 움켜쥐었을 때 코의 미세한 변형을 감지할 수 있습니다. 예를 들어, FaceSight에서는 코를 부드럽게 누르는 동작과 코를 강하게 눌러서 일그러지는 동작을 구분할 수 있습니다.
+ [3] 코 변형 및 손가락 접촉 횟수  
+ 카메라가 코 바로 위에 있어서 손가락에 의해 코가 밀리거나 움켜쥐었을 때 코의 미세한 변형을 감지할 수 있습니다. 예를 들어, FaceSight에서는 코를 부드럽게 누르는 동작과 코를 강하게 눌러서 일그러지는 동작을 구분할 수 있습니다.  
  손가락이 얼굴에 접촉하는 개수를 각각 다른 제스처로 인식하는 것도 현대 터치스크린에서 널리 사용되는 상호작용 기법입니다. 예를 들어, FaceSight에서는 턱에 1개의 손가락이 접촉하는 것과 2개의 손가락이 동시에 접촉하는 제스처를 구분합니다.
  
 
@@ -144,7 +144,7 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 ★★★★★Figure6 여기엥  
 
-적외선 카메라에서 캡처한 gray-scale 이미지가 수집되면, 먼저 여러 밝기 feature를 적용하여 [1] 손, 코, 입, 뺨을 구분(segmentation)합니다. 그 다음 hand-to-face 제스처를 감지하기 위한 4단계 알고리즘이 수행됩니다: 2) Detection of touch contact, 3) recognizing touch location (1에서 촉각을 감지한 경우), 4) gesture classification with CNN, 5) Locating the touching fingertip for continuous input (제스처가 nose pushing이거나 cheek/chin tapping인 경우). 단계별 자세한 과정은 아래에서 설명드리겠습니다.
+적외선 카메라에서 캡처한 gray-scale 이미지가 수집되면, 먼저 여러 밝기 feature를 적용하여 [1] 손, 코, 입, 뺨을 구분(segmentation)합니다. 그 다음 hand-to-face 제스처를 감지하기 위한 4단계 알고리즘이 수행됩니다: 2) Detection of touch contact, 3) recognizing touch location (1에서 촉각을 감지한 경우), 4) gesture classification with CNN, 5) determine the required interaction parameter (제스처가 nose pushing이거나 cheek/chin tapping인 경우). 단계별 자세한 과정은 아래에서 설명드리겠습니다.
 
  [1] 손, 코, 입, 뺨 구분(Segmentation)
 
@@ -160,8 +160,15 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
  [3] recognizing touch location
  이미지에서 손과 얼굴의 접촉이 감지외면 접촉이 발생하는 위치를 5가지 범주(코, 입, 턱, 왼쪽뺨, 오른쪽뺨)로 파악합니다. FaceSight에서는 손가락 끝이 닿는 가장 가까운 위치를 접촉 위치로 인식합니다.
  
- [4] gesture classification with CNN
+ [4] gesture classification with CNN  
+ 터치 위치가 주어지면 해당 위치에서 수행된 손 동작이 무엇인지를 convolutional neural network (CNN)을 사용하여 구분합니다. 본 연구에서는 코, 입, 턱, 왼쪽뺨, 오른쪽뺨에 대한 이미지에 대하여 CNN 모델을 별도로 훈련시켰습니다. 본 CNN 모델은 2개의 convolutional layer, 2x2 maximum pooling layer, fully connected layer를 포함합니다.  
+ 본 연구에서는 정확도 향상을 위하여 convolutional layer의 파라미터를 조정했습니다: 첫번째 layer는 11x11 kernal size, stride step값은 5, padding값은 3; 두번째 layer는 5x5 kernal size, stride step은 1, padding값은 2. Loss function으로 softmax와 cross-entropy를 사용했으며, 정확도에 대한 지표로 accuracy rate와 false recognition rate을 활용했습니다.  
+ optimizer는 Adam을 사용했는데, KSE527의 Lecture 6에서 optimization 알고리즘 중에서 뭘 쓸지 모르겠을 때 Adam을 먼저 써보라는 말이 있었던 만큼 광범위하게 쓰이는 알고리즘을 본 연구에서도 사용했습니다.  
+ learning rate coefficient은 0.003이었으며, 모델 입력은 200x200의 다운샘플링된 손 영역이며, 모델 출력은 특정 제스처에 해당하는 레이블입니다.  
  
+ [5.1] Locating the touching fingertip for continuous input  
+ 
+
 
 <br>
 
