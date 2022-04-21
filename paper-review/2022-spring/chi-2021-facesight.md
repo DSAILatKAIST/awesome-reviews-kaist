@@ -1,3 +1,5 @@
+![이미지](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/paper-review/2022-spring/haehyunlee_1/fig1_facesight.PNG)
+
 ---
 description : Weng et al./ FaceSight; Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downward-Facing Camera Vision / Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems
 ---
