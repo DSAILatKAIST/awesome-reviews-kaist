@@ -4,9 +4,9 @@ description : Y Rubanova et al./ Latent ODEs for Irregularly-Sampled Time Series
 
 <br/>
 
-# **Title** 
+# **Latent ODEs for Irregularly-Sampled Time Series** 
 
-Latent ODEs for Irregularly-Sampled Time Series
+<br/>
 
 <br/>
 
