@@ -15,7 +15,7 @@ _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 본 연구에서는 AR 안경을 활용하여 **hand-to-face** 제스처를 감지하는, 컴퓨터 비전 기반의 기술인 **FaceSight** 를 소개합니다.
 **FaceSight**는 적외선 카메라를 AR 안경 다리에 고정하여 얼굴 아랫부분(뺨, 코, 입, 턱)에서의 손 제스처를 감지하는 기술입니다.
 
-(요즘 AR안경이 연구/산업계에 어떻게 활용되는지 추가하면?)
+★★★★★Figure1 여기엥...사진넣는법...배워야함....
 
 손으로 뺨을 두드리는 것과 같은 **hand-to-face** 제스처 상호작용은 아래의 장점을 갖고 있습니다
 - _자신의 신체를 활용한다는 점에서_ 언제든 사용 가능하며, 촉각적이며, 거부감이 덜합니다
@@ -67,11 +67,11 @@ AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정�
 ★★★★★Figure1 여기엥
 
 개발된 FaceSight는 아래의 3가지 이점을 갖고 있습니다:
- 1) 사용자의 얼굴, 손을 고해상도 이미지로 캡쳐함 → 풍부하고 섬세한 hand-to-face gesture 감지 가능
+ 1) 사용자의 얼굴, 손을 고해상도 이미지로 캡쳐 → 풍부하고 섬세한 hand-to-face gesture 감지 가능
  2) 적외선 광원의 광도를 조절해서 어두운 배경의 전경(코, 볼, 손)만 조명 가능 → 컴퓨터 비전 프로세스 단순화, 프라이버시 문제 완화
  3) AR 안경 다리에 카메라를 부착하면 소형 폼팩터 역할을 함 → 웨어러블 기기의 실용성 증대
 
-본 연구는 아래의 3가지 contribution 요소를 니다:
+본 연구는 아래의 3가지 contribution 요소를 갖고 있습니다:
  1) 시각정보 기반의 제스처 감지 기술인 **FaceSight**개발
  2) 구분 가능한 21개의 제스처 종류 개발
  3) hand-to-face gesture를 감지하기 위한 알고리즘 파이프라인 설계 및 구현
@@ -83,6 +83,13 @@ AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정�
 
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily.  
+
+
+#### 3.1 FaceSight 구성요소  
+
+★★★★★Figure2 여기엥
+
+
 
 <br>
 
