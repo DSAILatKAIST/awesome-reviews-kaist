@@ -10,6 +10,7 @@ Title of paper that you are going to write
 
 Please write the problem definition on here  
 
+$$3 + 4 = x_3 + x^(-2)$$
 ## **2. Motivation**  
 
 Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
