@@ -1,5 +1,5 @@
 ---
-description : Weng et al./ FaceSight; Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downward-Facing Camera Vision / CHI-2021  
+description : Weng et al./ FaceSight; Enabling Hand-to-Face Gesture Interaction on AR Glasses with a Downward-Facing Camera Vision / Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems
 ---
 
 # **Title** 
@@ -53,8 +53,17 @@ After writing the motivation, please write the discriminative idea compared to e
 
 ★★★★★사진 넣기
 
-[Itchy Nose](https://doi.org/10.1145/3242587.3242642)는 안경에 전극센서(electrooculography)를 부착해서 코를 밀거나 문지르는 제스처를 인식하도록 개발된 hand-to-nose 상호작용 기술이다.  
-[CheekInput](https://doi.org/10.1145/3139131.3139146), [FaceRubbing](https://doi.org/10.1145/3174910.3174924)는 안경에 
+[Itchy Nose](https://doi.org/10.1145/3242587.3242642)는 안경에 전극센서(electrooculography)를 부착해서 코를 밀거나 문지르는 동작을 인식하도록 개발된 hand-to-nose 상호작용 기술이다.  
+[CheekInput](https://doi.org/10.1145/3139131.3139146), [FaceRubbing](https://doi.org/10.1145/3174910.3174924) 등 모자나 안경에 센서를 부착해서 얼굴을 당기고, 문지르는 동작을 인식하는 기술도 개발되었다.
+
+★★★★★사진 넣기
+
+[PrivateTalk]()는 
+
+
+#### 2.3 Discriminative idea compared to existing works  
+그러나 기존에 개발된 촉각 기반의 hand-to-face 상호작용 기술들은 부자연스러울 정도로 과한 동작만을 인식했으며, 얼굴을 가볍게 쓸어내리는 등의 가벼운 동작은 인식할 수 없었다.  
+
 
 ## **3. Method**  
 
