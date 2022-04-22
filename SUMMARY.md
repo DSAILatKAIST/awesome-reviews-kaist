@@ -10,7 +10,7 @@
     * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
     * [Latent ODEs for Irregularly-Sampled Time Series](paper-review/2022-spring/NeurIPS-2020-Latent-ODEs-for-Irregularly-Sampled-Time-Series.md)
     * [G-Meta](paper-review/2022-spring/G-Meta.md)
-    * [graph based 3d multi person pose estimation using multi view images](paper-review/2022-spring/iccv-2021-graph based 3d multi person pose estimation using multi view images.md)
+    * [graph based 3d multi person pose estimation using multi view images](paper-review/2022-spring/iccv-2021-graph-based-3d-multi-person-pose-estimation-using-multi-view-images.md)
     
 ## How to contribute  
 
