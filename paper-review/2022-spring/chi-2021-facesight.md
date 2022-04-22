@@ -12,9 +12,12 @@ _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 
 ## **1. Problem Definition**  
 
+>AR안경 기반의 제스처 감지기술  
+
 본 연구에서는 AR 안경을 활용하여 **hand-to-face** 제스처를 감지하는, 컴퓨터 비전 기반의 기술인 **FaceSight** 를 소개합니다.
 **FaceSight**는 적외선 카메라를 AR 안경 다리에 고정하여 얼굴 아랫부분(뺨, 코, 입, 턱)에서의 손 제스처를 감지하는 기술입니다.
 
+![fig1_facesight](https://imgur.com/xJJ7MMA)
 ★★★★★Figure1 여기엥...사진넣는법...배워야함....
 
 손으로 뺨을 두드리는 것과 같은 **hand-to-face** 제스처 상호작용은 아래의 장점을 갖고 있습니다
