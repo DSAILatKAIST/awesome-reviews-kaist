@@ -18,7 +18,7 @@ description : Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-20
 
 <div align="center">
   
-![image](https://user-images.githubusercontent.com/37684658/164231019-868292bd-9cbf-4d15-87cb-24d621ed78d6.png)
+![Support Set - 아르마딜로, 천갑산](https://user-images.githubusercontent.com/37684658/164231019-868292bd-9cbf-4d15-87cb-24d621ed78d6.png)
   
 </div>
 
@@ -28,7 +28,7 @@ description : Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-20
 
 <div align="center">
   
-![image](https://user-images.githubusercontent.com/37684658/164224487-822f266a-98db-4d2d-9c41-7303fdccf1ff.png)  
+![Query Set - 아르마딜로? 천갑산?](https://user-images.githubusercontent.com/37684658/164224487-822f266a-98db-4d2d-9c41-7303fdccf1ff.png)  
 
 </div>
 
@@ -39,7 +39,7 @@ description : Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-20
 
 <div align="center">
   
-![image](https://user-images.githubusercontent.com/37684658/164231266-515ab539-110b-4835-971c-287fb759c44a.png)
+![Support Set - 아르마딜로, 두더지](https://user-images.githubusercontent.com/37684658/164231266-515ab539-110b-4835-971c-287fb759c44a.png)
 
 </div>
 
@@ -56,7 +56,7 @@ description : Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-20
 
 <div align="center">
   
-![image](https://user-images.githubusercontent.com/37684658/164232203-324720bc-6ad3-4e49-9fc3-1990b82892e9.png)
+![ProtoNet](https://user-images.githubusercontent.com/37684658/164232203-324720bc-6ad3-4e49-9fc3-1990b82892e9.png)
 
 </div>
 
@@ -70,7 +70,7 @@ description : Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-20
 
 <div align="center">
   
-![image](https://user-images.githubusercontent.com/37684658/164233736-dd00ab2f-adf4-42b9-a491-6def82a126d4.png)
+![MAML](https://user-images.githubusercontent.com/37684658/164233736-dd00ab2f-adf4-42b9-a491-6def82a126d4.png)
 
   </div>
   
@@ -84,7 +84,7 @@ Graph가 다른 분야와 크게 다르다고 생각되는 점은 Vision에서 �
 
 <div align="center">
   
-![image](https://user-images.githubusercontent.com/37684658/164236353-e79f8de4-41a7-42f6-a0d2-f49940408f26.png)
+![Tasks of meta-learning on GNN](https://user-images.githubusercontent.com/37684658/164236353-e79f8de4-41a7-42f6-a0d2-f49940408f26.png)
   
 </div> 
 
@@ -105,12 +105,13 @@ Graph가 다른 분야와 크게 다르다고 생각되는 점은 Vision에서 �
 &nbsp; 먼저 Local Subgraph가 전체 그래프의 정보를 얼마나 보존할 수 있는 지를 증명한다. 논문에서는 수식이 가득하나, 본 리뷰에서는 수식 하나하나 뜯어보는 것보다 
 어떤 전개로 증명을 하고 있는 지 정리하였다. 그 전에 필요한 정의는 다음과 같다.  
 
-> ![image](https://user-images.githubusercontent.com/37684658/164239107-51cd7e87-c358-46c7-90a6-3110477b9601.png)
-> ![image](https://user-images.githubusercontent.com/37684658/164239543-4fc5e523-57be-43b4-aa79-d441f4b308cd.png)
+![image](https://user-images.githubusercontent.com/37684658/164239107-51cd7e87-c358-46c7-90a6-3110477b9601.png)  
+![image](https://user-images.githubusercontent.com/37684658/164239543-4fc5e523-57be-43b4-aa79-d441f4b308cd.png)
 
   
 ### Theorem 1  
-> ![image](https://user-images.githubusercontent.com/37684658/164240224-dc838854-74a9-47e1-a381-e663266ec796.png)  
+![image](https://user-images.githubusercontent.com/37684658/164240224-dc838854-74a9-47e1-a381-e663266ec796.png)  
+
 > ![image](https://user-images.githubusercontent.com/37684658/164247469-016ac481-0dd9-4187-8a96-f900b9fdf159.png)
 > 1) Node Influence ![image](https://user-images.githubusercontent.com/37684658/164243828-257ee6b9-23d2-47e0-a1fc-6ed241991308.png)는 ![image](https://user-images.githubusercontent.com/37684658/164243669-7498c8d7-9c2e-4486-b230-5d2114bf1b6f.png)과 같이 정의되는데, 위 그림에서의 ![image](https://user-images.githubusercontent.com/37684658/164243228-ca94e380-861f-428e-9f47-3c3be7ce8aa5.png)는 shortest path distance가 2이다. 이 때 ![image](https://user-images.githubusercontent.com/37684658/164243418-7f3ad3e5-760e-4fb8-8a91-f47bc9f49433.png)가 커지면, 다시 말해 두 노드간의 거리가 멀어지면 그 노드들의 Influence는 exponential하게 감소한다.
 > 2) 두 노드 사이의 Path에 속한 노드들의 degree가 높을수록, 두 노드간의 influence가 줄어든다.
@@ -119,7 +120,8 @@ Graph가 다른 분야와 크게 다르다고 생각되는 점은 Vision에서 �
 > 5) 결론적으로 특정 노드의 Local Subgraph에는 그 노드를 표현하는 주된 정보를 가지고 있기 때문에, 굳이 노드를 GNN으로 표현하기 위해 전체 그래프를 볼 필요가 없다.
 
 ### Theorem 2
-> ![image](https://user-images.githubusercontent.com/37684658/164245660-aa727989-a246-4a68-8f90-9b1251801caf.png)  
+![image](https://user-images.githubusercontent.com/37684658/164245660-aa727989-a246-4a68-8f90-9b1251801caf.png)  
+
 > ![image](https://user-images.githubusercontent.com/37684658/164247420-516cea20-9018-4997-9e19-01002f97e639.png)  
 > 1) 위의 그림 2-hop에 속하는 subgraph 내 Node들 중에서 Node u와 Influence가 최대인 Node를 Node v라고 하였을 때, Graph influence loss ![image](https://user-images.githubusercontent.com/37684658/164246867-ca319b8a-5303-45ef-b4e4-d68e1511b65e.png)과 같다.  
 > 2) Graph Influence loss는 h가 늘어날수록, 즉 노드 간의 거리가 멀어질수록 exponential하게 감소한다.  
@@ -138,7 +140,7 @@ G-Meta의 Architecture는 사실상 MAML[2]과 ProtoNet[1]을 Subgraph를 활용
 
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/37684658/164250511-4b76c6ec-f367-469e-a691-de2530347dbc.png)
+![G-Meta : Architecture](https://user-images.githubusercontent.com/37684658/164250511-4b76c6ec-f367-469e-a691-de2530347dbc.png)
 
 </div>  
 
@@ -152,7 +154,7 @@ Support set을 GNN을 이용하여 임베딩한다. Subgraphs를 이용하여 ce
 임베딩된 Centroid 노드들 중에 같은 Label을 공유하는 노드들끼리 Mean을 취하여 Prototype을 생성한다.  
 <div align="center">
   
-![image](https://user-images.githubusercontent.com/37684658/164254676-d6386d28-3fd4-40eb-b4c0-a719d8ee3ae0.png)
+![Prototype](https://user-images.githubusercontent.com/37684658/164254676-d6386d28-3fd4-40eb-b4c0-a719d8ee3ae0.png)
 
 </div>  
   
@@ -160,7 +162,7 @@ Support set을 GNN을 이용하여 임베딩한다. Subgraphs를 이용하여 ce
 Support set 내 Centroid Embeddings들과 Prototype과의 Euclidean distance를 계산하여 class distribution vector p를 계산한다. 그리고 Cross-entropy loss를 계산한다.
 <div align="center">
   
-![image](https://user-images.githubusercontent.com/37684658/164255903-19b9088a-2000-4e77-8068-cf8be6be3bf4.png)
+![Class distribution vector](https://user-images.githubusercontent.com/37684658/164255903-19b9088a-2000-4e77-8068-cf8be6be3bf4.png)
   
 </div>  
 
@@ -168,7 +170,7 @@ Support set 내 Centroid Embeddings들과 Prototype과의 Euclidean distance를 
 각 태스크에 대해서 GNN parameter를 SGD으로 update한다.  
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/37684658/164257790-e4687af3-4709-4328-a8fa-8cac6c209be9.png)
+![inner loop update](https://user-images.githubusercontent.com/37684658/164257790-e4687af3-4709-4328-a8fa-8cac6c209be9.png)
   
 </div>  
 
@@ -179,7 +181,7 @@ Query Set을 Support set을 이용하여 update 시킨 GNN을 이용하여 임�
 Query Set의 Centroid Embeddings들과 4)에서 만든 Prototype과의 Euclidean distance를 기반으로 Cross-entropy loss를 계산한다. 
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/37684658/164260238-836d2bc9-481b-4e07-bede-34ff09faf7ef.png)
+![outer loop update](https://user-images.githubusercontent.com/37684658/164260238-836d2bc9-481b-4e07-bede-34ff09faf7ef.png)
   
 </div>  
 
@@ -191,7 +193,7 @@ Loss support와는 다르게 각 Task에 대해 GNN을 update하는 것이 아�
 
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/37684658/164265745-aae025a5-be56-4693-bf3d-dc772a701669.png)
+![Algorithm](https://user-images.githubusercontent.com/37684658/164265745-aae025a5-be56-4693-bf3d-dc772a701669.png)
 
 </div>
 
@@ -203,7 +205,7 @@ Loss support와는 다르게 각 Task에 대해 GNN을 update하는 것이 아�
 실험에 쓰인 데이터셋은 다음과 같다. 
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/37684658/164179454-937fc8ac-810c-4bc2-9310-92bbfe43f55f.png)
+![dataset](https://user-images.githubusercontent.com/37684658/164179454-937fc8ac-810c-4bc2-9310-92bbfe43f55f.png)
 
 </div>
   
@@ -261,13 +263,13 @@ meta-testing, meta-validation에 쓰일 라벨을 5개씩 할당하고, 나머�
 **Graph meta-learning performance on synthetic datasets**  
 
 
-![image](https://user-images.githubusercontent.com/37684658/164209996-b4c938a2-a195-4e90-87c0-389471134695.png)
+![Graph meta-learning performance on synthetic datasets](https://user-images.githubusercontent.com/37684658/164209996-b4c938a2-a195-4e90-87c0-389471134695.png)
 
   
 **Graph meta-learning performance on real-world datasets** 
 
 
-![image](https://user-images.githubusercontent.com/37684658/164210874-d04bef40-1324-4d34-90d7-b00ddc807be6.png)
+![Graph meta-learning performance on real-world datasets](https://user-images.githubusercontent.com/37684658/164210874-d04bef40-1324-4d34-90d7-b00ddc807be6.png)
   
 </div>
   
