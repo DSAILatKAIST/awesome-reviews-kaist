@@ -25,8 +25,10 @@ _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 손으로 뺨을 두드리는 것과 같은 **hand-to-face** 제스처 상호작용은 아래의 장점을 갖고 있습니다
 - _자신의 신체를 활용한다는 점에서_ 언제든 사용 가능하며, 촉각적이며, 거부감이 덜합니다
 - 얼굴을 상호작용의 매개로 사용한다는 점에서 직관적이고, 배우기 쉬우며, 넓은 공간 활용이 가능합니다
-- 
-
+ 
+<br>
+<br>
+<br>
 
 ## **2. Motivation**  
 
@@ -95,6 +97,8 @@ AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정�
 
 
 <br>
+<br>
+<br>
 
 ## **3. Method**  
 
@@ -107,13 +111,17 @@ AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정�
 FaceSight는 위 그림과 같이 AR안경의 안경코 부근에 비디오 카메라를 장착하는 것입니다. 본 연구에서는 [Nreal Light](https://www.nreal.ai/) AR 안경을 사용했습니다.  
 그리고 안경에 광각 카메라를 장착하여 사용자의 얼굴 아랫부분(뺨, 코, 입, 턱)을 인식하며, 인식 범위는 아래와 같습니다.
 
-★★★★★Figure3 여기엥
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig3_interactionspace.PNG?raw=true" width="500">
 
 카메라 렌즈 주변에는 적외선 전구 6개가 조명원을 제공하여 완전히 어두운 환경에서도 제스처를 인식할 수 있도록 구성했습니다.  
 또한, 적외선 조명값과 카메라의 노출값을 조정함으로써 얼굴 아랫부분만 안정적으로 이미지를 수집할 수 있습니다. 아래 그림은 조명값 및 노출값 설정에 따른 이미지 효과를 보여줍니다.  
 이러한 조정은 감지 알고리즘을 강건하고 효율적으로 만들뿐 아니라 발생 가능한 개인 정보 보호 문제를 완화하게 됩니다.
 
-★★★★★Figure4 여기엥  
+<br>
+
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig4_highcontrast.PNG?raw=true" width="500">
+
+<br>  
 
 
 ### 3.2 hand-to-face 제스처 상호작용  
@@ -124,7 +132,11 @@ FaceSight에서 지원할 수 있는 hand-to-face 제스처 상호작용에 대�
  - hand-to-mouth 제스처 : 4개
  - hand-to-chin 제스처 : 4개
 
-★★★★★Figure5 여기엥  
+<br>
+
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig5_gestures.PNG?raw=true">
+
+<br>
 
 이런 hand-to-face 제스처 종류는 AR 안경에 대한 입력 방법을 풍부하게 할뿐 아니라 상호작용에서의 효율성을 증진하여 사용자의 경험을 향상시킬 수 있는 장점을 갖고 있습니다.
 
@@ -140,7 +152,8 @@ FaceSight에서 지원할 수 있는 hand-to-face 제스처 상호작용에 대�
  카메라가 코 바로 위에 있어서 손가락에 의해 코가 밀리거나 움켜쥐었을 때 코의 미세한 변형을 감지할 수 있습니다. 예를 들어, FaceSight에서는 코를 부드럽게 누르는 동작과 코를 강하게 눌러서 일그러지는 동작을 구분할 수 있습니다.  
  손가락이 얼굴에 접촉하는 개수를 각각 다른 제스처로 인식하는 것도 현대 터치스크린에서 널리 사용되는 상호작용 기법입니다. 예를 들어, FaceSight에서는 턱에 1개의 손가락이 접촉하는 것과 2개의 손가락이 동시에 접촉하는 제스처를 구분합니다.
  
-
+<br>
+<br>
 <br>
 
 ## **4. Experiment : 동작 감지 알고리즘**  
@@ -156,7 +169,12 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 아래 그림은 FaceSight의 인식 파이프라인을 단계별로 보여줍니다.
 
-★★★★★Figure6 여기엥  
+<br>
+
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig6_recognitionstep.PNG?raw=true" >
+
+<br>
+
 
 적외선 카메라에서 캡처한 gray-scale 이미지가 수집되면, 먼저 여러 밝기 feature를 적용하여 손, 코, 입, 뺨을 구분(segmentation)합니다. 그 다음 hand-to-face 제스처를 감지하기 위한 4단계 알고리즘이 수행됩니다: 2) Detection of touch contact, 3) recognizing touch location (1에서 촉각을 감지한 경우), 4) gesture classification with CNN, 5) determine the required interaction parameter (제스처가 nose pushing이거나 cheek/chin tapping인 경우). 단계별 자세한 과정은 아래에서 설명드리겠습니다.
 
