@@ -199,11 +199,20 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
  
  데이터 수집 후 총 14,440개의 hand-to-face 제스처 데이터 샘플이 수집되었습니다(10명x24개 제스처x60회=14,440). CNN 모델을 훈련하기 위한 데이터를 얻기 위해 분할 접근법을 사용하여 비디오로 녹화된 각 프레임으로부터 손 영역을 분리하였으며, 최종적으로 198572개의 이미지를 추출하였습니다. 본 연구에서는 이미지를 수동으로 검사하여 잘못된 제스처를 수행하거나 손을 비디오에서 떼는 등의 부적합한 이미지 4370개(2.2%)는 필터링되었습니다.
 
+ 수집된 이미지로부터 얼굴 아랫부분(코, 입, 턱, 왼쪽뺨, 오른쪽뺨) 각각에 대한 5개의 데이터세트를 만들었으며, CNN 모델은 아래 표와 같이 각 5개의 데이터 세트에 대해 훈련되었습니다. 전체적으로 코 데이터세트에는 67553개의 이미지, 입 데이터세트에 30368개의 이미지, 턱 데이터세트에 33582개의 이미지, 왼쪽뺨 데이터세트에 51869개의 이미지, 오른쪽뺨 데이터세트에 57747개의 이미지가 있었습니다.
+
 ★★★★★Table3 여기엥
 
 #### 4.2.2 **Evaluation Metric**  
 
- 본 연구에서는 실험을 통해 수집된 이미지로부터 얼굴 아랫부분(코, 입, 턱, 왼쪽뺨, 오른쪽뺨) 각각에 대한 5개의 데이터세트를 만들었으며, CNN 모델은 아래 표와 같이 각 5개의 데이터 세트에 대해 훈련되었습니다. 전체적으로 코 데이터세트에는 67553개의 이미지, 입 데이터세트에 30368개의 이미지, 턱 데이터세트에 33582개의 이미지, 왼쪽뺨 데이터세트에 51869개의 이미지, 오른쪽뺨 데이터세트에 57747개의 이미지가 있었습니다.
+본 연구에서는 알고리즘 파이프라인에서 각 단계별 인식 정확도(recognition accuracy)와 계산 효율성(computing efficiency)을 독립적으로 평가했습니다.  
+ 
+인식 정확도는 recall, precision, F1-score로 평가되었습니다.
+ - recall = ![recall](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/recall.PNG?raw=true)
+ - precision = ![precision](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/precision.PNG?raw=true)
+ - F1-score=![f1score](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/f1score.PNG?raw=true)
+
+계산 효율성은 각 구성요소가 단일 프레임을 처리하는데 걸리는 평균 시간으로 평가되었습니다. 조건은 1 GTX 1080 Ti NVIDIA GPU, 12GB 메모리, Intel(R) Xeon(R) CPU, 해상도 960x540으로 동일했습니다.
 
 참고로, 본 연구에서는 FaceSight의 성능 평가 시 다른 baseline과의 비교를 수행하지 않았습니다.  
 
@@ -213,10 +222,14 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 <br>
 
-### **Result**  
+### **4.3 Result : Algorithm Evaluation**  
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
-  
+
+
+
+
+#### 4.3.1 **touch contact, location 인식 정확도**  
 
 
 <br>
