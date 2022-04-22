@@ -8,8 +8,6 @@ description : Y Rubanova et al./ Latent ODEs for Irregularly-Sampled Time Series
 
 <br/>
 
-<br/>
-
 ## **1. Problem Definition**  
 
 > 시계열 데이터를 다루는 Deep learning에 **미분방정식 (Ordinary Differential Equation)** 을 접목시키자!  
@@ -51,9 +49,8 @@ description : Y Rubanova et al./ Latent ODEs for Irregularly-Sampled Time Series
 <br/>
 <div align="center">
  
-![fig1](https://user-images.githubusercontent.com/99710438/164282561-92a1143f-2469-4b8a-aad7-435c7b6bd50f.PNG)
+![_RNN과 ODE-RNN의 hidden state trajectory_](https://user-images.githubusercontent.com/99710438/164282561-92a1143f-2469-4b8a-aad7-435c7b6bd50f.PNG)
  
-_RNN과 ODE-RNN의 hidden state trajectory_
 
 </div>
 
@@ -89,9 +86,9 @@ _RNN과 ODE-RNN의 hidden state trajectory_
 아래 그림을 보시겠습니다.
 <div align="center">  
  
-![image](https://user-images.githubusercontent.com/99710438/164171475-fe065e6c-5bbf-4c9f-bc59-37c954b9717e.png)
+![_RNN의 구조_](https://user-images.githubusercontent.com/99710438/164171475-fe065e6c-5bbf-4c9f-bc59-37c954b9717e.png)
 
-_RNN의 구조_
+
  
 </div>  
 
@@ -162,9 +159,9 @@ Variational Autoencoder(`VAE`)는 측정 불가한 분포를 갖는 어떤 잠�
 
 <div align="center">
  
-![image](https://user-images.githubusercontent.com/99710438/164225634-2f599b17-30ff-45bf-a8be-2cc98e5f1aab.png)
+![_VAE의 구조_](https://user-images.githubusercontent.com/99710438/164225634-2f599b17-30ff-45bf-a8be-2cc98e5f1aab.png)
 
-_VAE의 구조_
+
  
 </div>
 
@@ -194,9 +191,9 @@ _VAE의 구조_
 
 <div align="center">  
 
-![image](https://user-images.githubusercontent.com/99710438/164017436-f435d0f4-24f9-4d66-9fcc-87ec0c1775bf.png)
+![_ODE-RNN의 알고리즘_](https://user-images.githubusercontent.com/99710438/164017436-f435d0f4-24f9-4d66-9fcc-87ec0c1775bf.png)
  
-_ODE-RNN의 알고리즘_
+
 
 </div>  
 
@@ -223,9 +220,9 @@ _ODE-RNN의 알고리즘_
 
 <div align="center"> 
   
-![image](https://user-images.githubusercontent.com/99710438/164017531-002e6512-f1c5-4430-904d-d19f82f2a9e4.png)
+![_Definition of hidden state_ ](https://user-images.githubusercontent.com/99710438/164017531-002e6512-f1c5-4430-904d-d19f82f2a9e4.png)
  
-_Definition of hidden state_ 
+
   
 </div>  
 
@@ -268,9 +265,9 @@ Autoregressive model 중 한 가지로 latent variable model이 있는데, 저�
 
 <div align="center">  
   
-![image](https://user-images.githubusercontent.com/99710438/164017572-bacb1d58-885d-4659-b6cc-4c0fd5035876.png)
+![_Latent ODE model with an ODE-RNN encoder_](https://user-images.githubusercontent.com/99710438/164017572-bacb1d58-885d-4659-b6cc-4c0fd5035876.png)
   
-_Latent ODE model with an ODE-RNN encoder_
+
  
 </div>  
 
@@ -311,9 +308,9 @@ _Latent ODE model with an ODE-RNN encoder_
 
 <div align="center">  
   
-![image](https://user-images.githubusercontent.com/99710438/164017499-a8fcab15-b16c-40bd-a0be-cf6d272cd574.png)
+![_Different encoder-decoder architectures_](https://user-images.githubusercontent.com/99710438/164017499-a8fcab15-b16c-40bd-a0be-cf6d272cd574.png)
   
-_Different encoder-decoder architectures_
+
  
 </div>  
 
@@ -401,9 +398,9 @@ _`VAE`의 encoder로 `ODE-RNN`을 사용하고, decoder로 `ODE`를 사용해 **
 
 <div align="center">  
  
-![image](https://user-images.githubusercontent.com/99710438/164261107-8f595251-839d-4fd2-90a6-c2c71af14e24.png)
+![_Approximate posterior smaples_](https://user-images.githubusercontent.com/99710438/164261107-8f595251-839d-4fd2-90a6-c2c71af14e24.png)
 
-_Approximate posterior smaples_
+
  
 </div>
  
@@ -423,9 +420,9 @@ _Approximate posterior smaples_
 
 <div align="center"> 
 
-![image](https://user-images.githubusercontent.com/99710438/164263996-b1907e81-c7e9-4848-9c7c-8bae5343434b.png)
+![_MSE(*0.01) on the MuJoCo dataset_](https://user-images.githubusercontent.com/99710438/164263996-b1907e81-c7e9-4848-9c7c-8bae5343434b.png)
 
-_MSE(*0.01) on the MuJoCo dataset_
+
 
 </div>
  
@@ -447,9 +444,9 @@ Extrapolation에는 Encoder-Decoder 모델은 같은 결과가 나왔으나 Auto
 
 <div align="center"> 
  
-![image](https://user-images.githubusercontent.com/99710438/164266880-12d49223-d6fb-4e44-9187-580a754236ba.png)
+![_Trajectory from MuJoCo dataset & Norm of the dynamic functions_](https://user-images.githubusercontent.com/99710438/164266880-12d49223-d6fb-4e44-9187-580a754236ba.png)
 
-_Trajectory from MuJoCo dataset & Norm of the dynamic functions_
+
 
 </div>
  
@@ -471,9 +468,9 @@ _Trajectory from MuJoCo dataset & Norm of the dynamic functions_
 
 <div align="center"> 
  
-![image](https://user-images.githubusercontent.com/99710438/164268642-c8f5bfd2-e176-41c9-a077-dfd5f93aaff0.png)
+![_MSE on PhysioNet, Autoregressive models_](https://user-images.githubusercontent.com/99710438/164268642-c8f5bfd2-e176-41c9-a077-dfd5f93aaff0.png)
 
-_MSE on PhysioNet, Autoregressive models_
+
  
 </div>
 
@@ -483,9 +480,9 @@ _MSE on PhysioNet, Autoregressive models_
 
 <div align="center"> 
  
-![image](https://user-images.githubusercontent.com/99710438/164268796-d70189f3-e74d-4224-b3be-2bb398bc736f.png)
+![_MSE on PhysioNet, Encoder-Decoder models_](https://user-images.githubusercontent.com/99710438/164268796-d70189f3-e74d-4224-b3be-2bb398bc736f.png)
 
-_MSE on PhysioNet, Encoder-Decoder models_
+
  
 </div>
 
@@ -503,9 +500,9 @@ _MSE on PhysioNet, Encoder-Decoder models_
 
 <div align="center"> 
  
-![image](https://user-images.githubusercontent.com/99710438/164271166-69bc6eb2-3159-46f3-aff4-1c48df1c9755.png)
+![_Per-time-point classification, accuracy on Human Activity_](https://user-images.githubusercontent.com/99710438/164271166-69bc6eb2-3159-46f3-aff4-1c48df1c9755.png)
 
-_Per-time-point classification, accuracy on Human Activity_
+
  
 </div>
 
