@@ -1,10 +1,10 @@
 ---
-description : 1st author / title / conference-year(description)  
+description : Jiaqi Wang / Interpretable Image Recognition by Constructing Transparent Embedding Space / ICCV-2021(description)  
 ---
 
 # **Title** 
 
-Title of paper that you are going to write  
+Interpretable Image Recognition by Constructing Transparent Embedding Space
 
 ## **1. Problem Definition**  
 
@@ -47,9 +47,9 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 ---  
 ## **Author Information**  
 
-* Author name  
-    * Affiliation  
-    * Research Topic
+* TaeMi, Kim
+    * KAIST, Industrial and Systems Engineering
+    * Computer Vision
 
 ## **6. Reference & Additional materials**  
 
