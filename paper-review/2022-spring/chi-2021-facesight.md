@@ -155,34 +155,34 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 ★★★★★Figure6 여기엥  
 
-적외선 카메라에서 캡처한 gray-scale 이미지가 수집되면, 먼저 여러 밝기 feature를 적용하여 [1] 손, 코, 입, 뺨을 구분(segmentation)합니다. 그 다음 hand-to-face 제스처를 감지하기 위한 4단계 알고리즘이 수행됩니다: 2) Detection of touch contact, 3) recognizing touch location (1에서 촉각을 감지한 경우), 4) gesture classification with CNN, 5) determine the required interaction parameter (제스처가 nose pushing이거나 cheek/chin tapping인 경우). 단계별 자세한 과정은 아래에서 설명드리겠습니다.
+적외선 카메라에서 캡처한 gray-scale 이미지가 수집되면, 먼저 여러 밝기 feature를 적용하여 손, 코, 입, 뺨을 구분(segmentation)합니다. 그 다음 hand-to-face 제스처를 감지하기 위한 4단계 알고리즘이 수행됩니다: 2) Detection of touch contact, 3) recognizing touch location (1에서 촉각을 감지한 경우), 4) gesture classification with CNN, 5) determine the required interaction parameter (제스처가 nose pushing이거나 cheek/chin tapping인 경우). 단계별 자세한 과정은 아래에서 설명드리겠습니다.
 
 <br>
 
- _[stage1] 손, 코, 입, 뺨 구분(Segmentation)_  
+ _[stage0] 손, 코, 입, 뺨 구분(Segmentation)_  
  FaceSight는 아랫 그림과 같이 카메라와 조명 설정을 통해 배경(가슴 또는 다른 물체)과 전경(얼굴 아랫부분, 손)을 구분할 수 있습니다. 밝기 임계값, 움직임 정보, 픽셀 강도 등의 정보를 활용하여 손, 코, 입, 뺨을 구분합니다.
  먼저밝기 임계값을 적용하여 배경을 제거합니다(a). 이어서, 얼굴 영역이 정적인 반면 손 영역은 움직이며 밝기 변화를 일으킨다는 사실을 이용하여 얼굴과 손을 구분합니다 (b). 코는 항상 영상의 중앙에 위치하며 하단에 연결되어 있고 전구와 가까운 위치에 있어서 밝기가 높고(c), 입은 코 위, 얼굴 하단에 위치하고 있으며(d), 나머지 픽셀(배경, 손, 코, 입이 없는 입력 이미지)을 계산하면 왼쪽과 오른쪽 뺨(e, f)을 구분할 수 있습니다.  
  아래 그림은 오른쪽 뺨을 한 번 터치했을 때의 구분(segmentation) 예시입니다.
 
 ★★★★★Figure7 여기엥  
 
- _[stage2] Detection of touch contact_  
+ _[stage1] Detection of touch contact_  
  hand-to-face 제스처 상호작용을 위해서는 손이 얼굴에 닿는 시점을 결정하는 것이 중요하며, 이는 손과 얼굴이 겹치는지 여부를 확인함으로써 결정될 수 있습니다: 손 끝이 얼굴 영역 윗부분에 있거나 얼굴 영역 안쪽에 있을 때 접촉이 감지되며, 손끝(fingertip) 움직임이 두개의 연속 프레임 상에서 갑자기 변경될 때에도 접촉이 감지됩니다. FaceSight에서는 코의 중심과 손끝 사이의 거리를 계산하고, 거리가 연속된 두 개의 프레임에서 더 커지는 경우 접촉으로 감지하며, 이를 통해 접촉 감지의 정확도를 높입니다.
 
- _[stage3] recognizing touch location_  
+ _[stage2] recognizing touch location_  
  이미지에서 손과 얼굴의 접촉이 감지외면 접촉이 발생하는 위치를 5가지 범주(코, 입, 턱, 왼쪽뺨, 오른쪽뺨)로 파악합니다. FaceSight에서는 손가락 끝이 닿는 가장 가까운 위치를 접촉 위치로 인식합니다.
  
- _[stage4] gesture classification with CNN_  
+ _[stage3] gesture classification with CNN_  
  터치 위치가 주어지면 해당 위치에서 수행된 손 동작이 무엇인지를 convolutional neural network (CNN)을 사용하여 구분합니다. 본 연구에서는 코, 입, 턱, 왼쪽뺨, 오른쪽뺨에 대한 이미지에 대하여 CNN 모델을 별도로 훈련시켰습니다. 본 CNN 모델은 2개의 convolutional layer, 2x2 maximum pooling layer, fully connected layer를 포함합니다.  
  본 연구에서는 정확도 향상을 위하여 convolutional layer의 파라미터를 조정했습니다: 첫번째 layer는 11x11 kernal size, stride step값은 5, padding값은 3; 두번째 layer는 5x5 kernal size, stride step은 1, padding값은 2. Loss function으로 softmax와 cross-entropy를 사용했으며, 정확도에 대한 지표로 accuracy rate와 false recognition rate을 활용했습니다.  
  optimizer는 Adam을 사용했는데, KSE527의 Lecture 6에서 optimization 알고리즘 중에서 뭘 쓸지 모르겠을 때 Adam을 먼저 써보라는 말이 있었던 만큼 광범위하게 쓰이는 알고리즘을 본 연구에서도 사용했습니다.  
  learning rate coefficient은 0.003이었으며, 모델 입력은 200x200의 다운샘플링된 손 영역이며, 모델 출력은 특정 제스처에 해당하는 레이블입니다.  
  
- _[stage5.1] Locating the touching fingertip for continuous input_  
- 분할된 손 영역을 기반으로 얼굴 영역까지의 거리에 따라 국소 최소값(local minima)을 달성한 윤곽선 상의 점들을 손끝의 후보들로 인식하였으며, 점들 중 가장 낮은 위치에 있는 점을 손끝의 위치로 정의하였습니다. 손끝 위치를 자연스럽게 하기 위하여 instant 프레임과 이전의 두 프레임에서 얻어진 값의 평균을 최종 계산하였습니다. 터치 접촉 감지 단계(stage2)를 실행하기 전에 손끝 위치를 지정
+ _[stage4.1] Locating the touching fingertip for continuous input_  
+ 분할된 손 영역을 기반으로 얼굴 영역까지의 거리에 따라 국소 최소값(local minima)을 달성한 윤곽선 상의 점들을 손끝의 후보들로 인식하였으며, 점들 중 가장 낮은 위치에 있는 점을 손끝의 위치로 정의하였습니다. 손끝 위치를 자연스럽게 하기 위하여 instant 프레임과 이전의 두 프레임에서 얻어진 값의 평균을 최종 계산하였습니다. 터치 접촉 감지 단계(stage1)를 실행하기 전에 손끝 위치를 지정합니다.
 
- _[stage5.2] Estimating the Degree of Nose Deformation_  
- 코를 미는 동작은 코 부위의 변형이나 움직임을 유발할 수 있으므로, 코 영역의 면적(손끝으로 코볼이 눌려서 감소된 영역)과 코 중심, 코볼 키포인트의 offset을 계산합니다. 예를 들어, 면적 변화에 대해 0.00005의 가중치를, 코 중심에서의 offset은 0.02를, 코볼 키포인트에 대한 offset은 0.04를 실증적으로(empirically) 결정하였습니다. offeset thresholod 단위는 픽셀이었으며, 단위들을 더해서 합이 1.0보다 크면 코를 강하게 누르는 동작으로 인식하였습니다. 참고로, stage5.2는 stage4에서의 인식이 코를 누르는 동작으로 분류된 경우에만 활성화됩니다.
+ _[stage4.2] Estimating the Degree of Nose Deformation_  
+ 코를 미는 동작은 코 부위의 변형이나 움직임을 유발할 수 있으므로, 코 영역의 면적(손끝으로 코볼이 눌려서 감소된 영역)과 코 중심, 코볼 키포인트의 offset을 계산합니다. 예를 들어, 면적 변화에 대해 0.00005의 가중치를, 코 중심에서의 offset은 0.02를, 코볼 키포인트에 대한 offset은 0.04를 실증적으로(empirically) 결정하였습니다. offeset thresholod 단위는 픽셀이었으며, 단위들을 더해서 합이 1.0보다 크면 코를 강하게 누르는 동작으로 인식하였습니다. 참고로, stage4.2는 stage3에서의 인식이 코를 누르는 동작으로 분류된 경우에만 활성화됩니다.
 
 <br>
 
@@ -207,10 +207,16 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 본 연구에서는 알고리즘 파이프라인에서 각 단계별 인식 정확도(recognition accuracy)와 계산 효율성(computing efficiency)을 독립적으로 평가했습니다.  
  
-인식 정확도는 recall, precision, F1-score로 평가되었습니다.
- - recall = ![recall](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/recall.PNG?raw=true)
- - precision = ![precision](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/precision.PNG?raw=true)
- - F1-score=![f1score](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/f1score.PNG?raw=true)
+인식 정확도는 accuracy, recall, precision, F1-score로 평가되었습니다.
+
+<br>
+
+ - accuracy = ![accuracy](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/accuracy.PNG?raw=true) * 100
+ - recall = ![recall](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/recall.PNG?raw=true) * 100
+ - precision = ![precision](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/precision.PNG?raw=true) * 100
+ - F1-score=![f1score](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/f1score.PNG?raw=true) * 100
+
+<br>
 
 계산 효율성은 각 구성요소가 단일 프레임을 처리하는데 걸리는 평균 시간으로 평가되었습니다. 조건은 1 GTX 1080 Ti NVIDIA GPU, 12GB 메모리, Intel(R) Xeon(R) CPU, 해상도 960x540으로 동일했습니다.
 
@@ -227,11 +233,49 @@ Then, show the experiment results which demonstrate the proposed method.
 You can attach the tables or figures, but you don't have to cover all the results.  
 
 
-
-
 #### 4.3.1 **touch contact, location 인식 정확도**  
 
+★★★★★Table1 여기엥
 
+<br>
+
+touch contact 감지 알고리즘의 인식 정확도는 recall, precesion, F1-score으로 평가되었으며 각각 97.90%, 98.82%, 98.36%였습니다. 대부분의 false negative는 터치가 카메라 뷰의 테두리에 너무 가까워서 손가락 끝이 보이지 않거나 너무 어두워서 인식하지 못한 경우였습니다.
+
+<br>
+
+★★★★★Table2 여기엥
+
+<br>
+
+
+touch location 감지 알고리즘의 인식 정확도는 accuracy으로 평가되었습니다. 총 5개의 위치(코, 입, 턱, 왼쪽뺨, 오른쪽뺨)에 대한 accuracy가 평가되었으며 각각 92.67%, 94.43%, 95.12%, 95.06%, 94.22%였습니다. 전체 평균 정확도는 94.69%였습니다. 대부분의 잘못된 분류는 코-뺨, 입-턱(특히 쉿 하는 제스처나 턱을 잡는 제스처일때), 입-뺨 사이에서 일어났습니다.
+
+
+
+
+#### 4.3.2 **hand-to-gesture, nose pushing/swiping 인식 정확도**  
+
+<br>
+
+★★★★★Table3 여기엥
+
+<br>
+
+실험 참가자들이 자기만의 독특한 방식으로 제스처를 수행할 수 있고 카메라 뷰에 약간 차이가 있을 수 있음을 고려하여, 본 연구에서는 Leave-One-Out 교차 검증법을 사용했습니다. 모든 모델은 10개의 epoch로 훈련되었으며, 코 96.18% (5 classes), 입 99.53% (3 classes), 턱 94.00% (3 classes), 왼쪽뺨 94.65% (4 classes), 오른쪽뺨 97.73% (5 classes)의 정확도를 보였습니다. 5개 모델의 전체 정확도는 96.42%였습니다.
+
+<br>
+
+★★★★★Table4 여기엥
+
+<br>
+
+양쪽 코볼에 있는 서로 다른 nose-pushing 제스처를 인식하는데 94.12% (4 classes)의 정확도를 보였습니다. swiping 제스처에 대한 인식 정확도는 94.67% (6 classes)였습니다.
+
+#### 4.3.3 ** 계산 효율성**  
+
+segmentation 알고리즘의 경우 35ms, CNN 분류의 경우 13ms의 계산효율성을 보였습니다. 손끝 위치 확인(fingertip locating) 및 접촉 감지(contact detection)은 모두 1ms의 계산효율성을 보였습니다.
+
+<br>
 <br>
 
 ## **5. Conclusion**  
@@ -239,14 +283,20 @@ You can attach the tables or figures, but you don't have to cover all the result
 Please summarize the paper.  
 It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
 
+본 연구에서는 AR안경에서 hand-to-face 상호작용을 가능하게 하는 새로운 카메라 기반 감지기술인 **FaceSight**를 개발하였습니다. FaceSight는 사용자의 얼굴 아랫부분을 고해상도 이미지로 캡처하여 다양하고 섬세한 제스처들을 감지할 수 있습니다.
+또한, FaceSight의 상호 작용 가능성을 탐색하기 위해 코, 입, 턱, 뺨과 관련된 21개의 hand-to-face 제스처 종류를 제시했습니다. (10개는 본 연구에서 새로 제시된 특별한 제스처입니다)
+
+맞춤형 AR 애플리케이션을 구현하기 위해서는 다양한 종류의 제스처가 입력될 수 있어야 한다는 점에서 이 연구의 가치는 더욱 높아집니다. 명암 조절로 이미지의 높은 명도대비를 활용할 수 있으며, 이를 통해 hand-to-face 제스처를 높은 정확도로 분류할 수 있었습니다.
+FaceSight를 통해 AR안경에서 hand-to-face 제스처 상호작용이 발전할 수 있음을 시사합니다.
+
 <br>
 
 ---  
 ## **Author Information**  
 
-* Author name  
-    * Affiliation  
-    * Research Topic
+* Haehyun Lee  
+    * Affiliation : PhD course in KAIST KSE program
+    * Research Topic : Human-Computer Interaction, Human Factors in Nuclear Power Plant
 
 <br>
 
@@ -254,6 +304,5 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 
 Please write the reference. If paper provides the public code or other materials, refer them.  
 
-* Github Implementation  
 * Reference  
-
+  * 
