@@ -8,7 +8,7 @@
     * [Template](paper-review/2022-spring/template.md) 
     * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
     * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
-    * [Latent ODEs for Irregularly-Sampled Time Series](paper-review/2022-spring/NeurIPS-2020-Latent-ODEs-for-Irregularly-Sampled-Time-Series.md)
+    * [Latent ODEs](paper-review/2022-spring/NeurIPS-2020-LatentODE.md)
 
 
 ## How to contribute  
