@@ -19,7 +19,7 @@ _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 
 <br>
 
-<img width="140" src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig1_facesight.PNG?raw=true">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig1_facesight.PNG?raw=true">
 
 <br>
 
