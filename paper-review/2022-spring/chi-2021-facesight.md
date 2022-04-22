@@ -14,7 +14,7 @@ _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 
 >AR안경 기반의 제스처 감지기술  
 
-본 연구에서는 AR 안경을 활용하여 **hand-to-face** 제스처를 감지하는, 컴퓨터 비전 기반의 기술인 **FaceSight** 를 소개합니다.
+본 연구에서는 AR 안경을 활용하여 **hand-to-face** 제스처를 감지하는, 컴퓨터 비전 기반의 기술인 **`FaceSight`** 를 소개합니다.
 **FaceSight**는 적외선 카메라를 AR 안경 다리에 고정하여 얼굴 아랫부분(뺨, 코, 입, 턱)에서의 손 제스처를 감지하는 기술입니다.
 
 <br>
@@ -185,7 +185,11 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
  먼저밝기 임계값을 적용하여 배경을 제거합니다(a). 이어서, 얼굴 영역이 정적인 반면 손 영역은 움직이며 밝기 변화를 일으킨다는 사실을 이용하여 얼굴과 손을 구분합니다 (b). 코는 항상 영상의 중앙에 위치하며 하단에 연결되어 있고 전구와 가까운 위치에 있어서 밝기가 높고(c), 입은 코 위, 얼굴 하단에 위치하고 있으며(d), 나머지 픽셀(배경, 손, 코, 입이 없는 입력 이미지)을 계산하면 왼쪽과 오른쪽 뺨(e, f)을 구분할 수 있습니다.  
  아래 그림은 오른쪽 뺨을 한 번 터치했을 때의 구분(segmentation) 예시입니다.
 
-★★★★★Figure7 여기엥  
+<br>
+
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig7_segmentationapproach.PNG?raw=true" width="500">  
+
+<br>
 
  _[stage1] Detection of touch contact_  
  hand-to-face 제스처 상호작용을 위해서는 손이 얼굴에 닿는 시점을 결정하는 것이 중요하며, 이는 손과 얼굴이 겹치는지 여부를 확인함으로써 결정될 수 있습니다: 손 끝이 얼굴 영역 윗부분에 있거나 얼굴 영역 안쪽에 있을 때 접촉이 감지되며, 손끝(fingertip) 움직임이 두개의 연속 프레임 상에서 갑자기 변경될 때에도 접촉이 감지됩니다. FaceSight에서는 코의 중심과 손끝 사이의 거리를 계산하고, 거리가 연속된 두 개의 프레임에서 더 커지는 경우 접촉으로 감지하며, 이를 통해 접촉 감지의 정확도를 높입니다.
@@ -222,7 +226,11 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
  수집된 이미지로부터 얼굴 아랫부분(코, 입, 턱, 왼쪽뺨, 오른쪽뺨) 각각에 대한 5개의 데이터세트를 만들었으며, CNN 모델은 아래 표와 같이 각 5개의 데이터 세트에 대해 훈련되었습니다. 전체적으로 코 데이터세트에는 67553개의 이미지, 입 데이터세트에 30368개의 이미지, 턱 데이터세트에 33582개의 이미지, 왼쪽뺨 데이터세트에 51869개의 이미지, 오른쪽뺨 데이터세트에 57747개의 이미지가 있었습니다.
 
-★★★★★Table3 여기엥
+<br>
+
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/table3_stage3.PNG?raw=true" width="500">
+
+<br>
 
 #### 4.2.2 **Evaluation Metric**  
 
@@ -243,20 +251,15 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 참고로, 본 연구에서는 FaceSight의 성능 평가 시 다른 baseline과의 비교를 수행하지 않았습니다.  
 
-★★★★★Table2 여기엥
-★★★★★Table3 여기엥
-
-
 <br>
 
 ### **4.3 Result : Algorithm Evaluation**  
-Then, show the experiment results which demonstrate the proposed method.  
-You can attach the tables or figures, but you don't have to cover all the results.  
-
 
 #### 4.3.1 **touch contact, location 인식 정확도**  
 
-★★★★★Table1 여기엥
+<br>
+
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/table1_stage1.PNG?raw=true" width="500">
 
 <br>
 
@@ -264,7 +267,7 @@ touch contact 감지 알고리즘의 인식 정확도는 recall, precesion, F1-s
 
 <br>
 
-★★★★★Table2 여기엥
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/table2_stage2.PNG?raw=true" width="500">
 
 <br>
 
@@ -278,7 +281,7 @@ touch location 감지 알고리즘의 인식 정확도는 accuracy으로 평가�
 
 <br>
 
-★★★★★Table3 여기엥
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/table3_stage3.PNG?raw=true" width="500">
 
 <br>
 
@@ -286,7 +289,7 @@ touch location 감지 알고리즘의 인식 정확도는 accuracy으로 평가�
 
 <br>
 
-★★★★★Table4 여기엥
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/table4_stage4.PNG?raw=true" width="500">
 
 <br>
 
@@ -326,4 +329,9 @@ FaceSight를 통해 AR안경에서 hand-to-face 제스처 상호작용이 발전
 Please write the reference. If paper provides the public code or other materials, refer them.  
 
 * Reference  
-  * 
+ * [Accuracy, Recall, Precision, and F1Score](https://eunsukimme.github.io/ml/2019/10/21/Accuracy-Recall-Precision-F1-score/)
+ * AR안경 기반의 다양한 제스처 상호작용 연구들 : [Itchy Nose](https://doi.org/10.1145/3123021.3123060), 
+[CheekInput](https://doi.org/10.1145/3139131.3139146),
+[FaceRubbing](https://doi.org/10.1145/3174910.3174924),
+[PrivateTalk](https://doi.org/10.1145/3332165.3347950),
+[EarBuddy](https://doi.org/10.1145/3313831.3376836)
