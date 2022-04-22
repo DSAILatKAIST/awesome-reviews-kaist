@@ -158,9 +158,6 @@ FaceSight에서 지원할 수 있는 hand-to-face 제스처 상호작용에 대�
 
 ## **4. Experiment : 동작 감지 알고리즘**  
 
-In this section, please write the overall experiment results.  
-At first, write experiment setup that should be composed of contents.  
-
 FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위한 알고리즘 파이프라인에 대하여 설명하고, 정확도와 계산 효율성을 평가해보겠습니다.
 
 <br>
@@ -304,9 +301,6 @@ segmentation 알고리즘의 경우 35ms, CNN 분류의 경우 13ms의 계산효
 
 ## **5. Conclusion**  
 
-Please summarize the paper.  
-It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
-
 본 연구에서는 AR안경에서 hand-to-face 상호작용을 가능하게 하는 새로운 카메라 기반 감지기술인 **FaceSight**를 개발하였습니다. FaceSight는 사용자의 얼굴 아랫부분을 고해상도 이미지로 캡처하여 다양하고 섬세한 제스처들을 감지할 수 있습니다.
 또한, FaceSight의 상호 작용 가능성을 탐색하기 위해 코, 입, 턱, 뺨과 관련된 21개의 hand-to-face 제스처 종류를 제시했습니다. (10개는 본 연구에서 새로 제시된 특별한 제스처입니다)
 
@@ -326,11 +320,9 @@ FaceSight를 통해 AR안경에서 hand-to-face 제스처 상호작용이 발전
 
 ## **6. Reference & Additional materials**  
 
-Please write the reference. If paper provides the public code or other materials, refer them.  
-
 * Reference  
- * [Accuracy, Recall, Precision, and F1Score](https://eunsukimme.github.io/ml/2019/10/21/Accuracy-Recall-Precision-F1-score/)
- * AR안경 기반의 다양한 제스처 상호작용 연구들 : [Itchy Nose](https://doi.org/10.1145/3123021.3123060), 
+  * [Accuracy, Recall, Precision, and F1Score](https://eunsukimme.github.io/ml/2019/10/21/Accuracy-Recall-Precision-F1-score/)
+  * AR안경 기반의 다양한 제스처 상호작용 연구들 : [Itchy Nose](https://doi.org/10.1145/3123021.3123060), 
 [CheekInput](https://doi.org/10.1145/3139131.3139146),
 [FaceRubbing](https://doi.org/10.1145/3174910.3174924),
 [PrivateTalk](https://doi.org/10.1145/3332165.3347950),
