@@ -10,6 +10,7 @@
     * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
     * [Latent ODEs for Irregularly-Sampled Time Series](paper-review/2022-spring/NeurIPS-2020-Latent-ODEs-for-Irregularly-Sampled-Time-Series.md)
     * [G-Meta](paper-review/2022-spring/G-Meta.md)
+    * [When Vision Transformers Outperform Resnets without Pre-training or Strong Data Augmentations](paper-review/2022-spring/ICLR-2022-When Vision Transformer Outperform ResNets Without Pre-Training Or Strong Data Augmentations.md)
     
 ## How to contribute  
 
