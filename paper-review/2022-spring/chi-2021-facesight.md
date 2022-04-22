@@ -18,7 +18,6 @@ _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 **FaceSight**는 적외선 카메라를 AR 안경 다리에 고정하여 얼굴 아랫부분(뺨, 코, 입, 턱)에서의 손 제스처를 감지하는 기술입니다.
 
 <br>
-
 <center><img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig1_facesight.PNG?raw=true"></center>
 
 <br>
@@ -28,7 +27,6 @@ _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 - 얼굴을 상호작용의 매개로 사용한다는 점에서 직관적이고, 배우기 쉬우며, 넓은 공간 활용이 가능합니다
 - 
 
-<br>
 
 ## **2. Motivation**  
 
@@ -42,15 +40,20 @@ After writing the motivation, please write the discriminative idea compared to e
 
  - [Serano et al.](https://doi.org/10.1145/2556288.2556984)는 일상적인 작업을 할 때 뺨과 이마를 활용해서 hand-to-face 상호작용을 할 수 있음을 보였습니다.  
  - [Lee et al.](https://doi.org/10.1145/3242587.3242642)은 얼굴에서 멀리 떨어진 귀, 목을 활용하면 hand-to-face 상호작용 설계에 적합할 수 있으며, 5개의 손을 모두 사용하는 큰 움직임보다 소수의 손가락을 사용하는 작은 움직임이 입력에 적합할 수 있음을 제안했습니다.
+<br>
 
- <center><img width="500" src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/serano,lee.png?raw=true"></center>
+<center><img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/serano,lee.png?raw=true" width="500"></center>
 
-★★★★★사진 넣기...어떻게...넣지...?ㅠㅠ
+<br>
 
- - [Itchy Nose](https://doi.org/10.1145/3242587.3242642)는 안경에 전극센서(electrooculography)를 부착해서 코를 밀거나 문지르는 제스처를 인식하도록 개발된 hand-to-nose 상호작용 기술입니다. 
+ - [Itchy Nose](https://doi.org/10.1145/3123021.3123060)는 안경에 전극센서(electrooculography)를 부착해서 코를 밀거나 문지르는 제스처를 인식하도록 개발된 hand-to-nose 상호작용 기술입니다. 
  - 비슷하게 [CheekInput](https://doi.org/10.1145/3139131.3139146), [FaceRubbing](https://doi.org/10.1145/3174910.3174924) 등 모자나 안경에 센서를 부착해서 얼굴을 당기고, 문지르는 제스처를 인식하는 기술도 개발되었습니다.
 
-★★★★★사진 넣기
+<br>
+
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/checkinput,facerubbing.png?raw=true" width="500">
+
+<br>
 
 [2] 청각정보 기반 상호작용
 
