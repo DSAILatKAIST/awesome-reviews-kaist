@@ -58,7 +58,7 @@
 - 가장 많이 사용되는 first-order optimizer들은 ![](https://latex.codecogs.com/gif.latex?L_{train})만을 낮추게 설계되어 있어서 더 넓은 관점에서의 일반화를 위한 곡률, 상관같은 properties는 고려하지 않는다. 하지만 DNNs는 non-convex하기 때문에 training error는 0에 수렴하나 test에서는 그러지 못한다. 심지어 ViT와 MLP는 inductive bias의 부재로 sharp loss landscape를 가지는 현상이 두드러진다
 
 ## 4.1 SAM : Overview
-![](https://latex.codecogs.com/gif.latex?(1)\space\min_w \max_{||\epsilon||_2\leq\rho}L_{train}(w+\epsilon)\\(2)\space \hat{\epsilon)
+![](https://latex.codecogs.com/gif.latex?(1)\space\min_w\max_{||\epsilon||_2\leq\rho}L_{train}(w+\epsilon)\\(2)\space\hat{\epsilon})
 
 
 $$
