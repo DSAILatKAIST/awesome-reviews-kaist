@@ -43,7 +43,7 @@
 
 ### ViTs and MLP-Mixers have worse trainability
 
-- 또한 ViT와 MLP가 poor한 trianability에 노출되어있다는 것을 알 수 있었다. 여기서 trainability란 경사하강법에 의해 네트워크가 최적화되는 현상의 효율성을 말한다. Xiao의 연구에 의하면 Jacobian 행렬(Jacobian 행렬은 1차 미분 행렬) ![](https://latex.codecogs.com/gif.latex?J)에 대하여 neural tangent kernel(NTK) ![](https://latex.codecogs.com/gif.latex?\Theta=JJ^\top)로 정의한다. ![](https://latex.codecogs.com/gif.latex?\Theta)의 고윳값 ![](https://latex.codecogs.com/gif.latex?\lambda_1\geq\cdots\geq \lambda_m)에 대하여 ![](https://latex.codecogs.com/gif.latex?\kappa=\lambda_1/\lambda_m)으로 정의한다. 만약 ![](https://latex.codecogs.com/gif.latex?\kappa)가 지속적으로 변하면 학습이 불안정하다. Table1의 모델에 따른 ![](https://latex.codecogs.com/gif.latex?\kappa)를 비교해 볼 것
+- 또한 ViT와 MLP가 poor한 trianability에 노출되어있다는 것을 알 수 있었다. 여기서 trainability란 경사하강법에 의해 네트워크가 최적화되는 현상의 효율성을 말한다. Xiao의 연구에 의하면 Jacobian 행렬(Jacobian 행렬은 1차 미분 행렬) ![](https://latex.codecogs.com/gif.latex?J)에 대하여 neural tangent kernel(NTK) ![](https://latex.codecogs.com/gif.latex?\Theta=JJ^\top)로 정의한다. ![](https://latex.codecogs.com/gif.latex?\Theta)의 고윳값 ![](https://latex.codecogs.com/gif.latex?\lambda_1\geq\cdots\geq\lambda_m)에 대하여 ![](https://latex.codecogs.com/gif.latex?\kappa=\lambda_1/\lambda_m)으로 정의한다. 만약 ![](https://latex.codecogs.com/gif.latex?\kappa)가 지속적으로 변하면 학습이 불안정하다. Table1의 모델에 따른 ![](https://latex.codecogs.com/gif.latex?\kappa)를 비교해 볼 것
 
 [자코비안(Jacobian) 행렬의 기하학적 의미](https://angeloyeo.github.io/2020/07/24/Jacobian.html)
 
