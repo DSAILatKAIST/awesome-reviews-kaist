@@ -59,7 +59,9 @@ After writing the motivation, please write the discriminative idea compared to e
 
  - [PrivateTalk](https://doi.org/10.1145/3332165.3347950)은 음성 데이터를 비교해서 사람이 손으로 입을 가리고 속삭이는 소리를 감지했고, [EarBuddy](https://doi.org/10.1145/3313831.3376836)는 뺨에 손을 두드리는 소리를 감지했습니다.
 
-★★★★★사진 넣기
+<br>
+
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/privatetalk,earbuddy.png?raw=true" width="500">
 
 <br>
 
@@ -75,7 +77,11 @@ AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정�
 대부분의 기존 감지기술과 달리, **카메라를 활용한 시각정보 기반**의 상호작용 기술은 좀 더 다양하고 복잡한 제스처를 인식할 수 있게 해줍니다.  
 본 연구에서는 AR 안경을 착용하여 시각정보를 기반으로 여러 종류의 제스처를 인식할 수 있는 기술을 개발하였습니다.
 
-★★★★★Figure1 여기엥
+<br>
+
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig1_facesight.PNG?raw=true" width="500">
+
+<br>
 
 >개발된 FaceSight는 아래의 3가지 이점을 갖고 있습니다:
  - 사용자의 얼굴, 손을 고해상도 이미지로 캡쳐 → 풍부하고 섬세한 hand-to-face gesture 감지 가능
@@ -92,14 +98,11 @@ AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정�
 
 ## **3. Method**  
 
-Please write the methodology author have proposed.  
-We recommend you to provide example for understanding it more easily.  
-
 <br>
 
 ### 3.1 FaceSight 구성요소  
 
-★★★★★Figure2 여기엥
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig2_ARglasses.PNG?raw=true" width="500">
 
 FaceSight는 위 그림과 같이 AR안경의 안경코 부근에 비디오 카메라를 장착하는 것입니다. 본 연구에서는 [Nreal Light](https://www.nreal.ai/) AR 안경을 사용했습니다.  
 그리고 안경에 광각 카메라를 장착하여 사용자의 얼굴 아랫부분(뺨, 코, 입, 턱)을 인식하며, 인식 범위는 아래와 같습니다.
