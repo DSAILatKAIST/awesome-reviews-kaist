@@ -17,6 +17,9 @@
 
 ### Hessian matrix
 
+- 다음의 블로그에 매우 잘 설명되어있다.
+    - 출처 : 공돌이의수학노트
+    - 좋은자료 감사합니다 :)
 [헤세 행렬(Hessian Matrix)의 기하학적 의미](https://angeloyeo.github.io/2020/06/17/Hessian.html)
 
 # 2. Background And Related Work
@@ -45,11 +48,14 @@
 
 - 또한 ViT와 MLP가 poor한 trianability에 노출되어있다는 것을 알 수 있었다. 여기서 trainability란 경사하강법에 의해 네트워크가 최적화되는 현상의 효율성을 말한다. Xiao의 연구에 의하면 Jacobian 행렬(Jacobian 행렬은 1차 미분 행렬) ![](https://latex.codecogs.com/gif.latex?J)에 대하여 neural tangent kernel(NTK) ![](https://latex.codecogs.com/gif.latex?\Theta=JJ^\top)로 정의한다. ![](https://latex.codecogs.com/gif.latex?\Theta)의 고윳값 ![](https://latex.codecogs.com/gif.latex?\lambda_1\geq\cdots\geq\lambda_m)에 대하여 ![](https://latex.codecogs.com/gif.latex?\kappa=\lambda_1/\lambda_m)으로 정의한다. 만약 ![](https://latex.codecogs.com/gif.latex?\kappa)가 지속적으로 변하면 학습이 불안정하다. Table1의 모델에 따른 ![](https://latex.codecogs.com/gif.latex?\kappa)를 비교해 볼 것
 
+- 자코비안 행렬은 다음의 블로그에 매우 잘 설명되어있다.
+    - 출처 : 공돌이의수학노트
+    - 좋은자료 감사합니다 :)
 [자코비안(Jacobian) 행렬의 기하학적 의미](https://angeloyeo.github.io/2020/07/24/Jacobian.html)
 
 # 4. A Principled Optimizer For Convolution-Free Architectures
 
-- 가장 많이 사용되는 first-order optimizer들은 $L_{train}$만을 낮추게 설계되어 있어서 더 넓은 관점에서의 일반화를 위한 곡률, 상관같은 properties는 고려하지 않는다. 하지만 DNNs는 non-convex하기 때문에 training error는 0에 수렴하나 test에서는 그러지 못한다. 심지어 ViT와 MLP는 inductive bias의 부재로 sharp loss landscape를 가지는 현상이 두드러진다
+- 가장 많이 사용되는 first-order optimizer들은 ![](https://latex.codecogs.com/gif.latex?L_{train})만을 낮추게 설계되어 있어서 더 넓은 관점에서의 일반화를 위한 곡률, 상관같은 properties는 고려하지 않는다. 하지만 DNNs는 non-convex하기 때문에 training error는 0에 수렴하나 test에서는 그러지 못한다. 심지어 ViT와 MLP는 inductive bias의 부재로 sharp loss landscape를 가지는 현상이 두드러진다
 
 ## 4.1 SAM : Overview
 
