@@ -33,7 +33,7 @@
 
 ![fig2](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff9de0b6f-c4d6-476e-9bd1-17d102d2b668%2FUntitled.png?table=block&id=cf50b7ae-7730-47e2-a373-4ec7ae48f5bc&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
 
-- (a) vs (b),(c) : ResNet에 비해서 conv-free한 방법은 loss의 landscape가 sharper함을 확인할 수 있다. Table1을 보면 Hessian 행렬에서 얻은 고윳값 중 제일 큰 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})을 확인할 수 있다. $\lambda_{max}$는 landscape의 최대(최악) 곡률이다. ResNet과 비교하면 ViT와 특히, Mixer가 상당히 높다는 것을 알 수 있다
+- (a) vs (b),(c) : ResNet에 비해서 conv-free한 방법은 loss의 landscape가 sharper함을 확인할 수 있다. Table1을 보면 Hessian 행렬에서 얻은 고윳값 중 제일 큰 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})을 확인할 수 있다. ![](https://latex.codecogs.com/gif.latex?\lambda_{max})는 landscape의 최대(최악) 곡률이다. ResNet과 비교하면 ViT와 특히, Mixer가 상당히 높다는 것을 알 수 있다
 
 ### Small training errors
 
@@ -43,7 +43,7 @@
 
 ### ViTs and MLP-Mixers have worse trainability
 
-- 또한 ViT와 MLP가 poor한 trianability에 노출되어있다는 것을 알 수 있었다. 여기서 trainability란 경사하강법에 의해 네트워크가 최적화되는 현상의 효율성을 말한다. Xiao의 연구에 의하면 Jacobian 행렬(Jacobian 행렬은 1차 미분 행렬) $J$에 대하여 neural tangent kernel(NTK) $\Theta=JJ^\top$로 정의한다. $\Theta$의 고윳값 $\lambda_1\geq\cdots\geq \lambda_m$ 에 대하여 $\kappa=\lambda_1/\lambda_m$으로 정의한다. 만약 $\kappa$가 지속적으로 변하면 학습이 불안정하다. Table1의 모델에 따른 $\kappa$를 비교해 볼 것
+- 또한 ViT와 MLP가 poor한 trianability에 노출되어있다는 것을 알 수 있었다. 여기서 trainability란 경사하강법에 의해 네트워크가 최적화되는 현상의 효율성을 말한다. Xiao의 연구에 의하면 Jacobian 행렬(Jacobian 행렬은 1차 미분 행렬) ![](https://latex.codecogs.com/gif.latex?J)에 대하여 neural tangent kernel(NTK) ![](https://latex.codecogs.com/gif.latex?\Theta=JJ^\top)로 정의한다. ![](https://latex.codecogs.com/gif.latex?\Theta)의 고윳값 ![](https://latex.codecogs.com/gif.latex?\lambda_1\geq\cdots\geq \lambda_m)에 대하여 ![](https://latex.codecogs.com/gif.latex?\kappa=\lambda_1/\lambda_m)으로 정의한다. 만약 ![](https://latex.codecogs.com/gif.latex?\kappa)가 지속적으로 변하면 학습이 불안정하다. Table1의 모델에 따른 ![](https://latex.codecogs.com/gif.latex?\kappa)를 비교해 볼 것
 
 [자코비안(Jacobian) 행렬의 기하학적 의미](https://angeloyeo.github.io/2020/07/24/Jacobian.html)
 
