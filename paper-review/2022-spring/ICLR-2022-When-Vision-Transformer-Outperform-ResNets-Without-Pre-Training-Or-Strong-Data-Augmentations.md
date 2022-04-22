@@ -8,8 +8,8 @@
 - Scratch부터 학습된다면 비슷한 size의 ViT와 ResNet에서 ViT가 ResNet의 성능을 뛰어넘을 수 있음을 확인했다
 
 # 1. Introduction
-
-![Untitled](When%20Vision%20Transformer%20Outperform%20ResNets%20Without%206b4ec770359148e1b8179c3e62dcdea5/Untitled.png)
+![fig1](https://user-images.githubusercontent.com/99710438/164282561-92a1143f-2469-4b8a-aad7-435c7b6bd50f.PNG)
+![fig1](awesome-reviews-kaist/.gitbook/2022-spring-assets/ICLR-2022-When-Vision-Transformer-Outperform-ResNets-Without-Pre-Training-Or-Strong-Data-Augmentations/Untitled 1.png)
 
 - Transformer가 NLP분야에 소개된 이후 vision에서의 활용이 있었고 hand-wired feature와 inductive bias가 없이 일반화 가능한 모델을 만들기 위해 상당한 양의 데이터를 투입시키는 방법이 활용되었다. 예를들어 pre-train ViT는 google의 private dataset으로 3억장의 labeled image를 학습하였다
 - ViT와 Mixer는 ResNet에 비해 기하적으로 아주 sharpe한 loss landsacpe를 가지고 있음을 알 수 있다. 이것은 학습-일반화 성능의 괴리가 생기는 원인으로 지목된다
