@@ -21,7 +21,7 @@
 
 # 2. Background And Related Work
 
-- (똑같은 이야기) ViT는 매우 큰 데이터셋으로 pre-training. CNN과같은 locality나 translation equivariance를 가지지 않는다. NLP의 transformer처럼 대용량의 dataset과 strong data augmentation이 필요함
+- ViT는 매우 큰 데이터셋으로 pre-training. CNN과같은 locality나 translation equivariance를 가지지 않는다. NLP의 transformer처럼 대용량의 dataset과 strong data augmentation이 필요함
 - MLP-Mixer는 ViT처럼 patch 단위로 겹치지 않게 이미지를 잘라 입력으로 받음
 - ViT S : small , B : baseline, 숫자는 patch의 크기를 뜻함
 
@@ -31,13 +31,13 @@
 
 ### ViTs and MLP-Mixers converge to extremely sharp local minima
 
-![Untitled](When%20Vision%20Transformer%20Outperform%20ResNets%20Without%206b4ec770359148e1b8179c3e62dcdea5/Untitled%201.png)
+![fig2](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff9de0b6f-c4d6-476e-9bd1-17d102d2b668%2FUntitled.png?table=block&id=cf50b7ae-7730-47e2-a373-4ec7ae48f5bc&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
 
 - (a) vs (b),(c) : ResNet에 비해서 conv-free한 방법은 loss의 landscape가 sharper함을 확인할 수 있다. Table1을 보면 Hessian 행렬에서 얻은 고윳값 중 제일 큰 $\lambda_{max}$을 확인할 수 있다. $\lambda_{max}$는 landscape의 최대(최악) 곡률이다. ResNet과 비교하면 ViT와 특히, Mixer가 상당히 높다는 것을 알 수 있다
 
 ### Small training errors
 
-![Untitled](When%20Vision%20Transformer%20Outperform%20ResNets%20Without%206b4ec770359148e1b8179c3e62dcdea5/Untitled%202.png)
+![fig3](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F641cd367-d795-449e-851b-301e78ba204e%2FUntitled.png?table=block&id=32aa79ba-a881-4f93-ae85-5c4fc26c419b&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
 
 - ViT와 MLP가 극소적인 부분에 수렴한다는 것은 training에 dynamics가 존재한다는 의미이다. Figure2의 좌측과 중앙을 보면 MLP는 ViT보다 낮은 training loss를 가지지만 test에서의 성능은 더 나쁘다. 이는 부분적인 극소에 수렴했다고 분석할 수 있다
 
@@ -72,7 +72,7 @@ $$
     
     ### Higher accuracy
     
-    ![Untitled](When%20Vision%20Transformer%20Outperform%20ResNets%20Without%206b4ec770359148e1b8179c3e62dcdea5/Untitled%203.png)
+    ![fig4](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fab1b563b-3024-4bbc-a528-79e2c2237de7%2FUntitled.png?table=block&id=a100c1a1-b3ac-4ecf-871f-554a8f5a8009&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
     
     ### Better robustness
     
@@ -92,7 +92,7 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 
 ### Smoother loss landscapes for every network component
 
-![Untitled](When%20Vision%20Transformer%20Outperform%20ResNets%20Without%206b4ec770359148e1b8179c3e62dcdea5/Untitled%204.png)
+![fig5](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fcbef3c52-2e74-4e3e-9754-6864ba473e86%2FUntitled.png?table=block&id=14112506-399f-4de4-9fb7-46c0578c322d&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
 
 - SAM 이후 곡률의 정도인 $\lambda_{max}$가 작아진 것을 모델의 레이어별로 수치화하였다
 
@@ -127,11 +127,11 @@ $H_k$ : $W_k$의 Hessian 행렬
 
 ### More perceptive attention maps in ViTs
 
-![Untitled](When%20Vision%20Transformer%20Outperform%20ResNets%20Without%206b4ec770359148e1b8179c3e62dcdea5/Untitled%205.png)
+![fig6](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffb551857-b152-4011-9f46-976b73ac0f0e%2FUntitled.png?table=block&id=30a1a98a-9f2e-4a55-95c6-90ab3321b8ca&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
 
 ## 4.5 SAM vs. Strong Augmentations
 
-![Untitled](When%20Vision%20Transformer%20Outperform%20ResNets%20Without%206b4ec770359148e1b8179c3e62dcdea5/Untitled%206.png)
+![fig7](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb1af1ee4-ce5a-49c2-b6a4-5f6bf525007e%2FUntitled.png?table=block&id=15dd004b-fc6b-4fbb-8a01-5313d7cd1722&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
 
 - 비교를 위해 strong augmentation은 mixup과 RandAugment를 사용하였다
     
@@ -141,7 +141,7 @@ $H_k$ : $W_k$의 Hessian 행렬
     
     ### Sharpness at convergence
     
-    ![Untitled](When%20Vision%20Transformer%20Outperform%20ResNets%20Without%206b4ec770359148e1b8179c3e62dcdea5/Untitled%207.png)
+    ![fig8](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3092ca24-b721-41e8-a6bb-9b011afa6429%2FUntitled.png?table=block&id=dca19671-3bf9-4851-8ba3-c9afc748f397&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
     
     - Augmentation이 SAM과같이 기하적으로 loss를 smoothe 할 수 있을까?
     - 우선 시각화하여 확인하였다. AUG가 $\lambda_{max}$를 크게했지만 average flatness를 알 수 있는 Gaussian 섭동 loss $L^{\mathcal N}_{train}=\mathbb E_{\epsilon\sim\mathcal N}[L_{train}(w+\epsilon)]$ 를 ViT-B에서보다 작게 만들었다($w$주변에서의 로스가 작았다는 것은 최적으로 인정된 $w$주변에서의 로스가 작았다는 뜻이고 이는 곧 $w$주변으로 flatness하다는 뜻이다)
@@ -158,7 +158,7 @@ $H_k$ : $W_k$의 Hessian 행렬
 
 ## 5.1 When Scaling The Training Set Size
 
-![Untitled](When%20Vision%20Transformer%20Outperform%20ResNets%20Without%206b4ec770359148e1b8179c3e62dcdea5/Untitled%208.png)
+![fig9](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F347b913c-0c83-46fa-a50f-262804343ddc%2FUntitled.png?table=block&id=a9596a60-4237-4e14-abe6-7eef9e4dd871&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
 
 ## 5.2 When SAM Meets Contrastive Learning
 
