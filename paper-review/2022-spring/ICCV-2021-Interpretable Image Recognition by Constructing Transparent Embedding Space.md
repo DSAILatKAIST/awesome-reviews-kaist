@@ -38,12 +38,32 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 
 ## **3. Method**  
 
-Please write the methodology author have proposed.  
-We recommend you to provide example for understanding it more easily. 
-다음은 TesNet의 전체적인 architecture의 모습입니다.
-![figure2](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure2.PNG?raw=true)
-그림과 같이 TesNet은 convolutional layers _f_, trasparent subspace layer $s_{b}$, 그리고 classifier _h_ 이렇게 세 가지의 핵심 요소로 이루어져 있습니다. 각 요소를 하나씩 살펴보도록 하겠습니다.   
-먼저, convloutional layers _f_ 는 1X1 convolutional layer들이 추가된 기본 CNN 네트워크(ex.ResNet) 입니다. $$s_{b}$$는 feture map을 transparent embedding space에 projection시키는 subspace layer입니다. 각 class마다 subspace가 존재하여, class 개수만큼의 subspace가 존재합니다. 각 class의 subspace는 M개의 basis concepts로 spanned 되어있습니다. 이 M개의 within-class concepts(클래스 내부 concepts)는 서로 orthogonal하다고 가정합니다. 총 C개의 class가 있을 때 각 class 마다 M개의 basis concepts 존재하므로 총 CM개의 basis concepts가 존재하는 것입니다.  
+### **The overview of TesNet architecture**   
+다음은 TesNet의 전체적인 architecture의 모습입니다.   
+![figure2](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure2.PNG?raw=true)   
+그림과 같이 TesNet은 convolutional layers _f_, trasparent subspace layer $s_{b}$, 그리고 classifier _h_ 이렇게 세 가지의 핵심 요소로 이루어져 있습니다. 각 요소를 하나씩 살펴보면, 먼저 convloutional layers _f_ 는 1X1 convolutional layer들이 추가된 기본 CNN 네트워크(ex.ResNet) 입니다. $$s_{b}$$는 feture map을 transparent embedding space에 projection시키는 subspace layer입니다. 각 class마다 subspace가 존재하여, class 개수만큼의 subspace가 존재합니다. 각 class의 subspace는 M개의 basis concepts로 spanned 되어있습니다. 이 M개의 within-class concepts(클래스 내부 concepts)는 서로 orthogonal하다고 가정합니다. 총 C개의 class가 있을 때 각 class 마다 M개의 basis concepts 존재하므로 총 CM개의 basis concepts가 존재하는 것입니다. 
+
+### **Embedding space learning**  
+그렇다면 basis concepts는 어떻게 정의되어 embedding space를 이루고 있는지 살펴보겠습니다.  
+
+각 basis concept은 basis vector로 표현됩니다. 이 basis vector는 다음 세 가지 조건을 만족해야합니다.  
+(1) 다른 basis vector 사이에는 의미가 중복되면 안됩니다.
+(2) embedding space에서도 각 class는 구분되어야 합니다.
+(3) basis vector들은 비슷한 high-level patch(사람들이 인식할 수 있는 level의 image)들을 군집화하고 다른 것들끼리는 분리할 수 있어야 합니다.  
+
+이 세 가지 조건을 만족시키기 위해 전체 architecture에서 보았던 convolutional layer, basis vectors, classifier layer의 weight들이 서로 joint하게 optimize(최적화)될 수 있도록 joint optimization problem을 정의하고 있습니다. 다음은 각 weight의 최적화 과정입니다.   
+
+### **Orthonormality for Within-class Concepts**   
+조건 (1)을 만족시키기 위한 Loss는 다음과 같습니다.  
+![figure3](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure3.PNG?raw=true) 
+
+### **Separtion for Class-aware Subsapces**
+
+### **High-level Patches Grouping**
+
+### **Identification**
+
+
 
 ## **4. Experiment**  
 
