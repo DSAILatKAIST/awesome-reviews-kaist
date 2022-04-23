@@ -45,7 +45,7 @@ Positive pairs derived from different views of the same image are generally trus
 > 
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/false_negative_in_contrastive_learning.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/false_negative_in_contrastive_learning.jpg"
 </p>
 <p align="center">Figure 2: False Negatives in Contrastive Learning</p>
 
@@ -62,7 +62,7 @@ While recent efforts focus on improving architectures [1,3] and data augmentatio
 ## **3. Method**
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/proposed_framework.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/proposed_framework.jpg"
 </p>
 <p align="center">Figure 3: Overview of the Proposed Framework</p>
 
@@ -78,7 +78,7 @@ While recent efforts focus on improving architectures [1,3] and data augmentatio
 For each anchor image i, measures the similarity between its embedding *zi* and that of its positive match *zj* relative to the similarity between the anchor embedding of k ∈ {1, . . . , M} negative matches:
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/contrastive_learning_loss.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/contrastive_learning_loss.jpg"
 </p>
 <p align="center">Figure 4: Contrastive Learning Loss</p>
 
@@ -87,21 +87,21 @@ For each anchor image i, measures the similarity between its embedding *zi* and 
 Let's say we have two images in a batch and the augmented pairs are taken one by one
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/augmented_images_in_batch.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/augmented_images_in_batch.jpg"
 </p>
 <p align="center">Figure 5: Augmented Images in Batch</p>
 
 Next, we apply the softmax function to get the probability of these two images being similar
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/softmax.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/softmax.jpg"
 </p>
 <p align="center">Figure 6: Calculation of Softmax</p>
 
 This softmax calculation is equivalent to getting the probability of the second augmented cat image being the most similar to the first cat image in the pair. Here, all remaining images in the batch are sampled as dissimilar images (negative pairs).
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/softmax_result.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/softmax_result.jpg"
 </p>
 <p align="center">Figure 7: Softmax Visualization</p>
 
@@ -110,7 +110,7 @@ Then, the loss is calculated for a pair by taking the negative of the log of the
 
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/nce_loss.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/nce_loss.jpg"
 </p>
 <p align="center">Figure 8: Contrastive Learning Loss Visualization</p>
 
@@ -118,7 +118,7 @@ Then, the loss is calculated for a pair by taking the negative of the log of the
 where similarity formula is as shown below:
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/similarity_calculation.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/similarity_calculation.jpg"
 </p>
 <p align="center">Figure 9: Cosine Similarity</p>
 
@@ -126,7 +126,7 @@ where similarity formula is as shown below:
 Below is the visualization of pairwise cosine similarity between each augmented image in a batch
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/pairwise_cosine_similarity.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/pairwise_cosine_similarity.jpg"
 </p>
 <p align="center">Figure 10: Pairwise Cosine Similarity Visualization</p>
 
@@ -138,7 +138,7 @@ Below is the visualization of pairwise cosine similarity between each augmented 
  Following is the slight modification to the contrastive learning loss formula above:
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/false_negative_elimination_loss_formula.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/false_negative_elimination_loss_formula.jpg"
 </p>
 <p align="center">Figure 11: False Negative Elimination Loss</p>
 
@@ -154,7 +154,7 @@ Minimizing the original contrastive loss (1) only seeks to attract an anchor to 
 Below is the new loss attraction:
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/false_negative_attraction_loss_formula.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/false_negative_attraction_loss_formula.jpg"
 </p>
 <p align="center">Figure 12: False negative attraction loss</p>
 
@@ -174,7 +174,7 @@ Main views:  A1, A2, B1, B2
 Support views: A3, A4
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/support_views.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/support_views.jpg"
 </p>
 <p align="center">Figure 13: Introducing Support Views</p>
 
@@ -193,7 +193,7 @@ Motivated by the above observation, the authors propose a strategy for identifyi
 > 
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/identify_false_negative.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/identify_false_negative.jpg"
 </p>
 <p align="center">Figure 14: Steps from Paper as Reference</p>
 
@@ -216,7 +216,7 @@ The authors tested in the same configurations as SimCLR V2 for pretraining and e
 1. **False negative cancellation consistently improves contrastive learning across crop sizes and the gap is higher for bigger crops**
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/false_negative_cancellation_result.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/false_negative_cancellation_result.jpg"
 </p>
 <p align="center">Figure 15: False Negative Elimination and SimCLR across Random Crop Ratio and Threshold</p>
 
@@ -225,7 +225,7 @@ The authors tested in the same configurations as SimCLR V2 for pretraining and e
 2. **Having a support set helps in finding false negatives regardless of the cancellation strategy, with greater benefits with the attraction strategy**
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/false_negative_support_result.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/false_negative_support_result.jpg"
 </p>
 <p align="center">Figure 16: False Negative Cancellation with and without Support Set </p>
 <p align="center">(the dashed line denotes the performance of SimCLR baseline) </p>
@@ -235,7 +235,7 @@ The authors tested in the same configurations as SimCLR V2 for pretraining and e
 3. **Maximum aggregation significantly and consistently outperforms mean aggregation for the attraction strategy**
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/aggregation_result.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/aggregation_result.jpg"
 </p>
 <p align="center">Figure 17: False Negative Cancellation(Mean and Max Aggregation) Support Size and Top-K </p>
 
@@ -244,20 +244,20 @@ The authors tested in the same configurations as SimCLR V2 for pretraining and e
 4. **Filtering by top-k tends to perform better than by a threshold, while a combination of both provides the best balance**
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/top_k_threshold_result.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/top_k_threshold_result.jpg"
 </p>
 <p align="center">Figure 18: Top-K and Threshold for False Negative Elimination and Attraction </p>
 
 5. **False negative attraction is superior to elimination when the detected false negatives are valid**
 
 <p align="center">
-<img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/attraction_better.jpg"
+<img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/attraction_better.jpg"
 </p>
     
 6. **Multicrop and momentum encoders help get higher accuracy**
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/multicrop_momentum_encoder.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/multicrop_momentum_encoder.jpg"
 </p>
 <p align="center">Figure 19: Top-1 accuracy improvement of false negative cancellation for different baselines </p>
 
@@ -283,7 +283,7 @@ for false negative cancellation:
 **Dataset:** ImageNet
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/imagenet_linear_evaluation.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/imagenet_linear_evaluation.jpg"
 </p>
 <p align="center">Figure 20: ImageNet Linear Evaluation </p>
 
@@ -293,7 +293,7 @@ for false negative cancellation:
 ### Transferring Features
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/transfer_learning.jpg"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/transfer_learning.jpg"
 </p>
 <p align="center">Figure 21: Transfer Learning on Classification Task using ImageNet-pretrained ResNet Models across 12 Datasets </p>
 
