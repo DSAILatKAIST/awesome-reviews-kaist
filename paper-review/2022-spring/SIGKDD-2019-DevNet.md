@@ -687,10 +687,9 @@ https://www.youtube.com/watch?v=1lEtPCn-lcY
 ---  
 ## **Author Information**  
 
-* Guansong Pang (Prior Author)
-    *  Assistant Professor of Computer Science at School of Computing and Information Systems, Singapore Management University (SMU)
-    * Abnormality and rarity learning
-    * Outlier detection and feature selection
+* Yesung Cho (조예성) 
+    * Knowledge Service Engineering, M.S Course, KS Lab (Prof. Mun.Y. Yi) 
+    * Anomaly Detection in Computer Vision
 
 ## **Reference & Additional materials**  
 
