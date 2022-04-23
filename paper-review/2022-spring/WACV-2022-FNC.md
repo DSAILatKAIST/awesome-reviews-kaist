@@ -178,7 +178,7 @@ Support views: A3, A4
 </p>
 <p align="center">Figure 13: Introducing Support Views</p>
 
-The .gitbook/2022-spring-assets/BryanWong_1 of the dog’s head on the right side is not an augmented version of the anchor (main views left side). Consequently, while it is similar to the anchor image, it would thus be treated as a negative match by contemporary self-supervised methods (false negative). However, we can see that this image is more similar to the augmented view of the anchor (”support views”) than it is to the anchor with respect to the orientation of the dog’s face.
+The picture of the dog’s head on the right side is not an augmented version of the anchor (main views left side). Consequently, while it is similar to the anchor image, it would thus be treated as a negative match by contemporary self-supervised methods (false negative). However, we can see that this image is more similar to the augmented view of the anchor (”support views”) than it is to the anchor with respect to the orientation of the dog’s face.
 
 Motivated by the above observation, the authors propose a strategy for identifying candidate false negative as follows:
 
