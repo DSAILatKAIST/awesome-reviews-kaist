@@ -27,7 +27,7 @@ Contrastive learning aims to group similar samples closer and diverse samples fa
 Suppose we have a function f(represented by any deep network Resnet50 for example), given an input x, it gives us the features f(x) as output. Contrastive Learning states that for any positive pairs x1 and x2, the respective outputs f(x1) and f(x2) should be similar to each other and for a negative input x3, f(x1) and f(x2) both should be dissimilar to f(x3).
 
 <p align="center">
-  <img width="500" src=".gitbook/2022-spring-assets/BryanWong_1/contrastive_learning.png"
+  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_1/contrastive_learning.png"
 </p>
 <p align="center">Figure 1: Contrastive Learning</p>
 
