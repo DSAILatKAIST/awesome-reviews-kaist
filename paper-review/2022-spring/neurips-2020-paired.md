@@ -88,10 +88,11 @@ $REGRET^{\overrightarrow{\theta}}=U^{\overrightarrow{\theta}}(\pi^A)-U^{\overrig
 ## **6. Reference & Additional materials**
 
 * Github Implementation:
-* https://github.com/google-research/google-research/tree/master/social_rl/
+  https://github.com/google-research/google-research/tree/master/social_rl/
   
   
-* Experiment result: https://www.youtube.com/channel/UCI6dkF8eNrCz6XiBJlV9fmw/videos
+* Experiment result:
+  https://www.youtube.com/channel/UCI6dkF8eNrCz6XiBJlV9fmw/videos
   
   
 * Reference:
