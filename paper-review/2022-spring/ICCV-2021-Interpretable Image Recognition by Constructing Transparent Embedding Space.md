@@ -34,14 +34,14 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 ![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure1.PNG?raw=true)
 
 또한 projection metric을 통해 각 class의 basis concept들은 서로 orthogonal하도록, 동시에 class-aware한 basis concepts subset들은 서로 멀리 위치하도록 규제됩니다. 이 두 가지 규제를 통해 basis concepts가 서로 얽히지 않도록 함으로써 기존 연구의 한계점을 극복하고 있습니다. 
-논문은 이렇게 설계된 transparent embedding space (concept vector space)가 도입된 새로운 interpetable network, TesNet을 제안한다.
+논문은 이렇게 설계된 transparent embedding space (concept vector space)가 도입된 새로운 interpetable network, TesNet을 제안하고 있습니다. 여기서 tranparent embedding space란 ...
 
 ## **3. Method**  
 
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily. 
 
-TesNet은 convolutional layers _f_, basis concepts _B_ 로 이루어진 trasparent subspace layer $$s_{b}$$, 그리고 classifier _h_ 이렇게 세 가지의 핵심 요소로 이루어져 있습니다. 
+TesNet은 convolutional layers _f_, basis concepts _B_ 로 이루어진 trasparent subspace layer $s_{b}$, 그리고 classifier _h_ 이렇게 세 가지의 핵심 요소로 이루어져 있습니다. 
 
 ## **4. Experiment**  
 
