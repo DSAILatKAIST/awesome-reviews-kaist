@@ -31,9 +31,7 @@ basis soncpet들은 concept space 상에서도 class가 잘 분리되도록 clas
 두번째, high-level feature과 basis concepts 사이를 연결시키는 mapping을 제공한다.
 세번째, input image 상의 basis concept들은 각 class에 대한 prediction score을 계산하는 데에 도움이 된다.
 
-After writing the motivation, please write the discriminative idea compared to existing works briefly.
-
-이러한 basis concepts 설계를 위해, 기존의 연구와 달리 논문은 Grassmann manifold를 도입하여 concept vector space를 정의하였다. 다음의 그림과 같이, 각 class마다 basis concept들의 subset이 Grassmann manifold 상의 point로 존재한다. 여기서 중요한 점은 각 class의 basis concept들은 서로 orthogonal하고(직교를 이루고), class-aware한 basis concepts subset들은 projection metric을 서로 멀리 떨어지도록 
+이러한 basis concepts 설계를 위해, 기존의 연구와 달리 논문은 Grassmann manifold를 도입하여 concept vector space를 정의하였다. 다음의 그림과 같이, 각 class마다 basis concept들의 subset이 Grassmann manifold 상의 point로 존재한다. 여기서 중요한 점은 projection metric을 통해 각 class의 basis concept들은 서로 orthogonal하고(직교를 이루고), class-aware한 basis concepts subset들은 서로 멀리 떨어지도록 규제된다. 이 두 가지 규제를 통해 기존의 연구들과 달리 basis concept들이 서로 얽히지 않도록 설계하였다.
 
 
 ## **3. Method**  
