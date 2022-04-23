@@ -59,10 +59,9 @@
 
 ## 4.1 SAM : Overview
 
-
+<br>
 ![](https://latex.codecogs.com/gif.latex?(1)\space\min_w\max_{||\epsilon||_2\leq\rho}L_{train}(w+\epsilon))
 <br>
-
 ![](https://latex.codecogs.com/gif.latex?(2)\space\hat{\epsilon}(w)=\arg\max_{||\epsilon||_2\leq\rho}L_{train}(w)+\epsilon^T\bigtriangledown_wL_{train}(w)=\rho\bigtriangledown_wL_{train}(w)/||\bigtriangledown_wL_{train}(w)||_2)
 
 
@@ -105,10 +104,11 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 
 - SAM 이후 곡률의 정도인 $\lambda_{max}$가 작아진 것을 모델의 레이어별로 수치화하였다
 
-$$
-(3)\space H_k=(a_{k-1}a_{k-1}^T)\otimes\mathcal H_k, \space \mathcal H_k =B_kW^T_{k+1}\mathcal H_{k+1}W_{k+1}B_k +D_k\\
-(4) B_k=\mathrm{diag}(f'_k(h_k)),\space D_k=\mathrm{diag}(f''_k(h_k)\frac{\partial L}{\partial a_k})
-$$
+<br>
+![](https://latex.codecogs.com/gif.latex?(3)\space H_k=(a_{k-1}a_{k-1}^T)\otimes\mathcal{H}_k,\space\mathcal{H}_k =B_kW^T_{k+1}\mathcal{H}_{k+1}W_{k+1}B_k+D_k)
+<br>
+![](https://latex.codecogs.com/gif.latex?(4)B_k=\mathrm{diag}(f'_k(h_k)),\space D_k=\mathrm{diag}(f''_k(h_k)\frac{\partial{L}}{\partial{a_k}}))
+
 
 > $f(\cdot)$ : activation , GELU
 $W_k$ : k번째 layer의 params
