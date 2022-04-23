@@ -9,7 +9,7 @@ description : Jaeho Lee / Meta-learning Sparse Implicit Neural Representations /
 
 Implicit Neural Representations (INRs) also-known as coordinate-based representations could provide a generic way of representing all kinds of data modalities. INR are obtained by training a neural network with continuous activation function to predict the coordinate-to-value mapping. Take an image as an example : the neural network map the pixel locations to RGB values and directly store the parameters of the network. 
 
-![Figure 1: INR example for image](../../.gitbook/2022-spring-assets/EmelineBagoris1/inr-schema.png)
+![Figure 1: INR example for image](../../.gitbook/2022-spring-assets/EmelineBagoris1/inr_schema.png)
 
 
 Scalability is a huge challenge nowadays since discrete representation requires a huge amount of storage and computation capacity. INR can provide a generic way to represent data while compressing it. Furthermore, using continuous data representation instead of the typical discrete representation render the data independant from spatial resolution, allowing high dimension processing. However, training INR require a lot of parameters, memory and computations steps. In this papaer, the authors are proposing an efficient algorithm to train sparse neural network for a a large number of signals to get INRs. 
