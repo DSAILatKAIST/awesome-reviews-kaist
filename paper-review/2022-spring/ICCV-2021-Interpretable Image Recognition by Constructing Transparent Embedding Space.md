@@ -12,7 +12,7 @@ Convolution Neural Network(CNN)의 결과 해석은 판단의 근거가 필수�
 
 따라서 interpretable image classification(해석 가능한 이미지 분류)를 위해 사람이 쉽게 의미를 이해할 수 있는 input image의 concept을 추출하는 방법에 대한 연구가 이루어지고 있다. 그러나 기존 연구들의 concept들은 서로 뒤얽혀있어 output class에 대한 각 개별 concept의 영향을 해석하기 어렵다. 
 
-이를 문제점으로 지적하며 이 논문에서는 ouput class에 대한 input image의 특징을 효과적으로 설명할 수 있으면서 서로 얽혀있지않고 orthogonal 한 concept들을 추출할 수 있는 방법론을 제안한다. 
+이를 문제점으로 지적하며 이 논문에서는 output class에 대한 input image의 특징을 효과적으로 설명할 수 있으면서 서로 얽혀있지않고 orthogonal 한 concept들을 추출할 수 있는 방법론을 제안한다. 
 
 ## **2. Motivation**  
 
@@ -28,10 +28,14 @@ basis soncpet들은 concept space 상에서도 class가 잘 분리되도록 clas
 
 데이터의 concept들을 추출하기 위해, 기존 연구들은 auto-encoding이나 prototype learning과 같이 deep neural network의 high-level feature를 이용하는 방식을 제안하였다. U-shaped Beta distribution을 이용하여 concept의 개수를 제한함으로써 이 방식들은 input data를 몇 개의 basis concept들로 나타내어 첫번째 조건을 만족한다. 그러나, 앞어 언급하였듯이 기존 연구들의 basis concept들은 서로 얽혀있어(entangled) 각 개별 concept의 input과 output에 대한 영향을 해석하기 어렵다.
 따라서, 이 논문에서는 위의 세가지 interpretable concepts 조건을 만족시키는 basis concepts를 설계하는 데에 주목하였다. 
-먼저, 
+논문에서 설계한 basis concepts는 다음과 같은 특징을 가진다.
+첫번째, 각 class는 자신만의 basis concept들을 가지고, 다른 class끼리는 가지고 있는 basis concept들이 최대한 다르다. 
+두번째, high-level feature과 basis concepts 사이를 연결시키는 mapping을 제공한다.
+세번째, input image 상의 basis concept들은 각 class에 대한 prediction score을 계산하는 데에 도움이 된다.
 
 After writing the motivation, please write the discriminative idea compared to existing works briefly.
 
+이러한 basis concepts 설계를 위해, 기존의 연구와 달리 논문은 Grassmann manifold를 도입하여 concept vector space를 정의하였다. 다음의 그림과 같이, 각 class마다 basis concept들의 subset이 Grassmann manifold 상의 point로 존재한다. 여기서 중요한 점은 각 class의 basis concept들은 서로 orthogonal하고(직교를 이루고), class-aware한 basis concepts subset들은 projection metric을 서로 멀리 떨어지도록 
 
 
 ## **3. Method**  
