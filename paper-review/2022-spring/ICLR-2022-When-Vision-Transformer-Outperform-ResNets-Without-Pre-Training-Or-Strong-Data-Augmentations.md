@@ -60,6 +60,8 @@
 ## 4.1 SAM : Overview
 ![](https://latex.codecogs.com/gif.latex?(1)\space\min_w\max_{||\epsilon||_2\leq\rho}L_{train}(w+\epsilon)\\(2)\space\hat{\epsilon}(w)=\argmax_{||\epsilon||_2\leq\rho}L_{train}(w)+\epsilon^T\bigtriangledown _wL_{train}(w)\\=\rho\bigtriangledown _w L_{train}(w)/||\bigtriangledown _w L_{train}(w)||_2)
 
+![](https://latex.codecogs.com/gif.latex?(1)\space\min_w\max_{||\epsilon||_2\leq\rho}L_{train}(w+\epsilon))
+
 
 $$
 (1)\space\min_w \max_{||\epsilon||_2\leq\rho}L_{train}(w+\epsilon)\\
@@ -76,7 +78,7 @@ $$
     
     ### Smoother regions around the local minima
     
-    - Figure 1의 (d),(e)처럼 smoother regions에 수렴한 것을 확인할 수 있다. 또한 $\lambda_{max}$역시 하락했다
+    - Figure 1의 (d),(e)처럼 smoother regions에 수렴한 것을 확인할 수 있다. 또한 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})역시 하락했다
     
     ### Higher accuracy
     
