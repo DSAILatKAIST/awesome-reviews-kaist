@@ -1,2 +1,2 @@
 * [\[2022 Spring\] Paper Review](paper-review/README.md) 
-    * [paper_review](paper-review/2022-spring/paper_review.md)
+    * [NeurIPS-2020-PAIRED](paper-review/2022-spring/neurips-2020-paired.md)
