@@ -19,7 +19,7 @@ Please write the motivation of paper. The paper would tackle the limitations or 
 인지적 관점에서 Interpretable concepts(해석 가능한 컨셉)이란 다음의 세 가지 조건을 만족해야 한다.
 
 (1) Informative   
-input data는 basis concept들로 spanned된 vector space상에서 효율적으로 나타내져야하고, essential information이 새로운 representation 공간에서도 보존되어야한다.
+input data는 basis concept들로 spanned된 vector space상에서 효율적으로 나타내져야하고, essential information이 새로운 representation 공간에서도 보존되어야한다.   
 (2) Diversity   
 각 데이터(이미지)는 겹치지 않는 소수의 basis concept들과 관련 있어야하고, 같은 class에 속하는 데이터들은 비슷한 concept들을 공유해야 한다.   
 (3) Discriminative  
