@@ -2,9 +2,7 @@
 description : Jiaqi Wang / Interpretable Image Recognition by Constructing Transparent Embedding Space / ICCV-2021  
 ---
 
-# **Title** 
-
-# Interpretable Image Recognition by Constructing Transparent Embedding Space
+# **Interpretable Image Recognition by Constructing Transparent Embedding Space** 
 
 ## **1. Problem Definition**  
 
