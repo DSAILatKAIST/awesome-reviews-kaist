@@ -30,7 +30,7 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 두번째, high-level feature과 basis concepts 사이를 효과적으로 연결하는 mapping을 제공합니다.   
 세번째, input image 상의 basis concepts는 각 class에 대한 prediction score을 계산하는 데에 도움이 됩니다.
 
-위의 세 가지 특징을 만족하는 basis concepts 설계를 위해, 본 논문은 기존 연구들과 다르게 Grassmann manifold를 도입하여 basis concept vector space를 정의합니다. 다음의 그림처럼, 각 class마다의 basis concepts subset이 Grassmann manifold 상의 point로 존재합니다.     
+위의 세 가지 특징을 만족하는 basis concepts 설계를 위해, 본 논문은 기존 연구들과 다르게 Grassmann manifold를 도입하여 basis concept vector space를 정의합니다. 다음의 그림처럼, 각 class마다의 basis concepts subset이 Grassmann manifold 상의 point로 존재합니다. Grassmann manifold는 쉽게 말하면 linear subspaces의 set(집합)이라고 생각할 수 있습니다. 여기서 subspace란 vector space _V_ 의 subset(부분집합) _W_ 가 _V_ 로부터 물려받은 연산들로 이루어진 또 다른 하나의 vector space일 때 _W_ 를 _V_ 의 subspace라고 말합니다.   
 ![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure1.PNG?raw=true)
 
 또한 projection metric을 통해 각 class의 basis concept들은 서로 orthogonal하도록, 동시에 class-aware한 basis concepts subset들은 서로 멀리 위치하도록 규제됩니다. 이 두 가지 규제를 통해 basis concepts가 서로 얽히지 않도록 함으로써 기존 연구의 한계점을 극복하고 있습니다. 
@@ -51,7 +51,7 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 (2) embedding space에서도 각 class는 구분되어야 합니다.   
 (3) basis vector들은 비슷한 high-level patch(사람들이 인식할 수 있는 level의 image)들을 군집화하고 다른 것들끼리는 분리할 수 있어야 합니다.   
 
-이 세 가지 조건을 만족시키기 위해 전체 architecture에서 보았던 convolutional layer, basis vectors, classifier layer의 weight들이 서로 joint하게 optimize(최적화)될 수 있도록 joint optimization problem을 정의하고 있습니다. 다음은 각 weight의 최적화 과정입니다.   
+이 세 가지 조건을 만족시키기 위해 전체 architecture에서 보았던 convolutional layer, basis vectors, classifier layer의 weight들이 서로 joint하게 optimize(최적화)될 수 있도록 joint optimization problem을 정의하고 있습니다. 다음은 각 weight를 최적화하기 위한 loss와 optimization 과정입니다.   
 
 ### **Orthonormality for Within-class Concepts**   
 조건 (1)을 만족시키기 위한 Loss는 다음과 같습니다.  
@@ -59,7 +59,9 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 basis vector사이에 의미가 중복되지 않는다는 것은 같은 class에 속한 basis concepts이더라도 반드시 서로 다른 측면들을 나타내고 있어야한다는 뜻입니다. 그러기 위해선 같은 class에 속한 basis concept vectors가 서로 orthogonal해야 하므로 각 class의 basis vectors 사이의 orthonormality를 규제하는 loss를 사용합니다. loss 식을 살펴보면 각 class의 basis vector matrix 행렬곱과 identity matrix 사이의 L2 norm을 모두 더하고 있습니다. 즉, 각 class의 basis vectors간의 correlation(상관 관계)를 최소화시키기 위한 loss입니다. 이러한 loss를 통해 학습된 orthonormal basis vectors가 각 class의 subsapce를 span하게 됩니다.   
 
 ### **Separtion for Class-aware Subsapces**  
-두번째로 조건 (2)를 만족시키기 위한 Loss입니다.
+두번째로 조건 (2)를 만족시키기 위한 Loss는 다음과 같습니다.  
+![figure4](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure4.PNG?raw=true) 
+embedding space상에서 class가 구분되기 위해서는 각 class의 subspace가 서로 멀리 위치해 있어야합니다. 즉, Grassmann manifold 상에서 class-aware subspace들의 거리가 최대한 멀도록 규제합니다. 
 
 
 ### **High-level Patches Grouping**
