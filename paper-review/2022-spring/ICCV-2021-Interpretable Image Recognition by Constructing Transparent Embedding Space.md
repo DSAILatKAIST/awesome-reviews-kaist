@@ -30,9 +30,8 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 두번째, high-level feature과 basis concepts 사이를 효과적으로 연결하는 mapping을 제공합니다.   
 세번째, input image 상의 basis concepts는 각 class에 대한 prediction score을 계산하는 데에 도움이 됩니다.
 
-위의 세 가지 특징을 만족하는 basis concepts 설계를 위해, 본 논문은 기존 연구들과 다르게 Grassmann manifold를 도입하여 basis concept vector space를 정의합니다. 다음의 그림처럼, 각 class마다의 basis concepts subset이 Grassmann manifold 상의 point로 존재합니다.    
-<img width="200" src=".gitbook/2022-spring-assets/TaeMiKim/figure1.PNG">   
-![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim/figure1.PNG?raw=true)
+위의 세 가지 특징을 만족하는 basis concepts 설계를 위해, 본 논문은 기존 연구들과 다르게 Grassmann manifold를 도입하여 basis concept vector space를 정의합니다. 다음의 그림처럼, 각 class마다의 basis concepts subset이 Grassmann manifold 상의 point로 존재합니다.     
+![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure1.PNG?raw=true)
 
 또한 projection metric을 통해 각 class의 basis concept들은 서로 orthogonal하도록, 동시에 class-aware한 basis concepts subset들은 서로 멀리 위치하도록 규제됩니다. 이 두 가지 규제를 통해 basis concepts가 서로 얽히지 않도록 함으로써 기존 연구의 한계점을 극복하고 있습니다. 
 논문은 이렇게 설계된 transparent embedding space (concept vector space)가 도입된 새로운 interpetable network, TesNet을 제안한다.
