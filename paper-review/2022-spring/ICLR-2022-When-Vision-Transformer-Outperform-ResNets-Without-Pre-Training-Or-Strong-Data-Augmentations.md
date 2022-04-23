@@ -110,9 +110,10 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 ![](https://latex.codecogs.com/gif.latex?(4)B_k=\mathrm{diag}(f'_k(h_k)),\space{}D_k=\mathrm{diag}(f''_k(h_k)\frac{\partial{L}}{\partial{a_k}}))
 
 <br>
-![](https://latex.codecogs.com/gif.latex?\f(\cdot)) : activation , GELU
+![](https://latex.codecogs.com/gif.latex?f(\cdot)) : activation , GELU
 <br>
-$W_k$ : k번째 layer의 params
+![](https://latex.codecogs.com/gif.latex?W_k) : k번째 layer의 params
+<br>
 $h_k$ : $W_k a_{k-1}$, activation을 거치기 전의 k번째 layer의 output
 $a_k$ : $f_k(h_k)$
 $\otimes$ : Kronecker product
