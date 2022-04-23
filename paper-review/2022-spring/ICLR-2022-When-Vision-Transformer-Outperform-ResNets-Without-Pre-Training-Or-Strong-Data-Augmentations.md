@@ -109,15 +109,17 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 <br>
 ![](https://latex.codecogs.com/gif.latex?(4)B_k=\mathrm{diag}(f'_k(h_k)),\space{}D_k=\mathrm{diag}(f''_k(h_k)\frac{\partial{L}}{\partial{a_k}}))
 
-
-> $f(\cdot)$ : activation , GELU
+<br>
+![](https://latex.codecogs.com/gif.latex?\f(\cdot)) : activation , GELU
+<br>
 $W_k$ : k번째 layer의 params
 $h_k$ : $W_k a_{k-1}$, activation을 거치기 전의 k번째 layer의 output
 $a_k$ : $f_k(h_k)$
 $\otimes$ : Kronecker product
 $\mathcal H_k$ : layer k의 activation을 거치기 전의 Hessian 행렬
 $H_k$ : $W_k$의 Hessian 행렬
-> 
+
+
 - Table 3을 보면 앞단의 레이어가 더 높은 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})를 가짐을 알 수 있다. 이는 (3) 수식에서 분석가능한데, Hessian norm은 역전파에 의하여 뒤에서 앞으로 누적이 되기 때문이다
 
 ### Greater weight norms
