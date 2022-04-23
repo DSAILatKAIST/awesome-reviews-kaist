@@ -20,7 +20,7 @@ Problem Definition에서 소개한 문제를 해결할 수 있는 방법론으�
 
 직관적으로 설명하자면 전자의 알고리즘은 agent에게 과하게 쉬운 문제를 풀게 하였고 후자의 알고리즘은 agent에게 지나치게 어려운 문제를 풀게 하였다고 볼 수 있다. 하단의 그림을 보면 푸른 화살표 agent가 미로를 풀어서 녹색의 goal에 도달하는 task를 각각의 알고리즘으로 설계했을 때, Domain Randomization 기법은 미로의 벽을 제대로 생성하지 못하여 지나치게 쉬운 environment를 설계했고, Minimax Adversarial 기법은 goal position이 미로의 벽에 가로막혀 agent가 아예 도달할 수도 없는 과하게 어려운 environment를 생성한 것을 볼 수 있다. 즉 두 알고리즘 모두 environment의 분포를 잘 추정하지 못했다.
 
-<img src=".gitbook/2022-spring-assets/1.png">  
+<img src=".gitbook/2022-spring-assets/heemangpark/1.png">  
 
 ## **3. Method**
 
@@ -32,17 +32,17 @@ POMDP는 tuple $\lang A,O,S,T,I,R,\gamma \rang$ 로 정의한다: $A$는 set of 
 
 UPOMDP는 tuple $M=\lang A,O,\Theta,S^M,T^M,I^M,R^M,\gamma \rang$ 로 정의한다: 대부분의 정의는 상술한 POMDP와 동일하나, 모델링에 free parameter of environment를 의미하는 집합 $\Theta$가 추가된 점이 다르다. Free parameter of environment $\Theta$는 학습의 매 타임스텝마다 정해질 수 있고, $T^M:S\times A\times\Theta\to\Delta(S)$ 와 같이 transition function을 구하는데에 사용된다. 또한 environment parameter $\overrightarrow{\theta}$ 의 trajectory를 통해 environment setting을 표현할 수 있고, 이렇게 구한 setting of environment $\overrightarrow{\theta}$를 underspecified environment $M$에 대입해서 $M_{\overrightarrow{\theta}}$를 얻게 된다.
 
-<img src=".gitbook/2022-spring-assets/2.png">
+<img src=".gitbook/2022-spring-assets/heemangpark/2.png">
 
 그리고 $\Pi$ : set of possible policies, $\Theta^T$: set of possible sequences of environment parameter를 이용해 environment policy $\Lambda:\Pi\to\Delta(\Theta^T)$ 를 얻을 수 있다. 다른 두 UED 기법도 상술한 흐름으로 environment policy를 구하지만, 본 논문에서 제시하는 새로운 UED framework인 PAIRED 알고리즘은 environment policy를 set of possible policies $\Pi$의 regret을 최대화 하는 $\bar{\theta}$를 이용해서 구한다. Minimax Regret decision rule을 사용했을 때 더 좋은 policy가 얻어지는 사실은 아래의 Theorem을 통해 증명할 수 있다. 
 
-<img src=".gitbook/2022-spring-assets/3.png">
+<img src=".gitbook/2022-spring-assets/heemangpark/3.png">
 
 마지막으로 PAIRED 알고리즘이 set of possible policies $\Pi$의 regret을 최대화 하는 $\bar{\theta}$를 통해  environment policy $\Lambda^{MR}(\pi)$를 구체적으로 어떻게 구하는지 살펴보겠다. PAIRED(Protagonist Antagonist Induced Regret Environment Design) 알고리즘은 문제를 푸는 protagonist와 antagonist, 문제를 출제하는 environment adversary(이하 adversary)로 구성된다. Adversary는 antagonist에게 유리하면서 동시에 protagonist에게 불리한 environment를 training 동안 생성한다. 이러한 편파적인 문제 생성은 앞서 설명한 decision rule: Minimax Regret을 통해서 가능하다. 알고리즘 전체는 아래의 sudo code를 통해 살펴 볼 수 있다.
 
 $REGRET^{\overrightarrow{\theta}}=U^{\overrightarrow{\theta}}(\pi^A)-U^{\overrightarrow{\theta}}(\pi^P): \\ difference~between~the~reward~obtained~by~the~antagonist~and~the~protagonist$
 
-<img src=".gitbook/2022-spring-assets/4.png">
+<img src=".gitbook/2022-spring-assets/heemangpark/4.png">
 
 ## **4. Experiment**
 
@@ -54,9 +54,9 @@ $REGRET^{\overrightarrow{\theta}}=U^{\overrightarrow{\theta}}(\pi^A)-U^{\overrig
 
 ### **Result**
 
-<img src=".gitbook/2022-spring-assets/5.png">
+<img src=".gitbook/2022-spring-assets/heemangpark/5.png">
 
-<img src=".gitbook/2022-spring-assets/6.png">
+<img src=".gitbook/2022-spring-assets/heemangpark/6.png">
 
 여러 지표들 중에서 특히 중요한 Solved path length: agent가 주어진 environment에서 찾은 올바른 길의 길이, Maze: 가장 복잡한 종류의 task 에서 baseline algorithm 대비 본 논문에서 제시하는 PAIRED algorithm이 모두 우월한 성과를 보였다.
 
