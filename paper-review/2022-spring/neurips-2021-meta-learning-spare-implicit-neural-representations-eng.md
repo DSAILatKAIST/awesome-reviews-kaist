@@ -9,7 +9,7 @@ description : Jaeho Lee / Meta-learning Sparse Implicit Neural Representations /
 
 Implicit Neural Representations (INRs) also-known as coordinate-based representations could provide a generic way of representing all kinds of data modalities. INR are obtained by training a neural network with continuous activation function to predict the coordinate-to-value mapping. Take an image as an example : the neural network map the pixel locations to RGB values and directly store the parameters of the network. 
 
-![Figure 1: INR example for image](../../.gitbook/assets/2022-spring-assets/EmelineBagoris1/inr-schema.png)
+![Figure 1: INR example for image](../../.gitbook/2022-spring-assets/EmelineBagoris1/inr-schema.png)
 
 
 Scalability is a huge challenge nowadays since discrete representation requires a huge amount of storage and computation capacity. INR can provide a generic way to represent data while compressing it. Furthermore, using continuous data representation instead of the typical discrete representation render the data independant from spatial resolution, allowing high dimension processing. However, training INR require a lot of parameters, memory and computations steps. In this papaer, the authors are proposing an efficient algorithm to train sparse neural network for a a large number of signals to get INRs. 
@@ -32,7 +32,7 @@ To find a well-initialized sparse subnetwork structure, the authors developped a
 * 2) Magnitude-based pruning : the algorithm first compute the magnitude score of the learned INR and proceed to remove a percentage of the connections. Connections with a magnitude below the common treshold for every layer will be cut off instead of pruning every individual signal. 
 * 3) Retrain and repeat : the algorithm keep going until the sparsity degree is attained. 
 
-![Figure 2: Meta-SparseINR schema](../../.gitbook/assets/2022-spring-assets/EmelineBagoris1/meta-sparseINR-concept.png)
+![Figure 2: Meta-SparseINR schema](../../.gitbook/2022-spring-assets/EmelineBagoris1/meta-sparseINR-concept.png)
 
 
 ## **4. Experiment**  
@@ -55,7 +55,7 @@ In the figure 1, the authors propose to compare the PSNR of Meta-SparseINR again
 As we can see in the table, Meta-SparseINR needs half the number of parameters of the strongest baseline Dense-Narrow and Random Pruning to obtain a similar PSNR. So Meta-SparseINR is a memory efficient method to train INRs. 
 
 
-![Figure 3: PSNR results of Meta-SparseINR against baselines](../../.gitbook/assets/2022-spring-assets/EmelineBagoris1/Meta-SparseINR-memory-results-against-baseline.png)
+![Figure 3: PSNR results of Meta-SparseINR against baselines](../../.gitbook/2022-spring-assets/EmelineBagoris1/Meta-SparseINR-memory-results-against-baseline.png)
 
 *Computation performance*
 
