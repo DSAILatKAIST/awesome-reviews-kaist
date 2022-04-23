@@ -117,15 +117,15 @@ $\otimes$ : Kronecker product
 $\mathcal H_k$ : layer k의 activation을 거치기 전의 Hessian 행렬
 $H_k$ : $W_k$의 Hessian 행렬
 > 
-- Table 3을 보면 앞단의 레이어가 더 높은 $\lambda_{max}$를 가짐을 알 수 있다. 이는 (3) 수식에서 분석가능한데, Hessian norm은 역전파에 의하여 뒤에서 앞으로 누적이 되기 때문이다
+- Table 3을 보면 앞단의 레이어가 더 높은 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})를 가짐을 알 수 있다. 이는 (3) 수식에서 분석가능한데, Hessian norm은 역전파에 의하여 뒤에서 앞으로 누적이 되기 때문이다
 
 ### Greater weight norms
 
-- Table3를 보면 SAM을 사용한 후 $||\cdot||$ 으로 나타난 norm결과를 보면 오히려 상승한 것을 알 수 있다. 이는 weight decay가 ViT와 MLP를 규제하는데는 그다지 효율적이지 않았음을 뜻한다
+- Table3를 보면 SAM을 사용한 후 ![](https://latex.codecogs.com/gif.latex?||\cdot||)으로 나타난 norm결과를 보면 오히려 상승한 것을 알 수 있다. 이는 weight decay가 ViT와 MLP를 규제하는데는 그다지 효율적이지 않았음을 뜻한다
 
 ### Sparser active neurons in MLP-Mixers
 
-- 수식 (3)과 (4)를 보면 $B_k$는 $f_k$가 GELU이기 때문에 0보다 큰 값으로 결정된다. GELU의 1차도 함수는 입력 값이 0보다 작다면 급격히 작아진다(사실상0). 따라서 active된 GELU의 수가 Hessian norm으로 직결 되는 것이다
+- 수식 (3)과 (4)를 보면 ![](https://latex.codecogs.com/gif.latex?B_k)는 ![](https://latex.codecogs.com/gif.latex?f_k)가 GELU이기 때문에 0보다 큰 값으로 결정된다. GELU의 1차도 함수는 입력 값이 0보다 작다면 급격히 작아진다(사실상0). 따라서 active된 GELU의 수가 Hessian norm으로 직결 되는 것이다
 - Figure2의 맨 오른쪽을 보면 SAM을 사용하면 활성화된 뉴런의 수가 더 적어졌음을 알 수 있다. 이것은 image patch가 어떤 반복성을 가지고 있었을지 모른다는 가정을 가능하게 한다(=반복적인 정보가 있으니 sparse해도 감지가 가능했다?)
 
 ### ViT's active neurons are highly sparse
@@ -152,11 +152,11 @@ $H_k$ : $W_k$의 Hessian 행렬
     ![fig8](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3092ca24-b721-41e8-a6bb-9b011afa6429%2FUntitled.png?table=block&id=dca19671-3bf9-4851-8ba3-c9afc748f397&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
     
     - Augmentation이 SAM과같이 기하적으로 loss를 smoothe 할 수 있을까?
-    - 우선 시각화하여 확인하였다. AUG가 $\lambda_{max}$를 크게했지만 average flatness를 알 수 있는 Gaussian 섭동 loss $L^{\mathcal N}_{train}=\mathbb E_{\epsilon\sim\mathcal N}[L_{train}(w+\epsilon)]$ 를 ViT-B에서보다 작게 만들었다($w$주변에서의 로스가 작았다는 것은 최적으로 인정된 $w$주변에서의 로스가 작았다는 뜻이고 이는 곧 $w$주변으로 flatness하다는 뜻이다)
+    - 우선 시각화하여 확인하였다. AUG가 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})를 크게했지만 average flatness를 알 수 있는 Gaussian 섭동 loss ![](https://latex.codecogs.com/gif.latex?L^{\mathcal N}_{train}=\mathbb E_{\epsilon\sim\mathcal N}[L_{train}(w+\epsilon)])를 ViT-B에서보다 작게 만들었다(![](https://latex.codecogs.com/gif.latex?w)주변에서의 로스가 작았다는 것은 최적으로 인정된 ![](https://latex.codecogs.com/gif.latex?w)주변에서의 로스가 작았다는 뜻이고 이는 곧 ![](https://latex.codecogs.com/gif.latex?w)주변으로 flatness하다는 뜻이다)
     - 이것은 SAM과 augmentation모두가 loss landscape를 flat하게 만들었다는 뜻이다
     
     <aside>
-    ❓ 가우시안 섭동이 작은거는 알겠습니다. 하지만 $\lambda_{max}$가 1659.3으로 비교적 큰 값이 나왔는데?
+    ❓ 가우시안 섭동이 작은거는 알겠습니다. 하지만 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})가 1659.3으로 비교적 큰 값이 나왔는데?
     - 이것은 SAM과 Augmentation의 flaten 전략이 다르기 때문이다. SAM은 minmax를 사용해 전체적인 Loss에서의 landscape를 강제하지만 Augmentation같은 경우 최악의 case는 무시해버리고 augmentation으로부터 알 수 있는 inductive bias 방향으로의 landscape flaten을 하기 때문이다
     
     </aside>
