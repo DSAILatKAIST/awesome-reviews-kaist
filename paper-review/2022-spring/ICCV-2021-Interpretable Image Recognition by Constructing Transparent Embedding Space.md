@@ -20,7 +20,9 @@ After writing the motivation, please write the discriminative idea compared to e
 ## **3. Method**  
 
 Please write the methodology author have proposed.  
-We recommend you to provide example for understanding it more easily.  
+We recommend you to provide example for understanding it more easily. 
+
+TesNet은 convolutional layers _f_, Trasparent subspace layer $$s_{b}$$ 세 가지의 핵심 요소로 이루어져 있다. 
 
 ## **4. Experiment**  
 
