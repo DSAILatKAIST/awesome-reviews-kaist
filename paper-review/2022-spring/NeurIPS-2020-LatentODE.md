@@ -453,18 +453,10 @@ Neural ODE라는 새로운 방식을 여러 방면에 접목시킨 논문들이 
 
 ## **Author Information**  
 
-* Yulia Rubanova
-    * Affiliation: University of Toronto and the Vector Institute  
-    * Research Topic: Deep generative models, Time series modelling, Optimization over discrete objects, Real-world applications
-    
-* Ricky T. Q. Chen
-    * Affiliation: University of Toronto and the Vector Institute
-    * Research Topic: Integrating structured transformations into probabilistic modeling, Tractable optimization
-    
-* David Duvenaud
-    * Affiliation: University of Toronto and the Vector Institute
-    * Research Topic: Neural ODEs, Automatic chemical design, Gradient-based hyperparameter tuning, Structed latent-variable models, Convolutional networks on graphs
-
+* Wonjoong Kim
+    * Affiliation: [DSAIL@KAIST](http://dsail.kaist.ac.kr/)
+    * Research Topic: GNN, NeuralODE, Active learning
+   
 <br/>
 
 <br/>
