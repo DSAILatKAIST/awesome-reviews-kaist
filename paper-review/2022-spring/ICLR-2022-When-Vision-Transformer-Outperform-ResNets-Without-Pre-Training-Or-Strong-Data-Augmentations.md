@@ -154,13 +154,10 @@ $H_k$ : $W_k$의 Hessian 행렬
     - Augmentation이 SAM과같이 기하적으로 loss를 smoothe 할 수 있을까?
     - 우선 시각화하여 확인하였다. AUG가 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})를 크게했지만 average flatness를 알 수 있는 Gaussian 섭동 loss ![](https://latex.codecogs.com/gif.latex?L^{\mathcal N}_{train}=\mathbb E_{\epsilon\sim\mathcal N}[L_{train}(w+\epsilon)])를 ViT-B에서보다 작게 만들었다(![](https://latex.codecogs.com/gif.latex?w)주변에서의 로스가 작았다는 것은 최적으로 인정된 ![](https://latex.codecogs.com/gif.latex?w)주변에서의 로스가 작았다는 뜻이고 이는 곧 ![](https://latex.codecogs.com/gif.latex?w)주변으로 flatness하다는 뜻이다)
     - 이것은 SAM과 augmentation모두가 loss landscape를 flat하게 만들었다는 뜻이다
-    - ㅇㅇ
-        - ㅇㅇ
-    가우시안 섭동이 작은거는 알겠습니다. 하지만 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})가 1659.3으로 비교적 큰 값이 나왔는데?
+        - 가우시안 섭동이 작은거는 알겠습니다. 하지만 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})가 1659.3으로 비교적 큰 값이 나왔는데?
+        - 이것은 SAM과 Augmentation의 flaten 전략이 다르기 때문이다. SAM은 minmax를 사용해 전체적인 Loss에서의 landscape를 강제하지만 Augmentation같은 경우 최악의 case는 무시해버리고 augmentation으로부터 알 수 있는 inductive bias 방향으로의 landscape flaten을 하기 때문이다
     
-    - 이것은 SAM과 Augmentation의 flaten 전략이 다르기 때문이다. SAM은 minmax를 사용해 전체적인 Loss에서의 landscape를 강제하지만 Augmentation같은 경우 최악의 case는 무시해버리고 augmentation으로부터 알 수 있는 inductive bias 방향으로의 landscape flaten을 하기 때문이다
     
-    </aside>
     
 
 # 5. Ablation Studies
