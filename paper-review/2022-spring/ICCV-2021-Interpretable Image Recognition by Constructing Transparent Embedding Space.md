@@ -9,7 +9,10 @@ Interpretable Image Recognition by Constructing Transparent Embedding Space
 ## **1. Problem Definition**  
 
 Convolution Neural Network(CNN)의 결과 해석은 판단의 근거가 필수적인 자율 주행 자동차와 암 진단과 같은 의료 분야에서 중요한 과제이다. 그러나 다양한 태스크에서 CNN의 성능이 비약적으로 발전한 데에 비해, 여전히 CNN의 결과를 사람이 쉽게 이해할 수 있는 의미들로 해석하는 데에는 어려움이 존재한다. 이러한 문제를 해결하기 위해 최근에 CNN 내부의 feature representation을 시각화하는 많은 interpetable한 방법들이 제안되었지만, 네트워크 시각화와 의미 해석 간의 gap은 여전히 크다.
-따라서 interpretable image classification(해석 가능한 이미지 분류)를 위해 사람이 쉽게 의미를 이해할 수 있는 input image의 concept을 추출하는 방법에 대한 연구가 이루어지고 있다. 그러나 기존 연구들의 concept들은 서로 뒤얽혀있어 output class에 대한 각 개별 concept의 영향을 해석하기 어렵다. 이를 문제점으로 지적하며 이 논문에서는 ouput class에 대한 input image의 특징을 효과적으로 설명할 수 있으면서 서로 얽혀있지않고 orthogonal 한 concept들을 추출할 수 있는 방법론을 제안한다. 
+
+따라서 interpretable image classification(해석 가능한 이미지 분류)를 위해 사람이 쉽게 의미를 이해할 수 있는 input image의 concept을 추출하는 방법에 대한 연구가 이루어지고 있다. 그러나 기존 연구들의 concept들은 서로 뒤얽혀있어 output class에 대한 각 개별 concept의 영향을 해석하기 어렵다. 
+
+이를 문제점으로 지적하며 이 논문에서는 ouput class에 대한 input image의 특징을 효과적으로 설명할 수 있으면서 서로 얽혀있지않고 orthogonal 한 concept들을 추출할 수 있는 방법론을 제안한다. 
 
 ## **2. Motivation**  
 
