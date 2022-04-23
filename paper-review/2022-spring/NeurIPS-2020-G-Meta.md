@@ -297,9 +297,9 @@ meta-testing, meta-validation에 쓰일 라벨을 5개씩 할당하고, 나머�
 ---  
 ## **Author Information**  
 
-* Kexin Huang
-    * Harvard University  
-    * Graph Neural Network
+* Sungwon Kim
+    * [Data Science & Artificial Intelligence Laboratory (DSAIL)](http://dsail.kaist.ac.kr/) at KAIST
+    * Graph Neural Network, Meta-Learning, Few-shot Learning
 
 ## **6. Reference & Additional materials**  
 
