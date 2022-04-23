@@ -40,8 +40,10 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily. 
-
-TesNet은 convolutional layers _f_, basis concepts _B_ 로 이루어진 trasparent subspace layer $s_{b}$, 그리고 classifier _h_ 이렇게 세 가지의 핵심 요소로 이루어져 있습니다. 
+다음은 TesNet의 전체적인 architecture의 모습입니다.
+![figure2](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure2.PNG?raw=true)
+그림과 같이 TesNet은 convolutional layers _f_, trasparent subspace layer $s_{b}$, 그리고 classifier _h_ 이렇게 세 가지의 핵심 요소로 이루어져 있습니다. 각 요소를 하나씩 살펴보도록 하겠습니다.   
+먼저, convloutional layers _f_ 는 1X1 convolutional layer들이 추가된 기본 CNN 네트워크(ex.ResNet) 입니다. $$s_{b}$$는 feture map을 transparent embedding space에 projection시키는 subspace layer입니다. 각 class마다 subspace가 존재하여, class 개수만큼의 subspace가 존재합니다. 각 class의 subspace는 M개의 basis concepts로 spanned 되어있습니다. 이 M개의 within-class concepts(클래스 내부 concepts)는 서로 orthogonal하다고 가정합니다. 총 C개의 class가 있을 때 각 class 마다 M개의 basis concepts 존재하므로 총 CM개의 basis concepts가 존재하는 것입니다.  
 
 ## **4. Experiment**  
 
