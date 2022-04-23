@@ -105,9 +105,9 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 - SAM 이후 곡률의 정도인 $\lambda_{max}$가 작아진 것을 모델의 레이어별로 수치화하였다
 
 <br>
-![](https://latex.codecogs.com/gif.latex?(3)\space H_k=(a_{k-1}a_{k-1}^T)\otimes\mathcal{H}_k,\space\mathcal{H}_k =B_kW^T_{k+1}\mathcal{H}_{k+1}W_{k+1}B_k+D_k)
+![](https://latex.codecogs.com/gif.latex?(3)H_k=(a_{k-1}a_{k-1}^T)\otimes\mathcal{H}_k,\space\mathcal{H}_k =B_kW^T_{k+1}\mathcal{H}_{k+1}W_{k+1}B_k+D_k)
 <br>
-![](https://latex.codecogs.com/gif.latex?(4)B_k=\mathrm{diag}(f'_k(h_k)),\space D_k=\mathrm{diag}(f''_k(h_k)\frac{\partial{L}}{\partial{a_k}}))
+![](https://latex.codecogs.com/gif.latex?(4)B_k=\mathrm{diag}(f'_k(h_k)),\space{}D_k=\mathrm{diag}(f''_k(h_k)\frac{\partial{L}}{\partial{a_k}}))
 
 
 > $f(\cdot)$ : activation , GELU
