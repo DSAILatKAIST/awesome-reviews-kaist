@@ -10,6 +10,7 @@
     * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
     * [Latent ODEs for Irregularly-Sampled Time Series](paper-review/2022-spring/NeurIPS-2020-Latent-ODEs-for-Irregularly-Sampled-Time-Series.md)
     * [G-Meta](paper-review/2022-spring/G-Meta.md)
+    * [Meta-learning Sparse Implicit Neural Representations](paper-review/2022-spring/neurips-2021-meta-learning-spare-implicit-neural-representations-eng.md)
     
 ## How to contribute  
 
