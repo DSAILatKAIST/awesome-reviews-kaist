@@ -156,7 +156,7 @@ $H_k$ : $W_k$의 Hessian 행렬
     - 이것은 SAM과 augmentation모두가 loss landscape를 flat하게 만들었다는 뜻이다
     
     <aside>
-    ❓ 가우시안 섭동이 작은거는 알겠습니다. 하지만 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})가 1659.3으로 비교적 큰 값이 나왔는데?
+    ❓ 가우시안 섭동이 작은거는 알겠습니다. 하지만 ![](https://latex.codecogs.com/gif.latex?\lambda_{max}) 가 1659.3으로 비교적 큰 값이 나왔는데?
     - 이것은 SAM과 Augmentation의 flaten 전략이 다르기 때문이다. SAM은 minmax를 사용해 전체적인 Loss에서의 landscape를 강제하지만 Augmentation같은 경우 최악의 case는 무시해버리고 augmentation으로부터 알 수 있는 inductive bias 방향으로의 landscape flaten을 하기 때문이다
     
     </aside>
