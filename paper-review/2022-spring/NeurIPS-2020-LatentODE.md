@@ -454,6 +454,7 @@ Neural ODE라는 새로운 방식을 여러 방면에 접목시킨 논문들이 
 ## **Author Information**  
 
 * Wonjoong Kim
+ 
     * Affiliation: [DSAIL@KAIST](http://dsail.kaist.ac.kr/)
     * Research Topic: GNN, NeuralODE, Active learning
    
