@@ -16,12 +16,12 @@ Convolution Neural Network(CNN)의 결과 해석은 판단의 근거가 필수�
 
 Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
 
-인지적 관점에서 Interpretable concepts(해석 가능한 컨셉)이란 다음의 세 가지 조건을 만족해야 한다.
-(1) Informative
+인지적 관점에서 Interpretable concepts(해석 가능한 컨셉)이란 다음의 세 가지 조건을 만족해야 한다./
+(1) Informative/
 input data는 basis concept들로 spanned된 vector space상에서 효율적으로 나타내져야하고, essential information이 새로운 representation 공간에서도 보존되어야한다.
-(2) Diversity
+(2) Diversity/
 각 데이터(이미지)는 겹치지 않는 소수의 basis concept들과 관련 있어야하고, 같은 class에 속하는 데이터들은 비슷한 concept들을 공유해야 한다.
-(3) Discriminative
+(3) Discriminative/
 basis soncpet들은 concept space 상에서도 class가 잘 분리되도록 class-aware해야 한다.
 
 데이터의 concept들을 추출하기 위해, 기존 연구들은 auto-encoding이나 prototype learning과 같이 deep neural network의 high-level feature를 이용하는 방식을 제안하였다. U-shaped Beta distribution을 이용하여 concept의 개수를 제한함으로써 이 방식들은 input data를 몇 개의 basis concept들로 나타내어 첫번째 조건을 만족한다. 그러나, 앞어 언급하였듯이 기존 연구들의 basis concept들은 서로 얽혀있어(entangled) 각 개별 concept의 input과 output에 대한 영향을 해석하기 어렵다.
