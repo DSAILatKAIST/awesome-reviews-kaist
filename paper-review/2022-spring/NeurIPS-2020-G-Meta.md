@@ -297,9 +297,10 @@ meta-testing, meta-validation에 쓰일 라벨을 5개씩 할당하고, 나머�
 ---  
 ## **Author Information**  
 
-* Sungwon Kim
+* **김성원 (Sungwon Kim)**
     * [Data Science & Artificial Intelligence Laboratory (DSAIL)](http://dsail.kaist.ac.kr/) at KAIST
     * Graph Neural Network, Meta-Learning, Few-shot Learning
+    * [github](https://github.com/sung-won-kim)
 
 ## **6. Reference & Additional materials**  
 
