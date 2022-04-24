@@ -60,19 +60,19 @@ basis vector사이에 의미가 중복되지 않는다는 것은 같은 class에
 
 ### **Separtion for Class-aware Subsapces**  
 두번째로 조건 (2)를 만족시키기 위한 Loss는 다음과 같습니다.  
-![figure4](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure4.PNG?raw=true) 
+![figure4](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure4.PNG?raw=true)   
 embedding space상에서 class가 구분되기 위해서는 각 class의 subspace가 서로 멀리 위치해 있어야합니다. 즉, Grassmann manifold 상에서 class-aware subspace들의 거리가 최대한 멀어지도록 규제합니다. 각 subspace는 Grasmann manifold상에서 unique한 projection으로 존재하므로, subspace 사이의 거리를 projection mapping을 이용하여 수치화할 수 있습니다. loss 식에서 $$ B^{c} $$는 class c의 orthonormal basis vectors로 이루어진 matrix를 의미하고, 이 matrix의 행렬곱이 class c와 연관된 subspace의 projection mapping입니다. 결국 loss는 서로 다른 class의 projection mapping 사이의 L2 norm distance들의 합을 최소화시키기 위한 loss로 이해할 수 있습니다.
 
 ### **High-level Patches Grouping**   
 마지막으로 조건 (3)을 만족시키기 위한 Loss입니다.
-![figure5](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure5.PNG?raw=true)  
+![figure5](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure5.PNG?raw=true)   
 조건 (3)은 결국 high-level 이미지 패치들이 embedding subspace에도 잘 projection 되어야 한다는 의미입니다. 즉, 이미지 패치들이 subsapce에 embedding 되었을 때 이미지가 속한 ground-truth class의 basis vectors와 근접해야합니다. 이를 위해 논문은 Compactness Loss와 Separation Loss를 정의하고 있습니다.   
 먼저 Compactness Loss의 식을 살펴보면, 이미지 패치와 ground-truth class의 basis vectors사이의 cosine distance(negative cosine similarity)를 최소화하고 있습니다. 이는 결국 이미지 패치와 ground-truth class의 basis vectors사이의 cosine similarity를 크게하는 것과 같습니다.  
 반면, Separation Loss는 이미지 패치가 ground-truth가 아닌 class의 basis vectors과는 멀어지도록 둘 사이의 cosine similarity를 최소화하고 있습니다.  
 이 두 Loss를 hyper-parameter _M_ 을 사용하여 더함으로써 Compactness-Separation Loss를 정의합니다.   
 
 ### **Identification**  
-마지막으로 classifier layer를 optimize하기 위한 Loss로서 Cross Entropy Loss를 이용합니다.  
+마지막으로 classifier layer를 optimize하기 위한 Loss로서 Cross Entropy Loss를 이용합니다.   
 ![figure6](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure6.PNG?raw=true)  
 
 최종적으로, 지금까지 정의된 loss들을 jointly optimize하기 위해 Total Loss for Joint Optimization을 정의합니다. ![figure7](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure7.PNG?raw=true)   
@@ -82,11 +82,15 @@ hyper-parameters를 사용하여 classification loss(cross entropy loss)에 orth
 
 In this section, please write the overall experiment results.  
 At first, write experiment setup that should be composed of contents.  
+다양한 CNN architecture에 대한 TesNet의 넓은 적용성을 입증하기 위해 두 가지의 case study를 진행하였습니다. 그 중 첫번째 case study에 대해서 자세히 살펴보겠습니다.
 
 ### **Experiment setup**  
-* Dataset  
+* Dataset
+Caltecg-USCD Birds-200-2011 dataset을 사용하여 bird species classification 실험을 진행하였습니다. dataset은 200 종(species)의 bird 이미지 5994+5794장으로 이루어졌습니다. 그 중 5994장은 training, 나머지 5794장은 test시 이용하였습니다. 각 bird class마다 30장의 이미지밖에 존재하지 않아, 논문에서는 random rotation, skew, shear, flip 등의 augmentation을 통해 training set의 각 class마다 1200장의 이미지가 존재하도록 데이터를 증강하였습니다.   
 * baseline  
+
 * Evaluation Metric  
+
 
 ### **Result**  
 Then, show the experiment results which demonstrate the proposed method.  
