@@ -15,7 +15,7 @@ Convolution Neural Network(CNN)의 결과 해석은 판단의 정확한 근거�
 
 ## **2. Motivation**  
 
-그렇다면 Interpretable Concepts (해석이 용이한 컨셉)이란 무엇일까요? 인지적 관점에서 Interpretable Concepts는 다음의 세 가지 조건을 만족해야 합니다.
+그렇다면 <code>Interpretable Concepts</code> (해석이 용이한 컨셉)이란 무엇일까요? 인지적 관점에서 Interpretable Concepts는 다음의 세 가지 조건을 만족해야 합니다.
 
 <code>(1) Informative</code>   
 Input data는 basis concept들로 spanned된 vector space상에서 효율적으로 나타내져야하며, input의 essential information(중요한 정보)가 새로운 representation space에서도 보존되어야합니다.   
