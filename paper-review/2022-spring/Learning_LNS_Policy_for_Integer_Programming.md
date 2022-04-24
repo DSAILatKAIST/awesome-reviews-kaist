@@ -25,7 +25,7 @@ LNS Framework은 MDP Formulation, large scale action space에 대한 factorized 
 
 앞서 설명드렸던 것 처럼 이 논문에서는 일반적인 IP문제에 LNS를 적용하게 됩니다. 각 스텝마다 destroy하여 reoptimized할 변수들의 set을 선택하는 정책을 학습하기 위해  discrete한 sequential decision 문제를 MDP로 formulation 해야합니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4a1440b9-35d1-4c5f-8434-814aecc6b430/Untitled.png)
+<img width="140" src=".gitbook/2022-spring-assets/jiwooson1/image.png">  
 
 **State** : IP 문제를 위 그림과 같이 formulation하였을 때 variable(x), matrix(A), constraint(C)와 같은 변하지 않는 정보들(static features)과 현재 해($x_t$), 현재까지 가장 좋았던 해($x^*$)와 같은 변하는 정보들(dynamic features)에 대해 반영하고 있습니다.
 
@@ -58,7 +58,7 @@ Variable 수가 linear하게 늘어날 때 variable을 선택하는 action space
 
 Policy network는 GNN 기반으로 모든 variable들이 같은 parameter들을 공유하고 있습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ab3b0f9c-1c27-4ec8-8eb7-d053452d5a52/Untitled.png)
+<img width="140" src=".gitbook/2022-spring-assets/jiwooson1/image1.png"> 
 
 위 그림의 예시를 보면, bipartite graph로 state를 나타낸 것을 볼 수 있습니다.
 
@@ -104,7 +104,7 @@ $\pi(a_t|s_t) = \prod_{i=1}^n \pi^i(a_t^i|s_t)$를 이용하여 다음과 같이
 
 ## Dataset
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5046a5ac-e6bc-4a03-bcf6-594d2346571b/Untitled.png)
+<img width="140" src=".gitbook/2022-spring-assets/jiwooson1/image2.png"> 
 
 실험은 4개의 NP-Hard문제에 대한 dataset을 생성하여 진행되었습니다. 위의 표를 보면 각 생성한 dataset들의 Training에 해당하는 부분의 변수와 제약식의 수, 원래 training한 문제보다 더 큰 사이즈에 적용하기 위한 dataset들로 구성되어있습니다.
 
@@ -140,11 +140,12 @@ $\pi(a_t|s_t) = \prod_{i=1}^n \pi^i(a_t^i|s_t)$를 이용하여 다음과 같이
 
 ## Result
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/973953ac-6434-4c1d-8452-30992499882e/Untitled.png)
+<img width="140" src=".gitbook/2022-spring-assets/jiwooson1/image3.png"> 
 
 위의 표는 각 데이터셋들에 대한 퍼포먼스를 비교한것이고 각각 50번의 테스트를 통한 objective value값의 평균과 분산을 나타낸 것입니다. $SCIP^*, SCIP^{**}$는 각각 500초 1000초 동안 돌렸을때를 의미합니다. 나머지 방법들은 200초동안의 시간제한을 두고 평가를 하였는데, 본 논문의 방법이 모든 방법론들에 비해 좋은 성능을 보이는 것을 확인할 수 있습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f698566e-c7f6-4303-85b7-9e59b5a9f6e8/Untitled.png)
+
+<img width="140" src=".gitbook/2022-spring-assets/jiwooson1/image4.png"> 
 
 위 테이블 표는 각각 원래 training했던 사이즈보다 2배, 4배의 문제를 푼 것의 퍼포먼스를 보여줍니다. 첫번째 행($SC_2, MIS_2, CA_2, MC_2$)이 2배사이즈의 문제 두번째 행($SC_4, MIS_4, CA_4, MC_4$)이 4배 사이즈의 문제에 대한 각 모델의 퍼포먼스를 보여줍니다. 문제의 사이즈가 커질수록 본 논문에서 제시한 방법론의 퍼포먼스가 좋으며 전체사이즈의 문제를 계속해서 1000초간 푼 $SCIP^{**}$보다 성능이 좋은 것을 확인할 수 있습니다.
 
