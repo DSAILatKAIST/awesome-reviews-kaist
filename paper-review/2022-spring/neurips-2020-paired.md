@@ -29,7 +29,7 @@ Problem Definition에서 소개한 문제를 해결할 수 있는 방법론으�
 
 먼저 UED를 'underspecified environment'를 이용해 'fully specified environments'에 부합하는 distribution을 생성하는 문제로 정의했다. 이를 위해 fully specified environments와 underspecified environment를 각각 POMDP(Partially Observable Markov Dscision Process) & UPOMDP(Underspcified Partially Observable Markov Dscision Process)로 모델링 했다.
 
-POMDP는 tuple $$\lang A,O,S,T,I,R,\gamma \rang$$ 로 정의한다: $A$는 set of actions, $O$는 set of obervations, $S$는 set of states, $T:S \times A \to \Delta (S)$ 는 transition function, $I:S\to O$ 는 observation function, $R$은 set of rewards, $\gamma$는 discount factor.
+POMDP는 tuple $\lang A,O,S,T,I,R,\gamma \rang$ 로 정의한다: $A$는 set of actions, $O$는 set of obervations, $S$는 set of states, $T:S \times A \to \Delta (S)$ 는 transition function, $I:S\to O$ 는 observation function, $R$은 set of rewards, $\gamma$는 discount factor.
 
 UPOMDP는 tuple $M=\lang A,O,\Theta,S^M,T^M,I^M,R^M,\gamma \rang$ 로 정의한다: 대부분의 정의는 상술한 POMDP와 동일하나, 모델링에 free parameter of environment를 의미하는 집합 $\Theta$가 추가된 점이 다르다. Free parameter of environment $\Theta$는 학습의 매 타임스텝마다 정해질 수 있고, $T^M:S\times A\times\Theta\to\Delta(S)$ 와 같이 transition function을 구하는데에 사용된다. 또한 environment parameter $\overrightarrow{\theta}$ 의 trajectory를 통해 environment setting을 표현할 수 있고, 이렇게 구한 setting of environment $\overrightarrow{\theta}$를 underspecified environment $M$에 대입해서 $M_{\overrightarrow{\theta}}$를 얻게 된다.
 
