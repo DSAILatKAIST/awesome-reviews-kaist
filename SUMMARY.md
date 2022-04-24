@@ -10,7 +10,7 @@
     * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
     * [Latent ODEs for Irregularly-Sampled Time Series](paper-review/2022-spring/NeurIPS-2020-Latent-ODEs-for-Irregularly-Sampled-Time-Series.md)
     * [G-Meta](paper-review/2022-spring/G-Meta.md)
-    * [TesNet](paper-review/2022-spring/ICCV-2021-Interpretable Image Recognition by Constructing Transparent Embedding Space.md)
+    * [TesNet](paper-review/2022-spring/ICCV-2021-Interpretable-Image-Recognition-by-Constructing-Transparent-Embedding-Space.md)
     
 ## How to contribute  
 
