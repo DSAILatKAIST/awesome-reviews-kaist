@@ -5,7 +5,7 @@
 ## Paper Review  
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md) 
-    * [Learning_Large_Neighborhood_Search_Policy_for_Integer_Programming](paper-review/2022-spring/Learning_LNS_Policy_for_IP.md)
+    * [Learning_Large_Neighborhood_Search_Policy_for_Integer_Programming](NeurIPS-2021-Learning-Large-Neighborhood-Search-Policy-for-Integer-Programming.md.md)
 
 
 ## How to contribute  
