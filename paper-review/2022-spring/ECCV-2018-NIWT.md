@@ -39,15 +39,15 @@ NIWT는 크게 3가지 단계로 구성된다.
 
 ### 3.1 Preliminaries: Generalized Zero-Shot Learning
 
-Generalized Zero-Shot Learning의 목표는 $f : ![](https://latex.codecogs.com/gif.latex?f:\mathcal{X}\rightarrow\mathcal{S}\cup\mathcal{U}) 를 학습하는 것이다. 
+Generalized Zero-Shot Learning의 목표는 ![](https://latex.codecogs.com/gif.latex?f:\mathcal{X}\rightarrow\mathcal{S}\cup\mathcal{U}) 를 학습하는 것이다. 
 
-dataset : $\mathcal{D} = \{(x_i, y_i)\}_i^N$
+dataset : ![](https://latex.codecogs.com/gif.latex?\mathcal{D}=\{(x_i,y_i)\}_i^N)
 
-seen classes : $\mathcal{S} = \{1,...,s\}$
+seen classes : ![](https://latex.codecogs.com/gif.latex?\mathcal{S}=\{1,...,s\})
 
-unseen classes : $\mathcal{U} = \{s+1,...,s+u\}$
+unseen classes : ![](https://latex.codecogs.com/gif.latex?\mathcal{U}=\{s+1,...,s+u\})
 
-domain knowledges : $\mathcal{K} = \{k_1,...,k_{s+u}\}$
+domain knowledges : ![](https://latex.codecogs.com/gif.latex?\mathcal{K}=\{k_1,...,k_{s+u}\)
 
 ### 3.2 Class-dependent Neuron Importance
 
@@ -68,9 +68,9 @@ Gradient-based Localization. ICCV (2017) 참고*
 
 ### 3.3 Mapping Domain Knowledge to Neurons
 
- $\mathrm{NET}_\mathcal{S}(.)$의 한 layer을 L이라 하고 seen classes instances을  $(x_i, y_i)\in\mathcal{D_s}$이라 할때, $a_c=\{a^n_c|n\in{L}\}$는 L layer로부터 계산된 class c에 대한 neuron importance vectors이다.
+ ![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_\mathcal{S}(.))의 한 layer을 L이라 하고 seen classes instances을  ![](https://latex.codecogs.com/gif.latex?(x_i,y_i)\in\mathcal{D_s})이라 할때, ![](https://latex.codecogs.com/gif.latex?a_c=\{a^n_c|n\in{L}\})는 L layer로부터 계산된 class c에 대한 neuron importance vectors이다.
 
-Domain knowledge와 neuron importance vector를 linear mapping(transformation)하기 위해 먼저, importance vectors $a_{y_i}$를 계산한 후 해당 class와 관련있는 domain knowledge($k_{y_i}$)를 매칭한다($a_{y_i},k_{y_i}$).  $W_{\mathcal{K}\rightarrow a}$를 추정하기 위해 cosine distance를 이용하여 loss를 정의하고 gradient를 이용하여 이를 minimize한다. 
+Domain knowledge와 neuron importance vector를 linear mapping(transformation)하기 위해 먼저, importance vectors ![](https://latex.codecogs.com/gif.latex?a_{y_i})를 계산한 후 해당 class와 관련있는 domain knowledge(![](https://latex.codecogs.com/gif.latex?k_{y_i})를 매칭한다(![](https://latex.codecogs.com/gif.latex?a_{y_i},k_{y_i}).  ![](https://latex.codecogs.com/gif.latex?W_{\mathcal{K}\rightarrow a})를 추정하기 위해 cosine distance를 이용하여 loss를 정의하고 gradient를 이용하여 이를 minimize한다. 
 
 ![fig2.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig2.png?raw=true)
 
@@ -79,13 +79,13 @@ Domain knowledge와 neuron importance vector를 linear mapping(transformation)�
 
 unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predicted importance를 사용한다.
 
-1. Seen class를 기반으로 학습한 network $\mathrm{NET}_\mathcal{S}$의 output space에 unseen class를 포함시키기 위해 마지막 fully connected layer에 unseen classes weight vectors $\mathrm{w}^1,...,\mathrm{w}^u$을 추가하여 output scores를 $\{o_c|c\in\mathcal{U}\}$로 확장시킨다($\mathrm{NET}_{\mathcal{S}\cup\mathcal{U}}$). 
+1. Seen class를 기반으로 학습한 network ![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_\mathcal{S})의 output space에 unseen class를 포함시키기 위해 마지막 fully connected layer에 unseen classes weight vectors ![](https://latex.codecogs.com/gif.latex?\mathrm{w}^1,...,\mathrm{w}^)을 추가하여 output scores를 ![](https://latex.codecogs.com/gif.latex?\{o_c|c\in\mathcal{U}\})로 확장시킨다(![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_{\mathcal{S}\cup\mathcal{U}})). 
     
     이때, unseen classes의 초기 weight vector은 multivariate normal distribution으로부터 랜덤하게 샘플링 한 것이며, 이로부터 도출된 output score은 uninformative한 상태이다.
     
-2. 3.3에서 도출한 $W_{\mathcal{K}\rightarrow a}$과 unseen class domain knowledge $\mathcal{K}_\mathcal{U}$을 바탕으로 unseen class importance $A_\mathcal{U} = \{a_1,...,a_\mathcal{u}\}$를 예측한다. $a_c = W_{\mathcal{K}\rightarrow a}k_c$(unseen class c). 
-3. $\mathrm{NET}_{\mathcal{S}\cup\mathcal{U}}$으로 부터 unseen class c에 대한 importance vector을 계산하고 ($\hat{a}^c$)  weight parameter $w^c$ 를 gradient descent를 통해 optimize한다. (predicted importance vector($a_c$), observed importance vector($\hat{a}^c$) 사이의 cosine distance를 minimize)
-4. Cosine distance는 scale을 고려하지 않으며 regularization가 없으면 seen class weight나 unseen class weight 한쪽으로의 bias을 초래할 수 있다. 이러한 문제점을 해결하기 위해 unseen weight를 seen weight의 평균($\bar{\mathrm{w}}_\mathcal{S}$)과 유사한 scale로 학습할 수 있도록 하는 L2 regualization term을 추가했다($\Lambda$는 regulization의 정도를 control).
+2. 3.3에서 도출한 ![](https://latex.codecogs.com/gif.latex?W_{\mathcal{K}\rightarrow a})과 unseen class domain knowledge ![](https://latex.codecogs.com/gif.latex?\mathcal{K}_\mathcal{U})을 바탕으로 unseen class importance ![](https://latex.codecogs.com/gif.latex?A_\mathcal{U} = \{a_1,...,a_\mathcal{u}\})를 예측한다. ![](https://latex.codecogs.com/gif.latex?a_c = W_{\mathcal{K}\rightarrow a}k_c)(unseen class c). 
+3. ![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_{\mathcal{S}\cup\mathcal{U}})으로 부터 unseen class c에 대한 importance vector을 계산하고 (![](https://latex.codecogs.com/gif.latex?\hat{a}^c))  weight parameter ![](https://latex.codecogs.com/gif.latex?w^c)를 gradient descent를 통해 optimize한다. (predicted importance vector(![](https://latex.codecogs.com/gif.latex?a_c)), observed importance vector(![](https://latex.codecogs.com/gif.latex?\hat{a}^c)) 사이의 cosine distance를 minimize)
+4. Cosine distance는 scale을 고려하지 않으며 regularization가 없으면 seen class weight나 unseen class weight 한쪽으로의 bias을 초래할 수 있다. 이러한 문제점을 해결하기 위해 unseen weight를 seen weight의 평균(![](https://latex.codecogs.com/gif.latex?\bar{\mathrm{w}}_\mathcal{S}))과 유사한 scale로 학습할 수 있도록 하는 L2 regualization term을 추가했다(![](https://latex.codecogs.com/gif.latex?\Lambda)는 regulization의 정도를 control).
 
 ![fig3.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig3.png?raw=true)
 
@@ -112,9 +112,9 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
     
     Generalized zero-shot learning (GZSL)에 대한 성능평가를 진행했으며 seen class와 unseen class 모두에 대한 accuracy를 도출했다. 
     
-    - Unseen accuracy: $\mathrm{Acc}_\mathcal{U}$
-    - Seen accuracy: $\mathrm{Acc}_\mathcal{S}$
-    - Harmonic mean between both: $\mathrm{H}$
+    - Unseen accuracy: ![](https://latex.codecogs.com/gif.latex?\mathrm{Acc}_\mathcal{U})
+    - Seen accuracy: ![](https://latex.codecogs.com/gif.latex?\mathrm{Acc}_\mathcal{S})
+    - Harmonic mean between both: ![](https://latex.codecogs.com/gif.latex?\mathrm{H})
 
 - Model
     
@@ -130,7 +130,7 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
     
     - Hyper parameter
         
-        $\Lambda$와 learning rate는 $1e^{-5}$와$1e^{-2}$사이에서 설정했고 batch size는 $\mathrm{H}$ 기반 grid search({16,32,64})를 진행했다.
+        ![](https://latex.codecogs.com/gif.latex?\Lambda)와 learning rate는 ![](https://latex.codecogs.com/gif.latex?1e^{-5})와 ![](https://latex.codecogs.com/gif.latex?1e^{-2})사이에서 설정했고 batch size는 ![](https://latex.codecogs.com/gif.latex?\mathrm{H})기반 grid search({16,32,64})를 진행했다.
         
     
 - Baselines
@@ -158,7 +158,7 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
     
 2. **Seen class finetuning(FT)방식이 harmonic mean $\mathrm{H}$의 개선에 기여한다.**
     
-    두 데이터셋 모두에서 seen class image에 대해 finetuning된 VGG network 기반의 NIWT가 높은 $\mathrm{H}$을 보였다 (36.1%→48.1% on AWA2 and 26.7%→37.0% on CUB H respectively). ResNet 역시 유사한 양상을 보였다(27.5%→40.5 %H on AWA2 and 17.3%→27.7% H on CUB). 이러한 경향은 다른 method에서는 볼 수 없다는 점에서 주목할만 하다.
+    두 데이터셋 모두에서 seen class image에 대해 finetuning된 VGG network 기반의 NIWT가 높은 ![](https://latex.codecogs.com/gif.latex?\mathrm{H})을 보였다 (36.1%→48.1% on AWA2 and 26.7%→37.0% on CUB H respectively). ResNet 역시 유사한 양상을 보였다(27.5%→40.5 %H on AWA2 and 17.3%→27.7% H on CUB). 이러한 경향은 다른 method에서는 볼 수 없다는 점에서 주목할만 하다.
     
 3. **NIWT는 attributes와 free-form language 모두에서 효과적이다.**
     
@@ -171,11 +171,11 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
 
 - Regularization Coefficient $\Lambda$의 영향
     
-    Regularizer term의 영향을 실험하기 위해 0에서 $1e^{-2}$의 $\Lambda$ 범위에서 AWA2 데이터셋을 기반으로 seen class accurancy와 unseen class accuracy를 도출했다.
+    Regularizer term의 영향을 실험하기 위해 0에서 ![](https://latex.codecogs.com/gif.latex?\1e^{-2})의 ![](https://latex.codecogs.com/gif.latex?\Lambda) 범위에서 AWA2 데이터셋을 기반으로 seen class accurancy와 unseen class accuracy를 도출했다.
     
-    Regulation이 없을 경우 ($\Lambda$=0) unseen accuracy는 약 33.9%이다. $\Lambda$의 값이 증가할수록 unseen accuracy는 증가하며 $1e^-5$일때 가장 최고치의 accuracy(41.3%)를 보인다. 이는 Regulation이 없을 경우보다 있는 것이 성능 개선에 도움이 된다는 것을 보여준다.
+    Regulation이 없을 경우 (![](https://latex.codecogs.com/gif.latex?\Lambda)=0) unseen accuracy는 약 33.9%이다. ![](https://latex.codecogs.com/gif.latex?\Lambda)의 값이 증가할수록 unseen accuracy는 증가하며 ![](https://latex.codecogs.com/gif.latex?\1e^{-5})일때 가장 최고치의 accuracy(41.3%)를 보인다. 이는 Regulation이 없을 경우보다 있는 것이 성능 개선에 도움이 된다는 것을 보여준다.
     
-    이러한 unseen class accuracy는 seen class accuracy와 같은 interval [$1e^-5, 1e^-4$]에서 약 3% 정도의 trade-off가 존재했다. 또한 $\Lambda$>$1e^-4$의 경우 regulation이 매우 크기 때문에 NIWT가 unseen class에 대한 학습에 어려움이 있었다고 해석할 수 있다.
+    이러한 unseen class accuracy는 seen class accuracy와 같은 interval [![](https://latex.codecogs.com/gif.latex?\1e^{-5}), ![](https://latex.codecogs.com/gif.latex?\1e^{-4})]에서 약 3% 정도의 trade-off가 존재했다. 또한 $\Lambda$>$1e^-4$의 경우 regulation이 매우 크기 때문에 NIWT가 unseen class에 대한 학습에 어려움이 있었다고 해석할 수 있다.
     
 
 ![fig5.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig5.png?raw=true)
@@ -190,7 +190,7 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
         
     - Textual Explanation
         
-        3.3에서 external domain knowledge(attribute or caption)과 neuron과의 mapping($W_{\mathcal{K}\rightarrow a}$)을 학습했다. 이와 유사하게 neuron importance에서 attribute or caption과의 inverse mapping을 통해 모델의 decision에 있어서 text explannation을 제공할 수 있다 (inverse mapping($W_{a\rightarrow\mathcal{K}}$)에서  $a_c$ (unseen class neuron importance)가 주어졌을때 가장 높은 score의 $k_c$(attribute) 도출).
+        3.3에서 external domain knowledge(attribute or caption)과 neuron과의 mapping(![](https://latex.codecogs.com/gif.latex?W_{\mathcal{K}\rightarrow a}))을 학습했다. 이와 유사하게 neuron importance에서 attribute or caption과의 inverse mapping을 통해 모델의 decision에 있어서 text explannation을 제공할 수 있다 (inverse mapping(![](https://latex.codecogs.com/gif.latex?W_{a\rightarrow\mathcal{K}}))에서  ![](https://latex.codecogs.com/gif.latex?a_c) (unseen class neuron importance)가 주어졌을때 가장 높은 score의 ![](https://latex.codecogs.com/gif.latex?k_c)(attribute) 도출).
         
         ![fig6.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig6.png?raw=true)
 
