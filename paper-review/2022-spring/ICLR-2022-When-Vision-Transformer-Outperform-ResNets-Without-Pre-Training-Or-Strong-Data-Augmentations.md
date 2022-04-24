@@ -109,15 +109,14 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 
 <div align="center">
 ![](https://latex.codecogs.com/gif.latex?(3)H_k=(a_{k-1}a_{k-1}^T)\otimes\mathcal{H}_k,\space\mathcal{H}_k =B_{k}W^{T}_{k+1}\mathcal{H}_{k+1}W_{k+1}B_{k}+D_{k})
-
 ![](https://latex.codecogs.com/gif.latex?(4)B_k=\mathrm{diag}(f'_k(h_k)),\space{}D_k=\mathrm{diag}(f''_k(h_k)\frac{\partial{L}}{\partial{a_k}}))
 </div>
 
 
-
-    ![](https://latex.codecogs.com/gif.latex?f(\cdot)): activation , GELU
+<div>
+![](https://latex.codecogs.com/gif.latex?f(\cdot)): activation , GELU
 </br>
-    ![](https://latex.codecogs.com/gif.latex?W_k) : k번째 layer의 params
+![](https://latex.codecogs.com/gif.latex?W_k) : k번째 layer의 params
 </br>
 ![](https://latex.codecogs.com/gif.latex?h_k) : ![](https://latex.codecogs.com/gif.latex?W_k a_{k-1}), activation을 거치기 전의 k번째 layer의 output
 </br>
@@ -128,6 +127,7 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 ![](https://latex.codecogs.com/gif.latex?\mathcal H_k) : layer k의 activation을 거치기 전의 Hessian 행렬
 </br>
 ![](https://latex.codecogs.com/gif.latex?H_k) : ![](https://latex.codecogs.com/gif.latex?W_k)의 Hessian 행렬
+</div>
 
 
 - Table 3을 보면 앞단의 레이어가 더 높은 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})를 가짐을 알 수 있다. 이는 (3) 수식에서 분석가능한데, Hessian norm은 역전파에 의하여 뒤에서 앞으로 누적이 되기 때문이다
