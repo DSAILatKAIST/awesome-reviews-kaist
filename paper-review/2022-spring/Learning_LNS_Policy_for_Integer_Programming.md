@@ -24,7 +24,7 @@ LNS Framework은 MDP Formulation, large scale action space에 대한 factorized 
 ## MDP formulation
 
 앞서 설명드렸던 것 처럼 이 논문에서는 일반적인 IP문제에 LNS를 적용하게 됩니다. 각 스텝마다 destroy하여 reoptimized할 변수들의 set을 선택하는 정책을 학습하기 위해  discrete한 sequential decision 문제를 MDP로 formulation 해야합니다.
-
+<a href='https://ifh.cc/v-9yqN8w' target='_blank'><img src='https://ifh.cc/g/9yqN8w.png' border='0'></a>
 <img width="140" src=".gitbook/2022-spring-assets/jiwooson1/image.png">  
 
 **State** : IP 문제를 위 그림과 같이 formulation하였을 때 variable(x), matrix(A), constraint(C)와 같은 변하지 않는 정보들(static features)과 현재 해($x_t$), 현재까지 가장 좋았던 해($x^*$)와 같은 변하는 정보들(dynamic features)에 대해 반영하고 있습니다.
