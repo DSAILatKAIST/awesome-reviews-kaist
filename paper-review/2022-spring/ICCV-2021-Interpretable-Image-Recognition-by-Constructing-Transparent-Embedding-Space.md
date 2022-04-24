@@ -98,7 +98,7 @@ Loss 식에서 B^{c}는 class c의 orthonormal basis vectors로 이루어진 mat
 hyper-parameters를 사용하여 classification loss(cross entropy loss)에 orthonormality loss, subspace separation loss, compactness-separation loss를 적절한 비율로 더해줍니다. 이 total loss와 함께 convolutional layer, basis vectors가 동시에 최적화되며 concept embedding subspace가 학습됩니다.
 
 ### **Concept-based classification**   
-embedding space가 학습되고 나면, convolutional layers와 basis vectors의 parameter를 고정시킨 후, 마지막 단의 classifier를 학습시키게 됩니다. classifier는 concept-class weight _G_ 를 최적화함으로써 학습이 되는데, weight _G_ _G(c,j)_ 의 값이 j번째 unit이 class c에 속하는 경우를 제외하고 모두 0인 sparse matrix입니다. 앞서 정의한 Identification Loss에 weight _G_ 를 sparse하게 유지하게 하는 규제를 더하여 Loss를 정의하고, 이 Loss를 최소화하도록 classifier가 학습됩니다.   
+embedding space가 학습되고 나면, convolutional layers와 basis vectors의 parameter를 고정시킨 후, 마지막 단의 classifier를 학습시키게 됩니다. classifier는 concept-class weight _G_ 를 최적화함으로써 학습이 되는데, weight _G_ 는 _G(c,j)_ 의 값이 j번째 unit이 class c에 속하는 경우를 제외하고 모두 0인 sparse matrix입니다. 앞서 정의한 Identification Loss에 weight _G_ 를 sparse하게 유지하게 하는 규제를 더하여 Loss를 정의하고, 이 Loss를 최소화하도록 classifier가 학습됩니다.   
 ![figure10](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure10.PNG?raw=true)  
 
 
