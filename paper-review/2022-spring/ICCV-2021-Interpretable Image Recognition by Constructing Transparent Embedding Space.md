@@ -61,10 +61,12 @@ basis vector사이에 의미가 중복되지 않는다는 것은 같은 class에
 ### **Separtion for Class-aware Subsapces**  
 두번째로 조건 (2)를 만족시키기 위한 Loss는 다음과 같습니다.  
 ![figure4](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure4.PNG?raw=true) 
-embedding space상에서 class가 구분되기 위해서는 각 class의 subspace가 서로 멀리 위치해 있어야합니다. 즉, Grassmann manifold 상에서 class-aware subspace들의 거리가 최대한 멀도록 규제합니다. 
+embedding space상에서 class가 구분되기 위해서는 각 class의 subspace가 서로 멀리 위치해 있어야합니다. 즉, Grassmann manifold 상에서 class-aware subspace들의 거리가 최대한 멀어지도록 규제합니다. 각 subspace는 Grasmann manifold상에서 unique한 projection으로 존재하므로, subspace 사이의 거리를 projection mapping을 이용하여 수치화할 수 있습니다. loss 식에서 $$ B^{c} $$는 class c의 orthonormal basis vectors로 이루어진 matrix를 의미하고, 이 matrix의 행렬곱이 class c와 연관된 subspace의 projection mapping입니다. 결국 loss는 서로 다른 class의 projection mapping 사이의 L2 norm distance들의 합을 최소화시키기 위한 loss로 이해할 수 있습니다.
 
+### **High-level Patches Grouping**   
+마지막으로 조건 (3)을 만족시키기 위한 Loss입니다.
+![figure5](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure5.PNG?raw=true)   
 
-### **High-level Patches Grouping**
 
 ### **Identification**
 
