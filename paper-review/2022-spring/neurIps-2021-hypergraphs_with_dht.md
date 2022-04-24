@@ -149,7 +149,7 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
     
 - DHT 도식화
   
-    ![](../../.gitbook/2022-spring-assets/WYE/DHT image.png)
+    ![](../../.gitbook/2022-spring-assets/WYE/DHT.png)
 
 ## 4. Experiment
 
