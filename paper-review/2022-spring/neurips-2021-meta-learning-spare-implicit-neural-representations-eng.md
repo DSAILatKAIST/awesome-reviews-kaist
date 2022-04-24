@@ -28,9 +28,9 @@ The authors' solution to this problem is called Meta-SparseINR. This new framewo
 ## **3. Method**  
 
 To find a well-initialized sparse subnetwork structure, the authors developed an algorithm called Meta-SparseINR based on the alternation of meta-learning with pruning. For starters, the weights are initialized according to the standard scheme for INR. Then, the algorithm can be described in three steps : 
-* 1) Meta-Learning of the signals using Model-Agnostic Meta-Learning (MAML) : MAML is a kind of few-shot meta-learning that provides a method for fast adaptation of neural networks. It can be used with any model performing gradient descent. MAML relies on the idea that some internal features are more transferrable than others. As such, the model can generalize well with only a few gradient descent steps and few training data. In order to obtain a sparse subnetwork, the authors are adding to the MAML a binary mask performing an element-wise product with the parameters.
-* 2) Magnitude-based pruning : the algorithm first computes the magnitude score of the learned INR and proceeds to remove a percentage of the connections. Connections with a magnitude below the common threshold for every layer will be cut off instead of pruning every individual signal. 
-* 3) Retrain and repeat : the algorithm keeps going until the sparsity degree is attained. 
+1) Meta-Learning of the signals using Model-Agnostic Meta-Learning (MAML) : MAML is a kind of few-shot meta-learning that provides a method for fast adaptation of neural networks. It can be used with any model performing gradient descent. MAML relies on the idea that some internal features are more transferrable than others. As such, the model can generalize well with only a few gradient descent steps and few training data. In order to obtain a sparse subnetwork, the authors are adding to the MAML a binary mask performing an element-wise product with the parameters.
+2) Magnitude-based pruning : the algorithm first computes the magnitude score of the learned INR and proceeds to remove a percentage of the connections. Connections with a magnitude below the common threshold for every layer will be cut off instead of pruning every individual signal. 
+3) Retrain and repeat : the algorithm keeps going until the sparsity degree is attained. 
 
 ![Figure 2: Meta-SparseINR schema](../../.gitbook/2022-spring-assets/EmelineBagoris1/meta-sparseINR-concept-2.png)
 
