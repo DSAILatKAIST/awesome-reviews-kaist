@@ -10,7 +10,7 @@
     * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
     * [Latent ODEs for Irregularly-Sampled Time Series](paper-review/2022-spring/NeurIPS-2020-Latent-ODEs-for-Irregularly-Sampled-Time-Series.md)
     * [G-Meta](paper-review/2022-spring/G-Meta.md)
-    * [DEEP NEURAL NETWORKS AS GAUSSIAN PROCESS](paper-review/2022-spring/ISLR-2018-DEEP NEURAL NETWORKS AS GAUSSIAN PROCESSES.md)
+    * [DEEP NEURAL NETWORKS AS GAUSSIAN PROCESSES](paper-review/2022-spring/NeurIPS-2020-Latent-ODEs-for-Irregularly-Sampled-Time-Series.md)
 ## How to contribute  
 
 * [How to contribute?](how-to-contribute.md)  
