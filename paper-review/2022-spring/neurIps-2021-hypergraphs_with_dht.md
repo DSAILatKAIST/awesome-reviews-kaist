@@ -74,7 +74,7 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
     
     - 전통적인 그래프에서 edge가 2개의 node만을 연결 할 수 있는 것과 달리, hypergraph에서는 하나의 edge가 random개의 노드와 연결할 수 있음
       
-        ![Hyperedge 표현](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/hyperedge.png)
+        ![Hyperedge 표현](.gitbook/2022-spring-assets/WYE/hyperedge.png)
         
     - 따라서, 이런 high-order 관계를 표현하기 위해 incidence matrix ![](https://latex.codecogs.com/svg.image?M&space;\in&space;{0,1}^{n\times&space;m})  사용
         - incidence matrix : n개의 nodes와 m개의 hyperedges 사이의 관계를 표현하는 행렬
@@ -149,7 +149,7 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
     
 - DHT 도식화
   
-    ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/DHT image.png)
+    ![Untitled](.gitbook/2022-spring-assets/WYE/DHT image.png)
     
 
 
@@ -181,22 +181,22 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
         - EHGNN+HyperCluster와 baseline 비교
     - Edge reconstruction results
       
-        ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/edge_represntation_result1.png)
+        ![Untitled](.gitbook/2022-spring-assets/WYE/edge_represntation_result1.png)
         
-        ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/edge_represntation_result2.png)
+        ![Untitled](.gitbook/2022-spring-assets/WYE/edge_represntation_result2.png)
         
         - fig3을 보면, 본 논문에서 제시한 모델이 baseline에 비해 좋은 성능을 보임을 알 수 있음
         - fig4를 보면, 본 논문에서 제시한 모델이 원본 two-moon graph와 가장 비슷하게 edge 색깔이 구분되었음
             - 이는 논문에서 제시한 방법이 의미있는 edge cluster를 구분할 수 있다는 것을 보여줌
     - Graph reconstruction results
       
-        ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/graph_reconstruction_result.png)
+        ![Untitled](.gitbook/2022-spring-assets/WYE/graph_reconstruction_result.png)
         
         - 마찬가지로 논문에서 제시한 모델이 baseline에 비해 높은 성능을 보임
         - 이는 node representation 뿐 아니라 정확한 edge representation을 학습하는 것이 graph representation 성공의 중요한 요소임을 시사함
     - Qualitative analysis
       
-        ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/QA.png)
+        ![Untitled](.gitbook/2022-spring-assets/WYE/QA.png)
         
         - 제시한 모델이 baseline(b)에 비해 원래의 graph를 더 정확하게 재구성함을 보임
     - Graph compression
@@ -204,7 +204,7 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
         - 따라서 모델을 Erdos-Renyi random 그래프에 적용
             - Erdos-Renyi random 그래프는 node가 $10^3$개로 고정되어 있고 edge는 $10^3$~ $10^4$개로 랜덤
               
-                ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/graph_compression.png)
+                ![Untitled](.gitbook/2022-spring-assets/WYE/graph_compression.png)
                 
             - edge가 많아질 수록, 즉, 그래프의 사이즈가 커질 수록 baseline은 compact하게 압축하지 못하지만, 본 논문에서 제시한 모델은 compact하게 압축함을 보임
 2. Graph generation
@@ -227,12 +227,12 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
             - success rate는 모든 특성이 충족된 비율을 의미
     - MolGAN results
       
-        ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/MolGAN_result.png)
+        ![Untitled](.gitbook/2022-spring-assets/WYE/MolGAN_result.png)
         
         - 본 논문에서 제시한 모델이 baseline 대비 stable하며 뛰어난 성능을 보임
     - MARS results
       
-        ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/MARS_result.png)
+        ![Untitled](.gitbook/2022-spring-assets/WYE/MARS_result.png)
         
         - 본 논문에서 제시한 모델이 모든 evaluation metric에서 baseline보다 높은 성능을 보임
         - 여기서, ![](https://latex.codecogs.com/svg.image?GSK3\beta) score가 중요한데, 이는 edge를 정확하게 학습하는 것이 target protein과 interact하는, 더 **효과적인 molecules을 생성**할 수 있다는 것을 시사
@@ -258,7 +258,7 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
         - 모든 모델에 대해,  node-level message-passing 레이어로 GCN을 사용
     - Classification results
       
-        ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/Classification_result.png)
+        ![Untitled](.gitbook/2022-spring-assets/WYE/Classification_result.png)
         
         - 본 논문에서 제시한 모델이 baseline에 비해 높은 성능을 보임
         - HyperDrop은 아무 노드도 제거하지 않기 때문에, 다른 node pooling method와 결합하여 사용할 수 있음
@@ -266,13 +266,13 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
             - 이는 그래프 분류에 있어 node와 edge를 정확하게 학습하는 것이 중요하다는 것을 시사
     - Ablation study
       
-        ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/Ablation_study.png)
+        ![Untitled](.gitbook/2022-spring-assets/WYE/Ablation_study.png)
         
         - node 피처만 사용하는 경우(w/o EHGNN) 보다 edge representation도 같이 학습할 때 성능이 훨씬 향상됨을 확인
     - Over-smoothing with deep GNNs
         - 여기서는, 본 논문이 제시한 모델이 over-smoothing 문제를 약화시킨다는 것을 증명하고자 함
           
-            ![Untitled](.gitbook/2022-spring-assets/Edge Representation Learning with Hypergraphs/over_smoothing_GNN.png)
+            ![Untitled](.gitbook/2022-spring-assets/WYE/over_smoothing_GNN.png)
             
         - 본 논문에서 제시한 모델이 baseline에 비해 안정된 높은 성능을 보임
         - 또한 over-smoothing을 약화시키는 방법 중 하나인 batch normalization과도 비교했을 때 높은 성능을 보임
