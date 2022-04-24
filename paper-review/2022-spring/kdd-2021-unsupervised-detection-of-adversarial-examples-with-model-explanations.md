@@ -13,7 +13,7 @@ description: Ko & Lim / Unsupervised Detection of Adversarial Examples with Mode
 In the last few years, adversarial attacks are one of the main issues in security threats. It alters the behavior of a deep neural network by utilizing data samples which have been subtly modified. Adversarial perturbations, even simple ones, can affect deep neural networks. In this case, the model may produce incorrect results and cause damage to the security system. The following example of adversarial attack on a panda image will give you an idea of what adversarial examples look like. A small perturbation is applied to the original image so that the attacker is successfully misclassifying it as a gibbon with high confidence.
 
 <figure>
-<img width="100" src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/0.png">
+<img width="500" src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/0.png">
    
 <figcaption align = "center"><i>Figure 1: An adversarial perturbation can manipulate a classifier to misclassify a panda as a gibbon.</i>
 </figcaption>
@@ -33,7 +33,7 @@ In contrast to many previous attempts, the proposed method uses an unsupervised 
 In this method, a saliency map is used as an explanation map to detect adversarial examples. For image inputs, each pixel is scored based on its contribution to the final output of the deep learning model and shown on a heatmap.  
 
 <figure>
-<img width="10" src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/00.png">
+<img width="500" src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/00.png">
    
 <figcaption align = "center"><i>Figure 2: Examples of saliency map based on importance or contribution of each pixel.</i>
 </figcaption>
