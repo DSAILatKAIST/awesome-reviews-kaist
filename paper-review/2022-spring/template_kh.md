@@ -8,10 +8,9 @@ Title of paper that you are going to write
 
 ## **1. Problem Definition**  
 
-$\lang A,O,S,T,I,R,\gamma \rang$
-$\lang A,O,S,T,I,R,\gamma \rang$
-$\lang A,O,S,T,I,R,\gamma \rang$
+$$ k_{B}T/2 $$
 
+<img width='45' align='center' src='../../.gitbook/main/symbol.png'>  
 
 ## **2. Motivation**  
 
