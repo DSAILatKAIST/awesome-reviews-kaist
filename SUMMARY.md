@@ -8,6 +8,7 @@
     * [Template](paper-review/2022-spring/template.md) 
     * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
     * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
+    * [CCM](paper-review/2022-spring/aaai-2021-ccm.md)
 
 ## How to contribute  
 
