@@ -34,7 +34,7 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 ![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure1.PNG?raw=true)
 
 또한 projection metric을 통해 각 class의 basis concept들은 서로 orthogonal하도록, 동시에 class-aware한 basis concepts subset들은 서로 멀리 위치하도록 규제됩니다. 이 두 가지 규제를 통해 basis concepts가 서로 얽히지 않도록 함으로써 기존 연구의 한계점을 극복하고 있습니다. 
-논문은 이렇게 설계된 transparent embedding space (concept vector space)가 도입된 새로운 interpetable network, TesNet을 제안하고 있습니다. 여기서 tranparent embedding space란 ...
+논문은 이렇게 설계된 transparent embedding space (concept vector space)가 도입된 새로운 interpetable network, TesNet을 제안하고 있습니다.
 
 ## **3. Method**  
 
@@ -95,8 +95,8 @@ non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, Dense
 ### **Result**  
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
-![figure8](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure8.PNG?raw=true) 
-
+![figure8](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure8.PNG?raw=true)   
+표에서 알 수 있듯이, baseline network에 TesNet을 적용한 경우 분류 정확도가 최대 8%정도 크게 향상된 것을 볼 수 있습니다. 또한, TesNet의 Loss를 다양하게 정의하여 실험한 결과, 4가지 Loss를 모두 jointly하게 optimize하였을 때 가장 정확도가 높은 것을 확인할 수 있습니다. 
 
 
 ## **5. Conclusion**  
@@ -117,5 +117,6 @@ Please write the reference. If paper provides the public code or other materials
 
 * Github Implementation  
 None
-* Reference  
+* Reference 
+
 
