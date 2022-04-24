@@ -47,7 +47,7 @@ $$x_{t+1} = argmin_x\{\mu^Tx|Ax\le b;x\ge0;x\in {Z^n};x^i= x_t^i, \forall x^i \n
 
 Variable 수가 linear하게 늘어날 때 variable을 선택하는 action space는 exponentially하게 늘어납니다. RL알고리즘을 적용하기 위해서는 어마하게 큰 action space를 exploration하고 모든 action을 representation 해야되는 이슈가 발생을 하게 되는데 논문에서는 action factorization를 이용하여 보다 효율적으로 해결할 수 있다고 합니다. 이는 전체 variable n개에서 destroy variable을 선택할 확률을 각 variable $x_i$를 선택할지 말지에 대한 확률 n개의 곱으로 나타낸다는 것입니다.
 
->$\pi(a_t|s_t) = \prod_{i=1}^n \pi^i(a_t^i|s_t)$
+$$\pi(a_t|s_t) = \prod_{i=1}^n \pi^i(a_t^i|s_t)$$
 
 이는 실제 $2^n$의 action space를 탐색해야되는 문제를 n개의 policy를 통하여 n개의 action space를 탐색하는 문제로 바꾸어 large scale 문제에서도 효율적으로 exponential하게 증가하는 action space를 탐색하도록 합니다.
 
