@@ -93,7 +93,7 @@ $$
 
 Item embedding 은 Paragraph vector(doc2vec)에서 insight를 얻어서 사용했다.
 
-![doc2vec이 information retrival task에서 적은 error를 보였기 때문](<".gitbook/2022-spring-assets/KimDaehee_1/SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled.png">)
+![doc2vec이 information retrival task에서 적은 error를 보였기 때문](<.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled.png>)
 
 doc2vec이 information retrival task에서 적은 error를 보였기 때문
 
