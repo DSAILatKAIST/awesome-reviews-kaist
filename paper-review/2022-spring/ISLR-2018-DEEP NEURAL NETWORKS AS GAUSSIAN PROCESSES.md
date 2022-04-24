@@ -17,6 +17,7 @@
  단층구조의 신경망과 Gaussian process의 연관성을 설명하고 귀납적으로 다층 구조의 신경망과 Gaussian process가 연결됨을 설명한다. 이에 앞서 Notation을 정의한다. 
 
 L-hidden-layer-fully-connected neural network 에서
+
 $$
 N_l \ \
 ,\phi \ \
@@ -25,6 +26,7 @@ N_l \ \
 ,W_{ij}^l\ \
 ,b_{i}^l
 $$
+
 를 각각 ㅣ- layer 의 width, nonlinear 활성화 함수, l - layer의 post-activation, l - layer의 post-affine transformation, 가중치와 편향을 나타낸다. 관계를 수식으로 정리하면 다음과 같이 된다. 
 $$
 z_{i}^l(x_{input})\ =b_i^l\ + \ \sum_{j=1}^{N_{l}}W_{ij}^l\ x_j^l(x_{input}) \,\,\ , \\x_{j}^l=\phi(z_{j}^{l-1}(x_{input})) \\,
