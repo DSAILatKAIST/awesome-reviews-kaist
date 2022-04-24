@@ -1,8 +1,12 @@
+---
+description : Victor Garcia Satorras / E(n) Equivariant Graph Neural Networks / ICML-2021
+---
+
 # E(n) Equivariant Graph Neural Networks
 
 이 논문에서는 rotations, translations, reflections and permutations에 대해서 equivariant한 graph neural network (GNN)을 학습할 수 있는 모델을 제안한다. 기존의 방법론들은 위의 property를 얻어내기 위해서, intermediate layer에서 복잡한 계산이 필요했지만, 이 논문에서는 그런 것 없이 비슷하거나 더 좋은 성능을 얻어내었다고 한다. 또한, 3차원 까지의 공간에서만 위의 equivariant를 보장할 수 있었던 기존 방법과는 다르게 higher-dimension으로 쉽게 scale될 수 있다고 한다.
 
-## 1. Problem Definition
+## **1. Problem Definition**
 
 이 논문에서 풀고자 하는 문제는 translations, rotations, reflections and permutations equivariant 한 GNN을 디자인 하는 것이다. 핵심적으로 쓰이는 개념들인 Equivariance 와 Graph Neural Network에 대한 간단한 소개를 하도록 하겠다.
 
@@ -66,7 +70,7 @@ $\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$
 
 3가지의 과정을 edge
 
-## 2. Motivation
+## **2. Motivation**  
 
 딥러닝을 더욱 발전시킨 방법들 중 많은 것들은 inductive bias와 관련이 깊다. 뉴럴넷에 inductive bias를 주는 대표적인 방법으로 ‘translation equivariance가 있는 CNN’ 그리고 ‘permutation equivariance가 있는 GNN’ 이 있다. 이를 잘 정리한 내용을 ‘Relational inductive biases, deep learning, and graph networks’ 라는 paper에서 가져와 보았다. 자세한 것은 해당 논문을 보면 좋을 것 같다.
 
@@ -82,7 +86,7 @@ $\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$
 
 그렇기에, 이 논문에서는 N-dimension에서 translation, rotation, reflection equivariant 하고(E(n)), input set of point에 대해서 permutation equivariant 한 architecture를 제안하였다. 뿐만 아니라, 다른 모델과 달리 매우 복잡한 계산을 필요로 하지 않으면서, 비슷하거나 더 좋은 성능을 이끌어 내었다고 주장한다.
 
-## 3. Method
+## **3. Method**  
 
 이들이 제안한 Equivariant Graph Neural Network (EGNN)의 각 Equivariant Graph Convolutional Layer (EGCL)는 다음의 내용들을 input으로 output을 만든다.
 
@@ -139,7 +143,7 @@ $x_i^{l+1}=x_i^l+v_i^{l+1}$
 
 message에 대한 부분은 애초에 equivariant property를 생각하지 않았으므로, 이 계산 과정은 EGNN이 equivariant한 성질에 영향을 미치지 않는다. (Equivariant함을 계속 유지시켜 준다.)
 
-## 4. Experiments
+## **4. Experiment**  
 
 ### Modeling a dynamical system - N-body system
 
@@ -199,7 +203,7 @@ E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기�
 - EGNN이 두개의 데이터셋 모두에서 가장 좋은 성능을 보였다.
 - 위에서 언급한대로 noise를 추가한 noise-GNN은 GNN보다 좋은 성능을 보였다.
 
-## Conclusions
+## **5. Conclusion**  
 
 본 논문에서는 구현이 쉽고, 성능도 좋은 E(n) Equivariant한 GNN을 제안하였다. 저자들은 이 연구가 drug discovery, protein folding, design of new materials, 그리고 3D computer vision에 적용될 것으로 기대한다고 한다.
 
@@ -213,9 +217,9 @@ Supervised learning이나 Reinforcement learning에서 네트워크를 잘 gener
 
 이 논문은 유명한 Computer Scientist인 Max Welling 교수님의 연구실에서 쓰여졌다. 2021년 2월에 아카이브에 올라왔는데 벌써 인용수가 80이다 (2022년 4월 24일 기준). 비슷한 방법론들이 많지만, 인용수가 이렇게 높은 이유는 구현이 매우 간단하기 때문인 것 같다. 간단하면서 유용한 property를 만족한다는 것이 인상적이다. GNN을 쓰는 사람이라면 performance를 올리는 데에 쉽게 적용해 볼 수 있을 것 같다. 물론 task가 이러한 property를 가지고 있다면..
 
-단점으로는, physical한 coordinate정보가 포함되어 있고, 이 정보가 해당 task에서 꽤 중요한 역할을 하는 경우에만 좋은 효과를 볼 것 같다. (당연한 얘기 같긴 하지만..) 실제로 그러한 케이스가 얼마나 많을지는.. 잘 모르겠다. 막상 떠오르는 것은 Trajectory Prediction, (Data driven) Control in physical system 정도 이다. 
+단점으로는, physical한 coordinate정보가 포함되어 있고, 이 정보가 해당 task에서 꽤 중요한 역할을 하는 경우에만 좋은 효과를 볼 것 같다. (당연한 얘기 같긴 하지만..) 실제로 그러한 케이스가 얼마나 많을지는.. 잘 모르겠다. 막상 떠오르는 것은 Trajectory Prediction, (Data driven) Control in physical system 정도 이다. 내 연구에도 쓰일 여지가 충분히 있을 것 같아서, 나중에 꼭 시도해보려고 한다.
 
-## Author Information
+## **Author Information**  
 
 - **Victor Garcia Satorras**
     - Affiliation: University of Amsterdam, Netherlands.
@@ -229,7 +233,7 @@ Supervised learning이나 Reinforcement learning에서 네트워크를 잘 gener
     - [https://scholar.google.com/citations?user=8200InoAAAAJ&hl=en](https://scholar.google.com/citations?user=8200InoAAAAJ&hl=en)
     
 
-## 6. Reference & Additional materials
+## **6. Reference & Additional materials**  
 
 - BATTAGLIA, Peter W., et al. Relational inductive biases, deep learning, and graph networks. *arXiv preprint arXiv:1806.01261*, 2018.
 - [https://www.youtube.com/watch?v=hUrbS1BhBWc](https://www.youtube.com/watch?v=hUrbS1BhBWc)
