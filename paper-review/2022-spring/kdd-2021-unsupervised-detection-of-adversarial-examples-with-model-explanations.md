@@ -12,6 +12,7 @@ description: Ko & Lim / Unsupervised Detection of Adversarial Examples with Mode
 
 In the last few years, adversarial attacks are one of the main issues in security threats. It alters the behavior of a deep neural network by utilizing data samples which have been subtly modified. Adversarial perturbations, even simple ones, can affect deep neural networks. In this case, the model may produce incorrect results and cause damage to the security system. The following example of adversarial attack on a panda image will give you an idea of what adversarial examples look like. A small perturbation is applied to the original image so that the attacker is successfully misclassifying it as a gibbon with high confidence.
 
+![adversarial perturbation](.gitbook/2022-spring-assets/NabilahMuallifah_1/0.jpg)
 <figure>
 <img width="140" src=".gitbook/2022-spring-assets/NabilahMuallifah_1/0.jpg"><figcaption align = "center"><i>Figure 1: An adversarial perturbation can manipulate a classifier to misclassify a panda as a gibbon.</i>
 </figcaption>
