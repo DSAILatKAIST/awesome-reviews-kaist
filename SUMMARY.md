@@ -5,7 +5,7 @@
 ## Paper Review  
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md)    
-    * [Template](paper-review/2022-spring/template.md)
+    * [Sequential GCN for AL](paper-review/2022-spring/cvpr-2021-sequential graph convolutional network for active learning.md)
  
 ## How to contribute  
 
