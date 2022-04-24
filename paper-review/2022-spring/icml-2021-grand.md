@@ -37,6 +37,7 @@ $$h = -g \nabla x$$
 <img src="https://user-images.githubusercontent.com/40286691/164886064-9c9e5324-878b-45ec-b494-a35add32031c.jpg" style="width:50%">
 <figcaption align="center">그림 1 - Inhomogeneous Diffusivity<sup><a href="#footnote_2">[2]</a><sup></figcaption>
 </figure>
+<br>
 
 연속성 조건 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;x_{t}&space;=&space;-&space;\text{div}(h))을 통해 PDE 형태의 열 확산 방정식(heat diffusion equation)을 유도할 수 있습니다.(유도과정은 생략합니다. ~~관심있으신 분들은 "Advanced Engineering Mathematics by Erwin Kreyszig" 등을 참고하세요~~ 살려줘...)
 
@@ -70,6 +71,7 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x $$
 <img src="https://user-images.githubusercontent.com/40286691/164888534-446a5482-05ff-4af2-9b77-adea03f24295.png" style="width:100%">
 <figcaption align="center">그림 2 - GCN 1,2,3,4,5 layer를 통해 얻은 Zachary’s karate club network data의 노드 Embedding</figcaption>
 </figure>
+<br>
 
 * Bottleneck과 Over-squashing<sup>[[6]](#footnote_6)</sup>: Bottleneck은 GNN의 layer가 증가할수록 기하급수적으로 늘어나는 정보를 고정된 크기의 벡터로 압축(squashing)시키는 것을 의미하며, 이로 인해 먼 거리의 노드와의 메세지 전달을 용이하지 못하게 만드는 현상을 의미합니다.
 
@@ -77,6 +79,7 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x $$
 <img src="https://user-images.githubusercontent.com/40286691/164957255-1708ee23-8741-4985-a7e7-6722b993a64a.png" style="width:100%">
 <figcaption align="center">그림 3 - GNN에서의 Bottleneck & Over-squashing</figcaption>
 </figure>
+<br>
 
 ### **2-2. 그래프에서의 확산 방정식**
 
@@ -95,6 +98,7 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x $$
 <img src="https://user-images.githubusercontent.com/40286691/164894955-cd3eca64-afad-4bc7-a61a-8b320565fed3.png" style="width:50%">
 <figcaption align="center">그림 4 - Matrix Inner Product</figcaption>
 </figure>
+<br>
 
 * 간선(edge) 수: ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;|\mathcal{E}|=e)
 * 간선 가중치(weight) 행렬(인접 행렬과 유사): ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{W}=(w_{ij})_{i,j=1}^{n}&space;\in&space;\mathbb{R}^{n&space;\times&space;n})
@@ -117,6 +121,7 @@ $$\langle \langle \mathfrak{X}, \mathfrak{Y} \rangle \rangle = \frac{1}{2} \sum_
 <img src="https://user-images.githubusercontent.com/40286691/164896462-0f518cf5-7f5a-466e-b932-5c7a9322bc83.png" style="width:100%">
 <figcaption align="center">그림 5 - Differential Operators on Graph</figcaption>
 </figure>
+<br>
 
 * 그라디언트(gradient) ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;(\nabla&space;\mathbf{X})_{ij}=\mathbf{x}_{j}&space;-&space;\mathbf{x}_{i})는 간선 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;(i,j)&space;\in&space;\mathcal{E})에 할당
 * 발산(divergence) ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;(\text{div}(\mathfrak{X}))_{i})은 노드 i와 연결된 모든 간선의 특징의 합이 해당 노드에 할당:
@@ -193,6 +198,7 @@ $$\mathbf{X}(t)=e^{\mathbf{\bar{A}}t}\mathbf{X}(0)$$
 <img src="https://user-images.githubusercontent.com/40286691/164957395-cd6859bf-9197-45a1-9a63-40c42f907915.png" style="width:75%">
 <figcaption align="center">그림 6 - Diffusion Equation on Graph</figcaption>
 </figure>
+<br>
 
 #### 2-2-4. 그래프 열확산 방정식의 풀이
 
@@ -235,8 +241,6 @@ $$\Leftrightarrow ((1-\tau)\mathbf{I} + \tau \mathbf{A}(\mathbf{X}^{(k)})) \math
 $$\Leftrightarrow \mathbf{B}^{(k)} \mathbf{X}^{(k+1)}=\mathbf{X}^{(k)}$$
 
 여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{Q}&space;=&space;\mathbf{B}^{\dagger})는 dense하기 때문에 multi-hop filter로 해석할 수 있습니다. (다만, implicit scheme에서의 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{Q})는 1-hop 인접행렬과 같은 sparsity를 구조를 가진다는 점에서 차이가 있습니다)
-
-<br>
 
 ### **2-3. Discriminative Idea**
 
@@ -298,6 +302,7 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 <img src="https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png" style="width:75%">
 <figcaption align="center">표 1 - Data Summary</figcaption>
 </figure>
+<br>
 
 노드 분류에 대한 실험을 위해 위의 표와 같이 7개의 데이터셋에 대해 실험했고, 베이스라인 모델로는 아래와 같이 7개 모델을 선정했습니다. 데이터셋 및 베이스라인 모델에 대한 자세한 내용은 본 논문을 참고 부탁 드립니다.
 
@@ -309,6 +314,7 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 <img src="https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png">
 <figcaption align="center">그림 7 - Node Classification Results (Planetoid/Random split)</figcaption>
 </figure>
+<br>
 
 위의 실험 결과를 통해 볼 수 있듯이, GRAND 모델들이 다른 모델들에 비해 한결같이 좋은 성능을 보였습니다. 큰 그래프인 ogb-arxiv 데이터셋에서는 GAT가 가장 좋은 성능을 보였으나, 이는 GRAND보다 20배 많은 parameter를 사용하기 때문입니다.
 
@@ -318,6 +324,7 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 <img src="https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png" style="width:75%">
 <figcaption align="center">그림 8 - Depth</figcaption>
 </figure>
+<br>
 
 이번 실험에서는 GRAND가 깊은 그래프 신경망을 수립했음에도 불구하고, oversmoothing 문제를 해결했는지 살펴보겠습니다. 이를 위해, 다른 hyperparameter는 고정한채로 적분 구간(시간) ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;T)를 변경해 정확도(accuracy)를 측정했습니다. 위의 결과를 통해 볼 수 있듯이, GCN과 residual connection을 적용한 GCN 모델과 비교했을 때 GRAND는 layer 수가 많을 때도 성능을 유지하는 것을 확인할 수 있습니다.
 
@@ -327,6 +334,7 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 <img src="https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png" style="width:100%">
 <figcaption align="center">그림 9 - Different Solver Effects</figcaption>
 </figure>
+<br>
 
 이번 실험은 discretisation scheme의 안정성을 보기 위해 Cora 데이터셋을 사용했습니다. PDE를 푸는데 있어 step size와 계산 시간은 trade-off관계를 갖습니다. Scheme은 아래와 같은 방법론을 사용하였고, 이에 대한 설명은 본 논문의 범위를 넘어서므로 생략합니다.
 
@@ -344,6 +352,7 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 <img src="https://user-images.githubusercontent.com/40286691/164975904-aefb0bb3-3f0f-4eb1-b595-6466a15181f3.png" style="width:75%">
 <figcaption align="center">그림 10 - Image Pixel Boundary Detection</figcaption>
 </figure>
+<br>
 
 GRAND의 학습된 diffusion의 특성을 살펴보기 위해 MNIST 픽셀 데이터의 superpixel representation을 구성하는 실험을 진행했습니다. superpixel을 구성한다는 것은 인접한 패치들을 간선으로 연결하고, 이를 숫자 또는 배경으로 이진 분류하는 것을 의미합니다. 이 때 50%의 training mask를 사용합니다. Attention weight는 간선의 색과 굵기로 표현됩니다. 그림 10을 통해 볼 수 있듯이, grand-nl 모델이 Laplacian diffusion 모델에 비해 더 좋은 결과를 보여줍니다.
 
