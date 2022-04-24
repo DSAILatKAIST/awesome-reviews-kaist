@@ -6,6 +6,7 @@
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md)    
     * [Template](paper-review/2022-spring/template.md)
+    * [GRAND](paper-review/2022-spring/icml-2021-grand.md)
  
 ## How to contribute  
 
