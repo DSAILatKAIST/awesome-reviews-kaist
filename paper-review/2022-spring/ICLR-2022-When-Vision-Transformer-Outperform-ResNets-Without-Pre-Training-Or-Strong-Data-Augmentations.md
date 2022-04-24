@@ -63,7 +63,7 @@
 
 ![](https://latex.codecogs.com/gif.latex?(1)\space\min_w\max_{||\epsilon||_2\leq\rho}L_{train}(w+\epsilon))
 
-![](https://latex.codecogs.com/gif.latex?(2)\space\space\hat{\epsilon}(w)=\arg\max_{||\epsilon||_2\leq\rho}L_{train}(w)+\epsilon^{T}\bigtriangledown_{w}L_{train}(w)\\=\rho\bigtriangledown_{w}L_{train}(w)/||\bigtriangledown_{w}L_{train}(w)||_2)
+![](https://latex.codecogs.com/gif.latex?(2)\space\space\hat{\epsilon}(w)=\arg\max_{||\epsilon||_2\leq\rho}L_{train}(w)+\epsilon^{T}\bigtriangledown_{w}L_{train}(w)=\rho\bigtriangledown_{w}L_{train}(w)/||\bigtriangledown_{w}L_{train}(w)||_2)
 </div>  
 
 
@@ -110,7 +110,6 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 <div align="center">
 ![](https://latex.codecogs.com/gif.latex?(3)H_k=(a_{k-1}a_{k-1}^T)\otimes\mathcal{H}_k,\space\mathcal{H}_k =B_kW^T_{k+1}\mathcal{H}_{k+1}W_{k+1}B_k+D_k)
 
-</br>
 ![](https://latex.codecogs.com/gif.latex?(4)B_k=\mathrm{diag}(f'_k(h_k)),\space{}D_k=\mathrm{diag}(f''_k(h_k)\frac{\partial{L}}{\partial{a_k}}))
 </div>
 
