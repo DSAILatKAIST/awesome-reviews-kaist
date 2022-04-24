@@ -6,7 +6,7 @@ Zhongzheng Ren / Not all unlabeled data are euqal : Learning to weight data in s
 
 예를 들어, 아래와 같이 두 개의 2-dimension gaussian distribution에서 100개씩 data를 sampling하고, 각각 하나씩만 label을 알고 있다고 하자. 작은 labeled dataset으로 학습한 실선의 decision boundary는 점선의 optimal decision boundary와 비교해 bias가 있음을 알 수 있다. 따라서 unlabeled data를 통해 얻을 수 있는 data distribution 정보를 활용해 optimal decision boundary에 보다 가까워지고자 하는 것이 semi-supervised learning의 목표이다[1].  
 
-![image1.png](sungeun532/image1.png)
+![image1.png](../../.gitbook/2022-spring-assets/sungeun532/image1.png)
 
 unlabeled dataset을 어떻게 학습에 활용할지 문제 상황을 수식적으로 formulation 해보면 다음과 같다. 
 > Problem formulation
