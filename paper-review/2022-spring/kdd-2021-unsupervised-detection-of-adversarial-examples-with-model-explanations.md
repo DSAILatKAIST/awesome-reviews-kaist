@@ -36,6 +36,7 @@ In this method, a saliency map is used as an explanation map to detect adversari
    
 _Figure 2: Examples of saliency map based on importance or contribution of each pixel._
 
+
 There are three steps in this method:
 
 1. Generating input explanations  
