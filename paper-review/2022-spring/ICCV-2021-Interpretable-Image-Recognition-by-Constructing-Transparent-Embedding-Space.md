@@ -19,7 +19,7 @@ Convolution Neural Network(CNN)의 결과 해석은 판단의 정확한 근거�
 
 <code>(1) Informative</code>   
 Input data는 basis concept들로 spanned된 vector space상에서 효율적으로 나타내져야하며, input의 essential information(중요한 정보)가 새로운 representation space에서도 보존되어야합니다.   
-<code>(2) Diversity</code>
+<code>(2) Diversity</code>   
 각 데이터(ex.이미지)는 서로 중복되지 않는 소수의 basis concepts와 관련 있어야하며, 같은 class에 속하는 데이터들은 비슷한 basis concepts를 공유해야 합니다.   
 <code>(3) Discriminative</code>  
 Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 class가 잘 분리되도록 class-aware해야 합니다. 즉, 같은 class와 연관된 basis concepts끼리는 근접하게, 다른 class의 basis concepts 간에는 멀게 embedding되어 있어야 합니다.
