@@ -6,8 +6,7 @@
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md)    
     * [Template](paper-review/2022-spring/template.md) 
-    * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
-    * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
+    * [XGradient](paper-review/2022-spring/NeurIPS-2021-XGradient.md)
 
 ## How to contribute  
 
