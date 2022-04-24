@@ -30,19 +30,18 @@ Most of the current works have neural image compression that often operate in an
 
 ## **3. Method**  
 
-In this method they store the weights of the NN's instead of the traditional methods in which the RGB values are stored for each pixel of an image. The researchers do this by encoding an image by overfitting mapping pixel locations (MLP) over the RGB values of the image and transmit the weights θ of the MLP as code. The encoding process start with overfitting an MLP to the image, after that the weights that have to be transmitted have to be quantized. When it is transmitted, the decoding process starts and the MLP will be evaluated at the pixel locations to reconstruct the image.
+In this method they store the weights of the NN's instead of the traditional methods in which the RGB values are stored for each pixel of an image. The researchers do this by encoding an image by overfitting mapping pixel locations (MLP) over the RGB values of the image and transmit the weights θ of the MLP as code. The encoding process start with overfitting an MLP to the image, after that the weights that have to be transmitted have to be quantized. When it is transmitted, the decoding process starts and the MLP will be evaluated at the pixel locations to reconstruct the image. See figure 1 below.
 
-
-<img width="140" src=".gitbook/2022-spring-assets/Images_RP1/Afbeelding1.png">  
-
-See example xx:
+| <img src="/.gitbook/2022-spring-assets/Images_RP1/Afbeelding1.png"> |
+|:--:| 
+| *Figure 1, proposed method.* |
 
 This method does not need entropy coding or learning a distribution over weights so it is very likely to outperform compression methods like JPEG. 
 
 ### **Encoding method**
 In the paper the following optimization problem is applied:
 
-Image xx formula used.
+<img src="/.gitbook/2022-spring-assets/Images_RP1/Afbeelding6.png">
 
 In which I the image is that has to be encoded, with I[x, y] returning RGB values at pixal location (x, y). The function f0 : R^2 → R^3 with parameters 0 MLP to RGB values in the image, fθ(x, y) = (r, g, b). Then the image can be encoded by overfitting f0 to the image under some distortion measure.
 
