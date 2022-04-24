@@ -28,9 +28,9 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 
 따라서, 이 논문에서는 위의 세가지 Interpretable Concepts 조건을 모두 충족시키는 basis concepts를 설계하는 데에 주목하고 있습니다. 논문에서 설계한 basis concepts는 다음과 같은 특징들을 가집니다.   
 
-<mark>(1) 각 class는 자신만의 basis concepts를 가지며 class가 다른 경우 basis concepts도 최대한 다릅니다.</mark>      
+<code>(1) 각 class는 자신만의 basis concepts를 가지며 class가 다른 경우 basis concepts도 최대한 다릅니다.</code>      
 <code>(2) High-level feature과 basis concepts 사이를 효과적으로 연결하는 mapping을 제공합니다.</code>   
-(3) Input image 상의 basis concepts는 각 class에 대한 prediction score을 계산하는 데에 도움이 됩니다.   
+<code>(3) Input image 상의 basis concepts는 각 class에 대한 prediction score을 계산하는 데에 도움이 됩니다.</code>   
 
 위의 세 가지 특징을 만족하는 basis concepts 설계를 위해, 본 논문은 기존 연구들과 다르게 Grassmann manifold를 도입하여 basis concept vector space를 정의합니다. 다음의 그림처럼, 각 class마다의 basis concepts subset이 Grassmann manifold 상의 point로 존재합니다. Grassmann manifold는 쉽게 말하면 linear subspaces의 set(집합)이라고 생각할 수 있습니다. 여기서 subspace란 vector space _V_ 의 subset(부분집합) _W_ 가 _V_ 로부터 물려받은 연산들로 이루어진 또 다른 하나의 vector space일 때 _W_ 를 _V_ 의 subspace라고 말합니다.   
 ![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure1.PNG?raw=true)
@@ -50,9 +50,9 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 그렇다면 basis concepts는 어떻게 정의되어 embedding space를 이루고 있는지 살펴보겠습니다.  
 
 각 basis concept은 basis vector로 표현됩니다. 이 basis vector는 다음 세 가지 조건을 만족해야합니다.  
-==(1) 다른 basis vector 사이에는 의미가 중복되면 안됩니다.==    
-**(2) embedding space에서도 각 class는 구분되어야 합니다.**   
-**(3) basis vector들은 비슷한 high-level patch(사람들이 인식할 수 있는 level의 image)들을 군집화하고 다른 것들끼리는 분리할 수 있어야 합니다.**   
+<code>(1) 다른 basis vector 사이에는 의미가 중복되면 안됩니다.</code>    
+<code>(2) embedding space에서도 각 class는 구분되어야 합니다.</code>  
+<code>(3) basis vector들은 비슷한 high-level patch(사람들이 인식할 수 있는 level의 image)들을 군집화하고 다른 것들끼리는 분리할 수 있어야 합니다.</code>  
 
 이 세 가지 조건을 만족시키기 위해 전체 architecture에서 보았던 convolutional layer, basis vectors, classifier layer의 weight들이 서로 joint하게 optimize(최적화)될 수 있도록 joint optimization problem을 정의하고 있습니다. 다음은 각 weight를 최적화하기 위한 loss와 optimization 과정입니다.   
 
