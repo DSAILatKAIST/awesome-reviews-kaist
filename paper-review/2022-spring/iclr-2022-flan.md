@@ -23,7 +23,7 @@ Zero-shot learning 은 본래 인간이 언어적인 사고를 할 때, 추가�
 
 ### Instruction Tuning
 
-해당 논문은 Instruction Tuning 이라는 굉장히 간단한 아이디어로 Large Scale LM의 Zero-shot performance를 크게 증가시킨다. 
+해당 논문은 Instruction Tuning 이라는 굉장히 간단한 아이디어로 Large Scale LM의 Zero-shot performance를 크게 증가시킨다. 기존 pretrained 모델을 Instruction Tuning 방법으로 fine-tuning 하여 FLAN 모델을 만든다. 
 
 <img width="500" src="../../.gitbook/2022-spring-assets/KimMinsu_1/fig1.PNG">  
 
