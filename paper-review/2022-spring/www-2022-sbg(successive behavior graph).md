@@ -1,7 +1,8 @@
-# SBG(Successive Behavior Graph)
 ---
-description :Fan Lu / Modeling User Behavior with Graph Convolution for Personalized Product Search / WWW-2022
+description : Fan Lu / Modeling User Behavior with Graph Convolution for Personalized Product Search / WWW-2022
 ---
+
+# **SBG(Successive Behavior Graph)**
 
 # 1. Problem Definition
 
