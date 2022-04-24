@@ -33,9 +33,7 @@ LNS Framework은 MDP Formulation, large scale action space에 대한 factorized 
 
 **Transition** : repair operator(IP solver)가 action을 통해 선택된 variable들을 다시 reoptimize하면서 dynamic features들이 업데이트되면서 $s_t$ → $s_{t+1}$로 transition이 일어나게 됩니다. 이를 식으로 나타내면 다음과 같습니다.
 
-$$
-x_{t+1} = argmin_x\{\mu^Tx|Ax\le b;x\ge0;x\in {Z^n};x^i= x_t^i, \forall x^i \notin a^t\}
-$$
+$$x_{t+1} = argmin_x\{\mu^Tx|Ax\le b;x\ge0;x\in {Z^n};x^i= x_t^i, \forall x^i \notin a^t\}$$
 
 (action에 의해 선택된 variable $x^i$들만 새롭게 optimization문제를 풀고 나머지는 고정)
 
