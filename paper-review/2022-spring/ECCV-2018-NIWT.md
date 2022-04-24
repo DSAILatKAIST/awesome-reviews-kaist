@@ -47,7 +47,7 @@ seen classes : ![](https://latex.codecogs.com/gif.latex?\mathcal{S}=\{1,...,s\})
 
 unseen classes : ![](https://latex.codecogs.com/gif.latex?\mathcal{U}=\{s+1,...,s+u\})
 
-domain knowledges : ![](https://latex.codecogs.com/gif.latex?\mathcal{K}=\{k_1,...,k_{s+u}\)
+domain knowledges : ![](https://latex.codecogs.com/gif.latex?\mathcal{K}=\{k_1,...,k_{s+u}\})
 
 ### 3.2 Class-dependent Neuron Importance
 
