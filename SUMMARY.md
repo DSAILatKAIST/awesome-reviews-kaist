@@ -6,7 +6,7 @@
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md) 
     * [Template](paper-review/2022-spring/template.md)
-    * [EGNN](paper-review/2022-spring/icml-2021-e(n)%20equivariant%20graph%20neural%20networks.md)
+    * [E(n) Equivariant Graph Neural Networks](paper-review/2022-spring/icml-2021-e(n)%20equivariant%20graph%20neural%20networks.md)
 
 
 ## How to contribute  
