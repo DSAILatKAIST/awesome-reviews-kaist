@@ -5,7 +5,7 @@
 ## Paper Review  
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md) 
-    * [Data Augmentation for GNN](paper-review/2022-spring/aaai-2020-data augmentation for graph neural networks.md)
+    * ![Data Augmentation for GNN](paper-review/2022-spring/aaai-2020-data augmentation for graph neural networks.md)
 
 
 ## How to contribute  
