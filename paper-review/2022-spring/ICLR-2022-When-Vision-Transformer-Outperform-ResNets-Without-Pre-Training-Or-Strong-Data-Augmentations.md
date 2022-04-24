@@ -65,7 +65,7 @@
 </div>
 
 <div align="center">
-![](https://latex.codecogs.com/gif.latex?(2)\space\hat{\epsilon}(w)=\arg\max_{||\epsilon||_2\leq\rho}L_{train}(w)+\epsilon^T\bigtriangledown_wL_{train}(w)=\rho\bigtriangledown_wL_{train}(w)/||\bigtriangledown_wL_{train}(w)||_2)
+![](https://latex.codecogs.com/gif.latex?(2)\space\hat{\epsilon}(w)=\arg\max_{||\epsilon||_2\leq\rho}L_{train}(w)+\epsilon^{T}\bigtriangledown_{w}L_{train}(w)=\rho\bigtriangledown_{w}L_{train}(w)/||\bigtriangledown_{w}L_{train}(w)||_2)
     
 </div>  
 
