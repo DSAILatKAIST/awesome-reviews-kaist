@@ -22,31 +22,28 @@ Context-based meta-RL에서 latent context는 task들의 분포를 잘 파악하
 #### Meta-RL
 Meta-RL에서는 여러 task들이 존재 - task 분포 $p(\mu)$ 가정하고, 각 task $\mu \sim p(\mu)$는 비슷한 구조를 공유하지만 서로 다른 MDP, $M_{\mu} = \{S, A, T_{\mu}, R_{\mu}\}$에 대응. 동일한 MDP 에 대해 $N$번 시도하는데, 처음 $K$ 에피소드 동안은 탐색을 수행하고 남은 $N-K$ 에피소드는 탐색을 통해 수집한 데이터를 이용하여 execution 수행. Context-based meth-RL에서는 에이전트의 정책함수 $\pi_{exe}$가 과거 모든 트랜지션 $\tau_{1:\Tau} = \{ (s_1, a_1, r_1, r'_1), \ldots,  (s_{\Tau}, a_{\Tau}, r_{\Tau}, r'_{\Tau}) \}$를 기반으로 결정 됨. 에이전트는 수집된 trajectories를 인풋으로 contex encoder $q(z|\tau_{1:\Tau}$)를 통해 latent context $z$ 생성. 이를 통해 기대되는 리턴 값을 최대화하려고 함.
 
-<img width="140" src=".gitbook/2022-spring-assets/HyeonahKim_1/eq_expected_return.png">
-
-![ex_screenshot](../../.gitbook/2022-spring-assets/HyeonahKim_1/eq_expected_return.png)
-
 ![1](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_expected_return.png) 
 
 #### Contrastive Learning
 
 본 논문에서는 대체로 van den Oord, Li, and Vinyals(2018)의 방법을 사용하였음. Contrastive learning의 기본적인 아이디어는 의미상 비슷한 데이터(positive key )들이 latent 공간에서도 가깝게 위치하고, 의미상 비슷하지 않은 데이터들(negative keys)과는 latent 공간에서 멀도록 representation 함수를 학습하는 것. 총 $K$ 개의 negative keys와 하나의 positive key 가 존재할 때 InfoNCE (noise contrastive estimation) loss는 다음과 같이 계산 ($f$는 유사도 측정 함수로, 보통 $q^TWk$ 사용).
 
-> NCE loss eq
+![2](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_NCE_loss.png) 
 
 이 NCE loss 를 최소화하는 것은 $q$와 $k$의 mutual information 의 하한값을 최대화하는 것과 동일 ($K$가 클수록 하한이 tight해짐).
 
-> eq (2)
+![3](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_mutual_info.png) 
 
 ### CCM Algorithm
 
 Contrastive Learning 을 meta-RL 에 적용하기 위해, 현재 정책함수를 사용하영 각 task에 대한 trajectory 생성 및 저장.  $n$번째 학습에서, $p(\mu)$ 분포로 부터  task $\mu_n$ 샘플링하고 $\mu_n$ task로 부터 생성된 서로 다른 트랜지션 배치 $b^q_n, b^{k}_n$를 독립적으로 샘플링. $b^q_n$은 contrastive learning의 query 가 되고, $b^{k+}_n$ 는 positive key로 사용됨. 이제 $\mu_n$이 아닌 task로 부터 생성된 트랜지션에서 남은 $M-1$개 만큼 negative keys $\{b^{k}_j\}_{j=1}^M$ 샘플링. 샘플링 된 query, key 배치들을 각각 context encoding 하여 얻은 latent context를 $z_q, z_k$라고 할때, contrastive loss 는 InfoNCE loss를 사용하여 다음과 같이 계산.
 
-> contrastive loss image
+![4](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_contrastive_loss.png) 
+
 
 이 과정을 그림으로 나타내면 다음과 같음. 여기서 momentum encoder는 context encoder 의 momentum averged version (context encoder 파라미터로 일정 비율만큼 조금씩 업데이트 하는 방식, DDQN target network 업데이트 방식을 생각하면 됨).
 
-> contrastive context encoder image
+![5](/.gitbook/2022-spring-assets/HyeonahKim_1/fig_encoder.png)
 
 ### Information-gain-based Exploration 
 
@@ -54,31 +51,32 @@ Contrastive learning 으로 context encoder를 잘 학습하기 위해서는 여
 
 본 논문에서는 탐색 정책과 행동 정책을 분리하고, 유용한 정보를 담고 있는 트랜지션을 수집하도록 탐색 정책을 학습함. 새로운 트랜지션의 정보적 유용성을 판단하는 지표로 정보 이론의 *information gain* 을 사용.
 
-> information gain eq image
+![6](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_info_gain.png)
 
 위 식을 다음과 같이 바꿔쓸 수 있음 (여기서 mutual information $I(z;\tau_{1:i}) = H(z) - H(z|\tau_{1:i})$).
 
-> TD information gain
+![7](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_td_ig.png)
 
 즉, 새로운 트랜지션의 정보적 유용성은 mutual information의 temporal difference로 정의할 수 있음. 여기서 context encoder $e$가 충분하다면 (인코딩 과정에서 mutual information 이 보존된다면), 하기와 같이 근사할 수 있음 ($z \approx e(b_{pos})=c_{pos}$).
 
-> approx ig image
+![8](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_approx_ig.png)
 
 $I(C_{pos};c_{1:i})$의 하한과 $I(C_{pos};c_{1:i})$의 상한을 사용하면 $I(z|\tau_{1:i-1};\tau_{i})$의 하한값 추산 가능. Preliminary 단계에서 언급되었던 하한식을 사용하면 다음과 같이 $I(C_{pos};c_{1:i})$의 하한을 얻게 됨.
 
-> lb image
+![9](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_lb.png)
 
 $W$는 tasks의 수를 나타내며, $C=C_{pos} \cup C_{neg}$. 비슷한 전개를 통해 $I(C_{pos};c_{1:i})$의 상한을 얻을 수 있으며 논문에 자세히 증명되어 있음.
-> ub image
+
+![10](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_ub.png) 
 
 위 두식을 (6)에 대입하면 다음과 같은 식을 얻을 수 있고(추가: 이 과정에서 (8)번식은 $C$에 대한 기대값인 반면, (12)에서는 $C_{pos}$에 대한 기대값으로 변경되었으나 자세한 기술은 찾을 수 없었음), $I(z|\tau_{1:i-1};\tau_{i})$의 하한값인 $L_{upper} -L_{lower}$를 전체적인 RL 리워드에 추가시켜 학습 진행. 
 
-> eq 12 image
-> eq reward image
+![11](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_12.png) 
+![12](/.gitbook/2022-spring-assets/HyeonahKim_1/eq_reward.png)
 
 전반적인 학습 알고리즘은 다음과 같음.
 
-> algorithm1 image
+![13](/.gitbook/2022-spring-assets/HyeonahKim_1/algo_meta_training.png)
 
 
 ## **4. Experiment**  
@@ -93,6 +91,7 @@ At first, write experiment setup that should be composed of contents.
 	* humanoid-dir, cheetah-mass, cheetah-mass-OOD, ant-mass, cheetah-vel-OOD, cheetah-sparse, walker-sparse, hard-point-robot (자세한 설명은 아카이브 버전 Appendix 참고)
 	* Out of distribution (OOD) 버전  - 학습 환경과 다른 분포에서 생성된 버전
 	* Sparse: 목표에 도달했을때만 reward 발생
+	![14](/.gitbook/2022-spring-assets/HyeonahKim_1/fig_tasks.png)
 * Baseline  
 	* Recovering value-function (RV) - REARL (Rakelly et al., 2019)
 	* Dynamic prediction (DP) - CaDM (Lee et al., 2020) 
@@ -104,7 +103,8 @@ At first, write experiment setup that should be composed of contents.
 **CCM이 기존 방법들과 결합되었을 때의 효과**
 
 기존 방법들에 CCM을 결합함으로써 기존보다 성능 향상이 이루어짐을 확임. 공평한 비교를 위해 모두 동일한 네트워크 구조(actor-critic, context encoder)를 사용하였으며 PEARL과 동일한 평가 방식 사용.
-> exp 1 image
+
+![15](/.gitbook/2022-spring-assets/HyeonahKim_1/exp_1.png)
 
 * 특히 DP 방식의 경우 cheeta-vel-OOD에서 CCM을 통해 학습 효과가 크게 증가
 * CCM이 OOD 버전에서 적응력이 향상되었으나 여전히 학습 데이터와 분포가 일치할때 훨씬 잘함 (cheetah-mass에서는 1500 넘었으나 OOD에서는 1000을 약간 넘는 수준).
@@ -113,7 +113,7 @@ At first, write experiment setup that should be composed of contents.
 **다른 SOTA meta-RL 과의 비교**
 순서대로 왼쪽부터 walker-sparse, cheetah-sparse, hard-point-robot task.
 
-> exp 2 image
+![16](/.gitbook/2022-spring-assets/HyeonahKim_1/exp_2.png)
 
 * Off-policy 방법인 CCM 과 PEARL이 on-policy 방법인 MAML, ProMP, varibad 보다 학습이 잘되는 경향을 보임
 * 여기서의 PEARL은 contrastive learning 이 추가된 버전인 PEARL-CL 로 추측됨 (논문의 기술이 명확하지 않음) -> CCM과 PEARL 의 성능 차이가 information-gain-based 탐색의 효과로써 기술 되어 있음.
@@ -122,12 +122,12 @@ At first, write experiment setup that should be composed of contents.
 
 식 (12)을 다음과 같이 쓸 수 있으며, 이때 두번째 부분은 regularization term 으로 해석가능. 실제로 이 부분을 고려하지 않으면 고려할 때보다 학습이 불안정함을 실험으로 확인.
 
-> exp 3 image
+![17](/.gitbook/2022-spring-assets/HyeonahKim_1/exp_3.png)
 
 **추가 실험 (아카이브 버전 Appendix)**
 Contex encoder의 업데이트를 traing step 단위로 할 것인지 에피소드 단위로 할 것인지에 따라 성능 차이를 보이며, reward에 information-gain term scale 에 대한 성능 차이를 실험으로 보임. 하이퍼파라미터에 따른 성능 차이 존재.
 
-> exp 4 image
+![18](/.gitbook/2022-spring-assets/HyeonahKim_1/exp_4.png)
 
 
 ## **5. Conclusion**  
