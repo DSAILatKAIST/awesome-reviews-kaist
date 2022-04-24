@@ -88,9 +88,9 @@ At first, write experiment setup that should be composed of contents.
 * Dataset   
 Caltecg-USCD Birds-200-2011 dataset을 사용하여 bird species classification 실험을 진행하였습니다. dataset은 200 종(species)의 bird 이미지 5994+5794장으로 이루어졌습니다. 그 중 5994장은 training, 나머지 5794장은 test시 이용하였습니다. 각 bird class마다 30장의 이미지밖에 존재하지 않아, 논문에서는 random rotation, skew, shear, flip 등의 augmentation을 통해 training set의 각 class마다 1200장의 이미지가 존재하도록 데이터를 증강하였습니다.   
 * baseline  
-
+non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, DenseNet161 네트워크들을 baseline으로 삼고, 각 네트워크에 interpetable한 TesNet을 적용한 경우와 비교 실험하였습니다. 또한, TesNet과 유사한 interpetable network architecture인 ProtoPNet을 적용한 결과도 함께 비교하였습니다.   
 * Evaluation Metric  
-
+classification accuracy를 metric으로 사용하였습니다.   
 
 ### **Result**  
 Then, show the experiment results which demonstrate the proposed method.  
