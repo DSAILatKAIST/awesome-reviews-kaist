@@ -32,7 +32,7 @@ To find a well-initialized sparse subnetwork structure, the authors developed an
 * 2) Magnitude-based pruning : the algorithm first computes the magnitude score of the learned INR and proceeds to remove a percentage of the connections. Connections with a magnitude below the common threshold for every layer will be cut off instead of pruning every individual signal. 
 * 3) Retrain and repeat : the algorithm keeps going until the sparsity degree is attained. 
 
-![Figure 2: Meta-SparseINR schema](../../.gitbook/2022-spring-assets/EmelineBagoris1/meta-sparseINR-concept.png)
+![Figure 2: Meta-SparseINR schema](../../.gitbook/2022-spring-assets/EmelineBagoris1/meta-sparseINR-concept-2.png)
 
 
 ## **4. Experiment**  
