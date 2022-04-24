@@ -75,7 +75,7 @@ loss 식에서 B^{c}는 class c의 orthonormal basis vectors로 이루어진 mat
 ### **High-level Patches Grouping**   
 마지막으로 조건 (3)을 만족시키기 위한 Loss입니다.
 ![figure5](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure5.PNG?raw=true)   
-조건 (3)은 결국 high-level 이미지 패치들이 embedding subspace에도 잘 projection 되어야 한다는 의미입니다. 즉, 이미지 패치들이 subsapce에 embedding 되었을 때 이미지가 속한 ground-truth class의 basis vectors와 근접해야합니다. 이를 위해 논문은 Compactness Loss와 Separation Loss를 정의하고 있습니다.   
+조건 (3)은 결국 high-level 이미지 패치들이 embedding subspace에도 잘 projection 되어야 한다는 의미입니다. 즉, 이미지 패치들이 subspace에 embedding 되었을 때 이미지가 속한 ground-truth class의 basis vectors와 근접해야합니다. 이를 위해 논문은 Compactness Loss와 Separation Loss를 정의하고 있습니다.   
 먼저 Compactness Loss의 식을 살펴보면, 이미지 패치와 ground-truth class의 basis vectors사이의 cosine distance(negative cosine similarity)를 최소화하고 있습니다. 이는 결국 이미지 패치와 ground-truth class의 basis vectors사이의 cosine similarity를 크게하는 것과 같습니다.  
 반면, Separation Loss는 이미지 패치가 ground-truth가 아닌 class의 basis vectors과는 멀어지도록 둘 사이의 cosine similarity를 최소화하고 있습니다.  
 이 두 Loss를 hyper-parameter _M_ 을 사용하여 더함으로써 Compactness-Separation Loss를 정의합니다.   
