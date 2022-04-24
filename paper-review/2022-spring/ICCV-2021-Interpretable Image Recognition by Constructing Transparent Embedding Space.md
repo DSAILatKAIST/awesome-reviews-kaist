@@ -90,12 +90,12 @@ Caltecg-USCD Birds-200-2011 dataset을 사용하여 bird species classification 
 * baseline  
 non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, DenseNet161 네트워크들을 baseline으로 삼고, 각 네트워크에 interpetable한 TesNet을 적용한 경우와 비교 실험하였습니다. 또한, TesNet과 유사한 interpetable network architecture인 ProtoPNet을 적용한 결과도 함께 비교하였습니다.   
 * Evaluation Metric  
-classification accuracy를 metric으로 사용하였습니다.   
+평가지표로 classification accuracy를 사용하였습니다.   
 
 ### **Result**  
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
-  
+![figure8](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure8.PNG?raw=true) 
 
 
 
@@ -116,5 +116,6 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 Please write the reference. If paper provides the public code or other materials, refer them.  
 
 * Github Implementation  
+None
 * Reference  
 
