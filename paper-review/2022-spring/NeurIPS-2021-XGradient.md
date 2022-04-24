@@ -64,12 +64,12 @@ Attribution Priors는 domain knowledge를 인코딩하는 방법중에 하나로
 
 ## **1) Nonnegatively homogeneous DNN (X-DNN) and X-Gradient (XG)**
 
-$F(\alpha x) = \alpha^k F(x)$, ($\alpha > 0$) 를 만족하는 함수 $F$를 homogeneous degree가 k인 [positive homogeneous function](https://en.wikipedia.org/wiki/Homogeneous_function)이라고 한다. 저자는 이 성질을 이용해서 positive homogeneous한 DNN에 대해서 baseline을 0벡터로하는 IG를 구한다면, 그 결과는 Gradient에 input을 곱한 값과 동일하다고 보여준다. 이 말은 positive homogeneous function에 대해서는 <u>gradient를 누적해서 여러번 계산할 필요없이 단 한번의 forward/backward pass</u>로 매우 빠르게 구할 수 있다는 것을 보여준다.<br>
+$$F(\alpha x) = \alpha^k F(x)$$, ($$\alpha > 0$$) 를 만족하는 함수 $$F$$를 homogeneous degree가 k인 [positive homogeneous function](https://en.wikipedia.org/wiki/Homogeneous_function)이라고 한다. 저자는 이 성질을 이용해서 positive homogeneous한 DNN에 대해서 baseline을 0벡터로하는 IG를 구한다면, 그 결과는 Gradient에 input을 곱한 값과 동일하다고 보여준다. 이 말은 positive homogeneous function에 대해서는 <u>gradient를 누적해서 여러번 계산할 필요없이 단 한번의 forward/backward pass</u>로 매우 빠르게 구할 수 있다는 것을 보여준다.<br>
 | Positive homogeneous |
 | --- |
 | ![positive homoegeneous](/../2022-Spring/.gitbook/2022-spring-assets/junghurnkim_1/positive_homoegeneous.png) |
 
-(2)번식은 IG정의에 의해서 모든 수식이 명백하게 이해가 가는 부분이지만, (3)식의 경우 왜 $\beta$를 0으로 보내는 식을 썼는지 정확한 이유는 알 수 없다. 다만 (2)번식 적분의 시작이 0인 것은 IG정의에서 비롯된 값임을 고려했을 때, (3)번식의 적분의 시작이 0인 것 은 우리가 baseline을 0으로 설정한 부분이기 때문에 이 점을 강조하기 위함이 아닐까 추측한다.
+(2)번식은 IG정의에 의해서 모든 수식이 명백하게 이해가 가는 부분이지만, (3)식의 경우 왜 $$\beta$$를 0으로 보내는 식을 썼는지 정확한 이유는 알 수 없다. 다만 (2)번식 적분의 시작이 0인 것은 IG정의에서 비롯된 값임을 고려했을 때, (3)번식의 적분의 시작이 0인 것 은 우리가 baseline을 0으로 설정한 부분이기 때문에 이 점을 강조하기 위함이 아닐까 추측한다.
 
 
 이어서 Nonnegatively homogeneous한 DNN을 X-DNN, 0 baseline에 대한 X-DNN의 attribution 값을 X-Gradient라고 정의한다.
