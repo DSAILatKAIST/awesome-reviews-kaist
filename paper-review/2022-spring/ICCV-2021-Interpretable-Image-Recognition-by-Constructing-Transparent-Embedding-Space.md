@@ -62,14 +62,19 @@ Grassmann manifold는 쉽게 말하면 linear subspaces의 set(집합)이라고 
 
 ### **Orthonormality for Within-class Concepts**   
 조건 (1)을 만족시키기 위한 Loss는 다음과 같습니다.  
+
 ![figure3](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure3.PNG?raw=true)  
+
 basis vector사이에 의미가 중복되지 않는다는 것은 같은 class에 속한 basis concepts이더라도 반드시 서로 다른 측면들을 나타내고 있어야한다는 뜻입니다. 그러기 위해선 같은 class에 속한 basis concept vectors가 서로 orthogonal해야 하므로 각 class의 basis vectors 사이의 orthonormality를 규제하는 Loss를 사용합니다.   
+
 Loss 식을 살펴보면 각 class의 basis vector matrix 행렬곱과 identity matrix 사이의 L2 norm을 모두 더하고 있습니다. 즉, 각 class의 basis vectors간의 correlation(상관 관계)를 최소화시키기 위한 Loss입니다. 이러한 Loss를 통해 학습된 orthonormal basis vectors가 각 class의 subspace를 span하게 됩니다.   
 
 ### **Separtion for Class-aware Subsapces**  
-두번째로 조건 (2)를 만족시키기 위한 Loss는 다음과 같습니다.  
+두번째로 조건 (2)를 만족시키기 위한 Loss는 다음과 같습니다.
+
 ![figure4](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure4.PNG?raw=true)   
 embedding space상에서 class가 구분되기 위해서는 각 class의 subspace가 서로 멀리 위치해 있어야합니다. 즉, Grassmann manifold 상에서 class-aware subspace들의 거리가 최대한 멀어지도록 규제합니다. 각 subspace는 Grasmann manifold상에서 unique한 projection으로 존재하므로, subspace 사이의 거리를 projection mapping을 이용하여 수치화할 수 있습니다.   
+
 Loss 식에서 B^{c}는 class c의 orthonormal basis vectors로 이루어진 matrix를 의미하고, 이 matrix의 행렬곱이 class c와 연관된 subspace의 projection mapping입니다. 결국 Loss는 서로 다른 class의 projection mapping 사이의 L2 norm distance들의 합을 최소화시키기 위한 Loss로 이해할 수 있습니다.
 
 ### **High-level Patches Grouping**   
@@ -80,6 +85,7 @@ Loss 식에서 B^{c}는 class c의 orthonormal basis vectors로 이루어진 mat
 먼저 Compactness Loss의 식을 살펴보면, 이미지 패치와 ground-truth class의 basis vectors사이의 cosine distance(negative cosine similarity)를 최소화하고 있습니다. 이는 결국 이미지 패치와 ground-truth class의 basis vectors사이의 cosine similarity를 크게하는 것과 같습니다.  
 
 반면, Separation Loss는 이미지 패치가 ground-truth가 아닌 class의 basis vectors과는 멀어지도록 둘 사이의 cosine similarity를 최소화하고 있습니다.  
+
 이 두 Loss를 hyper-parameter _M_ 을 사용하여 더함으로써 Compactness-Separation Loss를 정의합니다.   
 
 ### **Identification**  
@@ -88,6 +94,7 @@ Loss 식에서 B^{c}는 class c의 orthonormal basis vectors로 이루어진 mat
 
 최종적으로, 지금까지 정의된 loss들을 jointly optimize하기 위해 Total Loss for Joint Optimization을 정의합니다.    
 ![figure7](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure7.PNG?raw=true)   
+
 hyper-parameters를 사용하여 classification loss(cross entropy loss)에 orthonormality loss, subspace separation loss, compactness-separation loss를 적절한 비율로 더해줍니다. 이 total loss와 함께 convolutional layer, basis vectors가 동시에 최적화되며 concept embedding subspace가 학습됩니다.
 
 ### **Concept-based classification**   
