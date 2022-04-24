@@ -58,8 +58,8 @@ $$
 P(i \mid u, q)=\frac{\exp \left(\boldsymbol{i} \cdot \boldsymbol{M}_{\boldsymbol{u q}}\right)}{\sum_{i^{\prime} \in I_{q}} \exp \left(\boldsymbol{i}^{\prime} \cdot \boldsymbol{M}_{\boldsymbol{u q}}\right)}
 $$
 
-> $$i \in \mathbb{R}^{\alpha}$$ is the embedding representation of item , $M_{uq}$ is a joint model of user-query pair (u,q)
-> **Probability** of whether $i$ would be purchased by $u$ given $q$
+> $$i \in \mathbb{R}^{\alpha}$$ is the embedding representation of item , $$M_{uq}$$ is a joint model of user-query pair (u,q)
+> **Probability** of whether $i$ would be purchased by $$u$$ given $$q$$
 
 ---
 
@@ -130,7 +130,7 @@ $$
 
 > $$T_u$$ could be any text written or associated to $$u$$, such as product reviews or the descriptions of items that the user has purchased.
 
-item과 같이 user’s associated text 를 이용해 embedding을 얻어서 $M_{uq}$에 반영함.
+item과 같이 user’s associated text 를 이용해 embedding을 얻어서 $$M_{uq}$$에 반영함.
 
 ---
 
@@ -254,7 +254,7 @@ $$\phi$$는 여타 non-linear sequential encoder(LSTM,Transformer 등)이 될 �
   $$
   \boldsymbol{H}^{(l)}=\left(\omega \boldsymbol{I}+(1-\omega) \boldsymbol{D}^{-1} \boldsymbol{A}\right) \boldsymbol{H}^{(l-1)}
   $$
-  $\omega$ 는 자기 자신의 노드를 전파하는 정보를 조절하는 하이퍼 파라미터
+  $$\omega$$ 는 자기 자신의 노드를 전파하는 정보를 조절하는 하이퍼 파라미터
 
 ### 3.2.2 **Jumping Graph Convolution Layer**
 
@@ -276,7 +276,7 @@ Successive behavior graph를 구성하기 위해, successive가 뭔지 정의해
 
 해당 논문에서는 특정한 길이 R을 한 세션으로 설정했음
 
-> \*If the time interval between **two consecutive actions is within a period 𝑅** (e.g., a day, a week, or a month), the **two actions are considered as successive** and will be placed in the **same successive behavior sequence\***
+> \If the time interval between **two consecutive actions is within a period 𝑅** (e.g., a day, a week, or a month), the **two actions are considered as successive** and will be placed in the **same successive behavior sequence\**
 
 $$𝐺_{𝑆𝐵}$$ 는 이렇게 구성된 시퀀스와 상품간의 이분그래프
 $$G_{SB}$$의 edge 는 상품 i 가 시퀀스 S 에 있을 시 $$𝐺_{𝑆𝐵}(𝑖, 𝑆) = 1$$로 표현
@@ -312,7 +312,7 @@ $$
 \end{aligned}
 $$
 
-> _Where $$\boldsymbol{W}{h} \in \mathbb{R}^{d{a}}, \boldsymbol{W}{f} \in \mathbb{R}^{d \times d{a} \times d}, \boldsymbol{b}{f} \in \mathbb{R}^{d \times d{a}}$$ are the trainable parameters, and $$d_{a}$$ is the hidden dimension of the user-product attention network. In particular, $$\exp (s(q, 0))$$ is calculated by Eq. (12) with $$i$$ as a learnable inquiry vector $$0^{\prime} \in \mathbb{R}^{d}$$.\_
+> Where $$\boldsymbol{W}{h} \in \mathbb{R}^{d{a}}, \boldsymbol{W}{f} \in \mathbb{R}^{d \times d{a} \times d}, \boldsymbol{b}{f} \in \mathbb{R}^{d \times d{a}}$$ are the trainable parameters, and $$d_{a}$$ is the hidden dimension of the user-product attention network. In particular, $$\exp (s(q, 0))$$ is calculated by Eq. (12) with $$i$$ as a learnable inquiry vector $$0^{\prime} \in \mathbb{R}^{d}$$.
 
 ## 3.4 Model Optimization
 
@@ -450,7 +450,7 @@ SBG 는 결국 bipartite graph에 edge 구성도 단순했는데, 논문의 intr
 
 # 6. Reference
 
-- https://github.com/floatSDSDS/SBG(https://github.com/floatSDSDS/SBG)
+- [https://github.com/floatSDSDS/SBG](https://github.com/floatSDSDS/SBG)
 - [Learning a hierarchical embedding model for personalized product search(SIGIR-2017)](https://scholar.google.com/scholar_url?url=https://dl.acm.org/doi/pdf/10.1145/3077136.3080813&hl=ko&sa=T&oi=gsb-gga&ct=res&cd=0&d=15736059002742053164&ei=pstjYtiTHYySyASZk6HgCA&scisig=AAGBfm17kfq7KLvb8_VrBirjKb8qxDT-7w)
 - [A Zero Attention Model for Personalized Product Search](https://arxiv.org/pdf/1908.11322.pdf) (CIKM-2019)
 - [Distributed Representations of Sentences and Documents](https://proceedings.mlr.press/v32/le14.pdf) (PMLR-2014)
