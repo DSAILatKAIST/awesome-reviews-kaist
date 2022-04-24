@@ -108,7 +108,7 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 </br>
 
 <div align="center">
-![](https://latex.codecogs.com/gif.latex?(3)H_k=(a_{k-1}a_{k-1}^T)\otimes\mathcal{H}_k,\space\mathcal{H}_k =B_kW^T_{k+1}\mathcal{H}_{k+1}W_{k+1}B_k+D_k)
+![](https://latex.codecogs.com/gif.latex?(3)H_k=(a_{k-1}a_{k-1}^T)\otimes\mathcal{H}_k,\space\mathcal{H}_k =B_{k}W^{T}_{k+1}\mathcal{H}_{k+1}W_{k+1}B_{k}+D_{k})
 
 ![](https://latex.codecogs.com/gif.latex?(4)B_k=\mathrm{diag}(f'_k(h_k)),\space{}D_k=\mathrm{diag}(f''_k(h_k)\frac{\partial{L}}{\partial{a_k}}))
 </div>
