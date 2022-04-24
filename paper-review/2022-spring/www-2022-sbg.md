@@ -77,7 +77,7 @@ $$
 
 (User embedding 이 없음을 볼 수 있다)
 
-> $q \in \mathbb{R}^{\alpha}$ is the embedding representation of the query q.
+> $$q \in \mathbb{R}^{\alpha}$$ is the embedding representation of the query q.
 
 query는 검색 단계에서 입력되기 때문에, request time 내에 계산되어야 함
 
@@ -87,7 +87,7 @@ $$
 \boldsymbol{q}=\phi\left(\left\{w_{q} \mid w_{q} \in q\right\}\right)=\tanh \left(\boldsymbol{W}_{\phi} \cdot \frac{\sum_{w_{q} \in q} \boldsymbol{w}_{\boldsymbol{q}}}{|q|}+\boldsymbol{b}_{\phi}\right)
 $$
 
-> where $w_{q} \in \mathbb{R}^{\alpha}$ is the embedding of a word $w_{q}$ in $q,|q|$ is the length of the query, and $\boldsymbol{W}{\phi} \in \mathbb{R}^{\alpha \times \alpha}$ _and_ $\boldsymbol{b}{\phi} \in \mathbb{R}^{\alpha}$ are two parameters learned in the training process.
+> where $$w_{q} \in \mathbb{R}^{\alpha}$$ is the embedding of a word $$w_{q}$$ in $$q,|q|$$ is the length of the query, and $$\boldsymbol{W}{\phi} \in \mathbb{R}^{\alpha \times \alpha}$$ _and_ $$\boldsymbol{b}{\phi} \in \mathbb{R}^{\alpha}$$ are two parameters learned in the training process.
 
 ### `Item`
 
@@ -101,8 +101,8 @@ $$
 P\left(T_{i} \mid i\right)=\prod_{\boldsymbol{w} \in T_{i}} \frac{\exp (\boldsymbol{w} \cdot \boldsymbol{i})}{\sum_{w^{\prime} \in V} \exp \left(\boldsymbol{w}^{\prime} \cdot \boldsymbol{i}\right)}
 $$
 
-> $T_i$ be a set of words associated with an item $i$ (i번째 item 에 대한 단어들)
-> $w \in \mathbb{R}^{\alpha}$ is the embedding of a word and $V$ is the vocabulary of all possible words.
+> $$T_i$$ be a set of words associated with an item $$i$$ (i번째 item 에 대한 단어들)
+> $$w \in \mathbb{R}^{\alpha}$$ is the embedding of a word and $$V$$ is the vocabulary of all possible words.
 
 ---
 
@@ -110,11 +110,9 @@ $$
 
 [Learning a hierarchical embedding model for personalized product search(SIGIR-2017)](https://scholar.google.com/scholar_url?url=https://dl.acm.org/doi/pdf/10.1145/3077136.3080813&hl=ko&sa=T&oi=gsb-gga&ct=res&cd=0&d=15736059002742053164&ei=pstjYtiTHYySyASZk6HgCA&scisig=AAGBfm17kfq7KLvb8_VrBirjKb8qxDT-7w)
 
-<aside>
-💡 **QEM+User embedding**
-개인화된 추천을 위해 User embedding 을 사용하자.
+💡 **QEM+User embedding
+**개인화된 추천을 위해 User embedding 을 사용하자.**
 
-</aside>
 
 ![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%201.png>)
 
@@ -130,7 +128,7 @@ $$
 P\left(T_{u} \mid u\right)=\prod_{\boldsymbol{w} \in T_{u}} \frac{\exp (\boldsymbol{w} \cdot \boldsymbol{u})}{\sum_{w^{\prime} \in V} \exp \left(\boldsymbol{w}^{\prime} \cdot \boldsymbol{u}\right)}
 $$
 
-> $T_u$ could be any text written or associated to u, such as product reviews or the descriptions of items that the user has purchased.
+> $$T_u$$ could be any text written or associated to $$u$$, such as product reviews or the descriptions of items that the user has purchased.
 
 item과 같이 user’s associated text 를 이용해 embedding을 얻어서 $M_{uq}$에 반영함.
 
@@ -138,25 +136,23 @@ item과 같이 user’s associated text 를 이용해 embedding을 얻어서 $M_
 
 ### 3.0.3.AEM(Attention Embedding model)
 
-<aside>
 💡 **User preferences are not independent of query intents**
-어탠션을 통해 사용자의 구매 행동을 추가해보자!
+**어탠션을 통해 사용자의 구매 행동을 추가해보자!**
 
-</aside>
 
-$I_u$ 가 user $u$ 가 구매한 item set 일때, user embedding u는:
+$$I_u$$ 가 user $$u$$ 가 구매한 item set 일때, user embedding $$u$$는:
 
 $$
 \boldsymbol{u}=\sum_{i \in I_{u}} \frac{\exp (f(q, i))}{\sum_{i^{\prime} \in I_{u}} \exp \left(f\left(q, i^{\prime}\right)\right)} \boldsymbol{i}
 $$
 
-$f (q,i)$는 $I_u$의 각 item i 들이 현재 query $q$ 에 대한 attention function
+$$f (q,i)$$는 $$I_u$$의 각 item i 들이 현재 query $$q$$ 에 대한 attention function
 
 $$
 f(q, i)=\left(i \cdot \tanh \left(\boldsymbol{W}_{f} \cdot q+b_{f}\right)\right) \cdot \boldsymbol{W}_{h}
 $$
 
-$\boldsymbol{W}_{h} \in \mathbb{R}^{\beta}, \boldsymbol{W}_{f} \in \mathbb{R}^{\alpha \times \beta \times \alpha}, \boldsymbol{b}_{f} \in \mathbb{R}^{\alpha \times \beta}$, and $\beta$ is a hyperparameter that controls the number of hidden units in the attention network.
+$$\boldsymbol{W}_{h} \in \mathbb{R}^{\beta}, \boldsymbol{W}_{f} \in \mathbb{R}^{\alpha \times \beta \times \alpha}, \boldsymbol{b}_{f} \in \mathbb{R}^{\alpha \times \beta}$$, and $$\beta$$ is a hyperparameter that controls the number of hidden units in the attention network.
 
 $$
 M_{uq} = q+u
@@ -168,11 +164,10 @@ $$
 
 [A Zero Attention Model for Personalized Product Search(CIKM ’19)](https://arxiv.org/pdf/1908.11322.pdf)
 
-<aside>
-💡 **Advanced AEM**
-Zero ****attention strategy를 통해 성능 개선
 
-</aside>
+💡 **Advanced AEM**
+**Zero attention strategy를 통해 성능 개선**
+
 
 User가 해당 query에 관련된 구매기록이 전혀 없는 경우나(cold start), 성향과 무관하게 쿼리에 따른 결과가 정해져 있는 경우(dominant brand)의 성능 하락을 개선하고자 Zero attentntion strategy 적용
 
@@ -188,12 +183,10 @@ $$
 
 ### 3.1.1 **Product retrieval task**
 
-<aside>
 💡 **검색의 목적 : User가 Query를 입력할때 구매할 확률이 가장 높은 Item을 보여주는것**
 
-Rank Item by probability \*\*\*\*of whether $i$ would be purchased by $u$ given $q$아
+Rank Item by probability of whether $$i$$ would be purchased by $$u$$ given $$q$$
 
-</aside>
 
 기본적으로 Latent space based 모델링을 차용
 
@@ -201,18 +194,18 @@ $$
 P(i \mid u, q)=\frac{\exp \left(f\left(\boldsymbol{i}, \boldsymbol{M}_{u q}\right)\right)}{\sum_{i^{\prime} \in C} \exp \left(f\left(\boldsymbol{i}^{\prime}, \boldsymbol{M}_{u q}\right)\right)}
 $$
 
-> $i \in \mathbb{R}^{\alpha}$ is the embedding representation of item
+> $$i \in \mathbb{R}^{\alpha}$$ is the embedding representation of item
 >
-> $M_{uq}$ is a joint model of user-query pair (u,q)
+> $$M_{uq}$$ is a joint model of user-query pair (u,q)
 >
-> $f$ is similarity measure function. (논문에선 cosine similarity)
+> $$f$$ is similarity measure function. (논문에선 cosine similarity)
 
 ![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%203.png>)
 
 ### 3.1.2 **Language Modeling Task**
 
-$i, u, q$ 중 이번 논문의 핵심이 되는 SBG, GCN을 이용하는것은 $u$ embedding
-$i,q$는 이전과 크게 다르지 않음
+$$i, u, q$$ 중 이번 논문의 핵심이 되는 SBG, GCN을 이용하는것은 $$u$$ embedding
+$$i,q$$는 이전과 크게 다르지 않음
 
 $$
 P\left(T_{i} \mid i\right)=\prod_{w \in T_{i}} \frac{\exp (\tau(w, i))}{\sum_{w^{\prime} \in V} \exp \left(\tau\left(w^{\prime}, i\right)\right)}
@@ -224,7 +217,7 @@ $$
 \boldsymbol{q}=\phi\left(\left\{w_{q} \mid w_{q} \in q\right\}\right)=\tanh \left(\boldsymbol{W}_{\phi} \cdot \frac{\sum_{w_{q} \in q} \boldsymbol{w}_{\boldsymbol{q}}}{|q|}+\boldsymbol{b}_{\phi}\right)
 $$
 
-$\phi$는 여타 non-linear sequential encoder(LSTM,Transformer 등)이 될 수 있지만, 보통 query는 짧고, 단어 순서또한 그리 중요치 않아 저자는 기존의 average와 같은것을 사용
+$$\phi$$는 여타 non-linear sequential encoder(LSTM,Transformer 등)이 될 수 있지만, 보통 query는 짧고, 단어 순서또한 그리 중요치 않아 저자는 기존의 average와 같은것을 사용
 
 ## 3.2 Efficient Graph Convolution with Jumping Conection
 
@@ -241,19 +234,19 @@ $\phi$는 여타 non-linear sequential encoder(LSTM,Transformer 등)이 될 수 
 - Common GCN(self loop, normalized)
   학습에 사용되는 GCN 구조, 일반적으로 GCN 구조를 말한다면 이것을 의미한다.
 
-      $$
-      \boldsymbol{H}^{(l)}=\sigma\left(\hat{A} \boldsymbol{H}^{(l-1)} W^{(l)}\right)
-      $$
+    $$
+    \boldsymbol{H}^{(l)}=\sigma\left(\hat{A} \boldsymbol{H}^{(l-1)} W^{(l)}\right)
+    $$
 
-      $\hat{A}=I+D^{-1} A$ is the ([normalized](https://woosikyang.github.io/Graph-Convolutional-Network.html)) adjacency matrix with self-loops,
+    $$\hat{A}=I+D^{-1} A$$ is the ([normalized](https://woosikyang.github.io/Graph-Convolutional-Network.html)) adjacency matrix with self-loops,
 
-      $D$ is the degree matrix.
+    $$D$$ is the degree matrix.
 
-      $H^{(l)}$ is the node embeddings produced by layer $l$.
+    $$H^{(l)}$$ is the node embeddings produced by layer $$l$$.
 
-      $W^{(l)}$ denotes trainable parameters
+    $$W^{(l)}$$ denotes trainable parameters
 
-      $\sigma$ is a non-linear function such as $\operatorname{ReLU}(\cdot)$
+    $$\sigma$$ is a non-linear function such as $$\operatorname{ReLU}(\cdot)$$
 
 - Efficient Graph Concovoluition ~~Network~~
   저자들의 경험적 연구에 따라 일반적인 GCN을 사용하는 것 보다 efficient graph convolution을 사용하는 것이 더 성능이 좋았다고 언급함.
@@ -273,7 +266,7 @@ $$
 \tilde{\boldsymbol{H}}^{(l)}=\left(\omega \boldsymbol{I}+(1-\omega) \boldsymbol{D}^{-1} \boldsymbol{A}\right)\left(\beta \boldsymbol{H}^{(0)}+(1-\beta) \tilde{\boldsymbol{H}}^{(l-1)}\right)
 $$
 
-𝛽 는 $H^{0}$의 feeding을 조절하는 하이퍼 파라미터
+𝛽 는 $$H^{0}$$의 feeding을 조절하는 하이퍼 파라미터
 
 ## 3.3 Modeling User Behavior with Graph Convolution(SBG)
 
@@ -285,14 +278,14 @@ Successive behavior graph를 구성하기 위해, successive가 뭔지 정의해
 
 > \*If the time interval between **two consecutive actions is within a period 𝑅** (e.g., a day, a week, or a month), the **two actions are considered as successive** and will be placed in the **same successive behavior sequence\***
 
-$𝐺_{𝑆𝐵}$ 는 이렇게 구성된 시퀀스와 상품간의 이분그래프
-$G_{SB}$의 edge 는 상품 i 가 시퀀스 S 에 있을 시 $𝐺_{𝑆𝐵}(𝑖, 𝑆) = 1$로 표현
+$$𝐺_{𝑆𝐵}$$ 는 이렇게 구성된 시퀀스와 상품간의 이분그래프
+$$G_{SB}$$의 edge 는 상품 i 가 시퀀스 S 에 있을 시 $$𝐺_{𝑆𝐵}(𝑖, 𝑆) = 1$$로 표현
 
 ### 3.3.2 **Enriching Product Representations with Graph Convolution**
 
-Jumping network를 위해 첫 layer를 feeding 해야 하는데, 해당 논문에서는 product i 에 대한 embedding $h_i^{(0)}$을 사용했다.
+Jumping network를 위해 첫 layer를 feeding 해야 하는데, 해당 논문에서는 product i 에 대한 embedding $$h_i^{(0)}$$을 사용했다.
 
-$𝐿$ efficient jumping graph convolution layers를 거친 뒤 얻게되는 각 item i에 대한 **graph-enriched product embedding**을 $\tilde{h}_i^{(L)}$ 이라 한다.
+$$𝐿$$ efficient jumping graph convolution layers를 거친 뒤 얻게되는 각 item i에 대한 **graph-enriched product embedding**을 $$\tilde{h}_i^{(L)}$$ 이라 한다.
 
 ### 3.3.3 **Using Graph-enriched Product Representations for User Preference Modeling**
 
@@ -319,7 +312,7 @@ $$
 \end{aligned}
 $$
 
-> _Where $\boldsymbol{W}{h} \in \mathbb{R}^{d{a}}, \boldsymbol{W}{f} \in \mathbb{R}^{d \times d{a} \times d}, \boldsymbol{b}{f} \in \mathbb{R}^{d \times d{a}}$ are the trainable parameters, and $d_{a}$ is the hidden dimension of the user-product attention network. In particular, $\exp (s(q, 0))$ is calculated by Eq. (12) with $i$ as a learnable inquiry vector $0^{\prime} \in \mathbb{R}^{d}$.\_
+> _Where $$\boldsymbol{W}{h} \in \mathbb{R}^{d{a}}, \boldsymbol{W}{f} \in \mathbb{R}^{d \times d{a} \times d}, \boldsymbol{b}{f} \in \mathbb{R}^{d \times d{a}}$$ are the trainable parameters, and $$d_{a}$$ is the hidden dimension of the user-product attention network. In particular, $$\exp (s(q, 0))$$ is calculated by Eq. (12) with $$i$$ as a learnable inquiry vector $$0^{\prime} \in \mathbb{R}^{d}$$.\_
 
 ## 3.4 Model Optimization
 
@@ -406,7 +399,7 @@ $$
 
 > For all methods, the batch size is set to 1024, and the ADAM optimizer is used with an initial learning rate of 0.001. All the **entity embeddings are initialized randomly with dimension 64**. #item, user, query
 
-For our SBG, we set the **attention dimension $[𝑑_𝑎$ to 8]**, and the **user-query balancing** parameter **[𝜆 to 0.5]**.
+For our SBG, we set the **attention dimension [$$𝑑_𝑎$$ to 8]**, and the **user-query balancing** parameter **[𝜆 to 0.5]**.
 
 We employ **4 layers of jumping graph convolution,** and the weight of self-loop is set to 0.1. The strength of **jumping connection [𝛽] is also set to 0.1.**
 The negative sampling rate for each word is set to 5, and that for each item is set to 2.
@@ -451,13 +444,13 @@ Magazine을 제외하고 day, week를 넘어가면 성능하락이 일어남
 
 SBG 는 결국 bipartite graph에 edge 구성도 단순했는데, 논문의 intro 에서 주장하듯 좀 더 rich 한 정보를 담기위해 더 복잡한 graph를 구성해 볼 수 있지 않을까 싶은 생각이 들었다.
 
-# \***\*Author Information\*\***
+# Author Information
 
 김대희(Kim Daehee) is M.S student in the Graduate school of Knowledge Service Engineering of the Korea Advanced Institute of Science and Technology(KAIST). He has double B.S degrees in System Management Engineering and Computer Science in Sungkyunkwan University(SKKU). His research interest is applying graph neural network to product search and recommendation.He currently works at Knowledge Innovation Research Center, of the KAIST
 
 # 6. Reference
 
-- https://github.com/floatSDSDS/SBG
+- https://github.com/floatSDSDS/SBG(https://github.com/floatSDSDS/SBG)
 - [Learning a hierarchical embedding model for personalized product search(SIGIR-2017)](https://scholar.google.com/scholar_url?url=https://dl.acm.org/doi/pdf/10.1145/3077136.3080813&hl=ko&sa=T&oi=gsb-gga&ct=res&cd=0&d=15736059002742053164&ei=pstjYtiTHYySyASZk6HgCA&scisig=AAGBfm17kfq7KLvb8_VrBirjKb8qxDT-7w)
 - [A Zero Attention Model for Personalized Product Search](https://arxiv.org/pdf/1908.11322.pdf) (CIKM-2019)
 - [Distributed Representations of Sentences and Documents](https://proceedings.mlr.press/v32/le14.pdf) (PMLR-2014)
