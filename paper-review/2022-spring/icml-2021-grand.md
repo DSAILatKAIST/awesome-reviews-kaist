@@ -89,10 +89,10 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x $$
 * 무방향 그래프(undirected graph): ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathcal{G}=(\mathcal{V},&space;\mathcal{E}))
 * 노드(node) 수: ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;|\mathcal{V}|=n)
 * 노드 특징(feature) 행렬: ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{X}=([x^{(1)}]^{\intercal},&space;[x^{(2)}]^{\intercal},&space;...,&space;[x^{(i)}]^{\intercal})&space;\in&space;\mathbb{R}^{n&space;\times&space;d}$$,&space;where&space;$$x^{(i)}&space;\in&space;\mathbb{R}^{d})
-* 노드 특징 행렬의 내적은 일반적인 행렬의 내적과 같습니다.
-![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;<\mathbf{X},&space;\mathbf{Y}>=Tr(\mathbf{X}^{\intercal}&space;\mathbf{Y})=\sum_{i=1}^{n}{\mathbf{x}^{(i)}&space;\mathbf{y}^{(j)}})
+* 노드 특징 행렬의 내적은 일반적인 행렬의 내적과 같습니다. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;<\mathbf{X},&space;\mathbf{Y}>=Tr(\mathbf{X}^{\intercal}&space;\mathbf{Y})=\sum_{i=1}^{n}{\mathbf{x}^{(i)}&space;\mathbf{y}^{(j)}})
+
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164894955-cd3eca64-afad-4bc7-a61a-8b320565fed3.png" style="width:80%">
+<img src="https://user-images.githubusercontent.com/40286691/164894955-cd3eca64-afad-4bc7-a61a-8b320565fed3.png" style="width:50%">
 <figcaption align="center">그림 4 - Matrix Inner Product</figcaption>
 </figure>
 
@@ -295,7 +295,7 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 ### **4-1. Node Classification**
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png" style="width:100%">
+<img src="https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png" style="width:75%">
 <figcaption>표 1 - Data Summary</figcaption>
 </figure>
 
