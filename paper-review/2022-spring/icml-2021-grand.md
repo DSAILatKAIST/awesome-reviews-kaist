@@ -1,7 +1,5 @@
 ---
 description : Chamberlain & Rowbottom et al. / GRAND\:&nbsp;Graph Neural Diffusion / ICML-2021
-header-includes:
-- \usepackage{cancel}
 ---
 
 # **GRAND: Graph Neural Diffusion** 
