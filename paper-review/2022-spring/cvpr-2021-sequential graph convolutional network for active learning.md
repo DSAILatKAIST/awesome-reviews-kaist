@@ -363,22 +363,21 @@ Stage가 진행됨에 따라 확연한 차이를 관찰하기 위해 첫번째 s
 - Image의 feature를 기반으로 node를, similarity를 기반으로 edge를 표현하여 graph를 생성하고, message-passing을 표현할 수 있는 GCN을 적용한다.
 - 저자가 제안한 UncertainGCN, CoreGCN은 6개의 data에 대하여 SOTA 결과를 도출하였다.
 
-* Key Idea
+* **Key Idea**  
 	learner를 통해 1차적으로 각 data의 feature를 추출한다음 각각의 similarity를 고려하여 graph domain으로 변경하여 message-passing이 가능하도록 sampler를 design했다.
 
 ---  
 ## **Author Information**  
 
-* Author name : **Razvan Caramalau**
-    * Affiliation  
-    	Imperial College London
-    * Research Topic  
-	Deep Learning, Active Learning, 3D Hand Pose Estimation, Graph Neural Network
+* **Razvan Caramalau**
+    * Imperial College London  
+    * Deep Learning, Avtive Learning, 3D Hand Pose Estimation, Graph Neural Network  
 
 
 ## **6. Reference & Additional materials**  
-
-Please write the reference. If paper provides the public code or other materials, refer them.  
-
-* Github Implementation  
+	
 * Reference
+	- https://openaccess.thecvf.com/content/CVPR2021/html/Caramalau_Sequential_Graph_Convolutional_Network_for_Active_Learning_CVPR_2021_paper.html  
+	- https://openaccess.thecvf.com/content/CVPR2021/supplemental/Caramalau_Sequential_Graph_Convolutional_CVPR_2021_supplemental.pdf
+	
+	
