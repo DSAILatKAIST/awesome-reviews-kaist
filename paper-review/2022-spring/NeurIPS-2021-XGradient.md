@@ -17,7 +17,7 @@ description : Robin Hesse / Fast Axiomatic Attributions for Neural Networks / 20
 
 ## 2) Axiomatic Attributions
 본 논문의 motivation이 된 [Axiomatic Attributions for Neural Networks (2017)](https://arxiv.org/abs/1703.01365)의 저자는 좋은 Attribution method가 가져야할 6가지 공리를 정의하고, 이를 모두 만족하는 Integrated Gradient(IG)를 제시했다.<br>
-![Gradient_Saturation_Effect 설명](.gitbook/2022-spring-assets/junghurnkim_1/Axioms.png)<br>
+![Axioms](.gitbook/2022-spring-assets/junghurnkim_1/Axioms.png)<br>
 다양한 이유로 위의 성질을 모두 만족하는 기존의 Attribution 방법은 없으며, IG는 Gradient Saturation Effect를 해결함으로서 위의 성질을 모두 만족한다고 설명한다.
 
 Gradient Saturation Effect란.<br>
@@ -27,7 +27,7 @@ Gradient Saturation Effect란.<br>
 (이하 그림에 대한 설명은 저자의 자세한 설명을 구할 수 없어서 주관적인 해석이 포함되어 있음)
  - 첫번째 줄은 실제 input image의 픽셀값을 0에서 조금씩 증가시키는 과정이고, 
  - 두번째 줄은 이에 따른 각 픽셀의 gradient 값을 강조해 보여준 결과이다
-![Gradient_Saturation_Effect 설명](/../awesome-reviews-kaist/.gitbook/2022-spring-assets/junghurnkim_1/Gradient_Saturation_Effect.png)
+![Gradient_Saturation_Effect 설명](/../2022-Spring/.gitbook/2022-spring-assets/junghurnkim_1/Gradient_Saturation_Effect.png)
 
 왼쪽에서 오른쪽으로 갈수록 사진의 밝기가 밝아지는 양상인데, 사람의 눈으로 볼때는 밝기만 다른 비슷한 사진으로 보이지만 학습결과는 다르게 나타난다. 스코어가 급격히 증가한 구간(interesting gradient)에서는 fireboat와 관련된 물줄기 부분이 잘 강조되어 보이는 반면, 유의미한 증가값이 없는 구간(Uninteresting gradient)에서는 fireboat와 관련이 없는 부분이 강조되어 있다.
 
