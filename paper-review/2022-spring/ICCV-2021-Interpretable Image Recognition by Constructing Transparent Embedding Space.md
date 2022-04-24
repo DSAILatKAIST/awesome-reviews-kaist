@@ -115,7 +115,7 @@ European Goldfinch라는 class의 test image가 주어졌다고 할 때, TesNet�
 TesNet은 다른 CNN 모델에 plug-in되어 classifiaction 성능을 향상시킬 수 있는 적용성 높은 architecture입니다. TesNet은 class-aware concepts를 설계하고 같은 class에 속한 concepts끼리 얽히지 않도록 하며 효과적으로 prediction 성능을 향상시켰습니다. 또한, TesNet은 image의 어떤 concept이 CNN을 학습시키고 예측하는 데에 근거로 사용되는지를 설명할 수 있습니다.   
 그러나, TesNet은 basis concepts가 모두 flat하다는 전제를 하고 있어, 사람들이 실제로 사물을 분류할 때의 인지 과정과 큰 차이가 있습니다. 또한 실제로 real world에서의 concepts는 서로 계층적으로 이루어져있기 때문에, hierarchical basis concepts를 학습할 수 있는 네트워크에 대한 연구가 필요합니다.
 
-**Opinion**   
+* **Opinion**   
 CNN의 output 해석에 있어 input image의 concept이라는 개념을 잘 정의한 연구라고 생각합니다. 특히 basis vector, subspace, manifold와 같이 어렵지않은 수학적 개념들을 잘 적용하여 의미있는 결과를 도출해낸 점이 굉장히 인상깊습니다. 평소 알고만 있던 수학적 개념들을 neural network와의 연결 지점을 다시 생각해볼 수 있는 기회였고, 개인적으로 Explainable AI에 관심이 많아 흥미로웠습니다. 그런데 이런 interpretable한 network가 주로 이미지 데이터쪽에 치우쳐 있다는 점이 아쉬웠고 audio, text 등에도 general하게 쓰일 수 있는 architecture에 대한 연구의 필요성을 느꼈습니다.
 
 ---  
