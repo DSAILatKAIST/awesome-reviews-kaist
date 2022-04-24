@@ -33,6 +33,7 @@ In contrast to many previous attempts, the proposed method uses an unsupervised 
 In this method, a saliency map is used as an explanation map to detect adversarial examples. For image inputs, each pixel is scored based on its contribution to the final output of the deep learning model and shown on a heatmap.  
 
 <img width="500" src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/00.png">  
+
 _Figure 2: Examples of saliency map based on importance or contribution of each pixel._
 
 
@@ -99,14 +100,9 @@ Overall, the method has difficulty on detecting adversarial examples with low no
 
 **Quantitative comparison to previous approaches**  
 
-<figure>
 <img src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/3.png">
    
-<figcaption align = "center"><i>Table 1: Comparison on adversarial detection accuracy of the proposed (Ko & Lim) and existing approaches. The best and the second best results are highlighted in boldface and underlined texts, espectively. All benchmarks are done on MNIST dataset.</i>
-</figcaption>
-   
-</figure>
-
+_Table 1: Comparison on adversarial detection accuracy of the proposed (Ko & Lim) and existing approaches. The best and the second best results are highlighted in boldface and underlined texts, espectively. All benchmarks are done on MNIST dataset._
   
 
 The above table shows that the proposed method has better or on-par accuracy compared with previously existing works. 
