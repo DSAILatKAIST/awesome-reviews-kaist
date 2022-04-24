@@ -39,7 +39,7 @@ NIWT는 크게 3가지 단계로 구성된다.
 
 ### 3.1 Preliminaries: Generalized Zero-Shot Learning
 
-Generalized Zero-Shot Learning의 목표는 $f : ![](https://latex.codecogs.com/gif.latex?\f:\mathcal{X}\rightarrow\mathcal{S}\cup\mathcal{U}) 를 학습하는 것이다. 
+Generalized Zero-Shot Learning의 목표는 $f : ![](https://latex.codecogs.com/gif.latex?f:\mathcal{X}\rightarrow\mathcal{S}\cup\mathcal{U}) 를 학습하는 것이다. 
 
 dataset : $\mathcal{D} = \{(x_i, y_i)\}_i^N$
 
