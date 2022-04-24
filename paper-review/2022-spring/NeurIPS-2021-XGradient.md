@@ -36,7 +36,7 @@ Gradient Saturation Effect란.<br>
 ## 3) Integrated Gradient (IG)
 위의 논문에서 소개된 위에 언급된 6가지 axiom을 모두 만족하는 방법이다. Gradient Saturation Effect를 해결하기 위해 [baseline, input feature] 직선 이동경로 구간에서 누적 gradient를 계산한다. 즉, baseline에서 원래의 input 값으로 각 픽셀의 값을 linear하게 증가시키면서 누적된 gradient값을 Attribution score로 사용하는 방법이다.
 
-수식으로는 다음과 같다. ![IG 수식](/../awesome-reviews-kaist/.gitbook/2022-spring-assets/junghurnkim_1/IG_math.png)<br>
+수식으로는 다음과 같다. ![IG 수식](/awesome-reviews-kaist/.gitbook/2022-spring-assets/junghurnkim_1/IG_math.png)<br>
 x와 x'은 각각 input과 baseline을 의미하며, 대부분의 image task에서는 baseline으로 black image를 사용한다.<br>
 
 
