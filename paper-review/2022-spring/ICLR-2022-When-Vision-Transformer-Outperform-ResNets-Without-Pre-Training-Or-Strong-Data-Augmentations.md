@@ -62,11 +62,8 @@
 <div align="center">  
 
 ![](https://latex.codecogs.com/gif.latex?(1)\space\min_w\max_{||\epsilon||_2\leq\rho}L_{train}(w+\epsilon))
-</div>
 
 </br>
-
-<div align="center">
 ![](https://latex.codecogs.com/gif.latex?(2)\space\hat{\epsilon}(w)=)
 </div>  
 
