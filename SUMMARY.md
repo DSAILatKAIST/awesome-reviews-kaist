@@ -10,7 +10,7 @@
     * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
     * [Latent ODEs for Irregularly-Sampled Time Series](paper-review/2022-spring/NeurIPS-2020-Latent-ODEs-for-Irregularly-Sampled-Time-Series.md)
     * [G-Meta](paper-review/2022-spring/G-Meta.md)
-    * [SBG(Successive Behavior Graph)](paper-review/2022-spring/www-2022-sbg(successive behavior graph).md)
+    * [SBG(Successive Behavior Graph)](paper-review/2022-spring/www-2022-sbg.md)
     
 ## How to contribute  
 
