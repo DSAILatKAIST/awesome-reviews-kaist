@@ -65,7 +65,7 @@ Grassmann manifold는 쉽게 말하면 linear subspaces의 set(집합)이라고 
 
 ![figure3](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure3.PNG?raw=true)  
 
-basis vector사이에 의미가 중복되지 않는다는 것은 같은 class에 속한 basis concepts이더라도 반드시 서로 다른 측면들을 나타내고 있어야한다는 뜻입니다. 그러기 위해선 같은 class에 속한 basis concept vectors가 서로 orthogonal해야 하므로 각 class의 basis vectors 사이의 orthonormality를 규제하는 Loss를 사용합니다.   
+basis vector사이에 의미가 중복되지 않는다는 것은 같은 class에 속한 basis concepts이더라도 반드시 서로 다른 측면들을 나타내고 있어야한다는 뜻입니다. 그러기 위해선 같은 class에 속한 basis concept vectors가 서로 orthogonal해야 하므로 <code>각 class의 basis vectors 사이의 orthonormality를 규제하는 Loss</code>를 사용합니다.   
 
 Loss 식을 살펴보면 각 class의 basis vector matrix 행렬곱과 identity matrix 사이의 L2 norm을 모두 더하고 있습니다. 즉, 각 class의 basis vectors간의 correlation(상관 관계)를 최소화시키기 위한 Loss입니다. 이러한 Loss를 통해 학습된 orthonormal basis vectors가 각 class의 subspace를 span하게 됩니다.   
 
@@ -73,47 +73,47 @@ Loss 식을 살펴보면 각 class의 basis vector matrix 행렬곱과 identity 
 두번째로 조건 (2)를 만족시키기 위한 Loss는 다음과 같습니다.
 
 ![figure4](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure4.PNG?raw=true)   
-embedding space상에서 class가 구분되기 위해서는 각 class의 subspace가 서로 멀리 위치해 있어야합니다. 즉, Grassmann manifold 상에서 class-aware subspace들의 거리가 최대한 멀어지도록 규제합니다. 각 subspace는 Grasmann manifold상에서 unique한 projection으로 존재하므로, subspace 사이의 거리를 projection mapping을 이용하여 수치화할 수 있습니다.   
+embedding space상에서 class가 구분되기 위해서는 각 class의 subspace가 서로 멀리 위치해 있어야합니다. 즉, Grassmann manifold 상에서 class-aware subspace들의 거리가 최대한 멀어지도록 규제합니다. 각 subspace는 Grasmann manifold상에서 unique한 projection으로 존재하므로, subspace 사이의 거리를 <code>projection mapping</code>을 이용하여 수치화할 수 있습니다.   
 
-Loss 식에서 B^{c}는 class c의 orthonormal basis vectors로 이루어진 matrix를 의미하고, 이 matrix의 행렬곱이 class c와 연관된 subspace의 projection mapping입니다. 결국 Loss는 서로 다른 class의 projection mapping 사이의 L2 norm distance들의 합을 최소화시키기 위한 Loss로 이해할 수 있습니다.
+Loss 식에서 B^{c}는 class c의 orthonormal basis vectors로 이루어진 matrix를 의미하고, 이 matrix의 행렬곱이 class c와 연관된 subspace의 projection mapping입니다. 결국 Loss는 <code>서로 다른 class의 projection mapping 사이의 L2 norm distance들의 합을 최소화시키기 위한 Loss</code>로 이해할 수 있습니다.
 
 ### **High-level Patches Grouping**   
 마지막으로 조건 (3)을 만족시키기 위한 Loss입니다.
 ![figure5](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure5.PNG?raw=true)   
-조건 (3)은 결국 high-level 이미지 패치들이 embedding subspace에도 잘 projection 되어야 한다는 의미입니다. 즉, 이미지 패치들이 subspace에 embedding 되었을 때 이미지가 속한 ground-truth class의 basis vectors와 근접해야합니다. 이를 위해 논문은 Compactness Loss와 Separation Loss를 정의하고 있습니다.   
+조건 (3)은 결국 high-level 이미지 패치들이 embedding subspace에도 잘 projection 되어야 한다는 의미입니다. 즉, 이미지 패치들이 subspace에 embedding 되었을 때 이미지가 속한 ground-truth class의 basis vectors와 근접해야합니다. 이를 위해 논문은 <code>Compactness Loss</code>와 <code>Separation Loss</code>를 정의하고 있습니다.   
 
 먼저 Compactness Loss의 식을 살펴보면, 이미지 패치와 ground-truth class의 basis vectors사이의 cosine distance(negative cosine similarity)를 최소화하고 있습니다. 이는 결국 이미지 패치와 ground-truth class의 basis vectors사이의 cosine similarity를 크게하는 것과 같습니다.  
 
 반면, Separation Loss는 이미지 패치가 ground-truth가 아닌 class의 basis vectors과는 멀어지도록 둘 사이의 cosine similarity를 최소화하고 있습니다.  
 
-이 두 Loss를 hyper-parameter _M_ 을 사용하여 더함으로써 Compactness-Separation Loss를 정의합니다.   
+이 두 Loss를 hyper-parameter _M_ 을 사용하여 더함으로써 <code>Compactness-Separation Loss</code>를 정의합니다.   
 
 ### **Identification**  
-마지막으로 classifier layer를 optimize하기 위한 Loss로서 Cross Entropy Loss를 이용합니다.   
+마지막으로 classifier layer를 optimize하기 위한 Loss로서 <code>Cross Entropy Loss</code>를 이용합니다.   
 ![figure6](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure6.PNG?raw=true)  
 
-최종적으로, 지금까지 정의된 loss들을 jointly optimize하기 위해 Total Loss for Joint Optimization을 정의합니다.    
+최종적으로, 지금까지 정의된 loss들을 jointly optimize하기 위해 <code>Total Loss for Joint Optimization</code>을 정의합니다.    
 ![figure7](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure7.PNG?raw=true)   
 
-hyper-parameters를 사용하여 classification loss(cross entropy loss)에 orthonormality loss, subspace separation loss, compactness-separation loss를 적절한 비율로 더해줍니다. 이 total loss와 함께 convolutional layer, basis vectors가 동시에 최적화되며 concept embedding subspace가 학습됩니다.
+hyper-parameters를 사용하여 <code>classification loss(cross entropy loss)에 orthonormality loss, subspace separation loss, compactness-separation loss</code>를 적절한 비율로 더해줍니다. 이 total loss와 함께 convolutional layer, basis vectors가 동시에 최적화되며 <code>concept embedding subspace</code>가 학습됩니다.
 
 ### **Concept-based classification**   
-embedding space가 학습되고 나면, convolutional layers와 basis vectors의 parameter를 고정시킨 후, 마지막 단의 classifier를 학습시키게 됩니다. classifier는 concept-class weight _G_ 를 최적화함으로써 학습이 되는데, weight _G_ 는 _G(c,j)_ 의 값이 j번째 unit이 class c에 속하는 경우를 제외하고 모두 0인 sparse matrix입니다. 앞서 정의한 Identification Loss에 weight _G_ 를 sparse하게 유지하게 하는 규제를 더하여 Loss를 정의하고, 이 Loss를 최소화하도록 classifier가 학습됩니다.   
+embedding space가 학습되고 나면, convolutional layers와 basis vectors의 parameter를 고정시킨 후, 마지막 단의 classifier를 학습시키게 됩니다. classifier는 concept-class weight _G_ 를 최적화함으로써 학습이 되는데, weight _G_ 는 _G(c,j)_ 의 값이 j번째 unit이 class c에 속하는 경우를 제외하고 모두 0인 sparse matrix입니다. 앞서 정의한 Identification Loss에 <code>weight _G_ 를 sparse하게 유지하게 하는 규제를 더하여 Loss</code>를 정의하고, 이 Loss를 최소화하도록 classifier가 학습됩니다.   
 ![figure10](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure10.PNG?raw=true)  
 
 
 ## **4. Experiment**    
-본 논문에서는 다양한 CNN architecture에 대한 TesNet의 넓은 적용성을 입증하기 위해 두 가지의 case study를 진행하였습니다. 그 중 첫번째 case study인 bird species identification에 대해서 자세히 살펴보겠습니다.
+본 논문에서는 다양한 CNN architecture에 대한 TesNet의 넓은 적용성을 입증하기 위해 두 가지의 case study를 진행하였습니다. 그 중 첫번째 case study인 <code>bird species identification</code>에 대해서 자세히 살펴보겠습니다.
 
 ### **Experiment setup**  
 * **Dataset**   
-Caltecg-USCD Birds-200-2011 dataset을 사용하여 bird species classification 실험을 진행하였습니다. dataset은 200 종(species)의 bird 이미지 5994+5794장으로 이루어졌습니다. 그 중 5994장은 training, 나머지 5794장은 test시 이용하였습니다. 각 bird class마다 30장의 이미지밖에 존재하지 않아, 논문에서는 random rotation, skew, shear, flip 등의 augmentation을 통해 training set의 각 class마다 1200장의 이미지가 존재하도록 데이터를 증강하였습니다.
+Caltecg-USCD Birds-200-2011 dataset을 사용하여 bird species classification 실험을 진행하였습니다. dataset은 200 종(species)의 bird 이미지 5994+5794장으로 이루어졌습니다. 그 중 5994장은 training, 나머지 5794장은 test시 이용하였습니다. 각 bird class마다 30장의 이미지밖에 존재하지 않아, 논문에서는 random rotation, skew, shear, flip 등의 <code>augmentation</code>을 통해 training set의 각 class마다 1200장의 이미지가 존재하도록 데이터를 증강하였습니다.
 
 * **baseline**  
-non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, DenseNet161 네트워크들을 baseline으로 삼고, 각 네트워크에 interpetable한 TesNet을 적용한 경우와 비교 실험하였습니다. 또한, TesNet과 유사한 interpetable network architecture인 ProtoPNet을 적용한 결과도 함께 비교하였습니다.   
+non-interpetable한 본래<code> VGG16, VGG19, ResNet34, ResNet152, DenseNet121, DenseNet161</code> 네트워크들을 baseline으로 삼고, 각 네트워크에 interpetable한 <code>TesNet</code>을 적용한 경우와 비교 실험하였습니다. 또한, TesNet과 유사한 interpetable network architecture인 <code>ProtoPNet</code>을 적용한 결과도 함께 비교하였습니다.   
 
 * **Evaluation Metric**  
-실험의 성능 평가지표로 classification accuracy를 사용하였습니다.   
+실험의 성능 평가지표로 <code>classification accuracy</code>를 사용하였습니다.   
 
 ### **Result**    
 * **Accuracy comparison with diffrent CNN architectures**   
