@@ -1,8 +1,7 @@
+# SBG(Successive Behavior Graph)
 ---
 description :Fan Lu / Modeling User Behavior with Graph Convolution for Personalized Product Search / WWW-2022
 ---
-
-# SBG(Successive Behavior Graph)
 
 # 1. Problem Definition
 
@@ -48,17 +47,17 @@ description :Fan Lu / Modeling User Behavior with Graph Convolution for Personal
 
 💡**검색의 목적 : User가 Query를 입력할때 구매할 확률이 가장 높은 Item을 보여주는것**
 
-$q$ : 유저가 입력한 query
+$$q$$ : 유저가 입력한 query
 
-$u$ : 유저
+$$u$$ : 유저
 
-$i$ : 아이템(상품)
+$$i$$ : 아이템(상품)
 
 $$
 P(i \mid u, q)=\frac{\exp \left(\boldsymbol{i} \cdot \boldsymbol{M}_{\boldsymbol{u q}}\right)}{\sum_{i^{\prime} \in I_{q}} \exp \left(\boldsymbol{i}^{\prime} \cdot \boldsymbol{M}_{\boldsymbol{u q}}\right)}
 $$
 
-> $i \in \mathbb{R}^{\alpha}$ is the embedding representation of item , $M_{uq}$ is a joint model of user-query pair (u,q)
+> $$i \in \mathbb{R}^{\alpha}$$ is the embedding representation of item , $M_{uq}$ is a joint model of user-query pair (u,q)
 > **Probability** of whether $i$ would be purchased by $u$ given $q$
 
 ---
