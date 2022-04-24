@@ -5,7 +5,7 @@
 ## Paper Review  
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md) 
-    * [Template](paper-review/2022-spring/template.md)
+    * [Hypergraph with DHT](paper-review/2022-spring/neurlps-2021-hypergraph_with_dht.md)
 
 
 ## How to contribute  
