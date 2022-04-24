@@ -58,7 +58,7 @@ Grassmann manifold는 쉽게 말하면 linear subspaces의 set(집합)이라고 
 <code>(2) embedding space에서도 각 class는 구분되어야 합니다.</code>  
 <code>(3) basis vector들은 비슷한 high-level patch(사람들이 인식할 수 있는 level의 image)들을 군집화하고 다른 것들끼리는 분리할 수 있어야 합니다.</code>  
 
-이 세 가지 조건을 만족시키기 위해 전체 architecture에서 보았던 convolutional layer, basis vectors, classifier layer의 weight들이 서로 joint하게 optimize(최적화)될 수 있도록 joint optimization problem을 정의하고 있습니다. 다음은 각 weight를 최적화하기 위한 loss와 optimization 과정입니다.   
+이 세 가지 조건을 만족시키기 위해 전체 architecture에서 보았던 convolutional layer, basis vectors, classifier layer의 weight들이 서로 joint하게 optimize(최적화)될 수 있도록 joint optimization problem을 정의하고 있습니다. 다음은 각 weight를 최적화하기 위한 oss와 optimization 과정입니다.   
 
 ### **Orthonormality for Within-class Concepts**   
 조건 (1)을 만족시키기 위한 Loss는 다음과 같습니다.  
