@@ -119,11 +119,11 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 <div align="left">
     
 ![](https://latex.codecogs.com/gif.latex?f(\cdot)): activation , GELU
-
+    
 ![](https://latex.codecogs.com/gif.latex?W_k) : k번째 layer의 params
-
+    
 ![](https://latex.codecogs.com/gif.latex?h_k) : ![](https://latex.codecogs.com/gif.latex?W_k a_{k-1}), activation을 거치기 전의 k번째 layer의 output
-
+    
 ![](https://latex.codecogs.com/gif.latex?a_k) : ![](https://latex.codecogs.com/gif.latex?f_k(h_k))
     
 ![](https://latex.codecogs.com/gif.latex?\otimes) : Kronecker product
