@@ -12,6 +12,7 @@ Convolution Neural Network(CNN)의 결과 해석은 판단의 정확한 근거�
 
 본 논문에서는 이를 문제점으로 지적하며 output class에 대한 input image의 특징을 효과적으로 설명할 수 있으면서, 동시에 서로 얽혀있지않고 orthogonal한(직교를 이루는) concept들을 추출할 수 있는 방법론을 제안합니다. 
 
+
 ## **2. Motivation**  
 
 그렇다면 Interpretable Concepts (해석이 용이한 컨셉)이란 무엇일까요? 인지적 관점에서 Interpretable Concepts는 다음의 세 가지 조건을 만족해야 합니다.
@@ -35,6 +36,7 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 
 또한 projection metric을 통해 각 class의 basis concept들은 서로 orthogonal하도록, 동시에 class-aware한 basis concepts subset들은 서로 멀리 위치하도록 규제됩니다. 이 두 가지 규제를 통해 basis concepts가 서로 얽히지 않도록 함으로써 기존 연구의 한계점을 극복하고 있습니다. 
 논문은 이렇게 설계된 transparent embedding space (concept vector space)가 도입된 새로운 interpetable network, TesNet을 제안하고 있습니다.
+
 
 ## **3. Method**  
 
@@ -79,7 +81,9 @@ embedding space상에서 class가 구분되기 위해서는 각 class의 subspac
 hyper-parameters를 사용하여 classification loss(cross entropy loss)에 orthonormality loss, subspace separation loss, compactness-separation loss를 적절한 비율로 더해줍니다. 이 total loss와 함께 convolutional layer, basis vectors가 동시에 최적화되며 concept embedding subspace가 학습됩니다.
 
 ### **Concept-based classification**   
-embedding space가 학습되고 나면, convolutional layers와 basis vectors의 parameter를 고정시킨 후, 마지막 단의 classifier를 학습시키게 됩니다. 
+embedding space가 학습되고 나면, convolutional layers와 basis vectors의 parameter를 고정시킨 후, 마지막 단의 classifier를 학습시키게 됩니다. classifier는 concept-class weight _G_ 를 최적화함으로써 학습이 되는데, weight _G_ _G(c,j)_ 의 값이 j번째 unit이 class c에 속하는 경우를 제외하고 모두 0인 sparse matrix입니다. 앞서 정의한 Identification Loss에 weight _G_ 를 sparse하게 유지하게 하는 규제를 더하여 Loss를 정의하고, 이 Loss를 최소화하도록 classifier가 학습됩니다.   
+![figure10](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure10.PNG?raw=true)  
+
 
 ## **4. Experiment**    
 본 논문에서는 다양한 CNN architecture에 대한 TesNet의 넓은 적용성을 입증하기 위해 두 가지의 case study를 진행하였습니다. 그 중 첫번째 case study인 bird species identification에 대해서 자세히 살펴보겠습니다.
@@ -92,7 +96,7 @@ Caltecg-USCD Birds-200-2011 dataset을 사용하여 bird species classification 
 non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, DenseNet161 네트워크들을 baseline으로 삼고, 각 네트워크에 interpetable한 TesNet을 적용한 경우와 비교 실험하였습니다. 또한, TesNet과 유사한 interpetable network architecture인 ProtoPNet을 적용한 결과도 함께 비교하였습니다.   
 
 * **Evaluation Metric**  
-평가지표로 classification accuracy를 사용하였습니다.   
+실험의 성능 평가지표로 classification accuracy를 사용하였습니다.   
 
 ### **Result**    
 ![figure8](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure8.PNG?raw=true)   
