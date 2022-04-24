@@ -101,8 +101,11 @@ non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, Dense
 실험의 성능 평가지표로 classification accuracy를 사용하였습니다.   
 
 ### **Result**    
+* **Accuracy comparison with diffrent CNN architectures**
+아래 표에서 알 수 있듯이, baseline network에 TesNet을 적용한 경우 분류 정확도가 최대 8%정도 크게 향상된 것을 볼 수 있습니다. 또한, TesNet의 Loss를 다양하게 정의하여 실험한 결과, 4가지 Loss를 모두 jointly하게 optimize하였을 때 가장 정확도가 높은 것을 확인할 수 있습니다.   
 ![figure8](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure8.PNG?raw=true)   
-표에서 알 수 있듯이, baseline network에 TesNet을 적용한 경우 분류 정확도가 최대 8%정도 크게 향상된 것을 볼 수 있습니다. 또한, TesNet의 Loss를 다양하게 정의하여 실험한 결과, 4가지 Loss를 모두 jointly하게 optimize하였을 때 가장 정확도가 높은 것을 확인할 수 있습니다. 
+
+* **The interpretable reasoning process**   
 
 ![figure9](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure9.PNG?raw=true)   
 
@@ -125,6 +128,7 @@ CNN의 output 해석에 있어 input image의 concept이라는 개념을 잘 정
 
 * Github Implementation  
 None
-* Reference 
-
+* Reference   
+  * Chaofan Chen et al, This looks like that: deep learning for interpretable image recognition, NeurIPS, 2019.
+  * https://en.wikipedia.org/wiki/Grassmannian
 
