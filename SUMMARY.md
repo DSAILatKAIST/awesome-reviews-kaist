@@ -5,7 +5,7 @@
 ## Paper Review  
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md) 
-    * [Learning Large Neighborhood Search Policy for Integer Programming](paper-review/2022-spring/Learning Large Neighborhood Search Policy for Integer Programming Paper Review.md)
+    * [Learning_Large_Neighborhood_Search_Policy_for_Integer_Programming](paper-review/2022-spring/Learning_LNS_Policy_for_Integer_Programming.md)
 
 
 ## How to contribute  
