@@ -1,5 +1,5 @@
 ---
-description : Jason Wei / Finetuning Language Models are Zero-shot Learners / ICLR2022(oral)  
+description : Jason Wei et al. / Finetuning Language Models are Zero-shot Learners / ICLR-2022 
 ---
 
 # **Finetuning Language Models are Zero-shot Learners** 
