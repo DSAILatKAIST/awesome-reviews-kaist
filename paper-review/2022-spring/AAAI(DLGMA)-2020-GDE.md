@@ -11,7 +11,7 @@ description : 1st author / title / conference-year(description)
 
 그렇다면, 이제 본론으로 넘어와서 우리가 현재 포커싱하고 있는 'Graph Neural Network' 관점에서 바라보면 어떠한가? GNN은 node와 edge를 바탕으로 한 그래프 자료구조에서 딥러닝을 접목시켰기 때문에 Relation은 직관적으로 edge를 바탕으로 이뤄지고 있음을 알 수 있다. 이때, Relational Inductive Bias는 정형화되지 않은, arbitrary한 특성을 가지고 있다. 이는 GNN에서는 특정 두 노드를 기준으로 엣지가 정의되고 있는 본질적인 성질 때문이다. 예를 들어보자면, 전 세계 대학원생의 그래프를 만들어본다고 했을 때, 각 국가를 라벨로 가지고 노드는 해당 대학원생의 특성으로 정의된다고 해보자. 이때, 두 대학원생을 이어주는 엣지는 취미생활이 같은 경우(e.g., 축구)라고 하면 한국 내에서 대학원생 김 모군 - 박 모군 의 관계도 있을 것이고 미국에서 John - Andrew 의 관계도 있을 것이다. 두 Pair(김-박, John-Andrew)는 그래프 내에서 local하지는 않아도 관계는 일치하기 때문에 비슷한 weight를 share할 가능성도 크다. 이러한 경우가 바로 aribitrary한 Relational Inductive Bias를 갖는 경우로 볼 수 있다. 앞선 두 문단을 하나의 사진으로 그래프로 요약하면 아래와 같다. 이 외에도 Inductive Bias에 대한 더욱 깊은 이해를 원하면, reference를 참고하길 바란다.
 
-![](<img width="140" src="/.gitbook/2022-spring-assets/SukwonYun_1/inductivebias.png">)
+![](../../.gitbook/2022-spring-assets/SukwonYun_1/inductivebias.png)
 
 우리가 오늘 특히 집중할 Inductive Bias는 시스템 내 데이터를 바탕으로 한 'Temporal Behavior', 즉 시간에 따른 행동양상이다. 앞서 우리는 inductive bias를 *추가적인 가정*에 대응되는 개념이라고 했다. 즉, 현재 경우에 접목시켜보면 우리의 추가적인 가정은, 시간에 변화 따라 시스템의 dynamics이 **discrete**한 지, **continuous**인지 등의 가정을 부여해줄 수 있다. 이 중, 특히 신경망을 연속적인 layer의 구조로 표현하는 관점 그리고 *상미분방정식(ODE)의 초기값 문제의 해*를 통해 이를 업데이트 하는 과정은 최근 딥러닝 모델로 하여금 새로운 패러다임을 제안했다고 볼 수 있다.
 
