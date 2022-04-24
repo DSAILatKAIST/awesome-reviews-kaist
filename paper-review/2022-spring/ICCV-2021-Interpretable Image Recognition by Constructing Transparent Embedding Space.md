@@ -50,7 +50,7 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 그렇다면 basis concepts는 어떻게 정의되어 embedding space를 이루고 있는지 살펴보겠습니다.  
 
 각 basis concept은 basis vector로 표현됩니다. 이 basis vector는 다음 세 가지 조건을 만족해야합니다.  
-**(1) 다른 basis vector 사이에는 의미가 중복되면 안됩니다.**   
+==(1) 다른 basis vector 사이에는 의미가 중복되면 안됩니다.==    
 **(2) embedding space에서도 각 class는 구분되어야 합니다.**   
 **(3) basis vector들은 비슷한 high-level patch(사람들이 인식할 수 있는 level의 image)들을 군집화하고 다른 것들끼리는 분리할 수 있어야 합니다.**   
 
