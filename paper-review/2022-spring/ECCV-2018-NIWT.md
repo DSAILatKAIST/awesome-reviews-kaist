@@ -24,7 +24,7 @@ neuron-level description을 zero-shot learning classifier에도 적용하기 위
 
 저자는 external domain knowledge(text based or otherwise)를 neuron과의 직접 mapping을 통해 zero-shot learning과 동시에 interpretable explanation을 제공하는 방법론을 제안했다.
 
-https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig0.png?raw=true
+![fig0.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig0.png?raw=true)
 
 ---
 
@@ -54,7 +54,8 @@ domain knowledges : $\mathcal{K} = \{k_1,...,k_{s+u}\}$
 
  $\mathrm{NET}_\mathcal{s}(\centerdot)$ 은 seen class 예측을 위해 학습한 네트워크를 의미하며( $\{o_c|c\in\mathcal{S}\}$),   $o_c$의 $a^n_{i,j}$에 대한 gradient를 구한 후 global average pooling을 통해 class dependent neuron importance를 도출할 수 있다.
  
-https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig1.png?raw=true
+![fig1.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig1.png?raw=true)
+
 
 $n$ : Channel dimesion
 
@@ -72,7 +73,8 @@ Gradient-based Localization. ICCV (2017) 참고*
 
 Domain knowledge와 neuron importance vector를 linear mapping(transformation)하기 위해 먼저, importance vectors $a_{y_i}$를 계산한 후 해당 class와 관련있는 domain knowledge($k_{y_i}$)를 매칭한다($a_{y_i},k_{y_i}$).  $W_{\mathcal{K}\rightarrow a}$를 추정하기 위해 cosine distance를 이용하여 loss를 정의하고 gradient를 이용하여 이를 minimize한다. 
 
-https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig2.png?raw=true
+![fig2.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig2.png?raw=true)
+
 
 ### 3.4 Neuron Importance to Classifier Weights
 
@@ -86,7 +88,8 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
 3. $\mathrm{NET}_{\mathcal{S}\cup\mathcal{U}}$으로 부터 unseen class c에 대한 importance vector을 계산하고 ($\hat{a}^c$)  weight parameter $w^c$ 를 gradient descent를 통해 optimize한다. (predicted importance vector($a_c$), observed importance vector($\hat{a}^c$) 사이의 cosine distance를 minimize)
 4. Cosine distance는 scale을 고려하지 않으며 regularization가 없으면 seen class weight나 unseen class weight 한쪽으로의 bias을 초래할 수 있다. 이러한 문제점을 해결하기 위해 unseen weight를 seen weight의 평균($\bar{\mathrm{w}}_\mathcal{S}$)과 유사한 scale로 학습할 수 있도록 하는 L2 regualization term을 추가했다($\Lambda$는 regulization의 정도를 control).
 
-https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig3.png?raw=true
+![fig3.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig3.png?raw=true)
+
 
 정리하면, $a^c$는 network gradient를 통해 계산할 수 있고, weight는 위의 loss를 이용하여 update하는 방식으로 학습을 진행한다.
 
@@ -145,7 +148,8 @@ https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/
         
 
 ### Result
-https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig4.png?raw=true
+![fig4.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig4.png?raw=true)
+
 
 실험 결과에서 도출할 수 있는 NIWT의 Contribution은 아래와 같다.
 
@@ -175,7 +179,8 @@ https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/
     이러한 unseen class accuracy는 seen class accuracy와 같은 interval [$1e^-5, 1e^-4$]에서 약 3% 정도의 trade-off가 존재했다. 또한 $\Lambda$>$1e^-4$의 경우 regulation이 매우 크기 때문에 NIWT가 unseen class에 대한 학습에 어려움이 있었다고 해석할 수 있다.
     
 
-https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig5.png?raw=true
+![fig5.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig5.png?raw=true)
+
 
 - Explaining NIWT
     - Visual Explanation
@@ -188,7 +193,8 @@ https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/
         
         3.3에서 external domain knowledge(attribute or caption)과 neuron과의 mapping($W_{\mathcal{K}\rightarrow a}$)을 학습했다. 이와 유사하게 neuron importance에서 attribute or caption과의 inverse mapping을 통해 모델의 decision에 있어서 text explannation을 제공할 수 있다 (inverse mapping($W_{a\rightarrow\mathcal{K}}$)에서  $a_c$ (unseen class neuron importance)가 주어졌을때 가장 높은 score의 $k_c$(attribute) 도출).
         
-        https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig6.png?raw=true
+        ![fig6.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig6.png?raw=true)
+
         
 
 # 6. Conclusion
