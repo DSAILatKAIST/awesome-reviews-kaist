@@ -93,9 +93,7 @@ $$
 
 Item embedding 은 Paragraph vector(doc2vec)에서 insight를 얻어서 사용했다.
 
-![doc2vec이 information retrival task에서 적은 error를 보였기 때문](<img src=".gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled.png">)
-
-doc2vec이 information retrival task에서 적은 error를 보였기 때문
+![doc2vec이 information retrival task에서 적은 error를 보였기 때문](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled.png)
 
 $$
 P\left(T_{i} \mid i\right)=\prod_{\boldsymbol{w} \in T_{i}} \frac{\exp (\boldsymbol{w} \cdot \boldsymbol{i})}{\sum_{w^{\prime} \in V} \exp \left(\boldsymbol{w}^{\prime} \cdot \boldsymbol{i}\right)}
