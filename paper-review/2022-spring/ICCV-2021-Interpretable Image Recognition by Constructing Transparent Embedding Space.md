@@ -96,20 +96,16 @@ non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, Dense
 ![figure9](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure9.PNG?raw=true)   
 
 ## **5. Conclusion**  
-* Summary
+* Summary   
 TesNet은 다른 CNN 모델에 plug-in되어 classifiaction 성능을 향상시킬 수 있는 적용성 높은 architecture입니다. 
-* Opinion
+* Opinion   
 CNN의 output 해석에 있어 input image의 concept이라는 개념을 잘 정의한 연구라고 생각합니다. 특히 basis vector, subspace, manifold와 같이 어렵지않은 수학적 개념들을 잘 적용하여 의미있는 결과를 도출해낸 점이 굉장히 인상깊습니다. 평소 알고만 있던 수학적 개념들을 neural network와의 연결 지점을 다시 생각해볼 수 있는 기회였고, 개인적으로 Explainable AI에 관심이 많아 흥미로웠습니다. 그런데 이런 interpretable한 network가 주로 이미지 데이터쪽에 치우쳐 있다는 점이 아쉬워, audio, text 등에도 general하게 쓰일 수 있는 architecture에 대한 연구가 필요해보입니다.
-
-Please summarize the paper.  
-It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
 
 ---  
 ## **Author Information**  
 
 * TaeMi, Kim
     * KAIST, Industrial and Systems Engineering
-    * Computer Vision
 
 ## **6. Reference & Additional materials**  
 
