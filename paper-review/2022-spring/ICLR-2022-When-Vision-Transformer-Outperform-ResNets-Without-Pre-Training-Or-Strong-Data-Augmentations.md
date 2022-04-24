@@ -116,20 +116,22 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 </div>
 
 
-<div>
+<div align="left">
+    
 ![](https://latex.codecogs.com/gif.latex?f(\cdot)): activation , GELU
-</br>
+
 ![](https://latex.codecogs.com/gif.latex?W_k) : k번째 layer의 params
-</br>
+
 ![](https://latex.codecogs.com/gif.latex?h_k) : ![](https://latex.codecogs.com/gif.latex?W_k a_{k-1}), activation을 거치기 전의 k번째 layer의 output
-</br>
+
 ![](https://latex.codecogs.com/gif.latex?a_k) : ![](https://latex.codecogs.com/gif.latex?f_k(h_k))
-</br>
+    
 ![](https://latex.codecogs.com/gif.latex?\otimes) : Kronecker product
-</br>
+    
 ![](https://latex.codecogs.com/gif.latex?\mathcal H_k) : layer k의 activation을 거치기 전의 Hessian 행렬
-</br>
+    
 ![](https://latex.codecogs.com/gif.latex?H_k) : ![](https://latex.codecogs.com/gif.latex?W_k)의 Hessian 행렬
+    
 </div>
 
 
