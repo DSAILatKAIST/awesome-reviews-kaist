@@ -107,15 +107,17 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
 
 ![fig5](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fcbef3c52-2e74-4e3e-9754-6864ba473e86%2FUntitled.png?table=block&id=14112506-399f-4de4-9fb7-46c0578c322d&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
 
-- SAM 이후 곡률의 정도인 $\lambda_{max}$가 작아진 것을 모델의 레이어별로 수치화하였다
+- SAM 이후 곡률의 정도인 ![](https://latex.codecogs.com/gif.latex?\lambda_{max})가 작아진 것을 모델의 레이어별로 수치화하였다
 
-<br>
+<div align="center">
 ![](https://latex.codecogs.com/gif.latex?(3)H_k=(a_{k-1}a_{k-1}^T)\otimes\mathcal{H}_k,\space\mathcal{H}_k =B_kW^T_{k+1}\mathcal{H}_{k+1}W_{k+1}B_k+D_k)
 
-<br>
+</br>
 ![](https://latex.codecogs.com/gif.latex?(4)B_k=\mathrm{diag}(f'_k(h_k)),\space{}D_k=\mathrm{diag}(f''_k(h_k)\frac{\partial{L}}{\partial{a_k}}))
+</div>
 
-<br>
+
+</br>
 ![](https://latex.codecogs.com/gif.latex?f(\cdot)): activation , GELU
 
 <br>
