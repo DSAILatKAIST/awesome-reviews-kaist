@@ -33,7 +33,7 @@ Most of the current works have neural image compression that often operates in a
 
 In this method, they store the weights of the NN's instead of the traditional methods in which the RGB values are stored for each pixel of an image. The researchers do this by encoding an image by overfitting mapping pixel locations (MLP) over the RGB values of the image and transmitting the weights θ of the MLP as code. The encoding process starts with overfitting an MLP to the image, after that the weights that have to be transmitted have to be quantized. When it is transmitted, the decoding process starts and the MLP will be evaluated at the pixel locations to reconstruct the image. See figure 1 below. 
 
-| <img src="/.gitbook/2022-spring-assets/Images_RP1/Afbeelding1.png"> |
+| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding1.png"> |
 |:--:| 
 | *Figure 1, proposed method.* |
 
@@ -42,7 +42,7 @@ This method does not need entropy coding or learning a distribution over weights
 ### **Encoding method**
 In the paper the following optimization problem is applied:
 
-<img src="/.gitbook/2022-spring-assets/Images_RP1/Afbeelding6.png">
+<img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding6.png">
 
 In which I the image is that has to be encoded, with I[x, y] returning RGB values at pixel location (x, y). The function f0 : R^2 → R^3 with parameters 0 MLP to RGB values in the image, fθ(x, y) = (r, g, b). Then the image can be encoded by overfitting f0 to the image under some distortion measure.
 
@@ -67,7 +67,7 @@ Note that in this experiment:
 * This experiment only requires the weights of a (very small) MLP on the decoder side, leading to memory requirements that are a lot smaller.
 * COIN outperforms JPEG after 15k iterations and can keep being improved even more. See figure 2.
 
-| <img src="/.gitbook/2022-spring-assets/Images_RP1/Afbeelding4.png"> |
+| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding4.png"> |
 |:--:| 
 | *Figure 2, model training on the 15th image in the Kodak dataset.* |
 
@@ -75,7 +75,7 @@ Note that in this experiment:
 
 The results of the previously mentioned procedure for various bpp levels are shown in figure xx. As shown in the image, at low bit rates the model improves upon JPEG. While this model is still not close to the quality of the newest compression methods, the performance and simplicity of this specific approach could be very promising for future works. See figures 3 & 4 for the results.
 
-| <img src="/.gitbook/2022-spring-assets/Images_RP1/Afbeelding2.png"> <img src="/.gitbook/2022-spring-assets/Images_RP1/Afbeelding3.png"> |
+| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding2.png"> <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding3.png"> |
 |:--:| 
 | *Figure 3, rate-distortion plots on the Kodak dataset & figure 4, model sizes at 0.3bpp.* |
 
@@ -86,7 +86,7 @@ COIN is proposed as a new method for compressing images by fitting neural networ
 
 See this example below to see the performance of COIN.
 
-| <img src="/.gitbook/2022-spring-assets/Images_RP1/Afbeelding5.png"> |
+| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding5.png"> |
 |:--:| 
 | *Figure 5, example of COIN compared to JPEG.* |
 
