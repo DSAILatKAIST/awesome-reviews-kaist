@@ -117,7 +117,7 @@ $$
 
 위 구성요소들을 바탕으로 GAUG-O를 단계적으로 표현하면 다음 그림과 같습니다.
 
-![image-20220424205600551](C:\Users\Sejong Lim\AppData\Roaming\Typora\typora-user-images\image-20220424205600551.png)
+<a href='https://ifh.cc/v-yHr0xC' target='_blank'><img src='https://ifh.cc/g/yHr0xC.png' border='0'></a>
 
 **Input Graph → Neural Edge Predictor → Interpolation and Sampling → Graph Neural Network Node Classifier** 
 
@@ -140,7 +140,7 @@ $$
 
 해당 데이터를 split 할 때 <u>**학습/검증/테스트**</u>의 순서대로 <u>**10/20/70%**</u>의 비율로 진행하였으며, 위 데이터에 대한 구체적인 구성은 아래 표와 같습니다.
 
-![image-20220424222550325](C:\Users\Sejong Lim\AppData\Roaming\Typora\typora-user-images\image-20220424222550325.png)
+<a href='https://ifh.cc/v-Fa7DPd' target='_blank'><img src='https://ifh.cc/g/Fa7DPd.png' border='0'></a>
 
 #### Baseline & Evaluation Metric
 
@@ -169,7 +169,7 @@ $$
 
 위 Baseline & Evaluation Metric 설정을 바탕으로 나타낸 평가지표 Table 입니다. 
 
-![image-20220424224236954](C:\Users\Sejong Lim\AppData\Roaming\Typora\typora-user-images\image-20220424224236954.png)
+<a href='https://ifh.cc/v-Wa1VLa' target='_blank'><img src='https://ifh.cc/g/Wa1VLa.png' border='0'></a>
 
 대부분의 경우에서 GAUG-M과 GAUG-O의 성능이 Original Method보다 개선이 되었으며 평균적인 여타 Method를 상회하는 것을 알 수 있습니다.
 
