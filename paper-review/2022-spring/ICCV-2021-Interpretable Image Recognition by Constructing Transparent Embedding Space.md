@@ -106,9 +106,9 @@ non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, Dense
 ![figure8](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure8.PNG?raw=true)   
 
 * **The interpretable reasoning process**   
-
+다음 그림은 TesNet이 test image에 대하여 decision을 내리는 reasoning process를 시각화한 것입니다.   
 ![figure9](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure9.PNG?raw=true)   
-
+European Goldfinch라는 class의 test image가 주어졌다고 할 때, TesNet은 학습된 basis vectors를 통해 feature map을 re-represent할 수 있습니다. 각 class c에 대해서, 모델은 학습된 basis vectors를 image patch에 re-represent함으로써 그 image가 class c에 속할 score를 계산합니다. 예를 들어, 위 그림에서 모델은 European goldfinch class의 basis vector(concept)를 test image(original image)가 이 class에 속할지에 대한 증거로 활용합니다. Activation map column을 살펴보면, European goldfinch class의 첫 번째 basis vector가 의미하는 'black and yellow wing concept'이 test image 상에서 가장 두드러지게 activated(활성화) 된 것을 확인할 수 있습니다. 같은 방식으로 두 번째 basis vector가 의미하는 'head concept', 세 번째 basis vector가 의미하는 'brown fur concept'이 image상에서 크게 활성화되었습니다. 이를 바탕으로 모델은 class의 각 basis concept vector와 test image상에서 activated된 부분 사이의 similarity(유사도)를 구하고 basis concept의 중요도에 따라 가중치를 매겨 더함으로써 최종적인 European Goldfinch class에 대한 score를 구합니다. 이 score를 바탕으로 test image의 class를 예측합니다. 이러한 reasoning 과정을 통해 baseline CNN 모델들보다 높은 분류 정확도를 보이게 된다고 말합니다.
 
 ## **5. Conclusion**  
 * **Summary**   
@@ -128,6 +128,7 @@ CNN의 output 해석에 있어 input image의 concept이라는 개념을 잘 정
 
 * Github Implementation  
 None
+
 * Reference   
   * Chaofan Chen et al, This looks like that: deep learning for interpretable image recognition, NeurIPS, 2019.
   * https://en.wikipedia.org/wiki/Grassmannian
