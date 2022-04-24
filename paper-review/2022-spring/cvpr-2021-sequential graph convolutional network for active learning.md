@@ -51,8 +51,11 @@ task-dependent와 반대로 task에 영향을 받지 않고, 동일한 sampler�
 
 저자가 제시한 method의 전체적인 _**pipeline**_ 은 아래 그림과 같다.  
 
-![pipeline](https://user-images.githubusercontent.com/89853986/163950282-b032a56b-5577-439c-b28a-5cbb6ed1889c.PNG)
+<div align="center">
+	
+![pipeline](https://user-images.githubusercontent.com/89853986/164957533-947fbfab-c762-476f-880c-add4da87a514.PNG)
 
+</div>
 
 총 _**5 Phase**_ 로 구성되는데, 각각을 _learner, sampler, annotator_ 로 분류하여 설명하자면 아래와 같다.
 1. _learner_ (Phase 1)
@@ -77,9 +80,13 @@ learner는 downstream task를 학습한다.
 **3.2.1 Classification**
 >learner는 CNN image classifier를 사용한다. 특히, 비슷한 parameter complexity에 대해 좋은 성능을 보이는 ResNet-18을 model로 사용한다.
 >Minimize 해야할 loss function은 아래와 같다. (cross-entropy 사용)  
->
->![loss_classification](https://user-images.githubusercontent.com/89853986/163951946-d4257605-91ba-401d-94ad-b66401c9dc95.PNG)
->
+
+<div align="center">
+
+![loss_classification](https://user-images.githubusercontent.com/89853986/164957965-174558ec-3353-4803-bc22-e053b0468368.PNG)
+
+</div>
+	
 >![](https://latex.codecogs.com/gif.latex?M) 은 parameter ![](https://latex.codecogs.com/gif.latex?\Theta)를 갖고, input ![](https://latex.codecogs.com/gif.latex?x)를 output ![](https://latex.codecogs.com/gif.latex?y)로 매핑하는 deep model이고, ![](https://latex.codecogs.com/gif.latex?N_L)은 labeled training data의 개수, ![](https://latex.codecogs.com/gif.latex?f%28x_i%2C%20y_i%3B%20%5CTheta%29)는 model ![](https://latex.codecogs.com/gif.latex?M)의 posterior probability이다.  
 
 
@@ -87,9 +94,13 @@ learner는 downstream task를 학습한다.
 >3D HPE task를 다루기 위해서 _DeepPrior_ 모델을 사용한다.  
 >위의 classification task와는 다르게 hand depth image로부터 3D hand joint의 위치를 regress해야한다.   
 >Minimize 해야할 loss funcion은 아래와 같다.  
->
->![loss_regression](https://user-images.githubusercontent.com/89853986/163951987-b123ec14-511d-4735-9104-3ad6d4da32a0.PNG)
->
+
+<div align="center">
+
+![loss_regression](https://user-images.githubusercontent.com/89853986/164958017-ee9c1ce0-b5ed-45c2-8c5e-d12f3a417c70.PNG)
+
+</div>
+
 >![](https://latex.codecogs.com/gif.latex?J)는 joint의 개수를 의미한다.
 
 classification과 regression 이외의 task가 등장하더라도 전체 pipeline의 구조는 동일하게 유지한 채 learner만 바꿔주면 된다.
@@ -101,7 +112,11 @@ classification과 regression 이외의 task가 등장하더라도 전체 pipelin
 unlabeled dataset ![](https://latex.codecogs.com/gif.latex?D_U)에서 초기에 labeling할 initial batch ![](https://latex.codecogs.com/gif.latex?D_0%20%5Csubset%20D_U)를 랜덤하게 골라주는 것으로 시나리오가 시작된다. 이렇게 초기 set이 확정이 되면 그 다음부터는 pipeline에 설명된 cycle을 돌면서 sampling할 unlabeled data를 고르고, labeling을 하여 새롭게 learner를 통해 training 시키는 과정을 최소한의 budget 내에서 수행한다.
 이것을 수식으로 표현하면 아래와 같다.
 
-![sampler](https://user-images.githubusercontent.com/89853986/163953401-9b324b99-0364-451c-b653-a5cfd9e271bc.PNG)
+<div align="center">
+
+![sampler](https://user-images.githubusercontent.com/89853986/164958042-b51b59cc-b58e-4aa9-907a-ffe65042b688.PNG)
+
+</div>
 
 Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최소한의 stage안에 최소한의 loss를 달성하는 것이 목적인 것이다. (![](https://latex.codecogs.com/gif.latex?D_n)은 ![](https://latex.codecogs.com/gif.latex?n)번째 stage에서의 labeled dataset을 의미)
 
@@ -126,11 +141,21 @@ Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최�
 >>- 따라서 두번째 layer까지 거친 output은 0~1사이의 값을 가지는 길이 ![](https://latex.codecogs.com/gif.latex?N)의 vector이다. (0은 unlabeled, 1은 labeled를 의미)  
 >
 >전체적인 과정은 아래와 같은 식으로 표현된다.
->![gcn](https://user-images.githubusercontent.com/89853986/163961880-ea5a6f69-1ec4-4657-982f-f5780ee24f0d.PNG)
->
+
+<div align="center">
+
+![gcn](https://user-images.githubusercontent.com/89853986/164958051-826a0a91-3ec7-40ef-9414-07d7a32deb79.PNG)
+
+</div>
+
 >또한 loss function은 아래와 같다.
->![gcn_loss](https://user-images.githubusercontent.com/89853986/163980668-5362fe71-d151-4810-8a65-2e254dee0912.png)
->
+
+<div align="center">
+
+![gcn_loss](https://user-images.githubusercontent.com/89853986/164958079-d5f2fc8a-83a8-4d91-a56c-cf424b699e49.PNG)
+
+</div>
+
 >cross-entropy를 사용하였고, ![](https://latex.codecogs.com/gif.latex?\lambda)는 labeled와 unlabeled cross-entropy간의 weight를 조절하는 parameter이다.
 
 **3.3.3 UncertainGCN: Uncertainty sampling on GCN**  
@@ -138,16 +163,31 @@ Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최�
 >본 방법에서 unlabeled로 남아있는 data ![](https://latex.codecogs.com/gif.latex?D_U)에 대한 confidence score는 ![](https://latex.codecogs.com/gif.latex?f_%7B%5Cmathcal%20G%7D%28v_i%3BD_U%29)이다.
 >일반적인 uncertainty sampling과 유사하게 UncertainGCN도 ![](https://latex.codecogs.com/gif.latex?s_{margin})이라는 변수와 함께 confidence를 기반으로 sampling할 unlabeled image를 고른다.
 >기존의 labeled set인 ![](https://latex.codecogs.com/gif.latex?D_L)에서 고정된 ![](https://latex.codecogs.com/gif.latex?b)개를 querying하는 수식은 아래와 같다.
->![uncertaingcn](https://user-images.githubusercontent.com/89853986/163984729-6eca1d63-32a8-4be4-aae5-79d7e566716a.PNG)
->가장 uncertainty가 높은 unlabeled data를 고르려면 ![](https://latex.codecogs.com/gif.latex?s_{margin})을 0과 가깝게 설정하면 된다. (이 경우 0~1 범위의 confidence 값 중 1에 가까운 image들이 선택될 것이다.)
+<div align="center">
+
+![uncertaingcn](https://user-images.githubusercontent.com/89853986/164958089-b0ad3c8c-ae81-4de3-9eb6-4eff43e1a33c.PNG)
+
+</div>
+
+>가장 uncertainty가 높은 unlabeled data를 고르려면 ![](https://latex.codecogs.com/gif.latex?s_{margin})을 0과 가깝게 설정하면 된다. (이 경우 0~1 범위의 confidence 값 중 1에 가까운 image들이 선택될 것이다.)  
 >이 과정이 주어진 budget 내에서 loss가 가장 작아질 때까지 반복되며, 알고리즘의 pseudo code는 아래와 같다.  
 
-![pseudo](https://user-images.githubusercontent.com/89853986/163986800-325ea500-c8e4-41a5-91e8-bafe6ed40a48.PNG)
+<div align="center">
 
-**3.3.4 CoreGCN: CoreSet sampling on GCN**
->CoreGCN은 ![](https://latex.codecogs.com/gif.latex?l2) distance를 기반으로 첫번째 GCN layer에서 추출된 feature간의 거리를 계산하고, 이를 통해 sampling할 data를 선정한다.  
+![pseudo](https://user-images.githubusercontent.com/89853986/164958103-7747f199-0d86-434a-9966-dbfd516ce54f.PNG)
+
+</div>
+
+**3.3.4 CoreGCN: CoreSet sampling on GCN**  
+>CoreGCN은 ![](https://latex.codecogs.com/gif.latex?l2) distance를 기반으로 첫번째 GCN layer에서 추출된 feature간의 거리를 계산하고, 이를 통해 sampling할 data를 선정한다.    
 >기존의 labeled set인 ![](https://latex.codecogs.com/gif.latex?D_L)에서 querying하는 수식은 아래와 같다.  
->![coregcn](https://user-images.githubusercontent.com/89853986/163989195-a0e9bd2f-b5b6-4cb8-939c-b4fb3354aa65.PNG)
+>  
+<div align="center">
+
+![coregcn](https://user-images.githubusercontent.com/89853986/164958113-39babaa4-957e-4fd6-893a-e0951b53d655.PNG)
+
+</div>
+
 >![](https://latex.codecogs.com/gif.latex?\delta)는 labelled node ![](https://latex.codecogs.com/gif.latex?v_i)와 unlabelled node ![](https://latex.codecogs.com/gif.latex?v_j)의 feature 간의 유클리디안 거리를 의미한다.  
 >즉, 위의 수식은 labeled data의 feature와 unlabeled data의 feature 간의 가장 큰 거리를 최소로 만드는 unlabeled data point를 sampling하도록 한다.
 
@@ -188,7 +228,11 @@ Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최�
 	>- budget : 1000 images  
 <br/>
 
-![dataset](https://user-images.githubusercontent.com/89853986/164029000-dfb9120b-2672-465d-9b22-6b5a20078663.PNG)
+<div align="center">
+
+![dataset](https://user-images.githubusercontent.com/89853986/164958132-229d62cb-293f-4745-9202-c5625754a29a.PNG)
+
+</div>	
 
 <br/>
 
@@ -228,8 +272,12 @@ ResNet-18로 learner를 구성하여 전체 dataset을 사용하여 training을 
 	- **FashionMNIST** : 93.74%  
 	- **SVHN** : 95.35%  
 
+<div align="center">
+
 ![quantitative_classification](https://user-images.githubusercontent.com/89853986/164178431-facc4a46-a3d6-409a-9c5a-5ae3922f708e.PNG)
 
+</div>
+	
 - 위의 그래프는 각각의 dataset에서 저자가 제시한 UncertainGCN, CoreGCN과 다른 baseline method와의 성능을 비교하여 보여준다.  
 - 저자가 제시한 두가지 sampling method 모두 다른 baseline method에 비해 웃도는 성능을 보이는 것을 그래프를 보면 확인할 수 있을 것이다.  
 - 주목할만한 점은 CIFAR-100 dataset에서 CoreGCN method를 사용하면 20000개의 sampling으로 대략 69%의 accuracy를 낼 수 있는데, 이는 전체 training dataset을 모두 사용했을 때보다 4%만 낮은 수치이다. 적절한 sampling을 통해 적은 dataset을 가지고(cost 절약) 거의 비슷한 성능을 낼 수 있음을 의미한다.
@@ -240,8 +288,12 @@ ResNet-18로 learner를 구성하여 전체 dataset을 사용하여 training을 
 실제로 각 sampling method 들이 어떠한 unlabeled data를 sampling하는지를 t-SNE plot을 통해 직접 관찰한다. 
 Stage가 진행됨에 따라 확연한 차이를 관찰하기 위해 첫번째 stage와 3단계가 더 진행된 4번째 stage를 plot하면 아래와 같다.
 
+<div align="center">
+
 ![qualitative_classification](https://user-images.githubusercontent.com/89853986/164183015-94483f1b-97df-4382-a54a-99a797bdb0c1.PNG)
 
+</div>
+	
 - 첫번째 stage에서는 sampling method 간에 큰 차이가 관찰되지 않는다.  
 - Figure 5는 CoreSet과 UncertainGCN을 비교해놓은 그림이다. 4번째 stage에서 select한 sample을 보면, CoreSet에 비해 UncertainGCN은 더욱 class의 경계에 위치하는 sample들(uncertainty가 높은 sample)을 select한 것을 확인 가능하다.  
 - Figure 6은 CoreSet과 CoreGCN을 비교해놓은 그림이다. CoreGCN은 geometric information을 기반으로 하기 때문에 sample들이 몰려있는 것을 방지한다. 하지만 uncertain area로부터 message-passing을 받기 때문에 CoreSet처럼 class의 중앙에 위치하는 것은 아니다. CoreGCN은 geometric information과 uncertainty 간의 balance를 고려하여 sampling한다.  
@@ -276,8 +328,12 @@ Stage가 진행됨에 따라 확연한 차이를 관찰하기 위해 첫번째 s
 
 **4.2.4 Quantitative Evaluation**
 
-![quantitative_regression](https://user-images.githubusercontent.com/89853986/164215933-ba9a9f4f-ae25-4d1b-b5cd-5820b1577c81.PNG)
+<div align="center">
 
+![quantitative_regression](https://user-images.githubusercontent.com/89853986/164958171-d5faa634-7abd-4499-8f8c-4d67be94b257.PNG)
+
+</div>
+	
 - ICVL dataset을 가지고 4가지 방법으로 실험한 결과를 나타낸 그래프이다.   
 - CoreGCN과 UncertainGCN이 second stage부터 다른 방법에 비해 낮은 mse를 보이며, 각각 6번째, 5번째 selection stage까지 급격히 감소하는 것을 볼 수 있다.  
 - 이는 매우 제한된 budget 내에서도 저자가 제안한 두 방법이 다른 방법들에 비해 좋은 성능을 보일 수 있다는 것을 보여준다.  
@@ -292,7 +348,11 @@ Stage가 진행됨에 따라 확연한 차이를 관찰하기 위해 첫번째 s
 
 * Result
 
-![synthetic](https://user-images.githubusercontent.com/89853986/164217784-aaff2175-e1f7-4a43-a961-5e500f8ac43d.PNG)
+<div align="center">
+
+![synthetic](https://user-images.githubusercontent.com/89853986/164958183-6be90727-7820-4eda-a504-3a22f9dcd55f.PNG)
+
+</div>
 
 - Random sampling에 비해 UncertainGCN이 더 작은 variance와 함께 더 좋은 accuracy를 보이고 있다. 
 - Model을 train하기 위해 적은 수의 synthetic example만이 useful하다.
