@@ -32,16 +32,9 @@ In contrast to many previous attempts, the proposed method uses an unsupervised 
 
 In this method, a saliency map is used as an explanation map to detect adversarial examples. For image inputs, each pixel is scored based on its contribution to the final output of the deep learning model and shown on a heatmap.  
 
-<figure>
 <img width="500" src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/00.png">
    
-<figcaption align = "center"><i>Figure 2: Examples of saliency map based on importance or contribution of each pixel.</i>
-</figcaption>
-   
-</figure>  
-
-
-
+_Figure 2: Examples of saliency map based on importance or contribution of each pixel._
 
 There are three steps in this method:
 
