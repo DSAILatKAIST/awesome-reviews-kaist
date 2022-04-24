@@ -32,8 +32,9 @@ Graph 구조에서의 Data Augmentation의 가장 적합한 방법은 Node를 �
 위 논문에서 제시한 핵심적인 idea는 같은 분류를 가지고 있는 Node Structure를 효과적으로 인코드하기 위해 intra-class(분류가 같은 노드 관계)의 edge들은 늘리고, inter-class(분류가 다른 노드 관계)의 edge들은 줄인다는 것입니다. 이는 직관적으로 same-class Node들끼리 임베딩되는 것을 장려하고 other-class Node에 대한 임베딩을 차별화하여 구분을 확실히 하는 효과를 가집니다.
 
 이를 쉽게 보여주는 Graph 구조에 대한 GCN performace Figure는 다음과 같습니다.
+
 <a href='https://ifh.cc/v-zFclGl' target='_blank'><img src='https://ifh.cc/g/zFclGl.png' border='0'></a>
-![image-20220424122914040](.gitbook/2022-spring-assets/sejong/image-20220424122914040.png)
+
 
 (a)는 Edge의 추가 및 제거가 없는 원본 그래프 구조이고, (b)는 랜덤하게 Edge를 변형시킨 구조입니다. (c)는 위 논문에서 제시한 idea를 기반으로 만든 GAUG 모델의 구조이며, 마지막으로 (d)는 이상적으로 Class간 구분이 확실하도록 Edge의 변형이 이루어진 그래프 구조입니다. 파란색 점선은 Edge의 제거를 의미하고 파란색 실선은 Edge의 추가를 의미하며, F1 score는 **Class의 구분이 드러나도록 Edge가 연결된 구조일수록 높아지는 것**을 확인할 수 있습니다(이 때 각각의 Method M과 O는 아래에 기술할 *Modified-Graph Setting*과 *Original-Graph Setting*을 의미).
 
@@ -41,7 +42,7 @@ Graph 구조에서의 Data Augmentation의 가장 적합한 방법은 Node를 �
 
 위와 같이 intra-class의 Edge 생성을 장려하고 inter-class의 Edge는 제거하는 전략은 label이 완벽하다는 가정하에 GNN에서 매우 자명한 분류방법이라 할 수 있습니다. 만일 극단적으로 모든 intra-class Edge가 연결되고 inter-class Edge가 존재하지 않는다면 이는 ![](https://latex.codecogs.com/svg.image?k)개의 class를 가지고, 각 component의 모든 Node들이 같은 label을 갖는 ![](https://latex.codecogs.com/svg.image?k)-fully connected components라고 할 수 있을 것입니다. 이는 다음과 같은 Theorem을 통해 GNN이 이상적인 그래프에서 학습된 임베딩을 쉽게 분류할 수 있도록 합니다.
 
-![image-20220424141833846](C:\Users\Sejong Lim\AppData\Roaming\Typora\typora-user-images\image-20220424141833846.png)
+<a href='https://ifh.cc/v-aAoGoN' target='_blank'><img src='https://ifh.cc/g/aAoGoN.png' border='0'></a>
 
 이 결과 _class-homophilic_(동일성) Graph ![](https://latex.codecogs.com/svg.image?G)의 경우 학습에서의 분류 문제는 매우 쉽게 변환될 수 있습니다. 그러나 너무 작위적인 그래프 구조 변형은 학습시 과적합을 유발할 수 있으며, 이를 극복하기 위해서 논문에서는 이상적인 그래프 ![](https://latex.codecogs.com/svg.image?G)와 유사하게 근사시킨 ![](https://latex.codecogs.com/svg.image?G_m)을 만들어냅니다.
 
@@ -83,7 +84,7 @@ M=\sigma (ZZ^{T}))\;where\;Z=f^{(1)}_{GCL}(A,f^{(0)}_{GCL}(A,X)
 $$
 위 수식에서 Edge probability를 계산할 때 Graph Auto-Encoder(GAE) 방법을 사용하게 되는데요, 해당 GAE는 two layer GCN 인코더와 한 개의 inner-product 디코더로 이루어져 있습니다. 이는 수식에서 간단히 확인할 수 있으며 GCL은 Graph Convolution Layer를 나타내어 ![](https://latex.codecogs.com/svg.image?Z)를 표현하는 인코더로 작용합니다.
 
-![image-20220424193457622](C:\Users\Sejong Lim\AppData\Roaming\Typora\typora-user-images\image-20220424193457622.png)
+<a href='https://ifh.cc/v-kCW9sH' target='_blank'><img src='https://ifh.cc/g/kCW9sH.png' border='0'></a>
 
 위 그림은 GAUG-M에서 Edge predictor를 사용하였을 때와 Random하게 학습하였을 때의 차이를 보이고 있는데요, 직관적으로 보면 Intra-class로 연결된 Edge의 개수와 F1-Score는 정비례하고 Inter-class로 연결된 Edge의 개수와 F1-Score가 반비례하는 것을 확인할 수 있습니다. 랜덤으로 진행하였을 경우 Intra-class보다 Inter-class를 많이 증가시키는 경우나 Inter-class보다 Intra-class를 더 많이 감소시키는 경우가 발생하는데, 이때의 성능은 두 경우 모두 떨어지며 특히 후자의 경우가 매우 저조한 성능을 보입니다.
 
