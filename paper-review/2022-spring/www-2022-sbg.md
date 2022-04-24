@@ -112,7 +112,7 @@ $$
 **개인화된 추천을 위해 User embedding 을 사용하자.**
 
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%201.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%201.png)
 
 $$
 M_{uq} = q+u
@@ -175,7 +175,7 @@ $$
 \boldsymbol{u}=\sum_{i \in I_{u}} \frac{\exp (f(q, i))}{\exp (f(q, \mathbf{0}))+\sum_{i^{\prime} \in I_{u}} \exp \left(f\left(q, i^{\prime}\right)\right)} \boldsymbol{i}
 $$
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%202.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%202.png)
 
 ## 3.1. Search Framework
 
@@ -198,7 +198,7 @@ $$
 >
 > $$f$$ is similarity measure function. (논문에선 cosine similarity)
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%203.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%203.png)
 
 ### 3.1.2 **Language Modeling Task**
 
@@ -301,7 +301,7 @@ $$
 
 - **Graph-enriched product representations for user preference modeling**
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%204.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%204.png)
 
 $$
 \begin{aligned}
@@ -349,7 +349,7 @@ $$
 
 아마존에서 발생한 사용자-아이템 간 관계를 가진 데이터셋, 상품검색/추천 시스템 연구에서 널리 사용됨
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%205.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%205.png)
 
 > _Product reviews are generally used as text corpus for representing products or users, and **product categories are used as queries** to simulate a search scenario_
 
@@ -379,19 +379,19 @@ $$
 
 검색결과가 hit 했는지에 대한 단순한 rate
 
-![img1.daumcdn.png](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/img1.daumcdn.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/img1.daumcdn.png)
 
 **Normalized discounted cumulative gain (NDCG@K)**
 
 이상적인 컨텐츠 순서와 실제 순서 간의 차이를 점수화
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%206.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%206.png)
 
 **Mean reciprocal rank (MRR)**
 
 컨텐츠 순서에 가중치를 부여
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%207.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%207.png)
 
 ## 4.4 Implementation detail
 
@@ -408,9 +408,9 @@ The negative sampling rate for each word is set to 5, and that for each item is 
 
 **RQ1&2 : 성능향상**
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%208.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%208.png)
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%209.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%209.png)
 
 - Latent space 기반 모델 중 가장 좋은 성능을 보였던 ZAM에 비해 모든 실험에서 유의한 성능향상(RQ1)
 - SOTA 였던 DREM에 비해 거의 모든 실험에서 유의한 성능향상(RQ2)
@@ -418,11 +418,11 @@ The negative sampling rate for each word is set to 5, and that for each item is 
 
 **RQ3: Graph convolution의 효용**
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%2010.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%2010.png)
 
 **RQ4 : 적절한 R의 선택**
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%2011.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%2011.png)
 
 Magazine을 제외하고 day, week를 넘어가면 성능하락이 일어남
 
@@ -430,7 +430,7 @@ Magazine을 제외하고 day, week를 넘어가면 성능하락이 일어남
 
 # 5. Conclusion
 
-![Untitled](<SBG(for%20gitbook)%204f0e1d73bec545f7937734eec9902841/Untitled%204.png>)
+![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review1/Untitled%204.png)
 
 본 연구는 SBG를 통해 user embedding 을 풍부화 하는 방법을 연구하였다. 이는 기본적인 잠재 공간 방법론의 철학을 유지하면서, 약간의 변화를 통해 성능향상을 가져왔기 때문에 추후 방법론들이 고도화 되어도 쉽게 적용시켜서 성능향상을 도모할 수 있어 보인다.(plug and play module)
 
