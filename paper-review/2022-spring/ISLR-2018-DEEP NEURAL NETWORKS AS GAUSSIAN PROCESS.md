@@ -78,7 +78,7 @@ Gaussian process 의 베이지안 추론을 통해 생성한 Neural Network (이
 
 또한 GP의 이점을 볼 수 있는데 불확실성(uncertainty)이 예측오차(prediction error)와 상관되어있다는 것이다. GP 는 베이지안 적인 특성으로 인해 모든 예측에서 불확실성을 가진다. 즉, NNGP에서는 모든 test 는 예측 분산에 관한 추정치를 찾을 수 있다는 것이다. 위의 실험에서 이러한 불확실성(예측 분산에 대한 추정)이 예측오차와 강한 상관성이 있음을 찾아냈고 다음과 같은 형태의 그래프를 보여준다.
 
-![image-20220424165815919](C:\Users\sungb\AppData\Roaming\Typora\typora-user-images\image-20220424165815919.png)
+<img width="140" src=".gitbook/2022-spring-assets/seongbin1/f2.png"> 
 
 
 
