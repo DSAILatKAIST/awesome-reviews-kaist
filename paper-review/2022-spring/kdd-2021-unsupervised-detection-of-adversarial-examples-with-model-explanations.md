@@ -50,7 +50,7 @@ There are three steps in this method:
    By using explainability techniques, inspector networks create saliency maps based on the data examples used to train the original model (target classifier). With Φ<sup>𝑐</sup> as a set of input explanations of output label 𝑐, we get:
 
    <figure>
-   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/eq1.png">
+   <img width="500" src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/eq1.png">
    </figure>
 
 2. Training reconstructor networks  
@@ -60,7 +60,7 @@ There are three steps in this method:
    The training process is done by optimizing:
 
    <figure>
-   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/eq2.png">
+   <img width="500" src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/eq2.png">
    </figure>
 
 
@@ -114,6 +114,7 @@ Overall, the method has difficulty on detecting adversarial examples with low no
    
 </figure>
 
+  
 
 The above table shows that the proposed method has better or on-par accuracy compared with previously existing works. 
 
