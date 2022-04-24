@@ -1,6 +1,3 @@
----
-layout: post
----
 
 # Choose Your Neuron: Incorporating Domain Knowledge through Neuron-Importance
 
