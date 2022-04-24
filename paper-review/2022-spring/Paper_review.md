@@ -115,8 +115,8 @@ Deep Learning 연구에는 다양한 아이디어들이 난무 하지만, 실질
 , Adams Wei Yu,
 Brian Lester, Nan Du, Andrew M. Dai, and Quoc V. Le
     * Four Lead Authors (*)
-    * Google Research  
-    * Deep Learning
+    * Affilation : Google Research  
+    * Research Field: Deep Learning
 
 ## **6. Reference & Additional materials**  
 
