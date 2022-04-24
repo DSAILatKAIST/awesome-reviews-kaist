@@ -12,7 +12,7 @@ $\lang A,O,S,T,I,R,\gamma \rang$
 $\lang A,O,S,T,I,R,\gamma \rang$
 $\lang A,O,S,T,I,R,\gamma \rang$
 
-<img width='45' align='center' src='.gitbook/main/symbol.png'>  
+<img width='45' align='center' src='../../.gitbook/main/symbol.png'>  
 
 ## **2. Motivation**  
 
