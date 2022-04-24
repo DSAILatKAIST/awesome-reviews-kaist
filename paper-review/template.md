@@ -32,6 +32,9 @@ Most of the current works have neural image compression that often operate in an
 
 In this method they store the weights of the NN's instead of the traditional methods in which the RGB values are stored for each pixel of an image. The researchers do this by encoding an image by overfitting mapping pixel locations (MLP) over the RGB values of the image and transmit the weights θ of the MLP as code. The encoding process start with overfitting an MLP to the image, after that the weights that have to be transmitted have to be quantized. When it is transmitted, the decoding process starts and the MLP will be evaluated at the pixel locations to reconstruct the image.
 
+
+<img width="140" src=".gitbook/2022-spring-assets/ImagesRP1/Afbeelding1.png">  
+
 See example xx:
 
 This method does not need entropy coding or learning a distribution over weights so it is very likely to outperform compression methods like JPEG. 
