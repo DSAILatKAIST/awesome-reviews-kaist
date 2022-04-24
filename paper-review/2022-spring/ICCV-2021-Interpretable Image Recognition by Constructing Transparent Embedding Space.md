@@ -77,7 +77,8 @@ embedding space상에서 class가 구분되기 위해서는 각 class의 subspac
 마지막으로 classifier layer를 optimize하기 위한 Loss로서 Cross Entropy Loss를 이용합니다.   
 ![figure6](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure6.PNG?raw=true)  
 
-최종적으로, 지금까지 정의된 loss들을 jointly optimize하기 위해 Total Loss for Joint Optimization을 정의합니다.   ![figure7](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure7.PNG?raw=true)   
+최종적으로, 지금까지 정의된 loss들을 jointly optimize하기 위해 Total Loss for Joint Optimization을 정의합니다.    
+![figure7](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure7.PNG?raw=true)   
 hyper-parameters를 사용하여 classification loss(cross entropy loss)에 orthonormality loss, subspace separation loss, compactness-separation loss를 적절한 비율로 더해줍니다. 이 total loss와 함께 convolutional layer, basis vectors가 동시에 최적화되며 concept embedding subspace가 학습됩니다.
 
 ### **Concept-based classification**   
