@@ -24,7 +24,7 @@ neuron-level description을 zero-shot learning classifier에도 적용하기 위
 
 저자는 external domain knowledge(text based or otherwise)를 neuron과의 직접 mapping을 통해 zero-shot learning과 동시에 interpretable explanation을 제공하는 방법론을 제안했다.
 
-![fig0.png](/gitbook/2022-spring-assets/LEESOL_1/fig0.png)
+![fig0.png](.gitbook/2022-spring-assets/LEESOL_1/fig0.png)
 
 ---
 
@@ -54,7 +54,7 @@ domain knowledges : $\mathcal{K} = \{k_1,...,k_{s+u}\}$
 
  $\mathrm{NET}_\mathcal{s}(\centerdot)$ 은 seen class 예측을 위해 학습한 네트워크를 의미하며( $\{o_c|c\in\mathcal{S}\}$),   $o_c$의 $a^n_{i,j}$에 대한 gradient를 구한 후 global average pooling을 통해 class dependent neuron importance를 도출할 수 있다.
 
-![fig1.png](/gitbook/2022-spring-assets/LEESOL_1/fig1.png)
+![fig1.png](.gitbook/2022-spring-assets/LEESOL_1/fig1.png)
 
 $n$ : Channel dimesion
 
