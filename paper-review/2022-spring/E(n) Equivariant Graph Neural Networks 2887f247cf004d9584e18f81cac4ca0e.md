@@ -14,27 +14,27 @@ description : Victor Garcia Satorras / E(n) Equivariant Graph Neural Networks / 
 
 Equivariant 에 대한 정의는 다음과 같다.
 
-> Let $T_g:X→X$ be a set of transformations on $X$ for the abstract group $g\in G$. We say a function $\phi : X → Y$ is equivariant to $g$ if there exists an equivalent transformation on its output space $S_g:Y→Y$ such that: $\phi(T_g(x))=S_g(\phi(x))$
+> Let $$T_g:X→X$$ be a set of transformations on $$X$$ for the abstract group $$g\in G$$. We say a function $$\phi : X → Y$$ is equivariant to $$g$$ if there exists an equivalent transformation on its output space $$S_g:Y→Y$$ such that: $$\phi(T_g(x))=S_g(\phi(x))$$
 > 
 
 조금 더 쉽게, translation equivariant을 예시로 설명해보겠다. 다음과 같은 상황을 생각해 보자.
 
-- $\phi (\cdot)$, non-linear function (ex. MLP, GNN, ...)
-- $x=(x_1,...,x_M) \in \mathbb{R} ^{M \times n}$, n-dimensional 공간에 있는 M개의 input data
-- $T_g$, input set에 대한 translation, $T_g(x)=x+g$
-- $S_g$, output set에 대한 equivalent translation, $S_g(y)=y+g$
+- $$\phi (\cdot)$$, non-linear function (ex. MLP, GNN, ...)
+- $$x=(x_1,...,x_M) \in \mathbb{R} ^{M \times n}$$, n-dimensional 공간에 있는 M개의 input data
+- $$T_g$$, input set에 대한 translation, $$T_g(x)=x+g$$
+- $$S_g$$, output set에 대한 equivalent translation, $$S_g(y)=y+g$$
 
-만약 우리의 transformation $\phi: X→Y$ 가 translation equivariant라고 한다면, original input, $x$에 translation을 적용해서 transformation을 적용한 값과, transformation을 적용한 값에 translation을 적용한 값이 동일할 것이다. 수식으로 나타내면 다음과 같다.
+만약 우리의 transformation $$\phi: X→Y$$ 가 translation equivariant라고 한다면, original input, $$x$$에 translation을 적용해서 transformation을 적용한 값과, transformation을 적용한 값에 translation을 적용한 값이 동일할 것이다. 수식으로 나타내면 다음과 같다.
 
-- $\phi(x+g)=\phi(x)+g$
+- $$\phi(x+g)=\phi(x)+g$$
 
 즉, 다시한번 정리하면, 어떤 function이 translation equivariant하다면, 위의 property를 가질 수 있다는 것이다. 이러한 property를 가지면 어떤 좋은 점이 있는지는 추후에 설명하도록 하겠다.
 
-이 논문에서는 set of particles $x$에 적용되는, 다음 3가지 종류의 equivariance에 대해서 탐구한다.
+이 논문에서는 set of particles $$x$$에 적용되는, 다음 3가지 종류의 equivariance에 대해서 탐구한다.
 
-- **Translation equivariance.** Translating the input by $g \in \mathbb{R} ^{n}$ results in an equivalent translation of the output. Let $x+g$ be shorthand for $(x_1+g, ..., x_M+g)$. Then $y+g=\phi(x+g)$.
-- **Rotation (and reflection) equivariance.** For any orthogonal matrix $Q \in \mathbb{R} ^{n \times n}$, let $Qx$ be shorthand for $(Qx_1, ..., Qx_M)$. Then rotating the input results in an equivalent rotation of the output $Qy=\phi(Qx)$.
-- **Permutation equivariance.** Permuting the input results in the same permutation of the output $P(y)=\phi(P(x))$ where $P$ is a permutation on the row indexes.
+- **Translation equivariance.** Translating the input by $$g \in \mathbb{R} ^{n}$$ results in an equivalent translation of the output. Let $$x+g$$ be shorthand for $$(x_1+g, ..., x_M+g)$$. Then $$y+g=\phi(x+g)$$.
+- **Rotation (and reflection) equivariance.** For any orthogonal matrix $$Q \in \mathbb{R} ^{n \times n}$$, let $$Qx$$ be shorthand for $$(Qx_1, ..., Qx_M)$$. Then rotating the input results in an equivalent rotation of the output $$Qy=\phi(Qx)$$.
+- **Permutation equivariance.** Permuting the input results in the same permutation of the output $$P(y)=\phi(P(x))$$ where $$P$$ is a permutation on the row indexes.
 
 그래프에 대해서 Rotation equivariance한 graph neural network 예시를 보여주는 그림이 있다.
 
@@ -54,19 +54,19 @@ Graph Neural Network는 Graph를 input으로 받아서 Graph를 output으로 내
 
 저자들은 graph convolutional layer를 다음과 같이 정의하였다.
 
-> Given a graph $\mathcal{G}=(\mathcal{V},\mathcal{E})$ with nodes $v_i \in \mathcal{V}$ and edges $e_{ij} \in \mathcal{E}$, we define a graph layer convolutional layer following notation from (Glimer et al., 2017) as:
+> Given a graph $$\mathcal{G}=(\mathcal{V},\mathcal{E})$$ with nodes $$v_i \in \mathcal{V}$$ and edges $$e_{ij} \in \mathcal{E}$$, we define a graph layer convolutional layer following notation from (Glimer et al., 2017) as:
 
-$\bold{m}_{ij}=\phi_e(\bold{h}_i^l,\bold{h}_j^l,a_{ij})$
-$\bold{m}_i=\sum_{j\in \mathcal{N}(i)} \bold{m}_{ij}$
-$\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$
+$$\bold{m}_{ij}=\phi_e(\bold{h}_i^l,\bold{h}_j^l,a_{ij})$$
+$$\bold{m}_i=\sum_{j\in \mathcal{N}(i)} \bold{m}_{ij}$$
+$$\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$$
 > 
 
 각 element에 대한 설명은 다음과 같다.
 
-- $\bold{h}_i^l \in \mathbb{R} ^{\text{nf}}$ is the nf-dimensional embedding of node $v_i$ at layer $l$.
-- $a_{ij}$ are the edge attribute.
-- $\mathcal{N}(i)$ represents the set of neighbors of node $v_i$.
-- $\phi_e$ and $\phi_h$ are the edge and node operations (ex. MLP)
+- $$\bold{h}_i^l \in \mathbb{R} ^{\text{nf}}$$ is the nf-dimensional embedding of node $$v_i$$ at layer $$l$$.
+- $$a_{ij}$$ are the edge attribute.
+- $$\mathcal{N}(i)$$ represents the set of neighbors of node $$v_i$$.
+- $$\phi_e$$ and $$\phi_h$$ are the edge and node operations (ex. MLP)
 
 3가지의 과정을 edge
 
@@ -90,24 +90,24 @@ $\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$
 
 이들이 제안한 Equivariant Graph Neural Network (EGNN)의 각 Equivariant Graph Convolutional Layer (EGCL)는 다음의 내용들을 input으로 output을 만든다.
 
-- (Input) $h^l=\{{h_0^l, ..., h_{M-1}^l}\}$, set of node embedding.
-- (input) $x^l=\{x_0^l,...,x_{M-1}^l\}$, coordinate embedding.
-- (input) $\mathcal{E}=(e_{ij})$, edge information
-- (output) $h^{l+1},x^{l+1}$.
+- (Input) $$h^l=\{{h_0^l, ..., h_{M-1}^l}\}$$, set of node embedding.
+- (input) $$x^l=\{x_0^l,...,x_{M-1}^l\}$$, coordinate embedding.
+- (input) $$\mathcal{E}=(e_{ij})$$, edge information
+- (output) $$h^{l+1},x^{l+1}$$.
 
-이를 간단히, $h^{l+1}, x^{l+1}=\text{EGCL}[h^l,x^l,\mathcal{E}]$ 로 나타낼 수 있다. 이 과정은 다음과 같다. 
+이를 간단히, $$h^{l+1}, x^{l+1}=\text{EGCL}[h^l,x^l,\mathcal{E}]$$ 로 나타낼 수 있다. 이 과정은 다음과 같다. 
 
-> $m_{ij}=\phi_e(h_i^l,h_j^l,||x_i^l-x_j^l||^2,a_{ij})$
-$x_i^{l+1}=x_i^l+C \sum_{j\neq i}(x_i^l-x_j^l)\phi_x(m_{ij})$
-$m_i=\sum_{j \neq i} m_{ij}$
-$h_i^{l+1}=\phi_h(h_i^l,m_i)$
+> $$m_{ij}=\phi_e(h_i^l,h_j^l,||x_i^l-x_j^l||^2,a_{ij})$$
+$$x_i^{l+1}=x_i^l+C \sum_{j\neq i}(x_i^l-x_j^l)\phi_x(m_{ij})$$
+$$m_i=\sum_{j \neq i} m_{ij}$$
+$$h_i^{l+1}=\phi_h(h_i^l,m_i)$$
 > 
 
 사실 기존의 GNN과 달라지는 부분은 첫 번째와 두 번째 수식밖에 없다. 오로지 이 과정을 통해서 위에서 언급한 2개의 equivariant한 성질을 얻어낼 수 있다고 이야기한다.
 
 EGCL의 첫 번째 식을 살펴보면, 기존의 GNN과 비슷하게 각 node embedding과 노드를 연결하는 edge embedding이 input으로 들어간다. 여기서 추가로 node의 distance가 input으로 사용된다.
 
-두 번째 식을 살펴보면, 첫 번째 식에서 계산된 $m_{ij}$가 $\phi_x$를 통해서 임베딩 되어 weight를 만들어 낸다. 그리고 이 값은, node간의 relative difference weighted sum의 weight이 된다.  그리고 이 값이 더해져서 coordinate embedding에 더해지게 된다. $\phi_x$, output function은 weight을 만들어내는 함수이기 때문에 $\phi_x:\mathbb{R}^\text{nf}→\mathbb{R}^1$ 임을 주의해야 한다.
+두 번째 식을 살펴보면, 첫 번째 식에서 계산된 $$m_{ij}$$가 $$\phi_x$$를 통해서 임베딩 되어 weight를 만들어 낸다. 그리고 이 값은, node간의 relative difference weighted sum의 weight이 된다.  그리고 이 값이 더해져서 coordinate embedding에 더해지게 된다. $$\phi_x$$, output function은 weight을 만들어내는 함수이기 때문에 $$\phi_x:\mathbb{R}^\text{nf}→\mathbb{R}^1$$ 임을 주의해야 한다.
 
 ### Analysis on E(n) equivariance
 
@@ -117,17 +117,17 @@ EGCL의 첫 번째 식을 살펴보면, 기존의 GNN과 비슷하게 각 node e
 
 증명 과정이 생각보다 간단하니 눈으로 봐도 쉽게 따라갈 수 있다. 간단히 이야기하면, translation 부분은 서로 소거되고, rotation 부분은 두개가 곱해져서 identity matrix가 되어서 사라지는 방식으로 증명이 이루어진다.
 
-> $Qx^{l+1}+g,h^{l+1}=EGCL(Qx^l+g,h^l)$
+> $$Qx^{l+1}+g,h^{l+1}=EGCL(Qx^l+g,h^l)$$
 
-, where $g\in \mathbb{R}^n$ is a translation vector and $Q \in \mathbb{R}^{n\times n}$ is a orthogonal matrix.
+, where $$g\in \mathbb{R}^n$$ is a translation vector and $$Q \in \mathbb{R}^{n\times n}$$ is a orthogonal matrix.
 > 
 
 ### Extending EGNNs for vector type representations
 
-이 subsection에서는 약간의 수정을 통해서 particle의 momentum을 explicit하게 계속 track할 수 있는 방법을 제안한다. 이 방법은 particle의 estimate velocity를 매 layer에서 얻는 것 뿐만 아니라, particle의 초기 속도를 매 layer에 제공할 수 있다는 장점이 있다고 한다. (equivariant property를 유지한 채 velocity information을 제공할 수 있다는 것이 핵심인 것 같다.) 다음과 같은 modification을 통해서 momentum 정보를 포함할 수 있다고 한다. ($v^{\text{init}}=0$인 경우는 일반적인 EGNN과 똑같은 것을 알 수 있다.)
+이 subsection에서는 약간의 수정을 통해서 particle의 momentum을 explicit하게 계속 track할 수 있는 방법을 제안한다. 이 방법은 particle의 estimate velocity를 매 layer에서 얻는 것 뿐만 아니라, particle의 초기 속도를 매 layer에 제공할 수 있다는 장점이 있다고 한다. (equivariant property를 유지한 채 velocity information을 제공할 수 있다는 것이 핵심인 것 같다.) 다음과 같은 modification을 통해서 momentum 정보를 포함할 수 있다고 한다. ($$v^{\text{init}}=0$$인 경우는 일반적인 EGNN과 똑같은 것을 알 수 있다.)
 
-> $v_i^{l+1}=\phi_v(h_i^l)v_i^{\text{init}}+C\sum_{j \neq i}(x_i^l-x_j^l)\phi_x(m_{ij})$
-$x_i^{l+1}=x_i^l+v_i^{l+1}$
+> $$v_i^{l+1}=\phi_v(h_i^l)v_i^{\text{init}}+C\sum_{j \neq i}(x_i^l-x_j^l)\phi_x(m_{ij})$$
+$$x_i^{l+1}=x_i^l+v_i^{l+1}$$
 > 
 
 ### Inferring the edge
@@ -136,9 +136,9 @@ $x_i^{l+1}=x_i^l+v_i^{l+1}$
 
 이런 이슈를 해결하기 위해서 (Serviansky et al., 2020; Kipf et al., 2018) 과 비슷하게, explicit하게 제공되지 않은 edge connectivity를 임의로 계산하여 GNN을 사용할 수 있다. Aggregation operation 부분을 다음과 같이 수정하면 된다. 
 
-> $m_i=\sum_{j\in \mathcal{N}(i)}m_{ij}=\sum_{j\neq i}e_{ij}m_{ij}$
+> $$m_i=\sum_{j\in \mathcal{N}(i)}m_{ij}=\sum_{j\neq i}e_{ij}m_{ij}$$
 
-, where $e_{ij}\approx \phi_{inf}(m_{ij})$ and $\phi_{inf}:\mathbb{R}^{nf} \rightarrow [0,1]^1$
+, where $$e_{ij}\approx \phi_{inf}(m_{ij})$$ and $$\phi_{inf}:\mathbb{R}^{nf} \rightarrow [0,1]^1$$
 > 
 
 message에 대한 부분은 애초에 equivariant property를 생각하지 않았으므로, 이 계산 과정은 EGNN이 equivariant한 성질에 영향을 미치지 않는다. (Equivariant함을 계속 유지시켜 준다.)
@@ -158,9 +158,9 @@ message에 대한 부분은 애초에 equivariant property를 생각하지 않�
 [ 데이터 ]
 
 - 3000 training set, 2000 validation set, 2000 testing set.
-- (input) $p^{(0)}=\{p_1^{(0)},...,p_5^{(0)}\}$, particle position
-- (input) $v^{(0)}=\{v_1^{(0)},...,v_5^{(0)}\}$, initial velocity
-- (input) $c=\{c_1,...,c_5\}$, charge
+- (input) $$p^{(0)}=\{p_1^{(0)},...,p_5^{(0)}\}$$, particle position
+- (input) $$v^{(0)}=\{v_1^{(0)},...,v_5^{(0)}\}$$, initial velocity
+- (input) $$c=\{c_1,...,c_5\}$$, charge
 - Mean squared error를 통해서 optimize
 
 [ 결과 ]
