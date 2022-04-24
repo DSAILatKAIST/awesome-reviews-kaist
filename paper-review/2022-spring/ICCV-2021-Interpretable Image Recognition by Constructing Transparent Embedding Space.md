@@ -16,19 +16,19 @@ Convolution Neural Network(CNN)의 결과 해석은 판단의 정확한 근거�
 
 그렇다면 Interpretable Concepts (해석이 용이한 컨셉)이란 무엇일까요? 인지적 관점에서 Interpretable Concepts는 다음의 세 가지 조건을 만족해야 합니다.
 
-(1) Informative   
+**(1) Informative**   
 Input data는 basis concept들로 spanned된 vector space상에서 효율적으로 나타내져야하며, input의 essential information(중요한 정보)가 새로운 representation space에서도 보존되어야합니다.   
-(2) Diversity   
+**(2) Diversity**   
 각 데이터(ex.이미지)는 서로 중복되지 않는 소수의 basis concepts와 관련 있어야하며, 같은 class에 속하는 데이터들은 비슷한 basis concepts를 공유해야 합니다.   
-(3) Discriminative  
+**(3) Discriminative**  
 Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 class가 잘 분리되도록 class-aware해야 합니다. 즉, 같은 class와 연관된 basis concepts끼리는 근접하게, 다른 class의 basis concepts 간에는 멀게 embedding되어 있어야 합니다.
 
 데이터의 concepts를 추출하기 위해 이전 연구들은 auto-encoding, prototype learning과 같이 deep neural network의 high-level feature를 이용하는 방식을 제안하였습니다. 그 중 한 방법은 U-shaped Beta Distribution을 이용하여 basis concepts의 개수를 제한함으로써 각 input data를 소수의 의미 있는 basis concept들로 나타내기도 하였습니다. 이러한 연구들은 Interpretable Concepts의 첫번째 조건을 만족하였지만, 앞서 언급하였듯이 basis concepts가 서로 얽혀있어(entangled) input과 output에 대한 개별 concept의 영향을 해석하기 어렵다는 문제점이 존재합니다.
 
 따라서, 이 논문에서는 위의 세가지 Interpretable Concepts 조건을 모두 충족시키는 basis concepts를 설계하는 데에 주목하고 있습니다. 논문에서 설계한 basis concepts는 다음과 같은 특징들을 가집니다.   
-첫번째, 각 class는 자신만의 basis concepts를 가지며 class가 다른 경우 basis concepts도 최대한 다릅니다.   
-두번째, high-level feature과 basis concepts 사이를 효과적으로 연결하는 mapping을 제공합니다.   
-세번째, input image 상의 basis concepts는 각 class에 대한 prediction score을 계산하는 데에 도움이 됩니다.
+**첫번째, 각 class는 자신만의 basis concepts를 가지며 class가 다른 경우 basis concepts도 최대한 다릅니다.**   
+**두번째, high-level feature과 basis concepts 사이를 효과적으로 연결하는 mapping을 제공합니다.**   
+**세번째, input image 상의 basis concepts는 각 class에 대한 prediction score을 계산하는 데에 도움이 됩니다.**  
 
 위의 세 가지 특징을 만족하는 basis concepts 설계를 위해, 본 논문은 기존 연구들과 다르게 Grassmann manifold를 도입하여 basis concept vector space를 정의합니다. 다음의 그림처럼, 각 class마다의 basis concepts subset이 Grassmann manifold 상의 point로 존재합니다. Grassmann manifold는 쉽게 말하면 linear subspaces의 set(집합)이라고 생각할 수 있습니다. 여기서 subspace란 vector space _V_ 의 subset(부분집합) _W_ 가 _V_ 로부터 물려받은 연산들로 이루어진 또 다른 하나의 vector space일 때 _W_ 를 _V_ 의 subspace라고 말합니다.   
 ![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure1.PNG?raw=true)
@@ -47,9 +47,9 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 그렇다면 basis concepts는 어떻게 정의되어 embedding space를 이루고 있는지 살펴보겠습니다.  
 
 각 basis concept은 basis vector로 표현됩니다. 이 basis vector는 다음 세 가지 조건을 만족해야합니다.  
-(1) 다른 basis vector 사이에는 의미가 중복되면 안됩니다.   
-(2) embedding space에서도 각 class는 구분되어야 합니다.   
-(3) basis vector들은 비슷한 high-level patch(사람들이 인식할 수 있는 level의 image)들을 군집화하고 다른 것들끼리는 분리할 수 있어야 합니다.   
+**(1) 다른 basis vector 사이에는 의미가 중복되면 안됩니다.**   
+**(2) embedding space에서도 각 class는 구분되어야 합니다.**   
+**(3) basis vector들은 비슷한 high-level patch(사람들이 인식할 수 있는 level의 image)들을 군집화하고 다른 것들끼리는 분리할 수 있어야 합니다.**   
 
 이 세 가지 조건을 만족시키기 위해 전체 architecture에서 보았던 convolutional layer, basis vectors, classifier layer의 weight들이 서로 joint하게 optimize(최적화)될 수 있도록 joint optimization problem을 정의하고 있습니다. 다음은 각 weight를 최적화하기 위한 loss와 optimization 과정입니다.   
 
@@ -76,17 +76,22 @@ embedding space상에서 class가 구분되기 위해서는 각 class의 subspac
 ![figure6](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure6.PNG?raw=true)  
 
 최종적으로, 지금까지 정의된 loss들을 jointly optimize하기 위해 Total Loss for Joint Optimization을 정의합니다. ![figure7](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure7.PNG?raw=true)   
-hyper-parameters를 사용하여 classification loss(cross entropy loss)에 orthonormality loss, subspace separation loss, compactness-separation loss를 적절한 비율로 더해줍니다. 이 total loss와 함께 convolutional layer, basis vectors, classifier가 동시에 최적화되며 전체 네트워크가 학습됩니다.
+hyper-parameters를 사용하여 classification loss(cross entropy loss)에 orthonormality loss, subspace separation loss, compactness-separation loss를 적절한 비율로 더해줍니다. 이 total loss와 함께 convolutional layer, basis vectors가 동시에 최적화되며 concept embedding subspace가 학습됩니다.
+
+### **Concept-based classification**   
+embedding space가 학습되고 나면, convolutional layers와 basis vectors의 parameter를 고정시킨 후, 마지막 단의 classifier를 학습시키게 됩니다. 
 
 ## **4. Experiment**    
-다양한 CNN architecture에 대한 TesNet의 넓은 적용성을 입증하기 위해 두 가지의 case study를 진행하였습니다. 그 중 첫번째 case study에 대해서 자세히 살펴보겠습니다.
+본 논문에서는 다양한 CNN architecture에 대한 TesNet의 넓은 적용성을 입증하기 위해 두 가지의 case study를 진행하였습니다. 그 중 첫번째 case study인 bird species identification에 대해서 자세히 살펴보겠습니다.
 
 ### **Experiment setup**  
-* Dataset   
-Caltecg-USCD Birds-200-2011 dataset을 사용하여 bird species classification 실험을 진행하였습니다. dataset은 200 종(species)의 bird 이미지 5994+5794장으로 이루어졌습니다. 그 중 5994장은 training, 나머지 5794장은 test시 이용하였습니다. 각 bird class마다 30장의 이미지밖에 존재하지 않아, 논문에서는 random rotation, skew, shear, flip 등의 augmentation을 통해 training set의 각 class마다 1200장의 이미지가 존재하도록 데이터를 증강하였습니다.   
-* baseline  
+* **Dataset**   
+Caltecg-USCD Birds-200-2011 dataset을 사용하여 bird species classification 실험을 진행하였습니다. dataset은 200 종(species)의 bird 이미지 5994+5794장으로 이루어졌습니다. 그 중 5994장은 training, 나머지 5794장은 test시 이용하였습니다. 각 bird class마다 30장의 이미지밖에 존재하지 않아, 논문에서는 random rotation, skew, shear, flip 등의 augmentation을 통해 training set의 각 class마다 1200장의 이미지가 존재하도록 데이터를 증강하였습니다.
+
+* **baseline**  
 non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, DenseNet161 네트워크들을 baseline으로 삼고, 각 네트워크에 interpetable한 TesNet을 적용한 경우와 비교 실험하였습니다. 또한, TesNet과 유사한 interpetable network architecture인 ProtoPNet을 적용한 결과도 함께 비교하였습니다.   
-* Evaluation Metric  
+
+* **Evaluation Metric**  
 평가지표로 classification accuracy를 사용하였습니다.   
 
 ### **Result**    
@@ -95,21 +100,22 @@ non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, Dense
 
 ![figure9](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure9.PNG?raw=true)   
 
+
 ## **5. Conclusion**  
-* Summary   
+* **Summary**   
 TesNet은 다른 CNN 모델에 plug-in되어 classifiaction 성능을 향상시킬 수 있는 적용성 높은 architecture입니다. 
-* Opinion   
-CNN의 output 해석에 있어 input image의 concept이라는 개념을 잘 정의한 연구라고 생각합니다. 특히 basis vector, subspace, manifold와 같이 어렵지않은 수학적 개념들을 잘 적용하여 의미있는 결과를 도출해낸 점이 굉장히 인상깊습니다. 평소 알고만 있던 수학적 개념들을 neural network와의 연결 지점을 다시 생각해볼 수 있는 기회였고, 개인적으로 Explainable AI에 관심이 많아 흥미로웠습니다. 그런데 이런 interpretable한 network가 주로 이미지 데이터쪽에 치우쳐 있다는 점이 아쉬워, audio, text 등에도 general하게 쓰일 수 있는 architecture에 대한 연구가 필요해보입니다.
+
+* **Opinion**   
+CNN의 output 해석에 있어 input image의 concept이라는 개념을 잘 정의한 연구라고 생각합니다. 특히 basis vector, subspace, manifold와 같이 어렵지않은 수학적 개념들을 잘 적용하여 의미있는 결과를 도출해낸 점이 굉장히 인상깊습니다. 평소 알고만 있던 수학적 개념들을 neural network와의 연결 지점을 다시 생각해볼 수 있는 기회였고, 개인적으로 Explainable AI에 관심이 많아 흥미로웠습니다. 그런데 이런 interpretable한 network가 주로 이미지 데이터쪽에 치우쳐 있다는 점이 아쉬웠고 audio, text 등에도 general하게 쓰일 수 있는 architecture에 대한 연구의 필요성을 느꼈습니다.
 
 ---  
 ## **Author Information**  
 
 * TaeMi, Kim
     * KAIST, Industrial and Systems Engineering
+    * Computer Vision, XAI
 
 ## **6. Reference & Additional materials**  
-
-Please write the reference. If paper provides the public code or other materials, refer them.  
 
 * Github Implementation  
 None
