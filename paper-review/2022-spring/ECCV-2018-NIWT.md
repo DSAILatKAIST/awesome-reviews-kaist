@@ -70,7 +70,7 @@ Gradient-based Localization. ICCV (2017) 참고*
 
  ![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_\mathcal{S}(.))의 한 layer을 L이라 하고 seen classes instances을  ![](https://latex.codecogs.com/gif.latex?(x_i,y_i)\in\mathcal{D_s})이라 할때, ![](https://latex.codecogs.com/gif.latex?a_c=\{a^n_c|n\in{L}\})는 L layer로부터 계산된 class c에 대한 neuron importance vectors이다.
 
-Domain knowledge와 neuron importance vector를 linear mapping(transformation)하기 위해 먼저, importance vectors ![](https://latex.codecogs.com/gif.latex?a_{y_i})를 계산한 후 해당 class와 관련있는 domain knowledge(![](https://latex.codecogs.com/gif.latex?k_{y_i})를 매칭한다(![](https://latex.codecogs.com/gif.latex?a_{y_i},k_{y_i}).  ![](https://latex.codecogs.com/gif.latex?W_{\mathcal{K}\rightarrow a})를 추정하기 위해 cosine distance를 이용하여 loss를 정의하고 gradient를 이용하여 이를 minimize한다. 
+Domain knowledge와 neuron importance vector를 linear mapping(transformation)하기 위해 먼저, importance vectors ![](https://latex.codecogs.com/gif.latex?a_{y_i})를 계산한 후 해당 class와 관련있는 domain knowledge(![](https://latex.codecogs.com/gif.latex?k_{y_i}))를 매칭한다(![](https://latex.codecogs.com/gif.latex?a_{y_i}),![](https://latex.codecogs.com/gif.latex?k_{y_i})). ![](https://latex.codecogs.com/gif.latex?W_{\mathcal{K}\rightarrow a})를 추정하기 위해 cosine distance를 이용하여 loss를 정의하고 gradient를 이용하여 이를 minimize한다. 
 
 ![fig2.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig2.png?raw=true)
 
