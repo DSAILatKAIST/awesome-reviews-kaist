@@ -21,9 +21,9 @@ neuron-level description을 zero-shot learning classifier에도 적용하기 위
 
 저자는 external domain knowledge(text based or otherwise)를 neuron과의 직접 mapping을 통해 zero-shot learning과 동시에 interpretable explanation을 제공하는 방법론을 제안했다.
 
-<center>
+
 ![fig0.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig0.png?raw=true)
-</center>
+
 
 ---
 
