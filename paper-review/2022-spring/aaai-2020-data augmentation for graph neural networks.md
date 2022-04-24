@@ -33,7 +33,7 @@ Graph 구조에서의 Data Augmentation의 가장 적합한 방법은 Node를 �
 
 이를 쉽게 보여주는 Graph 구조에 대한 GCN performace Figure는 다음과 같습니다.
 
-![image-20220424122914040](C:\Users\Sejong Lim\AppData\Roaming\Typora\typora-user-images\image-20220424122914040.png)
+![image-20220424122914040](.gitbook/2022-spring-assets/sejong/image-20220424122914040.png)
 
 (a)는 Edge의 추가 및 제거가 없는 원본 그래프 구조이고, (b)는 랜덤하게 Edge를 변형시킨 구조입니다. (c)는 위 논문에서 제시한 idea를 기반으로 만든 GAUG 모델의 구조이며, 마지막으로 (d)는 이상적으로 Class간 구분이 확실하도록 Edge의 변형이 이루어진 그래프 구조입니다. 파란색 점선은 Edge의 제거를 의미하고 파란색 실선은 Edge의 추가를 의미하며, F1 score는 **Class의 구분이 드러나도록 Edge가 연결된 구조일수록 높아지는 것**을 확인할 수 있습니다(이 때 각각의 Method M과 O는 아래에 기술할 *Modified-Graph Setting*과 *Original-Graph Setting*을 의미).
 
