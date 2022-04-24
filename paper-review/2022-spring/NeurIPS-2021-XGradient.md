@@ -17,7 +17,7 @@ description : Robin Hesse / Fast Axiomatic Attributions for Neural Networks / 20
 
 ## 2) Axiomatic Attributions
 본 논문의 motivation이 된 [Axiomatic Attributions for Neural Networks (2017)](https://arxiv.org/abs/1703.01365)의 저자는 좋은 Attribution method가 가져야할 6가지 공리를 정의하고, 이를 모두 만족하는 Integrated Gradient(IG)를 제시했다.<br>
-![Gradient_Saturation_Effect 설명](/../awesome-reviews-kaist/.gitbook/2022-spring-assets/junghurnkim_1/Axioms.png)<br>
+![Gradient_Saturation_Effect 설명](.gitbook/2022-spring-assets/junghurnkim_1/Axioms.png)<br>
 다양한 이유로 위의 성질을 모두 만족하는 기존의 Attribution 방법은 없으며, IG는 Gradient Saturation Effect를 해결함으로서 위의 성질을 모두 만족한다고 설명한다.
 
 Gradient Saturation Effect란.<br>
