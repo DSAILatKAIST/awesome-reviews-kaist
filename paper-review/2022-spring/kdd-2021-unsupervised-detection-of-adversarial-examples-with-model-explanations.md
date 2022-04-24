@@ -12,8 +12,10 @@ description: Ko & Lim / Unsupervised Detection of Adversarial Examples with Mode
 
 In the last few years, adversarial attacks are one of the main issues in security threats. It alters the behavior of a deep neural network by utilizing data samples which have been subtly modified. Adversarial perturbations, even simple ones, can affect deep neural networks. In this case, the model may produce incorrect results and cause damage to the security system. The following example of adversarial attack on a panda image will give you an idea of what adversarial examples look like. A small perturbation is applied to the original image so that the attacker is successfully misclassifying it as a gibbon with high confidence.
 
-![adversarial attack](/.gitbook/2022-spring-assets/NabilahMuallifah_1/0.png)  
-_Figure 1: An adversarial perturbation can manipulate a classifier to misclassify a panda as a gibbon._
+<figure>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/0.png"><figcaption align = "center"><i>Figure 1: An adversarial perturbation can manipulate a classifier to misclassify a panda as a gibbon.</i>
+</figcaption>
+</figure>
 
 ## 2. Motivation  
 
@@ -28,7 +30,7 @@ In contrast to many previous attempts, the proposed method uses an unsupervised 
 In this method, a saliency map is used as an explanation map to detect adversarial examples. For image inputs, each pixel is scored based on its contribution to the final output of the deep learning model and shown on a heatmap.  
 
 <figure>
-<img width="140" src=".gitbook/2022-spring-assets/NabilahMuallifah_1/00.png"><figcaption align = "center"><i>Figure 2: Examples of saliency map based on importance or contribution of each pixel.</i>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/00.png"><figcaption align = "center"><i>Figure 2: Examples of saliency map based on importance or contribution of each pixel.</i>
 </figcaption>
 </figure>
 
@@ -40,7 +42,7 @@ There are three steps in this method:
    By using explainability techniques, inspector networks create saliency maps based on the data examples used to train the original model (target classifier). With Φ<sup>𝑐</sup> as a set of input explanations of output label 𝑐, we get:
 
    <figure>
-   <img width="140" src=".gitbook/2022-spring-assets/NabilahMuallifah_1/eq1.png">
+   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/eq1.png">
    </figure>
 
 2. Training reconstructor networks  
@@ -50,7 +52,7 @@ There are three steps in this method:
    The training process is done by optimizing:
 
    <figure>
-   <img width="140" src=".gitbook/2022-spring-assets/NabilahMuallifah_1/eq2.png">
+   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/eq2.png">
    </figure>
 
 
@@ -71,7 +73,7 @@ The method is evaluated on the MNIST dataset. A simple CNN network is used as ta
 **Effect of input perturbations on explanations**  
 
 <figure>
-<img width="140" src=".gitbook/2022-spring-assets/NabilahMuallifah_1/1.png"><figcaption align = "center"><i>Figure 3: Input, gradient, and reconstruction of an example MNIST image and adversarial examples crafted using the image. For each attack, adversarial example with 𝜖 = 0.1 is created.</i>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/1.png"><figcaption align = "center"><i>Figure 3: Input, gradient, and reconstruction of an example MNIST image and adversarial examples crafted using the image. For each attack, adversarial example with 𝜖 = 0.1 is created.</i>
 </figcaption>
 </figure>
 
@@ -81,7 +83,7 @@ Adversarial perturbation on input proved to lead to an obvious alteration in the
 **Adversarial detection performance**  
 
 <figure>
-<img width="140" src=".gitbook/2022-spring-assets/NabilahMuallifah_1/2.png"><figcaption align = "center"><i>Figure 4: Area under the Receiver Operating Characteristic (ROC) curve obtained according to the attack’s severity (parameterized by 𝜖), for (a) FGSM, (b) PGD, and (c) MIM attacks. For each class label, our proposed detector’s performance is recorded using adversarial examples created using given (attack, epsilon) pair. Grey areas show the min-max range of AUC, and black lines show average value of AUC across different class labels.</i>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/2.png"><figcaption align = "center"><i>Figure 4: Area under the Receiver Operating Characteristic (ROC) curve obtained according to the attack’s severity (parameterized by 𝜖), for (a) FGSM, (b) PGD, and (c) MIM attacks. For each class label, our proposed detector’s performance is recorded using adversarial examples created using given (attack, epsilon) pair. Grey areas show the min-max range of AUC, and black lines show average value of AUC across different class labels.</i>
 </figcaption>
 </figure>
 
@@ -91,7 +93,7 @@ Overall, the method has difficulty on detecting adversarial examples with low no
 **Quantitative comparison to previous approaches**  
 
 <figure>
-<img width="140" src=".gitbook/2022-spring-assets/NabilahMuallifah_1/3.png"><figcaption align = "center"><i>Table 1: Comparison on adversarial detection accuracy of the proposed (Ko & Lim) and existing approaches. The best and the second best results are highlighted in boldface and underlined texts, espectively. All benchmarks are done on MNIST dataset.</i>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah_1/3.png"><figcaption align = "center"><i>Table 1: Comparison on adversarial detection accuracy of the proposed (Ko & Lim) and existing approaches. The best and the second best results are highlighted in boldface and underlined texts, espectively. All benchmarks are done on MNIST dataset.</i>
 </figcaption>
 </figure>
 
