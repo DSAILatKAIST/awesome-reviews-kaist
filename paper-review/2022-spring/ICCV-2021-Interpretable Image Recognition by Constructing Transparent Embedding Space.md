@@ -10,7 +10,7 @@ Convolution Neural Network(CNN)의 결과 해석은 판단의 정확한 근거�
 
 따라서 interpretable image classification(해석 가능한 이미지 분류)를 위해 사람들이 쉽게 그 의미를 이해할 수 있는 input image의 concept을 추출하는 방법에 대한 연구가 이루어지고 있습니다. 그러나 기존 관련 연구들이 제안한 concept들은 서로 뒤얽혀있어 output class에 대한 각 개별 concept의 영향을 해석하기 어렵습니다. 
 
-본 논문에서는 이를 문제점으로 지적하며 output class에 대한 input image의 특징을 효과적으로 설명할 수 있으면서, 동시에 서로 얽혀있지않고 orthogonal한 (직교를 이루는)  concept들을 추출할 수 있는 방법론을 제안합니다. 
+본 논문에서는 이를 문제점으로 지적하며 output class에 대한 input image의 특징을 효과적으로 설명할 수 있으면서, 동시에 서로 얽혀있지않고 orthogonal한(직교를 이루는) concept들을 추출할 수 있는 방법론을 제안합니다. 
 
 ## **2. Motivation**  
 
@@ -78,10 +78,7 @@ embedding space상에서 class가 구분되기 위해서는 각 class의 subspac
 최종적으로, 지금까지 정의된 loss들을 jointly optimize하기 위해 Total Loss for Joint Optimization을 정의합니다. ![figure7](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure7.PNG?raw=true)   
 hyper-parameters를 사용하여 classification loss(cross entropy loss)에 orthonormality loss, subspace separation loss, compactness-separation loss를 적절한 비율로 더해줍니다. 이 total loss와 함께 convolutional layer, basis vectors, classifier가 동시에 최적화되며 전체 네트워크가 학습됩니다.
 
-## **4. Experiment**  
-
-In this section, please write the overall experiment results.  
-At first, write experiment setup that should be composed of contents.  
+## **4. Experiment**    
 다양한 CNN architecture에 대한 TesNet의 넓은 적용성을 입증하기 위해 두 가지의 case study를 진행하였습니다. 그 중 첫번째 case study에 대해서 자세히 살펴보겠습니다.
 
 ### **Experiment setup**  
@@ -92,14 +89,17 @@ non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, Dense
 * Evaluation Metric  
 평가지표로 classification accuracy를 사용하였습니다.   
 
-### **Result**  
-Then, show the experiment results which demonstrate the proposed method.  
-You can attach the tables or figures, but you don't have to cover all the results.  
+### **Result**    
 ![figure8](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure8.PNG?raw=true)   
 표에서 알 수 있듯이, baseline network에 TesNet을 적용한 경우 분류 정확도가 최대 8%정도 크게 향상된 것을 볼 수 있습니다. 또한, TesNet의 Loss를 다양하게 정의하여 실험한 결과, 4가지 Loss를 모두 jointly하게 optimize하였을 때 가장 정확도가 높은 것을 확인할 수 있습니다. 
 
+![figure9](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure9.PNG?raw=true)   
 
 ## **5. Conclusion**  
+* Summary
+TesNet은 다른 CNN 모델에 plug-in되어 classifiaction 성능을 향상시킬 수 있는 적용성 높은 architecture입니다. 
+* Opinion
+CNN의 output 해석에 있어 input image의 concept이라는 개념을 잘 정의한 연구라고 생각합니다. 특히 basis vector, subspace, manifold와 같이 어렵지않은 수학적 개념들을 잘 적용하여 의미있는 결과를 도출해낸 점이 굉장히 인상깊습니다. 평소 알고만 있던 수학적 개념들을 neural network와의 연결 지점을 다시 생각해볼 수 있는 기회였고, 개인적으로 Explainable AI에 관심이 많아 흥미로웠습니다. 그런데 이런 interpretable한 network가 주로 이미지 데이터쪽에 치우쳐 있다는 점이 아쉬워, audio, text 등에도 general하게 쓰일 수 있는 architecture에 대한 연구가 필요해보입니다.
 
 Please summarize the paper.  
 It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
