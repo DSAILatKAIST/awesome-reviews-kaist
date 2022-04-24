@@ -28,7 +28,7 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 
 따라서, 이 논문에서는 위의 세가지 Interpretable Concepts 조건을 모두 충족시키는 basis concepts를 설계하는 데에 주목하고 있습니다. 논문에서 설계한 basis concepts는 다음과 같은 특징들을 가집니다.   
 
-(1) 각 class는 자신만의 basis concepts를 가지며 class가 다른 경우 basis concepts도 최대한 다릅니다.      
+<mark>(1) 각 class는 자신만의 basis concepts를 가지며 class가 다른 경우 basis concepts도 최대한 다릅니다.</mark>      
 (2) High-level feature과 basis concepts 사이를 효과적으로 연결하는 mapping을 제공합니다.   
 (3) Input image 상의 basis concepts는 각 class에 대한 prediction score을 계산하는 데에 도움이 됩니다.   
 
