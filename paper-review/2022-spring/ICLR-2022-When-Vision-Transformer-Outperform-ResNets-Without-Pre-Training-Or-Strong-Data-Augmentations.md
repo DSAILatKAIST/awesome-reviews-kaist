@@ -122,13 +122,13 @@ greater sizes (also comparable throughput at inference) regarding both clean acc
     
 ![](https://latex.codecogs.com/gif.latex?W_k) : k번째 layer의 params
     
-![](https://latex.codecogs.com/gif.latex?h_k) : ![](https://latex.codecogs.com/gif.latex?W_k a_{k-1}), activation을 거치기 전의 k번째 layer의 output
+![](https://latex.codecogs.com/gif.latex?h_k) : ![](https://latex.codecogs.com/gif.latex?W_{k}a_{k-1}), activation을 거치기 전의 k번째 layer의 output
     
 ![](https://latex.codecogs.com/gif.latex?a_k) : ![](https://latex.codecogs.com/gif.latex?f_k(h_k))
     
 ![](https://latex.codecogs.com/gif.latex?\otimes) : Kronecker product
     
-![](https://latex.codecogs.com/gif.latex?\mathcal H_k) : layer k의 activation을 거치기 전의 Hessian 행렬
+![](https://latex.codecogs.com/gif.latex?\mathcal{H}_k) : layer k의 activation을 거치기 전의 Hessian 행렬
     
 ![](https://latex.codecogs.com/gif.latex?H_k) : ![](https://latex.codecogs.com/gif.latex?W_k)의 Hessian 행렬
     
