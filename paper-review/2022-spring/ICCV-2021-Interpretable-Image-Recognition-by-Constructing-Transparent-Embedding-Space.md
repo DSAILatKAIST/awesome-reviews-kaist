@@ -37,6 +37,7 @@ Basis concepts는 (1)에서 언급한 basis concept vector space상에서도 cla
 Grassmann manifold는 쉽게 말하면 linear subspaces의 set(집합)이라고 생각할 수 있습니다. 여기서 subspace란 vector space _V_ 의 subset(부분집합) _W_ 가 _V_ 로부터 물려받은 연산들로 이루어진 또 다른 하나의 vector space일 때 _W_ 를 _V_ 의 subspace라고 말합니다.   
 
 또한 projection metric을 통해 각 class의 basis concept들은 서로 orthogonal하도록, 동시에 class-aware한 basis concepts subset들은 서로 멀리 위치하도록 규제됩니다. 이 두 가지 규제를 통해 basis concepts가 서로 얽히지 않도록 함으로써 기존 연구의 한계점을 극복하고 있습니다.   
+
 논문은 이렇게 설계된 transparent embedding space (concept vector space)가 도입된 새로운 interpetable network, TesNet을 제안하고 있습니다.
 
 
@@ -46,6 +47,7 @@ Grassmann manifold는 쉽게 말하면 linear subspaces의 set(집합)이라고 
 다음은 TesNet의 전체적인 architecture의 모습입니다.   
 ![figure2](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure2.PNG?raw=true)   
 그림과 같이 TesNet은 convolutional layers _f_, trasparent subspace layer $s_{b}$, 그리고 classifier _h_ 이렇게 세 가지의 핵심 요소로 이루어져 있습니다.    
+
 각 요소를 하나씩 살펴보면, 먼저 convloutional layers _f_ 는 1X1 convolutional layer들이 추가된 기본 CNN 네트워크(ex.ResNet) 입니다. s_{b}는 feature map을 transparent embedding space에 projection시키는 subspace layer입니다. 각 class마다 subspace가 존재하여 총 class 개수만큼의 subspace가 존재합니다. 각 class의 subspace는 M개의 basis concepts로 spanned 되어있습니다. 이 M개의 within-class concepts(클래스 내부 concepts)는 서로 orthogonal하다고 가정합니다. 따라서 총 C개의 class가 있을 때, 각 class 마다 M개의 basis concepts가 존재한다고 가정하면 전체 CM개의 basis concepts가 존재합니다.
 
 ### **Embedding space learning**  
@@ -112,9 +114,12 @@ non-interpetable한 본래 VGG16, VGG19, ResNet34, ResNet152, DenseNet121, Dense
 * **The interpretable reasoning process**   
 다음 그림은 TesNet이 test image에 대하여 decision을 내리는 reasoning process를 시각화한 것입니다.   
 ![figure9](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_1/figure9.PNG?raw=true)   
-European Goldfinch라는 class의 test image가 주어졌다고 할 때, TesNet은 학습된 basis vectors를 통해 feature map을 re-represent할 수 있습니다. 각 class c에 대해서, 모델은 학습된 basis vectors를 image patch에 re-represent함으로써 그 image가 class c에 속할 score를 계산합니다.    
+European Goldfinch라는 class의 test image가 주어졌다고 할 때, TesNet은 학습된 basis vectors를 통해 feature map을 re-represent할 수 있습니다. 각 class c에 대해서, 모델은 학습된 basis vectors를 image patch에 re-represent함으로써 그 image가 class c에 속할 score를 계산합니다. 
+
 예를 들어, 위 그림에서 모델은 European goldfinch class의 basis vector(concept)를 test image(original image)가 이 class에 속할지에 대한 증거로 활용합니다. Activation map column을 살펴보면, European goldfinch class의 첫 번째 basis vector가 의미하는 'black and yellow wing concept'이 test image 상에서 가장 두드러지게 activated(활성화) 된 것을 확인할 수 있습니다. 같은 방식으로 두 번째 basis vector가 의미하는 'head concept', 세 번째 basis vector가 의미하는 'brown fur concept'이 image상에서 크게 활성화되었습니다.   
-이를 바탕으로 모델은 class의 각 basis concept vector와 test image상에서 activated된 부분 사이의 similarity(유사도)를 구하고 basis concept의 중요도에 따라 가중치를 매겨 더함으로써 최종적인 European Goldfinch class에 대한 score를 구합니다. 이 score를 바탕으로 test image의 class를 예측합니다.   
+
+이를 바탕으로 모델은 class의 각 basis concept vector와 test image상에서 activated된 부분 사이의 similarity(유사도)를 구하고 basis concept의 중요도에 따라 가중치를 매겨 더함으로써 최종적인 European Goldfinch class에 대한 score를 구합니다. 이 score를 바탕으로 test image의 class를 예측합니다.  
+
 이러한 reasoning 과정을 통해 baseline CNN 모델들보다 높은 분류 정확도를 달성할 수 있습니다.
 
 ## **5. Conclusion**  
