@@ -97,7 +97,7 @@ Training단계에서는 Q-actor-critic을 이용하여 policy 및 Q-value를 학
 
 **clipping & masking**
 
-마지막 테크닉으로 보다 넓은 범위의 action space를 exploration하기 위해서 각 variable이 선택될 확률을 ![](https://latex.codecogs.com/svg.image?[\epsilon, 1-\epsilon], \epsilon < 0.5)과 같이 clipping을 합니다. 예를 들어 ![](https://latex.codecogs.com/svg.image?\epsilon = 0.2)라고 하면 모든 variable들의 선택될 확률은 [0.2, 0.8] 범위를 벗어날 수 없는 것입니다.. 이는 매우 높거나 낮게 선택되는 variable들로 인해 학습이 편향되지 않도록 합니다. 또한 sub-IP문제로 적당하지않은 모든 variable들이 선택되는경우나 아닌경우에 대해서는 masking을 통해 그러한 경우를 방지했습니다.
+마지막 테크닉으로 보다 넓은 범위의 action space를 exploration하기 위해서 각 variable이 선택될 확률을 ![](https://latex.codecogs.com/svg.image?[\epsilon,1-\epsilon],\epsilon <0.5)과 같이 clipping을 합니다. 예를 들어 ![](https://latex.codecogs.com/svg.image?\epsilon=0.2)라고 하면 모든 variable들의 선택될 확률은 [0.2, 0.8] 범위를 벗어날 수 없는 것입니다.. 이는 매우 높거나 낮게 선택되는 variable들로 인해 학습이 편향되지 않도록 합니다. 또한 sub-IP문제로 적당하지않은 모든 variable들이 선택되는경우나 아닌경우에 대해서는 masking을 통해 그러한 경우를 방지했습니다.
 
 ## **4. Experiment**  Dataset
 
