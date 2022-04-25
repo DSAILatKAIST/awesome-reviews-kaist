@@ -12,7 +12,7 @@ description: Paper Review
 
 작성 및 제출 방법과 관련해서는 [How to contribute](how-to-contribute.md) 링크를 참고해주세요.
 
-모든 자료는 [https://dsail.gitbook.io/dsail-review](https://dsail.gitbook.io/isyse-review/)에서 확인할 수 있습니다.
+모든 자료는 [https://dsail.gitbook.io/isyse-review/](https://dsail.gitbook.io/isyse-review/)에서 확인할 수 있습니다.
 
 \--
 
@@ -22,7 +22,7 @@ Also, we are going to improve the quality of paper review by peer evaluation.
 
 Please refer to the following link [How to contribute](how-to-contribute.md) to understand how to submit and write.
 
-You can find the all the materials in [https://dsail.gitbook.io/dsail-review](https://dsail.gitbook.io/isyse-review/) link.
+You can find the all the materials in [https://dsail.gitbook.io/isyse-review/](https://dsail.gitbook.io/isyse-review/) link.
 
 ## Course Information
 
