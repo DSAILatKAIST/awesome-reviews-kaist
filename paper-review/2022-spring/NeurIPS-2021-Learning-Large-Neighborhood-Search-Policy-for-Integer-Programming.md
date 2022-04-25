@@ -48,9 +48,9 @@ LNS Framework은 MDP Formulation, large scale action space에 대한 factorized 
 ## Action factorization
 
 Variable 수가 linear하게 늘어날 때 variable을 선택하는 action space는 exponentially하게 늘어납니다. RL알고리즘을 적용하기 위해서는 어마하게 큰 action space를 exploration하고 모든 action을 representation 해야되는 이슈가 발생을 하게 되는데 논문에서는 action factorization를 이용하여 보다 효율적으로 해결할 수 있다고 합니다. 이는 전체 variable n개에서 destroy variable을 선택할 확률을 각 variable $x_i$를 선택할지 말지에 대한 확률 n개의 곱으로 나타낸다는 것입니다.
-$$
-\pi(a_t|s_t) = \prod_{i=1}^n \pi^i(a_t^i|s_t)
-$$
+
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/YbVhFZf/2.png" alt="2" border="0"></a>
+
 이는 실제 ![](https://latex.codecogs.com/svg.image?2^n)의 action space를 탐색해야되는 문제를 n개의 policy를 통하여 n개의 action space를 탐색하는 문제로 바꾸어 large scale 문제에서도 효율적으로 exponential하게 증가하는 action space를 탐색하도록 합니다.
 
 <br>
@@ -67,14 +67,7 @@ Policy network는 GNN 기반으로 모든 variable들이 같은 parameter들을 
 여기서 biparite graph ![](https://latex.codecogs.com/svg.image?\mathcal{G} = (\mathcal{V, C},A))로 구성되어있는데 ![](https://latex.codecogs.com/svg.image?\mathcal{V})는 변수들의 갯수만큼의 노드를 의미하고  각 노드들은 ![](https://latex.codecogs.com/svg.image?d_v)차원의 노드 features를 가지고 있습니다. ![](https://latex.codecogs.com/svg.image?\mathcal{C})는 제약식의 갯수만큼의 노드를 의미하고 각 노드들은 ![](https://latex.codecogs.com/svg.image?d_c)차원의 노드 features를 가지고 있습니다. 마지막으로 A는 노드 ![](https://latex.codecogs.com/svg.image?v_i)와 ![](https://latex.codecogs.com/svg.image?c_j)간의 weight를 나타내는 edge로 실제 IP문제에서 incidence matrix역할을 합니다. 즉 위의 예시에서는 4개의 변수와 3개의 제약식이 있으므로 ![](https://latex.codecogs.com/svg.image?A \in R^{4 \times 3}) 가 됩니다.
 
 각 노드들의 embedding은 Graph Convolutional Network 구조를 이용하는데
-$$
-C^{(k+1)} = C^{(k)} + \sigma(LN(AV^{(k)}W_v^{(k)})
-$$
-
-$$
-V^{(k+1)} = V^{(k)} + \sigma(LN(A^TC^{(k)}W_c^{(k)}), k = 0,...,
-$$
-
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/ZmpJ0Zw/3.png" alt="3" border="0"></a>
 
 
 다음과 같이 각 variable node와 constaint node들이 업데이트 됩니다. 
@@ -92,24 +85,13 @@ $$
 **actor-critic**
 
 Training단계에서는 Q-actor-critic을 이용하여 policy 및 Q-value를 학습합니다. Actor와 Critic에 대한 식을 나타내보면 다음과 같습니다.
-$$
-Actor : L(\theta) = E_D[(Q_w(s_{t}, a_{t}) log\pi_\theta(a_t|s_t)]
-$$
-
-$$
-Critic : L(w) = E_D[(\gamma Q_w(s_{t+1}, a_{t+1}) + r_t - Q_w(s_t, a_t))^2]
-$$
-
-
-
-
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/x6wx22c/4.png" alt="4" border="0"></a>
 
 만약 문제의 사이즈가 커진다면 action space가 매우 커질 것이고, 이는 즉 Q-network가 매우 sparse할 수 있으므로 Q-network를 바로 학습시키기에는 적절하지 않을 수 있습니다. 논문에서는 actor의 식에서의 ![](https://latex.codecogs.com/svg.image?log\pi_\theta(a_t|s_t))를 위에서 Action factorization에서 언급한대로
 
 ![](https://latex.codecogs.com/svg.image?\pi(a_t|s_t) = \prod_{i=1}^n \pi^i(a_t^i|s_t))를 이용하여 다음과 같이 나타냅니다.
-$$
-수정된 Actor_loss : L(\theta) = E_D[(Q_w(s_{t}, a_{t}) \sum_{i=1}^n log\pi_\theta(a_t|s_t)]
-$$
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/G20M99d/5.png" alt="5" border="0"></a>
+
 **clipping & masking**
 
 마지막 테크닉으로 보다 넓은 범위의 action space를 exploration하기 위해서 각 variable이 선택될 확률을 ![](https://latex.codecogs.com/svg.image?[\epsilon, 1-\epsilon], \epsilon < 0.5)과 같이 clipping을 합니다. 예를 들어 ![](https://latex.codecogs.com/svg.image?\epsilon = 0.2)라고 하면 모든 variable들의 선택될 확률은 [0.2, 0.8] 범위를 벗어날 수 없는 것입니다.. 이는 매우 높거나 낮게 선택되는 variable들로 인해 학습이 편향되지 않도록 합니다. 또한 sub-IP문제로 적당하지않은 모든 variable들이 선택되는경우나 아닌경우에 대해서는 masking을 통해 그러한 경우를 방지했습니다.
