@@ -87,12 +87,13 @@ description: Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-202
 
 &#x20; 먼저 Local Subgraph가 전체 그래프의 정보를 얼마나 보존할 수 있는 지를 증명한다. 논문에서는 수식이 가득하나, 본 리뷰에서는 수식 하나하나 뜯어보는 것보다 어떤 전개로 증명을 하고 있는 지 정리하였다. 그 전에 필요한 정의는 다음과 같다.
 
-![image](https://user-images.githubusercontent.com/37684658/164239107-51cd7e87-c358-46c7-90a6-3110477b9601.png)\
-![image](https://user-images.githubusercontent.com/37684658/164239543-4fc5e523-57be-43b4-aa79-d441f4b308cd.png)
+![Node Influence](https://user-images.githubusercontent.com/37684658/164239107-51cd7e87-c358-46c7-90a6-3110477b9601.png)  
+![Graph Influence](https://user-images.githubusercontent.com/37684658/165067955-e8a1abf3-3cfc-42f7-8992-921f7acefe78.png)  
+![Graph Influence Loss](https://user-images.githubusercontent.com/37684658/165067879-6735ea48-e109-4fc0-9907-9e3ae1d4dff4.png)  
 
 ### Theorem 1
 
-![image](https://user-images.githubusercontent.com/37684658/164240224-dc838854-74a9-47e1-a381-e663266ec796.png)
+![Theorem 1](https://user-images.githubusercontent.com/37684658/164240224-dc838854-74a9-47e1-a381-e663266ec796.png)
 
 > <img src="https://user-images.githubusercontent.com/37684658/164247469-016ac481-0dd9-4187-8a96-f900b9fdf159.png" alt="image" data-size="original">
 >
@@ -104,7 +105,7 @@ description: Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-202
 
 ### Theorem 2
 
-![image](https://user-images.githubusercontent.com/37684658/164245660-aa727989-a246-4a68-8f90-9b1251801caf.png)
+![Theorem 2](https://user-images.githubusercontent.com/37684658/164245660-aa727989-a246-4a68-8f90-9b1251801caf.png)
 
 > <img src="https://user-images.githubusercontent.com/37684658/164247420-516cea20-9018-4997-9e19-01002f97e639.png" alt="image" data-size="original">
 >
