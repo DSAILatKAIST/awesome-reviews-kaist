@@ -131,7 +131,7 @@ $$\langle \langle \mathfrak{X}, \mathfrak{Y} \rangle \rangle = \frac{1}{2} \sum_
 $$\frac{\partial \mathbf{X}(t)}{\partial t}=\text{div}[\mathbf{G}(\mathbf{X}(t), t) \odot \nabla \mathbf{X}(t)]$$
 
 
-여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\odot)은 hadamard product (i.e. element-wise 곱)으로 정의됩니다. 갑자기 hadamard product이 등장한 이유는 graident의 결과가 3d tensor가 되고, divergence는 벡터장에서 정의되는 미분연산자이기 때문입니다. 행렬 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))는 right-stochastic 인 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{W}&space;\odot&space;\mathbf{G}) (즉, 각 행의 합이 1)와 같은 형태를 선택합니다(노드 간에 이동하는 정보가 사라지거나 생겨나지 않게 하기 위해 right-stochastic 행렬을 도입하는 것으로 보입니다). 가장 단순한 케이스를 위해 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))가 초기 노드 특성 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{X})에만 영향을 받는다고 가정하면 (i.e. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G})는 시간불변하고, right-stochastic하다), 이는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_j{w_{ij}G_{ij}}=1) for all ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;i) 의미합니다. 그러므로 우리는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;G_{ij}=1/d_{i}), ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;d_{i}=\textstyle&space;\sum_{j=1}^{n}{w_{ij}})인 상황을 살펴보겠습니다.
+여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\odot)은 Hadamard product (i.e. element-wise 곱)으로 정의됩니다. 갑자기 Hadamard product이 등장한 이유는 graident의 결과가 3d tensor가 되고, divergence는 벡터장에서 정의되는 미분연산자이기 때문입니다. 행렬 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))는 right-stochastic 인 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{W}&space;\odot&space;\mathbf{G}) (즉, 각 행의 합이 1)와 같은 형태를 선택합니다(노드 간에 이동하는 정보가 사라지거나 생겨나지 않게 하기 위해 right-stochastic 행렬을 도입하는 것으로 보입니다). 가장 단순한 케이스를 위해 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))가 초기 노드 특성 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{X})에만 영향을 받는다고 가정하면 (i.e. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G})는 시간불변하고, right-stochastic하다), 이는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_j{w_{ij}G_{ij}}=1) for all ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;i) 의미합니다. 그러므로 우리는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;G_{ij}=1/d_{i}), ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;d_{i}=\textstyle&space;\sum_{j=1}^{n}{w_{ij}})인 상황을 살펴보겠습니다.
 
 $$\mathbf{G}=\begin{bmatrix}
     1/d_1 & \cdots & 1/d_1\\
@@ -323,7 +323,7 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 
 이번 실험에서는 GRAND가 깊은 그래프 신경망을 수립했음에도 불구하고, oversmoothing 문제를 해결했는지 살펴보겠습니다. 이를 위해, 다른 hyperparameter는 고정한채로 적분 구간(시간) ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;T)를 변경해 정확도(accuracy)를 측정했습니다. 위의 결과를 통해 볼 수 있듯이, GCN과 residual connection을 적용한 GCN 모델과 비교했을 때 GRAND는 layer 수가 많을 때도 성능을 유지하는 것을 확인할 수 있습니다.
 
-### **4-3. Choice of dicretisation scheme**
+### **4-3. Choice of discretisation scheme**
 
 <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png" style="width:100%"><br>
