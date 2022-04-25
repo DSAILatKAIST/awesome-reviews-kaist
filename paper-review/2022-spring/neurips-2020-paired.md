@@ -81,9 +81,9 @@ Statistics of generated environments는 4가지 metrics로 측정했다. (a)는 
 
 ## **Author Information**
 
-* Author name: Michael Dennis*, Natasha Jaques**, Eugene Vinitsky, Alexandre Bayen, Stuart Russell, Andrew Critch, Sergey Levine
-* Affiliation: University of California Berkeley AI Research (BAIR), Google Research
-* Research Topic: Multi Agent Reinforcement Learning, AI Safety
+* Author name: Heemang Park
+* Affiliation: KAIST, Systems Intelligence Laboratory (SILAB)
+* Research Topic: Multi Agent Reinforcement Learning
 
 ## **6. Reference & Additional materials**
 
