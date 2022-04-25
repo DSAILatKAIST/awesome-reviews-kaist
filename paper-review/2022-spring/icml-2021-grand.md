@@ -31,11 +31,13 @@ $$h = -g \nabla x$$
 
 확산률 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;g)는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\Omega) 전체에 걸쳐 균일할(homogeneous) 경우 스칼라 상수로 표현됩니다. 만약 위치에 따라 분균일할 (inhomogeneous)할 경우, scalar-valued 함수(isotropic) 또는 matrix-valued 함수(anisotropic)로 표현됩니다.
 
-<figure align="center">
+
+![그림 1 - Inhomogeneous Diffusivity](https://user-images.githubusercontent.com/40286691/164886064-9c9e5324-878b-45ec-b494-a35add32031c.jpg)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164886064-9c9e5324-878b-45ec-b494-a35add32031c.jpg" style="width:50%"><br>
 <figcaption align="center" style="font-size:75%">그림 1 - Inhomogeneous Diffusivity<sup><a href="#footnote_2">[2]</a><sup></figcaption>
 </figure>
-<br>
+<br> -->
 
 연속성 조건 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;x_{t}&space;=&space;-&space;\text{div}(h))을 통해 PDE 형태의 열 확산 방정식(heat diffusion equation)을 유도할 수 있습니다.(유도과정은 생략합니다. ~~관심있으신 분들은 "Advanced Engineering Mathematics by Erwin Kreyszig" 등을 참고하세요~~ 살려줘...)
 
@@ -65,19 +67,23 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x $$
 
 * 얕은 구조 (Depth)와 Oversmoothing<sup>[[5]](#footnote_5)</sup>: Oversmoothing은 GNN의 layer의 수(Depth)가 증가할수록 노드의 embedding이 점점 유사해지는 현상을 말합니다. 이로 인해, 대부분의 GNN은 깊은 신경망을 쌓지 못하고, 얕은 구조를 가지게 됩니다.
 
-<figure align="center">
+
+![그림 2 - GCN 1,2,3,4,5 layer를 통해 얻은 Zachary’s karate club network data의 노드 Embedding](https://user-images.githubusercontent.com/40286691/164888534-446a5482-05ff-4af2-9b77-adea03f24295.png)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164888534-446a5482-05ff-4af2-9b77-adea03f24295.png" style="width:100%"><br>
 <figcaption align="center" style="font-size:75%">그림 2 - GCN 1,2,3,4,5 layer를 통해 얻은 Zachary’s karate club network data의 노드 Embedding</figcaption>
 </figure>
-<br>
+<br> -->
 
 * Bottleneck과 Over-squashing<sup>[[6]](#footnote_6)</sup>: Bottleneck은 GNN의 layer가 증가할수록 기하급수적으로 늘어나는 정보를 고정된 크기의 벡터로 압축(squashing)시키는 것을 의미하며, 이로 인해 먼 거리의 노드와의 메세지 전달을 용이하지 못하게 만드는 현상을 의미합니다.
 
-<figure align="center">
+
+![그림 3 - GNN에서의 Bottleneck & Over-squashing](https://user-images.githubusercontent.com/40286691/164957255-1708ee23-8741-4985-a7e7-6722b993a64a.png)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164957255-1708ee23-8741-4985-a7e7-6722b993a64a.png" style="width:100%"><br>
 <figcaption align="center" style="font-size:75%">그림 3 - GNN에서의 Bottleneck & Over-squashing</figcaption>
 </figure>
-<br>
+<br> -->
 
 ### **2-2. 그래프에서의 확산 방정식**
 
@@ -92,11 +98,13 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x $$
 * 노드 특징(feature) 행렬: ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{X}=([x^{(1)}]^{\intercal},&space;[x^{(2)}]^{\intercal},&space;...,&space;[x^{(i)}]^{\intercal})&space;\in&space;\mathbb{R}^{n&space;\times&space;d}$$,&space;where&space;$$x^{(i)}&space;\in&space;\mathbb{R}^{d})
 * 노드 특징 행렬의 내적은 일반적인 행렬의 내적과 같습니다. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;<\mathbf{X},&space;\mathbf{Y}>=Tr(\mathbf{X}^{\intercal}&space;\mathbf{Y})=\sum_{i=1}^{n}{\mathbf{x}^{(i)}&space;\mathbf{y}^{(j)}})
 
-<figure align="center">
+
+![그림 4 - Matrix Inner Product](https://user-images.githubusercontent.com/40286691/164894955-cd3eca64-afad-4bc7-a61a-8b320565fed3.png)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164894955-cd3eca64-afad-4bc7-a61a-8b320565fed3.png" style="width:50%"><br>
 <figcaption align="center" style="font-size:75%">그림 4 - Matrix Inner Product</figcaption>
 </figure>
-<br>
+<br> -->
 
 * 간선(edge) 수: ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;|\mathcal{E}|=e)
 * 간선 가중치(weight) 행렬(인접 행렬과 유사): ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{W}=(w_{ij})_{i,j=1}^{n}&space;\in&space;\mathbb{R}^{n&space;\times&space;n})
@@ -112,11 +120,13 @@ $$\langle \langle \mathfrak{X}, \mathfrak{Y} \rangle \rangle = \frac{1}{2} \sum_
 
 #### 2-2-2. 미분연산자 (Differential Operator)<sup>[[8]](#footnote_8)</sup>
 
-<figure align="center">
+
+![그림 5 - Differential Operators on Graph](https://user-images.githubusercontent.com/40286691/164896462-0f518cf5-7f5a-466e-b932-5c7a9322bc83.png)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164896462-0f518cf5-7f5a-466e-b932-5c7a9322bc83.png" style="width:100%"><br>
 <figcaption align="center" style="font-size:75%">그림 5 - Differential Operators on Graph</figcaption>
 </figure>
-<br>
+<br> -->
 
 * 그라디언트(gradient) ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;(\nabla&space;\mathbf{X})_{ij}=\mathbf{x}_{j}&space;-&space;\mathbf{x}_{i})는 간선 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;(i,j)&space;\in&space;\mathcal{E})에 할당
 * 발산(divergence) ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;(\text{div}(\mathfrak{X}))_{i})은 노드 i와 연결된 모든 간선의 특징의 합이 해당 노드에 할당:
@@ -133,19 +143,22 @@ $$\frac{\partial \mathbf{X}(t)}{\partial t}=\text{div}[\mathbf{G}(\mathbf{X}(t),
 
 여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\odot)은 Hadamard product (i.e. element-wise 곱)으로 정의됩니다. 갑자기 Hadamard product이 등장한 이유는 graident의 결과가 3d tensor가 되고, divergence는 벡터장에서 정의되는 미분연산자이기 때문입니다. 행렬 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))는 right-stochastic 인 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{W}&space;\odot&space;\mathbf{G}) (즉, 각 행의 합이 1)와 같은 형태를 선택합니다(노드 간에 이동하는 정보가 사라지거나 생겨나지 않게 하기 위해 right-stochastic 행렬을 도입하는 것으로 보입니다). 가장 단순한 케이스를 위해 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))가 초기 노드 특성 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{X})에만 영향을 받는다고 가정하면 (i.e. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G})는 시간불변하고, right-stochastic하다), 이는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_j{w_{ij}G_{ij}}=1) for all ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;i) 의미합니다. 그러므로 우리는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;G_{ij}=1/d_{i}), ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;d_{i}=\textstyle&space;\sum_{j=1}^{n}{w_{ij}})인 상황을 살펴보겠습니다.
 
-$$\mathbf{G}=\begin{bmatrix}
+![](https://user-images.githubusercontent.com/40286691/165051103-3ce316cb-2c19-4c58-8fb7-562297c7114c.PNG)
+<!-- $$
+\mathbf{G} = \begin{bmatrix}
 \frac{1}{d_1} & \cdots & \frac{1}{d_1}\\
 \vdots & \ddots & \vdots\\
 \frac{1}{d_n} & \cdots & \frac{1}{d_n}
-\end{bmatrix} \in \mathbb{R}^{n \times n}$$
+\end{bmatrix} \in \mathbb{R}^{n \times n}
+$$
 
-$$\mathbf{W}=\begin{bmatrix}
+$$\mathbf{W} = \begin{bmatrix}
 w_{11} & \cdots & w_{1n}\\
 \vdots & \ddots & \vdots\\
 w_{n1} & \cdots & w_{nn}
 \end{bmatrix} \in \mathbb{R}^{n \times n}$$
 
-$$\nabla \mathbf{X}(t)=\begin{bmatrix}
+$$\nabla \mathbf{X}(t) = \begin{bmatrix}
 0 & \mathbf{x}^{(2)} - \mathbf{x}^{(1)} & \cdots & \mathbf{x}^{(n)} - \mathbf{x}^{(1)}\\
 \vdots & \vdots & \ddots & \vdots\\
 \mathbf{x}^{(1) - \mathbf{x}^{(n)}} & \mathbf{x}^{(2)} - \mathbf{x}^{(n)}& \cdots & 0
@@ -176,7 +189,7 @@ $$\begin{equation*}
 \end{bmatrix}\\
 &=\mathbf{D}^{-1} \mathbf{W} \mathbf{X} - \mathbf{X}=(\mathbf{D}^{-1} \mathbf{W} - \mathbf{I}) \mathbf{X} = (\mathbf{A}(\mathbf{X}(t)) - \mathbf{I})\mathbf{X}(t) = \mathbf{\bar{A}}(\mathbf{X}(t))\mathbf{X}(t)
 \end{split}
-\end{equation*}$$
+\end{equation*}$$ -->
 
 이 때, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{A}(\mathbf{X}(t))=\mathbf{A})로 두면, 선형 확산 방정식을 얻을 수 있고 이 방정식의 해석적 해를 다음과 같이 얻을 수 있습니다. 
 
@@ -189,11 +202,13 @@ $$\mathbf{X}(t)=e^{\mathbf{\bar{A}}t}\mathbf{X}(0)$$
 
 본 논문에서는 diffusivity를 attention matrix로 가정하여, 아래와 같은 수식을 도출합니다.
 
-<figure align="center">
+
+![그림 6 - Diffusion Equation on Graph](https://user-images.githubusercontent.com/40286691/164957395-cd6859bf-9197-45a1-9a63-40c42f907915.png)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164957395-cd6859bf-9197-45a1-9a63-40c42f907915.png" style="width:75%"><br>
 <figcaption align="center" style="font-size:75%">그림 6 - Diffusion Equation on Graph</figcaption>
 </figure>
-<br>
+<br> -->
 
 #### 2-2-4. 그래프 열확산 방정식의 풀이
 
@@ -293,11 +308,13 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 
 ### **4-1. Node Classification**
 
-<figure align="center">
+
+![표 1 - Data Summary](https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png" style="width:75%"><br>
 <figcaption align="center" style="font-size:75%">표 1 - Data Summary</figcaption>
 </figure>
-<br>
+<br> -->
 
 노드 분류에 대한 실험을 위해 위의 표와 같이 7개의 데이터셋에 대해 실험했고, 베이스라인 모델로는 아래와 같이 7개 모델을 선정했습니다. 데이터셋 및 베이스라인 모델에 대한 자세한 내용은 본 논문을 참고 부탁 드립니다.
 
@@ -305,31 +322,37 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 * ODE-based GNN: Continuous Graph Neural Networks(CGNN), Graph Neural Differential Equations(GDE), Ordinary Differential Equations on Graph (GODE)
 * Linear Diffusion PDE: LanczosNet의 2개의 변형
 
-<figure align="center">
+
+![그림 7 - Node Classification Results (Planetoid/Random split)](https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png"><br>
 <figcaption align="center" style="font-size:75%">그림 7 - Node Classification Results (Planetoid/Random split)</figcaption>
 </figure>
-<br>
+<br> -->
 
 위의 실험 결과를 통해 볼 수 있듯이, GRAND 모델들이 다른 모델들에 비해 한결같이 좋은 성능을 보였습니다. 큰 그래프인 ogb-arxiv 데이터셋에서는 GAT가 가장 좋은 성능을 보였으나, 이는 GRAND보다 20배 많은 parameter를 사용하기 때문입니다.
 
 ### **4-2. Depth**
 
-<figure align="center">
+
+![그림 8 - Depth](https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png" style="width:75%"><br>
 <figcaption align="center" style="font-size:75%">그림 8 - Depth</figcaption>
 </figure>
-<br>
+<br> -->
 
 이번 실험에서는 GRAND가 깊은 그래프 신경망을 수립했음에도 불구하고, oversmoothing 문제를 해결했는지 살펴보겠습니다. 이를 위해, 다른 hyperparameter는 고정한채로 적분 구간(시간) ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;T)를 변경해 정확도(accuracy)를 측정했습니다. 위의 결과를 통해 볼 수 있듯이, GCN과 residual connection을 적용한 GCN 모델과 비교했을 때 GRAND는 layer 수가 많을 때도 성능을 유지하는 것을 확인할 수 있습니다.
 
 ### **4-3. Choice of discretisation scheme**
 
-<figure align="center">
+
+![그림 9 - Different Solver Effects](https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png" style="width:100%"><br>
 <figcaption align="center" style="font-size:75%">그림 9 - Different Solver Effects</figcaption>
 </figure>
-<br>
+<br> -->
 
 이번 실험은 discretisation scheme의 안정성을 보기 위해 Cora 데이터셋을 사용했습니다. PDE를 푸는데 있어 step size와 계산 시간은 trade-off관계를 갖습니다. Scheme은 아래와 같은 방법론을 사용하였고, 이에 대한 설명은 본 논문의 범위를 넘어서므로 생략합니다.
 
@@ -343,11 +366,12 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 
 ### **4-4. Diffusion on MNIST Image Data Experiments**
 
-<figure align="center">
+![그림 10 - MNIST Image Data Experiments](https://user-images.githubusercontent.com/40286691/164975904-aefb0bb3-3f0f-4eb1-b595-6466a15181f3.png)
+<!-- <figure align="center">
 <img src="https://user-images.githubusercontent.com/40286691/164975904-aefb0bb3-3f0f-4eb1-b595-6466a15181f3.png" style="width:75%"><br>
 <figcaption align="center" style="font-size:75%">그림 10 - Image Pixel Boundary Detection</figcaption>
 </figure>
-<br>
+<br> -->
 
 GRAND의 학습된 diffusion의 특성을 살펴보기 위해 MNIST 픽셀 데이터의 superpixel representation을 구성하는 실험을 진행했습니다. superpixel을 구성한다는 것은 인접한 패치들을 간선으로 연결하고, 이를 숫자 또는 배경으로 이진 분류하는 것을 의미합니다. 이 때 50%의 training mask를 사용합니다. Attention weight는 간선의 색과 굵기로 표현됩니다. 그림 10을 통해 볼 수 있듯이, grand-nl 모델이 Laplacian diffusion 모델에 비해 더 좋은 결과를 보여줍니다.
 
