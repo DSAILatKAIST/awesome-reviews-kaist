@@ -1,5 +1,5 @@
 ---
-description : Chamberlain & Rowbottom et al. / GRAND\:&nbsp;Graph Neural Diffusion / ICML-2021
+description : Chamberlain & Rowbottom et al. / GRAND_Graph Neural Diffusion / ICML-2021
 ---
 
 # **GRAND: Graph Neural Diffusion** 
