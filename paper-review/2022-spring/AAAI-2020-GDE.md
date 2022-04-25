@@ -71,11 +71,13 @@ $$
 <img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/neuralode.png" width="500">
 
 - 이러한 intuition을 바탕으로 2018년 Neural ODE는 Backward Pass에 `Adjoint Sensitivity Method`를 접목시켜서 parameter를 업데이트 시키는 과정에서 gradient를 훨씬 효과적으로 구해낼 수 있게 하였고 이는 연구자들로 하여금 새로운 출발점을 알린 획기적인 시점이 되었다. Forward Method와 대비되는 Adjoint Sensitivity Method는 과연 무엇인지 아래 슬라이드 두개로 대체하고자 한다. 간단히 요약하자면, 초기값 문제를 풀고 Loss를 정의하여 parameter를 업데이트하는 과정에서 time dependent solution function에 대한 parameter 변화량(i.e., ![](https://latex.codecogs.com/svg.image?\frac{d\textbf{u}}{d\boldsymbol{\theta}})을 구해야하는데 이를 구하기가 상당히 수고스러운 일이었다. 이에 비해 Adjoint Sensitivity Method는 이를 직접적으로 구하지 않고 Optimization 문제로 치환하여 Lagrangian을 도입하고 앞선 변화량(i.e., ![](https://latex.codecogs.com/svg.image?\frac{d\textbf{u}}{d\boldsymbol{\theta}})의 계수들을 0으로 만드는 별도의 초기값 문제를 하나 더 제안하여, 총 2개의 ODE를 푸는 것만으로 파라미터를 업데이트 하는 방법론이다.구체화 된 과정은 아래 슬라이드와 같이 나타낼 수 있다.  
-
+  
+  
 <img align="left" src="../../.gitbook/2022-spring-assets/SukwonYun_1/forward.png" width="440" height="200">  
 
 <img align="right" src="../../.gitbook/2022-spring-assets/SukwonYun_1/asm.png" width="420" height="200">  
 
+  
 
 - 이러한 Neural ODE는 기존의 딥러닝 모델과 같이 gradient를 직접적으로 구하는 것이 아닌 `gradient를 mimic하는 과정`으로 볼 수 있기에 별도의 gradient를 저장할 필요가 없어진다. 따라서, **memory efficient**하다는 장점, timestamp에 종속적이었던 시간 ![](https://latex.codecogs.com/svg.image?t)를 별도의 변수로 모델링하여 **구간 내의 dynamics를 하나의 함수로 모델링** 할 수 있다는 장점, **irregular한 time에 대한 대응**, 그 간 **수리적으로 입증되었던 미분방정식 풀이법을 딥러닝에 접목** 시킬 수 있다는 장점 등 다수의 매력을 내포한 체 딥러닝에 새로운 패러다임을 제안하게 되었다.
 
@@ -174,24 +176,24 @@ Model에서의 퍼센티지는 Undersample 관점에서 해석하여, training �
 
 그리고, 필자는 이렇게 글을 마무리 짓고 싶다.  
 
-**`GNN with Differential Equation? Way to go!`**
+**`GNN with Differential Equations? Way to go!`**
 
 ## **Author Information**  
 
 * Sukwon Yun (윤석원) 
     * Master Student in ISySE, KAIST
-    * Interested in **GNN, Differential Equations on NN, Long-Tail Problem**
+    * Interested in **GNN, Differential Equations on NN, Long-Tail Problem on NN**
 
 ## **6. Reference & Additional materials**  
 - Paper: [https://arxiv.org/abs/1911.07532](https://arxiv.org/abs/1911.07532)
 - Code: [https://github.com/Zymrael/gde](https://github.com/Zymrael/gde)
 - Neural ODE: [https://arxiv.org/abs/1806.07366](https://arxiv.org/abs/1806.07366)
-    - < 도움이 되는 영상자료 모음 >
+    - **< 도움이 되는 영상자료 모음 >**
     - 직관적 이해: [https://www.youtube.com/watch?v=AD3K8j12EIE](https://www.youtube.com/watch?v=AD3K8j12EIE)
     - 논문의 key point: [https://www.youtube.com/watch?v=jltgNGt8Lpg](https://www.youtube.com/watch?v=jltgNGt8Lpg)
     - 최윤재 교수님 강의자료: [https://www.youtube.com/watch?v=sIFnARdTVvE&t=3046s](https://www.youtube.com/watch?v=sIFnARdTVvE&t=3046s)
     - Adjoint Sensitivity Method: [https://www.youtube.com/watch?v=k6s2G5MZv-I&t=512s](https://www.youtube.com/watch?v=k6s2G5MZv-I&t=512s)
-    - GCN: [https://arxiv.org/abs/1609.02907](https://arxiv.org/abs/1609.02907)
+- GCN: [https://arxiv.org/abs/1609.02907](https://arxiv.org/abs/1609.02907)
     - PDF 자료: [https://github.com/SukwonYun/GNN-Papers](https://github.com/SukwonYun/GNN-Papers)
     - 윤훈상 연구원님 자료: [https://www.youtube.com/watch?v=F-JPKccMP7k&t=635s](https://www.youtube.com/watch?v=F-JPKccMP7k&t=635s)
 
