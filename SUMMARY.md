@@ -32,6 +32,7 @@
   * [GDE](paper-review/2022-spring/AAAI-2020-GDE.md)
   * [Graph Meta Learning via Local Subgraphs](paper-review/2022-spring/NeurIPS-2020-G-Meta.md)
   * [PAIRED](paper-review/2022-spring/neurips-2020-paired.md)
+  * [XGradient](paper-review/2022-spring/NeurIPS-2021-XGradient.md)
   
   
 ## How to contribute
