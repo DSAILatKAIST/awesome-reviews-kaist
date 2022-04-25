@@ -19,7 +19,7 @@
   * [When Vision Transformers Outperform Resnets without Pre-training or Strong Data Augmentations](paper-review/2022-spring/ICLR-2022-When-Vision-Transformer-Outperform-ResNets-Without-Pre-Training-Or-Strong-Data-Augmentations.md)
   * [flan](paper-review/2022-spring/iclr-2022-flan.md)
   * [Sequential GCN for AL](paper-review/2022-spring/cvpr-2021-sequential_graph_convolutional_network_for_active_learning.md)
-  
+  * [DNNGP](paper-review/2022-spring/ISLR-2018-DEEP-NEURAL-NETWORKS-AS-GAUSSIAN-PROCESS.md)
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
