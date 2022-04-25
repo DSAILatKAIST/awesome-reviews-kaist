@@ -12,6 +12,7 @@
   * [G-Meta](paper-review/2022-spring/G-Meta.md)
   * [graph based 3d multi person pose estimation using multi view images](paper-review/2022-spring/iccv-2021-graph-based-3d-multi-person-pose-estimation-using-multi-view-images.md)
   * [FaceSight](paper-review/2022-spring/chi-2021-facesight.md)
+  * [FNC](paper-review/2022-spring/WACV-2022-FNC.md)
 
 
 ## How to contribute
