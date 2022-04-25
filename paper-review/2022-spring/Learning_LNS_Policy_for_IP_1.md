@@ -42,7 +42,7 @@ $$
 
 **Rewards** : ![](https://latex.codecogs.com/svg.image?r_t(s_t, a_t) = \mu^T(x_t - x_{t+1})) objection value인 ![](https://latex.codecogs.com/svg.image?\mu^Tx)가 얼마나 변했는지에 대한 것입니다.
 
-**Policy** : GNN기반의 policy network를 가지고, ![](https://latex.codecogs.com/svg.image?\pi(a_t|s_t))는 ![](https://latex.codecogs.com/svg.image?s_t)가 given 되었을 때 선택될 variable들의 subset들의 conditional probability distribution을 의미합니다. (ie. 변수 ![](https://latex.codecogs.com/svg.image?x_1,x_2))가 있을 때, 주어진 state ![](https://latex.codecogs.com/svg.image?s_t)에서 ![](https://latex.codecogs.com/svg.image?(x_1), (x_2) ,(x_1, x_2))가 각각 destroy variable로 선택될 확률을 나타냄)
+**Policy** : GNN기반의 policy network를 가지고, ![](https://latex.codecogs.com/svg.image?\pi(a_t|s_t))는 ![](https://latex.codecogs.com/svg.image?s_t)가 given 되었을 때 선택될 variable들의 subset들의 conditional probability distribution을 의미합니다. (ie. 변수 ![](https://latex.codecogs.com/svg.image?x_1,x_2))가 있을 때, 주어진 state ![](https://latex.codecogs.com/svg.image?s_t)에서 ![](https://latex.codecogs.com/svg.image?x_1, x_2 ,(x_1, x_2))가 각각 destroy variable로 선택될 확률을 나타냄)
 
 <br>
 
