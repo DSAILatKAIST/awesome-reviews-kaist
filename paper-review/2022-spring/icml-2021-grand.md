@@ -134,48 +134,48 @@ $$\frac{\partial \mathbf{X}(t)}{\partial t}=\text{div}[\mathbf{G}(\mathbf{X}(t),
 여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\odot)은 Hadamard product (i.e. element-wise 곱)으로 정의됩니다. 갑자기 Hadamard product이 등장한 이유는 graident의 결과가 3d tensor가 되고, divergence는 벡터장에서 정의되는 미분연산자이기 때문입니다. 행렬 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))는 right-stochastic 인 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{W}&space;\odot&space;\mathbf{G}) (즉, 각 행의 합이 1)와 같은 형태를 선택합니다(노드 간에 이동하는 정보가 사라지거나 생겨나지 않게 하기 위해 right-stochastic 행렬을 도입하는 것으로 보입니다). 가장 단순한 케이스를 위해 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))가 초기 노드 특성 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{X})에만 영향을 받는다고 가정하면 (i.e. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G})는 시간불변하고, right-stochastic하다), 이는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_j{w_{ij}G_{ij}}=1) for all ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;i) 의미합니다. 그러므로 우리는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;G_{ij}=1/d_{i}), ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;d_{i}=\textstyle&space;\sum_{j=1}^{n}{w_{ij}})인 상황을 살펴보겠습니다.
 
 $$\mathbf{G}=\begin{bmatrix}
-    1/d_1 & \cdots & 1/d_1\\
-    \vdots & \ddots & \vdots\\
-    1/d_n & \cdots & 1/d_n
+1/d_1 & \cdots & 1/d_1\\
+\vdots & \ddots & \vdots\\
+1/d_n & \cdots & 1/d_n
 \end{bmatrix} \in \mathbb{R}^{n \times n}$$
 
 $$\mathbf{W}=\begin{bmatrix}
-    w_{11} & \cdots & w_{1n}\\
-    \vdots & \ddots & \vdots\\
-    w_{n1} & \cdots & w_{nn}
+w_{11} & \cdots & w_{1n}\\
+\vdots & \ddots & \vdots\\
+w_{n1} & \cdots & w_{nn}
 \end{bmatrix} \in \mathbb{R}^{n \times n}$$
 
 $$\nabla \mathbf{X}(t)=\begin{bmatrix}
-    0 & \mathbf{x}^{(2)} - \mathbf{x}^{(1)} & \cdots & \mathbf{x}^{(n)} - \mathbf{x}^{(1)}\\
-    \vdots & \vdots & \ddots & \vdots\\
-    \mathbf{x}^{(1) - \mathbf{x}^{(n)}} & \mathbf{x}^{(2)} - \mathbf{x}^{(n)}& \cdots & 0
+0 & \mathbf{x}^{(2)} - \mathbf{x}^{(1)} & \cdots & \mathbf{x}^{(n)} - \mathbf{x}^{(1)}\\
+\vdots & \vdots & \ddots & \vdots\\
+\mathbf{x}^{(1) - \mathbf{x}^{(n)}} & \mathbf{x}^{(2)} - \mathbf{x}^{(n)}& \cdots & 0
 \end{bmatrix} \in \mathbb{R}^{n \times n \times d} \text{, where } \mathbf{x}^{(i)} \in \mathbb{R}^{d}$$
 
 $$\mathbf{G}(\mathbf{X}(t), t) \odot \nabla \mathbf{X}(t) = \begin{bmatrix}
-    0 & \frac{1}{d_1}(\mathbf{x}^{(2)} - \mathbf{x}^{(1)}) & \cdots & \frac{1}{d_1}(\mathbf{x}^{(n)} - \mathbf{x}^{(1)})\\
-    \vdots & \vdots & \ddots & \vdots\\
-    \frac{1}{d_n}(\mathbf{x}^{(1)} - \mathbf{x}^{(n)}) & \frac{1}{d_n}(\mathbf{x}^{(2)} - \mathbf{x}^{(n)}) & \cdots & 0
+0 & \frac{1}{d_1}(\mathbf{x}^{(2)} - \mathbf{x}^{(1)}) & \cdots & \frac{1}{d_1}(\mathbf{x}^{(n)} - \mathbf{x}^{(1)})\\
+\vdots & \vdots & \ddots & \vdots\\
+\frac{1}{d_n}(\mathbf{x}^{(1)} - \mathbf{x}^{(n)}) & \frac{1}{d_n}(\mathbf{x}^{(2)} - \mathbf{x}^{(n)}) & \cdots & 0
 \end{bmatrix} \in \mathbb{R}^{n \times n \times d}$$
 
 $$\begin{equation*}
-    \begin{split}
-        \text{div}[\mathbf{G}(\mathbf{X}(t), t) \odot \nabla \mathbf{X}(t)] &= \begin{bmatrix}
-            0 + \frac{w_{12}}{d_1}(\mathbf{x}^{(2)} - \mathbf{x}^{(1)}) + \cdots + \frac{w_{1n}}{d_1}(\mathbf{x}^{(n)} - \mathbf{x}^{(1)})\\
-            \vdots\\
-            \frac{w_{n1}}{d_n}(\mathbf{x}^{(1)} - \mathbf{x}^{(n)}) + \frac{w_{n2}}{d_n}(\mathbf{x}^{(2)} - \mathbf{x}^{(n)}) + \cdots + 0
-        \end{bmatrix} \in \mathbb{R}^{n \times d}\\
-        &=\begin{bmatrix}
-            \frac{1}{d_1}(\red{w_{11}\mathbf{x^{(1)}}} + w_{12}\mathbf{x^{(2)}} + \cdots + w_{1n}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(1)}}{d_1}(\red{w_{11}} + w_{12} + \cdots + w_{1n})\\
-            \vdots\\
-            \frac{1}{d_n}(w_{n1}\mathbf{x^{(1)}} + w_{n2}\mathbf{x^{(2)}} + \cdots + \red{w_{nn}\mathbf{x^{(n)}}}) - \frac{\mathbf{x}^{(n)}}{d_n}(w_{n1} + w_{n2} + \cdots + \red{w_{nn}})
-        \end{bmatrix}\\
-        &=\begin{bmatrix}
-            \frac{1}{d_1}(w_{11}\mathbf{x^{(1)}} + w_{12}\mathbf{x^{(2)}} + \cdots + w_{1n}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(1)}}{d_1}d_1\\
-            \vdots\\
-            \frac{1}{d_n}(w_{n1}\mathbf{x^{(1)}} + w_{n2}\mathbf{x^{(2)}} + \cdots + w_{nn}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(n)}}{d_n}d_n
-        \end{bmatrix}\\
-        &=\mathbf{D}^{-1} \mathbf{W} \mathbf{X} - \mathbf{X}=(\mathbf{D}^{-1} \mathbf{W} - \mathbf{I}) \mathbf{X} = (\mathbf{A}(\mathbf{X}(t)) - \mathbf{I})\mathbf{X}(t) = \mathbf{\bar{A}}(\mathbf{X}(t))\mathbf{X}(t)
-    \end{split}
+\begin{split}
+\text{div}[\mathbf{G}(\mathbf{X}(t), t) \odot \nabla \mathbf{X}(t)] &= \begin{bmatrix}
+0 + \frac{w_{12}}{d_1}(\mathbf{x}^{(2)} - \mathbf{x}^{(1)}) + \cdots + \frac{w_{1n}}{d_1}(\mathbf{x}^{(n)} - \mathbf{x}^{(1)})\\
+\vdots\\
+\frac{w_{n1}}{d_n}(\mathbf{x}^{(1)} - \mathbf{x}^{(n)}) + \frac{w_{n2}}{d_n}(\mathbf{x}^{(2)} - \mathbf{x}^{(n)}) + \cdots + 0
+\end{bmatrix} \in \mathbb{R}^{n \times d}\\
+&=\begin{bmatrix}
+\frac{1}{d_1}(\red{w_{11}\mathbf{x^{(1)}}} + w_{12}\mathbf{x^{(2)}} + \cdots + w_{1n}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(1)}}{d_1}(\red{w_{11}} + w_{12} + \cdots + w_{1n})\\
+\vdots\\
+\frac{1}{d_n}(w_{n1}\mathbf{x^{(1)}} + w_{n2}\mathbf{x^{(2)}} + \cdots + \red{w_{nn}\mathbf{x^{(n)}}}) - \frac{\mathbf{x}^{(n)}}{d_n}(w_{n1} + w_{n2} + \cdots + \red{w_{nn}})
+\end{bmatrix}\\
+&=\begin{bmatrix}
+\frac{1}{d_1}(w_{11}\mathbf{x^{(1)}} + w_{12}\mathbf{x^{(2)}} + \cdots + w_{1n}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(1)}}{d_1}d_1\\
+\vdots\\
+\frac{1}{d_n}(w_{n1}\mathbf{x^{(1)}} + w_{n2}\mathbf{x^{(2)}} + \cdots + w_{nn}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(n)}}{d_n}d_n
+\end{bmatrix}\\
+&=\mathbf{D}^{-1} \mathbf{W} \mathbf{X} - \mathbf{X}=(\mathbf{D}^{-1} \mathbf{W} - \mathbf{I}) \mathbf{X} = (\mathbf{A}(\mathbf{X}(t)) - \mathbf{I})\mathbf{X}(t) = \mathbf{\bar{A}}(\mathbf{X}(t))\mathbf{X}(t)
+\end{split}
 \end{equation*}$$
 
 이 때, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{A}(\mathbf{X}(t))=\mathbf{A})로 두면, 선형 확산 방정식을 얻을 수 있고 이 방정식의 해석적 해를 다음과 같이 얻을 수 있습니다. 
@@ -202,29 +202,29 @@ $$\mathbf{X}(t)=e^{\mathbf{\bar{A}}t}\mathbf{X}(0)$$
 $$\frac{\mathbf{x}_{i}^{(k+1)} - \mathbf{x}_{i}^{(k)}}{\tau}=\sum_{j:(i,j) \in \mathcal{E}} {a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)})(\mathbf{x}_{j}^{\red{(k)}} - \mathbf{x}_{i}^{(k)})}$$
 
 $$\begin{equation*}
-    \begin{split}
-        \Leftrightarrow \mathbf{X}^{(k+1)} &= ((1-\tau)\mathbf{I} + \tau \mathbf{A}(\mathbf{X}^{(k)})) \mathbf{X}^{(k)}\\
-        &=\mathbf{Q}^{(k)} \mathbf{X}^{(k)}
-    \end{split}
+\begin{split}
+\Leftrightarrow \mathbf{X}^{(k+1)} &= ((1-\tau)\mathbf{I} + \tau \mathbf{A}(\mathbf{X}^{(k)})) \mathbf{X}^{(k)}\\
+&=\mathbf{Q}^{(k)} \mathbf{X}^{(k)}
+\end{split}
 \end{equation*}$$
 
 $$\begin{equation*}
 \text{, where } q_{ij}^{(k)}= 
-    \begin{cases}
-        1-\tau \displaystyle \sum_{l:(i,l) \in \mathcal{E}} a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & i=j\\
-        \tau a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
-        0 & \text{otherwise}
-    \end{cases} 
+\begin{cases}
+1-\tau \displaystyle \sum_{l:(i,l) \in \mathcal{E}} a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & i=j\\
+\tau a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
+0 & \text{otherwise}
+\end{cases} 
 \end{equation*}$$
 
 여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_{j}&space;{a_{ij}}&space;=&space;1)의 정규화를 가정하므로, 우리는 위의 수식을 더 간단히 표현할 수 있습니다. 또한, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\tau=1)일 때, diffusivity는 attention이 되므로 위의 수식은 nonlinearity가 없는 **GAT**와 같게 됩니다.
 
 $$\begin{equation*}
 q_{ij}^{(k)}= 
-    \begin{cases}
-        a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
-        0 & \text{otherwise}
-    \end{cases} 
+\begin{cases}
+a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
+0 & \text{otherwise}
+\end{cases} 
 \end{equation*}$$
 
 **Semi-Implicit scheme.** Backward Euler discretization
@@ -262,10 +262,10 @@ $$a(\mathbf{X}_{i}, \mathbf{X}_{j})=\text{softmax} \left( \frac{(\mathbf{W}_{K} 
 
 $$
 \begin{equation}
-    \begin{split}
-        \frac{\partial}{\partial t}\mathbf{X} &= (\mathbf{A}(\mathbf{X}) - \mathbf{I}) \mathbf{X} = \mathbf{\bar{A}}(\mathbf{X})\mathbf{X}\\
-        \Leftrightarrow \frac{\partial \mathbf{X}_{i}(t)}{\partial t} &= \sum_{j:(i,j) \in \mathcal{E \text{ or } E^{'}}}{a(\mathbf{X}_{i}(t), \mathbf{X}_{j}(t))(\mathbf{X}_{j}(t) - \mathbf{X}_{i}(t))}
-    \end{split}
+\begin{split}
+\frac{\partial}{\partial t}\mathbf{X} &= (\mathbf{A}(\mathbf{X}) - \mathbf{I}) \mathbf{X} = \mathbf{\bar{A}}(\mathbf{X})\mathbf{X}\\
+\Leftrightarrow \frac{\partial \mathbf{X}_{i}(t)}{\partial t} &= \sum_{j:(i,j) \in \mathcal{E \text{ or } E^{'}}}{a(\mathbf{X}_{i}(t), \mathbf{X}_{j}(t))(\mathbf{X}_{j}(t) - \mathbf{X}_{i}(t))}
+\end{split}
 \end{equation}$$
 
 Attention weight 행렬을 정의하는 방식과 이를 활용하는 방식에 따라 3가지 변형 모델을 만들 수 있습니다.
