@@ -70,19 +70,19 @@ $$
 
 <img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/neuralode.png" width="500">
 
-- 이러한 intuition을 바탕으로 2018년 Neural ODE는 Backward Pass에 `Adjoint Sensitivity Method`를 접목시켜서 parameter를 업데이트 시키는 과정에서 gradient를 훨씬 효과적으로 구해낼 수 있게 하였고 이는 연구자들로 하여금 새로운 출발점을 알린 획기적인 시점이 되었다. Forward Method와 대비되는 Adjoint Sensitivity Method는 과연 무엇인지 아래 슬라이드 두개로 대체하고자 한다. 간단히 요약하자면, 초기값 문제를 풀고 Loss를 정의하여 parameter를 업데이트하는 과정에서 time dependent solution function에 대한 parameter 변화량(i.e., ![](https://latex.codecogs.com/svg.image?\frac{d\textbf{u}}{d\boldsymbol{\theta}})을 구해야하는데 이를 구하기가 상당히 수고스러웠었는데 Adjoint Sensitivity Method는 이를 직접적으로 구하지 않고 Optimization 문제로 치환하여 Lagrangian을 도입하고 앞선 변화량의 계수를 0으로 만드는 별도의 초기값 문제를 하나 더 제안하여, 총 2개의 ODE를 푸는 것으로 파라미터를 업데이트 한다는 것이다.구체화 된 과정은 아래 슬라이드와 같이 나타낼 수 있다.  
+- 이러한 intuition을 바탕으로 2018년 Neural ODE는 Backward Pass에 `Adjoint Sensitivity Method`를 접목시켜서 parameter를 업데이트 시키는 과정에서 gradient를 훨씬 효과적으로 구해낼 수 있게 하였고 이는 연구자들로 하여금 새로운 출발점을 알린 획기적인 시점이 되었다. Forward Method와 대비되는 Adjoint Sensitivity Method는 과연 무엇인지 아래 슬라이드 두개로 대체하고자 한다. 간단히 요약하자면, 초기값 문제를 풀고 Loss를 정의하여 parameter를 업데이트하는 과정에서 time dependent solution function에 대한 parameter 변화량(i.e., ![](https://latex.codecogs.com/svg.image?\frac{d\textbf{u}}{d\boldsymbol{\theta}})을 구해야하는데 이를 구하기가 상당히 수고스러운 일이었다. 이에 비해 Adjoint Sensitivity Method는 이를 직접적으로 구하지 않고 Optimization 문제로 치환하여 Lagrangian을 도입하고 앞선 변화량(i.e., ![](https://latex.codecogs.com/svg.image?\frac{d\textbf{u}}{d\boldsymbol{\theta}})의 계수들을 0으로 만드는 별도의 초기값 문제를 하나 더 제안하여, 총 2개의 ODE를 푸는 것만으로 파라미터를 업데이트 하는 방법론이다.구체화 된 과정은 아래 슬라이드와 같이 나타낼 수 있다.  
 
 <img align="left" src="../../.gitbook/2022-spring-assets/SukwonYun_1/forward.png" width="440" height="200">  
 
 <img align="right" src="../../.gitbook/2022-spring-assets/SukwonYun_1/asm.png" width="420" height="200">  
 
 
-- 이러한 'Neural ODE'는 기존의 딥러닝 모델과 같이 gradient를 직접적으로 구하는 것이 아닌 gradient를 mimic하는 과정으로 볼 수 있기에 별도의 gradient를 저장할 필요가 없어진다. 따라서, *memory efficient*하다는 장점, Timestamp에 종속적이었던 시간 t를 별도의 변수로 모델링하여 *구간 내의 dynamics를 하나의 함수로 모델링*할 수 있다는 장점, *irregular한 time에 대한 대응*, 그 간 *수리적으로 입증되었던 미분방정식 풀이법을 딥러닝에 접목*시킬 수 있다는 장점 등 다수의 매력을 내포한 체 딥러닝에 새로운 패러다임을 제안하게 되었다.
+- 이러한 Neural ODE는 기존의 딥러닝 모델과 같이 gradient를 직접적으로 구하는 것이 아닌 `gradient를 mimic하는 과정`으로 볼 수 있기에 별도의 gradient를 저장할 필요가 없어진다. 따라서, **memory efficient**하다는 장점, timestamp에 종속적이었던 시간 ![](https://latex.codecogs.com/svg.image?t)를 별도의 변수로 모델링하여 **구간 내의 dynamics를 하나의 함수로 모델링** 할 수 있다는 장점, **irregular한 time에 대한 대응**, 그 간 **수리적으로 입증되었던 미분방정식 풀이법을 딥러닝에 접목** 시킬 수 있다는 장점 등 다수의 매력을 내포한 체 딥러닝에 새로운 패러다임을 제안하게 되었다.
 
 
 
 ## **3. Method**  
-본격적으로 Method로 들어가고자 한다. 앞선 Motivation이 어느정도 구체적이었고 길었던 이유는 바로 오늘의 Graph neural ordinary Differential Euqations, GDE가 결과적으로 'GNN과 Neural ODE를 접목시킨 퍼스트 펭귄의 역할을 하는 paper'로 볼 수 있기 때문이다. 먼저 순서는 GDE에 대한 definition, Static Model에서의 GDE, Spatio-Temporal Model에서의 GDE순으로 이번 파트를 설명하고자 한다.
+본격적으로 Method로 들어가고자 한다. 앞선 Motivation이 어느정도 구체적이었고 길었던 이유는 바로 오늘의 Graph neural ordinary Differential Euqations, GDE가 결과적으로 `GNN과 Neural ODE를 접목시킨 퍼스트 펭귄의 역할을 하는 paper`로 볼 수 있기 때문이다. 먼저 순서는 GDE에 대한 definition, Static Model에서의 GDE, Spatio-Temporal Model에서의 GDE순으로 이번 파트를 설명하고자 한다.
 
 ### (1) **Definition of GDE**
 
@@ -90,11 +90,11 @@ $$
 
 <img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation1.png" width="500">  
 
-다음으로는 앞서 Motivation에서 살펴봤듯, residual connection을 좌변으로 넘겨서 이 term을 변화량의 관점에서 해석한 뒤, 미분방정식을 새롭게 만들어내었을 때 비로소 우리는 '**Graph Neural Ordinary Differential Equation(GDE)**'의 초기값 문제(IVP)관점에서 아래와 같이 정의할 수 있게 된다. 중요한 점은, 위의 식과 달리 우리는 초기값을 가진 미분방정식을 Formulation 했다는 점이고, layer가 자연수 범위가 아닌 *실수 범위*에서 정의된다는 점에 주목할 필요가 있다.
+다음으로는 앞서 Motivation에서 살펴봤듯, residual connection을 좌변으로 넘겨서 이 term을 변화량의 관점에서 해석한 뒤, 미분방정식을 새롭게 만들어내었을 때 비로소 우리는 '**Graph Neural Ordinary Differential Equation(GDE)**'의 초기값 문제(IVP)관점에서 아래와 같이 정의할 수 있게 된다. 중요한 점은, 위의 식과 달리 우리는 초기값을 가진 미분방정식을 Formulation 했다는 점이고, layer가 자연수 범위가 아닌 **실수 범위** 에서 정의된다는 점에 주목할 필요가 있다.
 
 <img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation2.png" width="500">  
 
-미분방정식을 Formulation하는 것도 중요하지만 또 하나의 중요한 점은 미분방정식의 해가 존재하는지 그리고 그 해가 유일한지 'Well-posedness'를 따져볼 필요가 있다. 우리는 이때, 적분구간을 [0,1]로 설정한 뒤, Hidden state에서의 *Lipshitz Continuity*, layer의 index로 해석될 수 있는 위의 식의 s에서의 *Uniform Continuity*를 조건으로 부여해줌으로써 해당 구간 내에서의 해(hidden representation)의 유일성을 정의할 수 있게 된다. 최종적으로 위의 hidden representation을 적분함으로써 우리는 GDE의 output을 아래와 같이 나타낼 수 있게된다. 이때, 적분구간을 [0,1]로 둔다고 하면, 0에서의 적분값은 정의한 미분방정식의 초기값과 만나 상쇄되게 된다.
+미분방정식을 Formulation하는 것도 중요하지만 또 하나의 중요한 점은 미분방정식의 해가 존재하는지 그리고 그 해가 유일한지 `Well-posedness`를 따져볼 필요가 있다. 우리는 이때, 적분구간을 [0,1]로 설정한 뒤, Hidden state에서의 **Lipshitz Continuity**, layer의 index로 해석될 수 있는 위의 식의 s에서의 **Uniform Continuity**를 조건으로 부여해줌으로써 해당 구간 내에서의 해(hidden representation)의 유일성을 정의할 수 있게 된다. 최종적으로 위의 hidden representation을 적분함으로써 우리는 GDE의 output을 아래와 같이 나타낼 수 있게된다. 이때, 적분구간을 [0,1]로 둔다고 하면, 0에서의 적분값은 정의한 미분방정식의 초기값과 만나 상쇄되게 된다.
 
 <img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation3.png" width="350">  
 
@@ -102,7 +102,7 @@ $$
 
 ### (2) **GDE on Static Models**
 
-우리는 GDE를 2가지 관점에서 해석할 수 있게 되는데 먼저 time에 variant하지 않은 static 모델에서 정의할 수 있다. Residual connection을 가진 GCN은 아래와 같이 나타낼 수 있게 되고 해당 식을 여태 위에서의 과정과 같이 미분 관점에서 해석하게 되면 아래 두 번째 식으로 나타낼 수 있게 된다. 이 때, L은 Laplacian Matrix를 나타내고 Hidden Representation을 나타내는 함수 **F** 는 모델링의 자유도를 가지는데 주로 Multilayer Convolution 등으로 표현할 수 있게 된다. 이 때, 우리는 GCN을 베이스로 하였기에 'Graph Convolutional Differential Equation, GCDE'로 GDE를 부를 수 있게된다.
+우리는 GDE를 2가지 관점에서 해석할 수 있게 되는데 먼저 time에 variant하지 않은 static 모델에서 정의할 수 있다. Residual connection을 가진 GCN은 아래와 같이 나타낼 수 있게 되고 해당 식을 여태 위에서의 과정과 같이 미분 관점에서 해석하게 되면 아래 두 번째 식으로 나타낼 수 있게 된다. 이 때, L은 Laplacian Matrix를 나타내고 Hidden Representation을 나타내는 함수 **F** 는 모델링의 자유도를 가지는데 주로 Multilayer Convolution 등으로 표현할 수 있게 된다. 이 때, 우리는 GCN을 베이스로 하였기에 `Graph Convolutional Differential Equation, GCDE`로 GDE를 부를 수 있게된다.
 
 <img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation4.png" width="300">  
 <img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation5.png" width="600">  
@@ -110,14 +110,14 @@ $$
 
 ### (3) **GDE on Spatio-Temporal Models**
 
-다음으로는, 시간에 따라 variant한, autoregressive 속성을 가진 Spatio-Temporal 관점에서 GDE를 정의할 수 있다. 시간의 축을 포함시켜줌으로써, 우리는 depth domain을 time domain과 동치시킬 수 있다(RNN에서 layer를 쌓는다는 것은 그 만큼 더 많은 time input을 고려해준다는 의미와 상통된다고 생각하면 된다). 따라서 특정 시간에서 시간 변화량만큼 적분을 해줌으로써 우리는 Hidden representation을 업데이트할 수 있게 된다. 이 때 역시, 미분방정식의 관점에서 이를 해석할 수 있게되고, 시간 구간 내에서의 dynamic를 parameter *\theta* 를 가진 하나의 함수로서 나타낼 수 있게된다. GDE Framework에서 아래 등장하는, F, G, K는 GNN-operator 혹은 GNN layer로 생각할 수 있다.
+다음으로는, 시간에 따라 variant한, autoregressive 속성을 가진 Spatio-Temporal 관점에서 GDE를 정의할 수 있다. 시간의 축을 포함시켜줌으로써, 우리는 depth domain을 time domain과 동치시킬 수 있다(RNN에서 layer를 쌓는다는 것은 그 만큼 더 많은 time input을 고려해준다는 의미와 상통된다고 생각하면 된다). 따라서 특정 시간에서 시간 변화량만큼 적분을 해줌으로써 우리는 Hidden representation을 업데이트할 수 있게 된다. 이 때 역시, 미분방정식의 관점에서 이를 해석할 수 있게되고, 시간 구간 내에서의 dynamic를 parameter ![](https://latex.codecogs.com/svg.image?\boldsymbol{\theta}) 를 가진 하나의 함수로서 나타낼 수 있게된다. GDE Framework에서 아래 등장하는, F, G, K는 **GNN-operator** 혹은 GNN layer로 생각할 수 있다.
 
 <img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation6.png" width="370">  
 <img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation7.png" width="480">  
 
 
 ## **4. Experiment**  
-다음은 GDE의 효과성을 입증하기 위한 실험이다. 먼저 실험은 크게 3파트, '(1) Semi-supervised node classification', '(2) Trajectory extrapolation task', '(3) Traffic forecasting' 에서 진행되었다. 먼저 Overall하게 각 task에서 사용한 Dataset과 Baseline 그리고 Evaluation Metric을 정리하면 아래와 같이 나타낼 수 있다.
+다음은 GDE의 효과성을 입증하기 위한 실험이다. 먼저 실험은 크게 3파트, `(1) Semi-supervised node classification`, `(2) Trajectory extrapolation task`, `(3) Traffic forecasting` 에서 진행되었다. 먼저 Overall하게 각 task에서 사용한 Dataset과 Baseline 그리고 Evaluation Metric을 정리하면 아래와 같이 나타낼 수 있다.
 
 ### **Experiment setup**  
 * Dataset  
@@ -168,6 +168,13 @@ Model에서의 퍼센티지는 Undersample 관점에서 해석하여, training �
 - (1) GNN에 Neural ODE를 접목시킨 초창기 연구
 - (2) Graph Neuarl Ordinary Differential Equation, GDE에 대한 정의
 - (3) GDE에 대한 분류 - Static, Spatio-Temporal
+
+  
+
+
+그리고, 필자는 이렇게 글을 마무리 짓고 싶다.  
+
+**`GNN with Differential Equation? Way to go!`**
 
 ## **Author Information**  
 
