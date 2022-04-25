@@ -103,11 +103,8 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x $$
     * 무방향 그래프이므로 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;w_{ij}&space;=&space;w_{ji})
     * self-edge가 없음 (i.e. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;(i,&space;i)&space;\notin&space;\mathcal{E}))
     * ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;w_{ij}=0&space;\text{&space;if&space;}&space;(i,&space;j)&space;\notin&space;\mathcal{E})
-* 간선 특징(feature) 텐서: $$\mathfrak{X} = \begin{bmatrix}
-\mathcal{X}^{(1,1)} & \cdots & \mathcal{X}^{(1,n)}\\
-\vdots & \ddots & \vdots\\
-\mathcal{X}^{(n,1)} & \cdots & \mathcal{X}^{(n,n)}
-\end{bmatrix} \in \mathbb{R}^{n \times n \times k}$$
+* 간선 특징(feature) 텐서: 
+    * $$\mathfrak{X} = \begin{bmatrix} \mathcal{X}^{(1,1)} & \cdots & \mathcal{X}^{(1,n)}\\ \vdots & \ddots & \vdots\\ \mathcal{X}^{(n,1)} & \cdots & \mathcal{X}^{(n,n)} \end{bmatrix} \in \mathbb{R}^{n \times n \times k}$$
     * ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathcal{X}^{(i,j)}&space;=&space;-&space;\mathcal{X}^{(j,i)})
 * 간선 특징 텐서의 내적은 다음과 같이 정의합니다. 여기서 1/2은 무방향 그래프이므로 중복된 합을 피하기 위해 사용(본 논문에서는 upper triangle matrix만 더하는 방향으로 표기: ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_{i>j}^{n}) ), ![](https://latex.codecogs.com/svg.image?W_{ij})는 간선의 유무를 나타내기 위한 Indicator로 사용한 것으로 보입니다.
 
