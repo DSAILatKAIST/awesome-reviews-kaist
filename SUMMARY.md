@@ -35,6 +35,7 @@
   * [XGradient](paper-review/2022-spring/NeurIPS-2021-XGradient.md)
   * [Review paper COIN] (awesome-reviews-kaist/paper-review/Reviewpaper_20214798_Esmeedehaas.md)
   * [Hypergraph with DHT](paper-review/2022-spring/neurlps-2021-hypergraphs_with_dht.md)
+  * [E(n) Equivariant Graph Neural Networks](paper-review/2022-spring/icml-2021-e(n)%20equivariant%20graph%20neural%20networks.md)
   
 ## How to contribute
 
