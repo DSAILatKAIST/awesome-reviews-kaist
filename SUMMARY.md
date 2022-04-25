@@ -6,10 +6,7 @@
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md)    
     * [Template](paper-review/2022-spring/template.md) 
-    * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
-    * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
-    * [Latent ODEs for Irregularly-Sampled Time Series](paper-review/2022-spring/NeurIPS-2020-Latent-ODEs-for-Irregularly-Sampled-Time-Series.md)
-    * [G-Meta](paper-review/2022-spring/G-Meta.md)
+    * [LooC](paper-review/2022-spring/iclr-2021-what_should_not_be_contrastive.md)
     
 ## How to contribute  
 
