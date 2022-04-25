@@ -20,7 +20,7 @@ Problem Definition에서 소개한 문제를 해결할 수 있는 방법론으�
 
 직관적으로 설명하자면 전자의 알고리즘은 agent에게 과하게 쉬운 문제를 풀게 하였고 후자의 알고리즘은 agent에게 지나치게 어려운 문제를 풀게 하였다고 볼 수 있다. 하단의 그림을 보면 푸른 화살표 agent가 미로를 풀어서 녹색의 goal에 도달하는 task를 각각의 알고리즘으로 설계했을 때, Domain Randomization 기법은 미로의 벽을 제대로 생성하지 못하여 지나치게 쉬운 environment를 설계했고, Minimax Adversarial 기법은 goal position이 미로의 벽에 가로막혀 agent가 아예 도달할 수도 없는 과하게 어려운 environment를 생성한 것을 볼 수 있다. 즉 두 알고리즘 모두 environment의 분포를 잘 추정하지 못했다.
 
-<img width="140" src=".gitbook/2022-spring-assets/heemang_park_1/1.png">
+<img src=".gitbook/2022-spring-assets/heemang_park_1/1.png">
 ![1](/.gitbook/2022-spring-assets/heemang_park_1/1.png)
 
 ## **3. Method**
@@ -33,12 +33,12 @@ POMDP는 tuple $$\left< A,O,S,T,I,R,\gamma \right>$$ 로 정의한다: $$A$$는 
 
 UPOMDP는 tuple $$M=\left< A,O,\Theta,S^M,T^M,I^M,R^M,\gamma \right>$$ 로 정의한다: 대부분의 정의는 상술한 POMDP와 동일하나, 모델링에 free parameter of environment를 의미하는 집합 $$\Theta$$가 추가된 점이 다르다. Free parameter of environment $$\Theta$$는 학습의 매 타임스텝마다 정해질 수 있고, $$T^M:S\times A\times\Theta\to\Delta(S)$$ 와 같이 transition function을 구하는데에 사용된다. 또한 environment parameter $$\overrightarrow{\theta}$$ 의 trajectory를 통해 environment setting을 표현할 수 있고, 이렇게 구한 setting of environment $$\overrightarrow{\theta}$$를 underspecified environment $$M$$에 대입해서 $$M_{\overrightarrow{\theta}}$$를 얻게 된다.
 
-<img width="140" src=".gitbook/2022-spring-assets/heemang_park_1/2.png">
+<img src=".gitbook/2022-spring-assets/heemang_park_1/2.png">
 ![2](/.gitbook/2022-spring-assets/heemang_park_1/2.png)
 
 그리고 $$\Pi$$ : set of possible policies, $$\Theta^T$$: set of possible sequences of environment parameter를 이용해 environment policy $$\Lambda:\Pi\to\Delta(\Theta^T)$$ 를 얻을 수 있다. 다른 두 UED 기법도 상술한 흐름으로 environment policy를 구하지만, 본 논문에서 제시하는 새로운 UED framework인 PAIRED 알고리즘은 environment policy를 set of possible policies $$\Pi$$의 regret을 최대화 하는 $$\bar{\theta}$$를 이용해서 구한다. Minimax Regret decision rule을 사용했을 때 더 좋은 policy가 얻어지는 사실은 아래의 Theorem을 통해 증명할 수 있다.
 
-<img width="140" src=".gitbook/2022-spring-assets/heemang_park_1/3.png">
+<img src=".gitbook/2022-spring-assets/heemang_park_1/3.png">
 ![3](/.gitbook/2022-spring-assets/heemang_park_1/3.png)
 
 마지막으로 PAIRED 알고리즘이 set of possible policies $$\Pi$$의 regret을 최대화 하는 $$\bar{\theta}$$를 통해 environment policy $$\Lambda^{MR}(\pi)$$를 구체적으로 어떻게 구하는지 살펴보겠다. PAIRED(Protagonist Antagonist Induced Regret Environment Design) 알고리즘은 문제를 푸는 protagonist와 antagonist, 문제를 출제하는 environment adversary(이하 adversary)로 구성된다. Adversary는 antagonist에게 유리하면서 동시에 protagonist에게 불리한 environment를 training 동안 생성한다. 이러한 편파적인 문제 생성은 앞서 설명한 decision rule: Minimax Regret을 통해서 가능하다. 알고리즘 전체는 아래의 sudo code를 통해 살펴 볼 수 있다.
@@ -46,7 +46,7 @@ UPOMDP는 tuple $$M=\left< A,O,\Theta,S^M,T^M,I^M,R^M,\gamma \right>$$ 로 정�
 $$REGRET^{\overrightarrow{\theta}}=U^{\overrightarrow{\theta}}(\pi^A)-U^{\overrightarrow{\theta}}(\pi^P)$$  
 : difference between the reward obtained by the antagoist and the protagonist
 
-<img width="140" src=".gitbook/2022-spring-assets/heemang_park_1/4.png">
+<img src=".gitbook/2022-spring-assets/heemang_park_1/4.png">
 ![4](/.gitbook/2022-spring-assets/heemang_park_1/4.png)
 
 ## **4. Experiment**
@@ -55,7 +55,7 @@ $$REGRET^{\overrightarrow{\theta}}=U^{\overrightarrow{\theta}}(\pi^A)-U^{\overri
 
 ### **Experiment setup**
 
-실험은 앞서 직관적인 설명을 위해 예시로 든 미로찾기 task에서 진행했다(이하 navigation task). Navigation task에서 agnet는 장애물들을 피해서 goal(green square)에 도달하는 목적을 갖는다. 해당 실험의 enviornment는 partially obervable한데, 앞선 사진에서 살펴 볼 수 있듯이 agent의 시야가 blue-shaded-area로 표시된 만큼만 확보됐기 때문에 maze world environment modelling은 POMDP로 구할 수 있다. Protagonist와 Antagonist의 policies는 recurrent neural networks(RNNs)를 통해 parameterize 되고, 모든 agent는 PPO(Proximal policy optimization)에 기반하여 학습됐다. 세부적인 내용 및 하이퍼파라미터는 다음과 같다:
+실험은 앞서 직관적인 설명을 위해 예시로 든 미로찾기 task에서 진행했다(이하 navigation task). Navigation task에서 agent는 장애물들을 피해서 goal(green square)에 도달하는 목적을 갖는다. 해당 실험의 enviornment는 partially obervable한데, 앞선 사진에서 살펴 볼 수 있듯이 agent의 시야가 blue-shaded-area로 표시된 만큼만 확보됐기 때문에 maze world environment modelling은 POMDP로 구할 수 있다. Protagonist와 Antagonist의 policies는 recurrent neural networks(RNNs)를 통해 parameterize 되고, 모든 agent는 PPO(Proximal policy optimization)에 기반하여 학습됐다. 세부적인 내용 및 하이퍼파라미터는 다음과 같다:
 
 ---
 
@@ -70,12 +70,12 @@ PAIRED 알고리즘의 성능과 비교를 위한 **baseline algorithm**으로 '
 
 ### **Result**
 
-<img width="140" src=".gitbook/2022-spring-assets/heemang_park_1/5.png">
+<img src=".gitbook/2022-spring-assets/heemang_park_1/5.png">
 ![5](/.gitbook/2022-spring-assets/heemang_park_1/5.png)
 
 Statistics of generated environments는 4가지 metrics로 측정했다. (a)는 maze world 내의 block의 수, (b)는 시작점 부터 목표점까지의 거리, (c)는 시작점과 목표점 간의 최단 경로의 길이, (d)는 agent가 maze world의 최단경로를 선택하여 문제를 해결했는지를 나타낸다. 각각의 plot은 5개의 random seed 하에 측정됐다. 결과를 해석해보자면, DR은 agent의 학습 프로세스에 과하게 쉬운 문제만을 제공했기 때문에 metrics들이 fixed or vary randomly 하게만 나타났으며, MA는 length of maze that agents are able to solve가 DR에서의 그것과 거의 동일하게 나타났다는 점에서 agent의 성능을 향상 시키지 못했다고 해석할 수 있다. 그에 반해 PAIRED는 3개의 알고리즘 중 유일하게 passable path length를 지속적으로 향상시킨 알고리즘이며 이를 통해 agent가 타 알고리즘에서 학습된 agent들보다 더 복잡한 문제를 해결 할 수 있었다.
 
-<img width="140" src=".gitbook/2022-spring-assets/heemang_park_1/6.png">
+<img src=".gitbook/2022-spring-assets/heemang_park_1/6.png">
 ![6](/.gitbook/2022-spring-assets/heemang_park_1/6.png)
 
 (a)와 (b)는 간단한 out-of-distribution generalization을 나타내고, (c)는 random sampling으로는 생성될 수 없는 특정한 configuration을 만드는 within-distribution generalization을 나타내고, (d)와 (e)와 (f)는 사람이 직접 설계한 어려운 task이다. 직관적으로 plot을 살펴보면 알 수 있듯이, task의 난이도가 상승할수록 baseline algorithm based agent들의 성능은 떨어지고, PAIRED algorithm based agent의 성능은 양호한 수준에서 유지됨을 알 수 있다.
