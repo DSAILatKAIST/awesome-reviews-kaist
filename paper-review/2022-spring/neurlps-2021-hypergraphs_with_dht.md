@@ -55,7 +55,7 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
 * Edge representation learning
   * edge representation learning에 대해 message-passing 함수를 정의하는 방법은 (**1)edge에 대한 인접행렬을 만들거나, (2)edge neighborhood 구조를 정의하거나 혹은 (3)line graph 변환을 사용하는 것**
     * 그러나 이 방법들은 ![](https://latex.codecogs.com/svg.image?O\(n%5E2\)) 시간복잡도를 요구하기 때문에 suboptimal!
-  * 즉, 이것이 message-passing 방식을 edge 에 직접적으로 적용할 수 없는 \*\*주요 문제점\*\*이기 때문에, 본 논문에서는 _**Hypergraph**_를 사용하여 이를 해결하고자 함
+  * 즉, 이것이 message-passing 방식을 edge 에 직접적으로 적용할 수 없는 \*\*주요 문제점\*\*이기 때문에, 본 논문에서는 \_**Hypergraph**\_를 사용하여 이를 해결하고자 함
 * **그렇다면 Hypergraph는 무엇인가?**
 * Hypergraph
   * Hypergraph는 그래프 구조의 데이터를 노드 간의 high-order 관계로 모델링 할 수 있는 그래프
@@ -76,13 +76,8 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
   *   따라서 본 논문에서는 원본 그래프의 edge를 hypergraph의 node로, 원본 그래프의 node를 hypergraph의 edge로 변환하는 방식 제안
 
       **→** **Dual Hypergraph Transformation**
-  * <img src="https://latex.codecogs.com/svg.image?DHT&#x26;space;:&#x26;space;G&#x26;space;=&#x26;space;(X,M,E)&#x26;space;%5Cmapsto&#x26;space;G%5E*&#x26;space;=&#x26;space;(E,M%5ET,X)" alt="" data-size="original">
-    * ![](https://latex.codecogs.com/svg.image?G%5E\*)은 원본 그래프의 dual hypergraph
-    * 주어진 그래프의 node와 edge의 구조적인 역할을 바꿈
-    * 원본 incidence matrix를 transpose 하여 hypergraph의 incidence matrix를 얻음
-  * <img src="https://latex.codecogs.com/svg.image?DHT&#x26;space;:&#x26;space;G%5E*&#x26;space;=&#x26;space;(E,M%5ET,X)&#x26;space;%5Cmapsto&#x26;space;G&#x26;space;=&#x26;space;(X,M,E)" alt="" data-size="original">
-    * dual hypergraph가 원본 그래프의 정보를 모두 가지고 있기 때문에 다시 원본 그래프로 복구하는 것도 가능함
-    * 즉, DHT는 **bijective transformation**
+  * <img src="https://latex.codecogs.com/svg.image?DHT&#x26;space;:&#x26;space;G&#x26;space;=&#x26;space;(X,M,E)&#x26;space;%5Cmapsto&#x26;space;G%5E*&#x26;space;=&#x26;space;(E,M%5ET,X)" alt="" data-size="original"> \* !\[]\(https://latex.codecogs.com/svg.image?G%5E\\\*)은 원본 그래프의 dual hypergraph \* 주어진 그래프의 node와 edge의 구조적인 역할을 바꿈 \* 원본 incidence matrix를 transpose 하여 hypergraph의 incidence matrix를 얻음
+  * <img src="https://latex.codecogs.com/svg.image?DHT&#x26;space;:&#x26;space;G%5E*&#x26;space;=&#x26;space;(E,M%5ET,X)&#x26;space;%5Cmapsto&#x26;space;G&#x26;space;=&#x26;space;(X,M,E)" alt="" data-size="original"> \* dual hypergraph가 원본 그래프의 정보를 모두 가지고 있기 때문에 다시 원본 그래프로 복구하는 것도 가능함 \* 즉, DHT는 \*\*bijective transformation\*\*
   * DHT는 변환에 있어 정보의 손실을 일으키지 않으며, 피처를 representation하는데 추가적인 메모리가 필요하지도 않음
 * Message-passing on the dual hypergraph
   * ![](https://latex.codecogs.com/svg.image?E%7Be%7D%5E%7B\(l+1\)%7D\&space;=\&space;UPDATE\(X%7Be%7D%5E%7B\(l\)%7D\&space;,\&space;AGGREGATE\(%7B\&space;E\_f%5E%7B\(l\)%7D\&space;:\&space;%5Cforall\&space;f\&space;%5Cin\&space;%5Cmathcal%7BN%7D\(e;M%5ET\)%7D\)\))
@@ -150,9 +145,7 @@ Jaehyeong Jo , Jinheon Baek , Seul Lee , Dongki Kim , Minki Kang , Sung Ju Hwang
      * EHGNN+HyperCluster와 baseline 비교
    *   Edge reconstruction results
 
-       <img src="../../.gitbook/2022-spring-assets/WYE/edge_represntation_result1.png" alt="" data-size="original">
-
-       <img src="../../.gitbook/2022-spring-assets/WYE/edge_represntation_result2.png" alt="" data-size="original">
+       <img src="../../.gitbook/2022-spring-assets/WYE/edge_represntation_result1.png" alt="" data-size="original"> <img src="../../.gitbook/2022-spring-assets/WYE/edge_represntation_result2.png" alt="" data-size="original">
 
        * fig3을 보면, 본 논문에서 제시한 모델이 baseline에 비해 좋은 성능을 보임을 알 수 있음
        * fig4를 보면, 본 논문에서 제시한 모델이 원본 two-moon graph와 가장 비슷하게 edge 색깔이 구분되었음

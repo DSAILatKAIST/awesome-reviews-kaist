@@ -30,10 +30,10 @@
   * [NIWT](paper-review/2022-spring/ECCV-2018-NIWT.md)
   * [GRAND](paper-review/2022-spring/icml-2021-grand.md)
   * [GDE](paper-review/2022-spring/AAAI-2020-GDE.md)
-  * [Graph Meta Learning via Local Subgraphs](paper-review/2022-spring/NeurIPS-2020-G-Meta.md)
+  *
   * [PAIRED](paper-review/2022-spring/neurips-2020-paired.md)
   * [XGradient](paper-review/2022-spring/NeurIPS-2021-XGradient.md)
-  * [Review paper COIN](paper-review/2022-spring/Reviewpaper_20214798_Esmeedehaas.md)
+  * [Review paper COIN](paper-review/2022-spring/Reviewpaper\_20214798\_Esmeedehaas.md)
   * [Hypergraph with DHT](paper-review/2022-spring/neurlps-2021-hypergraphs\_with\_dht.md)
   * [E(n) Equivariant Graph Neural Networks](<paper-review/2022-spring/icml-2021-e(n) equivariant graph neural networks.md>)
   * [DataAug](paper-review/2022-spring/aaai-2020-dataaugmentationforgraph.md)
@@ -47,4 +47,4 @@
 
 ***
 
-* [KAIST ISysE](https://statistics.kaist.ac.kr/)
+* [KAIST ISysE](https://statistics.kaist.ac.kr)
