@@ -23,6 +23,7 @@
   * [RGB-D](paper-review/2022-spring/_CVPR_2018_RGB-D.md)
   * [SBG(Successive Behavior Graph)](paper-review/2022-spring/www-2022-sbg.md)
   * [SSL](paper-review/2022-spring/SSL.md)
+  * [Self-sup-Multi-View](paper-review/2022-spring/ICLR21-self-sup-information-theory.md)
   
 ## How to contribute
 
