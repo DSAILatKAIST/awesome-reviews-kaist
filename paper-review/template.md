@@ -10,7 +10,6 @@ Title of paper that you are going to write
 
 Please write the problem definition on here  
 
-
 ## **2. Motivation**  
 
 Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
