@@ -340,7 +340,6 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 </figure>
 <br> -->
 
-
 이번 실험은 discretisation scheme의 안정성을 보기 위해 Cora 데이터셋을 사용했습니다. PDE를 푸는데 있어 step size와 계산 시간은 trade-off관계를 갖습니다. Scheme은 아래와 같은 방법론을 사용하였고, 이에 대한 설명은 본 논문의 범위를 넘어서므로 생략합니다.
 
 * Explicit scheme: Adams-Bashford method
