@@ -119,7 +119,7 @@ Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최�
 
 > 1. Graph Structure 구성
 >
-> > Graph는 node와 edge로 구성되며, node ![](https://latex.codecogs.com/gif.latex?v%20%5Cin%20%5Cmathbb%20R%5E%7B%28m%5Ctimes%20N%29%7D) 는 ![](https://latex.codecogs.com/gif.latex?)개의 data (labeled, unlabeled 모두 포함)와 각각의 ![](https://latex.codecogs.com/gif.latex?m) dimension feature로 표현된다. Edge는 adjacency matrix ![](https://latex.codecogs.com/gif.latex?A)로 표현이 가능하다. Edge는 node간의 similarity를 나타내야하므로 다음과 같은 과정을 거쳐 adjacency matrix를 구성한다.
+> > Graph는 node와 edge로 구성되며, node ![](https://latex.codecogs.com/gif.latex?v%20%5Cin%20%5Cmathbb%20R%5E%7B%28m%5Ctimes%20N%29%7D) 는 ![](https://latex.codecogs.com/gif.latex?N)개의 data (labeled, unlabeled 모두 포함)와 각각의 ![](https://latex.codecogs.com/gif.latex?m) dimension feature로 표현된다. Edge는 adjacency matrix ![](https://latex.codecogs.com/gif.latex?A)로 표현이 가능하다. Edge는 node간의 similarity를 나타내야하므로 다음과 같은 과정을 거쳐 adjacency matrix를 구성한다.
 > >
 > > 1. learner에서 넘어온 feature를 ![](https://latex.codecogs.com/gif.latex?l\_2) normalize한다.
 > > 2. ![](https://latex.codecogs.com/gif.latex?S\_%7Bij%7D%20%3D%20v\_i%5ETv\_j%2C%20%7Bi%2Cj%7D%20%5Cin%20N) (vector product를 통해 ![](https://latex.codecogs.com/gif.latex?S\_%7Bij%7D)를 생성)
