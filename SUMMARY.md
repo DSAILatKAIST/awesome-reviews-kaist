@@ -9,7 +9,7 @@
   * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
   * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
   * [Latent ODEs](paper-review/2022-spring/NeurIPS-2020-LatentODE.md)
-  * [G-Meta](paper-review/2022-spring/NeurIPS-2020-G-Meta.md)
+  * [G-Meta](paper-review/2022-spring/G-Meta.md)
   * [graph based 3d multi person pose estimation using multi view images](paper-review/2022-spring/iccv-2021-graph-based-3d-multi-person-pose-estimation-using-multi-view-images.md)
   * [FaceSight](paper-review/2022-spring/chi-2021-facesight.md)
   * [FNC](paper-review/2022-spring/WACV-2022-FNC.md)
@@ -38,7 +38,7 @@
   * [E(n) Equivariant Graph Neural Networks](paper-review/2022-spring/icml-2021-e(n)%20equivariant%20graph%20neural%20networks.md)
   * [DataAug](paper-review/2022-spring/aaai-2020-dataaugmentationforgraph.md)
   * [Learning_Large_Neighborhood_Search_Policy_for_Integer_Programming](paper-review/2022-spring/NeurIPS-2021-Learning-Large-Neighborhood-Search-Policy-for-Integer-Programming.md)
-  
+  * [LooC](paper-review/2022-spring/iclr-2021-what_should_not_be_contrastive.md)
   
 ## How to contribute
 
