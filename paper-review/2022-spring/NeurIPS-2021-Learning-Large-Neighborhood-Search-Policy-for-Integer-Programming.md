@@ -17,7 +17,7 @@ description : Wu, Yaoxin, et al. /Learning Large Neighborhood Search Policy for 
 
 # 2. Motivation
 
-LNS방식은 현재의 해의 일부를 파괴하고(destroy) 다시 그 부분을 더 좋은 방식으로 고치며(repair) 기존의 해를 개선하는 방법입니다. 이 중 해를 파괴하는 방식은 어떤 해를 파괴할지 고르는 정책이 필요한데, 변수의 수가 많아질수록 해를 선택할 집합은 exponentially하게 증가합니다. 따라서 파괴할 해를 몇개를 고를지에 대한 제약을 둠으로써 해결하고자 하였습니다.  본 논문에서는 destroy하는 정책을 보다 flexible하게 만들기 위해 Action factorization을 이용하였고, 이는 선택되는 해의 모든 경우의 수(![](https://latex.codecogs.com/svg.image?2^n)를 고려할 수 있도록 하였습니다.
+LNS방식은 현재의 해의 일부를 파괴하고(destroy) 다시 그 부분을 더 좋은 방식으로 고치며(repair) 기존의 해를 개선하는 방법입니다. 이 중 해를 파괴하는 방식은 어떤 해를 파괴할지 고르는 정책이 필요한데, 변수의 수가 많아질수록 해를 선택할 집합은 exponentially하게 증가합니다. 따라서 파괴할 해를 몇개를 고를지에 대한 제약을 둠으로써 해결하고자 하였습니다.  본 논문에서는 destroy하는 정책을 보다 flexible하게 만들기 위해 Action factorization을 이용하였고, 이는 선택되는 해의 모든 경우의 수![](https://latex.codecogs.com/svg.image?2^n)를 고려할 수 있도록 하였습니다.
 
 <br>
 
