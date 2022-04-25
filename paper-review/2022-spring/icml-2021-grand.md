@@ -137,7 +137,7 @@ $$\langle \langle \mathfrak{X}, \mathfrak{Y} \rangle \rangle = \frac{1}{2} \sum_
 $$\frac{\partial \mathbf{X}(t)}{\partial t}=\text{div}[\mathbf{G}(\mathbf{X}(t), t) \odot \nabla \mathbf{X}(t)]$$
 
 
-여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\odot)은 Hadamard product (i.e. element-wise 곱)으로 정의됩니다. 갑자기 Hadamard product이 등장한 이유는 graident의 결과가 3d tensor가 되고, divergence는 벡터장에서 정의되는 미분연산자이기 때문입니다. 행렬 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))는 right-stochastic 인 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{W}&space;\odot&space;\mathbf{G}) (즉, 각 행의 합이 1)와 같은 형태를 선택합니다(노드 간에 이동하는 정보가 사라지거나 생겨나지 않게 하기 위해 right-stochastic 행렬을 도입하는 것으로 보입니다). 가장 단순한 케이스를 위해 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))가 초기 노드 특성 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{X})에만 영향을 받는다고 가정하면 (i.e. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G})는 시간불변하고, right-stochastic하다), 이는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_j{w_{ij}G_{ij}}=1) for all ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;i) 의미합니다. 그러므로 우리는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;G_{ij}=1/d_{i}), ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;d_{i}=\textstyle&space;\sum_{j=1}^{n}{w_{ij}})인 상황을 살펴보겠습니다.
+여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\odot)은 Hadamard product (i.e. element-wise 곱)으로 정의됩니다. 갑자기 Hadamard product이 등장한 이유는 gradient의 결과가 3d tensor가 되고, divergence는 벡터장에서 정의되는 미분연산자이기 때문입니다. 행렬 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))는 right-stochastic 인 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{W}&space;\odot&space;\mathbf{G}) (즉, 각 행의 합이 1)와 같은 형태를 선택합니다(노드 간에 이동하는 정보가 사라지거나 생겨나지 않게 하기 위해 right-stochastic 행렬을 도입하는 것으로 보입니다). 가장 단순한 케이스를 위해 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))가 초기 노드 특성 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{X})에만 영향을 받는다고 가정하면 (i.e. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G})는 시간불변하고, right-stochastic하다), 이는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_j{w_{ij}G_{ij}}=1) for all ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;i) 의미합니다. 그러므로 우리는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;G_{ij}=1/d_{i}), ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;d_{i}=\textstyle&space;\sum_{j=1}^{n}{w_{ij}})인 상황을 살펴보겠습니다.
 
 ![](https://user-images.githubusercontent.com/40286691/165051103-3ce316cb-2c19-4c58-8fb7-562297c7114c.PNG)
 <!-- $$
@@ -187,7 +187,7 @@ $$\begin{equation*}
 
 $$\mathbf{X}(t)=e^{\mathbf{\bar{A}}t}\mathbf{X}(0)$$
 
-이를 테일러 급수로 근사한 것이 heat kernal PageRank라고 볼 수 있습니다.<sup>[[9]](#footnote_9)</sup><sup>[[10]](#footnote_10)</sup>
+이를 테일러 급수로 근사한 것이 heat kernel PageRank라고 볼 수 있습니다.<sup>[[9]](#footnote_9)</sup><sup>[[10]](#footnote_10)</sup>
 
 저자들은 발표한 Youtube 영상에 따르면, GRAND와 PageRank의 유사성 및 차이점을 아래와 같이 언급했습니다.<sup>[[11]](#footnote_11)</sup> 
 > This idea that you can also have diffusion in a completely discrete domain and in that case the most common example is probably Google's PageRank and the formulation that we're most familiar with from the gnn community is multiplying laplacian by some sort of feature matrix.
@@ -224,7 +224,7 @@ $$\begin{equation*}
 \end{cases} 
 \end{equation*}$$
 
-여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_{j}&space;{a_{ij}}&space;=&space;1)의 정규화를 가정하므로, 우리는 위의 수식을 더 간단히 표현할 수 있습니다. 또한, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\tau=1)일 때, diffusiivity는 attention이 되므로 위의 수식은 nonlinearity가 없는 **GAT**와 같게 됩니다.
+여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_{j}&space;{a_{ij}}&space;=&space;1)의 정규화를 가정하므로, 우리는 위의 수식을 더 간단히 표현할 수 있습니다. 또한, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\tau=1)일 때, diffusivity는 attention이 되므로 위의 수식은 nonlinearity가 없는 **GAT**와 같게 됩니다.
 
 $$\begin{equation*}
 q_{ij}^{(k)}= 
@@ -257,7 +257,7 @@ $$\Leftrightarrow \mathbf{B}^{(k)} \mathbf{X}^{(k+1)}=\mathbf{X}^{(k)}$$
 * 그래프 확산 방정식: ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{X}(T)&space;=&space;\mathbf{X}(0)&space;&plus;&space;\textstyle&space;\int_{0}^{T}{\text{div}(\mathbf{A}(\mathbf{X}(t))\nabla\mathbf{X}(t))}dt)
 * Output: ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{Y}=\psi(\mathbf{X}(T)))
 
-이 때, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\phi\text{,&space;}\psi)와 diffusivity(![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{A}(\mathbf{X}(t))))는 학습할 수 있는 함수입니다. 특히 diffusivity 함수는 time-invarient diffusivity 함수로 모든 layer에 걸쳐 같은 parameter를 공유합니다.
+이 때, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\phi\text{,&space;}\psi)와 diffusivity(![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{A}(\mathbf{X}(t))))는 학습할 수 있는 함수입니다. 특히 diffusivity 함수는 time-invariant diffusivity 함수로 모든 layer에 걸쳐 같은 parameter를 공유합니다.
 
 이 diffusivity는 attention 함수로 모델링되고, 실험적으로, GAT의 attention보다 일반적인 attention(scaled dot product attention<sup>[[13]](#footnote_13)</sup>)이 더 좋은 성능을 보여, 이를 사용했습니다.
 
