@@ -9,8 +9,8 @@
     * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
     * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
     * [Latent ODEs](paper-review/2022-spring/NeurIPS-2020-LatentODE.md)
-
-
+    * [G-Meta](paper-review/2022-spring/G-Meta.md)
+    
 ## How to contribute  
 
 * [How to contribute?](how-to-contribute.md)  
