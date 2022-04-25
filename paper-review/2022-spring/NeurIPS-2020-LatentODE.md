@@ -12,7 +12,7 @@ description: >-
 
 
 
-### **1. Problem Definition**
+## **1. Problem Definition**
 
 > 시계열 데이터를 다루는 Deep learning에 **미분방정식 (Ordinary Differential Equation)** 을 접목시키자!
 
@@ -22,7 +22,7 @@ description: >-
 
 
 
-### **2. Motivation**
+## **2. Motivation**
 
 > 기존 시계열 데이터를 다루는 `RNN`은 **irregurlarly-sampled time series data**를 잘 fitting하지 못한다!
 
@@ -47,9 +47,9 @@ description: >-
 
 
 
-### **3. Method**
+## **3. Method**
 
-> #### **Preliminaries**: What are RNN, Nerual ODE, Variational Autoencoder?
+> ### **Preliminaries**: What are RNN, Nerual ODE, Variational Autoencoder?
 
 논문에서 제안한 방법론을 이해하기 위해서는 `RNN`, `Neural Ordinary Differential Equations`, 그리고 `Variational Autoencoder`의 개념을 알고 있어야 합니다.
 
@@ -111,7 +111,7 @@ Variational Autoencoder(`VAE`)는 측정 불가한 분포를 갖는 어떤 잠�
 
 
 
-> #### **ODE-RNN**
+> ### **ODE-RNN**
 
 앞서 설명드린 바와 같이, `ODE-RNN`은 `RNN`의 **discrete한 hidden layer에 ODE를 통해 continuous한 정보**를 담게 하는 모델입니다.
 
@@ -141,7 +141,7 @@ _RNN의 **Discrete한 layer** 사이에 **continuous한 하나의 ODE**로 **모
 
 
 
-> #### **Latent ODEs**
+> ### **Latent ODEs**
 
 앞서 소개한 `RNN`이나 `ODE-RNN`은 **autoregressive model**이라고 합니다. Autoregressive model은 다음 결과가 이전 결과에 영향을 받는 모델을 의미하는데, train이 쉽고 빠른 prediction이 가능하게 합니다.
 
@@ -183,7 +183,7 @@ _`VAE`의 encoder로 `ODE-RNN`을 사용하고, decoder로 `ODE`를 사용해 **
 
 
 
-> #### **Latent ODE vs. ODE-RNN**
+> ### **Latent ODE vs. ODE-RNN**
 
 저자들은 autoregressive modle은 dynamics가 hidden state update에 따라 implicit하게 encode 된다고 하면서 이 점이 모델에 대한 해석을 어렵게 한다고 합니다.
 
@@ -194,11 +194,11 @@ _`VAE`의 encoder로 `ODE-RNN`을 사용하고, decoder로 `ODE`를 사용해 **
 
 
 
-### **4. Experiment**
+## **4. Experiment**
 
 > 본 논문에서 저자들은 다양한 baseline과 실험을 통해 `ODE-RNN`과 `Latent ODEs`를 비교했습니다.
 
-#### **Experiment setup**
+### **Experiment setup**
 
 * Dataset
   * Toy dataset (extrapolation)
@@ -224,7 +224,7 @@ _`VAE`의 encoder로 `ODE-RNN`을 사용하고, decoder로 `ODE`를 사용해 **
 
 
 
-#### **Result**
+### **Result**
 
 * Toy dataset
 
@@ -293,7 +293,7 @@ Extrapolation에는 Encoder-Decoder 모델은 같은 결과가 나왔으나 Auto
 
 
 
-### **5. Conclusion**
+## **5. Conclusion**
 
 > **Summary**
 
