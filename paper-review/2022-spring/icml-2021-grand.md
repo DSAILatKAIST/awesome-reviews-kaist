@@ -32,8 +32,8 @@ $$h = -g \nabla x$$
 확산률 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;g)는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\Omega) 전체에 걸쳐 균일할(homogeneous) 경우 스칼라 상수로 표현됩니다. 만약 위치에 따라 분균일할 (inhomogeneous)할 경우, scalar-valued 함수(isotropic) 또는 matrix-valued 함수(anisotropic)로 표현됩니다.
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164886064-9c9e5324-878b-45ec-b494-a35add32031c.jpg" style="width:50%">
-<figcaption align="center">그림 1 - Inhomogeneous Diffusivity<sup><a href="#footnote_2">[2]</a><sup></figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164886064-9c9e5324-878b-45ec-b494-a35add32031c.jpg" style="width:50%"><br>
+<figcaption align="center" style="font-size:75%">그림 1 - Inhomogeneous Diffusivity<sup><a href="#footnote_2">[2]</a><sup></figcaption>
 </figure>
 <br>
 
@@ -42,7 +42,7 @@ $$h = -g \nabla x$$
 $$\frac{\partial x(u, t)}{\partial t} = \text{div}[g(u, x(u,t), t) \nabla x(u,t)]$$
 $$\text{initial condition: }x(u,t) = x_{0}(t)$$
 
-* div: divergence<sup>[[3]](#footnote_3)</sup>, 즉 벡터장에서 정의되는 미분연산자
+> div: divergence<sup>[[3]](#footnote_3)</sup>, 즉 벡터장에서 정의되는 미분연산자
 
 따라서, 균일한 diffisivity를 갖는다고 가정할 때, 열확산 방정식을 다음과 같이 나타낼 수 있습니다.
 
@@ -66,16 +66,16 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x $$
 * 얕은 구조 (Depth)와 Oversmoothing<sup>[[5]](#footnote_5)</sup>: Oversmoothing은 GNN의 layer의 수(Depth)가 증가할수록 노드의 embedding이 점점 유사해지는 현상을 말합니다. 이로 인해, 대부분의 GNN은 깊은 신경망을 쌓지 못하고, 얕은 구조를 가지게 됩니다.
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164888534-446a5482-05ff-4af2-9b77-adea03f24295.png" style="width:100%">
-<figcaption align="center">그림 2 - GCN 1,2,3,4,5 layer를 통해 얻은 Zachary’s karate club network data의 노드 Embedding</figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164888534-446a5482-05ff-4af2-9b77-adea03f24295.png" style="width:100%"><br>
+<figcaption align="center" style="font-size:75%">그림 2 - GCN 1,2,3,4,5 layer를 통해 얻은 Zachary’s karate club network data의 노드 Embedding</figcaption>
 </figure>
 <br>
 
 * Bottleneck과 Over-squashing<sup>[[6]](#footnote_6)</sup>: Bottleneck은 GNN의 layer가 증가할수록 기하급수적으로 늘어나는 정보를 고정된 크기의 벡터로 압축(squashing)시키는 것을 의미하며, 이로 인해 먼 거리의 노드와의 메세지 전달을 용이하지 못하게 만드는 현상을 의미합니다.
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164957255-1708ee23-8741-4985-a7e7-6722b993a64a.png" style="width:100%">
-<figcaption align="center">그림 3 - GNN에서의 Bottleneck & Over-squashing</figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164957255-1708ee23-8741-4985-a7e7-6722b993a64a.png" style="width:100%"><br>
+<figcaption align="center" style="font-size:75%">그림 3 - GNN에서의 Bottleneck & Over-squashing</figcaption>
 </figure>
 <br>
 
@@ -93,8 +93,8 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x $$
 * 노드 특징 행렬의 내적은 일반적인 행렬의 내적과 같습니다. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;<\mathbf{X},&space;\mathbf{Y}>=Tr(\mathbf{X}^{\intercal}&space;\mathbf{Y})=\sum_{i=1}^{n}{\mathbf{x}^{(i)}&space;\mathbf{y}^{(j)}})
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164894955-cd3eca64-afad-4bc7-a61a-8b320565fed3.png" style="width:50%">
-<figcaption align="center">그림 4 - Matrix Inner Product</figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164894955-cd3eca64-afad-4bc7-a61a-8b320565fed3.png" style="width:50%"><br>
+<figcaption align="center" style="font-size:75%">그림 4 - Matrix Inner Product</figcaption>
 </figure>
 <br>
 
@@ -103,11 +103,8 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x $$
     * 무방향 그래프이므로 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;w_{ij}&space;=&space;w_{ji})
     * self-edge가 없음 (i.e. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;(i,&space;i)&space;\notin&space;\mathcal{E}))
     * ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;w_{ij}=0&space;\text{&space;if&space;}&space;(i,&space;j)&space;\notin&space;\mathcal{E})
-* 간선 특징(feature) 텐서: $$\mathfrak{X} = \begin{bmatrix}
-\mathcal{X}^{(1,1)} & \cdots & \mathcal{X}^{(1,n)}\\
-\vdots & \ddots & \vdots\\
-\mathcal{X}^{(n,1)} & \cdots & \mathcal{X}^{(n,n)}
-\end{bmatrix} \in \mathbb{R}^{n \times n \times k}$$
+* 간선 특징(feature) 텐서: 
+    * $$\mathfrak{X} = \begin{bmatrix} \mathcal{X}^{(1,1)} & \cdots & \mathcal{X}^{(1,n)}\\ \vdots & \ddots & \vdots\\ \mathcal{X}^{(n,1)} & \cdots & \mathcal{X}^{(n,n)} \end{bmatrix} \in \mathbb{R}^{n \times n \times k}$$
     * ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathcal{X}^{(i,j)}&space;=&space;-&space;\mathcal{X}^{(j,i)})
 * 간선 특징 텐서의 내적은 다음과 같이 정의합니다. 여기서 1/2은 무방향 그래프이므로 중복된 합을 피하기 위해 사용(본 논문에서는 upper triangle matrix만 더하는 방향으로 표기: ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_{i>j}^{n}) ), ![](https://latex.codecogs.com/svg.image?W_{ij})는 간선의 유무를 나타내기 위한 Indicator로 사용한 것으로 보입니다.
 
@@ -116,8 +113,8 @@ $$\langle \langle \mathfrak{X}, \mathfrak{Y} \rangle \rangle = \frac{1}{2} \sum_
 #### 2-2-2. 미분연산자 (Differential Operator)<sup>[[8]](#footnote_8)</sup>
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164896462-0f518cf5-7f5a-466e-b932-5c7a9322bc83.png" style="width:100%">
-<figcaption align="center">그림 5 - Differential Operators on Graph</figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164896462-0f518cf5-7f5a-466e-b932-5c7a9322bc83.png" style="width:100%"><br>
+<figcaption align="center" style="font-size:75%">그림 5 - Differential Operators on Graph</figcaption>
 </figure>
 <br>
 
@@ -137,64 +134,65 @@ $$\frac{\partial \mathbf{X}(t)}{\partial t}=\text{div}[\mathbf{G}(\mathbf{X}(t),
 여기서, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\odot)은 hadamard product (i.e. element-wise 곱)으로 정의됩니다. 갑자기 hadamard product이 등장한 이유는 graident의 결과가 3d tensor가 되고, divergence는 벡터장에서 정의되는 미분연산자이기 때문입니다. 행렬 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))는 right-stochastic 인 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{W}&space;\odot&space;\mathbf{G}) (즉, 각 행의 합이 1)와 같은 형태를 선택합니다(노드 간에 이동하는 정보가 사라지거나 생겨나지 않게 하기 위해 right-stochastic 행렬을 도입하는 것으로 보입니다). 가장 단순한 케이스를 위해 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G}(\mathbf{X}(t),&space;t))가 초기 노드 특성 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{X})에만 영향을 받는다고 가정하면 (i.e. ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{G})는 시간불변하고, right-stochastic하다), 이는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\textstyle&space;\sum_j{w_{ij}G_{ij}}=1) for all ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;i) 의미합니다. 그러므로 우리는 ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;G_{ij}=1/d_{i}), ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;d_{i}=\textstyle&space;\sum_{j=1}^{n}{w_{ij}})인 상황을 살펴보겠습니다.
 
 $$\mathbf{G}=\begin{bmatrix}
-1/d_1 & \cdots & 1/d_1\\
-\vdots & \ddots & \vdots\\
-1/d_n & \cdots & 1/d_n\\
-\end{bmatrix} \in \mathbb{R}^{n \times n}$$
+    1/d_1 & \cdots & 1/d_1\\
+    \vdots & \ddots & \vdots\\
+    1/d_n & \cdots & 1/d_n
+\end{bmatrix}
+\in \mathbb{R}^{n \times n}$$
 
 $$\mathbf{W}=\begin{bmatrix}
-w_{11} & \cdots & w_{1n}\\
-\vdots & \ddots & \vdots\\
-w_{n1} & \cdots & w_{nn}\\
+    w_{11} & \cdots & w_{1n}\\
+    \vdots & \ddots & \vdots\\
+    w_{n1} & \cdots & w_{nn}
 \end{bmatrix} \in \mathbb{R}^{n \times n}$$
 
 $$\nabla \mathbf{X}(t)=\begin{bmatrix}
-0 & \mathbf{x}^{(2)} - \mathbf{x}^{(1)} & \cdots & \mathbf{x}^{(n)} - \mathbf{x}^{(1)}\\
-\vdots & \vdots & \ddots & \vdots\\
-\mathbf{x}^{(1) - \mathbf{x}^{(n)}} & \mathbf{x}^{(2)} - \mathbf{x}^{(n)}& \cdots & 0\\
+    0 & \mathbf{x}^{(2)} - \mathbf{x}^{(1)} & \cdots & \mathbf{x}^{(n)} - \mathbf{x}^{(1)}\\
+    \vdots & \vdots & \ddots & \vdots\\
+    \mathbf{x}^{(1) - \mathbf{x}^{(n)}} & \mathbf{x}^{(2)} - \mathbf{x}^{(n)}& \cdots & 0
 \end{bmatrix} \in \mathbb{R}^{n \times n \times d} \text{, where } \mathbf{x}^{(i)} \in \mathbb{R}^{d}$$
 
 $$\mathbf{G}(\mathbf{X}(t), t) \odot \nabla \mathbf{X}(t) = \begin{bmatrix}
-0 & \frac{1}{d_1}(\mathbf{x}^{(2)} - \mathbf{x}^{(1)}) & \cdots & \frac{1}{d_1}(\mathbf{x}^{(n)} - \mathbf{x}^{(1)})\\
-\vdots & \vdots & \ddots & \vdots\\
-\frac{1}{d_n}(\mathbf{x}^{(1)} - \mathbf{x}^{(n)}) & \frac{1}{d_n}(\mathbf{x}^{(2)} - \mathbf{x}^{(n)}) & \cdots & 0
+    0 & \frac{1}{d_1}(\mathbf{x}^{(2)} - \mathbf{x}^{(1)}) & \cdots & \frac{1}{d_1}(\mathbf{x}^{(n)} - \mathbf{x}^{(1)})\\
+    \vdots & \vdots & \ddots & \vdots\\
+    \frac{1}{d_n}(\mathbf{x}^{(1)} - \mathbf{x}^{(n)}) & \frac{1}{d_n}(\mathbf{x}^{(2)} - \mathbf{x}^{(n)}) & \cdots & 0
 \end{bmatrix} \in \mathbb{R}^{n \times n \times d}$$
 
 $$\begin{equation*}
-\begin{split}
-\text{div}[\mathbf{G}(\mathbf{X}(t), t) \odot \nabla \mathbf{X}(t)] &= \begin{bmatrix}
-0 + \frac{w_{12}}{d_1}(\mathbf{x}^{(2)} - \mathbf{x}^{(1)}) + \cdots + \frac{w_{1n}}{d_1}(\mathbf{x}^{(n)} - \mathbf{x}^{(1)})\\
-\vdots\\
-\frac{w_{n1}}{d_n}(\mathbf{x}^{(1)} - \mathbf{x}^{(n)}) + \frac{w_{n2}}{d_n}(\mathbf{x}^{(2)} - \mathbf{x}^{(n)}) + \cdots + 0
-\end{bmatrix} \in \mathbb{R}^{n \times d}\\
-&=\begin{bmatrix}
-\frac{1}{d_1}(\red{w_{11}\mathbf{x^{(1)}}} + w_{12}\mathbf{x^{(2)}} + \cdots + w_{1n}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(1)}}{d_1}(\red{w_{11}} + w_{12} + \cdots + w_{1n})\\
-\vdots\\
-\frac{1}{d_n}(w_{n1}\mathbf{x^{(1)}} + w_{n2}\mathbf{x^{(2)}} + \cdots + \red{w_{nn}\mathbf{x^{(n)}}}) - \frac{\mathbf{x}^{(n)}}{d_n}(w_{n1} + w_{n2} + \cdots + \red{w_{nn}})
-\end{bmatrix}\\
-&=\begin{bmatrix}
-\frac{1}{d_1}(w_{11}\mathbf{x^{(1)}} + w_{12}\mathbf{x^{(2)}} + \cdots + w_{1n}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(1)}}{d_1}d_1\\
-\vdots\\
-\frac{1}{d_n}(w_{n1}\mathbf{x^{(1)}} + w_{n2}\mathbf{x^{(2)}} + \cdots + w_{nn}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(n)}}{d_n}d_n
-\end{bmatrix}\\
-&=\mathbf{D}^{-1} \mathbf{W} \mathbf{X} - \mathbf{X}=(\mathbf{D}^{-1} \mathbf{W} - \mathbf{I}) \mathbf{X} = (\mathbf{A}(\mathbf{X}(t)) - \mathbf{I})\mathbf{X}(t) = \mathbf{\bar{A}}(\mathbf{X}(t))\mathbf{X}(t)
-\end{split}
+    \begin{split}
+        \text{div}[\mathbf{G}(\mathbf{X}(t), t) \odot \nabla \mathbf{X}(t)] &= \begin{bmatrix}
+            0 + \frac{w_{12}}{d_1}(\mathbf{x}^{(2)} - \mathbf{x}^{(1)}) + \cdots + \frac{w_{1n}}{d_1}(\mathbf{x}^{(n)} - \mathbf{x}^{(1)})\\
+            \vdots\\
+            \frac{w_{n1}}{d_n}(\mathbf{x}^{(1)} - \mathbf{x}^{(n)}) + \frac{w_{n2}}{d_n}(\mathbf{x}^{(2)} - \mathbf{x}^{(n)}) + \cdots + 0
+        \end{bmatrix} \in \mathbb{R}^{n \times d}\\
+        &=\begin{bmatrix}
+            \frac{1}{d_1}(\red{w_{11}\mathbf{x^{(1)}}} + w_{12}\mathbf{x^{(2)}} + \cdots + w_{1n}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(1)}}{d_1}(\red{w_{11}} + w_{12} + \cdots + w_{1n})\\
+            \vdots\\
+            \frac{1}{d_n}(w_{n1}\mathbf{x^{(1)}} + w_{n2}\mathbf{x^{(2)}} + \cdots + \red{w_{nn}\mathbf{x^{(n)}}}) - \frac{\mathbf{x}^{(n)}}{d_n}(w_{n1} + w_{n2} + \cdots + \red{w_{nn}})
+        \end{bmatrix}\\
+        &=\begin{bmatrix}
+            \frac{1}{d_1}(w_{11}\mathbf{x^{(1)}} + w_{12}\mathbf{x^{(2)}} + \cdots + w_{1n}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(1)}}{d_1}d_1\\
+            \vdots\\
+            \frac{1}{d_n}(w_{n1}\mathbf{x^{(1)}} + w_{n2}\mathbf{x^{(2)}} + \cdots + w_{nn}\mathbf{x^{(n)}}) - \frac{\mathbf{x}^{(n)}}{d_n}d_n
+        \end{bmatrix}\\
+        &=\mathbf{D}^{-1} \mathbf{W} \mathbf{X} - \mathbf{X}=(\mathbf{D}^{-1} \mathbf{W} - \mathbf{I}) \mathbf{X} = (\mathbf{A}(\mathbf{X}(t)) - \mathbf{I})\mathbf{X}(t) = \mathbf{\bar{A}}(\mathbf{X}(t))\mathbf{X}(t)
+    \end{split}
 \end{equation*}$$
 
 이 때, ![](https://latex.codecogs.com/svg.image?\inline&space;\small&space;\mathbf{A}(\mathbf{X}(t))=\mathbf{A})로 두면, 선형 확산 방정식을 얻을 수 있고 이 방정식의 해석적 해를 다음과 같이 얻을 수 있습니다. 
 
 $$\mathbf{X}(t)=e^{\mathbf{\bar{A}}t}\mathbf{X}(0)$$
 
-이를 테일러 급수로 근사한 것이 heat kernal pagerank라고 볼 수 있습니다.<sup>[[9]](#footnote_9)</sup><sup>[[10]](#footnote_10)</sup>
+이를 테일러 급수로 근사한 것이 heat kernal pageRank라고 볼 수 있습니다.<sup>[[9]](#footnote_9)</sup><sup>[[10]](#footnote_10)</sup>
 
-저자들은 발표한 Youtube 영상에 따르면, GRAND와 Pagerank의 유사성 및 차이점을 아래와 같이 언급했습니다.<sup>[[11]](#footnote_11)</sup> 
+저자들은 발표한 Youtube 영상에 따르면, GRAND와 PageRank의 유사성 및 차이점을 아래와 같이 언급했습니다.<sup>[[11]](#footnote_11)</sup> 
 > This idea that you can also have diffusion in a completely discrete domain and in that case the most common example is probably google's pagerank and the formulation that we're most familiar with from the gnn community is multiplying laplacian by some sort of feature matrix.
 
 본 논문에서는 diffusivity를 attention matrix로 가정하여, 아래와 같은 수식을 도출합니다.
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164957395-cd6859bf-9197-45a1-9a63-40c42f907915.png" style="width:75%">
-<figcaption align="center">그림 6 - Diffusion Equation on Graph</figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164957395-cd6859bf-9197-45a1-9a63-40c42f907915.png" style="width:75%"><br>
+<figcaption align="center" style="font-size:75%">그림 6 - Diffusion Equation on Graph</figcaption>
 </figure>
 <br>
 
@@ -205,18 +203,18 @@ $$\mathbf{X}(t)=e^{\mathbf{\bar{A}}t}\mathbf{X}(0)$$
 $$\frac{\mathbf{x}_{i}^{(k+1)} - \mathbf{x}_{i}^{(k)}}{\tau}=\sum_{j:(i,j) \in \mathcal{E}} {a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)})(\mathbf{x}_{j}^{\red{(k)}} - \mathbf{x}_{i}^{(k)})}$$
 
 $$\begin{equation*}
-\begin{split}
-\Leftrightarrow \mathbf{X}^{(k+1)} &= ((1-\tau)\mathbf{I} + \tau \mathbf{A}(\mathbf{X}^{(k)})) \mathbf{X}^{(k)}\\
-&=\mathbf{Q}^{(k)} \mathbf{X}^{(k)}
-\end{split}
+    \begin{split}
+        \Leftrightarrow \mathbf{X}^{(k+1)} &= ((1-\tau)\mathbf{I} + \tau \mathbf{A}(\mathbf{X}^{(k)})) \mathbf{X}^{(k)}\\
+        &=\mathbf{Q}^{(k)} \mathbf{X}^{(k)}
+    \end{split}
 \end{equation*}$$
 
 $$\begin{equation*}
 \text{, where } q_{ij}^{(k)}= 
     \begin{cases}
-    1-\tau \displaystyle \sum_{l:(i,l) \in \mathcal{E}} a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & i=j\\
-    \tau a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
-    0 & \text{otherwise}
+        1-\tau \displaystyle \sum_{l:(i,l) \in \mathcal{E}} a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & i=j\\
+        \tau a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
+        0 & \text{otherwise}
     \end{cases} 
 \end{equation*}$$
 
@@ -225,8 +223,8 @@ $$\begin{equation*}
 $$\begin{equation*}
 q_{ij}^{(k)}= 
     \begin{cases}
-    a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
-    0 & \text{otherwise}
+        a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
+        0 & \text{otherwise}
     \end{cases} 
 \end{equation*}$$
 
@@ -265,10 +263,10 @@ $$a(\mathbf{X}_{i}, \mathbf{X}_{j})=\text{softmax} \left( \frac{(\mathbf{W}_{K} 
 
 $$
 \begin{equation}
-\begin{split}
-\frac{\partial}{\partial t}\mathbf{X} &= (\mathbf{A}(\mathbf{X}) - \mathbf{I}) \mathbf{X} = \mathbf{\bar{A}}(\mathbf{X})\mathbf{X}\\
-\Leftrightarrow \frac{\partial \mathbf{X}_{i}(t)}{\partial t} &= \sum_{j:(i,j) \in \mathcal{E \text{ or } E^{'}}}{a(\mathbf{X}_{i}(t), \mathbf{X}_{j}(t))(\mathbf{X}_{j}(t) - \mathbf{X}_{i}(t))}
-\end{split}
+    \begin{split}
+        \frac{\partial}{\partial t}\mathbf{X} &= (\mathbf{A}(\mathbf{X}) - \mathbf{I}) \mathbf{X} = \mathbf{\bar{A}}(\mathbf{X})\mathbf{X}\\
+        \Leftrightarrow \frac{\partial \mathbf{X}_{i}(t)}{\partial t} &= \sum_{j:(i,j) \in \mathcal{E \text{ or } E^{'}}}{a(\mathbf{X}_{i}(t), \mathbf{X}_{j}(t))(\mathbf{X}_{j}(t) - \mathbf{X}_{i}(t))}
+    \end{split}
 \end{equation}$$
 
 Attention weight 행렬을 정의하는 방식과 이를 활용하는 방식에 따라 3가지 변형 모델을 만들 수 있습니다.
@@ -297,8 +295,8 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 ### **4-1. Node Classification**
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png" style="width:75%">
-<figcaption align="center">표 1 - Data Summary</figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png" style="width:75%"><br>
+<figcaption align="center" style="font-size:75%">표 1 - Data Summary</figcaption>
 </figure>
 <br>
 
@@ -309,8 +307,8 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 * Linear Diffusion PDE: LanczosNet의 2개의 변형
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png">
-<figcaption align="center">그림 7 - Node Classification Results (Planetoid/Random split)</figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png"><br>
+<figcaption align="center" style="font-size:75%">그림 7 - Node Classification Results (Planetoid/Random split)</figcaption>
 </figure>
 <br>
 
@@ -319,8 +317,8 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 ### **4-2. Depth**
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png" style="width:75%">
-<figcaption align="center">그림 8 - Depth</figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png" style="width:75%"><br>
+<figcaption align="center" style="font-size:75%">그림 8 - Depth</figcaption>
 </figure>
 <br>
 
@@ -329,8 +327,8 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 ### **4-3. Choice of dicretisation scheme**
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png" style="width:100%">
-<figcaption align="center">그림 9 - Different Solver Effects</figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png" style="width:100%"><br>
+<figcaption align="center" style="font-size:75%">그림 9 - Different Solver Effects</figcaption>
 </figure>
 <br>
 
@@ -347,8 +345,8 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 ### **4-4. Diffusion on MNIST Image Data Experiments**
 
 <figure align="center">
-<img src="https://user-images.githubusercontent.com/40286691/164975904-aefb0bb3-3f0f-4eb1-b595-6466a15181f3.png" style="width:75%">
-<figcaption align="center">그림 10 - Image Pixel Boundary Detection</figcaption>
+<img src="https://user-images.githubusercontent.com/40286691/164975904-aefb0bb3-3f0f-4eb1-b595-6466a15181f3.png" style="width:75%"><br>
+<figcaption align="center" style="font-size:75%">그림 10 - Image Pixel Boundary Detection</figcaption>
 </figure>
 <br>
 
