@@ -181,8 +181,9 @@ Model에서의 퍼센티지는 Undersample 관점에서 해석하여, training �
 ## **Author Information**  
 
 * Sukwon Yun (윤석원) 
-    * Master Student in ISySE, KAIST
+    * Master Student in ISySE, KAIST ([DSAIL](http://dsail.kaist.ac.kr/))
     * Interested in **GNN, Differential Equations on NN, Long-Tail Problem on NN**
+    * Contact: swyun@kaist.ac.kr 
 
 ## **6. Reference & Additional materials**  
 - Paper: [https://arxiv.org/abs/1911.07532](https://arxiv.org/abs/1911.07532)
