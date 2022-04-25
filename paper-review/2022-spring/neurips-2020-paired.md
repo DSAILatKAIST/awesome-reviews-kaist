@@ -70,8 +70,6 @@ PAIRED 알고리즘의 성능과 비교를 위한 **baseline algorithm**으로 '
 
 Statistics of generated environments는 4가지 metrics로 측정했다. (a)는 maze world 내의 block의 수, (b)는 시작점 부터 목표점까지의 거리, (c)는 시작점과 목표점 간의 최단 경로의 길이, (d)는 agent가 maze world의 최단경로를 선택하여 문제를 해결했는지를 나타낸다. 각각의 plot은 5개의 random seed 하에 측정됐다. 결과를 해석해보자면, DR은 agent의 학습 프로세스에 과하게 쉬운 문제만을 제공했기 때문에 metrics들이 fixed or vary randomly 하게만 나타났으며, MA는 length of maze that agents are able to solve가 DR에서의 그것과 거의 동일하게 나타났다는 점에서 agent의 성능을 향상 시키지 못했다고 해석할 수 있다. 그에 반해 PAIRED는 3개의 알고리즘 중 유일하게 passable path length를 지속적으로 향상시킨 알고리즘이며 이를 통해 agent가 타 알고리즘에서 학습된 agent들보다 더 복잡한 문제를 해결 할 수 있었다.
 
-<img src=".gitbook/2022-spring-assets/heemang_park_1/6.png">
-
 ![6](/.gitbook/2022-spring-assets/heemang_park_1/6.png)
 
 (a)와 (b)는 간단한 out-of-distribution generalization을 나타내고, (c)는 random sampling으로는 생성될 수 없는 특정한 configuration을 만드는 within-distribution generalization을 나타내고, (d)와 (e)와 (f)는 사람이 직접 설계한 어려운 task이다. 직관적으로 plot을 살펴보면 알 수 있듯이, task의 난이도가 상승할수록 baseline algorithm based agent들의 성능은 떨어지고, PAIRED algorithm based agent의 성능은 양호한 수준에서 유지됨을 알 수 있다.
