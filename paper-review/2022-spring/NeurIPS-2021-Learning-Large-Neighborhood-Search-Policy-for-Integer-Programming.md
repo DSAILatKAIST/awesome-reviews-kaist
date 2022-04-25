@@ -65,7 +65,7 @@ Policy network는 GNN 기반으로 모든 variable들이 같은 parameter들을 
 
 위 그림의 예시를 보면, bipartite graph로 state를 나타낸 것을 볼 수 있습니다.
 
-여기서 biparite graph ![](https://latex.codecogs.com/svg.image?\mathcal{G}=(\mathcal{V, C},A))로 구성되어있는데 ![](https://latex.codecogs.com/svg.image?\mathcal{V})는 변수들의 갯수만큼의 노드를 의미하고  각 노드들은 ![](https://latex.codecogs.com/svg.image?d_v)차원의 노드 features를 가지고 있습니다. ![](https://latex.codecogs.com/svg.image?\mathcal{C})는 제약식의 갯수만큼의 노드를 의미하고 각 노드들은 ![](https://latex.codecogs.com/svg.image?d_c)차원의 노드 features를 가지고 있습니다. 마지막으로 A는 노드 ![](https://latex.codecogs.com/svg.image?v_i)와 ![](https://latex.codecogs.com/svg.image?c_j)간의 weight를 나타내는 edge로 실제 IP문제에서 incidence matrix역할을 합니다. 즉 위의 예시에서는 4개의 변수와 3개의 제약식이 있으므로 ![](https://latex.codecogs.com/svg.image?A)![](https://latex.codecogs.com/svg.image?\in)![](https://latex.codecogs.com/svg.image?R^{4\times3}) 가 됩니다.
+여기서 biparite graph ![](https://latex.codecogs.com/svg.image?\mathcal{G}=(\mathcal{V,C},A))로 구성되어있는데 ![](https://latex.codecogs.com/svg.image?\mathcal{V})는 변수들의 갯수만큼의 노드를 의미하고  각 노드들은 ![](https://latex.codecogs.com/svg.image?d_v)차원의 노드 features를 가지고 있습니다. ![](https://latex.codecogs.com/svg.image?\mathcal{C})는 제약식의 갯수만큼의 노드를 의미하고 각 노드들은 ![](https://latex.codecogs.com/svg.image?d_c)차원의 노드 features를 가지고 있습니다. 마지막으로 A는 노드 ![](https://latex.codecogs.com/svg.image?v_i)와 ![](https://latex.codecogs.com/svg.image?c_j)간의 weight를 나타내는 edge로 실제 IP문제에서 incidence matrix역할을 합니다. 즉 위의 예시에서는 4개의 변수와 3개의 제약식이 있으므로 ![](https://latex.codecogs.com/svg.image?A)![](https://latex.codecogs.com/svg.image?\in)![](https://latex.codecogs.com/svg.image?R^{4\times3}) 가 됩니다.
 
 각 노드들의 embedding은 Graph Convolutional Network 구조를 이용하는데
 
