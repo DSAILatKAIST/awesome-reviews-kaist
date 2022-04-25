@@ -56,10 +56,9 @@ Graph Neural Network는 Graph를 input으로 받아서 Graph를 output으로 내
 저자들은 graph convolutional layer를 다음과 같이 정의하였다.
 
 > Given a graph $$\mathcal{G}=(\mathcal{V},\mathcal{E})$$ with nodes $$v_i \in \mathcal{V}$$ and edges $$e_{ij} \in \mathcal{E}$$, we define a graph layer convolutional layer following notation from (Glimer et al., 2017) as:
-
-$$\bold{m}_{ij}=\phi_e(\bold{h}_i^l,\bold{h}_j^l,a_{ij})$$
-$$\bold{m}_i=\sum_{j\in \mathcal{N}(i)} \bold{m}_{ij}$$
-$$\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$$
+> $$\bold{m}_{ij}=\phi_e(\bold{h}_i^l,\bold{h}_j^l,a_{ij})$$
+> $$\bold{m}_i=\sum_{j\in \mathcal{N}(i)} \bold{m}_{ij}$$
+> $$\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$$
 > 
 
 각 element에 대한 설명은 다음과 같다.
