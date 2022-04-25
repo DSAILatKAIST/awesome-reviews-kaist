@@ -47,4 +47,4 @@
 
 ***
 
-* [DSAIL Lab](https://dsail.kaist.ac.kr)
+* [KAIST ISysE](https://statistics.kaist.ac.kr/)
