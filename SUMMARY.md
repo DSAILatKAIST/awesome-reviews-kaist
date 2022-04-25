@@ -26,6 +26,7 @@
   * [Meta-learning Sparse Implicit Neural Representations](paper-review/2022-spring/neurips-2021-meta-learning-spare-implicit-neural-representations-eng.md)
   * [NIWT](paper-review/2022-spring/ECCV-2018-NIWT.md)
   * [GRAND](paper-review/2022-spring/icml-2021-grand.md)
+  * [GDE](paper-review/2022-spring/AAAI-2020-GDE.md)
 ## How to contribute
 * [How to contribute?](how-to-contribute.md)
 * [Review Format](paper-review/template.md)
