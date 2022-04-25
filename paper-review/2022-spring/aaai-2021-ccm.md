@@ -1,5 +1,5 @@
 ---
-description : Fu et al. / Towards Effective Context for Meta-Reinforcement Learning: an Approach based on Contrastive Learning / AAAI-2021  
+description : Fu et al. / Towards Effective Context for Meta-Reinforcement Learning- an Approach based on Contrastive Learning / AAAI-2021  
 ---
 
 # **Towards Effective Context for Meta-Reinforcement Learning: an Approach based on Contrastive Learning** 
