@@ -141,11 +141,11 @@ Training단계에서는 Q-actor-critic을 이용하여 policy 및 Q-value를 학
 
 <a href='https://ifh.cc/v-9h8fmT' target='_blank'><img src='https://ifh.cc/g/9h8fmT.png' border='0'></a> 
 
-위의 표는 각 데이터셋들에 대한 퍼포먼스를 비교한것이고 각각 50번의 테스트를 통한 objective value값의 평균과 분산을 나타낸 것입니다. ![](https://latex.codecogs.com/svg.image?SCIP^*, SCIP^{**})는 각각 500초 1000초 동안 돌렸을때를 의미합니다. 나머지 방법들은 200초동안의 시간제한을 두고 평가를 하였는데, 본 논문의 방법이 모든 방법론들에 비해 좋은 성능을 보이는 것을 확인할 수 있습니다.
+위의 표는 각 데이터셋들에 대한 퍼포먼스를 비교한것이고 각각 50번의 테스트를 통한 objective value값의 평균과 분산을 나타낸 것입니다. ![](https://latex.codecogs.com/svg.image?SCIP^*,SCIP^{**})는 각각 500초 1000초 동안 돌렸을때를 의미합니다. 나머지 방법들은 200초동안의 시간제한을 두고 평가를 하였는데, 본 논문의 방법이 모든 방법론들에 비해 좋은 성능을 보이는 것을 확인할 수 있습니다.
 
 <a href='https://ifh.cc/v-yODhDx' target='_blank'><img src='https://ifh.cc/g/yODhDx.jpg' border='0'></a> 
 
-위 테이블 표는 각각 원래 training했던 사이즈보다 2배, 4배의 문제를 푼 것의 퍼포먼스를 보여줍니다. 첫번째 행![](https://latex.codecogs.com/svg.image?SC_2, MIS_2, CA_2, MC_2)이 2배사이즈의 문제 두번째 행![](https://latex.codecogs.com/svg.image?SC_4, MIS_4, CA_4, MC_4)이 4배 사이즈의 문제에 대한 각 모델의 퍼포먼스를 보여줍니다. 문제의 사이즈가 커질수록 본 논문에서 제시한 방법론의 퍼포먼스가 좋으며 전체사이즈의 문제를 계속해서 1000초간 푼 ![](https://latex.codecogs.com/svg.image?SCIP^{**})보다 성능이 좋은 것을 확인할 수 있습니다.
+위 테이블 표는 각각 원래 training했던 사이즈보다 2배, 4배의 문제를 푼 것의 퍼포먼스를 보여줍니다. 첫번째 행![](https://latex.codecogs.com/svg.image?SC_2,MIS_2,CA_2,MC_2)이 2배사이즈의 문제 두번째 행![](https://latex.codecogs.com/svg.image?SC_4,MIS_4,CA_4,MC_4)이 4배 사이즈의 문제에 대한 각 모델의 퍼포먼스를 보여줍니다. 문제의 사이즈가 커질수록 본 논문에서 제시한 방법론의 퍼포먼스가 좋으며 전체사이즈의 문제를 계속해서 1000초간 푼 ![](https://latex.codecogs.com/svg.image?SCIP^{**})보다 성능이 좋은 것을 확인할 수 있습니다.
 
 즉 문제의 사이즈가 커지면 커질수록 작은 문제로 쪼개서 푸는 LNS방식이 제한된 시간내에 더 효율적인 것을 확인할 수 있고, 본 논문에서 제시한 방법론이 현재까지 나온 LNS 방식 중 가장 좋은 솔루션을 제시한다는 것을 확인할 수 있습니다.
 
