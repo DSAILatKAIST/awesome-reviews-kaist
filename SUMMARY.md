@@ -14,6 +14,7 @@
   * [FaceSight](paper-review/2022-spring/chi-2021-facesight.md)
   * [FNC](paper-review/2022-spring/WACV-2022-FNC.md)
   * [CITIES](paper-review/2022-spring/ICDM-2020-Cites.md)
+  * [LILAC](paper-review/2022-spring/LILAC.md)
 
 
 ## How to contribute
