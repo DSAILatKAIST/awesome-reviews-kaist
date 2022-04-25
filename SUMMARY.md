@@ -26,6 +26,7 @@
   * [Self-sup-Multi-View](paper-review/2022-spring/ICLR21-self-sup-information-theory.md)
   * [CCM](paper-review/2022-spring/aaai-2021-ccm.md)
   * [TesNet](paper-review/2022-spring/ICCV-2021-Interpretable-Image-Recognition-by-Constructing-Transparent-Embedding-Space.md)
+  * [Meta-learning Sparse Implicit Neural Representations](paper-review/2022-spring/neurips-2021-meta-learning-spare-implicit-neural-representations-eng.md)
   * [NIWT](paper-review/2022-spring/ECCV-2018-NIWT.md)
   
 ## How to contribute
