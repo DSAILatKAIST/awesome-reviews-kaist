@@ -1,23 +1,26 @@
-# Summary  
+# Table of contents
 
 * [DSAIL](README.md)
 
-## Paper Review  
+## Paper Review
 
-* [\[2022 Spring\] Paper Review](paper-review/README.md)    
-  * [TEST2](paper-review/2022-spring/test2.md)
-  * [BGNN](paper-review/2022-spring/bgnn.md)
-  * [Test](paper-review/2022-spring/test.md)
-  * [BGNN2](paper-review/2022-spring/bgnn2.md)
-  * [TEST3](paper-review/2022-spring/test3.md)
-  * [yeonjun](paper-review/2022-spring/yeonjun.md)
-  * [CITIES](paper-review/2022-spring/ICDM-2020-Cites.md)  
+* [\[2022 Spring\] Paper Review](paper-review/2022-spring-paper-review/README.md)
+  * [Template](paper-review/2022-spring-paper-review/template.md)
+  * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
+  * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
+  * [Latent ODEs](paper-review/2022-spring/NeurIPS-2020-LatentODE.md)
+  * [G-Meta](paper-review/2022-spring/G-Meta.md)
+  * [graph based 3d multi person pose estimation using multi view images](paper-review/2022-spring/iccv-2021-graph-based-3d-multi-person-pose-estimation-using-multi-view-images.md)
+  * [FaceSight](paper-review/2022-spring/chi-2021-facesight.md)
+  * [FNC](paper-review/2022-spring/WACV-2022-FNC.md)
+  * [CITIES](paper-review/2022-spring/ICDM-2020-Cites.md)
 
-## How to contribute  
 
-* [How to contribute?](how-to-contribute.md)  
+## How to contribute
 
-* [Review Format](paper-review/template.md)  
----  
+* [How to contribute?](how-to-contribute.md)
+* [Review Format](paper-review/template.md)
 
-* [DSAIL Lab](https://dsail.kaist.ac.kr/)  
+***
+
+* [DSAIL Lab](https://dsail.kaist.ac.kr)
