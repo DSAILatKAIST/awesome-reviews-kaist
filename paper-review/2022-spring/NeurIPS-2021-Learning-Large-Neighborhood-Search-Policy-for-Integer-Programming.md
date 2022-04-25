@@ -92,7 +92,8 @@ Training단계에서는 Q-actor-critic을 이용하여 policy 및 Q-value를 학
 
 만약 문제의 사이즈가 커진다면 action space가 매우 커질 것이고, 이는 즉 Q-network가 매우 sparse할 수 있으므로 Q-network를 바로 학습시키기에는 적절하지 않을 수 있습니다. 논문에서는 actor의 식에서의 ![](https://latex.codecogs.com/svg.image?log\pi_\theta(a_t|s_t))를 위에서 Action factorization에서 언급한대로
 
-![](https://latex.codecogs.com/svg.image?\pi(a_t|s_t) = \prod_{i=1}^n \pi^i(a_t^i|s_t))를 이용하여 다음과 같이 나타냅니다.
+![](https://latex.codecogs.com/svg.image?\pi(a_t|s_t)=\prod_{i=1}^n\pi^i(a_t^i|s_t))를 이용하여 다음과 같이 나타냅니다.
+
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/G20M99d/5.png" alt="5" border="0"></a>
 
 **clipping & masking**
