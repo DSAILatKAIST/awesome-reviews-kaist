@@ -75,7 +75,7 @@ Policy network는 GNN 기반으로 모든 variable들이 같은 parameter들을 
 
 다음과 같이 각 variable node와 constaint node들이 업데이트 됩니다. 
 
-여기서![](https://latex.codecogs.com/svg.image?V^{(k)},C^{(k)}) 는 각각 k번째 layer에서의 variable node들[![](https://latex.codecogs.com/svg.image?v_1^{(k)})![](https://latex.codecogs.com/svg.image?\cdots) ![](https://latex.codecogs.com/svg.image?v_n^k) ] constraint node들[![](https://latex.codecogs.com/svg.image?c_1^k) ![](https://latex.codecogs.com/svg.image?\cdots) ![](https://latex.codecogs.com/svg.image?c_n^k)]를 의미하고, LN, ![](https://latex.codecogs.com/svg.image?\sigma)![](https://latex.codecogs.com/svg.image?\cdot)는 layer normalization, tanh함수를 의미합니다.
+여기서![](https://latex.codecogs.com/svg.image?V^{(k)},C^{(k)}) 는 각각 k번째 layer에서의 variable node들[![](https://latex.codecogs.com/svg.image?v_1^{(k)})![](https://latex.codecogs.com/svg.image?\cdots) ![](https://latex.codecogs.com/svg.image?v_n^k) ] constraint node들[![](https://latex.codecogs.com/svg.image?c_1^k) ![](https://latex.codecogs.com/svg.image?\cdots) ![](https://latex.codecogs.com/svg.image?c_n^k) ]를 의미하고, LN, ![](https://latex.codecogs.com/svg.image?\sigma) (![](https://latex.codecogs.com/svg.image?\cdot))는 layer normalization, tanh함수를 의미합니다.
 
 이렇게 K iteration을 통해 최종 업데이트된 ![](https://latex.codecogs.com/svg.image?(V^{(k)}))에 해당되는 각 변수에 해당되는 노드들 [![](https://latex.codecogs.com/svg.image?v_1^k) ![](https://latex.codecogs.com/svg.image?\cdots) ![](https://latex.codecogs.com/svg.image?v_n^k)]은 마지막에 MLP layer와 sigmoid 활성함수를 통과하여 ![](https://latex.codecogs.com/svg.image?\pi^i(a_t^i|s_t)) 즉 i번째 변수가 선택될 확률이라는 policy와 같은 의미를 갖게 됩니다. 따라서 모든 변수들에 대해 ![](https://latex.codecogs.com/svg.image?MLP(v_i))를 통과시킨 뒤 베르누이 샘플링을 통하여 destroy할 subset들을 구성하게 됩니다.
 
