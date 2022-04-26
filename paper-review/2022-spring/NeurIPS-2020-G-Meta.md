@@ -2,11 +2,11 @@
 description: Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-2020
 ---
 
-# G-Meta
+# Graph Meta Learning via Local Subgraphs
 
 ## **1. Problem Definition**
 
-&#x20; G-Meta\[1]에서는 Meta-learning on graph 분야에서 local subgraphs를 활용하는 방법론을 제시한다. 저자는 왜 그래프에서 local subgraph를 활용하였는 지 이론적 근거를 함께 실험을 통해 subgraph가 어떤 정보를 담고 있는지 서술하고 있다.
+&#x20; G-Meta\[1]에서는 Meta-learning on graph 분야에서 local subgraphs를 활용하는 방법론을 제시한다. 저자는 **왜 그래프에서 local subgraph를 활용하였는 지**, 이론적 근거와 실험을 통해 제시하고 있다.
 
 ## **2. Motivation**
 
@@ -19,13 +19,13 @@ description: Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-202
 
 &#x20; Few-shot Learning은 적은 데이터를 가지고 효율적으로 학습하는 문제를 해결하기 위한 학습 방법이다.
 
-![Support Set - 아르마딜로, 천갑산](https://user-images.githubusercontent.com/37684658/164231019-868292bd-9cbf-4d15-87cb-24d621ed78d6.png)
+![Support Set - 아르마딜로, 천산갑](https://user-images.githubusercontent.com/37684658/164231019-868292bd-9cbf-4d15-87cb-24d621ed78d6.png)
 
-예를 들어, 위와 같이 사람에게 아르마딜로(Armadillo)와 천갑산(Pangolin)의 사진을 각각 2장씩 보여줬다고 생각해보자. 아마 대부분의 사람들은 아르마딜로와 천갑산이 생소할 것이다. 자, 이제 그 사람에게 다음의 사진을 한 장 더 보여주었다.
+예를 들어, 위와 같이 사람에게 아르마딜로(Armadillo)와 천산갑(Pangolin)의 사진을 각각 2장씩 보여줬다고 생각해보자. 아마 대부분의 사람들은 아르마딜로와 천산갑이 생소할 것이다. 자, 이제 그 사람에게 다음의 사진을 한 장 더 보여주었다.
 
-![Query Set - 아르마딜로? 천갑산?](https://user-images.githubusercontent.com/37684658/164224487-822f266a-98db-4d2d-9c41-7303fdccf1ff.png)
+![Query Set - 아르마딜로? 천산갑?](https://user-images.githubusercontent.com/37684658/164224487-822f266a-98db-4d2d-9c41-7303fdccf1ff.png)
 
-위 사진의 동물이 아르마딜로인지, 천갑산인지 맞춰보라고 하면, 너무나 쉽게 천갑산임을 자신있게 외칠 수 있을 것이다. 사람들은 어떻게 이렇게 적은 양의 사진을 보고도, 두 동물을 구분할 수 있는 능력을 가지게 되었을까? 사람과는 달리 기존 머신러닝(Machine Learning)은 저 두 동물을 구분하기 위해 많은 양의 사진을 보고 학습하여야 할 것이다. 만약 모델이 아르마딜로와 천갑산을 잘 구분할 수 있게 되었다고 하자. 이제 갑자기 아래 두 동물을 구분하라고 하면 어떻게 될까?
+위 사진의 동물이 아르마딜로인지, 천산갑인지 맞춰보라고 하면, 너무나 쉽게 천산갑임을 자신있게 외칠 수 있을 것이다. 사람들은 어떻게 이렇게 적은 양의 사진을 보고도, 두 동물을 구분할 수 있는 능력을 가지게 되었을까? 사람과는 달리 기존 머신러닝(Machine Learning)은 저 두 동물을 구분하기 위해 많은 양의 사진을 보고 학습하여야 할 것이다. 만약 모델이 아르마딜로와 천산갑을 잘 구분할 수 있게 되었다고 하자. 이제 갑자기 아래 두 동물을 구분하라고 하면 어떻게 될까?
 
 \
 
@@ -243,9 +243,10 @@ meta-testing, meta-validation에 쓰일 라벨을 5개씩 할당하고, 나머�
 
 ## **Author Information**
 
-* Kexin Huang
-  * Harvard University
-  * Graph Neural Network
+* **김성원 (Sungwon Kim)**
+  * [Data Science & Artificial Intelligence Laboratory (DSAIL)](http://dsail.kaist.ac.kr) at KAIST
+  * Graph Neural Network, Meta-Learning, Few-shot Learning
+  * [github](https://github.com/sung-won-kim)
 
 ## **6. Reference & Additional materials**
 
