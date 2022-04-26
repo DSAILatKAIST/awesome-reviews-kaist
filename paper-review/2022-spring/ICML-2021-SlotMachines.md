@@ -27,7 +27,7 @@ Maxwell Mbabilla Aladago / Slot Machines: Discovering Winning Combinations of Ra
 
 
 
-![image-20220424225705322](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220424225705322.png)
+<a href='https://ifh.cc/v-Bbt7TY' target='_blank'><img src='https://ifh.cc/g/Bbt7TY.png' border='0'></a>
 
 해당 방법론은 위 그림에서 오른쪽 그림에 해당됩니다. 복잡한 신경망에서 시작하여, 빨간색 점선에 대응되는 edge와 네모에 대응되는 node들을 모두 "가지치기"하고 난 후에는, 왼쪽 그림에서 빨간 점선을 제외한 것과 같은 비교적 간단한 형태의 sub-network만이 남게 됩니다. 이렇게 남은 sub-network는 모든 edge마다 특정한 weight를 가지고 있고, 이 weight는 업데이트되지 않습니다. 만약 "가지치기"를 하는 알고리즘이 적절하게 설계되었다면, sub-network는 weight optimization이 수행된 신경망과 유사한 성능을 보입니다.
 
