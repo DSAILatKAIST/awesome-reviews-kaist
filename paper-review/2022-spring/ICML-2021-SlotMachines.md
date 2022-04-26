@@ -48,7 +48,7 @@ Maxwell Mbabilla Aladago / Slot Machines: Discovering Winning Combinations of Ra
 
 이렇게 score를 기반으로 선택된 weight로 모든 connection이 구성되므로, 적절한 score를 선택하는 것은 신경망의 성능을 결정짓는 중요한 작업입니다. Slot Machines에서는 weight 값 자체를 학습하는 대신, 이 score값을 학습함으로써 최종적으로 적절한 weight를 선택하게 됩니다.
 
-![image-20220426212914760](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220426212914760.png)
+<a href='https://ifh.cc/v-4dAH17' target='_blank'><img src='https://ifh.cc/g/4dAH17.png' border='0'></a>
 
 Slot Machines가 학습을 반복하는 과정은 기존 신경망의 학습 과정과 마찬가지로 Forward Pass 와 Backward Pass가 반복됩니다. 위 그림에서 볼 수 있듯이, Forward Pass에서는 score값을 기반으로 weight를 선택하고, Backward Pass에서는 모든 score 값에 대한 update를 실시합니다.
 
@@ -156,7 +156,7 @@ Fully Connected layer : ![](https://latex.codecogs.com/svg.image?\lambda)= 0.1
 
   각 architecture에 대한 정보는 다음과 같습니다.
 
-  ![image-20220426224722277](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220426224722277.png)
+  <a href='https://ifh.cc/v-3yk0XZ' target='_blank'><img src='https://ifh.cc/g/3yk0XZ.png' border='0'></a>
 
   
 
@@ -176,7 +176,7 @@ Fully Connected layer : ![](https://latex.codecogs.com/svg.image?\lambda)= 0.1
 ### **Result**  
 1. K값에 따른 test accuracy 비교
 
-![image-20220426230627896](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220426230627896.png)
+<a href='https://ifh.cc/v-cn1BRg' target='_blank'><img src='https://ifh.cc/g/cn1BRg.png' border='0'></a>
 
 - 이는 baseline과의 직접적인 비교는 아니고, Slot Machines의 성능을 보여주기 위해 K=1일 때와 K=2일 때를 비교한 결과
 
@@ -192,7 +192,7 @@ Fully Connected layer : ![](https://latex.codecogs.com/svg.image?\lambda)= 0.1
 
    a. K값에 따른 test accuracy
 
-​	![image-20220426230552349](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220426230552349.png)
+​	<a href='https://ifh.cc/v-f8TKXG' target='_blank'><img src='https://ifh.cc/g/f8TKXG.png' border='0'></a>
 
 - Slot Machines에서 K의 값을 증가시키면서 실험을 진행
 - PS보다 성능이 우수한 GS forward pass 사용
@@ -206,7 +206,7 @@ Fully Connected layer : ![](https://latex.codecogs.com/svg.image?\lambda)= 0.1
 
 ​		b. training cost VS test accuracy
 
-![image-20220426230850965](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220426230850965.png)
+<a href='https://ifh.cc/v-MTYGLY' target='_blank'><img src='https://ifh.cc/g/MTYGLY.png' border='0'></a>
 
 - 전반적인 training cost는 Slot machine과 기존의 traditional optimization 방법론이 비슷한 정도이거나, 기존의 traditional optimization 방법론이 조금 더 효율적인 것을 확인
 
@@ -214,10 +214,9 @@ Fully Connected layer : ![](https://latex.codecogs.com/svg.image?\lambda)= 0.1
 
 3. Slot Machines를 이용한 Fine tuning 시 성능 향상 비교
 
-   ![image-20220426231101304](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220426231101304.png)
+   <a href='https://ifh.cc/v-Sorgp1' target='_blank'><img src='https://ifh.cc/g/Sorgp1.png' border='0'></a>
 
-   ![image-20220426231235236](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220426231235236.png)
-
+   <a href='https://ifh.cc/v-PlJ6z5' target='_blank'><img src='https://ifh.cc/g/PlJ6z5.png' border='0'></a>
 
 
 - Slot Machines 알고리즘은 기존 traditional optimization 방법론의 초기 weight 설정을 위해서도 사용 가능
@@ -231,7 +230,8 @@ Fully Connected layer : ![](https://latex.codecogs.com/svg.image?\lambda)= 0.1
 
 4. 기타 Slot Machines에 대한 Experiment
 
-   ![image-20220426231352167](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220426231352167.png)
+   <a href='https://ifh.cc/v-loFkrv' target='_blank'><img src='https://ifh.cc/g/loFkrv.png' border='0'></a>
+
 
    
 
