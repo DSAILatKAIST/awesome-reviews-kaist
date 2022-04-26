@@ -10,13 +10,14 @@ description : Xiangning Chen et al., / When Vision Transformer Outperform ResNet
 ![fig1](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa054ce54-ccde-4c75-a438-277e63bcc76a%2FUntitled.png?table=block\&id=6b4ec770-3591-48e1-b817-9c3e62dcdea5\&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d\&width=2000\&userId=\&cache=v2)
 
 * Convolution-free한 ViT와 MLPs만 사용한 모델의 경우 inductive bias의 부재로 인해 매우 많은 데이터를 학습시키거나 강력한 augmentation 전략을 사용해 이를 극복하고자 하였다.
-** Transformer가 NLP분야에 소개된 이후 vision에서의 활용이 있었고 hand-wired feature와 inductive bias가 없이 일반화 가능한 모델을 만들기 위해 상당한 양의 데이터를 투입시키는 방법이 활용되었다. 예를들어 pre-train ViT는 google의 private dataset으로 3억장의 labeled image를 학습하였다
+* Transformer가 NLP분야에 소개된 이후 vision에서의 활용이 있었고 hand-wired feature와 inductive bias가 없이 일반화 가능한 모델을 만들기 위해 상당한 양의 데이터를 투입시키는 방법이 활용되었다. 예를들어 pre-train ViT는 google의 private dataset으로 3억장의 labeled image를 학습하였다
 * ViT와 Mixer는 ResNet에 비해 기하적으로 아주 sharpe한 loss landsacpe를 가지고 있음을 알 수 있다. 이것은 학습-일반화 성능의 괴리가 생기는 원인으로 지목된다
 
 ## **2. Motivation**  
 
-* 학습된 landscape는 상당히 local minima에 sharpe한 모습을 보였지만 최근 제시된 sharpness-aware optimizer(SAM)을 활용한 결과 ViT와 MLP Mixer는 지도, 비지도, 적대적, 전이 등 다양한 학습 전략에서 상당한 성능 향상이 있음을 확인했다
-* Scratch부터 학습된다면 비슷한 size의 ViT와 ResNet에서 ViT가 ResNet의 성능을 뛰어넘을 수 있음을 확인했다
+* 학습된 landscape는 상당히 local minima에 sharpe한 모습을 보였지만 최근 제시된 sharpness-aware optimizer(SAM)을 활용한 결과 ViT와 MLP Mixer는 지도, 비지도, 적대적, 전이 등 다양한 학습 전략에서 상당한 성능 향상이 있음을 확인했다. Scratch부터 학습된다면 비슷한 size의 ViT와 ResNet에서 ViT가 ResNet의 성능을 뛰어넘을 수 있음을 확인했다
+* SGD,Adam과같은 first-order optimizer는 training error를 낮추는데에는 좋은 알고리즘이다. 하지만 이것은 더 고차원적인 목표인 주변의 loss도 낮게 만듦에는 신경쓰지 않는다. 따라서 최근의 연구인 SAM에서 이런 문제의 해결을 찾게 되었다. SAM optimizer는 single poing에서의 loss 최저보다 single poing 주변 모두가 loss가 낮아지도록 설계되었다. 이렇게 향상된 일반화 성능은 강력한 augmentation과 pre-training과정없이 ViT, MLPs가 ResNet을 뛰어넘을 수 있게 하였다
+* SAM을 사용한 후 model의 (특히 첫 몇 개의 레이어에서) [Hessian 고윳값](https://angeloyeo.github.io/2020/06/17/Hessian.html)이 작아지는 것을 확인했다(=볼록한 정도가 감소했다=sharpeness하지 않아졌다). Weight norm은 이것을 커지게 만들었고 이는 일반화에 자주 쓰이는 weight decay가 regularization에 크게 도움되지 않았을지 모른다는 가정을 가능하게 한다. SAM과 강력한 augmentation과의 비슷한 특성들을 살펴볼 것이다
 
 
 ## **3. Method**  
