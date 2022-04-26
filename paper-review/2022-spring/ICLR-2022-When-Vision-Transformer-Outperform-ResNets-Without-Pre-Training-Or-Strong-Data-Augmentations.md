@@ -39,15 +39,15 @@ You can attach the tables or figures, but you don't have to cover all the result
 
 ## **5. Conclusion**  
 
-Please summarize the paper.  
-It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
+* 이 연구는 지금까지 방대한 양의 데이터와 augmentation에 의존한 ViT, MLP의 기하적 loss 특징을 분석했다. 여기서 local minima 문제를 찾고 SAM을 도입해 flatten loss landscape로 일반화 성능의 향상을 끌어냈다. ViT는 어떠한 pre-training이 없다면 ResNet의 성능을 앞지를 수 있었다. 또한 SAM을 도입한 ViT의 attention map이 더욱 해석 가능하게 변화했다
 
 ---  
 ## **Author Information**  
 
 * 홍성래 SungRae Hong
     * Master's Course, KAIST Knowledge Service Engineering 
-    * Interested In : DL, SSL, Vision DL, Audio DL
+    * Interested In : SSL, Vision DL, Audio DL
+    * Contact : sun.hong@kaist.ac.kr
 
 ## **6. Reference & Additional materials**  
 
