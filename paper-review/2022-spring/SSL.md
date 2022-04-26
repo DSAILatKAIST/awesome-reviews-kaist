@@ -2,9 +2,7 @@
 description : Zhongzheng Ren / Not all unlabeled data are euqal : Learning to weight data in semi-superviwd learning / NeurIPS-2020  
 ---
 
-# ** Title **
-
-Not all unlabeled data are euqal : Learning to weight data in semi-superviwd learning 
+# Robust SSL 
 
 # 1. Problem Definition
 
