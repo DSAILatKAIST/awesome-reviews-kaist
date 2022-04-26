@@ -146,7 +146,7 @@ $$\frac{\partial \mathbf{X}(t)}{\partial t}=\text{div}[\mathbf{G}(\mathbf{X}(t),
 여기서, ![](https://latex.codecogs.com/svg.image?\odot)은 Hadamard product (i.e. element-wise 곱)으로 정의됩니다. 갑자기 Hadamard product이 등장한 이유는 gradient의 결과가 3d tensor가 되고, divergence는 벡터장에서 정의되는 미분연산자이기 때문입니다. 행렬 ![](https://latex.codecogs.com/svg.image?\mathbf{G}(\mathbf{X}(t),t))는 right-stochastic(즉, 각 행의 합이 1)인 ![](https://latex.codecogs.com/svg.image?\mathbf{W}\odot\mathbf{G})와 같은 형태를 선택합니다(노드 간에 이동하는 정보가 사라지거나 생겨나지 않게 하기 위해 right-stochastic 행렬을 도입하는 것으로 보입니다). 가장 단순한 케이스를 위해 ![](https://latex.codecogs.com/svg.image?\mathbf{G}(\mathbf{X}(t),t))가 초기 노드 특성 ![](https://latex.codecogs.com/svg.image?\mathbf{X})에만 영향을 받는다고 가정하면 (i.e. ![](https://latex.codecogs.com/svg.image?\mathbf{G})는 time-invariant하고, right-stochastic하다), 이는 ![](https://latex.codecogs.com/svg.image?\textstyle\sum_j{w_{ij}G_{ij}}=1) for all ![](https://latex.codecogs.com/svg.image?i) 의미합니다. 그러므로 우리는 ![](https://latex.codecogs.com/svg.image?G_{ij}=1/d_{i}), ![](https://latex.codecogs.com/svg.image?d_i=\textstyle\sum_{j=1}^{n}{w_{ij}})인 상황을 살펴보겠습니다.
 
 
-![](https://user-images.githubusercontent.com/40286691/165154588-858818e0-6a63-4771-8141-a95035154ee0.PNG)
+![](https://user-images.githubusercontent.com/40286691/165239449-c595e471-d492-4f5e-8882-f83065bbda93.PNG)
 <!-- $$
 \mathbf{G} = \begin{bmatrix}
 \frac{1}{d_1} & \cdots & \frac{1}{d_1}\\
