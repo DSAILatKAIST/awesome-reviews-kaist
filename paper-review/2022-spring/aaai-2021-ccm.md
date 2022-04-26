@@ -91,7 +91,9 @@ At first, write experiment setup that should be composed of contents.
 	* humanoid-dir, cheetah-mass, cheetah-mass-OOD, ant-mass, cheetah-vel-OOD, cheetah-sparse, walker-sparse, hard-point-robot (자세한 설명은 아카이브 버전 Appendix 참고)
 	* Out of distribution (OOD) 버전  - 학습 환경과 다른 분포에서 생성된 버전
 	* Sparse: 목표에 도달했을때만 reward 발생
+	
 	![14](/.gitbook/2022-spring-assets/HyeonahKim_1/fig_tasks.png)
+  
 * Baseline  
 	* Recovering value-function (RV) - REARL (Rakelly et al., 2019)
 	* Dynamic prediction (DP) - CaDM (Lee et al., 2020) 
@@ -139,19 +141,10 @@ Contex encoder의 업데이트를 traing step 단위로 할 것인지 에피소�
 ---  
 ## **Author Information**  
 
-* Hautian Fu
-    * College of Intelligence and Computing, Tianjin University
-    * Deep Reinforcement learning, Meta-RL, Bayesian exploration, Lifelong RL
-
-* Hongyao Tang
-    * College of Intelligence and Computing, Tianjin University
-    * Multi-agent RL, Transer learning, Meta-RL
-
-* Jianye Hao <sup>1, 2</sup>, Chen Chen<sup>2</sup>, Xidong Feng<sup>3</sup>, Dong Li<sup>2</sup>
-    * <sup>1</sup>College of Intelligence and Computing, Tianjin University
-    * <sup>2</sup>Noah’s Ark Lab, Huawei
-    * <sup>3</sup>Department of Automation, Tsinghua University
-  
+* 김현아
+    * SILAB., KAIST
+    * Graph Representation Learning, Deep Learning for Combinatorial Optimization
+	
   
 ## **6. Reference & Additional materials**  
 
