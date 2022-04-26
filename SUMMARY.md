@@ -5,7 +5,7 @@
 ## Paper Review  
 
 * [\[2022 Spring\] Paper Review](paper-review/README.md) 
-    * [Template](paper-review/2022-spring/template.md)
+    * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
 
 
 ## How to contribute  
