@@ -71,7 +71,7 @@ description : Xiangning Chen et al., / When Vision Transformer Outperform ResNet
 
 ### **4.1 Sharpness-Aware Optimization Improves ViTs And MLP-Mizers**
 
-*   ViT의 hyper-parameter의 수정없이 scratch부터 ImageNet을 학습시킴. Inception style processing을 입력단에 추가함. MLP에는 입력단에 강력한 augmentation이 포함되어 있는데 공정한 비교를 위해서 Inception style processing로 대체함. learning에 필요한 hyper-parameter는 gready search를 통해서 찾았다
+*   ViT의 hyper-parameter의 수정없이 scratch부터 ImageNet을 학습시킴. Inception style processing을 입력단에 추가함. MLP에는 입력단에 강력한 augmentation이 포함되어 있는데 공정한 비교를 위해서 Inception style processing로 대체함. learning에 필요한 hyper-parameter는 greedy search를 통해서 찾았다
 
     #### Smoother regions around the local minima
 
