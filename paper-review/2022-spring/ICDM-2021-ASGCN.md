@@ -1,6 +1,6 @@
 ---
 description: >-
-  1st author / AS-GCN - Adoptive Semantic Architecture of Graph Convolutional
+  Zhizhi Yu / AS-GCN - Adoptive Semantic Architecture of Graph Convolutional
   Networks for Text-Rich Networks / 2021 IEEE International Conference on Data
   Mining (ICDM)
 ---
@@ -37,7 +37,7 @@ AS-GCN 은 두가지 부분으로 구성됩니다. 텍스트 정보를 분석하
 
 Neural Topic Module은 VAE 기반의 모듈로 encoding-decoding 과정을 통해 잠재 토픽을 학습합니다. VAE와 같이 encoder를 통해 평균과 분산을 얻고 잠재 토픽 벡터 z를 얻게 됩니다. z에 softmax를 취하면 토픽 분포인 θ를 얻고 이를 통해 단어별 확률 값을 계산합니다. 여기서 얻은 단어별 확률값은 다음 네트워크 모듈에서 그래프를 형성할때 사용됩니다. 이를 수식으로 표현하면 아래와 같습니다.
 
-\
+<br>
 
 
 ![Encoder를 통해 평균과 분산을 구하는 과정](handonghee\_1/스크린샷\_2022-03-04\_오전\_11.04.03.png)
@@ -56,7 +56,7 @@ Encoder를 통해 평균과 분산을 구하는 과정
 
 Topic representation 을 계산
 
-\
+<br>
 
 
 ## Network Learning Module
@@ -67,16 +67,16 @@ Topic representation 을 계산
 
 NTM 에서 얻은 분포를 바탕으로 추출한 단어를 기반으로 그래프를 생성합니다. 그래프는 문서, 토픽, 엔티티(단어) 의 3가지 노드로 구성됩니다. 이 노드들은 총 4가지의 엣지로 연결되는데 다음과 같습니다.
 
-* 문서간의 citation 엣지 $E\_D$
-* 문서와 토픽간의 엣지 $E\_{DT}$
-* 토픽과 엔티티간의 엣지 $E\_{TM}$
-* 엔티티 노드간의 연결 정보 $E\_M$
+* 문서간의 citation 엣지 $$E\_D$$
+* 문서와 토픽간의 엣지 $$E\_{DT}$$
+* 토픽과 엔티티간의 엣지 $$E\_{TM}$$
+* 엔티티 노드간의 연결 정보 $$E\_M$$
 
 엔티티 노드간의 엣지는 단어 간의 엣지로 볼 수 있는데 저자는 ‘local word sequence semantics’라고 표현 하고 있습니다. sliding window를 활용하여 단어의 시퀀스를 추출하고 PMI를 적용하여 단어들간의 관계정도를 수치로 변환합니다. PMI에 대한 자세한 설명은 아래 링크를 확인하시길 바랍니다. [https://en.wikipedia.org/wiki/Pointwise\_mutual\_information](https://en.wikipedia.org/wiki/Pointwise\_mutual\_information)
 
-global topic 구조정보는 $E\_{TD}, E\_{TM}$ 엣지를 통해 표현됩니다. 이 엣지들은 NTM으로부터 얻은 토픽 분포를 기반으로 생성됩니다.
+global topic 구조정보는 $$E\_{TD}, E\_{TM}$$ 엣지를 통해 표현됩니다. 이 엣지들은 NTM으로부터 얻은 토픽 분포를 기반으로 생성됩니다.
 
-\
+<br>
 
 
 ### Tri-typed convolution
@@ -89,7 +89,7 @@ GCN 에 대한 설명은 아래 링크를 참조하시길 바랍니다.
 
 [https://towardsdatascience.com/understanding-graph-convolutional-networks-for-node-classification-a2bfdb7aba7b](https://towardsdatascience.com/understanding-graph-convolutional-networks-for-node-classification-a2bfdb7aba7b)
 
-\
+<br>
 
 
 ![GCN과정을 표현한 수식, d 는 node의 degree 로 정규화를 위해 사용합니다.](handonghee\_1/스크린샷\_2022-03-04\_오후\_12.15.16.png)
@@ -102,7 +102,7 @@ GCN과정을 표현한 수식, d 는 node의 degree 로 정규화를 위해 사�
 
 엣지 유형별로 얻은 임베딩을 concat 결합 후, 비선형 변환을 수행
 
-\
+<br>
 
 
 ## 모델 학습
@@ -143,7 +143,7 @@ NTM 모듈의 Loss 계산
 
 ![스크린샷 2022-03-04 오후 2.17.22.png](handonghee\_1/스크린샷\_2022-03-04\_오후\_2.17.22.png)
 
-\
+<br>
 
 
 ## **4. Experiment**
@@ -152,7 +152,7 @@ NTM 모듈의 Loss 계산
 
 실험은 주로 doument citation dataset 으로 진행되었습니다. 추가로 e-commerce의 제품 검색 테스크에서 해당 모델에 대한 실험이 진행되었습니다.
 
-![스크린샷 2022-03-04\_오후\_2.20.01.png](handonghee\_1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA\_2022-03-04\_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE\_2.20.01.png)
+![스크린샷 2022-03-04\_오후\_2.20.01.png](handonghee\_1/스크린샷_2022-03-04\_오후\_2.20.01.png)
 
 1. Cora-Enrich\
    인용 네트워크 데이터셋인 Cora 데이터셋의 텍스트가 풍부한 버전입니다. 논문의 제목, 초록 등 모든 텍스트정보를 포함하고 학술 주제에 따라 7가지 범주로 분류됩니다.
@@ -161,7 +161,7 @@ NTM 모듈의 Loss 계산
 3. Hep-Small2 & Hep-Large2\
    물리학 관련 문서에 대한 인용 데이터 세트로, 각 노드는 제목과 초록 텍스트로 구성됩니다. Hep-Small은 812개의 링크로 연결된 3가지 범주의 397개 문서로 구성되고 Hep-Large는 4개 범주 134,956개의 링크로 연결됩니다.
 
-\
+<br>
 
 
 ### Baseline
@@ -185,14 +185,14 @@ Baseline에는 GCN, GAT, GraphSage 등 유명 그래프 관련 모델들이 적�
 8. AS-GCN-Two-Stage\
    distribution sharing 을 제거하고 고정된 토픽, 단어 확률 분포를 사용하는 모델입니다.
 
-\
+<br>
 
 
 ### Evaluation Metric
 
 노드 분류 문제로 Accuracy, F1-score 를 사용하여 평가하였습니다.
 
-\
+<br>
 
 
 ### **Result**
@@ -201,25 +201,25 @@ Baseline에는 GCN, GAT, GraphSage 등 유명 그래프 관련 모델들이 적�
 
 실험결과, AS-GCN 모델이 가장 높은 성능을 보였습니다. AS-GCN-Two-Stage가 상대적으로 낮은 점수를 보이는 것을 통해 distribution sharing이 모델 학습에 중요한 역할을 하고있다고 볼 수 있습니다. end-to-end 학습을 할때 distribution sharing을 통해 두 모델이 서로 정보를 주고 받을 수 있기 때문에 더 높은 성능이 나온다고 추론할 수 있습니다.
 
-![스크린샷 2022-03-04 오후 2.24.17.png](handonghee\_1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA\_2022-03-04\_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE\_2.24.17.png)
+![스크린샷 2022-03-04 오후 2.24.17.png](handonghee\_1/스크린샷\_2022-03-04\_오후\_2.24.17.png)
 
 ### 시각화
 
 t-SNE 를 활용한 시각화를 통해 각각의 모델들의 결과를 비교하였습니다. 노드 임베딩을 2차원으로 변환하였고, 카테고리는 컬러로 구분하였습니다. (같은 색상끼리 클러스터를 형성할 수록 모델 성능이 높다고 볼 수 있겠습니다.) 아래 그림을 보시면, 제안하는 모델이 가장 높은 밀집도를 가지는 것을 보실 수 있습니다.
 
-![스크린샷 2022-03-04 오후 2.33.51.png](handonghee\_1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA\_2022-03-04\_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE\_2.33.51.png)
+![스크린샷 2022-03-04 오후 2.33.51.png](handonghee\_1/스크린샷\_2022-03-04\_오후\_2.33.51.png)
 
 ### 하이퍼 파라미터에 분석
 
 하이퍼 파라미터는 경향성 보다는 최적값이 존재하는것으로 보입니다. 이러한 현상은 데이터셋의 특성에 의해 영향을 받는것으로 분석하고 있습니다. top topic 수의 경우, 대부분의 문서들이 1개 혹은 2개의 토픽을 가지고 있었습니다. top word 수의 경우도, 단어와 토픽간의 엣지가 너무 많거나 적은 경우, 정보가 적거나 노이즈가 많아지기 때문에 아래와 같은 현상이 발생한다고 분석하고 있습니다.
 
-![스크린샷 2022-03-04 오후 2.41.19.png](handonghee\_1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA\_2022-03-04\_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE\_2.41.19.png)
+![스크린샷 2022-03-04 오후 2.41.19.png](handonghee\_1/스크린샷\_2022-03-04\_오후\_2.41.19.png)
 
 ### E-commerce 에서의 실험
 
 [JD.com](http://jd.com) 이라는 사이트에서 아이템이 속한 카테고리를 찾는 실험을 진행하였습니다. 검색한 문장을 통해 연관 아이템을 찾게 되는데, 해당 아이템은 트리 형태의 카테고리 하위에 존재합니다. ( ex, ’red dress’ 는 의류-여성복-드레스 카테고리에 속합니다) 해당 실험에서도 recall을 제외한 모든 지표에서 AS-GCN이 가장 높은 성능을 보였습니다.
 
-![스크린샷 2022-03-04 오후 2.52.23.png](handonghee\_1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA\_2022-03-04\_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE\_2.52.23.png)
+![스크린샷 2022-03-04 오후 2.52.23.png](handonghee\_1/스크린샷\_2022-03-04\_오후\_2.52.23.png)
 
 ## **5. Conclusion**
 
@@ -242,9 +242,9 @@ GCN에서 그래프를 생성하는 부분에 VAE기반의 언어모델을 활�
 
 ## **Author Information**
 
-* Zhizhi Yu
-  * College of Intelligence and Computing, Tianjin University, Tianjin, China
-  * GNN, GCN, Deep Learning
+* Han, Donghee
+  * Knowledge Service Engineering, KAIST, Daejeon, Korea
+  * GNN, Recsys, Deeplearning
 
 ## **6. Reference & Additional materials**
 
