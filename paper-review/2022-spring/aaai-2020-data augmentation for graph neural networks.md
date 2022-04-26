@@ -1,5 +1,5 @@
 ---
-Zhao Tong, et al./ Data Augmentation for Graph Neural Networks / AAAI-2020
+description : Zhao Tong, et al./ Data Augmentation for Graph Neural Networks / AAAI-2020
 ---
 
 # **Data Augmentation for Graph Neural Networks** 
