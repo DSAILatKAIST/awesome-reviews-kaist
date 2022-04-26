@@ -226,11 +226,11 @@ inverse Hessian의 approximation을 제시한 기존 연구들과 비교했을 �
 
 * Author name : Sungeun Kim 
     * Affiliation  
-    - Course of Master's Degree in AAILab, Knowledge Service Engineering
+    	- Course of Master's Degree in AAILab, Knowledge Service Engineering
 
     * Research Topic 
-    - GNN based Recomendation system 
-    - Semi-supervised learning 
+    	- GNN based Recomendation system 
+    	- Semi-supervised learning 
 
 	
 # 6. Reference & Additional materials 
