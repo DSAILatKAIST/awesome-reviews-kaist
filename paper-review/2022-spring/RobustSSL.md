@@ -31,11 +31,11 @@ Semi-supervised learning은 아래와 같이 unlabeled dataset distribution에 �
 
 > Semi-supervised learning assumption
 
-* 1. Unlabeled dataset은 labeled dataset과 같은 joint distribution $p(x,y)$를 가진다. 
+1. Unlabeled dataset은 labeled dataset과 같은 joint distribution $p(x,y)$를 가진다. 
 	- Labeled instance $(x_l,y_l) \sim p(x,y)$
 	- Unlabeled instance $(x_u) \; \sim p_u \Rightarrow (x_u,y_u) \sim p(x,y)$
 
-* 2. Semi-supervised cluster assumption 
+2. Semi-supervised cluster assumption 
 	- Smoothness assumption :
 
 If two point $x_1, x_2$ in the input space are close, then the corresponding outputs $y_1, y_2$ should be the same.
