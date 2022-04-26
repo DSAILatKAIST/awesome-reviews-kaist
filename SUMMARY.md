@@ -39,6 +39,7 @@
   * [LooC](paper-review/2022-spring/iclr-2021-what\_should\_not\_be\_contrastive.md)
   * [ESAN](paper-review/2022-spring/ESAN.md)
   * [RobustSSL](paper-review/2022-spring/RobustSSL.md)
+  * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
 
 ## How to contribute
 
