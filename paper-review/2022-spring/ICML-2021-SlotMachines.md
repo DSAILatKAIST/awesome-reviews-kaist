@@ -1,7 +1,5 @@
-# **Slot Machines**
-
-Maxwell Mbabilla Aladago / Slot Machines: Discovering Winning Combinations of Random Weights in Neural Networks / ICML-2021
-
+---
+description : Maxwell Mbabilla Aladago / Slot Machines- Discovering Winning Combinations of Random Weights in Neural Networks / ICML-2021
 ---
 
 
