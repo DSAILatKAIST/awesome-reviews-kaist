@@ -6,13 +6,17 @@ description : Xiangning Chen et al., / When Vision Transformer Outperform ResNet
 
 ## **1. Problem Definition**  
 
-Please write the problem definition on here  
+
+![fig1](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa054ce54-ccde-4c75-a438-277e63bcc76a%2FUntitled.png?table=block\&id=6b4ec770-3591-48e1-b817-9c3e62dcdea5\&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d\&width=2000\&userId=\&cache=v2)
+
+* Convolution-free한 ViT와 MLPs만 사용한 모델의 경우 inductive bias의 부재로 인해 매우 많은 데이터를 학습시키거나 강력한 augmentation 전략을 사용해 이를 극복하고자 하였다.
+** Transformer가 NLP분야에 소개된 이후 vision에서의 활용이 있었고 hand-wired feature와 inductive bias가 없이 일반화 가능한 모델을 만들기 위해 상당한 양의 데이터를 투입시키는 방법이 활용되었다. 예를들어 pre-train ViT는 google의 private dataset으로 3억장의 labeled image를 학습하였다
+* ViT와 Mixer는 ResNet에 비해 기하적으로 아주 sharpe한 loss landsacpe를 가지고 있음을 알 수 있다. 이것은 학습-일반화 성능의 괴리가 생기는 원인으로 지목된다
 
 ## **2. Motivation**  
 
-Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
-
-After writing the motivation, please write the discriminative idea compared to existing works briefly.
+* 학습된 landscape는 상당히 local minima에 sharpe한 모습을 보였지만 최근 제시된 sharpness-aware optimizer(SAM)을 활용한 결과 ViT와 MLP Mixer는 지도, 비지도, 적대적, 전이 등 다양한 학습 전략에서 상당한 성능 향상이 있음을 확인했다
+* Scratch부터 학습된다면 비슷한 size의 ViT와 ResNet에서 ViT가 ResNet의 성능을 뛰어넘을 수 있음을 확인했다
 
 
 ## **3. Method**  
@@ -40,6 +44,7 @@ You can attach the tables or figures, but you don't have to cover all the result
 ## **5. Conclusion**  
 
 * 이 연구는 지금까지 방대한 양의 데이터와 augmentation에 의존한 ViT, MLP의 기하적 loss 특징을 분석했다. 여기서 local minima 문제를 찾고 SAM을 도입해 flatten loss landscape로 일반화 성능의 향상을 끌어냈다. ViT는 어떠한 pre-training이 없다면 ResNet의 성능을 앞지를 수 있었다. 또한 SAM을 도입한 ViT의 attention map이 더욱 해석 가능하게 변화했다
+* 개인적 의견으로 ViT가 강력한 구조임은 맞지만 data hungry한 특징이 유난히 강해 연구 이후의 실용 단계에서 어떻게 이용될 수 있을지 회의적이었습니다. optimizer를 바꾸는 방법으로 보통의 실험실과 PC에서도 구현이 가능한 방법을 제안했다는 것에 큰 의의가 있다고 생각합니다.
 
 ---  
 ## **Author Information**  
@@ -51,10 +56,11 @@ You can attach the tables or figures, but you don't have to cover all the result
 
 ## **6. Reference & Additional materials**  
 
-Please write the reference. If paper provides the public code or other materials, refer them.  
+이 논문을 이해하는데 필요한 수학적 지식을 아래에서 확인할 수 있습니다.
 
-* Github Implementation  
-* Reference  
+* 출처 : 공돌이의 수학노트
+    * [헤세 행렬(Hessian Matrix)의 기하학적 의미](https://angeloyeo.github.io/2020/06/17/Hessian.html)
+    * [자코비안(Jacobian) 행렬의 기하학적 의미](https://angeloyeo.github.io/2020/07/24/Jacobian.html)
 
 
 
