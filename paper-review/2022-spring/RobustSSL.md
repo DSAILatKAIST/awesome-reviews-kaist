@@ -29,14 +29,19 @@ unlabeled dataset을 어떻게 학습에 활용할지 문제 상황을 수식적
 
 Semi-supervised learning은 아래와 같이 unlabeled dataset distribution에 몇 가지 가정을 기반으로 한다[1].
 
-> 1. Unlabeled dataset은 labeled dataset과 같은 joint distribution $p(x,y)$를 가진다. 
-- Labeled instance $(x_l,y_l) \sim p(x,y)$
-- Unlabeled instance $(x_u) \; \sim p_u \Rightarrow (x_u,y_u) \sim p(x,y)$
-> 2. Semi-supervised cluster assumption 
-- Smoothness assumption :
- If two point $x_1, x_2$ in the input space are close, then the corresponding outputs $y_1, y_2$ should be the same.
+> Semi-supervised learning assumption
 
--  Low density separation assumption :
+* 1. Unlabeled dataset은 labeled dataset과 같은 joint distribution $p(x,y)$를 가진다. 
+	- Labeled instance $(x_l,y_l) \sim p(x,y)$
+	- Unlabeled instance $(x_u) \; \sim p_u \Rightarrow (x_u,y_u) \sim p(x,y)$
+
+* 2. Semi-supervised cluster assumption 
+	- Smoothness assumption :
+
+If two point $x_1, x_2$ in the input space are close, then the corresponding outputs $y_1, y_2$ should be the same.
+
+	-  Low density separation assumption :
+
 The decision boundary should lie in a low-density region in the input space. 
 
 요약하자면 unlabeled data와 labeled data가 같은 distribution이라는 가정 아래 같은 cluster에 속하는 data들은 같은 class로 분류할 수 있다는 것이다. 기존에 나온 대표적인 방법론들은 이 가정을 만족한다는 조건 아래 unsupervised loss를 design한다. 하지만 Semi-supervised learning은 labeled dataset이 작다는 가정 하에 있다. 이러한 특수성은 unlabeled dataset의 pseudo label을 잘못 추정하게 만들며, 잘못 추정된 noise label이 학습 과정에 그대로 반영되면서 labeled set과 unlabeled set이 같은 distribution을 가진다는 underlying assumption을 깨지게 만든다.
