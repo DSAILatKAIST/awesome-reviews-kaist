@@ -14,7 +14,7 @@ There have been many related studies in this field. Rubin et al. and his followe
 
 However, in previous methods, people need to make a strong assumption that there are no hidden confounding variables. [Confounding variables](https://en.wikipedia.org/wiki/Confounding) denote variables that influence both the dependent variable and independent variable, causing a spurious association. This is almost impossible in reality since there are always variables that can not be measured. So the above methods are impractical. The problem is how to relax this assumption.
 
-<img src=".gitbook/2022-spring-assets/panyu_1/Causal_structure.jpg" style="zoom:80%;" />
+<img src=".gitbook/2022-spring-assets/panyu_1/Causal_structure.jpg" style="zoom:80%;" >
 
 ## **2. Motivation**  
 
@@ -29,17 +29,17 @@ This paper proposes a method called Time Series Deconfounder, a method that enab
 
 The Time Series Deconfounder relies on building a factor model over time to obtain latent variables ***Z*** which, together with the observed variables render the assigned causes conditionally independent.
 
-<img src=".gitbook/2022-spring-assets/panyu_1/Latent_variable.jpg" style="zoom:80%;" />
+<img src=".gitbook/2022-spring-assets/panyu_1/Latent_variable.jpg" style="zoom:80%;" >
 
 A denotes treatment. Z denotes latent variables. X denotes confounding variables.
 
-<img src=".gitbook/2022-spring-assets/panyu_1/Factor_model_1.jpg" style="zoom:80%;" />
+<img src=".gitbook/2022-spring-assets/panyu_1/Factor_model_1.jpg" style="zoom:80%;" >
 
 Graphical factor model. Each Zt is built as a function of the history, such that, with Xt, it renders the assigned causes conditionally independent. The variables can be connected to Y(a≥t) in any way.
 
 The author uses RNN to learn the latent variables. The proposed framework is in the following graphs.
 
-<img src=".gitbook/2022-spring-assets/panyu_1/RNN.jpg" style="zoom:80%;" />
+<img src=".gitbook/2022-spring-assets/panyu_1/RNN.jpg" style="zoom:80%;" >
 
 
 
@@ -49,13 +49,13 @@ The author uses the MIMIC dataset to check the validity of the method. If the di
 
 The proposed multi-task RNN method outperforms MLPs and without multi-task model.
 
-<img src=".gitbook/2022-spring-assets/panyu_1/result.jpg" style="zoom:80%;" />
+<img src=".gitbook/2022-spring-assets/panyu_1/result.jpg" style="zoom:80%;" >
 
 
 
 ## **5. Results & Conclusion**  
 
-This method is robust enough in real-world settings.
+This method is robust enough in real-world settings. However, this method is only applicable to the multi-cause confounder settings. This method may not be applicable given single-cause confounders. In reality, if there are more and more treatment options, it is likely that the confounding variable will affect more than one single treatment.
 
 ---
 ## **Author Information**  
