@@ -175,8 +175,9 @@ Semi-supervised learning cluster assumption에 기반한 model들이다.  Xu1와
 > Benchmark dataset experiment
 - Dataset : Cifar10, SVHN
 
+
 * Evaluation Metric 
-- Test error rate
+	* Test error rate
 
 ### **Result**  
 
