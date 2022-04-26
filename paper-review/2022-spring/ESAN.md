@@ -61,7 +61,7 @@ As we can see on the left, there are WL-indistinguishable subgraphs: they are **
 
 ## **3. Method**  
 
-We will introduce the framework devised by the authors, _ESAN_ (Equivariant Subgraph Aggregation Networks). The main idea behind ESAN is to represent the graph $G$ as a _bag_ (i.d. a multiset):
+We will introduce the framework devised by the authors, _ESAN_ (Equivariant Subgraph Aggregation Networks). The main idea behind ESAN is to represent the graph $$G$$ as a _bag_ (i.d. a multiset):
 
 $$
 S_G=\{\{ G_1,\dots,G_m \}\}
@@ -73,8 +73,8 @@ $$F(G):=F(S_G)$$
 There are two essential points to consider then:
 Two crucial questions pertain to this approach: (1) , and (2) 
 
-1. How to define $F(S_G)$, i.e. architecture should we use to process bags of graphs?
-2. How do we select $S_G$, the graph subgraph selection policy?
+1. How to define $$F(S_G)$$, i.e. architecture should we use to process bags of graphs?
+2. How do we select $$S_G$$, the graph subgraph selection policy?
 
 
 
@@ -113,17 +113,17 @@ $$
 
 Let's decompose them one by one!
 
-1. **Equivariant Feature Encoder**: $ E_{\text{subgraphs}}$ is composed of several $H$-equivariant layers. Its purpose is to learn useful node features for all the nodes in all subgraphs. Each $H$-equivariant layer (on the right) processes bags of
+1. **Equivariant Feature Encoder**: $$E_{\text{subgraphs}}$$ is composed of several $$H$$-equivariant layers. Its purpose is to learn useful node features for all the nodes in all subgraphs. Each $H$-equivariant layer (on the right) processes bags of
 subgraphs accounting for their natural symmetry and it is composed by the following:
 $$
     (L(\mathcal{A},\mathcal{X}))_i= L^1(A_i,X_i) + L^2\left(\textstyle\sum _{j=1}^m A_j,\textstyle\sum _{j=1}^m X_j\right)
 $$
-where, $A_j, X_j$ are the adjacency and feature matrices of the $j$-th subgraph and $(L(\mathcal{A},\mathcal{X}))_i$ is the output of the layer on the $i$-th subgraph.
-So what are these $L_1$ and $L_2$? These can be any type of GNN layer. While $L_1$ encodes each subgraph _separately_ , $L_2$ _aggregates_ information among the subgraphs (which is called _information sharing_). This is also common with the seminal DSS paper [2]. 
+where, $$A_j, X_j$$ are the adjacency and feature matrices of the $$j$$-th subgraph and $$(L(\mathcal{A},\mathcal{X}))_i$$ is the output of the layer on the $i$-th subgraph.
+So what are these $$L_1$$ and $$L_2?$$ These can be any type of GNN layer. While $$L_1$$ encodes each subgraph _separately_ , $$L_2$$ _aggregates_ information among the subgraphs (which is called _information sharing_). This is also common with the seminal DSS paper [2]. 
 
-2. **Subgraph Readout Layer**: $R_{\text{subgraphs}}$ given the output from the first step, this generates an invariant feature vector for each subgraph independently by aggregating the graph node and/or edge data. The modalities can change, but we can for instance aggregate with a mean operator.
+2. **Subgraph Readout Layer**: $$R_{\text{subgraphs}}$$ given the output from the first step, this generates an invariant feature vector for each subgraph independently by aggregating the graph node and/or edge data. The modalities can change, but we can for instance aggregate with a mean operator.
 
-3. **Set Encoder**: $E_{\text{sets}}$ is is a universal set encoder, such as DeepSets [3] or PointNets [4]. This part aggregates the set of preprocessed subgraphs with _invariant-per-subgraph_ features, so that we can obtain the final graph representation.
+3. **Set Encoder**: $$E_{\text{sets}}$$ is is a universal set encoder, such as DeepSets [3] or PointNets [4]. This part aggregates the set of preprocessed subgraphs with _invariant-per-subgraph_ features, so that we can obtain the final graph representation.
 
 ### Subgraph Selection Policies
 
@@ -131,7 +131,7 @@ Selecting the subgraphs is of paramount importance: this determines how _express
 
 1. **Node-deleted policy**: a graph is mapped to the set containing all subgraphs that can be obtained from the original graph by removing a single node
 2. **Edge-deleted policy**: similar to above, but it is defined as the set of all subgraphs we obtain by removing a single edge.
-3. **EGO-networks policy**: this policy maps each graph to a set of ego-networks of some specified depth, one for each node in the graph. An ego-network is, simply put, the network obtained by looking at the neighboorhood of a node only (where _ego_ means "I", meaning we focus on the perspective of one node). A $k$-Ego-network of a node is its $k$-hop neighbourhood with the induced connectivity).
+3. **EGO-networks policy**: this policy maps each graph to a set of ego-networks of some specified depth, one for each node in the graph. An ego-network is, simply put, the network obtained by looking at the neighboorhood of a node only (where _ego_ means "I", meaning we focus on the perspective of one node). A $$k$$-Ego-network of a node is its $$k$$-hop neighbourhood with the induced connectivity).
 4. **EGO+ policy**: We can also consider a variant of the ego-networks policy where the root node (a is _e_ in the example below) holds an identifying feature (EGO+).
 
 <p align="center">
@@ -148,7 +148,7 @@ In particular, the authors devise a new variant of the Weisfeiler-Lehman test du
 
 ## **4. Experiments**  
 
-The experiments demonstrate strong performance of the DSS-GNN model. The authors also compare the case in which the _information sharing_ layer $L_2$ is set to $0$. Base encoders and graph selection policies are reported in parentheses.
+The experiments demonstrate strong performance of the DSS-GNN model. The authors also compare the case in which the _information sharing_ layer $$L_2$$ is set to $$0$$. Base encoders and graph selection policies are reported in parentheses.
 
 ### Demonstrating Expressive Power on Synthetic Datasets
 
