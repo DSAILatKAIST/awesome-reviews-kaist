@@ -146,7 +146,7 @@ inverse Hessian 계산을 위해서는 (자주 쓰이는 trick 중 하나로) mo
 
 ### **Experiment setup**  
 
-* baseline
+> baseline
  
 $$
 {\underset {\Lambda= \{ \lambda_1,...,\lambda_{|U|} \} }{min} \; L_s(V,\theta^*(\Lambda)) \; s.t. \; \theta^* (\Lambda)={\underset {\theta}{argmin}} \sum_l \, l_s(x_l,y_l;\theta) \; + \; \sum_u \lambda _u \, l_u(x_u;\theta)} 
@@ -165,19 +165,20 @@ $$l_u(x_u;\theta)=\Bbb{I}(max(p(\hat{y_u}|x_u^1))>\tau)D_{KL}(sharpening(p(\hat{
 Semi-supervised learning cluster assumption에 기반한 model들이다.  Xu1와 Xu2는 각각 original instance Xu에 augmentation을 약하게(e.g., horizontal flip, random translation, ...), 강하게(e.g., RandAugment[5], CTAugment[6], ...) 준 것이다.  
 모델의 골자만 말하자면 Xu1의 estimated label confidence가 threshold보다 클 때만 reliable data라 판단하고 학습에 쓰는데(본 논문의 motivation을 간단하게 다루는 부분이라고 할 수 있다), loss는 Xu1과 Xu2의 model prediction이 같아지도록 하는 것이다.
 
-* Dataset 
+> Dataset 
 
-> Synthetic dataset experiment
-- The moon dataset's decision boundary has the shape of two half moons.
-- It consists of 10 labeled samples, 30 validation examples and 1000 unlabeled examples. 
-- Labeled samples are shown in orange. Unlabeled data in black/pink(shading depicts weight of each unlabeled point).
+* Synthetic dataset 
+	- The moon dataset's decision boundary has the shape of two half moons.
+	- It consists of 10 labeled samples, 30 validation examples and 1000 unlabeled examples. 
+	- Labeled samples are shown in orange. Unlabeled data in black/pink(shading depicts weight of each unlabeled point).
 
-> Benchmark dataset experiment
-- Dataset : Cifar10, SVHN
+* Benchmark dataset 
+	- Cifar10, SVHN
 
 
-* Evaluation Metric 
-	* Test error rate
+> Evaluation Metric 
+
+* Test error rate
 
 ### **Result**  
 
@@ -196,9 +197,8 @@ Baseline model들보다 performance가 일괄적으로 높아짐(Test error rate
 > Ablation study
 
 * Comparison of influence function approximation
-
-- Luketina et al [7] : using identity matrix
-- Lorraine et al [8] : approximation to all the model parameters 
+	- Luketina et al [7] : using identity matrix
+	- Lorraine et al [8] : approximation to all the model parameters 
 
 ![ablation.PNG](../../.gitbook/2022-spring-assets/sungeun532/ablation.PNG)
 
