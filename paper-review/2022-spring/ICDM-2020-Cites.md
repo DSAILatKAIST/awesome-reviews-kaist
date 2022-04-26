@@ -8,7 +8,7 @@ description : Jang et al. / CITIES - Contextual Inference of Tail-item Embedding
 
 Sequential Recommendation(SR)은 Item의 순서를 반영하여 다음 Item을 무엇을 볼지 예측하는 추천시스템이다. General Recommendation과의 가장 큰 차이점은 순서를 고려한다는 점이다.  
 
-<p align='center'><img width="700" src=".gitbook/2022-spring-assets/KimKibum_1/1.png"></p>  
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/KimKibum_1/1.png"></p>  
 
 그림 출처: [Arxiv 20]Déjà vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation  
 
@@ -71,7 +71,7 @@ Recommendation Layer에서는 Encoding된 Item Sequence를 활용하여 다음�
 위의 3가지 Layer를 거쳐서 추천하면 일반적인 Sequenctial Recommendation의 절차를 따르게 된다. 아래 그림의 빨간색 화살표를 나타낸다.  
 
 <p align="center">
-<img width="700" src=".gitbook/2022-spring-assets/KimKibum_1/2.png">  
+<img width="700" src="../../.gitbook/2022-spring-assets/KimKibum_1/2.png">  
 </p>
 
 <p align="center">Overall Framework</p>
@@ -90,7 +90,7 @@ Recommendation Layer에서는 Encoding된 Item Sequence를 활용하여 다음�
 Embedding Inference Function(![](https://latex.codecogs.com/svg.image?F_{\phi}))에서는 head Item이 있는 sequence context의 임베딩을 활용하여 head item embedding을 추론하는 방식을 이용한다. 예를 들어, 아래의 그림과 같이 맥주 모양이 있는 여러 sequence context를 모아서 맨 오른쪽의 회색 모양의 맥주(head item embedding)을 맞추도록 하는 방식이다.  
 
 <p align="center">
-<img width="600" src=".gitbook/2022-spring-assets/KimKibum_1/3.png">
+<img width="600" src="../../.gitbook/2022-spring-assets/KimKibum_1/3.png">
 </p>
 
 <p align="center">Embedding Inference Function</p>
@@ -132,7 +132,7 @@ Embedding Inference Function을 활용하여 tail item이 있는 sequence contex
 ### **Result**  
 
 <p align="center">
-<img width="900" src=".gitbook/2022-spring-assets/KimKibum_1/4.png">  
+<img width="900" src="../../.gitbook/2022-spring-assets/KimKibum_1/4.png">  
 </p>
 
 <p align="center">Experiment Result</p>  
@@ -145,8 +145,8 @@ Movies&TV에서는 Bert4Rec, GRU4Rec에서 head와 tail item에서 모두 성능
 ### **Ablation Study**  
 
 <p align="center">
-<img width="443" src=".gitbook/2022-spring-assets/KimKibum_1/5.png">  
-<img width="443" src=".gitbook/2022-spring-assets/KimKibum_1/6.png">  
+<img width="443" src="../../.gitbook/2022-spring-assets/KimKibum_1/5.png">  
+<img width="443" src="../../.gitbook/2022-spring-assets/KimKibum_1/6.png">  
 </p>
 
 <p align="center">Left: Tail Threshold에 따른 성능 변화, Right: Context 반영 개수에 따른 성능 변화</p>  
