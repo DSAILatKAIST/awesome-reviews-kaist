@@ -47,7 +47,7 @@ Equivariant 에 대한 정의는 다음과 같다.
 - 3번 그림의 그래프를 rotation transformation을 통해 얻은 결과는 4번 그림이 그래프가 된다.
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled.png) -->
-<img src=".gitbook/2022-spring-assets/leehoon7/image1.png">  
+<img src=".gitbook/2022-spring-assets/KanghoonLee_1/image1.png">  
 
 ### 2. Graph Neural Network (GNN)
 
@@ -56,10 +56,9 @@ Graph Neural Network는 Graph를 input으로 받아서 Graph를 output으로 내
 저자들은 graph convolutional layer를 다음과 같이 정의하였다.
 
 > Given a graph $$\mathcal{G}=(\mathcal{V},\mathcal{E})$$ with nodes $$v_i \in \mathcal{V}$$ and edges $$e_{ij} \in \mathcal{E}$$, we define a graph layer convolutional layer following notation from (Glimer et al., 2017) as:
-
-$$\bold{m}_{ij}=\phi_e(\bold{h}_i^l,\bold{h}_j^l,a_{ij})$$
-$$\bold{m}_i=\sum_{j\in \mathcal{N}(i)} \bold{m}_{ij}$$
-$$\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$$
+> $$\bold{m}_{ij}=\phi_e(\bold{h}_i^l,\bold{h}_j^l,a_{ij})$$
+> $$\bold{m}_i=\sum_{j\in \mathcal{N}(i)} \bold{m}_{ij}$$
+> $$\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$$
 > 
 
 각 element에 대한 설명은 다음과 같다.
@@ -76,7 +75,7 @@ $$\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$$
 딥러닝을 더욱 발전시킨 방법들 중 많은 것들은 inductive bias와 관련이 깊다. 뉴럴넷에 inductive bias를 주는 대표적인 방법으로 ‘translation equivariance가 있는 CNN’ 그리고 ‘permutation equivariance가 있는 GNN’ 이 있다. 이를 잘 정리한 내용을 ‘Relational inductive biases, deep learning, and graph networks’ 라는 paper에서 가져와 보았다. 자세한 것은 해당 논문을 보면 좋을 것 같다.
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%201.png) -->
-<img src=".gitbook/2022-spring-assets/leehoon7/image2.png">  
+<img src=".gitbook/2022-spring-assets/KanghoonLee_1/image2.png">  
 
 문제의 이러한 특성을 이용해서 뉴럴넷을 디자인하는 것은 매우 효과적이다. 왜냐하면, 우리가 탐헌해야 할 함수를 매우 큰 범위에서 작은 범위로 축소시킬 수 있기 때문이다. (이에 대한 더 좋은 설명은 [https://youtu.be/VN2biLjqJXc?t=742](https://youtu.be/VN2biLjqJXc?t=742) 이 링크를 참조하면 좋을 것 같다.)
 
@@ -168,14 +167,14 @@ message에 대한 부분은 애초에 equivariant property를 생각하지 않�
 [ 결과 ]
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%202.png) -->
-<img src=".gitbook/2022-spring-assets/leehoon7/image3.png">  
+<img src=".gitbook/2022-spring-assets/KanghoonLee_1/image3.png">  
 - 기존 모델들 중 가장 좋은 성능을 보임.
 - Forward time도 매우 작은 것을 확인할 수 있었음.
 
 저자들은 여기서 training sample의 수에 따른 실험도 하였다. inductive bias를 가한 network의 특징은 해당 bias가 유효한 문제에 대해서 빠르게 generalize된다는 점이다. 즉, 적은 데이터로도 잘 학습될 수 있을것이란 결과가 예상된다. 하지만 그것 말고도 재미있는 점이 있는데, 다음의 그래프를 보면 알 수 있다.
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%203.png) -->
-<img src=".gitbook/2022-spring-assets/leehoon7/image4.png">  
+<img src=".gitbook/2022-spring-assets/KanghoonLee_1/image4.png">  
 E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기서 제안한 모델인 EGNN 세가지 모델을 학습 데이터 수에 대한 MSE를 나타낸 그래프이다. 예상과 비슷하게, EGNN과 Radial Field는 적은 데이터 샘플로도 잘 generalize하는 것을 보였다. 하지만, Radial Field의 경우 EGNN과 다르게 많은 데이터가 주어졌음에도 성능이 더욱 개선되지 않는 점을 보였다. EGNN과 GNN은 학습 데이터가 많아짐에 따라서 성능 개선이 이루어지는 것을 확인할 수 있었다.
 
 저자들은 이를, Radial Field 방법이 너무 모델에 대한 bias가 크기 때문에, 데이터 안에서 미세하게 변하는 부분을 학습하기 힘들다고 주장한다. 즉 정리하면, EGNN은 E(n) 의 high bias를 취하면서 동시에 일반적인 GNN이 갖고 있는 flexibility도 가지고 있다고 주장한다.
@@ -201,7 +200,7 @@ E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기�
 [ 결과 ]
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%204.png) -->
-<img src=".gitbook/2022-spring-assets/leehoon7/image5.png">  
+<img src=".gitbook/2022-spring-assets/KanghoonLee_1/image5.png">  
 - EGNN이 두개의 데이터셋 모두에서 가장 좋은 성능을 보였다.
 - 위에서 언급한대로 noise를 추가한 noise-GNN은 GNN보다 좋은 성능을 보였다.
 
