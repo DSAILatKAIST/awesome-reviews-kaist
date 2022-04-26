@@ -14,7 +14,7 @@ There have been many related studies in this field. Rubin et al. and his followe
 
 However, in previous methods, people need to make a strong assumption that there are no hidden confounding variables. [Confounding variables](https://en.wikipedia.org/wiki/Confounding) denote variables that influence both the dependent variable and independent variable, causing a spurious association. This is almost impossible in reality since there are always variables that can not be measured. So the above methods are impractical. The problem is how to relax this assumption.
 
-<img src=".gitbook/2022-spring-assets/panyu_1/Causal_structure.jpg" style="zoom:80%;" >
+<img src=".gitbook/2022-spring-assets/panyu_1/Causal_structure.jpg"  >
 
 ## **2. Motivation**  
 
