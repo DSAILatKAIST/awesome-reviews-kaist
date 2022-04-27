@@ -4,7 +4,7 @@ description : Yao-Hung Hubert Tsai / Self-Supervised Learning from a Multi-View 
 
 # **Title** 
 
-Self-Supervised Learning from a Multi-View Perspective
+Self-Supervised Learning from a Multi-View Perspective.   
 
 ## **1. Problem Definition**  
 - 본  논문에서는 Vision 분야에서 Self-supervised Learning 의 성공을 Multi-view perspective 와 information theory 로 설명하고자 했습니다.
