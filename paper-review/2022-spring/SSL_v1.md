@@ -1,5 +1,6 @@
-﻿# Title
-Zhongzheng Ren / Not all unlabeled data are euqal : Learning to weight data in semi-superviwd learning / NeurIPS-2020
+---
+description: Zhongzheng Ren / Not all unlabeled data are euqal - Learning to weight data in semi-superviwd learning / NeurIPS-2020
+---
 
 # 1. Problem Definition
 본 논문은 semi-supervised learning을 target으로 한다. semi-supervised learning은 clean labeled dataset이 작을 때, 다소 얻기 쉬운 많은 양의 unlabeled dataset을 함께 사용하는 방법론을 고안하는 연구 분야이다.  

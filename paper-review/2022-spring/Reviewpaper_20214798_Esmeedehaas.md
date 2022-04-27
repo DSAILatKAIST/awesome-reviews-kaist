@@ -125,5 +125,3 @@ Ideas on pros & cons:
 
 * Reference of paper: Dupont, E., Goliński, A., Alizadeh, M., Teh, Y. W., & Doucet, A. (2021). Coin: Compression with implicit neural representations. arXiv preprint arXiv:2103.03123.
 * Link to public materials: https://github.com/EmilienDupont/coin  
-
-

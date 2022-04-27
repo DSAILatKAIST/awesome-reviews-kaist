@@ -26,13 +26,11 @@ description: >-
 
 즉, 말 그대로 일반적으로 발생하는 event들과는 다른 특이한, 일반적인 특징을 띄고 있지 않은 샘플을 탐지하는 것을 의미합니다. 그렇다면 이런 궁금증이 들겁니다.
 
-\
-
+\\
 
 일반적인 Classification과 다른 것이 뭐지?
 
-\
-
+\\
 
 위 영어 문장에 잘 보면 'rarely appear or even do not exist in training data'라는 문구가 포인트입니다.
 
@@ -45,18 +43,15 @@ description: >-
 
 **reference : Mohammadi, B., Fathy, M., & Sabokrou, M. (2021). Image/Video Deep anomaly detection: A survey. arXiv preprint arXiv:2103.01739**
 
-\
-
+\\
 
 본 그림을 보면, 일반적으로 파란색 원 안에 들어가 있는 데이터들이 normal data라고 할 수 있습니다. 우리는 이 데이터들을 F라고 하는 feature representation을 통해 F1, F2를 사용하여 다음과 같은 plot을 그릴 수 있습니다. 녹색 점들의 경우 일반적으로 오토바이의 이미지들을 표현한 데이터로 볼 수 있습니다. 하지만 빨간색 자동차의 경우 우리가 일반적으로 관찰한 오토바이와는 조금 다른 특징을 가지게 됩니다. 이 경우 F를 통해 representation을 하게 되면 일반적으로 다른 위치에 데이터가 존재하게 되고 그 '격차'가 바로 이 데이터를 anomaly라고 측정하게 되는 기준이 됩니다. 이러한 방법을 통해 anomaly detection은 일반적으로 수행되게 됩니다.
 
-\
-
+\\
 
 자, 그렇다면 Anomaly Detection을 수행하기 위해서는 다양한 데이터 셋에서 수행이 될 수 있는데 이에 따라 여러가지 케이스로 분류할 수 있습니다. 크게는 '**Supervised**', '**Unsupervised**' 그리고 '**Semi-supervised**' 케이스로 나뉘게 됩니다.
 
-\
-
+\\
 
 그리고 용이한 표현을 위해 각각의 기호를 다음과 같이 정의해보겠습니다.
 
@@ -72,15 +67,13 @@ U는 label이 되지 않은 데이터를 의미하고, N과 A는 각각 label이
 
 Supervised Learning의 경우 데이터가 충분히 많을 경우 세가지 케이스 중 가장 강력한 정확도를 가지게 됩니다. 데이터가 있는 상태에서의 예측은 데이터가 없는 경우보다 예측이 정확한 건 make sense하죠. 하지만, 문제는 데이터가 거의 없다는 것이 문제입니다. 실제 Real world에서는 labeled 된 데이터가 많지도 않을 뿐더러 labeled 데이터를 가지고 있다고 해도, abnormal 데이터의 경우는 극히 드문 경우가 많기 때문입니다. 이러한 경우 supervised learning은 데이터 불균형 문제를 맞이하게 됩니다. 또한 generalized된 판단을 수행할 수 없게 됩니다. 사실 anomaly 데이터는 우리가 관측한 케이스 외에도 다양한 형태로 존재할 수 있는데 모형은 우리가 관측한 anomaly 데이터의 분포를 바탕으로 판단을 수행하기 때문에 학습할 때 보지 않은 unseen anomaly에 대해서는 대응할 수 있는 힘이 부족하게 됩니다. 따라서 일반적으로 AD에서는 supervised learning을 사용하는 데에는 한계점이 존재하게 됩니다.
 
-\
-
+\\
 
 \[2] Unsupervised Learning ( U )
 
 그래서 일반적으로 labeled이 정의되지 않는 데이터를 바탕으로 학습을 수행합니다. 왜냐하면 이런 경우가 실제 real world 상황에 조금 더 유사하기 때문입니다. 실제 labeled 데이터를 얻기 어려울 뿐더러 abnormal 데이터가 거의 발생하지 않는다는 것을 바탕으로 해서 가장 real world와 유사한 것이 바로 unsupervised learning이라고 할 수 있습니다. 그리고 위 Supervised Learning에서 한계점인 generalizability에 대해서도 보장이 되기 때문에 여러 단점을 보완한 방법이라고 할 수 있습니다.
 
-\
-
+\\
 
 \[3] Semi-supervised Learning ( N + A + U, N + A << U )
 
@@ -88,8 +81,7 @@ Supervised Learning의 경우 데이터가 충분히 많을 경우 세가지 케
 
 이 방법의 경우 limited number of labeled data를 사전 지식으로 활용해 보다 학습을 강화하겠다는 취지에서 비롯됩니다.
 
-\
-
+\\
 
 이러한 Background를 바탕으로 본 논문의 내용을 살펴보도록 하겠습니다.
 
@@ -140,15 +132,13 @@ ex) Intermediate Representation in AE, Latent Space in GAN, Distance metric spac
 
 따라서 위 방법에 대한 문제점을 극복할 수 있는 방법으로 저자는 'Anomaly Scores'를 학습하는 end-to-end learning 방법을 제안하게 됩니다.
 
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FM56LS%2FbtrzadrcSgk%2F5q7PD9FVlcGeocnN8PFYSk%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FM56LS%2FbtrzadrcSgk%2F5q7PD9FVlcGeocnN8PFYSk%2Fimg.png)\\
 
 위 그림을 한번 살펴보겠습니다. (a)의 경우 기존 representation을 바탕으로 anomaly detection을 수행하는 방법을 도식화한 그림이고 (b)의 경우 본 논문에서 제안하는 방법의 도식도입니다. 위 그림에서 알 수 있듯 기존 방법은 데이터로부터 feature를 뽑아내어 이를 바탕으로 여러 metric을 적용 ( reconstruction error, distance metric ) 하여 detecting을 수행하게 됩니다. 하지만 저자는 이러한 부분이 **indirect**하게 모형을 optimize하는 것이라고 지적합니다. 하지만 (b)같은 경우는 데이터를 입력받으면 end-to-end로 바로 anomaly score를 도출하게 되어 detecting을 수행하게 됩니다. 즉, 모형을 **direct**하게 optimize할 수 있는 구조라고 언급합니다.
 
 또한 본 논문에서 제안하는 방법의 또 다른 novelty는, anomaly의 정도를 판단할 수 있는 reference score를 정의하였다는 점입니다. 즉, normal data로부터 추출된 평균적인 anomaly score와 현재 입력 간의 deviate된 정도를 바탕으로 판단을 한다는 점에서 기존 방법에서 갖는 방법과 차별된다는 점을 언급합니다.
 
-\
-
+\\
 
 따라서 본 논문이 갖는 novelty를 다음과 같이 2가지로 정리할 수 있습니다.
 
@@ -173,12 +163,11 @@ N의 경우 unlabeled 데이터의 수를 의미하여 K의경우 매우 소량�
 
 우리의 가장 큰 목적은 바로 anomaly score를 도출하는 이 파이 함수를 잘 학습해서 anomaly와 normal 간의 anomaly scoring 차이를 만드는 것을 목적으로 하게 됩니다.
 
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F3ERIN%2FbtrzaclALeh%2FZhkwGvlYAaQ7VrMNW8KcWK%2Fimg.png)![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FUbCcl%2Fbtry7vmlCJ9%2Fb982kWn8jGAKbzGDlyXJw0%2Fimg.png)
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F3ERIN%2FbtrzaclALeh%2FZhkwGvlYAaQ7VrMNW8KcWK%2Fimg.png) ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FUbCcl%2Fbtry7vmlCJ9%2Fb982kWn8jGAKbzGDlyXJw0%2Fimg.png)
 
 그렇다면 거시적인 Framework부터 살펴볼까요?
 
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBSZ9D%2Fbtry8PxBOB6%2FA8EWYWSv5qd28q89YThFGk%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBSZ9D%2Fbtry8PxBOB6%2FA8EWYWSv5qd28q89YThFGk%2Fimg.png)\\
 
 우선 'Anomaly Scoring Network'이라고 하는 anomaly score를 도출하는 네트워크 하나와 Reference score를 generate하는 부분으로 크게 2개의 아키텍처를 가짐을 알 수 있습니다.
 
@@ -238,8 +227,7 @@ Feature learner를 구성하는 hidden layer는 들어오는 input, 수행하려
 
 저자는 이와 같은 방법을 통해 기존의 방법과 달리 direcly하게 data를 anomaly score로 mapping할 수 있다고 주장합니다.
 
-\
-
+\\
 
 저자는 여기서 추가적으로 이 score가 정말 anomaly한지 안한지를 같이 참고할 수 있는 reference score를 구축하는 방법을 제안하게 됩니다.
 
@@ -291,8 +279,7 @@ Feature learner를 구성하는 hidden layer는 들어오는 input, 수행하려
 
 **Contrastive Loss**
 
-\
-
+\\
 
 예를 들어 normal 데이터면 저 ∅ 값이 µ\_r이랑 근사하게 되겠고 abnormal 데이터면 그렇지 않겠죠.
 
@@ -303,15 +290,13 @@ Feature learner를 구성하는 hidden layer는 들어오는 input, 수행하려
 
 **Deviation Loss**
 
-\
-
+\\
 
 x가 anomaly인 경우 y = 1, x가 normal인 경우 y = 0이 됩니다.
 
 그리고 위 'a'의 경우 Z-score의 confidence interval paramter 가 됩니다.
 
-\
-
+\\
 
 이게 무슨 말일까요?
 
@@ -354,8 +339,7 @@ x가 anomaly인 경우 y = 1, x가 normal인 경우 y = 0이 됩니다.
 본 연구는 다음 Proposition을 사용합니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb6pwta%2FbtrzmjzHdLP%2F89HskRtyfRlfu2ycz2dKr0%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb6pwta%2FbtrzmjzHdLP%2F89HskRtyfRlfu2ycz2dKr0%2Fimg.png)\\
 
 이 말의 의미가 뭘지 한번 생각해봅시다.
 
@@ -366,8 +350,7 @@ x가 anomaly인 경우 y = 1, x가 normal인 경우 y = 0이 됩니다.
 µ\_r = 0을 기준으로 ( µ\_r - z \~ µ\_r + z ) 구간이 결국 신뢰 구간이 됩니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FepoY3i%2Fbtrzprcerkk%2FmEGSMnkea8IeIzR42ambp0%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FepoY3i%2Fbtrzprcerkk%2FmEGSMnkea8IeIzR42ambp0%2Fimg.png)\\
 
 하지만 만약 새로 받은 anomaly score가 이 boundary를 넘어가는 곳에 mapping이 된다면 어떨까요? 그 의미는 결국 다음과 같이 생각할 수 있습니다.
 
@@ -395,22 +378,17 @@ x가 anomaly인 경우 y = 1, x가 normal인 경우 y = 0이 됩니다.
 자세한 사항은 저자가 Appendix에 추가해놓은 아래 링크를 참고하면 좋을 것 같습니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fs5wZ9%2FbtrzMJXGKyh%2F6X5vfPXude8Vjjdll2tnF1%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fs5wZ9%2FbtrzMJXGKyh%2F6X5vfPXude8Vjjdll2tnF1%2Fimg.png)\\
 
 비교 집단으로 사용한 모형은 다음과 같습니다.
 
-\[1] REPEN\
+\[1] REPEN\\
 
+\[2] adaptive DeepSVDD\\
 
-\[2] adaptive DeepSVDD\
+\[3] Prototypical Network (FSNet)\\
 
-
-\[3] Prototypical Network (FSNet)\
-
-
-\[4] iForest\
-
+\[4] iForest\\
 
 REPEN의 경우 limited labeled data를 사용하는 neural net 기반의 AD network이고, FSNet의 경우 few show classification을 수행하는 네트워크입니다. 두 네트워크 모두 limited labeled 데이터를 사용하는 것이 특징입니다. DevNet과 동일한 조건이죠. 반면 Unsupervised 방법으로 AD를 수행하는 앙상블 기반의 모형 iForest도 비교집단으로 사용하였습니다.
 
@@ -424,8 +402,7 @@ DeepSVDD 같은 경우는 굉장히 유명한 AD를 수행하는 알고리즘인
 
 이렇게 총 4개의 비교 집단을 사용하여 성능을 비교하였습니다.
 
-\
-
+\\
 
 Metric은 어떻게 될까요?
 
@@ -433,21 +410,18 @@ Metric은 어떻게 될까요?
 
 이 둘에 대해서는 간략하게 정리해보도록 하겠습니다.
 
-\
-
+\\
 
 * AUROC( Area Under Receiver Operating Characteristics )
 
 많이들 알고 계시는 ROC curve입니다. 이 ROC curve를 이해하기 위해서는 우선 Confusion Matrix를 이해할 필요가 있습니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbfou5g%2FbtrzL9WAdnq%2F3PQIBWSzyR8qx6DfeSihsk%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbfou5g%2FbtrzL9WAdnq%2F3PQIBWSzyR8qx6DfeSihsk%2Fimg.png)\\
 
 actual은 말 그대로 실제 label 값이고 pred는 prediction의 결과입니다. 다음과 같은 상황에서 우리는 True Positive, True Negative, False Positive, False Negative를 정의할 수 있고 이 수치들을 사용해서 다음과 같은 특징들을 정리할 수 있습니다.
 
-\
-
+\\
 
 Sensitivity ( 민감도, True Positive Rate ) = ( True Positive ) / ( True Positive + False Negative )
 
@@ -461,14 +435,12 @@ Recall = ( 민감도, True Positive ) / ( True Positive + False Negative )
 
 Accuracy = ( 정확도, True Positive + True Negative ) / ( True Positive + True Negative + False Negative + False Positive )
 
-\
-
+\\
 
 이 개념들 중에서 TPR(True Positive Rate)과 FPR(False Positive Rate)을 사용하여 Curve를 그리면 다음과 같은 Curve를 그릴 수 있습니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc19T4r%2FbtrzQidNtZp%2FddKzsh1Hj4svLdey9vrWAK%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc19T4r%2FbtrzQidNtZp%2FddKzsh1Hj4svLdey9vrWAK%2Fimg.png)\\
 
 빨간 점선처럼 선이 형성되는 경우 random하게 classifier한 경우와 동일합니다. 그리고 빨간 점 아래에서 영역이 형성되는 경우는 0.5죠. 반면 보라색의 선의 경우 가장 모형이 강력한 경우, 즉 모든 경우를 맞춘 경우로 아래 면적은 1이 됩니다.
 
@@ -491,16 +463,14 @@ Accuracy = ( 정확도, True Positive + True Negative ) / ( True Positive + True
 이 둘의 조금 더 명확한 이해를 위해 다음 예시를 들어보겠습니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fd9MBAs%2FbtrzKKbmH9S%2FJeTMJZpQVte7xfDeMBgPH1%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fd9MBAs%2FbtrzKKbmH9S%2FJeTMJZpQVte7xfDeMBgPH1%2Fimg.png)\\
 
 Object Detection을 수행하는 task를 예로 들어보죠. 여기서 모형이 다음과 같이 사람 2명이 있는 사진에서 한 사람을 탐지하고 이를 사람이라고 예측을 해봤다고 해봅시다. Precision 관점에서는 내가 예측을 시도한 경우가 다 잘 들어맞았다고 생각해서 100%의 정확도를 갖는다고 이야기합니다. 하지만 Recall 관점은 조금 다르죠. 사람이 실제로 한 명 더 있는데 이 사람은 맞추지를 못했으니 정확도는 50%이라고 이야기하는 겁니다.
 
 즉 이 다른 두 관점을 적절하게 조합하여 metric을 만들면 위와 같은 문제를 극복할 수 있다고, 즉 minor한 class에 대해 더 적절한 가중치를 줄 수 있다고 판단한 것입니다. 이로부터 나온 개념이 바로 AUC-PR입니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F75oHD%2FbtrzNATLZdb%2FFOBpQBYbZ7kBnVnBDTktDk%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F75oHD%2FbtrzNATLZdb%2FFOBpQBYbZ7kBnVnBDTktDk%2Fimg.png)\\
 
 자 그럼 다시 본론으로 돌아와서, 실험에 대한 구체적인 내용을 살펴보겠습니다.
 
@@ -519,8 +489,7 @@ Object Detection을 수행하는 task를 예로 들어보죠. 여기서 모형�
 이러한 설정을 바탕으로 모형 간 성능을 비교한 결과는 아래와 같습니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FqsUaH%2FbtrzGhgYfLN%2FKAIoj79Hv0GgtCV5qrDyj0%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FqsUaH%2FbtrzGhgYfLN%2FKAIoj79Hv0GgtCV5qrDyj0%2Fimg.png)\\
 
 census 데이터를 제외하고는 모든 경우에서 AUROC와 AUC-PR 모두 DevNet의 성능이 가장 우수함을 확인할 수 있었습니다.
 
@@ -531,15 +500,13 @@ census 데이터를 제외하고는 모든 경우에서 AUROC와 AUC-PR 모두 D
 * 'f1' -> 학습 데이터에서 anomaly 데이터 비중
 * 'f2' -> 전체 데이터에서 anomaly 데이터 비중
 
-\
-
+\\
 
 하지만 여기서 끝나면 뭔가 아쉽죠.
 
 저자는 구체적인 여러 실험을 통해 DevNet의 효율성을 검증합니다.
 
-\
-
+\\
 
 #### \[1] Data Efficiency
 
@@ -555,8 +522,7 @@ census 데이터를 제외하고는 모든 경우에서 AUROC와 AUC-PR 모두 D
 다음 그림을 살펴보겠습니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ft0saz%2FbtrzKQwytqF%2FzL4211l0OALkcWfJKrKdCK%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ft0saz%2FbtrzKQwytqF%2FzL4211l0OALkcWfJKrKdCK%2Fimg.png)\\
 
 추가되는 anomalies의 수에 대해 가장 높은 성능을 DevNet이 보임을 알 수 있습니다. 특별히 campaign, census, news20, thyroid 데이터에 대해서 추가되는 anomalies label에 대해 더 큰 폭의 성능의 향상을 보임을 확인할 수 있었습니다.
 
@@ -575,8 +541,7 @@ census 데이터를 제외하고는 모든 경우에서 AUROC와 AUC-PR 모두 D
 다음 그림을 참고해봅시다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcZ21uH%2FbtrzQoSEvNJ%2FPPtgkXAIMtrm5V1DQjsgJ1%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcZ21uH%2FbtrzQoSEvNJ%2FPPtgkXAIMtrm5V1DQjsgJ1%2Fimg.png)\\
 
 대체적으로 attack에 대해 robust한 성능을 유지함을 확인할 수 있습니다.
 
@@ -591,8 +556,7 @@ census 데이터를 제외하고는 모든 경우에서 AUROC와 AUC-PR 모두 D
 그래서 총 3개의 비교 집단을 만들게 됩니다. 조금 더 간단하게 도식화해보면 다음과 같습니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcqCafv%2FbtrzKugeIL7%2FQQDGN7Uum8jv33nqwIOz40%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcqCafv%2FbtrzKugeIL7%2FQQDGN7Uum8jv33nqwIOz40%2Fimg.png)\\
 
 즉, 기존의 Def가 DevNet이라면, 각각의 구성 요소를 하나씩 제거하거나 layer를 3개로 늘리는 조작을 가하게 됩니다.
 
@@ -601,8 +565,7 @@ DevNet-Rep의 경우 마지막에 anomaly score를 scala 형태로 도출하는 
 이에 대한 성능의 결과는 다음과 같습니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBo4XO%2FbtrzLILcDiC%2FIJt3BFq2HKebK9jV7qubkK%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBo4XO%2FbtrzLILcDiC%2FIJt3BFq2HKebK9jV7qubkK%2Fimg.png)\\
 
 대부분의 데이터셋에서 AUROC는 본 DevNet의 성능이 우수하였습니다. 하지만 AUC-PR의 경우 일부분에서 Rep나 3HL이 더 우수하게 나온 경우도 존재하였음을 알 수 있습니다. 특히 census 데이터의 경우는 Rep에서 성능이 가장 우수했음도 확인할 수 있었습니다.
 
@@ -615,8 +578,7 @@ DevNet-Rep의 경우 마지막에 anomaly score를 scala 형태로 도출하는 
 마지막으로 데이터의 size와 dimension에 따른 수행 시간이 어느정도 되는지, 즉 complexity를 확인하기 위한 실험을 추가적으로 진행하였습니다. size를 고정시켜놓고 dimension의 변화에 따른 수행 시간을 측정하였고 dimension을 고정시켜놓고 size의 변화에 따른 수행 시간을 측정하였습니다. 이에 대한 결과는 다음 그림과 같습니다.
 
 \
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fctk3aV%2FbtrzMJKjFsF%2F0r6c9G6kpyhPhYz7KD3PS0%2Fimg.png)\
-
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2\&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fctk3aV%2FbtrzMJKjFsF%2F0r6c9G6kpyhPhYz7KD3PS0%2Fimg.png)\\
 
 대부분의 모형에서 linear time이 소모되었지만, DevNet의 경우 data size에 대해서는 크기가 10만이 넘어가는 영역에서도 준수한 속도를 보임을 확인할 수 있었습니다. dimension에 대해서도 FSNet보다는 느리지만 다른 타 모형에 비해 더 빠른 성능을 보임을 알 수 있었습니다.
 
@@ -624,15 +586,15 @@ DevNet-Rep의 경우 마지막에 anomaly score를 scala 형태로 도출하는 
 
 따라서 본 논문이 제기하는 Contribution에 대해 정리하면 다음 3가지로 정리할 수 있습니다.
 
-> #### 1. _This paper introduces a novel framework and its instantiation DevNet for leveraging a few labeled anomalies with a prior to fulfill and end-to-end differentiable learning of anomaly scores_
+> **1. **_**This paper introduces a novel framework and its instantiation DevNet for leveraging a few labeled anomalies with a prior to fulfill and end-to-end differentiable learning of anomaly scores**_
 
 대부분의 Unsupervised learning의 한계점을 극복하기 위해 적은 소량의 limited anomaly labeled 데이터를 사용했다는 점
 
-> #### 2. _By a direct optimization of anomaly scores, DevNet can be trained much more data-efficiency, and performs significantly better in terms of both AUROC and AUC-PR compared other two-step deep anomaly detectors that focus on optimizing feature representations_
+> **2. **_**By a direct optimization of anomaly scores, DevNet can be trained much more data-efficiency, and performs significantly better in terms of both AUROC and AUC-PR compared other two-step deep anomaly detectors that focus on optimizing feature representations**_
 
 기존 representation 영역과 detecting 영역이 two-step으로 구분됨으로서 indirect하게 optimize하는 것이 아니라 direct로 optimize하는 방법을 제안
 
-> #### 3. _Deep anomaly detectors can be well trained by randomly sampling negative examples from the anomaly contaminated unlabeled data and positive examples from the small labeled anomaly set._
+> **3. **_**Deep anomaly detectors can be well trained by randomly sampling negative examples from the anomaly contaminated unlabeled data and positive examples from the small labeled anomaly set.**_
 
 또 다른 측면은 바로 normal distribution을 바탕으로 한 reference score를 사용하여 anomaly 정도를 측정하려고 한 점도 독특한 접근이라고 판단할 수 있었습니다.
 
@@ -670,8 +632,7 @@ github code : https://github.com/GuansongPang/deviation-network
 
 github code : https://arxiv.org/abs/2108.00462 (this is what I reviewed in youtube)
 
-\
-
+\\
 
 #### Other materials
 

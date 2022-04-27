@@ -14,61 +14,78 @@ description: Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-202
 
 &#x20; 메타러닝(Meta Learning)은 새로운 task에 대한 데이터가 부족할 때, Prior Experiences 또는 Inductive Biases를 바탕으로 빠르게 새로운 task에 대하여 적응하도록 학습하는 방법을 말한다. 'Learning to Learn'이라는 용어로 많이 설명되곤 하는 데, 대표적인 접근 방법으로는 거리 기반 학습(Metric Based Learning), 모델 기반 학습 (Model-Based Approach), 그리고 최적화 학습 방식(Optimizer Learning)이 있다. 이 중, G-Meta를 제대로 이해하기 위해서는 거리 학습 기반의 ProtoNet\[2]과 최적화 학습 방식의 MAML\[3]에 대한 이해가 선행되어야 한다. 이 둘을 살펴보기 전에, Few-shot Learning이 무엇인 지 먼저 짚어보고 넘어가겠다.
 
-\
 
 
 &#x20; Few-shot Learning은 적은 데이터를 가지고 효율적으로 학습하는 문제를 해결하기 위한 학습 방법이다.
 
+<div align="center">  
+
 ![Support Set - 아르마딜로, 천산갑](https://user-images.githubusercontent.com/37684658/164231019-868292bd-9cbf-4d15-87cb-24d621ed78d6.png)
 
+ </div>
+ 
 예를 들어, 위와 같이 사람에게 아르마딜로(Armadillo)와 천산갑(Pangolin)의 사진을 각각 2장씩 보여줬다고 생각해보자. 아마 대부분의 사람들은 아르마딜로와 천산갑이 생소할 것이다. 자, 이제 그 사람에게 다음의 사진을 한 장 더 보여주었다.
+
+<div align="center">  
+
 
 ![Query Set - 아르마딜로? 천산갑?](https://user-images.githubusercontent.com/37684658/164224487-822f266a-98db-4d2d-9c41-7303fdccf1ff.png)
 
+ </div>
+
 위 사진의 동물이 아르마딜로인지, 천산갑인지 맞춰보라고 하면, 너무나 쉽게 천산갑임을 자신있게 외칠 수 있을 것이다. 사람들은 어떻게 이렇게 적은 양의 사진을 보고도, 두 동물을 구분할 수 있는 능력을 가지게 되었을까? 사람과는 달리 기존 머신러닝(Machine Learning)은 저 두 동물을 구분하기 위해 많은 양의 사진을 보고 학습하여야 할 것이다. 만약 모델이 아르마딜로와 천산갑을 잘 구분할 수 있게 되었다고 하자. 이제 갑자기 아래 두 동물을 구분하라고 하면 어떻게 될까?
 
-\
+<div align="center">  
 
 
 ![Support Set - 아르마딜로, 두더지](https://user-images.githubusercontent.com/37684658/164231266-515ab539-110b-4835-971c-287fb759c44a.png)
 
+ </div>
+ 
+ 
 두더지(Mole)는 모델이 처음 보는 동물이기 때문에 두 동물을 구분하려면 다시 두더지에 대한 사진을 학습을 해야할 것이다. 하지만 사람은 여전히 두 동물을 쉽게 구분할 수 있다. 사람과 같이 적은 양의 사진만 보고도 Class를 구분할 수 있는 능력을 학습하는 것이 Few-shot Learning이고, 이를 학습하기 위해 Meta-Learning의 학습 방법을 활용한다.
 
 &#x20; G-Meta는 Few-shot Learning을 기반으로 학습을 하기 때문에, Label된 데이터가 적은 그래프 데이터셋에 적합한 모델을 제시하고 있다. Few-shot Learning에서 쓰이는 용어를 정리하고 넘어가면, 처음 모델에게 제시해주는 Class별 대표사진들을 `Support Set`이라고 한다. 2개의 Class로 구성되어 있다면 2-way라고 하며, Class별로 2장의 대표사진을 보여준다면 2-shot이라고 한다. 그리고 1장의 새로운 사진을 보여주는 데 이렇게 맞춰보라고 보여주는 사진들을 `Query Set`이라고 하며, 1번 맞춰보라고 주었으니 Query는 1개이다. Support Set과 Query Set을 합쳐서 하나의 `Task` 또는 `Episode`라고 지칭한다.
-
-\
 
 
 > #### ProtoNet
 
 &#x20; Meta Learning 방법론 중 '거리 기반 학습'의 방법은 Support Set과 Query Set 간의 거리(유사도)를 측정하는 방식이다. 그 중 대표적인 알고리즘으로 ProtoNet이 있는 데, 모델은 주어진 Support Set을 임베딩한 후, 각 Class를 대표하는 Prototype을 만든다. 그 후 Query와 Prototypes 간의 거리(유클리디안)를 기반으로 Query와 Prototype이 같은 클래스면 가깝게, 다른 클래스면 멀게 하는 방식으로 모델을 학습시킨다.
 
+<div align="center">  
+
+
 ![ProtoNet](https://user-images.githubusercontent.com/37684658/164232203-324720bc-6ad3-4e49-9fc3-1990b82892e9.png)
 
-\
+ </div>
+
 
 
 > #### MAML (Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks)
 
 &#x20; MAML은 최적화 학습 방식의 Meta Learning 방법론으로서 가장 대표적인 논문이라고 할 수 있다. 전체적인 개념은 어떤 Task에도 빠르게 적응(Fast Adaptation)할 수 있는 파라미터를 찾는 것이 이 모델의 목적이다. 일반적으로 딥러닝 모델은 기울기의 역전파를 통해 학습을 진행하나, 이런 학습 방법은 데이터가 충분히 많을 때 잘 작동하는 방식이다. 이 모델은 Task 하나하나에 대한 그래디언트를 업데이트 하는 inner loop와, 각 태스크에서 계산했던 그래디언트를 합산하여 모델을 업데이트하는 outer loop 단계로 이루어져있다(아래 그림에서의 실선). 공통 파라미터 ![image](https://user-images.githubusercontent.com/37684658/164229776-12b52e66-cf43-4b8e-ba97-ee0ccb723724.png)는 Task agnostic하게 빠르게 적응할 수 있는 파라미터이고, 다시 모델이 이 파라미터로부터 어떤 Task를 학습하게 되면 그 Task에 최적화된 파라미터를 빠르게 찾을 수 있게 된다.
 
-\
+<div align="center">  
+
 
 
 ![MAML](https://user-images.githubusercontent.com/37684658/164233736-dd00ab2f-adf4-42b9-a491-6def82a126d4.png)
 
-\
+ </div>
+
 
 
 > #### Graph Neural Networks (GNNs)
 
 &#x20; Graph 분야에서의 Meta Learning은 요즘 관심이 많아지고 있기는 하지만, Images Vision 이나 NLP 분야에 비하면 아직 활발한 연구가 이루어지지는 않고 있다. Graph가 다른 분야와 크게 다르다고 생각되는 점은 Vision에서 이루어지고 있는 데이터에 비해서 label이 굉장히 적다(sparsity)는 점과 Graph 데이터셋에는 Node와 Edge로 이루어진 Strucure가 있다는 점이다. 저자도 Graph 데이터의 Structure를 잘 잡아내는 것, 그리고 라벨이 적은 상황에서도 General한 모델을 만드는 것에 집중하고 있다.\
-\
+
+<div align="center">  
 
 
 ![Tasks of meta-learning on GNN](https://user-images.githubusercontent.com/37684658/164236353-e79f8de4-41a7-42f6-a0d2-f49940408f26.png)
 
-\
+ </div>
+
 
 
 `Figure 1`을 보면 본 논문에서 정의한 GNN에서의 Meta Learning Task는 3가지이다.\
@@ -78,7 +95,6 @@ description: Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-202
 
 기존 모델들은 보통 위의 3가지 Task 중 1개의 Task에만 집중하고 있는 반면, G-Meta는 3가지 Task 모두에 대해서 자신감 있게 서술하고 있다.
 
-\
 
 
 > #### Local Subgraphs and Theoretical Motivations for G-Meta
@@ -87,12 +103,21 @@ description: Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-202
 
 &#x20; 먼저 Local Subgraph가 전체 그래프의 정보를 얼마나 보존할 수 있는 지를 증명한다. 논문에서는 수식이 가득하나, 본 리뷰에서는 수식 하나하나 뜯어보는 것보다 어떤 전개로 증명을 하고 있는 지 정리하였다. 그 전에 필요한 정의는 다음과 같다.
 
-![image](https://user-images.githubusercontent.com/37684658/164239107-51cd7e87-c358-46c7-90a6-3110477b9601.png)\
-![image](https://user-images.githubusercontent.com/37684658/164239543-4fc5e523-57be-43b4-aa79-d441f4b308cd.png)
+<div align="center">  
 
+
+![Node Influence](https://user-images.githubusercontent.com/37684658/164239107-51cd7e87-c358-46c7-90a6-3110477b9601.png)  
+![Graph Influence](https://user-images.githubusercontent.com/37684658/165067955-e8a1abf3-3cfc-42f7-8992-921f7acefe78.png)  
+![Graph Influence Loss](https://user-images.githubusercontent.com/37684658/165067879-6735ea48-e109-4fc0-9907-9e3ae1d4dff4.png)  
+
+ </div>
+ 
+ 
+\[5] **Loss support** Support set 내 Centroid Embeddings들과 Prototype과의 Euclidean distance를 계산하여 class distribution vector p를 계산한다. 그리고 Cross-entropy loss를 계산한다.
+ 
 ### Theorem 1
 
-![image](https://user-images.githubusercontent.com/37684658/164240224-dc838854-74a9-47e1-a381-e663266ec796.png)
+![Theorem 1](https://user-images.githubusercontent.com/37684658/164240224-dc838854-74a9-47e1-a381-e663266ec796.png)
 
 > <img src="https://user-images.githubusercontent.com/37684658/164247469-016ac481-0dd9-4187-8a96-f900b9fdf159.png" alt="image" data-size="original">
 >
@@ -104,7 +129,7 @@ description: Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-202
 
 ### Theorem 2
 
-![image](https://user-images.githubusercontent.com/37684658/164245660-aa727989-a246-4a68-8f90-9b1251801caf.png)
+![Theorem 2](https://user-images.githubusercontent.com/37684658/164245660-aa727989-a246-4a68-8f90-9b1251801caf.png)
 
 > <img src="https://user-images.githubusercontent.com/37684658/164247420-516cea20-9018-4997-9e19-01002f97e639.png" alt="image" data-size="original">
 >
@@ -122,8 +147,14 @@ description: Kexin Huang / Graph Meta Learning via Local Subgraphs / NeurIPS-202
 
 &#x20; Local Subgraph를 사용한다는 이론적 정당성을 갖췄으므로, 이제 G-Meta의 Methodology에 대해서 상세히 살펴본다. G-Meta의 Architecture는 사실상 MAML\[2]과 ProtoNet\[1]을 Subgraph를 활용하여 합쳐놓은 것이라고 보면 간단하다.
 
+<div align="center">  
+
+
 ![G-Meta : Architecture](https://user-images.githubusercontent.com/37684658/164250511-4b76c6ec-f367-469e-a691-de2530347dbc.png)
 
+ </div>
+ 
+ 
 \[1] **Local Subgraph Extraction**\
 먼저 각 노드들마다 h-hop의 subgraph를 생성한다. 본 논문에서는 2\~3hop이 좋은 성능을 보인다고 한다. 그렇게 각 노드마다 Subgraph를 만들면, 기준이 되는 노드를 'centroid node'라고 지칭한다. Subgraph로 표현된 노드들을 샘플링하여 Meta-Training과 Meta-Testing에 필요한 Task를 generation한다.
 
@@ -133,31 +164,59 @@ Support set을 GNN을 이용하여 임베딩한다. Subgraphs를 이용하여 ce
 \[4] **Build Prototypes**\
 임베딩된 Centroid 노드들 중에 같은 Label을 공유하는 노드들끼리 Mean을 취하여 Prototype을 생성한다.
 
+<div align="center">  
+
+
 ![Prototype](https://user-images.githubusercontent.com/37684658/164254676-d6386d28-3fd4-40eb-b4c0-a719d8ee3ae0.png)
 
+ </div>
+ 
 \[5] **Loss support** Support set 내 Centroid Embeddings들과 Prototype과의 Euclidean distance를 계산하여 class distribution vector p를 계산한다. 그리고 Cross-entropy loss를 계산한다.
+
+<div align="center">  
+
 
 ![Class distribution vector](https://user-images.githubusercontent.com/37684658/164255903-19b9088a-2000-4e77-8068-cf8be6be3bf4.png)
 
+ </div>
+ 
+ 
 \[6] **Inner Loop Update** 각 태스크에 대해서 GNN parameter를 SGD으로 update한다.
+
+
+<div align="center">  
 
 ![inner loop update](https://user-images.githubusercontent.com/37684658/164257790-e4687af3-4709-4328-a8fa-8cac6c209be9.png)
 
+ 
+ </div>
+ 
 \[7]\[8] **Query Set Embeddings**\
 Query Set을 Support set을 이용하여 update 시킨 GNN을 이용하여 임베딩 시킨다.
 
 \[9] **Loss query**\
 Query Set의 Centroid Embeddings들과 4)에서 만든 Prototype과의 Euclidean distance를 기반으로 Cross-entropy loss를 계산한다.
 
+<div align="center">  
+
 ![outer loop update](https://user-images.githubusercontent.com/37684658/164260238-836d2bc9-481b-4e07-bede-34ff09faf7ef.png)
 
+ </div>
+ 
+ 
 \[10] **Outer Loop Update**\
 Loss support와는 다르게 각 Task에 대해 GNN을 update하는 것이 아니라, 모든 tasks에 대한 loss를 모두 합한 후에 한 번에 Update 시킨다. 이는 MAML의 학습 방법과 같다. 다른 batch에 속한 tasks들에 대해서도 1)\~10)과정을 반복하여 GNN을 학습시킨 후, 학습이 끝난 GNN의 파라미터 ![image](https://user-images.githubusercontent.com/37684658/164260672-c0e5f6f3-3927-4bc6-a540-70afe83e6f39.png)는 새로운 task들에 대해서 몇 번의 update만으로도 빠르게 적응할 수 있는 파라미터이다.
 
 \[11] **Meta-Test** 새로운 task에 대해서 빠르게 적응하기 위해서, Meta-test set의 task들을 ![image](https://user-images.githubusercontent.com/37684658/164260743-79d9d2fb-95be-4b0c-82d5-e0e9c0e1ae5c.png) 파라미터를 초기값으로 수 번의 Update를 추가적으로 진행한다. 이런 과정을 통해 unseen tasks들까지 generalization을 할 수 있는 Meta-learned 모델을 만들 수 있다.
 
+<div align="center">  
+
+
 ![Algorithm](https://user-images.githubusercontent.com/37684658/164265745-aae025a5-be56-4693-bf3d-dc772a701669.png)
 
+ 
+ </div>
+ 
 ## **4. Experiment**
 
 ### **Experiment setup**
@@ -166,8 +225,14 @@ Loss support와는 다르게 각 Task에 대해 GNN을 update하는 것이 아�
 
 실험에 쓰인 데이터셋은 다음과 같다.
 
+<div align="center">  
+
+
 ![dataset](https://user-images.githubusercontent.com/37684658/164179454-937fc8ac-810c-4bc2-9310-92bbfe43f55f.png)
 
+ </div>
+ 
+ 
 > baseline
 
 `Meta-Graph` : VGAE를 활용하여 few-shot multi-graph link prediction을 하는 모델 `Meta-GNN` : MAML을 Graph에 접목시킨 모델\

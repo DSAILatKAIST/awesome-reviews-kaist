@@ -41,6 +41,7 @@ description : WU, Size, et al. / Graph-Based 3D Multi-Person Pose Estimation Usi
 - (b)와 같이, **Direct 3D 접근법**은 **multi-view features를 모아서 discretized 3D volumetric representations을 만들고, 3D 공간에 직접적으로 작동합니다**. 이 접근법은 2D camera views에서의 부정확한 결정을 내리는 걸 피할 수 있습니다. 그러나, 공간의 크기가 커지면 계산량도 증가합니다. 또한, space discretization에 의해 발생되는 quantization errors를 겪습니다.
 
 - (c)와 같이, **본 연구는 두 가지 접근법을 결합합니다.** 첫번째 단계에서 효율적인 3D human center 탐지를 위해 2D-to-3D lifting을 사용하고, 두번째 단계에서 정확한 single-person 3D pose estimation을 위해 direct 3D estimation 접근법을 사용합니다. 정확성과 효율성 모두를 위해, 두 단계 모두 task-specific한 그래프 뉴럴 네트워크와 함께 coarse-to-fine 방식으로 처리됩니다. 
+&nbsp;
 
 첫번째 단계에서,  **multi-view matching을 통해 3D human center을 예측합니다**. 이전의 방법들은, multi-view geometric constraints와 appearance similarity를 통해 매칭합니다. 그러나, 매칭 기준은 수동으로 하는 것이었습니다. 이 문제를 해결하기 위해, **본 연구에서는 Multi-view Matching Graph Module(MMG)를 제안합니다**. 이 모듈은 visual과 geometric cues를 모두 고려하여 views들간 사람들을 매치하기 위해 데이터로부터 학습합니다. 
 
@@ -48,9 +49,9 @@ description : WU, Size, et al. / Graph-Based 3D Multi-Person Pose Estimation Usi
 
 초기 3D poses를 만들기 위해 off-the-shelf pose estimator를 사용합니다. 본 연구는 **상세한 수준의 single person pose estimation을 위해, Pose Regression Graph Module(PRG)를 제안합니다**. 이 모듈은 몸 관절 사이 공간적 관계와 multiple views들 간 기하학적 관계를 이용하여 초기 3D poses를 정제합니다.
 
+&nbsp;
 
-
-**본 논문의 핵심 기여점**은 다음과 같습니다.
+>**본 논문의 핵심 기여점**은 다음과 같습니다.
 
 1. **Multi-view 3D pose estimation을 위해 task-specific한 그래프 뉴럴 네트워크를 사용한 것은 최초입니다.** 정확도와 효율성 면에서 이전 연구들을 능가하는 새로운 coarse-to-fine 프레임워크를 제안합니다.
 2. Learnable matching을 통해 multi-view human association의 성능을 향상시키는 Multi-view Matching Graph Module(MMG)를 제안합니다.
@@ -74,7 +75,7 @@ description : WU, Size, et al. / Graph-Based 3D Multi-Person Pose Estimation Usi
 
 
 
-
+&nbsp;
 
 ### 3.2 Multi-view Matching Graph Module (MMG)
 
@@ -88,9 +89,9 @@ description : WU, Size, et al. / Graph-Based 3D Multi-Person Pose Estimation Usi
 
 그러므로, multi-view matching은 edge connectivity가 중요합니다. MMG가 이 문제를 해결하기 위해 그래프 기반 모델을 적용시킨 것입니다. 
 
+##
 
-
-#### EdgeConv-E와 edge 속성 통합
+#### - EdgeConv-E와 edge 속성 통합
 
 EdgeConv는 graph convolution prediction입니다. 수학적으로 표현하면,
 
@@ -109,7 +110,7 @@ x<sub>v</sub> = 노드 피쳐 at v , x<sub>v'</sub> = 노드 피쳐 at v' , N(v)
 Target edge connectivity와 예측한 edge connectivity간 Binary cross-entropy loss는 training에 사용됩니다. 모델을 학습하기 위해 Adam optimizer을 적용했습니다. 
 
 
-
+##
 
 
 ### 3.3 Center Refinement Graph Module (CRG)
@@ -138,10 +139,14 @@ Target edge connectivity와 예측한 edge connectivity간 Binary cross-entropy 
 
 Baseline model은 이렇게 다른 시점들로부터 얻은 point-wise features들을 연결하고, MLP로 처리합니다. 각각의 후보 점들에 대해, MLP는 human center가 되는 것에 대한 confidence score를 출력합니다. 이 접근법을 **MLP-baseline**이라 합니다. 
 
-그러나, **이 접근법은 2가지 문제점이 있습니다.** 
+&nbsp;
+
+> 그러나, **이 접근법은 2가지 문제점이 있습니다.** 
 
 1. 모든 시점에 동일한 가중치를 할당하고, 몇몇 시점에서 폐색을 처리할 수 없습니다
 2. 다른 카메라 세팅(다른 수의 카메라)에 일반화 할 수 없습니다.
+
+&nbsp;
 
 **이런 문제를 해결하기 위해, CRG에서는 각각의 3D query point에 대해 단순히 연결하는게 아니라 multi-view graph를 만듭니다.** Vertices는 각각의 카메라 시점의 2D projection을 나타냅니다. **Vertex 피쳐들은 3가지를 포함합니다.** 
 
@@ -151,9 +156,9 @@ Baseline model은 이렇게 다른 시점들로부터 얻은 point-wise features
 
 Edge는 이 2D projections들을 서로 연결시켜서, view들간 feature들을 종합합니다. CRG는 edge 피쳐가 없기 때문에 기본 Edge-Conv를 사용합니다. 
 
+##
 
-
-### Point Selection
+> ### Point Selection
 
 **MMG로부터 search region이 주어졌을 때, coarse-to-fine 방식으로 human center를 찾습니다.** 
 
@@ -165,9 +170,9 @@ T=t일때, search space에서 query points들을 샘플링합니다. **그래프
 
 그 결과, 기존에는 search space가 O(LWH)이었지만, MMG와 CRG적용 결과, search space 크기는 O(N)으로 감소했습니다. 
 
+&nbsp;
 
-
-### Training
+> ### Training
 
 **이 모델은 각각의 query point에 대해 confidence score을 예측합니다.** 본 연구는 CRG를 훈련하기 위해 training samples를 선정하는데 효율적인 방법을 고안했습니다. 샘플에는 2가지 종류가 있습니다: Positive samples(ground-truth human centers주위에 위치한) & Negative samples(far away from human locations). Positive와 Negative 비율은 4:1입니다. 
 
@@ -178,7 +183,7 @@ X에 위치한 샘플에 대해, **target confidence score은 다음과 같이 �
 CRG에 대한 training loss는 target confidence score과 예측된 confidence score사이의 loss입니다. 
 
 
-
+##
 
 
 ### 3.4 Pose Regression Graph Module (PRG)
@@ -204,13 +209,15 @@ CRG에 대한 training loss는 target confidence score과 예측된 confidence s
 1. Single-view edges (특정 카메라 시점에서 다른 종류의 joints간 연결) 
 2. Cross-view edges(다른 시점에서 같은 종류의 two keypoints 연결)
 
+&nbsp;
+
 PRG의 그래프 모델은 먼저 neighboring body joints와 multiple camera views 사이 message passing을 위해 2개의 연속적인 EdgeConv-E layers를 사용합니다. 그 다음, max-pooling layer가 cross-view features를 종합하고, 그래프를 만듭니다. Max-pooled features들은 body joints들간 효율적인 information flow을 통해 3개의 EdgeConv-E를 따르면서 업데이트됩니다. **마지막으로, 추출된 피쳐들이 2개의 fully connected layers를 가진 MLP를 통과하면서 각각의 관절에 대한 refinement vector를 만든다.** 
 
 Target offset은 초기 3D pose와 ground-truth 3D pose사이의 차이점입니다. 모델은 predicted offset과 target offset사이 loss를 사용합니다. 
 
 
 
-
+&nbsp;
 
 ## **4. Experiment**  
 
@@ -278,7 +285,7 @@ Target offset은 초기 3D pose와 ground-truth 3D pose사이의 차이점입니
 
 
 
-
+&nbsp;
 
 
 ## **5. Conclusion**  
@@ -298,10 +305,10 @@ Target offset은 초기 3D pose와 ground-truth 3D pose사이의 차이점입니
 ---
 ## **Author Information**  
 
-* Size Wu1,3 Sheng Jin2,3 Wentao Liu3, Lei Bai4, Chen Qian3, Dong Liu1, Wanli Ouyang4
-    * 1 University of Science and Technology of China, 2 The University of Hong Kong, 3 SenseTime Research and Tetras.AI, 4 The University of Sydney
-    * 3D Pose estimation
+* Doil Kim
+    * Affiliation : Master Course in KAIST KSE program
+    * Research Topic : Data science, Pose estimation, Human factors
 
 ## **6. Reference & Additional materials**  
 
-* Reference  
+* Reference : Graph based 3D multi person pose estimation using multi view images
