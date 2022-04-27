@@ -70,8 +70,8 @@ DNN과 Gaussian process의 연관성은 베이지안 추론(Bayesian inference)�
 Gaussian process 의 베이지안 추론을 통해 생성한 Neural Network (이하 NNGP)와 SGD로 훈련된 neural networks 를 MNIST 데이터와 CIFAR-10 데이터를 통해 비교하였다. MSE(Mean Squared Error)를 성능지표로 사용하였다.
 
 \
-![](../../.gitbook/2022-spring-assets/Seongbin_1/01.png)
-![](https://github.com/Mos-start2092/ML_class_2022/tree/main/Seongbin_1/1.png)
+
+![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/01.PNG)
 
 위의 실험은 두가지 입장에서 흥미로웠다.
 
