@@ -68,7 +68,7 @@ $$
 \end{equation}
 $$
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/neuralode.png" width="900">
+<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/neuralode.png">
 
 - 이러한 intuition을 바탕으로 2018년 Neural ODE는 Backward Pass에 `Adjoint Sensitivity Method`를 접목시켜서 parameter를 업데이트 시키는 과정에서 gradient를 훨씬 효과적으로 구해낼 수 있게 하였고 이는 연구자들로 하여금 새로운 출발점을 알린 획기적인 시점이 되었다. Forward Method와 대비되는 Adjoint Sensitivity Method는 과연 무엇인지 아래 슬라이드 두개로 대체하고자 한다. 간단히 요약하자면, 초기값 문제를 풀고 Loss를 정의하여 parameter를 업데이트하는 과정에서 time dependent solution function에 대한 parameter 변화량(i.e., ![](https://latex.codecogs.com/svg.image?\frac{d\textbf{u}}{d\boldsymbol{\theta}})을 구해야하는데 이를 구하기가 상당히 수고스러운 일이었다. 이에 비해 Adjoint Sensitivity Method는 이를 직접적으로 구하지 않고 Optimization 문제로 치환하여 Lagrangian을 도입하고 앞선 변화량(i.e., ![](https://latex.codecogs.com/svg.image?\frac{d\textbf{u}}{d\boldsymbol{\theta}})의 계수들을 0으로 만드는 별도의 초기값 문제를 하나 더 제안하여, 총 2개의 ODE를 푸는 것만으로 파라미터를 업데이트 하는 방법론이다.구체화 된 과정은 아래 슬라이드와 같이 나타낼 수 있다.  
   
@@ -146,7 +146,7 @@ $$
 
 위의 Figure는 Node embedding 의 trajectory를 2차원으로 나타낸 그림인데 색은 node의 label이고 적분 구간이 종료점에 가까워질때까지 trajectories가 divergent하고 그말인 즉슨, label별로 update가 잘 일어나고 있음을 나타낸다.
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/experiment2.png" width="900">  
+<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/experiment2.png">  
 
 기존의 GCN, 그리고 가장 좋았던 hyperparmeter 셋팅을 바탕으로 한 GCN* 와의 비교 그리고 numerical solver의 variant로 비교를 한 Test accuracy이다. 성능이 압도하진 않지만 기존의 vanilla GCN 보다는 우월함을 드러내는 Table로 해석될 수 있다.
 
