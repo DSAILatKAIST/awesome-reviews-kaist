@@ -100,6 +100,7 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x$$
 * 노드(node) 수: ![](https://latex.codecogs.com/svg.image?\lvert\mathcal{V}\rvert=n)
 * 노드 특징(feature) 행렬: ![](https://latex.codecogs.com/svg.image?\mathbf{X}=([x^{(1)}]^{\intercal},[x^{(2)}]^{\intercal},\cdots,[x^{(i)}]^{\intercal})\in\mathbb{R}^{n\times&space;d})
     * 노드 특징 행렬의 내적은 일반적인 행렬의 내적과 같습니다. $$\langle \mathbf{X}, \mathbf{Y} \rangle =Tr(\mathbf{X}^{\intercal} \mathbf{Y})=\sum_{i=1}^{n}{\mathbf{x}^{(i)} \mathbf{y}^{(j)}}$$
+
     ![](https://user-images.githubusercontent.com/40286691/164894955-cd3eca64-afad-4bc7-a61a-8b320565fed3.png)
     <p align="center"><span style="color:grey; font-size:75%"><em>그림 4 - Matrix Inner Product</em></span></p>
     <!-- <div class="figure4">
