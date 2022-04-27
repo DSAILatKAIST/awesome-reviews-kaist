@@ -180,7 +180,7 @@ $$
 ---  
 ## **Author Information**  
 
-* Author name: Yeonjun In (인연준)  
+* Author name: Yeonjun In
     * Affiliation: KAIST ISysE DSAIL
     * Research Topic: Graph Represenntation Learning, Adversarial Defense on GNN
 
