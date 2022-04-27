@@ -319,7 +319,7 @@ segmentation 알고리즘의 경우 35ms, CNN 분류의 경우 13ms의 계산효
 * Haehyun Lee  
     * Affiliation : PhD course in KAIST KSE program
     * Research Topic : Human-Computer Interaction, Human Factors in Nuclear Power Plant
-    * contact email : haehyun_lee@naver.com
+    * ontact email : haehyun_lee@naver.com
 
 <br>
 
