@@ -213,21 +213,16 @@ $$\mathbf{X}(t)=e^{\mathbf{\bar{A}}t}\mathbf{X}(0)$$
 
 **Explicit schemes.** Forward Euler discretization: ![](https://latex.codecogs.com/svg.image?t=k\tau) (![](https://latex.codecogs.com/svg.image?k)는 discrete time index(iteration ![](https://latex.codecogs.com/svg.image?\thickapprox) #layers)이고, ![](https://latex.codecogs.com/svg.image?\tau)는 시간의 step size입니다.)
 
-$$\frac{\mathbf{x}_{i}^{(k+1)} - \mathbf{x}_{i}^{(k)}}{\tau}=\sum_{j:(i,j) \in \mathcal{E}} {a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)})(\mathbf{x}_{j}^{\textcolor{red}{(k)}} - \mathbf{x}_{i}^{(k)})}$$
+$$\frac{\mathbf{x}_{i}^{(k+1)} - \mathbf{x}_{i}^{(k)}}{\tau}=\displaystyle\sum_{j:(i,j) \in \mathcal{E}} {a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)})(\mathbf{x}_{j}^{\textcolor{red}{(k)}} - \mathbf{x}_{i}^{(k)})}$$
 
-$$\begin{equation*}
-\begin{split}
-\Leftrightarrow \mathbf{X}^{(k+1)} &= ((1-\tau)\mathbf{I} + \tau \mathbf{A}(\mathbf{X}^{(k)})) \mathbf{X}^{(k)}\\
-&=\mathbf{Q}^{(k)} \mathbf{X}^{(k)}
-\end{split}
-\end{equation*}$$
+$$\Leftrightarrow \mathbf{X}^{(k+1)} = ((1-\tau)\mathbf{I} + \tau \mathbf{A}(\mathbf{X}^{(k)})) \mathbf{X}^{(k)}=\mathbf{Q}^{(k)} \mathbf{X}^{(k)}$$
 
 $$\begin{equation*}
 \text{, where } q_{ij}^{(k)}= 
 \begin{cases}
-1-\tau \displaystyle \sum_{l:(i,l) \in \mathcal{E}} a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & i=j\\
-\tau a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
-0 & \text{otherwise}
+    1-\tau \displaystyle \sum_{l:(i,l) \in \mathcal{E}} a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & i=j\\
+    \tau a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
+    0 & \text{otherwise}
 \end{cases} 
 \end{equation*}$$
 
