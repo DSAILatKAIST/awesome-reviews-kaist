@@ -1,5 +1,5 @@
 ---
-description : Zhongzheng Ren / Not all unlabeled data are euqal : Learning to weight data in semi-superviwd learning / NeurIPS-2020  
+description : Zhongzheng Ren / Not all unlabeled data are euqal - Learning to weight data in semi-superviwd learning / NeurIPS-2020  
 ---
 
 # Robust SSL 
