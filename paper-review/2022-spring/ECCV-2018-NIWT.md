@@ -1,8 +1,8 @@
+---
+description: Ramprasaath R. Selvaraju, Prithvijit et al./ Choose Your Neuron- Incorporating Domain Knowledge through Neuron-Importance / ECCV(2018)   
+---  
 
 # Choose Your Neuron: Incorporating Domain Knowledge through Neuron-Importance
-
- Ramprasaath R. Selvaraju, Prithvijit et al./ Choose Your Neuron: Incorporating Domain
-Knowledge through Neuron-Importance / ECCV(2018)     
 
 # 1. Problem Definition
 

@@ -19,7 +19,7 @@
   * [When Vision Transformers Outperform Resnets without Pre-training or Strong Data Augmentations](paper-review/2022-spring/ICLR-2022-When-Vision-Transformer-Outperform-ResNets-Without-Pre-Training-Or-Strong-Data-Augmentations.md)
   * [flan](paper-review/2022-spring/iclr-2022-flan.md)
   * [Sequential GCN for AL](paper-review/2022-spring/cvpr-2021-sequential\_graph\_convolutional\_network\_for\_active\_learning.md)
-  * [DNNGP](paper-review/2022-spring/ISLR-2018-DEEP-NEURAL-NETWORKS-AS-GAUSSIAN-PROCESS.md)
+  * [DNNGP](paper-review/2022-spring/ISLR-2018-DEEP-NEURAL-NETWORKS-AS-GAUSSIAN-PROCESSES.md)
   * [RGB-D](paper-review/2022-spring/\_CVPR\_2018\_RGB-D.md)
   * [SBG(Successive Behavior Graph)](paper-review/2022-spring/www-2022-sbg.md)
   * [Self-sup-Multi-View](paper-review/2022-spring/ICLR21-self-sup-information-theory.md)
@@ -38,8 +38,9 @@
   * [Learning\_Large\_Neighborhood\_Search\_Policy\_for\_Integer\_Programming](paper-review/2022-spring/NeurIPS-2021-Learning-Large-Neighborhood-Search-Policy-for-Integer-Programming.md)
   * [LooC](paper-review/2022-spring/iclr-2021-what\_should\_not\_be\_contrastive.md)
   * [ESAN](paper-review/2022-spring/ESAN.md)
-  * [RobustSSL](paper-review/2022-spring/RobustSSL.md)
+  * [RobustSSL](paper-review/2022-spring/RobustSSL_.md)
   * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
+  * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
 
 ## How to contribute
 
