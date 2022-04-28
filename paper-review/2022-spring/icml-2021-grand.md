@@ -285,12 +285,14 @@ $$a(\mathbf{X}_{i}, \mathbf{X}_{j})=\text{softmax} \left( \frac{(\mathbf{W}_{K} 
 여기서, ![](https://latex.codecogs.com/svg.image?\mathbf{W}_{K})와 ![](https://latex.codecogs.com/svg.image?\mathbf{W}_{Q})는 학습가능한 행렬이고, ![](https://latex.codecogs.com/svg.image?d_k)는 ![](https://latex.codecogs.com/svg.image?W_k)의 차원을 결정짓는 hyperparameter입니다. 또한 안정적인(stabilize) 학습을 위해 multi-head attention (기대값)을 사용했습니다: ![](https://latex.codecogs.com/svg.image?\mathbf{A}(\mathbf{X})=\frac{1}{h}\textstyle\sum_{h}{\mathbf{A}^{h}(\mathbf{X})}).
 이러한 attention weight 행렬 ![](https://latex.codecogs.com/svg.image?\mathbf{A}=(a(\mathbf{X}_{i},\mathbf{X}_{j})))은 right-stochastic을 따릅니다. 따라서 그래프 확산 방정식을 다음과 같이 표현될 수 있습니다.
 
-$$\begin{equation}
+<!-- $$\begin{equation}
 \begin{split}
 \frac{\partial}{\partial t}\mathbf{X} &= (\mathbf{A}(\mathbf{X}) - \mathbf{I}) \mathbf{X} = \mathbf{\bar{A}}(\mathbf{X})\mathbf{X}\\
 \Leftrightarrow \frac{\partial \mathbf{X}_{i}(t)}{\partial t} &= \sum_{j:(i,j) \in \mathcal{E \text{ or } E^{'}}}{a(\mathbf{X}_{i}(t), \mathbf{X}_{j}(t))(\mathbf{X}_{j}(t) - \mathbf{X}_{i}(t))}
 \end{split}
-\end{equation}$$
+\end{equation}$$ -->
+![](https://user-images.githubusercontent.com/40286691/165795372-edc44689-8c5f-4093-b4a4-ff01370fa940.PNG)
+
 
 Attention weight 행렬을 정의하는 방식과 이를 활용하는 방식에 따라 3가지 변형 모델을 만들 수 있습니다.
 
