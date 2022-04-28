@@ -32,7 +32,9 @@ $$h = -g \nabla x$$
 확산률 ![](https://latex.codecogs.com/svg.image?g)는 ![](https://latex.codecogs.com/svg.image?\Omega) 전체에 걸쳐 균일할(homogeneous) 경우 스칼라 상수로 표현됩니다. 만약 위치에 따라 분균일할 (inhomogeneous)할 경우, 그림 1[^2]과 같이 scalar-valued 함수(isotropic) 또는 matrix-valued 함수(anisotropic)로 표현됩니다.
 
 ![](https://user-images.githubusercontent.com/40286691/164886064-9c9e5324-878b-45ec-b494-a35add32031c.jpg)
-<p align="center"><span style="color:grey; font-size:75%"><em>그림 1 - Inhomogeneous Diffusivity</em></span></p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 1 - Inhomogeneous Diffusivity</em></span></p>
+</div>
 
 연속성 조건 ![](https://latex.codecogs.com/svg.image?x_t=-\text{div}(h))을 통해 PDE 형태의 열 확산 방정식(heat diffusion equation)을 유도할 수 있습니다.(유도과정은 생략합니다. ~~관심있으신 분들은 "Advanced Engineering Mathematics by Erwin Kreyszig" 등을 참고하세요~~ 살려줘...)
 
@@ -67,7 +69,9 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x$$
 * 얕은 구조 (Depth)와 Oversmoothing[^5]: Oversmoothing은 GNN의 layer의 수(Depth)가 증가할수록 노드의 embedding이 점점 유사해지는 현상을 말합니다. 이로 인해, 대부분의 GNN은 깊은 신경망을 쌓지 못하고, 얕은 구조를 가지게 됩니다.
 
 ![](https://user-images.githubusercontent.com/40286691/164888534-446a5482-05ff-4af2-9b77-adea03f24295.png)
-<p align="center"><span style="color:grey; font-size:75%"><em>그림 2 - GCN 1,2,3,4,5 layer를 통해 얻은 Zachary’s karate club network data의 노드 Embedding</em></span></p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 2 - GCN 1,2,3,4,5 layer를 통해 얻은 Zachary’s karate club network data의 노드 Embedding</em></span></p>
+</div>
 
 <!-- <div class="figure2">
 <figure>
@@ -79,7 +83,9 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x$$
 * Bottleneck과 Over-squashing[^6]: Bottleneck은 GNN의 layer가 증가할수록 기하급수적으로 늘어나는 정보를 고정된 크기의 벡터로 압축(squashing)시키는 것을 의미하며, 이로 인해 먼 거리의 노드와의 메세지 전달을 용이하지 못하게 만드는 현상을 의미합니다.
 
 ![](https://user-images.githubusercontent.com/40286691/164957255-1708ee23-8741-4985-a7e7-6722b993a64a.png)
-<p align="center"><span style="color:grey; font-size:75%"><em>그림 3 - GNN에서의 Bottleneck & Over-squashing</em></span></p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 3 - GNN에서의 Bottleneck & Over-squashing</em></span></p>
+</div>
 
 <!-- <div class="figure3">
 <figure>
@@ -100,8 +106,11 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x$$
 * 노드(node) 수: ![](https://latex.codecogs.com/svg.image?\lvert\mathcal{V}\rvert=n)
 * 노드 특징(feature) 행렬: ![](https://latex.codecogs.com/svg.image?\mathbf{X}=([x^{(1)}]^{\intercal},[x^{(2)}]^{\intercal},\cdots,[x^{(i)}]^{\intercal})\in\mathbb{R}^{n\times&space;d})
     * 노드 특징 행렬의 내적은 일반적인 행렬의 내적과 같습니다. $$\langle \mathbf{X}, \mathbf{Y} \rangle =Tr(\mathbf{X}^{\intercal} \mathbf{Y})=\sum_{i=1}^{n}{\mathbf{x}^{(i)} \mathbf{y}^{(j)}}$$
+
     ![](https://user-images.githubusercontent.com/40286691/164894955-cd3eca64-afad-4bc7-a61a-8b320565fed3.png)
-    <p align="center"><span style="color:grey; font-size:75%"><em>그림 4 - Matrix Inner Product</em></span></p>
+    <div style="text-align:center;">
+    <p><span style="color:grey; font-size:75%";><em>그림 4 - Matrix Inner Product</em></span></p>
+    </div>
     <!-- <div class="figure4">
     <figure>
     <img src="https://user-images.githubusercontent.com/40286691/164894955-cd3eca64-afad-4bc7-a61a-8b320565fed3.png">
@@ -123,7 +132,9 @@ $$\frac{\partial x(u, t)}{\partial t} = \text{div}(c \nabla x) = c \Delta x$$
 #### 2-2-2. 미분연산자 (Differential Operator)[^8]
 
 ![](https://user-images.githubusercontent.com/40286691/164896462-0f518cf5-7f5a-466e-b932-5c7a9322bc83.png)
- <p align="center"><span style="color:grey; font-size:75%"><em>그림 5 - Differential Operators on Graph</em></span></p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 5 - Differential Operators on Graph</em></span></p>
+</div>
 <!-- <div class="figure5">
 <figure>
 <img src="https://user-images.githubusercontent.com/40286691/164896462-0f518cf5-7f5a-466e-b932-5c7a9322bc83.png">
@@ -201,7 +212,9 @@ $$\mathbf{X}(t)=e^{\mathbf{\bar{A}}t}\mathbf{X}(0)$$
 
 
 ![](https://user-images.githubusercontent.com/40286691/164957395-cd6859bf-9197-45a1-9a63-40c42f907915.png)
- <p align="center"><span style="color:grey; font-size:75%"><em>그림 6 - Diffusion Equation on Graph</em></span></p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 6 - Diffusion Equation on Graph</em></span></p>
+</div>
 <!-- <div class="figure6">
 <figure>
 <img src="https://user-images.githubusercontent.com/40286691/164957395-cd6859bf-9197-45a1-9a63-40c42f907915.png">
@@ -213,21 +226,16 @@ $$\mathbf{X}(t)=e^{\mathbf{\bar{A}}t}\mathbf{X}(0)$$
 
 **Explicit schemes.** Forward Euler discretization: ![](https://latex.codecogs.com/svg.image?t=k\tau) (![](https://latex.codecogs.com/svg.image?k)는 discrete time index(iteration ![](https://latex.codecogs.com/svg.image?\thickapprox) #layers)이고, ![](https://latex.codecogs.com/svg.image?\tau)는 시간의 step size입니다.)
 
-$$\frac{\mathbf{x}_{i}^{(k+1)} - \mathbf{x}_{i}^{(k)}}{\tau}=\sum_{j:(i,j) \in \mathcal{E}} {a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)})(\mathbf{x}_{j}^{\textcolor{red}{(k)}} - \mathbf{x}_{i}^{(k)})}$$
+$$\frac{\mathbf{x}_{i}^{(k+1)} - \mathbf{x}_{i}^{(k)}}{\tau}=\displaystyle\sum_{j:(i,j) \in \mathcal{E}} {a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)})(\mathbf{x}_{j}^{\textcolor{red}{(k)}} - \mathbf{x}_{i}^{(k)})}$$
 
-$$\begin{equation*}
-\begin{split}
-\Leftrightarrow \mathbf{X}^{(k+1)} &= ((1-\tau)\mathbf{I} + \tau \mathbf{A}(\mathbf{X}^{(k)})) \mathbf{X}^{(k)}\\
-&=\mathbf{Q}^{(k)} \mathbf{X}^{(k)}
-\end{split}
-\end{equation*}$$
+$$\Leftrightarrow \mathbf{X}^{(k+1)} = ((1-\tau)\mathbf{I} + \tau \mathbf{A}(\mathbf{X}^{(k)})) \mathbf{X}^{(k)}=\mathbf{Q}^{(k)} \mathbf{X}^{(k)}$$
 
 $$\begin{equation*}
 \text{, where } q_{ij}^{(k)}= 
 \begin{cases}
-1-\tau \displaystyle \sum_{l:(i,l) \in \mathcal{E}} a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & i=j\\
-\tau a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
-0 & \text{otherwise}
+    1-\tau \displaystyle \sum_{l:(i,l) \in \mathcal{E}} a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & i=j\\
+    \tau a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
+    0 & \text{otherwise}
 \end{cases} 
 \end{equation*}$$
 
@@ -304,7 +312,9 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 ### **4-1. Node Classification**
 
 ![](https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png)
-<p align="center"><span style="color:grey; font-size:75%"><em>표 1 - Data Summary</em></span></p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>표 1 - Data Summary</em></span></p>
+</div>
 <!-- <div class="table1">
 <figure>
 <img src="https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png">
@@ -319,7 +329,9 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 * Linear Diffusion PDE: LanczosNet의 2개의 변형
 
 ![](https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png)
-<p align="center"><span style="color:grey; font-size:75%"><em>그림 7 - Node Classification Results (Planetoid/Random split)</em></span></p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 7 - Node Classification Results (Planetoid/Random split)</em></span></p>
+</div>
 <!-- <div class="figure7">
 <figure>
 <img src="https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png">
@@ -332,7 +344,9 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 ### **4-2. Depth**
 
 ![](https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png)
-<p align="center"><span style="color:grey; font-size:75%"><em>그림 8 - Depth</em></span></p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 8 - Depth</em></span></p>
+</div>
 <!-- <div class="figure8">
 <figure>
 <img src="https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png">
@@ -345,7 +359,9 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 ### **4-3. Choice of discretisation scheme**
 
 ![](https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png)
-<p align="center"><span style="color:grey; font-size:75%"><em>그림 9 - Different Solver Effects</em></span></p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 9 - Different Solver Effects</em></span></p>
+</div>
 <!-- <div class="figure9">
 <figure>
 <img src="https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png">
@@ -366,7 +382,9 @@ GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의
 ### **4-4. Diffusion on MNIST Image Data Experiments**
 
 ![](https://user-images.githubusercontent.com/40286691/164975904-aefb0bb3-3f0f-4eb1-b595-6466a15181f3.png)
-<p align="center"><span style="color:grey; font-size:75%"><em>그림 10 - MNIST Image Data Experiments</em></span></p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 10 - MNIST Image Data Experiments</em></span></p>
+</div>
 
 <!-- <div class="figure10">
 <figure>
