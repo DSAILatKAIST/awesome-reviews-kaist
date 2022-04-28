@@ -6,6 +6,8 @@ description: Chamberlain & Rowbottom et al. / GRAND_Graph Neural Diffusion / ICM
 
 논문 [링크](https://arxiv.org/abs/2106.10934)
 
+> 본 포스팅이 잘 안 보이는 경우, [블로그](https://yunhak0.github.io/blog/2022/grand/)에서 확인해주세요.
+
 ## **1. Problem Definition**
 
 본 논문은 그래프 신경망(Graph Neural Network; GNN)의 메세지 전달 방식을 편미분 방정식(partial differential equation; PDE) 형태의 확산 방정식(diffusion equation)으로 해석해, 그래프 학습에서 발생하는 여러 가지 문제(e.g. 얕은 구조, oversmoothing, bottleneck)를 다루는 새로운 방식의 GNN을 제안합니다.
