@@ -6,6 +6,8 @@ description: Chamberlain & Rowbottom et al. / GRAND_Graph Neural Diffusion / ICM
 
 논문 [링크](https://arxiv.org/abs/2106.10934)
 
+> 본 포스팅이 잘 안 보이는 경우, [블로그](https://yunhak0.github.io/blog/2022/grand/)에서 확인해주세요.
+
 ## **1. Problem Definition**
 
 본 논문은 그래프 신경망(Graph Neural Network; GNN)의 메세지 전달 방식을 편미분 방정식(partial differential equation; PDE) 형태의 확산 방정식(diffusion equation)으로 해석해, 그래프 학습에서 발생하는 여러 가지 문제(e.g. 얕은 구조, oversmoothing, bottleneck)를 다루는 새로운 방식의 GNN을 제안합니다.
@@ -230,24 +232,27 @@ $$\frac{\mathbf{x}_{i}^{(k+1)} - \mathbf{x}_{i}^{(k)}}{\tau}=\displaystyle\sum_{
 
 $$\Leftrightarrow \mathbf{X}^{(k+1)} = ((1-\tau)\mathbf{I} + \tau \mathbf{A}(\mathbf{X}^{(k)})) \mathbf{X}^{(k)}=\mathbf{Q}^{(k)} \mathbf{X}^{(k)}$$
 
-$$\begin{equation*}
+<!-- $$\begin{equation*}
 \text{, where } q_{ij}^{(k)}= 
 \begin{cases}
     1-\tau \displaystyle \sum_{l:(i,l) \in \mathcal{E}} a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & i=j\\
     \tau a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
     0 & \text{otherwise}
 \end{cases} 
-\end{equation*}$$
+\end{equation*}$$ -->
+![](https://user-images.githubusercontent.com/40286691/165699880-16047cff-123c-4819-b255-3a49bf01b3a2.PNG)
 
 여기서, ![](https://latex.codecogs.com/svg.image?\textstyle\sum_{j}{a_{ij}}=1)의 정규화를 가정하므로, 우리는 위의 수식을 더 간단히 표현할 수 있습니다. 또한, ![](https://latex.codecogs.com/svg.image?\tau=1)일 때, diffusivity는 attention이 되므로 위의 수식은 nonlinearity가 없는 **GAT**와 같게 됩니다.
 
-$$\begin{equation*}
+<!-- $$\begin{equation*}
 q_{ij}^{(k)}= 
     \begin{cases}
     a(\mathbf{x}_{i}^{(k)}, \mathbf{x}_{j}^{(k)}) & (i,j) \in \mathcal{E}\\
     0 & \text{otherwise}
     \end{cases} 
-\end{equation*}$$
+\end{equation*}$$ -->
+![](https://user-images.githubusercontent.com/40286691/165699998-d7f54dbf-9d78-490c-a8ac-241b4c627e6d.PNG)
+
 
 **Semi-Implicit scheme.** Backward Euler discretization
 
