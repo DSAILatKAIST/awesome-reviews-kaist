@@ -12,7 +12,7 @@ description : Michael Poli, Stefano Massaroli / Graph Neural Ordinary Differenti
 
 그렇다면, 이제 본론으로 넘어와서 우리가 현재 포커싱하고 있는 `Graph Neural Network` 관점에서 바라보면 어떠한가? GNN은 node와 edge를 바탕으로 한 그래프 자료구조에서 딥러닝을 접목시켰기 때문에 Relation은 직관적으로 edge를 바탕으로 이뤄지고 있음을 알 수 있다. 이때, Relational Inductive Bias는 정형화되지 않은, arbitrary한 특성을 가지고 있다. 이는 GNN에서는 특정 두 노드를 기준으로 엣지가 정의되고 있는 본질적인 성질 때문이다. 예를 들어보자면, 전 세계 대학원생의 그래프를 만들어본다고 했을 때, 각 국가를 라벨로 가지고 노드는 해당 대학원생의 특성으로 정의된다고 해보자. 이때, 두 대학원생을 이어주는 엣지는 취미생활이 같은 경우(e.g., 축구)라고 하면 한국 내에서 대학원생 김 모군 - 박 모군 의 관계도 있을 것이고 미국에서 John - Andrew 의 관계도 있을 것이다. 두 Pair(김-박, John-Andrew)는 그래프 내에서 local하지는 않아도 관계는 일치하기 때문에 비슷한 weight를 share할 가능성도 크다. 이러한 경우가 바로 aribitrary한 Relational Inductive Bias를 갖는 경우로 볼 수 있다. 앞선 두 문단을 하나의 사진으로 요약하면 아래와 같다.
 
-<img align ="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/inductivebias.png" width="1000">
+<img align ="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/inductivebias.png" width=1000>
 
 우리가 오늘 특히 집중할 Inductive Bias는 시스템 내 데이터를 바탕으로 한 `Temporal Behavior`, 즉 시간에 따른 행동양상이다. 앞서 우리는 inductive bias를 *추가적인 가정* 에 대응되는 개념이라고 했다. 즉, 현재 경우에 접목시켜보면 우리의 추가적인 가정은, 시간에 변화 따라 시스템의 dynamics이 **discrete**한 지, **continuous**인지 등의 가정을 부여해줄 수 있다. 이 중, 특히 신경망을 연속적인 layer의 구조로 표현하는 관점 그리고 *상미분방정식(ODE)의 초기값 문제의 해* 를 통해 이를 업데이트 하는 과정은 최근 딥러닝 모델로 하여금 새로운 패러다임을 제안했다고 볼 수 있다.
 
@@ -35,7 +35,7 @@ description : Michael Poli, Stefano Massaroli / Graph Neural Ordinary Differenti
 ### (1) Graph Neural Network
 - 먼저, GNN을 이해할 필요가 있는데, 이 중 가장 대표적인 `GCN(Graph Convolutional Networks)`을 간단히 설명해보고자 한다. 기존의 딥러닝 분야(e.g., CNN)과 달리 GNN은 non-euclidean space에서 정의되고 feature들이 독립적이지 않다는 속성을 key motivation으로 삼아 발전한, Graph 자료구조에 신경망을 접목시킨 모델이라고 이해할 수 있다. 그 중, GCN은 이름에서 유추할 수 있듯, CNN에서의 Convolution 연산을 그래프 자료구조에 접목시킨 대표적인 모델이다. Graph에서 Convolution을 적용하기 위한 과정으로는 퓨리에 변환(Signal을 Frequency로 변환하는 과정)이 필수적으로 수반되게 되고 이때 우리는 Signal을 node의 label, Frequency를 중심노드와 이웃노드의 차이로 대응할 수 있게 된다. 핵심은, 우리는 이러한 중심노드와 이웃노드의 차이가 적기를 바라며, 이러한 **이웃노드들로부터 자신의 노드를 업데이트하는 과정** 이 바로 GCN의 본질이라는 것이다. 이에 대한 더욱 자세한 설명은 해당 페이지에서 GCN에 대한 PDF를 참고하면 도움이 된다. [https://github.com/SukwonYun/GNN-Papers](https://github.com/SukwonYun/GNN-Papers)
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/gcn.png">
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/gcn.png" width=1000></center> 
 
 - 수식을 통해 이해해보면 아래와 같이 설명할 수 있다. 이때, ![](https://latex.codecogs.com/svg.image?\mathbf{h_v^{l}})은 ![](https://latex.codecogs.com/svg.image?l)번째 레이어에서 노드 ![](https://latex.codecogs.com/svg.image?v)의 hidden representation 이고 ![](https://latex.codecogs.com/svg.image?\mathcal{N}_v)는 노드 ![](https://latex.codecogs.com/svg.image?v)의 이웃노드들의 집합이다. 수식에서 보듯 자기자신의 representation을 업데이트하는 과정에서 이웃노드들의 representation을 바탕으로 한다는 것이 GNN의 핵심이다. GCN은 이 중에서도 Laplacian 연산(i.e.,![](https://latex.codecogs.com/svg.image?\mathbf{\hat{D}}^{-1/2}\mathbf{\hat{A}}\mathbf{\hat{D}}^{-1/2}))을 통해 자기자신과 이웃노드들의 representation 평균 합으로 AGGREGATE하는 GNN으로 이해하면 된다. 이때, ![](https://latex.codecogs.com/svg.image?\mathbf{W}^{(l-1)})은 ![](https://latex.codecogs.com/svg.image?l-1)번 째 layer에서 업데이트 대상이 되는 파라미터이다.
 
@@ -68,14 +68,14 @@ $$
 \end{equation}
 $$
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/neuralode.png">
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/neuralode.png" width=900></center> 
 
 - 이러한 intuition을 바탕으로 2018년 Neural ODE는 Backward Pass에 `Adjoint Sensitivity Method`를 접목시켜서 parameter를 업데이트 시키는 과정에서 gradient를 훨씬 효과적으로 구해낼 수 있게 하였고 이는 연구자들로 하여금 새로운 출발점을 알린 획기적인 시점이 되었다. Forward Method와 대비되는 Adjoint Sensitivity Method는 과연 무엇인지 아래 슬라이드 두개로 대체하고자 한다. 간단히 요약하자면, 초기값 문제를 풀고 Loss를 정의하여 parameter를 업데이트하는 과정에서 time dependent solution function에 대한 parameter 변화량(i.e., ![](https://latex.codecogs.com/svg.image?\frac{d\textbf{u}}{d\boldsymbol{\theta}})을 구해야하는데 이를 구하기가 상당히 수고스러운 일이었다. 이에 비해 Adjoint Sensitivity Method는 이를 직접적으로 구하지 않고 Optimization 문제로 치환하여 Lagrangian을 도입하고 앞선 변화량(i.e., ![](https://latex.codecogs.com/svg.image?\frac{d\textbf{u}}{d\boldsymbol{\theta}})의 계수들을 0으로 만드는 별도의 초기값 문제를 하나 더 제안하여, 총 2개의 ODE를 푸는 것만으로 파라미터를 업데이트 하는 방법론이다.구체화 된 과정은 아래 슬라이드와 같이 나타낼 수 있다.  
   
   
-<img align="left" src="../../.gitbook/2022-spring-assets/SukwonYun_1/forward.png" width="440" height="200">  
+<center><img align="left" src="../../.gitbook/2022-spring-assets/SukwonYun_1/forward.png" width="480" height="200"></center>   
 
-<img align="right" src="../../.gitbook/2022-spring-assets/SukwonYun_1/asm.png" width="440" height="200">  
+<center><img align="right" src="../../.gitbook/2022-spring-assets/SukwonYun_1/asm.png" width="480" height="200"></center>   
 
   
 
@@ -90,15 +90,15 @@ $$
 
 먼저 기존의 resiudal connection이 추가된 기존의 GNN이 업데이트되는 방식을 살펴보면 아래와 같이 나타낼 수 있다. 이때 함수 **F**는 GNN layer로 바라볼 수 있고, parameter는 layer별로 지정되는 것을 볼 수 있다. 또한 layer는 자연수의 범위 내에서 정의됨을 확인할 수 있다.
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation1.png" width="650">  
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation1.png" width="700"></center>   
 
 다음으로는 앞서 Motivation에서 살펴봤듯, residual connection을 좌변으로 넘겨서 이 term을 변화량의 관점에서 해석한 뒤, 미분방정식을 새롭게 만들어내었을 때 비로소 우리는 '**Graph Neural Ordinary Differential Equation(GDE)**'의 초기값 문제(IVP)관점에서 아래와 같이 정의할 수 있게 된다. 중요한 점은, 위의 식과 달리 우리는 초기값을 가진 미분방정식을 Formulation 했다는 점이고, layer가 자연수 범위가 아닌 **실수 범위** 에서 정의된다는 점에 주목할 필요가 있다.
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation2.png" width="600">  
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation2.png" width="600"></center>   
 
 미분방정식을 Formulation하는 것도 중요하지만 또 하나의 중요한 점은 미분방정식의 해가 존재하는지 그리고 그 해가 유일한지 `Well-posedness`를 따져볼 필요가 있다. 우리는 이때, 적분구간을 [0,1]로 설정한 뒤, Hidden state에서의 **Lipshitz Continuity**, layer의 index로 해석될 수 있는 위의 식의 s에서의 **Uniform Continuity**를 조건으로 부여해줌으로써 해당 구간 내에서의 해(hidden representation)의 유일성을 정의할 수 있게 된다. 최종적으로 위의 hidden representation을 적분함으로써 우리는 GDE의 output을 아래와 같이 나타낼 수 있게된다. 이때, 적분구간을 [0,1]로 둔다고 하면, 0에서의 적분값은 정의한 미분방정식의 초기값과 만나 상쇄되게 된다.
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation3.png" width="350">  
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation3.png" width="330"></center>   
 
 
 
@@ -106,16 +106,18 @@ $$
 
 우리는 GDE를 2가지 관점에서 해석할 수 있게 되는데 먼저 time에 variant하지 않은 static 모델에서 정의할 수 있다. Residual connection을 가진 GCN은 아래와 같이 나타낼 수 있게 되고 해당 식을 여태 위에서의 과정과 같이 미분 관점에서 해석하게 되면 아래 두 번째 식으로 나타낼 수 있게 된다. 이 때, L은 Laplacian Matrix를 나타내고 Hidden Representation을 나타내는 함수 **F** 는 모델링의 자유도를 가지는데 주로 Multilayer Convolution 등으로 표현할 수 있게 된다. 이 때, 우리는 GCN을 베이스로 하였기에 `Graph Convolutional Differential Equation, GCDE`로 GDE를 부를 수 있게된다.
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation4.png" width="500">  
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation5.png" width="800">  
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation4.png" width="500"></center>   
+
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation5.png"></center>   
 
 
 ### (3) **GDE on Spatio-Temporal Models**
 
 다음으로는, 시간에 따라 variant한, autoregressive 속성을 가진 Spatio-Temporal 관점에서 GDE를 정의할 수 있다. 시간의 축을 포함시켜줌으로써, 우리는 depth domain을 time domain과 동치시킬 수 있다(RNN에서 layer를 쌓는다는 것은 그 만큼 더 많은 time input을 고려해준다는 의미와 상통된다고 생각하면 된다). 따라서 특정 시간에서 시간 변화량만큼 적분을 해줌으로써 우리는 Hidden representation을 업데이트할 수 있게 된다. 이 때 역시, 미분방정식의 관점에서 이를 해석할 수 있게되고, 시간 구간 내에서의 dynamic를 parameter ![](https://latex.codecogs.com/svg.image?\boldsymbol{\theta}) 를 가진 하나의 함수로서 나타낼 수 있게된다. GDE Framework에서 아래 등장하는, F, G, K는 **GNN-operator** 혹은 GNN layer로 생각할 수 있다.
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation6.png" width="500">  
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation7.png" width="550">  
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation6.png" width="550"></center>   
+
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/equation7.png" width="600"></center>   
 
 
 ## **4. Experiment**  
@@ -142,24 +144,25 @@ $$
 ### **Result**  
 **(1) Semi-supervised node classification**
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/experiment1.png">  
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/experiment1.png" width=1000></center>   
 
 위의 Figure는 Node embedding 의 trajectory를 2차원으로 나타낸 그림인데 색은 node의 label이고 적분 구간이 종료점에 가까워질때까지 trajectories가 divergent하고 그말인 즉슨, label별로 update가 잘 일어나고 있음을 나타낸다.
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/experiment2.png">  
+<center><img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/experiment2.png" width=1000></center>   
 
 기존의 GCN, 그리고 가장 좋았던 hyperparmeter 셋팅을 바탕으로 한 GCN* 와의 비교 그리고 numerical solver의 variant로 비교를 한 Test accuracy이다. 성능이 압도하진 않지만 기존의 vanilla GCN 보다는 우월함을 드러내는 Table로 해석될 수 있다.
 
 **(2) Trajectory extrapolation task**
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/experiment5.png" width="900">  
+<center><img src="../../.gitbook/2022-spring-assets/SukwonYun_1/experiment5.png" width=1000></center>  
 
 이 task는 Extrapolation에서의 GDE의 퍼포먼스를 중점적으로 테스트한 결과인데, 변위 그리고 속도의 관점에서 입자의 trajectory를 plotting 한 결과이다. 총 10개의 particle system에서 측정하였기에 색은 총 10개의 variant한 입자를 나타내며, 각 입자별로 입자의 변위 그리고 속도 변화를 잘 표현해내고 있음을 확인할 수 있다.
 
 
 **(3) Traffic forecasting**
 
-<img align="center" src="../../.gitbook/2022-spring-assets/SukwonYun_1/experiment3.png">  
+<center><img src="../../.gitbook/2022-spring-assets/SukwonYun_1/experiment3.png" width=1000></center>  
+
 
 Model에서의 퍼센티지는 Undersample 관점에서 해석하여, training 으로 활용한 데이터셋의 비율이다. 상대적으로 Harsh한 Undersampling 환경에서도 GCDE-GUR의 우월함을 확인할 수 있다. 앞선 static 실험에서와 달리 성능 향상의 폭이 유의미한 것을 확인할 수 있는데, 이로 유추해보아 확실히 time domain, continuous domain에서의 GDE의 효과성을 살펴볼 수 있다.
 
@@ -196,6 +199,7 @@ Model에서의 퍼센티지는 Undersample 관점에서 해석하여, training �
     - Adjoint Sensitivity Method: [https://www.youtube.com/watch?v=k6s2G5MZv-I&t=512s](https://www.youtube.com/watch?v=k6s2G5MZv-I&t=512s)
 - GCN: [https://arxiv.org/abs/1609.02907](https://arxiv.org/abs/1609.02907)
     - PDF 자료: [https://github.com/SukwonYun/GNN-Papers](https://github.com/SukwonYun/GNN-Papers)
-    - 윤훈상 연구원님 자료: [https://www.youtube.com/watch?v=F-JPKccMP7k&t=635s](https://www.youtube.com/watch?v=F-JPKccMP7k&t=635s)
-
+    - 윤훈상 연구원님 자료: [https://www.youtube.com/watch?v=F-JPKccMP7k&t=635s](https://www.youtube.com/watch?v=F-JPKccMP7k&t=635s)  
+    
+- Github Review (본문 사진이 잘 안보일 경우): [https://github.com/SukwonYun/awesome-reviews-kaist/blob/2022-Spring/paper-review/2022-spring/AAAI-2020-GDE.md](https://github.com/SukwonYun/awesome-reviews-kaist/blob/2022-Spring/paper-review/2022-spring/AAAI-2020-GDE.md)
 
