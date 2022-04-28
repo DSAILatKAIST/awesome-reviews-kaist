@@ -22,7 +22,7 @@ AR환경에서 손, 얼굴 등 신체를 활용하여 움직이면서 컴퓨터�
 **FaceSight**는 적외선 카메라를 AR 안경 다리에 고정하여 얼굴 아랫부분(뺨, 코, 입, 턱)에서의 손 제스처를 감지하는 기술입니다.
 
 <br>
-<center><img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig1_facesight.PNG?raw=true"></center>
+<center><img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig1_facesight.PNG?raw=true"></center>
 
 <br>
 
@@ -45,7 +45,7 @@ AR환경에서 손, 얼굴 등 신체를 활용하여 움직이면서 컴퓨터�
  - [Lee et al.](https://doi.org/10.1145/3242587.3242642)은 얼굴에서 멀리 떨어진 귀, 목을 활용하면 hand-to-face 상호작용 설계에 적합할 수 있으며, 5개의 손을 모두 사용하는 큰 움직임보다 소수의 손가락을 사용하는 작은 움직임이 입력에 적합할 수 있음을 제안했습니다.
 <br>
 
-<center><img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/serano,lee.png?raw=true" width="500"></center>
+<center><img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/serano,lee.png?raw=true" width="500"></center>
 
 <br>
 
@@ -54,7 +54,7 @@ AR환경에서 손, 얼굴 등 신체를 활용하여 움직이면서 컴퓨터�
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/checkinput,facerubbing.png?raw=true" width="500">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/checkinput,facerubbing.png?raw=true" width="500">
 
 <br>
 
@@ -64,7 +64,7 @@ AR환경에서 손, 얼굴 등 신체를 활용하여 움직이면서 컴퓨터�
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/privatetalk,earbuddy.png?raw=true" width="500">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/privatetalk,earbuddy.png?raw=true" width="500">
 
 <br>
 
@@ -84,7 +84,7 @@ AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정�
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig1_facesight.PNG?raw=true" width="500">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig1_facesight.PNG?raw=true" width="500">
 
 <br>
 
@@ -109,12 +109,12 @@ AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정�
 
 ### 3.1 FaceSight 구성요소  
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig2_ARglasses.PNG?raw=true" width="500">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig2_ARglasses.PNG?raw=true" width="500">
 
 FaceSight는 위 그림과 같이 AR안경의 안경코 부근에 비디오 카메라를 장착하는 것입니다. 본 연구에서는 [Nreal Light](https://www.nreal.ai/) AR 안경을 사용했습니다.  
 그리고 안경에 광각 카메라를 장착하여 사용자의 얼굴 아랫부분(뺨, 코, 입, 턱)을 인식하며, 인식 범위는 아래와 같습니다.
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig3_interactionspace.PNG?raw=true" width="500">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig3_interactionspace.PNG?raw=true" width="500">
 
 카메라 렌즈 주변에는 적외선 전구 6개가 조명원을 제공하여 완전히 어두운 환경에서도 제스처를 인식할 수 있도록 구성했습니다.  
 또한, 적외선 조명값과 카메라의 노출값을 조정함으로써 얼굴 아랫부분만 안정적으로 이미지를 수집할 수 있습니다. 아래 그림은 조명값 및 노출값 설정에 따른 이미지 효과를 보여줍니다.  
@@ -122,7 +122,7 @@ FaceSight는 위 그림과 같이 AR안경의 안경코 부근에 비디오 카�
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig4_highcontrast.PNG?raw=true" width="500">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig4_highcontrast.PNG?raw=true" width="500">
 
 <br>  
 
@@ -137,7 +137,7 @@ FaceSight에서 지원할 수 있는 hand-to-face 제스처 상호작용에 대�
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig5_gestures.PNG?raw=true" width="1000">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig5_gestures.PNG?raw=true" width="1000">
 
 <br>
 
@@ -171,7 +171,7 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig6_recognitionstep.PNG?raw=true" >
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig6_recognitionstep.PNG?raw=true" width="1000">
 
 <br>
 
@@ -187,7 +187,7 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/fig7_segmentationapproach.PNG?raw=true" width="500">  
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig7_segmentationapproach.PNG?raw=true" width="700">  
 
 <br>
 
@@ -228,7 +228,7 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/table3_stage3.PNG?raw=true" width="500">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/table3_stage3.PNG?raw=true" width="500">
 
 <br>
 
@@ -240,10 +240,10 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 <br>
 
- - accuracy = ![accuracy](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/accuracy.PNG?raw=true) * 100
- - recall = ![recall](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/recall.PNG?raw=true) * 100
- - precision = ![precision](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/precision.PNG?raw=true) * 100
- - F1-score=![f1score](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/f1score.PNG?raw=true) * 100
+ - accuracy = <img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/accuracy.PNG?raw=true"> * 100
+ - recall = <img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/recall.PNG?raw=true"> * 100
+ - precision = <img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/precision.PNG?raw=true"> * 100
+ - F1-score= <img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/f1score.PNG?raw=true"> * 100
 
 <br>
 
@@ -259,7 +259,7 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/table1_stage1.PNG?raw=true" width="500">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/table1_stage1.PNG?raw=true" width="500">
 
 <br>
 
@@ -267,7 +267,7 @@ touch contact 감지 알고리즘의 인식 정확도는 recall, precesion, F1-s
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/table2_stage2.PNG?raw=true" width="500">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/table2_stage2.PNG?raw=true" width="500">
 
 <br>
 
@@ -289,7 +289,7 @@ touch location 감지 알고리즘의 인식 정확도는 accuracy으로 평가�
 
 <br>
 
-<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee_1/table4_stage4.PNG?raw=true" width="500">
+<img src="https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/table3_stage3.PNG?raw=true" width="500">
 
 <br>
 
