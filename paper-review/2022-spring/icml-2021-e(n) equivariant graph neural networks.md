@@ -50,6 +50,7 @@ Equivariant 에 대한 정의는 다음과 같다.
 <!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image1.png">   -->
 
 ![1](/.gitbook/2022-spring-assets/KanghoonLee_1/image1.png")
+![1](/.gitbook/2022-spring-assets/heemang_park_1/1.png)
 
 ### 2. Graph Neural Network (GNN)
 
