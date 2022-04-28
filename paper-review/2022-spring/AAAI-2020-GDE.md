@@ -199,6 +199,7 @@ Model에서의 퍼센티지는 Undersample 관점에서 해석하여, training �
     - Adjoint Sensitivity Method: [https://www.youtube.com/watch?v=k6s2G5MZv-I&t=512s](https://www.youtube.com/watch?v=k6s2G5MZv-I&t=512s)
 - GCN: [https://arxiv.org/abs/1609.02907](https://arxiv.org/abs/1609.02907)
     - PDF 자료: [https://github.com/SukwonYun/GNN-Papers](https://github.com/SukwonYun/GNN-Papers)
-    - 윤훈상 연구원님 자료: [https://www.youtube.com/watch?v=F-JPKccMP7k&t=635s](https://www.youtube.com/watch?v=F-JPKccMP7k&t=635s)
-
+    - 윤훈상 연구원님 자료: [https://www.youtube.com/watch?v=F-JPKccMP7k&t=635s](https://www.youtube.com/watch?v=F-JPKccMP7k&t=635s)  
+    
+- Github Review (본문 사진이 잘 안보일 경우): [https://github.com/SukwonYun/awesome-reviews-kaist/blob/2022-Spring/paper-review/2022-spring/AAAI-2020-GDE.md](https://github.com/SukwonYun/awesome-reviews-kaist/blob/2022-Spring/paper-review/2022-spring/AAAI-2020-GDE.md)
 
