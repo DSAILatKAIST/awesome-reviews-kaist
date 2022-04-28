@@ -20,7 +20,7 @@ description: >-
 
 또한 NeurIPS에 2018년에 publish 된 '[Neural ordinary differential equations](https://arxiv.org/abs/1806.07366)' 라는 논문에서 제시한 `Latent ODE model`의 recognition network을 `ODE-RNN`으로 대체합니다. 이를 통해 관측값 사이의 임의의 time gap을 다룰 수 있습니다.
 
-
+  
 
 ## **2. Motivation**
 
@@ -33,7 +33,7 @@ description: >-
 * timeline을 equally-sized intervals로 나누거나,
 * observation들을 평균을 사용해 impute/agrregate 하는 등의 간단한 trick을 사용했습니다.
 
-하지만 이러한 방식은 measurement의 timing 같은 정보량을 줄이거나 왜곡하는 문제가 있었습니다.
+하지만 이러한 방식은 measurement의 timing 같은 정보량을 줄이거나 왜곡하는 문제가 있었습니다.  
 
 **_이에 저자들은 모든 time point에 정의된 latent space를 가지는 continuous-time model을 정의하고자 합니다._**
 
@@ -45,7 +45,7 @@ description: >-
 반면에 `ODE-RNN`은 각 observation 사이에도 trajectory를 fitting하며 observation이 들어올 때 마다 값을 수정해주는 것을 확인할 수 있습니다. 이런 식으로 `ODE-RNN`은 **observation이 불규칙적으로 있어도 좋은 예측 성능**을 보일 수 있습니다.
 
 
-
+  
 
 ## **3. Method**
 
@@ -53,7 +53,7 @@ description: >-
 
 논문에서 제안한 방법론을 이해하기 위해서는 `RNN`, `Neural Ordinary Differential Equations`, 그리고 `Variational Autoencoder`의 개념을 알고 있어야 합니다.
 
-본 포스팅에서는 간단하게 소개를 하겠으며, 세 가지 방법론에 대해 자세히 알고 싶으시면 각각 [여기](https://www.youtube.com/watch?v=6niqTuYFZLQ), [여기](https://www.youtube.com/watch?v=AD3K8j12EIE), 그리고 [여기](https://www.youtube.com/watch?v=9zKuYvjFFS8)를 참고하시기 바랍니다.
+본 포스팅에서는 간단하게 소개를 하겠으며, 세 가지 방법론에 대해 자세히 알고 싶으시면 각각 [여기](https://www.youtube.com/watch?v=6niqTuYFZLQ), [여기](https://www.youtube.com/watch?v=AD3K8j12EIE), 그리고 [여기](https://www.youtube.com/watch?v=9zKuYvjFFS8)를 참고하시기 바랍니다.  
 
 **1. RNN**
 
@@ -76,7 +76,7 @@ Hidden layer의 메모리 셀은 각각의 시점(time step)에서 바로 이전
 
 또한, RNN이 가진 문제를 해결한 `RNN-Decay`, `GRU` 등 다양한 모델이 있으나 본 포스팅에서 설명은 생략하겠습니다.
 
-_저자들은 이런 **discrete한 hidden layer를 ODE를 사용해서 continuous하게** 바꾸려는 겁니다._
+_저자들은 이런 **discrete한 hidden layer를 ODE를 사용해서 continuous하게** 바꾸려는 겁니다._  
 
 
 **2. Neural Ordinary Differential Equations**
@@ -92,7 +92,7 @@ $$h_{0},...,h_{N}=ODESolve(f_{\theta},h_{0},(t_{0},...,t_{N}))$$
 위 식으로 우리는 hidden layer를 continuous 하게 정의할 수 있으며 이 방식은 다음과 같은 장점들이 있습니다.
 
 * Discrete한 hidden layer를 사용할 때는 각 layer마다 parameter가 있었으나, 이 방식은 **하나의 parameter**($$\theta$$)로 연산 가능하여 **computational cost**가 적습니다.
-* Hidden layer가 **연속적인 하나의 layer**로 생각될 수 있으므로, interpolation이나 extrapolation 등의 예측에 뛰어납니다.
+* Hidden layer가 **연속적인 하나의 layer**로 생각될 수 있으므로, interpolation이나 extrapolation 등의 예측에 뛰어납니다.  
 
 
 
@@ -107,7 +107,7 @@ Variational Autoencoder(`VAE`)는 측정 불가한 분포를 갖는 어떤 잠�
 
 위 그림을 간단하게 설명하자면, 어떤 input data $$x$$ 가 있을 때, Encoder network가 잠재변수 $$z$$ 의 분포(평균과 분산)을 근사합니다. 만들어진 분포에서 $$z$$ 를 sampling 하고 Decoder network는 $$\hat{x}$$ 을 만들어냅니다.
 
-본 논문에서 저자들은 이 `VAE`의 구조 중 Encoder network에 `ODE-RNN`을 쓰고 Decoder network에 `RNN`을 사용한 `Latent ODE`를 소개합니다.
+본 논문에서 저자들은 이 `VAE`의 구조 중 Encoder network에 `ODE-RNN`을 쓰고 Decoder network에 `RNN`을 사용한 `Latent ODE`를 소개합니다.  
 
 
 
@@ -137,7 +137,7 @@ $$h'_{i}=ODESolve(f_{\theta},h_{i-1},(t_{i-1},t_{i}))$$
 
 위의 모델들은 저자들이 모델의 성능을 평가하기 위한 baseline으로 사용합니다.
 
-_RNN의 **Discrete한 layer** 사이에 **continuous한 하나의 ODE**로 **모든 time step의 정보**를 저장한다!_
+_RNN의 **Discrete한 layer** 사이에 **continuous한 하나의 ODE**로 **모든 time step의 정보**를 저장한다!_  
 
 
 
@@ -167,7 +167,7 @@ $$z_{0},...,z_{N}=ODESolve(f_{\theta},z_{0},(t_{0},...,t_{N}))$$
 
 $$x_{i}{\sim}p(x_{i}|z_{i})$$
 
-$$q(z_{0}|{x_{i},t_{i}})=N({\mu}_{z0},{\sigma}_{zo}) where {\mu}_{z0},{\sigma}_{zo}=g(ODERNN_{\phi}({x_{i},t_{i}}))$$
+$$q(z_{0}|{x_{i},t_{i}})=N({\mu}_{z_{0}},{\sigma}_{z_{0}}) where {\mu}_{z_{0}},{\sigma}_{z_{0}}=g(ODERNN_{\phi}({x_{i},t_{i}}))$$
 
 간단히 설명해보면, 위에서 정의한 `ODE-RNN`을 사용해 $$z_{0}$$ 의 conditional distribution의 평균과 표준편차를 구합니다. 이 때 conditional distribution은 구하기 쉬운 정규분포로 가정합니다. 그리고 그 분포에서 $$z_{0}$$ 를 sampling 한 다음, ODE를 풀어 모든 time step에서의 $$z_{i}$$ 를 구하고, 그로부터 $$\hat{x}_{i}$$를 생성할 수 있게 됩니다.
 
@@ -179,7 +179,7 @@ $$q(z_{0}|{x_{i},t_{i}})=N({\mu}_{z0},{\sigma}_{zo}) where {\mu}_{z0},{\sigma}_{
 
 지금까지 `ODE-RNN`과 그것을 encoder로 사용한 `Latent ODEs`를 알아보았습니다. 지금부터는 두 모델의 성능을 확인해보겠습니다.
 
-_`VAE`의 encoder로 `ODE-RNN`을 사용하고, decoder로 `ODE`를 사용해 **모든 time에 대해 latent state**를 구할 수 있다!_
+_`VAE`의 encoder로 `ODE-RNN`을 사용하고, decoder로 `ODE`를 사용해 **모든 time에 대해 latent state**를 구할 수 있다!_  
 
 
 
@@ -189,7 +189,7 @@ _`VAE`의 encoder로 `ODE-RNN`을 사용하고, decoder로 `ODE`를 사용해 **
 
 반면에, Latent variable 모델은 state를 $$z_{t}$$ 를 통해 explicit하게 represent하고, dynamics를 generative model로 explicit하게 represent한다고 했습니다.
 
-후에 experiment 파트에서도 Latent variable 모델이 autoregressive model보다 조금 더 좋은 성능을 내는 것을 확인할 수 있습니다.
+후에 experiment 파트에서도 Latent variable 모델이 autoregressive model보다 조금 더 좋은 성능을 내는 것을 확인할 수 있습니다.  
 
 
 
@@ -290,7 +290,7 @@ Extrapolation에는 Encoder-Decoder 모델은 같은 결과가 나왔으나 Auto
 
 이 데이터에서도 저자들의 모델의 성능이 다른 모델의 성능보다 좋은 것을 확인할 수 있었습니다.
 
-
+  
 
 
 ## **5. Conclusion**
@@ -323,7 +323,7 @@ Neural ODE라는 새로운 방식을 여러 방면에 접목시킨 논문들이 
 
 
 
-### **Author Information**
+## **Author Information**
 
 * Wonjoong Kim
   * Affiliation: [DSAIL@KAIST](http://dsail.kaist.ac.kr)
@@ -333,7 +333,7 @@ Neural ODE라는 새로운 방식을 여러 방면에 접목시킨 논문들이 
 
 
 
-### **6. Reference & Additional materials**
+## **6. Reference & Additional materials**
 
 * Github Implementation
   * None
