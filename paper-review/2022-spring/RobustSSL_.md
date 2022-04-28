@@ -16,12 +16,7 @@ unlabeled dataset을 어떻게 학습에 활용할지 문제 상황을 수식적
 
 > Problem formulation
 
-- Labeled instance  : $(x_l,y_l) \sim p(x,y)\;where\; x_l \in X, \;y_l\in Y=\{C_1,C_2,...,C_k\}$  
-- Unlabeled instance : $(x_u) \sim p_u\;where\; x_u \in X$
-- Supervised loss : $l_s$, Unsupervised loss : $l_u$, Weight to balance $l_s, l_u$ : $\lambda$
-- Goal : Optimal classifier $f_\theta(x) : X\rightarrow Y=\{C_1,C_2,...,C_k\}$
-- Optimization loss : ${\underset {\theta }{min} \; \sum_l \, l_s(x_l,y_l;\theta) \; + \; \lambda  \sum_u \, l_u(x_u;\theta)}$
-
+![problem_formulation.PNG](../../.gitbook/2022-spring-assets/RobustSSL/problem_formulation.PNG)
 
 일반적으로 semi-supervised learning에서 supervised loss는 cross entropy loss이며, unsupervised loss의 desing에 따라 방법론들이 달라진다. 
 
@@ -31,21 +26,13 @@ unlabeled dataset을 어떻게 학습에 활용할지 문제 상황을 수식적
 
 Semi-supervised learning은 아래와 같이 unlabeled dataset distribution에 몇 가지 가정을 기반으로 한다[1].
 
-1. Unlabeled dataset은 labeled dataset과 같은 joint distribution $p(x,y)$를 가진다. 
-	- Labeled instance $(x_l,y_l) \sim p(x,y)$
-	- Unlabeled instance $(x_u) \; \sim p_u \Rightarrow (x_u,y_u) \sim p(x,y)$
-
-2. Semi-supervised cluster assumption 
-	- Smoothness assumption : If two point $x_1, x_2$ in the input space are close, then the corresponding outputs $y_1, y_2$ should be the same.
-	- Low density separation assumption : The decision boundary should lie in a low-density region in the input space. 
+![ssl_assumption.PNG](../../.gitbook/2022-spring-assets/RobustSSL/ssl_assumption.PNG)
 
 > Motivation
 
 위의 가정을 요약하자면 unlabeled data와 labeled data가 같은 distribution이라는 가정 아래 같은 cluster에 속하는 data들은 같은 class로 분류할 수 있다는 것이다. 기존에 나온 대표적인 방법론들은 이 가정을 만족한다는 조건 아래 unsupervised loss를 design한다. 하지만 Semi-supervised learning은 labeled dataset이 작다는 가정 하에 있다. 이러한 특수성은 unlabeled dataset의 pseudo label을 잘못 추정하게 만들며, 잘못 추정된 noise label이 학습 과정에 그대로 반영되면서 labeled set과 unlabeled set이 같은 distribution을 가진다는 underlying assumption을 깨지게 만든다.
 
-- Labeled instance $(x_l,y_l) \sim p(x,y)$
-- Real unlabeled instance $(x_u) \; \sim p_u \Rightarrow (x_u,y_u) \sim p(x,y)$
-- Estimated unlabeled instance $(x_u) \; \sim p_u \Rightarrow (x_u, \hat{y_u}) \sim p(x,\tilde{y})$
+![motivation.PNG](../../.gitbook/2022-spring-assets/RobustSSL/motivation.PNG)
 
 > Proposed idea
 
@@ -61,21 +48,15 @@ $$
 {\underset {\theta }{min} \; \sum_l \, l_s(x_l,y_l;\theta) \; + \; \sum_u \lambda _u \, l_u(x_u;\theta)} 
 $$
 
-즉, hyperparameter로 manually 조절되던 $\lambda$를 trainable parameter $\lambda _u$로 optimization 하여 모델의 성능을 저하시키는 instance는 weight가 낮아지고, 그렇지 않은 instance는 weight가 높아지도록 automatically 조절하는 방법론을 제안한다. 
+즉, hyperparameter로 manually 조절되던 것을 trainable parameter로 optimization 하여 모델의 성능을 저하시키는 instance는 weight가 낮아지고, 그렇지 않은 instance는 weight가 높아지도록 automatically 조절하는 방법론을 제안한다. 
 
 # 3. Method 
 
-Hyperparameter optimization 관점에서 문제를 다시 보면, 우리는 train loss를 최소화하는 model prameter  $\theta$에 대해 validation loss를 최소화하는 hyperparameter $\lambda_u$를 찾고 싶은 것이다. 이를 bi-level optimization을 통한 gradient based optimization 문제로 풀 수 있는데 그 objective를 아래와 같이 정의할 수 있다.
+Hyperparameter optimization 관점에서 문제를 다시 보면, 우리는 train loss를 최소화하는 model prameter에 대해 validation loss를 최소화하는 hyperparameter를 찾고 싶은 것이다. 이를 bi-level optimization을 통한 gradient based optimization 문제로 풀 수 있는데 그 objective를 아래와 같이 정의할 수 있다.
 
  > Notation
-- Labeled instance  : $(x_l,y_l) \sim p(x,y)\;where\; x_l \in X, \;y_l\in Y=\{C_1,C_2,...,C_k\}$  
-- Unlabeled instance : $(x_u) \sim p_u\;where\; x_u \in X$
-- Supervised loss : $l_s$, Unsupervised loss : $l_u$
-- Validation set : $V$
-- $\Lambda = \{\lambda_1, ...,\lambda_u,...,\lambda_{|U|}\} \in R^{|U|}_{\ge  0}, \forall_u\in D_u$
-- $L_s(D_l,\theta) \triangleq \sum_l \, l_s(x_l,y_l;\theta), \; L_u(D_u ,\theta,\Lambda) \triangleq \sum_u \, 
-- \lambda_ul_u(x_u;\theta)$ 
-- $L(D_l,D_u,\theta,\Lambda) \triangleq L_s(D_l,\theta)+L_u(D_u,\theta,\Lambda)$
+ 
+![method_notation.PNG](../../.gitbook/2022-spring-assets/RobustSSL/method_notation.PNG)
 - Optimization loss 
 $$
 {\underset {\Lambda= \{ \lambda_1,...,\lambda_{|U|} \} }{min} \; L_s(V,\theta^*(\Lambda)) \; s.t. \; \theta^* (\Lambda)={\underset {\theta}{argmin}} \sum_l \, l_s(x_l,y_l;\theta) \; + \; \sum_u \lambda _u \, l_u(x_u;\theta)} 
@@ -83,66 +64,51 @@ $$
 
  > Naive approach
  
-위의 objective를 기반으로 model parameter와 $\theta$와 unlabeled dta weight $\lambda_u$의 optimized value를 서로의 optimization process의 input value로 쓰면서 iteratively optimize해간다. 이 과정을 naive하게 풀어나가면 중첩된 optimization loop로 인해 optimal $\lambda_u$를 구할 때 각 $\lambda_{u,t}$마다 optimal $\theta$ 계산으로 인해 $T\times T$ iteration의 큰 time complexity가 발생한다.
+위의 objective를 기반으로 model parameter와 unlabeled data weight의 optimized value를 서로의 optimization process의 input value로 쓰면서 iteratively optimize해간다. 이 과정을 naive하게 풀어나가면 중첩된 optimization loop로 인해 TxT iteration의 큰 time complexity가 발생한다.
 
-- learning rate : $\eta_\theta, \; \eta_\lambda$
-	 
-1) While holding $\Lambda$ fixed, $\theta_{t+1} \gets \theta_t-\eta_\theta\cdot\nabla_\theta L(D_l,D_u,\theta,\Lambda).$ Denote $\theta_T \triangleq \theta^*$ where $T$ is the final iteration number.
-2) After having updated $\theta$, $\lambda_{u,t+1} \gets \lambda_{u,t}-\eta_\lambda \cdot \nabla_{\lambda_u}L_s(V, \theta^*(\Lambda)) 
-\triangleq \lambda_{u,t} - \eta_\lambda \cdot \nabla_{\lambda_u}L_s(\theta_T(\Lambda))$
-$\qquad\qquad\qquad\qquad\qquad\quad\space$ $=\lambda_{u,t} - \eta_\lambda \cdot \nabla_{\lambda_u}L_s(\theta_{T-1}(\Lambda)-\eta_\theta\cdot\nabla_\theta L(D_l,D_u,\theta_{T-1},\Lambda))$
-$\qquad\qquad\qquad\qquad\qquad\quad\space$ $=\lambda_{u,t}-\eta_\lambda \cdot \nabla_\theta L_s(\theta_T(\Lambda))\cdot \{ {\nabla_{\lambda_u}\theta_{T-1}(\Lambda)-\nabla_{\lambda_u}(-\eta_\theta\nabla_\theta L(D_l,D_u,\theta_{T-1},\Lambda))} \}=...$
-
+![naive_approach.PNG](../../.gitbook/2022-spring-assets/RobustSSL/naive_approach.PNG)
 
 > Influence function
 
-따라서 논문에서는 위의 gradient를 approximation하기 위해 influence function 기반의 방법론을 제안한다. influence function에 대해 간단히 설명하자면, 예를 들어 하나의 data instance $x$가 model parameter $\theta$에 끼치는 influence를 계산하고 싶다고 하자. 직관적으로는 $x$가 포함되었을 때와 포함되지 않았을 때의 optimized $\theta$값의 차이로 이를 정의할 수 있을 것이다. 
+따라서 논문에서는 위의 gradient를 approximation하기 위해 influence function 기반의 방법론을 제안한다. influence function에 대해 간단히 설명하자면, 예를 들어 하나의 data instance x가 model parameter에 끼치는 influence를 계산하고 싶다고 하자. 직관적으로 x가 포함되었을 때와 포함되지 않았을 때의 optimized model parameter값의 차이로 이를 정의할 수 있을 것이다. 
 
-- Optimal model parameter all training instances, $\theta^* \triangleq {\underset {\theta}{argmin}} \sum_{x_i} \, L(x_i,\theta)$
-- Optimal model parameter without $x$, $\theta^*_{-x} \triangleq {\underset {\theta}{argmin}} \sum_{x_i \ne x}^{n} \, L(x_i,\theta)$
-- Influence of $x$ to $\theta \triangleq \theta^*_{-x} - \theta^*$ .... but,...
+![IF1.PNG](../../.gitbook/2022-spring-assets/RobustSSL/IF1.PNG)
 
 하지만 모든 궁금한 data instance에 대해 매번 model을 retraining해서 위의 값을 얻는다는 것은 역시 매우 비효율적이다. 따라서, influence function에 대해 새롭게 정의를 하는데, x를 아주 조금 upweight 했을 때 parameter가 얼마나 변하는지를 계산하는 것이다. 
 
-- Optimal model parameter with upweighting $x$, $\theta_{\epsilon,x}^* \triangleq {\underset{\theta}{argmin}\sum_{x_i}L(x_i,\theta) + \epsilon L(x,\theta)}$ 
+![IF2.PNG](../../.gitbook/2022-spring-assets/RobustSSL/IF2.PNG)
 
 이때 L이 twice-differentiable, strictly convex라는 가정 아래 upweighting x의 model parameter 대한 influence는 다음과 같다. 자세한 증명은 [2]을 참고하면 된다.
  
-- $I_\theta(x) \triangleq \frac {d(\theta^*_{\epsilon,x}-\theta^*)}{d\epsilon}|_{\epsilon=0}=\frac {d\theta^*_{\epsilon,x}}{d\epsilon} \approx -H^{-1}_{\theta^*}\nabla_\theta L(x,\theta^*) \; where \;  H_{\theta^*}=\frac {1}{n} \sum_{x_i}^{n} \nabla_\theta^2 L(x_i,\theta^*)$
+![IF3.PNG](../../.gitbook/2022-spring-assets/RobustSSL/IF3.PNG)
 
 > Approximation approach
 
 본래 문제로 돌아와 influence function을 아래와 같이 적용해 gradient를 approximation 한다. 
 
-- $L(D_l,D_u,\theta,\Lambda) \triangleq L_s(D_l,\theta)+L_u(D_u,\theta,\Lambda)=\sum_l \, l_s(x_l,y_l;\theta)+\sum_u \lambda_ul_u(x_u;\theta)$
-- $\theta^*={\underset{\theta}{argmin}L(D_l, D_u,\theta,\Lambda)}$
-- $\theta^*_{\epsilon,x}={\underset{\theta}{argmin}{L(D_l,D_u,\theta,\Lambda)+\epsilon \cdot l_u(x_u,\theta)}}$
-- $\frac {d\theta^*(\Lambda)}{d\lambda_u}=\lim\limits_{\epsilon \to0} \frac{\theta^*_{\epsilon,,x}-\epsilon^*}{\lambda_u + \epsilon - \lambda_u} = \lim\limits_{\epsilon \to0} \frac {\vartriangle \theta(\epsilon)-\vartriangle \theta(0)}{\epsilon -0}=\frac{d \vartriangle \theta}{d\epsilon}|_{\epsilon=0}=-H^{-1}_{\theta^*} \nabla l_u(x_u,\theta^*)$ with $H^{-1}_{\theta^*}=\nabla^{-1}_\theta L(D_l,D_u,\theta^*,\Lambda)$
+![approximation_approach.PNG](../../.gitbook/2022-spring-assets/RobustSSL/approximation_approach.PNG)
 
-1) While holding $\Lambda$ fixed, $\theta_{t+1} \gets \theta_t-\eta_\theta\cdot\nabla_\theta L(D_l,D_u,\theta,\Lambda).$ Denote $\theta_T \triangleq \theta^*$ where $T$ is the final iteration number.
-2) After having updated $\theta$, $\lambda_{u,t+1} \gets \lambda_{u,t}-\eta_\lambda \cdot \nabla_{\lambda_u}L_s(V, \theta^*(\Lambda))$
-$\qquad \qquad \qquad \qquad \qquad \space \space \space \space \space \space \space =\lambda_{u,t}-\eta_\lambda \cdot \nabla_{\theta}L_s(V, \theta^*(\Lambda))^T \frac {d\theta^*(\Lambda)}{d\lambda_u}$
-$\qquad \qquad \qquad \qquad \qquad \space \space \space \space \space \space \space =\lambda_{u,t}+\eta_\lambda \cdot \nabla_\theta L_s(V,\theta^*(\Lambda))^T H^{-1}_{\theta^*}\nabla_\theta l_u(x_u,\theta^*)$
-
-$\frac {d\theta^*(\Lambda)}{d\lambda_u}$가 influence function으로 approximation 되면서 $\nabla_{\lambda_u}L_s(V, \theta^*(\Lambda))$는 training instance Xu를 upweighting했을 때 validation loss가 변하는 정도를 measure하는 것으로 해석이 가능하다. 
+influence function으로 approximation 되면서 gradient는 training instance Xu를 upweighting했을 때 validation loss가 변하는 정도를 measure하는 것으로 해석이 가능하다. 
 
 > Computation bottleneck
 
 Approximation 과정에서 모든 unlabled data에 대해 per-example gradient 계산과 inverse hessain 계산 문제가 발생한다. 이를 아래와 같이 해결한다. 
 
-- Computation of per-example gradients $\nabla_\theta l_u(x_u,\theta^*)$
+- Computation of per-example gradients
 
 우리가 계산에 사용하는 framework는 deep network의 layer마다 각 instance $x_u$의  layer activation $h_u$에 대한 gradient를 저장하고 있다. 따라서 model parameter $\theta$에 대한 per-example gradient는 아래 식을 통해 효율적으로 계산될 수 있다. 
 
 $$\frac{\partial L_u}{\partial h_u} \frac {\partial h_u}{\partial \theta} = {\underset{u'\in U}{\sum} \frac {\partial l_{u'}}{\partial h_u} \frac {\partial h_u}{\partial \theta} = \frac {\partial l_u}{\partial h_u} \frac {\partial h_u}{\partial \theta}} \;\;\;\;(l_{u'} \; and \; u \; are \; independent, \;unless \; u' \ne u)$$
 
-- Computation of the inverse Hessian $H^{-1}_{\theta^*}$
+- Computation of the inverse Hessian
 
 inverse Hessian 계산을 위해서는 (자주 쓰이는 trick 중 하나로) model의 마지막 layer parameter $\tilde{\theta}$만 고려하여 $H^{-1}_{\theta^*}$ 대신 $H^{-1}_{\tilde{\theta}}$로 approximation한다.  따라서 per-example gradient 또한 $\tilde{\theta}$에 대해서만 계산하면 된다. 
 
 > Algorithm
 
-전체  algorithm은 아래와 같다. (Eq.6 : $\frac {\partial L_s(V, \theta^*(\Lambda))}{\partial \lambda_u} = -\nabla_\theta L_s(V,\theta^*)^T H^{-1}_{\theta^*} \nabla_\theta l_u(u,\theta^*)$)
+전체  algorithm은 아래와 같다. 
+
+Eq.6 : $$$\frac {\partial L_s(V, \theta^*(\Lambda))}{\partial \lambda_u} = -\nabla_\theta L_s(V,\theta^*)^T H^{-1}_{\theta^*} \nabla_\theta l_u(u,\theta^*)$$
 
 ![image2.PNG](../../.gitbook/2022-spring-assets/RobustSSL/image2.PNG)
 
