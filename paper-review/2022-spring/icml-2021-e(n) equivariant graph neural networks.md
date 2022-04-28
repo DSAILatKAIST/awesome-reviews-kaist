@@ -49,9 +49,8 @@ Equivariant 에 대한 정의는 다음과 같다.
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled.png) -->
 <!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image1.png">   -->
 
-![1](/.gitbook/2022-spring-assets/KanghoonLee_1/image1.png)
+![1](/.gitbook/2022-spring-assets/KanghoonLee_1/image1.png){ width=50% }
 
-.gitbook/2022-spring-assets/KanghoonLee_1/image1.png
 
 ### 2. Graph Neural Network (GNN)
 
