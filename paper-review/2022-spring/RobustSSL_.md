@@ -55,7 +55,7 @@ $$
 Hyperparameter optimization 관점에서 문제를 다시 보면, 우리는 train loss를 최소화하는 model prameter에 대해 validation loss를 최소화하는 hyperparameter를 찾고 싶은 것이다. 이를 bi-level optimization을 통한 gradient based optimization 문제로 풀 수 있는데 그 objective를 아래와 같이 정의할 수 있다.
 
  > Notation
-![method_notation.png](../../.gitbook/2022-spring-assets/RobustSSL/method_notation.png)
+![method_notation.PNG](../../.gitbook/2022-spring-assets/RobustSSL/method_notation.PNG)
 - Optimization loss 
 $$
 {\underset {\Lambda= \{ \lambda_1,...,\lambda_{|U|} \} }{min} \; L_s(V,\theta^*(\Lambda)) \; s.t. \; \theta^* (\Lambda)={\underset {\theta}{argmin}} \sum_l \, l_s(x_l,y_l;\theta) \; + \; \sum_u \lambda _u \, l_u(x_u;\theta)} 
