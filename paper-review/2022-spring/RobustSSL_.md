@@ -96,19 +96,21 @@ Approximation 과정에서 모든 unlabled data에 대해 per-example gradient �
 
 - Computation of per-example gradients
 
-우리가 계산에 사용하는 framework는 deep network의 layer마다 각 instance $x_u$의  layer activation $h_u$에 대한 gradient를 저장하고 있다. 따라서 model parameter $\theta$에 대한 per-example gradient는 아래 식을 통해 효율적으로 계산될 수 있다. 
+우리가 계산에 사용하는 framework는 deep network의 layer마다 각 instance Xu의 layer activation hu에 대한 gradient를 저장하고 있다. 따라서 model parameter에 대한 per-example gradient는 아래 식을 통해 효율적으로 계산될 수 있다. 
 
 $$\frac{\partial L_u}{\partial h_u} \frac {\partial h_u}{\partial \theta} = {\underset{u'\in U}{\sum} \frac {\partial l_{u'}}{\partial h_u} \frac {\partial h_u}{\partial \theta} = \frac {\partial l_u}{\partial h_u} \frac {\partial h_u}{\partial \theta}} \;\;\;\;(l_{u'} \; and \; u \; are \; independent, \;unless \; u' \ne u)$$
 
 - Computation of the inverse Hessian
 
-inverse Hessian 계산을 위해서는 (자주 쓰이는 trick 중 하나로) model의 마지막 layer parameter $\tilde{\theta}$만 고려하여 $H^{-1}_{\theta^*}$ 대신 $H^{-1}_{\tilde{\theta}}$로 approximation한다.  따라서 per-example gradient 또한 $\tilde{\theta}$에 대해서만 계산하면 된다. 
+inverse Hessian 계산을 위해서는 (자주 쓰이는 trick 중 하나로) model의 마지막 layer parameter만으로 inverse Hessian을 계산하여 approximation한다.  따라서 per-example gradient 또한 마지막 layer parameter에 대해서만 계산하면 된다. 
 
 > Algorithm
 
 전체  algorithm은 아래와 같다. 
 
-Eq.6 : $$$\frac {\partial L_s(V, \theta^*(\Lambda))}{\partial \lambda_u} = -\nabla_\theta L_s(V,\theta^*)^T H^{-1}_{\theta^*} \nabla_\theta l_u(u,\theta^*)$$
+Eq.6 : 
+
+$$\frac {\partial L_s(V, \theta^*(\Lambda))}{\partial \lambda_u} = -\nabla_\theta L_s(V,\theta^*)^T H^{-1}_{\theta^*} \nabla_\theta l_u(u,\theta^*)$$
 
 ![image2.PNG](../../.gitbook/2022-spring-assets/RobustSSL/image2.PNG)
 
