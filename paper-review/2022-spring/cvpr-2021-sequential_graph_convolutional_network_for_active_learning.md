@@ -6,20 +6,14 @@ description: >-
 
 # Sequential GCN for AL
 
-
 Sequential Graph Convolutional Network for Active Learning
-
-
 
 ## **1. Problem Definition**
 
-<code>Image data로 graph를 생성하여 GCN을 활용한 **model-based active learning (task-agnostic)** 방법론을 제시</code>
+`Image data로 graph를 생성하여 GCN을 활용한`` `**`model-based active learning (task-agnostic)`**` ``방법론을 제시`
 
 * GCN의 **message-passing** 특성을 활용하여 강하게 연결된 노드를 비슷하게 embedding한다.
 * 그 후 _CorSet_, _uncertainty-based methods_ 등의 active learning 방법론을 적용하여 sampling할 data를 선정하고, 이를 통해 **labeling cost를 효과적으로 줄인다**.
-
-
-
 
 ## **2. Motivation**
 
@@ -42,12 +36,6 @@ Sequential Graph Convolutional Network for Active Learning
   하지만 이 연구들은 labeled와 unlabeled images 간의 연관성을 탐색하는 mechanism이 부족하다는 단점이 존재한다.
 
 본 논문에서는 task-agnostic하면서 (learner와 sampler가 구분된 model-based AL method이기 때문) labeled, unlabeled 간의 연관성을 표현하지 못한다는 VAAL, Learning Loss의 문제점을 GCN을 적용하여 해결한다.
-
-
-
-
-
-
 
 ## **3. Method**
 
@@ -206,20 +194,15 @@ Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최�
 
     > * 10 classes
     > * 1000개의 seed labeled datas
-    > * budget : 1000 images\
-    >
+    > * budget : 1000 images\\
 
 ![dataset](https://user-images.githubusercontent.com/89853986/164958132-229d62cb-293f-4745-9202-c5625754a29a.PNG)
-
-
-
 
 **4.1.2 Implementation details**
 
 * 모든 data에 대해 10번의 cycle만큼 실험 진행한다.
 * Selection을 모든 unlabeled pooled-dataset에 대해 하는 것이 아닌, randomly selected subset ![](https://latex.codecogs.com/gif.latex?D\_S%20%5Csubset%20D\_U) 에서 진행한다. 이는 dataset에서 중복되는 부분이 여러번 등장하는 것을 피하기 위함이다.
 * ![](https://latex.codecogs.com/gif.latex?D\_S)의 크기는 모든 실험에서 10000으로 설정한다.
-
 * _Learner_
   * ResNet-18을 classification model로 사용
 * _Sampler_
@@ -272,9 +255,6 @@ ResNet-18로 learner를 구성하여 전체 dataset을 사용하여 training을 
     > * 16004개의 training set과 1600개의 test set
     > * 매 selection stage에서 training data의 10%를 ![](https://latex.codecogs.com/gif.latex?D\_S)로 설정
     > * 매 selection stage에서 100개의 unlabeled data를 select
-
-
-
 
 **4.2.2 Implementation details**
 
@@ -334,4 +314,4 @@ ResNet-18로 learner를 구성하여 전체 dataset을 사용하여 training을 
 
 * Reference
   * https://arxiv.org/abs/2006.10219
-  * https://openaccess.thecvf.com/content/CVPR2021/supplemental/Caramalau_Sequential_Graph_Convolutional_CVPR_2021_supplemental.pdf
+  * https://openaccess.thecvf.com/content/CVPR2021/supplemental/Caramalau\_Sequential\_Graph\_Convolutional\_CVPR\_2021\_supplemental.pdf
