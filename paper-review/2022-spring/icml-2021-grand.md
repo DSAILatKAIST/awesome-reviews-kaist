@@ -5,6 +5,7 @@ description: Chamberlain & Rowbottom et al. / GRAND_Graph Neural Diffusion / ICM
 # GRAND
 
 논문 [링크](https://arxiv.org/abs/2106.10934)
+Official [Github](https://github.com/twitter-research/graph-neural-pde)
 
 > 본 포스팅이 잘 안 보이는 경우, [블로그](https://yunhak0.github.io/blog/2022/grand/)에서 확인해주세요.
 
