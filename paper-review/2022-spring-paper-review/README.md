@@ -4,13 +4,7 @@ layout: landing
 
 # \[2022 Spring] Paper Review
 
-G-Meta
-
-\~\~\~\`
-
-{% content-ref url="../2022-spring/aaai-2021-ccm.md" %}
-[aaai-2021-ccm.md](../2022-spring/aaai-2021-ccm.md)
-{% endcontent-ref %}
+\[\[ICML 20] A Simple Framework for Contrastive Learning of Visual Representations]\([https://arxiv.org/abs/2002.05709](https://arxiv.org/abs/2002.05709))
 
 
 
