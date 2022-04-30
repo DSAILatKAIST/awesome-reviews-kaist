@@ -116,16 +116,15 @@ $$
 **Theoretical justification**
 - 위 loss function 으로 학습하는 것이 왜 ssl 에서 최적인지를 실험적으로 증명하기 전에 이론적으로 증명을 하였습니다
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/prop1.png'> 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/prop1.png"></p>  
 
 - 위 proposition 에서 말하는 것은 neural network $\theta^*$ 를 가지고 I(Z_X;S) 를 근사할 수 있다는 것입니다.
     $$\mathbf{The~estimated~mutual~information:~ }\hat I_{\theta^*}^{(n)}$$
 
 <p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/th3.png"></p>  
 - Theorem 3 의 식에서 알 수 있듯이 어떤 아무 representation 이 있을 때, Bayes error rate $\bar P_e$ 는 다음의 상황에 작아질 수 있습니다
-    1. $$\hat I_{\theta^*}^{(n)} \mathbf{~가~클~때}$$
-    2. $$I(X;S|T),~I(Z;X|S,T) \mathbf{~가~작을~때}$$
-    
+    - 1 $$\hat I_{\theta^*}^{(n)} \mathbf{~가~클~때}$$
+    - 2 $$I(X;S|T),~I(Z;X|S,T) \mathbf{~가~작을~때}$$
     - 1번 식은 $I(Z_X;S)$ 를 최대화하는 것이 downstream task 에 도움이 된다는 주장을 뒷받침해줄 수 있습니다
     - 2번 식은 task irrelevant info 가 적으면 downstream task 에 도움이 된다는 주장을 뒷받침해 줄 수 있습니다
 
