@@ -18,16 +18,17 @@ _keyword: Hand-to-Face Gestures; AR Glasses; Computer Vision_
 
 > AR안경 기반의 제스처 감지기술
 
-AR(Augmented Reality) 기술이 점점 발전함에 따라, 사용자가 AR 환경에서 컴퓨터와 상호작용하는 기술에 대한 중요도가 증가하고 있습니다. 마우스나 키보드와 같은 입력장치를 통해 컴퓨터와 상호작용하던 기존의 고정된 환경과 달리,\
-AR환경에서는 손, 얼굴 등 신체를 활용한 제스처로 컴퓨터와 상호작용하는 기술이 점점 발전하고 있습니다.
+AR(Augmented Reality) 기술이 점점 발전함에 따라, 사용자가 AR 환경에서 컴퓨터와 상호작용하는 기술에 대한 중요도가 증가하고 있습니다.\
+마우스나 키보드와 같은 입력장치를 통해 컴퓨터와 상호작용하던 기존의 고정된 환경과 달리,\
+AR환경에서 손, 얼굴 등 신체를 활용하여 움직이면서 컴퓨터와 상호작용하는 기술이 점점 발전하고 있습니다.
 
-본 연구에서는 AR 안경을 활용하여 **hand-to-face** 제스처를 감지하는, 컴퓨터 비전 기반의 기술인 **`FaceSight`** 를 소개합니다. **FaceSight**는 적외선 카메라를 AR 안경 다리에 고정하여 얼굴 아랫부분(뺨, 코, 입, 턱)에서의 손 제스처를 감지하는 기술입니다.
+본 리뷰에서는 AR 안경을 활용하여 **hand-to-face** 제스처를 감지하는, 컴퓨터 비전 기반의 기술인 **`FaceSight`** 를 소개하려 합니다. **FaceSight**는 적외선 카메라를 AR 안경 다리에 고정하여 얼굴 아랫부분(뺨, 코, 입, 턱)에서의 손 제스처를 감지하는 기술입니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/fig1\_facesight.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig1\_facesight.PNG?raw=true)\
 
 
-손으로 뺨을 두드리는 것과 같은 **hand-to-face** 제스처 상호작용은 아래의 장점을 갖고 있습니다
+손으로 뺨을 두드리는 것과 같은 **hand-to-face** 제스처 상호작용은 아래의 장점을 갖고 있습니다.
 
 * _자신의 신체를 활용한다는 점에서_ 언제든 사용 가능하며, 촉각적이며, 거부감이 덜합니다
 * 얼굴을 상호작용의 매개로 사용한다는 점에서 직관적이고, 배우기 쉬우며, 넓은 공간 활용이 가능합니다
@@ -39,11 +40,7 @@ AR환경에서는 손, 얼굴 등 신체를 활용한 제스처로 컴퓨터와 
 
 ## **2. Motivation**
 
-Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
-
-After writing the motivation, please write the discriminative idea compared to existing works briefly.
-
-### 2.1 Hand-to-Face Interaction을 활용한 기존 연구들
+### 2.1 Hand-to-Face Interaction을 활용한 기존 연구들 및 한계점
 
 \[1] 촉각정보 기반 상호작용
 
@@ -51,14 +48,14 @@ After writing the motivation, please write the discriminative idea compared to e
 * [Lee et al.](https://doi.org/10.1145/3242587.3242642)은 얼굴에서 멀리 떨어진 귀, 목을 활용하면 hand-to-face 상호작용 설계에 적합할 수 있으며, 5개의 손을 모두 사용하는 큰 움직임보다 소수의 손가락을 사용하는 작은 움직임이 입력에 적합할 수 있음을 제안했습니다.\
 
 
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/serano,lee.png?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/serano,lee.png?raw=true)\
 
 
 * [Itchy Nose](https://doi.org/10.1145/3123021.3123060)는 안경에 전극센서(electrooculography)를 부착해서 코를 밀거나 문지르는 제스처를 인식하도록 개발된 hand-to-nose 상호작용 기술입니다.
 * 비슷하게 [CheekInput](https://doi.org/10.1145/3139131.3139146), [FaceRubbing](https://doi.org/10.1145/3174910.3174924) 등 모자나 안경에 센서를 부착해서 얼굴을 당기고, 문지르는 제스처를 인식하는 기술도 개발되었습니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/checkinput,facerubbing.png?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/checkinput,facerubbing.png?raw=true)\
 
 
 \[2] 청각정보 기반 상호작용
@@ -66,24 +63,27 @@ After writing the motivation, please write the discriminative idea compared to e
 * [PrivateTalk](https://doi.org/10.1145/3332165.3347950)은 음성 데이터를 비교해서 사람이 손으로 입을 가리고 속삭이는 소리를 감지했고, [EarBuddy](https://doi.org/10.1145/3313831.3376836)는 뺨에 손을 두드리는 소리를 감지했습니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/privatetalk,earbuddy.png?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/privatetalk,earbuddy.png?raw=true)\
 
-
-### 2.2 Discriminative idea compared to existing works
 
 AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정보를 기반으로 제스처를 감지하는 연구들을 대부분 수행했습니다.
 
 * 그러나 기존 촉각 기반의 hand-to-face 상호작용 기술들은 부자연스러울 정도로 과한 제스처만을 인식했으며, 얼굴을 가볍게 쓸어내리는 등의 가벼운 제스처는 인식할 수 없었습니다.
-* 소리 기반의 hand-to-face 상호작용 기술 역시 감지 가능한 제스처의 종류, 개수가 제한적이었으며, 뺨을 두드리는 횟수 등의 간단한 제스처만 인식할 수 있었습니다.
+* 청각 기반의 hand-to-face 상호작용 기술 역시 감지 가능한 제스처의 종류, 개수가 제한적이었으며, 뺨을 두드리는 횟수 등의 간단한 제스처만 인식할 수 있었습니다.
 
 기존 연구에서는 제스처가 단순하거나 제한되므로, AR 안경 상호작용을 풍부하게 하기 위해서는 다양한 제스처 인식 기술이 필요합니다.
+
+\
+
+
+### 2.2 기존 한계점을 보완한 시각정보 기반의 FaceSight 개발
 
 이러한 Research Gap을 줄이기 위해 본 연구에서는 AR 안경 다리에 적외선카메라를 접목해서 착용자의 얼굴을 캡처하는 **FaceSight** 를 개발하였습니다.\
 대부분의 기존 감지기술과 달리, **카메라를 활용한 시각정보 기반**의 상호작용 기술은 좀 더 다양하고 복잡한 제스처를 인식할 수 있게 해줍니다.\
 본 연구에서는 AR 안경을 착용하여 시각정보를 기반으로 여러 종류의 제스처를 인식할 수 있는 기술을 개발하였습니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/fig1\_facesight.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig1\_facesight.PNG?raw=true)\
 
 
 > 개발된 FaceSight는 아래의 3가지 이점을 갖고 있습니다:
@@ -110,19 +110,19 @@ AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정�
 
 ### 3.1 FaceSight 구성요소
 
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/fig2\_ARglasses.PNG?raw=true)
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig2\_ARglasses.PNG?raw=true)
 
 FaceSight는 위 그림과 같이 AR안경의 안경코 부근에 비디오 카메라를 장착하는 것입니다. 본 연구에서는 [Nreal Light](https://www.nreal.ai) AR 안경을 사용했습니다.\
 그리고 안경에 광각 카메라를 장착하여 사용자의 얼굴 아랫부분(뺨, 코, 입, 턱)을 인식하며, 인식 범위는 아래와 같습니다.
 
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/fig3\_interactionspace.PNG?raw=true)
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig3\_interactionspace.PNG?raw=true)
 
 카메라 렌즈 주변에는 적외선 전구 6개가 조명원을 제공하여 완전히 어두운 환경에서도 제스처를 인식할 수 있도록 구성했습니다.\
 또한, 적외선 조명값과 카메라의 노출값을 조정함으로써 얼굴 아랫부분만 안정적으로 이미지를 수집할 수 있습니다. 아래 그림은 조명값 및 노출값 설정에 따른 이미지 효과를 보여줍니다.\
 이러한 조정은 감지 알고리즘을 강건하고 효율적으로 만들뿐 아니라 발생 가능한 개인 정보 보호 문제를 완화하게 됩니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/fig4\_highcontrast.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig4\_highcontrast.PNG?raw=true)\
 
 
 ### 3.2 hand-to-face 제스처 상호작용
@@ -135,7 +135,7 @@ FaceSight에서 지원할 수 있는 hand-to-face 제스처 상호작용에 대�
 * hand-to-chin 제스처 : 4개
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/fig5\_gestures.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig5\_gestures.PNG?raw=true)\
 
 
 이런 hand-to-face 제스처 종류는 AR 안경에 대한 입력 방법을 풍부하게 할뿐 아니라 상호작용에서의 효율성을 증진하여 사용자의 경험을 향상시킬 수 있는 장점을 갖고 있습니다.
@@ -169,7 +169,7 @@ FaceSight에서 상술한 제스처 종류들을 인식하고 구분하기 위�
 아래 그림은 FaceSight의 인식 파이프라인을 단계별로 보여줍니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/fig6\_recognitionstep.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig6\_recognitionstep.PNG?raw=true)\
 
 
 적외선 카메라에서 캡처한 gray-scale 이미지가 수집되면, 먼저 여러 밝기 feature를 적용하여 손, 코, 입, 뺨을 구분(segmentation)합니다. 그 다음 hand-to-face 제스처를 감지하기 위한 4단계 알고리즘이 수행됩니다: 2) Detection of touch contact, 3) recognizing touch location (1에서 촉각을 감지한 경우), 4) gesture classification with CNN, 5) determine the required interaction parameter (제스처가 nose pushing이거나 cheek/chin tapping인 경우). 단계별 자세한 과정은 아래에서 설명드리겠습니다.
@@ -182,7 +182,7 @@ FaceSight는 아랫 그림과 같이 카메라와 조명 설정을 통해 배경
 아래 그림은 오른쪽 뺨을 한 번 터치했을 때의 구분(segmentation) 예시입니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/fig7\_segmentationapproach.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig7\_segmentationapproach.PNG?raw=true)\
 
 
 _\[stage1] Detection of touch contact_\
@@ -207,7 +207,7 @@ _\[stage4.2] Estimating the Degree of Nose Deformation_\
 \
 
 
-### 4.2 **Experiment setup : Data Collection**
+### 4.2 **Experiment setup**
 
 #### 4.2.1 **Dataset**
 
@@ -221,7 +221,7 @@ FaceSight의 접촉 감지와 분류 정확도를 평가하기 위한 실증실�
 수집된 이미지로부터 얼굴 아랫부분(코, 입, 턱, 왼쪽뺨, 오른쪽뺨) 각각에 대한 5개의 데이터세트를 만들었으며, CNN 모델은 아래 표와 같이 각 5개의 데이터 세트에 대해 훈련되었습니다. 전체적으로 코 데이터세트에는 67553개의 이미지, 입 데이터세트에 30368개의 이미지, 턱 데이터세트에 33582개의 이미지, 왼쪽뺨 데이터세트에 51869개의 이미지, 오른쪽뺨 데이터세트에 57747개의 이미지가 있었습니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/table3\_stage3.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/table3\_stage3.PNG?raw=true)\
 
 
 #### 4.2.2 **Evaluation Metric**
@@ -233,10 +233,10 @@ FaceSight의 접촉 감지와 분류 정확도를 평가하기 위한 실증실�
 \
 
 
-* accuracy = ![accuracy](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/accuracy.PNG?raw=true) \* 100
-* recall = ![recall](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/recall.PNG?raw=true) \* 100
-* precision = ![precision](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/precision.PNG?raw=true) \* 100
-* F1-score=![f1score](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/f1score.PNG?raw=true) \* 100
+* accuracy = ![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/accuracy.PNG?raw=true) \* 100
+* recall = ![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/recall.PNG?raw=true) \* 100
+* precision = ![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/precision.PNG?raw=true) \* 100
+* F1-score= ![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/f1score.PNG?raw=true) \* 100
 
 \
 
@@ -253,13 +253,13 @@ FaceSight의 접촉 감지와 분류 정확도를 평가하기 위한 실증실�
 #### 4.3.1 **touch contact, location 인식 정확도**
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/table1\_stage1.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/table1\_stage1.PNG?raw=true)\
 
 
 touch contact 감지 알고리즘의 인식 정확도는 recall, precesion, F1-score으로 평가되었으며 각각 97.90%, 98.82%, 98.36%였습니다. 대부분의 false negative는 터치가 카메라 뷰의 테두리에 너무 가까워서 손가락 끝이 보이지 않거나 너무 어두워서 인식하지 못한 경우였습니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/table2\_stage2.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/table2\_stage2.PNG?raw=true)\
 
 
 touch location 감지 알고리즘의 인식 정확도는 accuracy으로 평가되었습니다. 총 5개의 위치(코, 입, 턱, 왼쪽뺨, 오른쪽뺨)에 대한 accuracy가 평가되었으며 각각 92.67%, 94.43%, 95.12%, 95.06%, 94.22%였습니다. 전체 평균 정확도는 94.69%였습니다. 대부분의 잘못된 분류는 코-뺨, 입-턱(특히 쉿 하는 제스처나 턱을 잡는 제스처일때), 입-뺨 사이에서 일어났습니다.
@@ -273,12 +273,12 @@ touch location 감지 알고리즘의 인식 정확도는 accuracy으로 평가�
 실험 참가자들이 자기만의 독특한 방식으로 제스처를 수행할 수 있고 카메라 뷰에 약간 차이가 있을 수 있음을 고려하여, 본 연구에서는 Leave-One-Out 교차 검증법을 사용했습니다. 모든 모델은 10개의 epoch로 훈련되었으며, 코 96.18% (5 classes), 입 99.53% (3 classes), 턱 94.00% (3 classes), 왼쪽뺨 94.65% (4 classes), 오른쪽뺨 97.73% (5 classes)의 정확도를 보였습니다. 5개 모델의 전체 정확도는 96.42%였습니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/table4\_stage4.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/table3\_stage3.PNG?raw=true)\
 
 
 양쪽 코볼에 있는 서로 다른 nose-pushing 제스처를 인식하는데 94.12% (4 classes)의 정확도를 보였습니다. swiping 제스처에 대한 인식 정확도는 94.67% (6 classes)였습니다.
 
-#### 4.3.3 \*\* 계산 효율성\*\*
+#### **4.3.3 계산 효율성**
 
 segmentation 알고리즘의 경우 35ms, CNN 분류의 경우 13ms의 계산효율성을 보였습니다. 손끝 위치 확인(fingertip locating) 및 접촉 감지(contact detection)은 모두 1ms의 계산효율성을 보였습니다.
 
@@ -290,7 +290,7 @@ segmentation 알고리즘의 경우 35ms, CNN 분류의 경우 13ms의 계산효
 
 * 본 연구에서는 AR환경에서 hand-to-face 상호작용을 가능하게 하는 새로운 카메라 기반 감지기술인 **FaceSight**를 개발하였습니다. **FaceSight**는 사용자의 얼굴 아랫부분을 고해상도 이미지로 캡처하여 다양하고 섬세한 제스처들을 감지할 수 있습니다. 또한, **FaceSight**의 상호 작용 가능성을 탐색하기 위해 코, 입, 턱, 뺨과 관련된 21개의 hand-to-face 제스처 종류를 제시했습니다. (10개는 본 연구에서 새로 제시된 특별한 제스처입니다)
 * 맞춤형 AR 애플리케이션을 구현하기 위해서는 다양한 종류의 제스처가 입력될 수 있어야 한다는 점에서 본 연구에서 제시한 21가지 제스처들은 활용성이 더욱 높아보입니다. **FaceSight**를 통해 AR환경에서 hand-to-face 제스처 상호작용 기술이 한발짝 더 나아갈 것으로 보입니다.
-* 더불어, 원자력발전소 환경에서의 인간-컴퓨터 상호작용에 대해 연구하는 입장에서, 본 연구의 **FaceSight** 기술이 원자력발전소 종사자들의 원격 작업에도 활용될 수 있을 것으로 보입니다. 일례로, 원자력발전소 내에서 컴퓨터 하드웨어(본체, 모니터, 키보드 등)를 사용할 수 없는 공정 수리 작업 중일 때 **FaceSight** 기술을 활용하여 작업자가 AR 환경에서 원자력발전소 내 컴퓨터에게 작업 명령을 실행할 수 있을 것입니다. 특히 **FaceSight**는 얼굴 아랫부분과 손에 대한 데이터만 조명하여 컴퓨터 비전 프로세스를 단순화하한다는 점에서 원자력발전소에서 중요시하는 보안 문제를 완화할 수 있다는 점에서 큰 이점을 갖고 있습니다.
+* 더불어, 원자력발전소 환경에서의 인간-컴퓨터 상호작용에 대해 연구하는 입장에서, 본 연구의 **FaceSight** 기술이 원자력발전소 종사자들의 원격 작업에도 활용될 수 있을 것으로 보입니다. 일례로, 원자력발전소 내에서 컴퓨터 하드웨어(본체, 모니터, 키보드 등)를 사용할 수 없는 공정 수리 작업 중일 때 **FaceSight** 기술을 활용하여 작업자가 AR 환경에서 원자력발전소 내 컴퓨터에게 작업 명령을 실행할 수 있을 것입니다. 특히 **FaceSight**는 얼굴 아랫부분과 손에 대한 데이터만 조명하여 컴퓨터 비전 프로세스를 단순화한다는 점에서 원자력발전소에서 중요시하는 보안 문제를 완화할 수 있다는 점에서 큰 이점을 갖고 있습니다.
 
 \
 
@@ -302,6 +302,7 @@ segmentation 알고리즘의 경우 35ms, CNN 분류의 경우 13ms의 계산효
 * Haehyun Lee
   * Affiliation : PhD course in KAIST KSE program
   * Research Topic : Human-Computer Interaction, Human Factors in Nuclear Power Plant
+  * ontact email : haehyun\_lee@naver.com
 
 \
 
