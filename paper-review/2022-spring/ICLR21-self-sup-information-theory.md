@@ -4,7 +4,7 @@ description : Yao-Hung Hubert Tsai / Self-Supervised Learning from a Multi-View 
 
 # **Title** 
 
-Self-Supervised Learning from a Multi-View Perspective
+Self-Supervised Learning from a Multi-View Perspective.   
 
 ## **1. Problem Definition**  
 - 본  논문에서는 Vision 분야에서 Self-supervised Learning 의 성공을 Multi-view perspective 와 information theory 로 설명하고자 했습니다.
@@ -29,52 +29,46 @@ F(S)=Z_S~(\mathbf{Representation~of~S})
 $$
 
 **Theoretical Analysis**
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/assump1.png'>  
-
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/assump1.png"></p>  
 - 우선 이 연구에서는 X 와 S 가 multi-view assumption 을 따른다고 가정합니다.
 - multi-view assumption 을 따른 다는 것은 위의 Assumption 1에 따라사, X와 S 는 task T 에 대해 가지고 있는 정보의 차이가 epsilon_info 만큼만 있고, 거의 똑같다는 것을 의미합니다.
 - Image augmentation 을 통해 multi-view 를 만들 때를 생각해보면, augmentation 은 image 의 style 만 바꿀 뿐이지, 그 content (T) 는 바꾸지 않습니다. 예를 들어, 강아지 이미지를 crop 하거나 blur 처리를 하게 되면 이미지의 style 은 바뀌겠지만, 그 사진이 강아지라는 것은 알아볼 수 있기 때문입니다. 
 - 그렇기 때문에, style 만 바꿔주고 content 는 건드리지 않은 augmentation 으로 만들어진 multi-view 는 epsilon_info 가 작을 것이고, 반대로 augmentation 이 강하게 들어가서 content 가 변하게 되는 경우에는 값이 커질 것이라 생각할 수 있습니다.
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/def1.png'>  
 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/def1.png"></p>  
 - SSL 에서 어떤 representation 이 최적인지 이야기하기 전에, 먼저 supervised 에서 어떤 representation 이 최적인지 알아보도록 하겠습니다.
 - $Z_X^{sup}$ 은 sufficient representation 을 의미하고, $Z_X^{sup_{min}}$ 은 minimal sufficient representation 을 의미합니다.
 - Definition 1 에서 말하고자 하는 것은, $H(Z_X|T)$ 를 최소화하는 것이 task irrelevant info 를 버리기 때문에 더 압축된 정보를 학습할 수 있게 해준다는 것입니다 (minimal sufficient representation). 아래 그림에서 이를 더 명확히 알 수 있습니다
 
-
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/fig1.png'>  
-
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/fig1.png"></p>  
 - 위 그림에서 가장 왼쪽에 위치한 벤 다이어그램은 random initialized representation 이고 중간은 sufficient representation, 오른쪽은 minimal sufficient representation 입니다
 - 랜덤 representation 은 무작위로 형성이 되었기 때문에, Task T 에 대한 정보를 거의 가지지 못합니다.
 - sufficient representation 은 Task T 에 대한 정보를 많이 가지게끔 학습이 되기 때문에, 관련 정보를 많이 가지고 있지만, task 와 관련없는 task irrelevant 정보도 많이 가지고 있습니다. 그 정보가 $H(Z_X|T)$ 에 해당하게 됩니다.
 - 오른쪽의 minimal sufficient representation 은 sufficient representation 을 가지는 조건하에서 $H(Z_X|T)$ 를 최소화하는 objective 를 가지기 때문에 오직 task 와 관련있는 정보만을 가질 수 있게 됩니다.
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/def2.png'>  
-
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/def2.png"></p>  
 - 이번에는 SSL 에서의 minimal sufficient representation 은 어떻게 형성되는지 알아보겠습니다.
 - $Z_X^{ssl}$ 은 sufficient representation 을 의미하고, $Z_X^{ssl_{min}}$ 은 minimal sufficient representation 을 의미합니다.
 - Definition 2에서 말하고자 하는 것은, Task T 대신 self-supervision S 를 Task 로 생각하여 self-supervised learning 을 수행할 수 있는데, 이 때 Z_X 와 S 간의 mutual information 을 최대화 (sufficient representation) 하면서 H(Z_X|S) 를 최소화하게 되면 SSL 에서의 minimal sufficient representation 이 된다는 것입니다. 
 - 마찬가지로 아래 그림을 통해 이를 더 자세히 알 수 있습니다.
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/fig2.png'> 
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/th1.png'> 
-
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/fig2.png"></p>  
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/th1.png"></p>  
 - 앞선 definition 들을 이용하여 theorem 1 을 정의할 수 있습니다.
 - 여기서 말하고자하는 것은 $Z_X^{sup}$ 은 $I(X;T)$ 를 모두 가지고 있고, $Z_X^{ssl}$ 은 $I(X;T)$ 에서 약간의 loss $\epsilon_{info}$ 를 뺀만큼을 가질 수 있다는 것입니다.
     - 즉, $\epsilon_{info}$ 가 작으면, $Z_X^{ssl}$ 의 $T$ 에 대한 정보량이 $Z_X^{sup}$ 의 $T$ 에 대한 정보량에 거의 근접하게 된다는 것입니다.
 - 여기서 알 수 있는 것은, 우리는 multi-view assumption 을 가정하였기 때문에 $epsilon_{info}$ 가 충분히 작고, 그래서 SSL 로도 supervised learning 만큼이나 task-relevant information 을 가질 수 있다는 것입니다.
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/fig3.png'> 
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/th2.png'> 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/fig3.png"></p>  
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/th2.png"></p>  
 
 - Theorem 2에서 말하고자 하는 것은 minimal sufficient SSL representation 은 sufficient SSL representation 보다 task-irrelevant info 가 적고, 어떻게 해도 제거할 수 없는 task-irrelevant information 인 compression gap 이 존재한다는 것입니다.
 - 아래 그림에서 2번 영역이 task irrelevant information 이고, minimal sufficient representation 을 학습하게 되면 2번 영역을 줄일 수가 있지만, 1번 영역은 compression gap 으로 지울 수 없습니다.
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/fig3.png'> 
-
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/fig3.png"></p>  
 
 **Model design**
 - 앞선 이론적 분석들을 통해 SSL 로 최적의 representation 을 학습하는 loss function 을 제시합니다.
@@ -127,8 +121,7 @@ $$
 - 위 proposition 에서 말하는 것은 neural network $\theta^*$ 를 가지고 I(Z_X;S) 를 근사할 수 있다는 것입니다.
     $$\mathbf{The~estimated~mutual~information:~ }\hat I_{\theta^*}^{(n)}$$
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/th3.png'> 
-
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/th3.png"></p>  
 - Theorem 3 의 식에서 알 수 있듯이 어떤 아무 representation 이 있을 때, Bayes error rate $\bar P_e$ 는 다음의 상황에 작아질 수 있습니다
     1. $$\hat I_{\theta^*}^{(n)} \mathbf{~가~클~때}$$
     2. $$I(X;S|T),~I(Z;X|S,T) \mathbf{~가~작을~때}$$
@@ -136,8 +129,7 @@ $$
     - 1번 식은 $I(Z_X;S)$ 를 최대화하는 것이 downstream task 에 도움이 된다는 주장을 뒷받침해줄 수 있습니다
     - 2번 식은 task irrelevant info 가 적으면 downstream task 에 도움이 된다는 주장을 뒷받침해 줄 수 있습니다
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/th4.png'> 
-
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/th4.png"></p>  
 - 이번에는 ssl representation 의 bayes error rate 가 언제 작아지는지 알아보겠습니다
 - 위 theorem 4의 식에서 우리가 $\bar P_e^{ssl}$ 의 upper bound 가 작아지면 bayes error rate 도 줄어들 것이라는 것을 알 수 있습니다
     - $\bar P_e^{ssl}$ 의 upper bound 는 $epsilon_{info}$ 가 작으면 작아지게 되는데
@@ -157,14 +149,12 @@ $$
     - Accuracy
 
 ### **Result**  
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/fig4.png'>   
-
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/fig4.png"></p>  
 - Inverse predictive learning objective $L_{IP}$ 가 약간의 sensitivity 가 있긴 하지만 $L_{CL}$ 과 함께 쓰일 때, 좋은 성능을 보이는 것을 알 수 있습니다. 이는 Theorem 2 를 뒷받침할 수 있는 결과입니다.
 - Forward predictive learning 의 경우 $L_{CL}$ 과 동일한 역할을 합니다 (task relevant info extract). 그래서 이 둘을 비교해봤을 때, $L_{CL}$ 가 더 높은 accuracy 를 보이며 더 더 빨리 수렴하는 모습을 보여줍니다만, 너무 오래 학습할 경우 overfitting 이 일어나는 것으로 보입니다. 
 - 그래서 $L_{CL}+0.005L_{FP}$ 로 같이 썼을 때 더 나은 모습을 보여줍니다.
 
-<img width = '900' src= '../../.gitbook/2022-spring-assets/yeonjunin1/fig5.png'>   
-
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin1/fig5.png"></p>  
 - 그림 (a)에서는 SSL 이 다른 modality 에 있는 self-supervised signal 에도 잘 작동한다는 것을 보여줍니다
 - 그림 (b) 에서는 $L_{CL}$과 $L_{IP}$ 를 합쳤을 때 더 좋은 성능을 보여주고, 이는 task-irrelevant information 을 없애면서 학습하기 때문입니다.
 
@@ -180,7 +170,7 @@ $$
 ---  
 ## **Author Information**  
 
-* Author name: Yeonjun In (인연준)  
+* Author name: Yeonjun In
     * Affiliation: KAIST ISysE DSAIL
     * Research Topic: Graph Represenntation Learning, Adversarial Defense on GNN
 
