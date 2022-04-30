@@ -16,7 +16,7 @@
   * [CITIES](paper-review/2022-spring/ICDM-2020-Cites.md)
   * [LILAC](paper-review/2022-spring/LILAC.md)
   * [Unsupervised Detection of Adversarial Examples with Model Explanations](paper-review/2022-spring/kdd-2021-unsupervised-detection-of-adversarial-examples-with-model-explanations.md)
-  * [When Vision Transformers Outperform Resnets without Pre-training or Strong Data Augmentations](paper-review/2022-spring-paper-review/iclr-2022-when_vision_transformer_outperform_resnets_without_pre-training_or_strong_data_augmentations.md)
+  * [When Vision Transformers Outperform Resnets without Pre-training or Strong Data Augmentations](paper-review/2022-spring/iclr-2022-when_vision_transformer_outperform_resnets_without_pre-training_or_strong_data_augmentations.md)
   * [flan](paper-review/2022-spring/iclr-2022-flan.md)
   * [Sequential GCN for AL](paper-review/2022-spring/cvpr-2021-sequential\_graph\_convolutional\_network\_for\_active\_learning.md)
   * [DNNGP](paper-review/2022-spring/ISLR-2018-DEEP-NEURAL-NETWORKS-AS-GAUSSIAN-PROCESSES.md)
