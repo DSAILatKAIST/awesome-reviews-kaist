@@ -5,6 +5,7 @@ description: Chamberlain & Rowbottom et al. / GRAND_Graph Neural Diffusion / ICM
 # GRAND
 
 논문 [링크](https://arxiv.org/abs/2106.10934)
+Official [Github](https://github.com/twitter-research/graph-neural-pde)
 
 > 본 포스팅이 잘 안 보이는 경우, [블로그](https://yunhak0.github.io/blog/2022/grand/)에서 확인해주세요.
 
@@ -183,7 +184,181 @@ $$\Leftrightarrow \mathbf{B}^{(k)} \mathbf{X}^{(k+1)}=\mathbf{X}^{(k)}$$
 
 $$a(\mathbf{X}_{i}, \mathbf{X}_{j})=\text{softmax} \left( \frac{(\mathbf{W}_{K} \mathbf{X}_{i})^{\intercal} \mathbf{W}_{Q} \mathbf{X}_{j}}{d_k} \right)$$
 
-여기서, ![](https://latex.codecogs.com/svg.image?%5Cmathbf%7BW%7D\_%7BK%7D)와 ![](https://latex.codecogs.com/svg.image?%5Cmathbf%7BW%7D\_%7BQ%7D)는 학습가능한 행렬이고, ![](https://latex.codecogs.com/svg.image?d\_k)는 ![](https://latex.codecogs.com/svg.image?W\_k)의 차원을 결정짓는 hyperparameter입니다. 또한 안정적인(stabilize) 학습을 위해 multi-head attention (기대값)을 사용했습니다: ![](https://latex.codecogs.com/svg.image?%5Cmathbf%7BA%7D\(%5Cmathbf%7BX%7D\)=%5Cfrac%7B1%7D%7Bh%7D%5Ctextstyle%5Csum\_%7Bh%7D%7B%5Cmathbf%7BA%7D%5E%7Bh%7D\(%5Cmathbf%7BX%7D\)%7D). 이러한 attention weight 행렬 ![](https://latex.codecogs.com/svg.image?%5Cmathbf%7BA%7D=\(a\(%5Cmathbf%7BX%7D\_%7Bi%7D,%5Cmathbf%7BX%7D\_%7Bj%7D\)\))은 right-stochastic을 따릅니다. 따라서 그래프 확산 방정식을 다음과 같이 표현될 수 있습니다.
+여기서, ![](https://latex.codecogs.com/svg.image?\mathbf{W}_{K})와 ![](https://latex.codecogs.com/svg.image?\mathbf{W}_{Q})는 학습가능한 행렬이고, ![](https://latex.codecogs.com/svg.image?d_k)는 ![](https://latex.codecogs.com/svg.image?W_k)의 차원을 결정짓는 hyperparameter입니다. 또한 안정적인(stabilize) 학습을 위해 multi-head attention (기대값)을 사용했습니다: ![](https://latex.codecogs.com/svg.image?\mathbf{A}(\mathbf{X})=\frac{1}{h}\textstyle\sum_{h}{\mathbf{A}^{h}(\mathbf{X})}).
+이러한 attention weight 행렬 ![](https://latex.codecogs.com/svg.image?\mathbf{A}=(a(\mathbf{X}_{i},\mathbf{X}_{j})))은 right-stochastic을 따릅니다. 따라서 그래프 확산 방정식을 다음과 같이 표현될 수 있습니다.
+
+<!-- $$\begin{equation}
+\begin{split}
+\frac{\partial}{\partial t}\mathbf{X} &= (\mathbf{A}(\mathbf{X}) - \mathbf{I}) \mathbf{X} = \mathbf{\bar{A}}(\mathbf{X})\mathbf{X}\\
+\Leftrightarrow \frac{\partial \mathbf{X}_{i}(t)}{\partial t} &= \sum_{j:(i,j) \in \mathcal{E \text{ or } E^{'}}}{a(\mathbf{X}_{i}(t), \mathbf{X}_{j}(t))(\mathbf{X}_{j}(t) - \mathbf{X}_{i}(t))}
+\end{split}
+\end{equation}$$ -->
+![](https://user-images.githubusercontent.com/40286691/165795372-edc44689-8c5f-4093-b4a4-ff01370fa940.PNG)
+
+
+Attention weight 행렬을 정의하는 방식과 이를 활용하는 방식에 따라 3가지 변형 모델을 만들 수 있습니다.
+
+* **grand-l**: ![](https://latex.codecogs.com/svg.image?\mathbf{\bar{A}}(\mathbf{X}(t))=\mathbf{\bar{A}})
+* **grand-nl**: 식 (1)과 동일
+* **grand-nl-rw**: 식 (1)에서 간선을 ![](https://latex.codecogs.com/svg.image?\mathcal{E^{'}})로 새롭게 정의해 재연결(rewiring)한 것
+  * $$\mathcal{E^{'}} = \{ (i,j) : (i, j) \in \mathcal{E} \text{ and } a_{ij} \lt \rho \} \text{, where threshold } \rho$$
+  * 위의 조건에 따라 self-loop를 포함 가능
+  * Diffusion 과정에서 a는 계속 변화하므로, 재연결(rewiring)은 ![](https://latex.codecogs.com/svg.image?t=0)의 시점에 특성값에 근거해 한 번만 시행
+
+GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의 GNN 모델보다 data-efficient 하다고 볼 수 있습니다.
+
+## **4. Experiment**
+
+본 논문은 아래와 같은 연구 문제에 답하기 위해 여러 가지 실험을 진행하였습니다.
+
+> 1. Are GNNs derived from the diffusion PDE competitive with existing popular methods?
+> (확산 PDE를 통해 도출된 GNN은 다른 경쟁 모델에 비해 좋은 성능을 내는가?)
+> 2. Can we address the problem of building deep graph neural networks?
+> (깊은 그래프 신경망 모델을 수립하는데 있어 발생하는 문제들을 해결하고 있는가?)
+> 3. Under which conditions can implicit methods yield more efficient GNNs than explicit methods?
+> (Implicit 방법은 어떤 상황에서 explicit 방법에 비해 좋은 성능을 내는가?)
+
+### **4-1. Node Classification**
+
+![](https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png)
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>표 1 - Data Summary</em></span></p>
+</div>
+<!-- <div class="table1">
+<figure>
+<img src="https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png">
+</figure>
+<p align="center"><span style="color:grey; font-size:75%"><em>표 1 - Data Summary</em></span></p>
+</div> -->
+
+노드 분류에 대한 실험을 위해 위의 표와 같이 7개의 데이터셋에 대해 실험했고, 베이스라인 모델로는 아래와 같이 7개 모델을 선정했습니다. 데이터셋 및 베이스라인 모델에 대한 자세한 내용은 본 논문을 참고 부탁 드립니다.
+
+* 대표적인 GNN: GCN, GAT, Mixture Model Networks, GraphSage
+* ODE-based GNN: Continuous Graph Neural Networks(CGNN), Graph Neural Differential Equations(GDE), Ordinary Differential Equations on Graph (GODE)
+* Linear Diffusion PDE: LanczosNet의 2개의 변형
+
+![](https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png)
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 7 - Node Classification Results (Planetoid/Random split)</em></span></p>
+</div>
+<!-- <div class="figure7">
+<figure>
+<img src="https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png">
+</figure>
+<p align="center"><span style="color:grey; font-size:75%"><em>그림 7 - Node Classification Results (Planetoid/Random split)</em></span></p>
+</div> -->
+
+위의 실험 결과를 통해 볼 수 있듯이, GRAND 모델들이 다른 모델들에 비해 한결같이 좋은 성능을 보였습니다. 큰 그래프인 ogb-arxiv 데이터셋에서는 GAT가 가장 좋은 성능을 보였으나, 이는 GRAND보다 20배 많은 parameter를 사용하기 때문입니다.
+
+### **4-2. Depth**
+
+![](https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png)
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 8 - Depth</em></span></p>
+</div>
+<!-- <div class="figure8">
+<figure>
+<img src="https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png">
+</figure>
+<p align="center"><span style="color:grey; font-size:75%"><em>그림 8 - Depth</em></span></p>
+</div> -->
+
+이번 실험에서는 GRAND가 깊은 그래프 신경망을 수립했음에도 불구하고, oversmoothing 문제를 해결했는지 살펴보겠습니다. 이를 위해, 다른 hyperparameter는 고정한채로 적분 구간(시간) ![](https://latex.codecogs.com/svg.image?T)를 변경해 정확도(accuracy)를 측정했습니다. 위의 결과를 통해 볼 수 있듯이, GCN과 residual connection을 적용한 GCN 모델과 비교했을 때 GRAND는 layer 수가 많을 때도 성능을 유지하는 것을 확인할 수 있습니다.
+
+### **4-3. Choice of discretisation scheme**
+
+![](https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png)
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 9 - Different Solver Effects</em></span></p>
+</div>
+<!-- <div class="figure9">
+<figure>
+<img src="https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png">
+</figure>
+<p align="center"><span style="color:grey; font-size:75%"><em>그림 9 - Different Solver Effects</em></span></p>
+</div> -->
+
+이번 실험은 discretisation scheme의 안정성을 보기 위해 Cora 데이터셋을 사용했습니다. PDE를 푸는데 있어 step size와 계산 시간은 trade-off관계를 갖습니다. Scheme은 아래와 같은 방법론을 사용하였고, 이에 대한 설명은 본 논문의 범위를 넘어서므로 생략합니다.
+
+* Explicit scheme: Adams-Bashford method
+* Implicit scheme: Adams-Moulton method
+* Adaptive scheme: Runge-Kutta 4(5)
+
+**Method Choice.** 그림 9의 왼쪽 그래프를 통해 볼 수 있듯이, explicit 방법은 작은 step size(![](https://latex.codecogs.com/svg.image?\tau=0.005))를 제외하고는 불안정한 성능을 보이는 반면, implicit 방법은 모든 step size에서 안정적인 성능을 보입니다. 게다가 implicit 방법은 state-of-the-art 모델인 adaptive 방법에 비해 빠르게 수렴합니다. 다만, 모든 step size에 대해서 그러한 현상이 관찰되는 것은 아니며, step size가 커질수록 implicit 해는 점점 더 풀기 어려워지기 때문에 더 많은 iteration을 필요로 합니다.
+
+**Graph rewiring.** 이 실험에서는 Cora 그래프를 rewiring하고, 각 노드에 대해 가장 큰 ![](https://latex.codecogs.com/svg.image?K) 계수(#layers)를 고정하여 실험했습니다. ![](https://latex.codecogs.com/svg.image?K)의 변화를 통해 sparsity, 계산 시간, 정확도(accuracy) 사이 trade-off를 확인할 수 있습니다. 그림 9의 오른쪽 그래프를 통해 볼 수 있듯이, ![](https://latex.codecogs.com/svg.image?K)가 작을수록(그래프가 sparse할수록) 모든 방법론에서 더 빠르게 수렴합니다. 특히 implicit 방법에서 step size에 관계 없이 이러한 sparsification의 이점이 잘 관찰됩니다. 따라서 sparse한 그래프는 해를 푸는 어려움을 줄이는데 도움을 준다고 가정할 수 있습니다.
+
+### **4-4. Diffusion on MNIST Image Data Experiments**
+
+![](https://user-images.githubusercontent.com/40286691/164975904-aefb0bb3-3f0f-4eb1-b595-6466a15181f3.png)
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 10 - MNIST Image Data Experiments</em></span></p>
+</div>
+
+<!-- <div class="figure10">
+<figure>
+<img src="https://user-images.githubusercontent.com/40286691/164975904-aefb0bb3-3f0f-4eb1-b595-6466a15181f3.png">
+</figure>
+<p align="center"><span style="color:grey; font-size:75%"><em>그림 10 - MNIST Image Data Experiments</em></span></p>
+</div> -->
+
+GRAND의 학습된 diffusion의 특성을 살펴보기 위해 MNIST 픽셀 데이터의 superpixel representation을 구성하는 실험을 진행했습니다. superpixel을 구성한다는 것은 인접한 패치들을 간선으로 연결하고, 이를 숫자 또는 배경으로 이진 분류하는 것을 의미합니다. 이 때 50%의 training mask를 사용합니다. Attention weight는 간선의 색과 굵기로 표현됩니다. 그림 10을 통해 볼 수 있듯이, grand-nl 모델이 Laplacian diffusion 모델에 비해 더 좋은 결과를 보여줍니다.
+
+## **5. Conclusion**
+
+본 논문은 열확산 방정식을 그래프에서의 메세지 전달 방식으로 확장하여, 연속적인 layer를 구성하는 새로운 GNN을 제안했습니다. 이를 통해 다음과 같은 contribution과 limitation을 가집니다.
+
+**Contribution**
+
+* 그래프 학습에서 발생했던 여러 가지 문제들(e.g. oversmoothing, bottlenecks, etc.)을 다룰 수 있는 새로운 관점(Neural Diffusion)을 제시
+* 새로운 architecture
+  * 현존하는 많은 GNN을 discrete Graph 확산 방정식으로 표현 가능
+  * 다양한 효율적인 PDE solver를 적용할 수 있는 자유도 (multistep, adaptive, implicit, multigrid, etc.)
+  * implicit schemes = multi-hop filters
+* 탄탄한 이론적 토대를 가진 물리적 현상 (열 확산)을 바탕으로 새로운 방법론의 이론적 확실성을 제공 (e.g. stability, convergence, etc.)
+* GNN 분야에 잘 알려지지 않은 다른 분야와 깊은 연계를 보임(e.g. differential geometry and algebraic topology)
+
+**Limitation**
+
+* 은닉층의 embedding vector의 크기가 모든 layer에 걸처 동일 (GNN에서 보통의 상황)
+* 모든 layer가 같은 parameter set을 가짐 (다만, 이를 통해 10-20배 적은 parameter를 학습)
+
+추가적으로 본 블로그 포스팅을 통해, 본 논문에서 생략된 **열확산 방정식이 그래프로 유도되는 과정** 및 **Graph Diffusion Convolution(GDC)**[^9]과의 연관성을 살펴보았습니다.
+
+***
+
+## **Author Information**
+
+* [오윤학(Yunhak Oh)](https://yunhak0.github.io)
+  * M.S. Student in [DSAIL](https://dsail.kaist.ac.kr) at KAIST
+  * Research Topic: Artificial Intelligence, Data Mining, Graph Neural Networks
+
+## **6. Reference & Additional materials**
+
+[^1]: 위키피디아 [편미분 방정식](https://ko.wikipedia.org/wiki/%ED%8E%B8%EB%AF%B8%EB%B6%84%EB%B0%A9%EC%A0%95%EC%8B%9D)
+
+[^2]: [https://www.sciencedirect.com/topics/mathematics/diffusion](https://www.sciencedirect.com/topics/mathematics/diffusion)
+
+[^3]: 위키피디아 [발산](https://ko.wikipedia.org/wiki/%EB%B0%9C%EC%82%B0_(%EB%B2%A1%ED%84%B0))
+
+[^4]: 공돌이의 수학정리노트: [열방정식, 파동방정식의 의미](https://angeloyeo.github.io/2019/08/29/Heat_Wave_Equation.html)
+
+[^5]: Li, Qimai, Zhichao Han, and Xiao-Ming Wu. "Deeper insights into graph convolutional networks for semi-supervised learning." Thirty-Second AAAI conference on artificial intelligence. 2018.
+
+[^6]: Alon, Uri, and Eran Yahav. "On the bottleneck of graph neural networks and its practical implications." arXiv preprint arXiv:2006.05205 (2020).
+
+[^7]: Matthew Thorpe and Tan Minh Nguyen and Hedi Xia and Thomas Strohmer and Andrea Bertozzi and Stanley Osher and Bao Wang. "GRAND++: Graph Neural Diffusion with A Source Term." International Conference on Learning Representations. 2020.
+
+[^8]: Michael Bronstein | Neural diffusion PDEs, differential geometry, and graph neural networks [[Youtube]](https://www.youtube.com/watch?v=7KMcXHwQzZs)
+
+[^9]: Klicpera, Johannes, Stefan Weißenberger, and Stephan Günnemann. "Diffusion improves graph learning." arXiv preprint arXiv:1911.05485 (2019).
+
+[^10]: Chung, Fan. "The heat kernel as the pagerank of a graph." Proceedings of the National Academy of Sciences 104.50 (2007): 19735-19740.
+
+[^11]: Graph Neural Networks and Diffusion PDEs | Benjamin Chamberlain & James Rowbottom [[Youtube]](https://youtu.be/9SMbH18nMUg)
+
+[^12]: Chen, Ricky TQ, et al. "Neural ordinary differential equations." Advances in neural information processing systems 31 (2018).
+
 
 $$$
 \begin{split} \frac{\partial}{\partial t}\mathbf{X} &= (\mathbf{A}(\mathbf{X}) - \mathbf{I}) \mathbf{X} = \mathbf{\bar{A}}(\mathbf{X})\mathbf{X}\\ \Leftrightarrow \frac{\partial \mathbf{X}_{i}(t)}{\partial t} &= \sum_{j:(i,j) \in \mathcal{E \text{ or } E^{'}}}{a(\mathbf{X}_{i}(t), \mathbf{X}_{j}(t))(\mathbf{X}_{j}(t) - \mathbf{X}_{i}(t))} \end{split} \end{equation}$$ Attention weight 행렬을 정의하는 방식과 이를 활용하는 방식에 따라 3가지 변형 모델을 만들 수 있습니다. * **grand-l**: ![](https://latex.codecogs.com/svg.image?\mathbf{\bar{A}}(\mathbf{X}(t))=\mathbf{\bar{A}}) * **grand-nl**: 식 (1)과 동일 * **grand-nl-rw**: 식 (1)에서 간선을 ![](https://latex.codecogs.com/svg.image?\mathcal{E^{'}})로 새롭게 정의해 재연결(rewiring)한 것 * $$\mathcal{E^{'}} = \{ (i,j) : (i, j) \in \mathcal{E} \text{ and } a_{ij} \lt \rho \} \text{, where threshold } \rho$$ * 위의 조건에 따라 self-loop를 포함 가능 * Diffusion 과정에서 a는 계속 변화하므로, 재연결(rewiring)은 ![](https://latex.codecogs.com/svg.image?t=0)의 시점에 특성값에 근거해 한 번만 시행 GRAND는 모든 layer/iteration에 걸쳐 parameter를 공유하므로 기존의 GNN 모델보다 data-efficient 하다고 볼 수 있습니다. ## **4. Experiment** 본 논문은 아래와 같은 연구 문제에 답하기 위해 여러 가지 실험을 진행하였습니다. > 1. Are GNNs derived from the diffusion PDE competitive with existing popular methods? > (확산 PDE를 통해 도출된 GNN은 다른 경쟁 모델에 비해 좋은 성능을 내는가?) > 2. Can we address the problem of building deep graph neural networks? > (깊은 그래프 신경망 모델을 수립하는데 있어 발생하는 문제들을 해결하고 있는가?) > 3. Under which conditions can implicit methods yield more efficient GNNs than explicit methods? > (Implicit 방법은 어떤 상황에서 explicit 방법에 비해 좋은 성능을 내는가?) ### **4-1. Node Classification** ![](https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png) <div style="text-align:center;"> <p><span style="color:grey; font-size:75%";><em>표 1 - Data Summary</em></span></p> </div> <!-- <div class="table1"> <figure> <img src="https://user-images.githubusercontent.com/40286691/164976028-bb43e713-f4e9-457f-93ec-25155609dd7f.png"> </figure> <p align="center"><span style="color:grey; font-size:75%"><em>표 1 - Data Summary</em></span></p> </div> --> 노드 분류에 대한 실험을 위해 위의 표와 같이 7개의 데이터셋에 대해 실험했고, 베이스라인 모델로는 아래와 같이 7개 모델을 선정했습니다. 데이터셋 및 베이스라인 모델에 대한 자세한 내용은 본 논문을 참고 부탁 드립니다. * 대표적인 GNN: GCN, GAT, Mixture Model Networks, GraphSage * ODE-based GNN: Continuous Graph Neural Networks(CGNN), Graph Neural Differential Equations(GDE), Ordinary Differential Equations on Graph (GODE) * Linear Diffusion PDE: LanczosNet의 2개의 변형 ![](https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png) <div style="text-align:center;"> <p><span style="color:grey; font-size:75%";><em>그림 7 - Node Classification Results (Planetoid/Random split)</em></span></p> </div> <!-- <div class="figure7"> <figure> <img src="https://user-images.githubusercontent.com/40286691/164975584-6db81449-d2ba-458a-8309-9f0a466bdbdc.png"> </figure> <p align="center"><span style="color:grey; font-size:75%"><em>그림 7 - Node Classification Results (Planetoid/Random split)</em></span></p> </div> --> 위의 실험 결과를 통해 볼 수 있듯이, GRAND 모델들이 다른 모델들에 비해 한결같이 좋은 성능을 보였습니다. 큰 그래프인 ogb-arxiv 데이터셋에서는 GAT가 가장 좋은 성능을 보였으나, 이는 GRAND보다 20배 많은 parameter를 사용하기 때문입니다. ### **4-2. Depth** ![](https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png) <div style="text-align:center;"> <p><span style="color:grey; font-size:75%";><em>그림 8 - Depth</em></span></p> </div> <!-- <div class="figure8"> <figure> <img src="https://user-images.githubusercontent.com/40286691/164975762-912385b0-ed97-4d92-9951-9d65ab942337.png"> </figure> <p align="center"><span style="color:grey; font-size:75%"><em>그림 8 - Depth</em></span></p> </div> --> 이번 실험에서는 GRAND가 깊은 그래프 신경망을 수립했음에도 불구하고, oversmoothing 문제를 해결했는지 살펴보겠습니다. 이를 위해, 다른 hyperparameter는 고정한채로 적분 구간(시간) ![](https://latex.codecogs.com/svg.image?T)를 변경해 정확도(accuracy)를 측정했습니다. 위의 결과를 통해 볼 수 있듯이, GCN과 residual connection을 적용한 GCN 모델과 비교했을 때 GRAND는 layer 수가 많을 때도 성능을 유지하는 것을 확인할 수 있습니다. ### **4-3. Choice of discretisation scheme** ![](https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png) <div style="text-align:center;"> <p><span style="color:grey; font-size:75%";><em>그림 9 - Different Solver Effects</em></span></p> </div> <!-- <div class="figure9"> <figure> <img src="https://user-images.githubusercontent.com/40286691/164975886-03abc743-679b-44b7-860a-c298bb2d11ad.png"> </figure> <p align="center"><span style="color:grey; font-size:75%"><em>그림 9 - Different Solver Effects</em></span></p> </div> --> 이번 실험은 discretisation scheme의 안정성을 보기 위해 Cora 데이터셋을 사용했습니다. PDE를 푸는데 있어 step size와 계산 시간은 trade-off관계를 갖습니다. Scheme은 아래와 같은 방법론을 사용하였고, 이에 대한 설명은 본 논문의 범위를 넘어서므로 생략합니다. * Explicit scheme: Adams-Bashford method * Implicit scheme: Adams-Moulton method * Adaptive scheme: Runge-Kutta 4(5) **Method Choice.** 그림 9의 왼쪽 그래프를 통해 볼 수 있듯이, explicit 방법은 작은 step size(![](https://latex.codecogs.com/svg.image?\tau=0.005))를 제외하고는 불안정한 성능을 보이는 반면, implicit 방법은 모든 step size에서 안정적인 성능을 보입니다. 게다가 implicit 방법은 state-of-the-art 모델인 adaptive 방법에 비해 빠르게 수렴합니다. 다만, 모든 step size에 대해서 그러한 현상이 관찰되는 것은 아니며, step size가 커질수록 implicit 해는 점점 더 풀기 어려워지기 때문에 더 많은 iteration을 필요로 합니다. **Graph rewiring.** 이 실험에서는 Cora 그래프를 rewiring하고, 각 노드에 대해 가장 큰 ![](https://latex.codecogs.com/svg.image?K) 계수(#layers)를 고정하여 실험했습니다. ![](https://latex.codecogs.com/svg.image?K)의 변화를 통해 sparsity, 계산 시간, 정확도(accuracy) 사이 trade-off를 확인할 수 있습니다. 그림 9의 오른쪽 그래프를 통해 볼 수 있듯이, ![](https://latex.codecogs.com/svg.image?K)가 작을수록(그래프가 sparse할수록) 모든 방법론에서 더 빠르게 수렴합니다. 특히 implicit 방법에서 step size에 관계 없이 이러한 sparsification의 이점이 잘 관찰됩니다. 따라서 sparse한 그래프는 해를 푸는 어려움을 줄이는데 도움을 준다고 가정할 수 있습니다. ### **4-4. Diffusion on MNIST Image Data Experiments** ![](https://user-images.githubusercontent.com/40286691/164975904-aefb0bb3-3f0f-4eb1-b595-6466a15181f3.png) <div style="text-align:center;"> <p><span style="color:grey; font-size:75%";><em>그림 10 - MNIST Image Data Experiments</em></span></p> </div> <!-- <div class="figure10"> <figure> <img src="https://user-images.githubusercontent.com/40286691/164975904-aefb0bb3-3f0f-4eb1-b595-6466a15181f3.png"> </figure> <p align="center"><span style="color:grey; font-size:75%"><em>그림 10 - MNIST Image Data Experiments</em></span></p> </div> --> GRAND의 학습된 diffusion의 특성을 살펴보기 위해 MNIST 픽셀 데이터의 superpixel representation을 구성하는 실험을 진행했습니다. superpixel을 구성한다는 것은 인접한 패치들을 간선으로 연결하고, 이를 숫자 또는 배경으로 이진 분류하는 것을 의미합니다. 이 때 50%의 training mask를 사용합니다. Attention weight는 간선의 색과 굵기로 표현됩니다. 그림 10을 통해 볼 수 있듯이, grand-nl 모델이 Laplacian diffusion 모델에 비해 더 좋은 결과를 보여줍니다. ## **5. Conclusion** 본 논문은 열확산 방정식을 그래프에서의 메세지 전달 방식으로 확장하여, 연속적인 layer를 구성하는 새로운 GNN을 제안했습니다. 이를 통해 다음과 같은 contribution과 limitation을 가집니다. **Contribution** * 그래프 학습에서 발생했던 여러 가지 문제들(e.g. oversmoothing, bottlenecks, etc.)을 다룰 수 있는 새로운 관점(Neural Diffusion)을 제시 * 새로운 architecture * 현존하는 많은 GNN을 discrete Graph 확산 방정식으로 표현 가능 * 다양한 효율적인 PDE solver를 적용할 수 있는 자유도 (multistep, adaptive, implicit, multigrid, etc.) * implicit schemes = multi-hop filters * 탄탄한 이론적 토대를 가진 물리적 현상 (열 확산)을 바탕으로 새로운 방법론의 이론적 확실성을 제공 (e.g. stability, convergence, etc.) * GNN 분야에 잘 알려지지 않은 다른 분야와 깊은 연계를 보임(e.g. differential geometry and algebraic topology) **Limitation** * 은닉층의 embedding vector의 크기가 모든 layer에 걸처 동일 (GNN에서 보통의 상황) * 모든 layer가 같은 parameter set을 가짐 (다만, 이를 통해 10-20배 적은 parameter를 학습) 추가적으로 본 블로그 포스팅을 통해, 본 논문에서 생략된 **열확산 방정식이 그래프로 유도되는 과정** 및 **Graph Diffusion Convolution(GDC)**[^9]과의 연관성을 살펴보았습니다. *** ## **Author Information** * [오윤학(Yunhak Oh)](https://yunhak0.github.io) * M.S. Student in [DSAIL](https://dsail.kaist.ac.kr) at KAIST * Research Topic: Artificial Intelligence, Data Mining, Graph Neural Networks ## **6. Reference & Additional materials** [^1]: 위키피디아 [편미분 방정식](https://ko.wikipedia.org/wiki/%ED%8E%B8%EB%AF%B8%EB%B6%84%EB%B0%A9%EC%A0%95%EC%8B%9D) [^2]: [https://www.sciencedirect.com/topics/mathematics/diffusion](https://www.sciencedirect.com/topics/mathematics/diffusion) [^3]: 위키피디아 [발산](https://ko.wikipedia.org/wiki/%EB%B0%9C%EC%82%B0_(%EB%B2%A1%ED%84%B0)) [^4]: 공돌이의 수학정리노트: [열방정식, 파동방정식의 의미](https://angeloyeo.github.io/2019/08/29/Heat_Wave_Equation.html) [^5]: Li, Qimai, Zhichao Han, and Xiao-Ming Wu. "Deeper insights into graph convolutional networks for semi-supervised learning." Thirty-Second AAAI conference on artificial intelligence. 2018. [^6]: Alon, Uri, and Eran Yahav. "On the bottleneck of graph neural networks and its practical implications." arXiv preprint arXiv:2006.05205 (2020). [^7]: Matthew Thorpe and Tan Minh Nguyen and Hedi Xia and Thomas Strohmer and Andrea Bertozzi and Stanley Osher and Bao Wang. "GRAND++: Graph Neural Diffusion with A Source Term." International Conference on Learning Representations. 2020. [^8]: Michael Bronstein | Neural diffusion PDEs, differential geometry, and graph neural networks [[Youtube]](https://www.youtube.com/watch?v=7KMcXHwQzZs) [^9]: Klicpera, Johannes, Stefan Weißenberger, and Stephan Günnemann. "Diffusion improves graph learning." arXiv preprint arXiv:1911.05485 (2019). [^10]: Chung, Fan. "The heat kernel as the pagerank of a graph." Proceedings of the National Academy of Sciences 104.50 (2007): 19735-19740. [^11]: Graph Neural Networks and Diffusion PDEs | Benjamin Chamberlain & James Rowbottom [[Youtube]](https://youtu.be/9SMbH18nMUg) [^12]: Chen, Ricky TQ, et al. "Neural ordinary differential equations." Advances in neural information processing systems 31 (2018). [^13]: Vaswani, Ashish, et al. "Attention is all you need." Advances in neural information processing systems 30 (2017).
