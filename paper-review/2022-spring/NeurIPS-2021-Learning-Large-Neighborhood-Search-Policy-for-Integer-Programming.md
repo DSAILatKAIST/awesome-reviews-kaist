@@ -8,22 +8,19 @@ description: >-
 
 ## Learning Large Neighborhood Search Policy for Integer Programming
 
-\
-
+\\
 
 ## **1. Problem Definition**
 
 조합최적화 문제는 NP-hardness로 정확한 해를 효율적으로 찾아내기가 힘들다는 특징을 가지고 있습니다. 따라서 다양한 휴리스틱 방식을 통해 풀어내는데, 여기서 휴리스틱 방식은 비슷한 구조가 반복되면서 해를 찾아나가는 특성을 가지고 있다는 것이 이러한 방식으로 자동으로 학습할 수 있는 머신러닝의 도입 계기가 됩니다. 머신러닝 기법을 이용하여 풀어내는 휴리스틱 방식을 크게 Constructive heuristics, improvement heuristics로 나뉘는데 본 논문에서 개선하고자하는 LNS방식은 풀이는 improvement heuristics 방식에 속하게 됩니다. initial solution을 기반으로 해를 조금씩 바꿔가며 구하는 improvement heuristics의 LNS 기법을 조합최적화 문제 뿐만이 아닌 보다 general한 IP문제를 풀기 위해 bipartite graph, Action factorization등의 방법을 이용하여 제한 시간동안 좋은 해를 찾는 방법을 제안합니다.
 
-\
-
+\\
 
 ## 2. Motivation
 
 LNS방식은 현재의 해의 일부를 파괴하고(destroy) 다시 그 부분을 더 좋은 방식으로 고치며(repair) 기존의 해를 개선하는 방법입니다. 이 중 해를 파괴하는 방식은 어떤 해를 파괴할지 고르는 정책이 필요한데, 변수의 수가 많아질수록 해를 선택할 집합은 exponentially하게 증가합니다. 따라서 파괴할 해를 몇개를 고를지에 대한 제약을 둠으로써 해결하고자 하였습니다. 본 논문에서는 destroy하는 정책을 보다 flexible하게 만들기 위해 Action factorization을 이용하였고, 이는 선택되는 해의 모든 경우의 수![](https://latex.codecogs.com/svg.image?2%5En)를 고려할 수 있도록 하였습니다.
 
-\
-
+\\
 
 ## 3. METHOD
 
@@ -47,8 +44,7 @@ LNS Framework은 MDP Formulation, large scale action space에 대한 factorized 
 
 **Policy** : GNN기반의 policy network를 가지고, ![](https://latex.codecogs.com/svg.image?%5Cpi\(a\_t%7Cs\_t\))는 ![](https://latex.codecogs.com/svg.image?s\_t)가 given 되었을 때 선택될 variable들의 subset들의 conditional probability distribution을 의미합니다. (ie. 변수 ![](https://latex.codecogs.com/svg.image?x\_1,x\_2)가 있을 때, 주어진 state ![](https://latex.codecogs.com/svg.image?s\_t)에서 ![](https://latex.codecogs.com/svg.image?\(x\_1\),\(x\_2\),\(x\_1,x\_2\))가 각각 destroy variable로 선택될 확률을 나타냄)
 
-\
-
+\\
 
 ### Action factorization
 
@@ -58,8 +54,7 @@ Variable 수가 linear하게 늘어날 때 variable을 선택하는 action space
 
 이는 실제 ![](https://latex.codecogs.com/svg.image?2%5En)의 action space를 탐색해야되는 문제를 n개의 policy를 통하여 n개의 action space를 탐색하는 문제로 바꾸어 large scale 문제에서도 효율적으로 exponential하게 증가하는 action space를 탐색하도록 합니다.
 
-\
-
+\\
 
 ### Policy parametrization
 
@@ -81,8 +76,7 @@ Policy network는 GNN 기반으로 모든 variable들이 같은 parameter들을 
 
 이렇게 K iteration을 통해 최종 업데이트된 ![](https://latex.codecogs.com/svg.image?\(V%5E%7B\(k\)%7D\))에 해당되는 각 변수에 해당되는 노드들 \[![](https://latex.codecogs.com/svg.image?v\_1%5Ek) ![](https://latex.codecogs.com/svg.image?%5Ccdots) ![](https://latex.codecogs.com/svg.image?v\_n%5Ek)]은 마지막에 MLP layer와 sigmoid 활성함수를 통과하여 ![](https://latex.codecogs.com/svg.image?%5Cpi%5Ei\(a\_t%5Ei%7Cs\_t\)) 즉 i번째 변수가 선택될 확률이라는 policy와 같은 의미를 갖게 됩니다. 따라서 모든 변수들에 대해 ![](https://latex.codecogs.com/svg.image?MLP\(v\_i\))를 통과시킨 뒤 베르누이 샘플링을 통하여 destroy할 subset들을 구성하게 됩니다.
 
-\
-
+\\
 
 ### Training algorithm
 
@@ -132,7 +126,7 @@ Training단계에서는 Q-actor-critic을 이용하여 policy 및 Q-value를 학
 
 *   objective value
 
-    #### Result
+    **Result**
 
 [![](https://ifh.cc/g/9h8fmT.png)](https://ifh.cc/v-9h8fmT)
 
@@ -144,21 +138,19 @@ Training단계에서는 Q-actor-critic을 이용하여 policy 및 Q-value를 학
 
 즉 문제의 사이즈가 커지면 커질수록 작은 문제로 쪼개서 푸는 LNS방식이 제한된 시간내에 더 효율적인 것을 확인할 수 있고, 본 논문에서 제시한 방법론이 현재까지 나온 LNS 방식 중 가장 좋은 솔루션을 제시한다는 것을 확인할 수 있습니다.
 
-\
-
+\\
 
 ### **5. Conclusion**
 
 본 논문에서는 제안된 시간내에 IP문제를 빠르고 좋은 성능을 내도록 하는 LNS 기반의 policy를 학습하는 RL 방법에 대해서 제안하였습니다. actor factorization이 이 논문에서 가장 중요한 아이디어라고 생각되며 이를 통해 모든 변수의 subset($2^n$)들을 고려하여 보다 general한 destroy operator를 만들 수 있었습니다. 또한 GNN기반의 policy network을 통하여 각 변수들간의 parameter를 공유함으로써 각 변수들의 policy를 보다 효율적으로 학습하고 actor-critic에서 global한 Q-network를 선택하되, action-factorization으로 표현한 policy를 통하여 광범위한 action space를 학습할 수 있었던 것 같습니다. 또한 작은 사이즈 문제로 학습한 문제가 보다 큰 문제 사이즈에서도 잘 푸는것을 보여주어 적당히 작은 시간내에 IP문제를 풀 때 적용할 여지가 충분하다는 것을 보여주었습니다.
 
-\
-
+\\
 
 개인적인 의견
 
 destroy-operator를 학습시킬 때 re-optimize할 변수들의 수를 미리 정해두고 학습하여 유연하지 않았던 부분들에 대해 actor factorization 방법을 통해 보다 유연하게 destroy할 변수들을 고를 수 있도록 한 부분이 가장 흥미로웠던 것 같습니다. 또한 graph구조의 policy가 작은 문제 사이즈에 대해 학습하고 어느정도 사이즈에 대해 robust하게 잘 작동할수 있게 하도록 도움을 준다고 생각이 들었습니다. 한가지 궁금했던 점은 만약 training size를 하나의 사이즈가 아니라 여러 사이즈로 학습한다면 그래프의 크기 변화에 대해서 학습을 하여 보다 더 generalization을 할 수 있을지에 대한 궁금점이 생기게 되었습니다.
 
-* ### **Author Information**
+* #### **Author Information**
   * 손지우
     * Master Student in ISySE, KAIST
     * Interested in solving Combinatorial Problem via deep reinforcement learning
