@@ -73,7 +73,8 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 >![](https://latex.codecogs.com/gif.latex?E_N): Consistency between the estimated depth and ![](https://latex.codecogs.com/gif.latex?N%28p%29), 
 >![](https://latex.codecogs.com/gif.latex?E_S): Adjacent pixels to have the same depth)
 
-* 본 연구의  최적화는 ![](https://latex.codecogs.com/gif.latex?%5Clambda%20_D) = ![](https://latex.codecogs.com/gif.latex?10%5E3), ![](https://latex.codecogs.com/gif.latex?%5Clambda_N) = 1 및 ![](https://latex.codecogs.com/gif.latex?%5Clambda_S)= ![](https://latex.codecogs.com/gif.latex?10%5E-3)으로 수행되었다.
+
+본 연구의  최적화는 ![](https://latex.codecogs.com/gif.latex?%5Clambda%20_D) = ![](https://latex.codecogs.com/gif.latex?10%5E3), ![](https://latex.codecogs.com/gif.latex?%5Clambda_N) = 1 및 ![](https://latex.codecogs.com/gif.latex?%5Clambda_S)= ![](https://latex.codecogs.com/gif.latex?10%5E-3)으로 수행되었다.
 
 
 
@@ -101,7 +102,7 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 ( [1] 랜더링: 컬러  이미지(color image)와  센서  깊이(sensor depth)를  이용해서  ground truth를  만드는  과정)
 
-	>이렇게  생성된  데이터  셋은  해당  연구의  심층 네트워크를 훈련에  있어  몇 가지 유리한 속성이 있고  이는  다음과  같다: 완성된  깊이  이미지(D*)는  일반적으로  누락된  영역이  적고, D*에서  멀리  있는  표면을  원본보다  더  나은  해상도로  제공하며, 원본보다  노이즈가  훨씬  적다.
+> 이렇게  생성된  데이터  셋은  해당  연구의  심층 네트워크를 훈련에  있어  몇 가지 유리한 속성이 있고  이는  다음과  같다: 완성된  깊이  이미지(D*)는  일반적으로  누락된  영역이  적고, D*에서  멀리  있는  표면을  원본보다  더  나은  해상도로  제공하며, 원본보다  노이즈가  훨씬  적다.
 
 * baseline
 
