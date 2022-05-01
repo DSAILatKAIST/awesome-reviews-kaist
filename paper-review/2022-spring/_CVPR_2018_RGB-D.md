@@ -54,14 +54,14 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 ![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/optimization.png)
 
-목적  함수(_E_)는  4개의  항으로  되어  있고  제곱  오차의  가중치  합으로  정의된다.
+위의 식에서 보이듯이, 목적  함수(_E_)는  4개의  항으로  되어  있고  제곱  오차의  가중치  합으로  정의된다.
 
 (_N_: Surface normal image, 
 _B_: Occlusion boundary image , 
 _D_: Depth image, 
-_D($p$)_: Observed depth at pixel _p_, 
-_D$_0(p)$_: Observed raw depth at pixel _p_,
- _N($p$)_: Predicted surface normal , 
+_D(p)_: Observed depth at pixel _p_, 
+_D$_0$(p)_: Observed raw depth at pixel _p_,
+ _N(p)_: Predicted surface normal , 
  _E$_D$_: Distance between _D$(p)$_ and _D$_0(p)$_, 
  _E$_N$_: Consistency between the estimated depth and _N($p$)_, _E$_S$_: Adjacent pixels to have the same depth)
 
