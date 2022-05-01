@@ -8,11 +8,11 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 ## **1. Problem Definition**
 
-본  연구에서는  RGB-D image에서  발생하는  깊이(depth) 정보  누락문제를  해결하기  위해  정렬된  색상(color) 이미지를  사용하여  single RGB-D 이미지의  깊이  채널(depth channel)을  완성하기  위한  딥러닝  접근법을  제안한다.
+ 본  연구에서는  RGB-D image에서  발생하는  깊이(depth) 정보  누락문제를  해결하기  위해  정렬된  색상(color) 이미지를  사용하여  single RGB-D 이미지의  깊이  채널(depth channel)을  완성하기  위한  딥러닝  접근법을  제안한다.
 
 ## **2. Motivation**
 
-RGB-Depth 카메라란  RGB-D 이미지(RGB 색영상+깊이(depth)  정보)를  제공하는  카메라를  뜻하며, RGB-D sensor는  생체  인증, 자율주행, 실내로봇, 증강현실  등에서  사용되며, 많은 future application을  가능하게  한다. 즉, RGB-D 이미지는  다양한  곳에  사용되는  주요한  정보를  포함하고  있다.
+ RGB-Depth 카메라란  RGB-D 이미지(RGB 색영상+깊이(depth)  정보)를  제공하는  카메라를  뜻하며, RGB-D sensor는  생체  인증, 자율주행, 실내로봇, 증강현실  등에서  사용되며, 많은 future application을  가능하게  한다. 즉, RGB-D 이미지는  다양한  곳에  사용되는  주요한  정보를  포함하고  있다.
 
 ![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/motivation.png)
 
