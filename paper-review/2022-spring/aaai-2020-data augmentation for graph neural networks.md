@@ -53,7 +53,7 @@ Graph 구조에서의 Data Augmentation의 가장 적합한 방법은 Node를 �
 
 ### Modified and Original Graph Settings for Graph Data Augmentation
 
-Method에 앞서 Graph Modification의 기본 원리로 CV에서 사용되는 이미지 Data Augmentation 방법을 사용하는데요, 두가지 프로세스를 거친다고 볼 수 있습니다.
+Method에 앞서 Graph Modification의 기본 원리로 CV에서 사용되는 이미지 Data Augmentation 방법을 사용하는데요, 두가지 프로세스를 거친다고 볼 수 있습니다.464567
 
 1) Applying a transformation S to T 
    $$
