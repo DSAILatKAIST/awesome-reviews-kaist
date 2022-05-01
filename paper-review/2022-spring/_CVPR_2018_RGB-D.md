@@ -73,6 +73,10 @@ _D$${_0}$$(p)_: Observed raw depth at pixel _p_,
  _E$$_N$$_: Consistency between the estimated depth and _N($$p$$)_, _E$$_S$$_: Adjacent pixels to have the same depth)
 
 *본  연구의  최적화는 $$λ_D = 10^3,  λ_N = 1 및 λ_S = 10^(−3)$$으로 수행되었다.
+>$$
+{SS} = {S^2}
+$$
+
 
 - 제안된  접근  방식이  다른  접근방식보다  훨씬  더  작은  상대  오차를  가진다.
 
