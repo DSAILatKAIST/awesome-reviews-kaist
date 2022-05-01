@@ -442,9 +442,9 @@ Magazine을 제외하고 day, week를 넘어가면 성능하락이 일어남
 SBG 는 결국 bipartite graph에 edge 구성도 단순했는데, 논문의 intro 에서 주장하듯 좀 더 rich 한 정보를 담기위해 더 복잡한 graph를 구성해 볼 수 있지 않을까 싶은 생각이 들었다.
 
 # Author Information
-
-김대희(Kim Daehee) is M.S student in the Graduate school of Knowledge Service Engineering of the Korea Advanced Institute of Science and Technology(KAIST). He has double B.S degrees in System Management Engineering and Computer Science in Sungkyunkwan University(SKKU). His research interest is applying graph neural network to product search and recommendation.He currently works at Knowledge Innovation Research Center, of the KAIST
-
+* Kim Daehee(김대희)
+  * M.S student in the Graduate school of Knowledge Service Engineering of the Korea Advanced Institute of Science and Technology(KAIST)
+  * Research interest is applying graph neural network to product search and recommendation
 # 6. Reference
 
 - [https://github.com/floatSDSDS/SBG](https://github.com/floatSDSDS/SBG)
