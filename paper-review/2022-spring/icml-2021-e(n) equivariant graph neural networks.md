@@ -164,7 +164,21 @@ message에 대한 부분은 애초에 equivariant property를 생각하지 않�
 - (input) $$p^{(0)}=\{p_1^{(0)},...,p_5^{(0)}\}$$, particle position
 - (input) $$v^{(0)}=\{v_1^{(0)},...,v_5^{(0)}\}$$, initial velocity
 - (input) $$c=\{c_1,...,c_5\}$$, charge
-- Mean squared error를 통해서 optimize
+
+
+[ Baselines ]
+
+- Linear Model : t시간 뒤의 위치를, 현재 위치와 속도를 단순 계산해서 예측 ($$p^t=p^0+v^0t$$)
+- SE(3) Transformer : GNN + equivariant 인 기존 방법론
+- Tensor Field Network : GNN + equivariant 인 기존 방법론
+- Radial Field : GNN + equivariant 인 기존 방법론
+- Graph Neural Network : 기본적인 GNN
+- EGNN : 제안된 모델
+
+[ Metric ]
+
+- Mean squared error : 예측값과 실제값의 MSE
+- Forward time : input을 이용해서 output을 얻어내는데까지 걸린 시간
 
 [ 결과 ]
 
@@ -183,7 +197,7 @@ E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기�
 
 저자들은 이를, Radial Field 방법이 너무 모델에 대한 bias가 크기 때문에, 데이터 안에서 미세하게 변하는 부분을 학습하기 힘들다고 주장한다. 즉 정리하면, EGNN은 E(n) 의 high bias를 취하면서 동시에 일반적인 GNN이 갖고 있는 flexibility도 가지고 있다고 주장한다.
 
-### Graph Autoencoder
+<!-- ### Graph Autoencoder
 
 [ 실험 설명 ]
 
@@ -201,13 +215,15 @@ E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기�
     - 그래프 사이즈는 7개~ 16개의 노드
 - 5000 training set, 500 validation set, 500 testing set.
 
+
+
 [ 결과 ]
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%204.png) -->
 <!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image5.png">   -->
-![5](/.gitbook/2022-spring-assets/KanghoonLee_1/image5.png)
+<!-- ![5](/.gitbook/2022-spring-assets/KanghoonLee_1/image5.png)
 - EGNN이 두개의 데이터셋 모두에서 가장 좋은 성능을 보였다.
-- 위에서 언급한대로 noise를 추가한 noise-GNN은 GNN보다 좋은 성능을 보였다.
+- 위에서 언급한대로 noise를 추가한 noise-GNN은 GNN보다 좋은 성능을 보였다. --> -->
 
 ## **5. Conclusion**  
 
