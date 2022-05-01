@@ -8,7 +8,10 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 ## **1. Problem Definition**
 
-	본  연구에서는  RGB-D image에서  발생하는  깊이(depth) 정보  누락문제를  해결하기  위해  정렬된  색상(color) 이미지를  사용하여  single RGB-D 이미지의  깊이  채널(depth channel)을  완성하기  위한  딥러닝  접근법을  제안한다.
+
+본  연구에서는  RGB-D image에서  발생하는  깊이(depth) 정보  누락문제를  해결하기  위해  정렬된  색상(color) 이미지를  사용하여  single RGB-D 이미지의  깊이  채널(depth channel)을  완성하기  위한  딥러닝  접근법을  제안한다.
+
+
 
 ## **2. Motivation**
 
