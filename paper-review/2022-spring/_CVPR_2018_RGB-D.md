@@ -144,7 +144,7 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 1. 네트워크의  Input data 결정
 
-<img width="140"  src=".gitbook/2022-spring-assets/YeoJeong_1/table1.png">
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/table1.png)
 
 일반적인 예측 네트워크에 가장 적합한 입력 유형(색상만, 원시 깊이만 또는 둘 다)을 테스트한  결과, 네트워크에  색상(color input)만 제공될 때,  깊이 추정값이  약간 더 우수하다(Rel = 0.089(색상만) vs. 0.090(둘다))는  것과  표면 법선도  더 잘 예측하는 방법을 학습한다(median error = 17.28º(색상만) vs. 23.07º(둘  다))는  것을  발견할  수  있다.
 
@@ -153,7 +153,7 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 2. 네트워크가 예측하기에 가장 적합한 깊이 표현(depth representation) 결정
 
-<img width="140"  src=".gitbook/2022-spring-assets/YeoJeong_1/table2.png">
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/table2.png)
 
 절대 깊이(D), 표면 법선(N) 및 8개 방향(DD)의 깊이 도함수를 예측하기 위해 네트워크를 개별적으로 훈련시킨 다음, 방정식 1을 최적화하여 깊이를 완성하기 위해 다양한 조합을 사용한다. 결과에서  예측된 법선(N)은 최상의 결과를 제공한다는  결과를  볼  수  있다.(0.167(D), 0.100(미분; DD), 0.092(법선 및 미분; N+DD))에 비해 N의 경우 Rel = 0.089이다.
 
