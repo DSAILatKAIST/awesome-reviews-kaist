@@ -144,7 +144,9 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 #### 1. 검증을  통해  최종적인  딥러닝  방법론  결정
 
-1. 네트워크의  Input data 결정
+
+**1. 네트워크의  Input data 결정**
+
 
 ![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/table1.png)
 
@@ -153,7 +155,9 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 >이  결과는  훈련  시  모든 픽셀 관측된  픽셀만 또는 관측되지 않은 픽셀을  이용하는지에  관계없이 지속된다. 그 이유는 네트워크가 가능한 경우 관찰된 깊이에서 보간하는 방법을 빠르게 학습하여  큰 구멍에서 새로운 깊이를 합성하는 학습을 방해하기 때문이다.
 
 
-2. 네트워크가 예측하기에 가장 적합한 깊이 표현(depth representation) 결정
+
+**2. 네트워크가 예측하기에 가장 적합한 깊이 표현(depth representation) 결정**
+
 
 ![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/table2.png)
 
@@ -161,7 +165,8 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 >법선은 상대적으로 예측하기 쉬운 표면의 방향만을 나타내기 때문이다. 게다가 법선은 깊이 또는 깊이 도함수와 달리 깊이에 따라 크기가 조정되지 않으므로 뷰 범위에서 더 일관된다는  장점이  있다.
 
-3. 폐색  경계의  예측이  도움이  되는지  확인
+**3. 폐색  경계의  예측이  도움이  되는지  확인**
+
 
 표 2의 행 2-4의  값을  통해  경계 예측이 없는  경우(No)이고  행 5-7에는 경계 예측이 있는  경우(Yes)의  최적화  평가를  알  수  있다. 결과는 ‘Yes’의  경우가  개선함을 나타낸다(Rel = 0.089(Y) vs. 0.110(N)).
 
@@ -170,7 +175,8 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 Figure 6에 정성적으로 표시된 것처럼  네트워크가  표면 법선에 잡음이 있거나 부정확한 픽셀인  경우에도  평균적으로 정확하게 예측한다는 것을 의미한다.
 
 
-4. 제안된  깊이  완성  방식이  입력  깊이의  양에  얼마나  의존하는지  평가
+**4. 제안된  깊이  완성  방식이  입력  깊이의  양에  얼마나  의존하는지  평가**
+
 
 ![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/figure7.png)
 
@@ -179,7 +185,9 @@ Figure 6에 정성적으로 표시된 것처럼  네트워크가  표면 법선�
 
 #### 2. 제안된  딥러닝  방법론의  성능  평가
 
-1. 인페인팅(Inpainting) 방법과의 성능 비교
+
+**1. 인페인팅(Inpainting) 방법과의 성능 비교**
+
 
 ![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/table3.png)
 
@@ -189,7 +197,9 @@ Figure 6에 정성적으로 표시된 것처럼  네트워크가  표면 법선�
 
 테스트를 거친 hand-tuned approaches (Bilateral)과의 차이점은 Figure 8에서 확인할 수 있다.
 
-3. 깊이 추정(Depth Estimation) 방법과의 성능 비교
+
+**2. 깊이 추정(Depth Estimation) 방법과의 성능 비교**
+
 
 본 논문에서 제안한 ‘색상과 깊이 정보를 이용하여 깊이를 추정하는 방법’과 ‘색상만으로 깊이를 추정하는 기존 방법(baseline)’을 비교한다. 
 
@@ -200,6 +210,8 @@ Figure 6에 정성적으로 표시된 것처럼  네트워크가  표면 법선�
 ![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/table4.png)
 
 Table 4의 정량적 결과에 따르면 평가 픽셀이 깊이를 관측했는지 여부(Y/N)에 관계없이 저자의 방법이 다른 방법보다 23-40% 더 우수하다는 것을 알 수 있다. 이러한 결과는 표면 법선을 예측하는 것이 깊이 추정에 대한 유망한 접근 방식임을 시사한다.
+
+
 
 ## **5. Conclusion**
 
