@@ -246,8 +246,9 @@ Supervised learning이나 Reinforcement learning에서 네트워크를 잘 gener
 ## **Author Information**  
 
 - **Kanghoon Lee**
-    - Affiliation: KAIST, Industrial & Systems Engineering Department MSc students at SILAB.
+    - Affiliation: KAIST, Industrial & Systems Engineering Department Ph.D candidates at SILAB.
     - Research Topics: Reinforcement Learning, Multi-Agent Reinforcement Learninig.
+    - Contacts: leehoon@kaist.ac.kr
 
     
 
