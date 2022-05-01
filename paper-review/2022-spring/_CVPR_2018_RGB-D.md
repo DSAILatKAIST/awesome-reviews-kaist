@@ -56,23 +56,24 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 위의 식에서 보이듯이, 목적  함수(_E_)는  4개의  항으로  되어  있고  제곱  오차의  가중치  합으로  정의된다.
 
->(_N_: Surface normal image,
+>![](https://latex.codecogs.com/gif.latex?N): Surface normal image,
 >
->_B_: Occlusion boundary image ,
+>![](https://latex.codecogs.com/gif.latex?B): Occlusion boundary image ,
 >
->_D_: Depth image, 
+>![](https://latex.codecogs.com/gif.latex?D): Depth image, 
 >
->_D(p)_: Observed depth at pixel _p_, 
+>![](https://latex.codecogs.com/gif.latex?D%28p%29): Observed depth at pixel _p_, 
 >
 >![](https://latex.codecogs.com/gif.latex?D_0%28p%29): Observed raw depth at pixel _p_,
 >
->_N(p)_: Predicted surface normal , 
+>![](https://latex.codecogs.com/gif.latex?N%28p%29): Predicted surface normal , 
 > 
-> _E$${_D}$$_: Distance between _D$$(p)$$_ and _D$$_0(p)$$_, 
+>![](https://latex.codecogs.com/gif.latex?E_D): Distance between ![](https://latex.codecogs.com/gif.latex?D%28p%29) and ![](https://latex.codecogs.com/gif.latex?D_0%28p%29), 
 >
->_E$$_N$$_: Consistency between the estimated depth and _N($$p$$)_, _E$$_S$$_: Adjacent pixels to have the same depth)
+>![](https://latex.codecogs.com/gif.latex?E_N): Consistency between the estimated depth and ![](https://latex.codecogs.com/gif.latex?N%28p%29), 
+>![](https://latex.codecogs.com/gif.latex?E_S): Adjacent pixels to have the same depth)
 
-*본  연구의  최적화는 $$λ_D = 10^3,  λ_N = 1 및 λ_S = 10^(−3)$$으로 수행되었다.
+* 본 연구의  최적화는 ![](https://latex.codecogs.com/gif.latex?%5Clambda%20_D) = ![](https://latex.codecogs.com/gif.latex?10%5E3), ![](https://latex.codecogs.com/gif.latex?%5Clambda_N) = 1 및 ![](https://latex.codecogs.com/gif.latex?%5Clambda_S)= ![](https://latex.codecogs.com/gif.latex?10%5E-3)으로 수행되었다.
 
 
 
