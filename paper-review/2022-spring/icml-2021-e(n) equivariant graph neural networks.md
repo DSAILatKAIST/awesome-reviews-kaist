@@ -148,7 +148,9 @@ message에 대한 부분은 애초에 equivariant property를 생각하지 않�
 
 ## **4. Experiment**  
 
-### Modeling a dynamical system - N-body system
+Modeling a dynamical system - N-body system
+
+### Experiment setup
 
 [ 실험 설명 ]
 
@@ -180,7 +182,7 @@ message에 대한 부분은 애초에 equivariant property를 생각하지 않�
 - Mean squared error : 예측값과 실제값의 MSE
 - Forward time : input을 이용해서 output을 얻어내는데까지 걸린 시간
 
-[ 결과 ]
+### Results
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%202.png) -->
 <!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image3.png">   -->
