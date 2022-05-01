@@ -118,9 +118,7 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 		- Chakrabarti et al. 
 
 * Evaluation Metric
-  1. 검증을  통해  최종적인  딥러닝  방법론  결정
-		
-	1) 네트워크의  Input data 결정
+1. 네트워크의  Input data 결정
 		- 깊이  예측  평가:
 			- median error relative to the rendered depth(Rel) 
 			- root mean squared error in meters(RMSE)
@@ -131,9 +129,7 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 			- median errors (in degrees)
 			- the percent- ages of pixels with predicted normals less than thresholds of 11.25, 22.5, and 30 degrees.
 
-  2. 제안된  딥러닝  방법론의  성능  평가
-		
-	1)  & 2) 인페인팅(Inpainting) 및 깊이 추정의 성능비교
+2. 저자가 제안한 방법론 과 기존의 방법론(인페인팅(Inpainting) 및 깊이 추정) 성능비교
 			- Qualitative evaluation
 			- median error relative to the rendered depth(Rel)
 			- root mean squared error in meters(RMSE)
