@@ -28,7 +28,7 @@ RGB-Depth 카메라란  RGB-D 이미지(RGB 색영상+깊이(depth)  정보)를 
 
 저자가  제안하는  RGB-D 깊이  완성(depth completion) 문제는  2단계를  통해  해결된다.
 
-<img width="140"  src=".gitbook/2022-spring-assets/YeoJeong_1/method.png">
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/method.png)
 
 
 **1 단계) 
@@ -50,7 +50,7 @@ RGB-Depth 카메라란  RGB-D 이미지(RGB 색영상+깊이(depth)  정보)를 
 
 1단계에서의  얻은  정제되지  않은  구조는  입력  깊이로부터  정규화와  함께  global 최적화를  통해  재구성된다. 표면  법선과  폐색  경계만으로  깊이를  푸는  것은  이론적으로  불가능하기  때문에  raw 깊이  관측이  포함되어  있어야  한다.
 
-<img width="140"  src=".gitbook/2022-spring-assets/YeoJeong_1/optimization.png">
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/optimization.png)
 
 목적  함수(_E_)는  4개의  항으로  되어  있고  제곱  오차의  가중치  합으로  정의된다.
 
@@ -92,9 +92,9 @@ _D$_0(p)$_: Observed raw depth at pixel _p_,
 
 * baseline
 
-	1. 검증을  통해  최종적인  딥러닝  방법론  결정
+  1. 검증을  통해  최종적인  딥러닝  방법론  결정
 
-	2. 제안된  딥러닝  방법론의  성능  평가
+  2. 제안된  딥러닝  방법론의  성능  평가
 
 	- Depth Inpainting Methods
 		- Smooth
@@ -108,9 +108,9 @@ _D$_0(p)$_: Observed raw depth at pixel _p_,
 		- Chakrabarti et al. 
 
 * Evaluation Metric
-	-1. 검증을  통해  최종적인  딥러닝  방법론  결정
+  1. 검증을  통해  최종적인  딥러닝  방법론  결정
 		
-		1) 네트워크의  Input data 결정
+	1) 네트워크의  Input data 결정
 		- 깊이  예측  평가:
 			- median error relative to the rendered depth(Rel) 
 			- root mean squared error in meters(RMSE)
@@ -121,9 +121,9 @@ _D$_0(p)$_: Observed raw depth at pixel _p_,
 			- median errors (in degrees)
 			- the percent- ages of pixels with predicted normals less than thresholds of 11.25, 22.5, and 30 degrees.
 
-	-2. 제안된  딥러닝  방법론의  성능  평가
+  2. 제안된  딥러닝  방법론의  성능  평가
 		
-		1)  & 2) 인페인팅(Inpainting) 및 깊이 추정의 성능비교
+	1)  & 2) 인페인팅(Inpainting) 및 깊이 추정의 성능비교
 			- Qualitative evaluation
 			- median error relative to the rendered depth(Rel)
 			- root mean squared error in meters(RMSE)
@@ -157,14 +157,14 @@ _D$_0(p)$_: Observed raw depth at pixel _p_,
 
 표 2의 행 2-4의  값을  통해  경계 예측이 없는  경우(No)이고  행 5-7에는 경계 예측이 있는  경우(Yes)의  최적화  평가를  알  수  있다. 결과는 ‘Yes’의  경우가  개선함을 나타낸다(Rel = 0.089(Y) vs. 0.110(N)).
 
-<img width="140"  src=".gitbook/2022-spring-assets/YeoJeong_1/figure6.png">
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/figure6.png)
 
 Figure 6에 정성적으로 표시된 것처럼  네트워크가  표면 법선에 잡음이 있거나 부정확한 픽셀인  경우에도  평균적으로 정확하게 예측한다는 것을 의미한다.
 
 
 4. 제안된  깊이  완성  방식이  입력  깊이의  양에  얼마나  의존하는지  평가
 
-<img width="140"  src=".gitbook/2022-spring-assets/YeoJeong_1/figure7.png">
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/figure7.png)
 
 2단계인  최적화를  하기  전에  입력  깊이  이미지의  픽셀  수를  무작위로  마스킹하여  입력  깊이  이미지의  화질을  저하시켰다. Figure 7의 두 개의 그래프 중 왼쪽은 원래 원시 깊이 이미지에서 관측된 픽셀에 대한 깊이 정확도를 나타내는 그래프이고 오른쪽 그래프는 관측되지 않은 픽셀에 대해 깊이 정확도를 나타내는 그래프이다.
 더 많은 깊이 샘플을 사용하면 결과가 계속 향상되지만 100픽셀 이후에는 별 차이가 없으며 평균 100개 깊이 샘플을 사용하여 우리 방법은 깊이의 5% 내에서 제어되는 픽셀의 70% 화살표(오차)로 10개의 깊이를 생성합니다.
@@ -173,11 +173,11 @@ Figure 6에 정성적으로 표시된 것처럼  네트워크가  표면 법선�
 
 1. 인페인팅(Inpainting) 방법과의 성능 비교
 
-<img width="140"  src=".gitbook/2022-spring-assets/YeoJeong_1/table3.png">
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/table3.png)
 
 표 3의 결과는 우리의 방법이 inpainting의 baseline을 훨씬 능가함을 보여준다(Rel=0.089(본  연구) vs. 0.103-0.151(baseline)). 심층 네트워크로 표면 법선을 예측하도록 훈련함으로써 제안된 방법은 단순한 기하학적 휴리스틱보다 강력한 데이터 기반 사전으로 깊이를 완성하는 방법을 학습한다. 
 
-<img width="140"  src=".gitbook/2022-spring-assets/YeoJeong_1/figure8.png">
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/figure8.png)
 
 테스트를 거친 hand-tuned approaches (Bilateral)과의 차이점은 Figure 8에서 확인할 수 있다.
 
@@ -185,11 +185,11 @@ Figure 6에 정성적으로 표시된 것처럼  네트워크가  표면 법선�
 
 본 논문에서 제안한 ‘색상과 깊이 정보를 이용하여 깊이를 추정하는 방법’과 ‘색상만으로 깊이를 추정하는 기존 방법(baseline)’을 비교한다. 
 
-<img width="140"  src=".gitbook/2022-spring-assets/YeoJeong_1/figure9.png">
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/figure9.png)
 
 정성적  비교는  Figure 9에서의  비교를  통해  확인되는데, 저자의  방법(Ours)이  이미지의  구조와 미세한 디테일을 가장 잘 재현한다는 것을 알 수 있다. 
 
-<img width="140"  src=".gitbook/2022-spring-assets/YeoJeong_1/table4.png">
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/table4.png)
 
 Table 4의 정량적 결과에 따르면 평가 픽셀이 깊이를 관측했는지 여부(Y/N)에 관계없이 저자의 방법이 다른 방법보다 23-40% 더 우수하다는 것을 알 수 있다. 이러한 결과는 표면 법선을 예측하는 것이 깊이 추정에 대한 유망한 접근 방식임을 시사한다.
 
@@ -219,6 +219,5 @@ Table 4의 정량적 결과에 따르면 평가 픽셀이 깊이를 관측했는
 * Reference
 	* [공식 추가 자료](https://deepcompletion.cs.princeton.edu/)
 	* [학회 발표 영상](https://www.youtube.com/watch?v=WrEKJeK-Wow)
-![image](https://user-images.githubusercontent.com/100551559/164981125-5e4acba8-d9ff-422b-ba68-2cde3bfed3fa.png)
 
 
