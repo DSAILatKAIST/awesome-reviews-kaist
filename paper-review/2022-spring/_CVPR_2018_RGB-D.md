@@ -119,6 +119,7 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 * Evaluation Metric
 1. 네트워크의  Input data 결정
+		
 		- 깊이  예측  평가:
 			- median error relative to the rendered depth(Rel) 
 			- root mean squared error in meters(RMSE)
@@ -130,6 +131,7 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 			- the percent- ages of pixels with predicted normals less than thresholds of 11.25, 22.5, and 30 degrees.
 
 2. 저자가 제안한 방법론 과 기존의 방법론(인페인팅(Inpainting) 및 깊이 추정) 성능비교
+			
 			- Qualitative evaluation
 			- median error relative to the rendered depth(Rel)
 			- root mean squared error in meters(RMSE)
