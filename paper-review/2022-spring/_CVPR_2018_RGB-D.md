@@ -64,11 +64,11 @@ _D_: Depth image,
 
 _D(p)_: Observed depth at pixel _p_, 
 
-_D$$_0$$(p)_: Observed raw depth at pixel _p_,
+_D$${_0}$$(p)_: Observed raw depth at pixel _p_,
 
  _N(p)_: Predicted surface normal , 
  
- _E$$_D$$_: Distance between _D$$(p)$$_ and _D$$_0(p)$$_, 
+ _E$${_D}$$_: Distance between _D$$(p)$$_ and _D$$_0(p)$$_, 
  
  _E$$_N$$_: Consistency between the estimated depth and _N($$p$$)_, _E$$_S$$_: Adjacent pixels to have the same depth)
 
@@ -95,6 +95,7 @@ _D$$_0$$(p)_: Observed raw depth at pixel _p_,
 	SUNCG 데이터  세트에  대해  사전  훈련을  진행했다. 제안된  프레임워크의  성능을  실험하기  위해서는  랜더링된[1] completions(D*)가  포함된  총  117,516개의 RGB-D 이미지가  사용되었으며, 105,432개의 훈련 세트와 평가를  위한  12,084개의  테스트 세트로  분할되었다.
 
 	저자는  이미  존재하는  표면  매쉬(surface meshes)를  이용하는데, 이는  데이터  셋을  생성하기  위해  큰  공간의  다중  뷰  RGB-D 스캔에서  재구성되었다. 기존의  여러  datasets 중  ‘Matterport3D’ dataset을  이용하여  재구성된  매쉬를  랜더링했으며  이것은  여러  카메라의  깊이를  통합하는  것과  같은  결과를  낼  수  있다.
+
 ( [1] 랜더링: 컬러  이미지(color image)와  센서  깊이(sensor depth)를  이용해서  ground truth를  만드는  과정)
 
 	>이렇게  생성된  데이터  셋은  해당  연구의  심층 네트워크를 훈련에  있어  몇 가지 유리한 속성이 있고  이는  다음과  같다: 완성된  깊이  이미지(D*)는  일반적으로  누락된  영역이  적고, D*에서  멀리  있는  표면을  원본보다  더  나은  해상도로  제공하며, 원본보다  노이즈가  훨씬  적다.
