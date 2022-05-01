@@ -223,7 +223,7 @@ E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기�
 <!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image5.png">   -->
 <!-- ![5](/.gitbook/2022-spring-assets/KanghoonLee_1/image5.png)
 - EGNN이 두개의 데이터셋 모두에서 가장 좋은 성능을 보였다.
-- 위에서 언급한대로 noise를 추가한 noise-GNN은 GNN보다 좋은 성능을 보였다. --> -->
+- 위에서 언급한대로 noise를 추가한 noise-GNN은 GNN보다 좋은 성능을 보였다. -->
 
 ## **5. Conclusion**  
 
