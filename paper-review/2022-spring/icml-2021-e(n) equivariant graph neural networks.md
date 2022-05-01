@@ -195,6 +195,8 @@ Modeling a dynamical system - N-body system
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%203.png) -->
 <!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image4.png">   -->
 ![4](/.gitbook/2022-spring-assets/KanghoonLee_1/image4.png)
+
+
 E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기서 제안한 모델인 EGNN 세가지 모델을 학습 데이터 수에 대한 MSE를 나타낸 그래프이다. 예상과 비슷하게, EGNN과 Radial Field는 적은 데이터 샘플로도 잘 generalize하는 것을 보였다. 하지만, Radial Field의 경우 EGNN과 다르게 많은 데이터가 주어졌음에도 성능이 더욱 개선되지 않는 점을 보였다. EGNN과 GNN은 학습 데이터가 많아짐에 따라서 성능 개선이 이루어지는 것을 확인할 수 있었다.
 
 저자들은 이를, Radial Field 방법이 너무 모델에 대한 bias가 크기 때문에, 데이터 안에서 미세하게 변하는 부분을 학습하기 힘들다고 주장한다. 즉 정리하면, EGNN은 E(n) 의 high bias를 취하면서 동시에 일반적인 GNN이 갖고 있는 flexibility도 가지고 있다고 주장한다.
