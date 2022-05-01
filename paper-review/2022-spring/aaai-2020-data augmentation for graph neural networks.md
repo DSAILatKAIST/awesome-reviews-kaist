@@ -25,9 +25,9 @@ Graph 구조에서의 Data Augmentation의 가장 적합한 방법은 Node를 �
 
 따라서 Node와 Node를 연결하는 Edge를 추가 및 제거하는 방법이 Graph Data Augmentation을 위한 가장 좋은 선택이라고 할 수 있습니다. 이때 어떠한 Edge를 선택하느냐는 또 다른 과제가 될 수 있습니다. 이를 위한 기존의 연구들은 다음과 같습니다.
 
-- **DROPEDGE(Rong et al. 2019)**는 각 학습 epoch 이전에 Graph의 Edge를 랜덤하게 제거하는 방식으로 test-time 추론에 의의를 가지고 있으나, Edge를 추가하는 방안에서는 큰 영향을 얻지 못함
-- **ADAEDGE(Chen et al. 2019)**는 Graph의 Data Augmentation에 대해서 동일한 Label이라고 높은 신뢰도를 가지고 분류되는 두 노드 사이에 반복적으로 EDGE를 추가하는 방식임. 그러나 이 방식은 오류를 전파시키기 쉽고, 학습 데이터의 크기에 영향을 받음
-- **BGCN(Zhang et al. 2019b)**는 여러 개의 노이즈가 제거된 Graph를 생성하는 GCN 기반 stochastic block model을 반복적으로 훈련시키고, 이러한 GCN 결과들을 앙상블하는 방식임. 그러나 이 역시 오류 전파의 위험성을 가지고 있음
+- **DROPEDGE(Rong et al. 2019)** 는 각 학습 epoch 이전에 Graph의 Edge를 랜덤하게 제거하는 방식으로 test-time 추론에 의의를 가지고 있으나, Edge를 추가하는 방안에서는 큰 영향을 얻지 못함
+- **ADAEDGE(Chen et al. 2019)** 는 Graph의 Data Augmentation에 대해서 동일한 Label이라고 높은 신뢰도를 가지고 분류되는 두 노드 사이에 반복적으로 EDGE를 추가하는 방식임. 그러나 이 방식은 오류를 전파시키기 쉽고, 학습 데이터의 크기에 영향을 받음
+- **BGCN(Zhang et al. 2019b)** 는 여러 개의 노이즈가 제거된 Graph를 생성하는 GCN 기반 stochastic block model을 반복적으로 훈련시키고, 이러한 GCN 결과들을 앙상블하는 방식임. 그러나 이 역시 오류 전파의 위험성을 가지고 있음
 
 위 논문에서 제시한 핵심적인 idea는 같은 분류를 가지고 있는 Node Structure를 효과적으로 인코드하기 위해 intra-class(분류가 같은 노드 관계)의 edge들은 늘리고, inter-class(분류가 다른 노드 관계)의 edge들은 줄인다는 것입니다. 이는 직관적으로 same-class Node들끼리 임베딩되는 것을 장려하고 other-class Node에 대한 임베딩을 차별화하여 구분을 확실히 하는 효과를 가집니다.
 
