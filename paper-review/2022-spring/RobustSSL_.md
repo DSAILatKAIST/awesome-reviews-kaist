@@ -56,7 +56,7 @@ Hyperparameter optimization 관점에서 문제를 다시 보면, 우리는 trai
 
  > Notation
  
-![method_notation.PNG](../../.gitbook/2022-spring-assets/RobustSSL/method_notation.PNG)
+![Method_notation.PNG](../../.gitbook/2022-spring-assets/RobustSSL/Method_notation.PNG)
 - Optimization loss 
 $$
 {\underset {\Lambda= \{ \lambda_1,...,\lambda_{|U|} \} }{min} \; L_s(V,\theta^*(\Lambda)) \; s.t. \; \theta^* (\Lambda)={\underset {\theta}{argmin}} \sum_l \, l_s(x_l,y_l;\theta) \; + \; \sum_u \lambda _u \, l_u(x_u;\theta)} 
