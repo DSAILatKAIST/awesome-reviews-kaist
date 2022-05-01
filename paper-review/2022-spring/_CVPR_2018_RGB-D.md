@@ -56,26 +56,24 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 위의 식에서 보이듯이, 목적  함수(_E_)는  4개의  항으로  되어  있고  제곱  오차의  가중치  합으로  정의된다.
 
-(_N_: Surface normal image,
-
-_B_: Occlusion boundary image ,
-
-_D_: Depth image, 
-
-_D(p)_: Observed depth at pixel _p_, 
-
-_D$${_0}$$(p)_: Observed raw depth at pixel _p_,
-
- _N(p)_: Predicted surface normal , 
- 
- _E$${_D}$$_: Distance between _D$$(p)$$_ and _D$$_0(p)$$_, 
- 
- _E$$_N$$_: Consistency between the estimated depth and _N($$p$$)_, _E$$_S$$_: Adjacent pixels to have the same depth)
+>(_N_: Surface normal image,
+>
+>_B_: Occlusion boundary image ,
+>
+>_D_: Depth image, 
+>
+>_D(p)_: Observed depth at pixel _p_, 
+>
+>![](https://latex.codecogs.com/gif.latex?D_0%28p%29): Observed raw depth at pixel _p_,
+>
+>_N(p)_: Predicted surface normal , 
+> 
+> _E$${_D}$$_: Distance between _D$$(p)$$_ and _D$$_0(p)$$_, 
+>
+>_E$$_N$$_: Consistency between the estimated depth and _N($$p$$)_, _E$$_S$$_: Adjacent pixels to have the same depth)
 
 *본  연구의  최적화는 $$λ_D = 10^3,  λ_N = 1 및 λ_S = 10^(−3)$$으로 수행되었다.
->$$
-{SS} = {S^2}
-$$
+
 
 
 - 제안된  접근  방식이  다른  접근방식보다  훨씬  더  작은  상대  오차를  가진다.
