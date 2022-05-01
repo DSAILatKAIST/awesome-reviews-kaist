@@ -88,7 +88,7 @@ Gaussian process 의 베이지안 추론을 통해 생성한 Neural Network (이
 <div align="center">  
 
 
-![img1](https://user-images.githubusercontent.com/37684658/164236353-e79f8de4-41a7-42f6-a0d2-f49940408f26.png)
+![img1](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/01.PNG)
 
  </div>
 위의 실험은 두가지 입장에서 흥미로웠다.
