@@ -14,7 +14,7 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 RGB-Depth 카메라란  RGB-D 이미지(RGB 색영상+깊이(depth)  정보)를  제공하는  카메라를  뜻하며, RGB-D sensor는  생체  인증, 자율주행, 실내로봇, 증강현실  등에서  사용되며, 많은 future application을  가능하게  한다. 즉, RGB-D 이미지는  다양한  곳에  사용되는  주요한  정보를  포함하고  있다.
 
-![motivation](./paper-review/2022-Spring/.gitbook/2022-spring-assets/YeoJeong_1/motivation.png)
+![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/motivation.png)
 
 
  위의  그림에서  보이는  것처럼, 상용  심도  카메라(Commodity-grade depth cameras)로  찍힌  RGB-D 이미지를 보면 컬러  이미지(RGB 부분)는 실제 그대로 보여지는 반면에 깊이  이미지는 종종  아래 예시(Depth 부분)의 흰색  영역처럼  깊이  채널(depth channel)의  거대한  누락이  존재한다. 이는 밝은 빛, 멀거나 빛나는 표면, 얇은 물체 그리고 검은 표면에서 주로 발생한다.
