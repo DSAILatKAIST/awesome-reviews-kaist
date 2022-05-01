@@ -106,10 +106,6 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 * baseline
 
-  1. 검증을  통해  최종적인  딥러닝  방법론  결정
-
-  2. 제안된  딥러닝  방법론의  성능  평가
-
 	- Depth Inpainting Methods
 		- Smooth
 		- joint bilinear filtering (Bilateral)
@@ -181,7 +177,7 @@ Figure 6에 정성적으로 표시된 것처럼  네트워크가  표면 법선�
 ![motivation](/.gitbook/2022-spring-assets/YeoJeong_1/figure7.png)
 
 2단계인  최적화를  하기  전에  입력  깊이  이미지의  픽셀  수를  무작위로  마스킹하여  입력  깊이  이미지의  화질을  저하시켰다. Figure 7의 두 개의 그래프 중 왼쪽은 원래 원시 깊이 이미지에서 관측된 픽셀에 대한 깊이 정확도를 나타내는 그래프이고 오른쪽 그래프는 관측되지 않은 픽셀에 대해 깊이 정확도를 나타내는 그래프이다.
-더 많은 깊이 샘플을 사용하면 결과가 계속 향상되지만 100픽셀 이후에는 별 차이가 없으며 평균 100개 깊이 샘플을 사용하여 우리 방법은 깊이의 5% 내에서 제어되는 픽셀의 70% 화살표(오차)로 10개의 깊이를 생성합니다.
+더 많은 깊이 샘플을 사용하면 결과가 계속 향상되지만 100픽셀 이후에는 별 차이가 없다.
 
 #### 2. 제안된  딥러닝  방법론의  성능  평가
 
