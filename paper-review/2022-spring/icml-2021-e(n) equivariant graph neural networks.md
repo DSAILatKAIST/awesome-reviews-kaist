@@ -227,16 +227,10 @@ Supervised learning이나 Reinforcement learning에서 네트워크를 잘 gener
 
 ## **Author Information**  
 
-- **Victor Garcia Satorras**
-    - Affiliation: University of Amsterdam, Netherlands.
-    - Research Topics: AI, ML, Deep learning, Statistics
-- **Emiel Hoogeboom**
-    - Affiliation: University of Amsterdam, Netherlands.
-    - Research Topics: Generative Modelling, Bayesian Inference, Artificial Intelligence
-- **Max Welling**
-    - Affiliation: University of Amsterdam, Netherlands.
-    - Research Topics: ML, AI, Statistics
-    - [https://scholar.google.com/citations?user=8200InoAAAAJ&hl=en](https://scholar.google.com/citations?user=8200InoAAAAJ&hl=en)
+- **Kanghoon Lee**
+    - Affiliation: KAIST, Industrial & Systems Engineering Department MSc students at SILAB.
+    - Research Topics: Reinforcement Learning, Multi-Agent Reinforcement Learninig.
+
     
 
 ## **6. Reference & Additional materials**  
