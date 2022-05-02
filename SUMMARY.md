@@ -4,7 +4,7 @@
 
 ## Paper Review
 
-* [\[2022 Spring\] Paper Review](paper-review/2022-spring-paper-review/README.md)
+* [\[2022 Spring\] Paper Review](paper-review/2022-spring/README.md)
   * [Template](paper-review/2022-spring/template.md)
   * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
   * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
