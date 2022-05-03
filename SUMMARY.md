@@ -4,7 +4,7 @@
 
 ## Paper Review
 
-* [\[2022 Spring\] Paper Review](paper-review/2022-spring/README.md)
+* [\[2022 Spring\] Paper Review](paper-review/2022-spring-paper-review/README.md)
   * [Template](paper-review/2022-spring/template.md)
   * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
   * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
@@ -16,11 +16,10 @@
   * [CITIES](paper-review/2022-spring/ICDM-2020-Cites.md)
   * [LILAC](paper-review/2022-spring/LILAC.md)
   * [Unsupervised Detection of Adversarial Examples with Model Explanations](paper-review/2022-spring/kdd-2021-unsupervised-detection-of-adversarial-examples-with-model-explanations.md)
-  * [When Vision Transformers Outperform Resnets without Pre-training or Strong Data Augmentations](paper-review/2022-spring/iclr-2022-when_vision_transformer_outperform_resnets_without_pre-training_or_strong_data_augmentations.md)
+  * [When Vision Transformers Outperform Resnets without Pre-training or Strong Data Augmentations](paper-review/2022-spring/iclr-2022-when\_vision\_transformer\_outperform\_resnets\_without\_pre-training\_or\_strong\_data\_augmentations.md)
   * [flan](paper-review/2022-spring/iclr-2022-flan.md)
   * [Sequential GCN for AL](paper-review/2022-spring/cvpr-2021-sequential\_graph\_convolutional\_network\_for\_active\_learning.md)
   * [DNNGP](paper-review/2022-spring/ICLR-2018-DNNGP.md)
-
   * [RGB-D](paper-review/2022-spring/\_CVPR\_2018\_RGB-D.md)
   * [SBG(Successive Behavior Graph)](paper-review/2022-spring/www-2022-sbg.md)
   * [Self-sup-Multi-View](paper-review/2022-spring/ICLR21-self-sup-information-theory.md)
