@@ -6,13 +6,18 @@ description: >-
 
 # Overcoming Catastrophic Forgetting in Graph Neural Networks
 
+\
+
 ## **1. Problem Definition**
 
-> 어떻게하면 **과거의 정보를 유지**하면서 계속해서 들어오는 **새로운 정보를 학습**할까?
+
+> #### 어떻게하면 **과거의 정보를 유지**하면서 계속해서 들어오는 **새로운 정보를 학습**할까?
 
 본 논문은 Graph domain에서 **Catastrophic Forgetting**을 최대한 방지하는 `Continual learning` 모델을 제시합니다. 
 
-> `Continual learning`이란?
+\
+
+> #### `Continual learning`이란?
 
 과거의 정보를 최대한 유지하면서 새로운 정보를 학습하는 방법으로, `Lifelong learning`, `Incremental learning`이라고도 부릅니다. 
 
@@ -26,37 +31,49 @@ description: >-
 
 그리고 Task가 진행됨에 따라 이전 Task에서 학습했던 node들에 대한 예측 성능이 낮아지는 것을 볼 수 있습니다. 예를 들어 Task 1에서 파란 node들은 95%의 예측성능을 보였지만, Task 2에서는 55%로 줄었고, Task 2에서 보라색 node들은 94%의 성능을 보인 반면 Task 3에서는 56%에 불과합니다. 이렇게 Task가 진행됨에 따라 앞서 학습했던 정보를 잊는 것을 **Catastrophic Forgetting**이라고 합니다.
 
-_**저자들은 Catastrophic Forgetting을 최대한 줄이는 Graph Continual Learning 모델을 제시하고자 합니다.**_
+\
+
+_**저자들은 Catastrophic Forgetting을 최대한 줄이는 `Graph Continual Learning` 모델을 제시하고자 합니다.**_
+
+\
 
 
 ## **2. Motivation**
 
-> 기존 시계열 데이터를 다루는 `RNN`은 **irregurlarly-sampled time series data**를 잘 fitting하지 못한다!
 
-`RNN`은 regularly-sampled time series data에 대해 좋은 성능을 보이나, data의 time-gap이 불규칙적인 경우 좋은 성능을 내지 못합니다.
+> #### 기존 `Continual learning` 모델들은 Image같은 grid domain에만 집중하고, graph같은 non-grid domain에는 거의 없다!
 
-이에 지금까지 사용하던 몇 가지 해결책이 있었는데,
+지금까지 주류를 이루는 `Continual learning` 방법론은 Image 데이터에 적용되는 `CNN` based 모델들이 많습니다. 하지만 실제 세계의 데이터는 non-grid 형태가 많은데, Graph 데이터에 적용되는 모델은 많이 없기 때문에 저자들은 `GNN`에 적용될 수 있는 `Continual learning` 방법론을 소개합니다.
 
-* timeline을 equally-sized intervals로 나누거나,
-* observation들을 평균을 사용해 impute/agrregate 하는 등의 간단한 trick을 사용했습니다.
+`CNN` 기반 모델들과 달리, 본 논문에서는 그래프의 **topological 정보**까지 고려하는 `Topology-aware Weight Preserving(TWP)` 모듈을 제시합니다.
 
-하지만 이러한 방식은 measurement의 timing 같은 정보량을 줄이거나 왜곡하는 문제가 있었습니다.
+이 모듈을 제시함으로써 parameter를 update할 때 **node-level learning** 뿐 아니라 **node 사이의 propagation**까지 고려할 수 있게 되는 것입니다. 
 
-_**이에 저자들은 모든 time point에 정의된 latent space를 가지는 continuous-time model을 정의하고자 합니다.**_
+\
 
-![RNN과 ODE-RNN의 hidden state trajectory](https://user-images.githubusercontent.com/99710438/164282561-92a1143f-2469-4b8a-aad7-435c7b6bd50f.PNG)
+> #### `Continual learning` 모델 중 replay approach는 computation & memory cost가 높다!
 
-예를 들어, 위 사진은 `RNN`과 저자들이 제시한 `ODE-RNN`의 차이를 보여줍니다. 각 line은 hidden state의 trajectory를 나타내고 수직 점선은 observation time을 나타내는데, `RNN`은 observation이 나타날 때만 hidden state에 변화가 있어 각 observation 사이를 예측하긴 어렵습니다.
+`Continual learning`의 대표적인 방법 중 하나로 replay apporach가 있습니다. 이는 이전 task에 있었던 data를 이후 task의 data를 학습시킬 때도 사용하는 방법인데요, task가 많아짐에 따라 replay approach는 computation cost와 memory cost가 증가하게 됩니다. 
 
-반면에 `ODE-RNN`은 각 observation 사이에도 trajectory를 fitting하며 observation이 들어올 때 마다 값을 수정해주는 것을 확인할 수 있습니다. 이런 식으로 `ODE-RNN`은 **observation이 불규칙적으로 있어도 좋은 예측 성능**을 보일 수 있습니다.
+반면에, 저자들은 이전 task를 학습하는데 **중요했던 parameter들을 최대한 보존**하고, **중요하지 않은 parameter들을 이후 학습에 최대한 활용**하는 방식으로 computation & memory cost를 줄이려고 합니다.
+
+
+\
 
 ## **3. Method**
 
-> #### **Preliminaries**: What are RNN, Nerual ODE, Variational Autoencoder?
+> #### **Preliminaries**: What is `GNN`?
 
-논문에서 제안한 방법론을 이해하기 위해서는 `RNN`, `Neural Ordinary Differential Equations`, 그리고 `Variational Autoencoder`의 개념을 알고 있어야 합니다.
+논문에서 제안한 방법론을 이해하기 위해서는 `GNN`의 개념을 알고 있어야 합니다.
 
-본 포스팅에서는 간단하게 소개를 하겠으며, 세 가지 방법론에 대해 자세히 알고 싶으시면 각각 [여기](https://www.youtube.com/watch?v=6niqTuYFZLQ), [여기](https://www.youtube.com/watch?v=AD3K8j12EIE), 그리고 [여기](https://www.youtube.com/watch?v=9zKuYvjFFS8)를 참고하시기 바랍니다.
+본 포스팅에서는 간단하게 소개를 하겠습니다.
+
+_N_ 개의 노드를 가진 그래프 $$\mathcal{G}=(\mathcal{V},\mathcal{E})$$ 가 주어졌을 때, 
+
+> #### Problem Formulation
+
+![Overview of the proposed method](https://user-images.githubusercontent.com/99710438/170720633-9cf611e6-fc8b-47ff-a46b-c268ebf7fb96.png)
+
 
 **1. RNN**
 
