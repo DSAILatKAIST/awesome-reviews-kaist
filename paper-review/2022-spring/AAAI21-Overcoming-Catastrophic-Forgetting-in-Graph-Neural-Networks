@@ -1,16 +1,14 @@
 ---
 description: >-
-  Y Rubanova et al./ Latent ODEs for Irregularly-Sampled Time Series /
-  NeurIPS-2019
+  Liu, H. et al./ Overcoming Catastrophic Forgetting in Graph Neural Networks /
+  AAAI-2021
 ---
 
-# Latent ODEs
-
-## **Latent ODEs for Irregularly-Sampled Time Series**
+# Overcoming Catastrophic Forgetting in Graph Neural Networks
 
 ## **1. Problem Definition**
 
-> 시계열 데이터를 다루는 Deep learning에 **미분방정식 (Ordinary Differential Equation)** 을 접목시키자!
+> 어떻게하면 과거의 지식을 유지하면서 계속해서 들어오는 새로운 지식을 학습할까?
 
 본 논문은 continuous-time dynamics를 가지는 `RNN(Recurrent Neural Networks)`의 hidden dynamics를 ODEs(Ordinary Differential Equations)로 정의해 새로운 모델 `ODE-RNN`을 만들어냅니다.
 
