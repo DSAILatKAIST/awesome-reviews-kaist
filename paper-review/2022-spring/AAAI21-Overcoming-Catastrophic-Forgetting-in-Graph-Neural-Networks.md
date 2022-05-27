@@ -8,11 +8,26 @@ description: >-
 
 ## **1. Problem Definition**
 
-> 어떻게하면 과거의 지식을 유지하면서 계속해서 들어오는 새로운 지식을 학습할까?
+> 어떻게하면 **과거의 정보를 유지**하면서 계속해서 들어오는 **새로운 정보를 학습**할까?
 
-본 논문은 Continual learning에서 를 가지는 `RNN(Recurrent Neural Networks)`의 hidden dynamics를 ODEs(Ordinary Differential Equations)로 정의해 새로운 모델 `ODE-RNN`을 만들어냅니다.
+본 논문은 Graph domain에서 **Catastrophic Forgetting**을 최대한 방지하는 `Continual learning` 모델을 제시합니다. 
 
-또한 NeurIPS에 2018년에 publish 된 '[Neural ordinary differential equations](https://arxiv.org/abs/1806.07366)' 라는 논문에서 제시한 `Latent ODE model`의 recognition network을 `ODE-RNN`으로 대체합니다. 이를 통해 관측값 사이의 임의의 time gap을 다룰 수 있습니다.
+> `Continual learning`이란?
+
+과거의 정보를 최대한 유지하면서 새로운 정보를 학습하는 방법으로, `Lifelong learning`, `Incremental learning`이라고도 부릅니다. 
+
+인간이 '강아지'라는 동물을 알고 있는 상태로, '고양이'라는 동물을 새로 학습했을 때, '강아지'를 잊지 않고 '강아지'와 '고양이'를 구별해 낼 수 있는 것처럼, 인공지능을 지속적으로 들어오는 새로운 class의 data를 학습함과 동시에 이전에 학습되었던 class들을 잊지 않고 구별할 수 있게 하는 것이 목적입니다.
+
+이 때, 새로운 데이터가 들어옴에 따라 이전에 학습했던 data의 정보를 망각하는 과정을 **Catastrophic Forgetting**이라고 합니다. 아래 그림을 보시겠습니다. 
+
+![Continual learning과 Catastrophic forgetting](https://user-images.githubusercontent.com/99710438/170692095-ffd4e6e3-e483-4f3a-9142-a8bc77d2a5c1.png)
+
+그림에서 볼 수 있듯이, Task 1에서는 파란색 node들을 구별하도록 학습합니다. Task 2에서는 보라색 class의 새로운 node가 추가되면서 파란색과 보라색을 포함해 학습시키고, Task 3에서는 빨간색의 새로운 node가 추가되면서 새롭게 학습이 진행됩니다. 이 과정이 `Continual learning`입니다.  
+
+그리고 Task가 진행됨에 따라 이전 Task에서 학습했던 node들에 대한 예측 성능이 낮아지는 것을 볼 수 있습니다. 예를 들어 Task 1에서 파란 node들은 95%의 예측성능을 보였지만, Task 2에서는 55%로 줄었고, Task 2에서 보라색 node들은 94%의 성능을 보인 반면 Task 3에서는 56%에 불과합니다. 이렇게 Task가 진행됨에 따라 앞서 학습했던 정보를 잊는 것을 **Catastrophic Forgetting**이라고 합니다.
+
+_**저자들은 Catastrophic Forgetting을 최대한 줄이는 Graph Continual Learning 모델을 제시하고자 합니다.**_
+
 
 ## **2. Motivation**
 
@@ -290,7 +305,4 @@ Neural ODE라는 새로운 방식을 여러 방면에 접목시킨 논문들이 
 * Github Implementation
   * None
 * Reference
-  * [Recurrent Neural Networks](https://wikidocs.net/22886)
-  * [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
-  * [Variational Autoencoder](https://arxiv.org/abs/1312.6114)
-  * [CS231n lecture slide](http://cs231n.stanford.edu/slides/)
+  * [Overcoming Catastrophic Forgetting in Graph Neural Networks with Experience Replay](https://arxiv.org/abs/2003.09908)
