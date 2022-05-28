@@ -86,13 +86,13 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 ---  
 ## **Author Information**  
 
-* Author name  
-    * Affiliation  
-    * Research Topic
+* TaeMi, Kim
+    * KAIST, Industrial and Systems Engineering
 
 ## **6. Reference & Additional materials**  
 
 Please write the reference. If paper provides the public code or other materials, refer them.  
 
-* Github Implementation  
+* Github Implementation
+https://github.com/google-research/augmix  
 * Reference  
