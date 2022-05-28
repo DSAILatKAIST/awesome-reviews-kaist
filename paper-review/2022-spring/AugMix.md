@@ -36,10 +36,10 @@ AugMix는 확률성(stochasticity)과 다양한 augementation 기법들과 함�
 AugMix는 간단한 augmentation 방법들을 consistency loss와 함께 사용한 점이 특징이다. 여러 augmentation 방법들이 확률적으로 샘플된 후 층층히 적용됨으로써 매우 다양한 augmented image를 생성한다. 이 후, 같은 input image에 대한 다양한 augmented image들이 classifier에 의해 consistent embedding (일관성 있는 embedding)을 갖도록 Jensen-Shannon divergence consistency loss를 이용하여 학습시킨다.
 
 augmentation들을 섞는 것은 다양한 변형을 생성하는데, 이는 모델의 강건성을 향상시키는 데에 매우 중요한 요소이다. 대부분의 Deep Network 모델들이 변동에 대해 강건하지 못한 이유는 모델이 고정된 augmentation 방법들을 외우기 때문이다. 이를 해결하기 위해 이전 연구들은 augmentation 방법들을 chain으로 구성하여 바로 적용하는 시도를 해왔지만, 이는 이미지가 data manifold 상에서 너무 동떨어진 이미지를 생성해낸다. 다음 그림에서 확인할 수 있듯이, 이러한 방법들은 image degradation을 초래한다.
-![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim\_1/figure1.PNG?raw=true)
+![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig1.PNG?raw=true)
 
 AugMix는 여러 개의 augmentation chain들로부터의 결과 이미지를 convex combination을 통해 믹스함으로써 image degradation 문제를 해결하면서 augmentation 다양성은 유지할 수 있다. 구체적인 AugMix 알고리즘은 아래 pseudo-code에서 확인할 수 있다.
-![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim\_1/figure1.PNG?raw=true)
+![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig2.PNG?raw=true)
 
 ### **Augmentations**  
 앞서 언급하였듯이, AugMix는 여러 개의 augmentation 기법들로 이루어진 augmentation chain으로부터의 결과를 mix하는 방식이다. 이 때 augmentation 기법은 AutoAugment 방법을 이용한다. ImageNet-C 에 대해서 test하기 때문에 ImageNet-C에 적용된 변동들과 중복되는 augmentation operation(contrast, color, brightness, sharpness, cutout, noising, blurring)은 제외하였다. 따라서 ImageNet-C에 적용된 변동들은 모델이 test시에 처음 마주치도록 하였다. 
@@ -72,8 +72,8 @@ $$L(p_{orig}, y) + \lambda JS(p_{orig};p_{augmix1};p_{augmix2})$$
 $$JS(p_{orig};p_{augmix1};p_{augmix2}) = \frac{1}{3}\[ KL(p_{orig}||M) + KL(p_{augmix1}||M) + KL(p_{augmix2}||M) \]$$
 $$M = (p_{orig} + p_{augmix1} + p_{augmix2}) / 3$$
 
-Please write the methodology author have proposed.  
-We recommend you to provide example for understanding it more easily.  
+결국, Jensen-Shannon Consistency Loss는 모델이 다양한 분포의 input에 대해서 안정적이고 일관성있는 output을 생성하도록 한다.
+ 
 
 ## **4. Experiment**  
 
@@ -81,9 +81,41 @@ In this section, please write the overall experiment results.
 At first, write experiment setup that should be composed of contents.  
 
 ### **Experiment setup**  
-* Dataset  
+* Dataset
+  * Training Dataset   
+    * CIFAR-10 : 32x32 사이즈의 컬러 natural images로 10개의 카테고리로 구성됨. (50000 training images / 10000 testing images)
+    * CIFAR-100 : 32x32 사이즈의 컬러 natural images로 100개의 카테고리로 구성됨. (50000 training images / 10000 testing images)
+    * ImageNet : 1000개의 카테고리로 구성됨
+  * Teset Dataset
+    * CIFAR-10-C : original CIFAR-10 데이터에 변형(corruption)을 준 데이터셋
+    * CIFAR-100-C : original CIFAR-100 데이터에 변형을 준 데이터셋
+    * ImageNet-C : original ImageNet 데이터에 변형을 준 데이터셋
+    각 데이터셋은 noise, blur, weather, digital corruption을 각각 5가지의 강도로 주어 총 15가지의 corruption으로 이루어진 데이터셋이다. 데이터 변동에 대한 모델의 영향을 확인하기 위한 실험이므로 training 과정에서는 이 15가지의 corruption은 포함하지 않았다.
 * baseline  
 * Evaluation Metric  
+  * Clean Error : corruption이 추가되지 않은 clean data에 대한 classification error
+  * Corruption Error : corruption이 추가된 data에 대한 classification error  
+  * RMS Calibration Error : 모델의 불확실성 추정에 대한 평가 지표
+
+#### **`(1) Corruption Error (CE)`**  
+$$E_{c,s}$$
+- corruption c가 severity s로 주어졌을 때의 error rate
+
+`(i) CIFAR-10-C & CIFAR-100-C`
+$$uCE_{c} = \sum_{s=1}^5 E_{c,s}$$ 
+- corruption c에 대한 unnormalized Corruption Error. corruption c에서 각 severity마다의 Error 값들의 평균을 의미한다.   
+- 15개의 corruption들의 uCE 값의 평균을 최종 error로 사용하였다.  
+
+`(ii) ImageNet-C`  
+$$CE_{c} =  {\sum_{s=1}^5 E_{c,s}}/{\sum_{s=1}^5 E_{c,s}^{AlexNet}}$$
+- corruption error를 AlexNet의 corruption error로 normalizing 해준다.  
+- 15개의 normalized CE 값의 평균을 최종 error로 사용하였다.  
+
+#### **`(2) RMS Calibaration Error`**   
+모델의 불확실성 추정에 대한 평가로서 miscalibration을 측정하였다. calibration이란   
+
+$$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
+
 
 ### **Result**  
 Then, show the experiment results which demonstrate the proposed method.  
