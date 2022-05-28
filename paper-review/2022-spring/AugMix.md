@@ -70,7 +70,7 @@ $$p_{augmix2}=\hat{p}(y|x_{augmix2})$$
 따라서, 원래의 loss _L_ 은 다음과 같은 loss로 대체된다.  
 $$L(p_{orig}, y) + \lambda JS(p_{orig};p_{augmix1};p_{augmix2})$$
 $$JS(p_{orig};p_{augmix1};p_{augmix2}) = \frac{1}{3}\[ KL(p_{orig}||M) + KL(p_{augmix1}||M) + KL(p_{augmix2}||M) \]$$
-
+$$M = (p_{orig} + p_{augmix1} + p_{augmix2}) / 3$$
 
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily.  
