@@ -38,7 +38,10 @@ description : Jiaxuan You / Position-aware Graph Neural Networks / ICML(2019)
 ## **3. Method**  
 ### **Architecture**
 <img width="967" alt="image" src="https://user-images.githubusercontent.com/37684658/170822199-7e47b798-1689-41b6-b33d-95b2d637f4ac.png">  
-PGNN의 전체 Architecture는 위와 같다. 먼저 k개의 anchor-set를 만들고, 각각에 anchor-set에 노드들을 할당한다. k는 어떻게 정해지는 지, 그리고 노드들의 할당은 어떻게하는 지는 후술하도록 하겠다. 그리고 각 노드에 대해서 임베딩을 하게 되는데 ![image]("https://user-images.githubusercontent.com/37684658/170822561-024cc4fb-6b50-484f-9057-93b4e3b11a8f.png")  을 임베딩한다고 하면, ![image]("https://user-images.githubusercontent.com/37684658/170822308-6f990491-2ee0-44cd-aae5-e029a439ce9e.png")  과 나머지 노드들에 대해서 짝을 짓고, 각 anchor-set에 속하는 노드들의 정보만 모아서 anchor-set 개수만큼의 메시지를 만든다. 그 후 총 2개의 output이 나오게 된다.  
+
+PGNN의 전체 Architecture는 위와 같다. 먼저 k개의 anchor-set를 만들고, 각각에 anchor-set에 노드들을 할당한다. k는 어떻게 정해지는 지, 그리고 노드들의 할당은 어떻게하는 지는 후술하도록 하겠다. 그리고 각 노드에 대해서 임베딩을 하게 되는데 ![image](https://user-images.githubusercontent.com/37684658/170822684-b5717bf9-9e2b-48a9-90ab-17c2324c0d01.png)
+을 임베딩한다고 하면, ![image](https://user-images.githubusercontent.com/37684658/170822709-5f73d420-153c-4511-8672-9c1cc212898d.png)
+과 나머지 노드들에 대해서 짝을 짓고, 각 anchor-set에 속하는 노드들의 정보만 모아서 anchor-set 개수만큼의 메시지를 만든다. 그 후 총 2개의 output이 나오게 된다.  
 
 <img width="956" alt="image" src="https://user-images.githubusercontent.com/37684658/170822445-64e09402-036a-464a-9727-3f3c48aba3d8.png">
 
