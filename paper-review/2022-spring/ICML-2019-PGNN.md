@@ -45,7 +45,29 @@ PGNN의 전체 Architecture는 위와 같다. 먼저 k개의 anchor-set를 만�
 
 <img width="956" alt="image" src="https://user-images.githubusercontent.com/37684658/170822445-64e09402-036a-464a-9727-3f3c48aba3d8.png">
 
-하나는 anchor-set 위치에 대해서 invariant한 임베딩(![image](https://user-images.githubusercontent.com/37684658/170822395-db11b231-e74a-4c55-b077-0a71bca158d6.png))이 나오게되고, 나머지 하나는 최종적으로 우리가 task를 수행하는 데 필요한 임베딩(![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png))이 나온다.
+하나는 anchor-set 위치에 대해서 invariant한 임베딩(![image](https://user-images.githubusercontent.com/37684658/170822395-db11b231-e74a-4c55-b077-0a71bca158d6.png))이 나오게되고, 나머지 하나는 최종적으로 우리가 task를 수행하는 데 필요한 임베딩(![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png))이 나온다.  
+이렇게 2개의 output을 둔 이유는, 모델의 expressive power를 높이려면 layer를 여러 개 쌓는 것이 필요한데, 최종 output인 ![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png)는 다음 layer에 전달을 줄 수가 없기 때문이다. 그 이유는 anchor-sets는 한 사이클이 돌 때 마다 다시 뽑히게 되는데, ![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png)가 담고 있는 정보들은 이전 layer에서 뽑힌 anchor-set에 대해서 relative한 정보를 담고 있기 때문에, 다음 layer에서는 쓸 수 없는 정보이다. 그렇기 때문에 multi-layer를 쌓기 위해서, 각 set에서 나온 메시지들을 mean aggregation을 통해 set들에 대해 invariant한 output을 만들고, 이를 다음 layer로 전달하게 된다. 결국 ![image](https://user-images.githubusercontent.com/37684658/170822395-db11b231-e74a-4c55-b077-0a71bca158d6.png)임베딩은 multi-layer 학습을 할 때만 쓰이고, 마지막 output인 ![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png)는 마지막 layer에서 뽑힌 anchor-set를 기준으로 positional한 정보를 담고있는 임베딩이 된다. 
+
+<img width="267" alt="image" src="https://user-images.githubusercontent.com/37684658/170823846-fe1973a8-58fd-43c7-81d3-69aa63623740.png">
+
+![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png)의 dimension은 anchor-set의 개수만큼 나오고, 각각의 dimension은 그 anchor-set와의 distance 정보를 담고 있다.
+
+### **Anchor-set Selection**  
+이제 중요한 것은 몇 개의 anchor-set를 만들어야하고, 노드들은 어떻게 할당할 것인가인데, 본 논문에서는 Bourgain Theorem를 근거로 둔다. 
+> **Theorem 1 : Bourgain Theorem**  
+> Bourgain Theorem guarantees that only ![image](https://user-images.githubusercontent.com/37684658/170823991-4b181d3d-e3d9-49ae-8aa6-94cafd9ba2bb.png) anchor-sets are needed to preserve the distances in the original graph with low distortion (![image](https://user-images.githubusercontent.com/37684658/170824010-f18b80ac-8251-4cff-9dcc-1b7fa98c8e5f.png))  
+> ![image](https://user-images.githubusercontent.com/37684658/170824038-5d5690a1-322e-4d84-a5b2-108a0953746d.png) : # of nodes
+
+간단하게 요약하자면, 그래프 내 노드의 global position을 임베딩하기 위해서는 ![image](https://user-images.githubusercontent.com/37684658/170823926-9709171c-a983-4b30-9289-72d5b67689dc.png)개의 anchor-set만 만들면 충분하다는 것이다. 더 자세하게는 distortion이 ![image](https://user-images.githubusercontent.com/37684658/170823965-9659c39d-f8e6-4c15-a7b2-fbb1b7f4f3c6.png)을 넘지 않게끔 positional embedding을 할 수 있다고 한다.  
+
+> **Definition : Low distortion embedding**  
+> Given two metric spaces ![image](https://user-images.githubusercontent.com/37684658/170824129-d6c5a89e-3a50-47ac-9226-756d87c765e8.png) and ![image](https://user-images.githubusercontent.com/37684658/170824153-07311bfa-bf87-4b6e-a4b8-9524f4c6f010.png) and a function ![image](https://user-images.githubusercontent.com/37684658/170824209-b23acd5d-bdd9-4e7d-a2ce-24c250e4d494.png), ![image](https://user-images.githubusercontent.com/37684658/170824220-0b1edc21-dae2-4a82-be41-2ddfe0992e06.png) is said to have distortion ![image](https://user-images.githubusercontent.com/37684658/170824244-4406bf67-67f2-47f9-a6ed-10249b9a4d63.png) if ![image](https://user-images.githubusercontent.com/37684658/170824309-bd8cebb4-bb1b-4257-9a3e-ca146cdf377f.png)  
+>  ![image](https://user-images.githubusercontent.com/37684658/170824415-2a7fc751-ff59-4064-906d-b1d2dc1d3385.png) : distance function
+
+distortion이란 한 metric space에서 다른 metric space로 임베딩하는 function ![image](https://user-images.githubusercontent.com/37684658/170824220-0b1edc21-dae2-4a82-be41-2ddfe0992e06.png)가 있다고 했을 때, ![image](https://user-images.githubusercontent.com/37684658/170824309-bd8cebb4-bb1b-4257-9a3e-ca146cdf377f.png)  과 같은 관계가 성립하면 ![image](https://user-images.githubusercontent.com/37684658/170824365-d1705bd5-ad2b-4eaa-92ee-b4983c9aa41a.png) 만큼의 distortion이 있다고 말한다. 즉, ![image](https://user-images.githubusercontent.com/37684658/170824373-5440696f-5a78-4d5b-b7b0-c33dbb867dc4.png)의 값이 1에 가까울수록 distance가 최대한 보존이 되는 임베딩이 된다고 보면 된다.
+
+
+
 
 
 
