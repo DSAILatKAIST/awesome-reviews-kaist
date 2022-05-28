@@ -1,6 +1,5 @@
-
 ---
-description : Dan Hendrycks, Norman Mu / AugMix: A Simple Data Processing Method to Improve Robustness and Uncertainty / ICLR-2020  
+description : Dan Hendrycks / AugMix: A Simple Data Processing Method to Improve Robustness and Uncertainty / ICLR-2020(description)  
 ---
 
 # **Title** 
