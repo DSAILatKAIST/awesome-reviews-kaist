@@ -58,11 +58,20 @@ Rotation과 같은 augmentation operation적용 시에는 2도 에서 -15도 등
 
 ### **Jensen-Shannon Divergence Consistency Loss**
 Augmix로 augemented된 image들이 주어질 때 모델은 Jensen-Shannon Divergence Loss를 이용하여 학습한다. AugMix를 통해 원본 이미지의 의미 정보(semantic content)가 거의 유지되었다는 가정 하에, 모델은 
-$$x_{orig} : 원본 이미지$$
-$$x_{augmix1} : augmented_image_1$$
-$$x_{augmix2} : augmented_image2_$$
-를 유사하게 임베딩하도록 훈련된다. 
-이를 위해 
+$$x_{orig}$$
+$$x_{augmix1}$$
+$$x_{augmix2}$$
+원본 이미지와 augmented image들을 유사하게 임베딩하도록 훈련된다. 
+이는 원본 데이터와 augmented data의 사후 분포 (posterior distribution) 간에 Jensen-Shannon Divergence를 최소화하도록 함으로써 구현된다. 여기서 각 posterior 분포는 다음과 같다.  
+$$p_{orig}=\hat{p}(y|x_{orig})$$
+$$p_{augmix1}=\hat{p}(y|x_{augmix1})$$
+$$p_{augmix2}=\hat{p}(y|x_{augmix2})$$
+
+따라서, 원래의 loss _L_ 은 다음과 같은 loss로 대체된다.  
+$$L(p_{orig}, y) + \lambda JS(p_{orig};p_{augmix1};p_{augmix2})$$
+$$JS(p_{orig};p_{augmix1};p_{augmix2}) = \frac{1}{3}\[ KL(p_{orig}||M) + KL(p_{augmix1}||M) + KL(p_{augmix2}||M) \]$$
+
+
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily.  
 
