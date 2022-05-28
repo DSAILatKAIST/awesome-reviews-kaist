@@ -66,6 +66,18 @@ PGNN의 전체 Architecture는 위와 같다. 먼저 k개의 anchor-set를 만�
 
 distortion이란 한 metric space에서 다른 metric space로 임베딩하는 function ![image](https://user-images.githubusercontent.com/37684658/170824220-0b1edc21-dae2-4a82-be41-2ddfe0992e06.png)가 있다고 했을 때, ![image](https://user-images.githubusercontent.com/37684658/170824309-bd8cebb4-bb1b-4257-9a3e-ca146cdf377f.png)  과 같은 관계가 성립하면 ![image](https://user-images.githubusercontent.com/37684658/170824365-d1705bd5-ad2b-4eaa-92ee-b4983c9aa41a.png) 만큼의 distortion이 있다고 말한다. 즉, ![image](https://user-images.githubusercontent.com/37684658/170824373-5440696f-5a78-4d5b-b7b0-c33dbb867dc4.png)의 값이 1에 가까울수록 distance가 최대한 보존이 되는 임베딩이 된다고 보면 된다.
 
+> **Theorem 2 : Constructive Proof of Bourgain Theorem**  
+> For metric space ![image](https://user-images.githubusercontent.com/37684658/170824750-ac77dbd4-86a4-4aa0-abb9-fd346df069f1.png), given ![image](https://user-images.githubusercontent.com/37684658/170824758-0c382bd9-5a8f-4d96-a4b5-1733b049c9dc.png) random sets ![image](https://user-images.githubusercontent.com/37684658/170824812-c727e351-dacf-474e-b033-00be49f9b3f3.png)
+ where ![image](https://user-images.githubusercontent.com/37684658/170824824-c1fdf4a8-d7f3-4e70-92da-056c7fd0d68b.png)is constant, ![image](https://user-images.githubusercontent.com/37684658/170824847-7d16abcf-1d93-4a86-be88-c7de8f57181d.png)is chosen by including each point in ![image](https://user-images.githubusercontent.com/37684658/170824869-9764bd98-b340-4b53-9861-f282708b42ac.png) independently with probability ![image](https://user-images.githubusercontent.com/37684658/170824909-83c099a0-f195-4a4d-a0cd-e3f8852fde5b.png). An embedding method for ![image](https://user-images.githubusercontent.com/37684658/170824923-f11cc4a1-6e80-4aa4-9bb2-f5917c02809e.png) is defined as :  
+ <img width="497" alt="image" src="https://user-images.githubusercontent.com/37684658/170824938-35c04510-bb6d-4c4e-bc51-cb3418dc933b.png">  
+ 
+> where ![image](https://user-images.githubusercontent.com/37684658/170825009-584c9d6d-27c3-4d7a-ae33-03cf73ccfa23.png). Then ![image](https://user-images.githubusercontent.com/37684658/170825016-a7f4b139-f85b-442c-986d-9f271f94ac16.png) is an embedding method that satisfies Theorem 1.  
+
+위 예시는 `Theorem 1`에서 정의한 Bourgain Theorem을 만족시키는 예를 들고 있다. 위 방법대로 이해하기 쉽도록 구체적인 예시를 들어보겠다.  
+
+
+
+
 
 
 
