@@ -57,7 +57,7 @@ Rotation과 같은 augmentation operation적용 시에는 2도 에서 -15도 등
 를 통합하고 있다.  
 
 ### **Jensen-Shannon Divergence Consistency Loss**
-Augmix로 augemented된 image들이 주어질 때 모델은 Jensen-Shannon Divergence Loss를 이용하여 학습한다. AugMix를 통해 원본 이미지의 의미 정보(semantic content)가 거의 유지되었다는 가정 하에, 모델은 $$X_{orig, X_{augmix1}, X_{augmix2}$$ (원본 이미지), $$X_{augmix1},$$ (augmented image 1), $$X_{augmix2}$$ (augmented image 1) 를 유사하게 임베딩하도록 훈련된다. 이를 위해 
+Augmix로 augemented된 image들이 주어질 때 모델은 Jensen-Shannon Divergence Loss를 이용하여 학습한다. AugMix를 통해 원본 이미지의 의미 정보(semantic content)가 거의 유지되었다는 가정 하에, 모델은 $$X_{orig}, X_{augmix1}, X_{augmix2}$$를 유사하게 임베딩하도록 훈련된다. 이를 위해 
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily.  
 
