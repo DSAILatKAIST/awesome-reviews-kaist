@@ -108,16 +108,17 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 
     #### Adversarial Training
 
-    ![](https://latex.codecogs.com/gif.latex?\theta)
+    ![](https://latex.codecogs.com/gif.latex?\argmin_{\theta}\mathbb{E}_{(x,y)\sim\mathbb{D}}[\max_{\epsilon\in\mathbb{S}}L(\theta,x+\epsilon,y)])
     
-    \argmin_{\theta}\mathbb E_{(x,y)\sim\mathbb D}[\max_{\epsilon\in\mathbb S}L(\theta,x+\epsilon,y)]
+  
     
 
-    | ![](https://latex.codecogs.com/gif.latex?\theta) | parameters | ⁍ | max ![](https://latex.codecogs.com/gif.latex?\epsilon) |
+    | ![](https://latex.codecogs.com/gif.latex?\theta) | parameters | ![](https://latex.codecogs.com/gif.latex?\mathbb{S}) | max ![](https://latex.codecogs.com/gif.latex?\epsilon) |
     | --- | --- | --- | --- |
-    | ⁍ | expectation | ⁍ | perturbation |
-    | ⁍ | data | ⁍ | dataset |
-    - 섭동을 주어서 Loss를 최대화하는 sample $x+\epsilon$에서의 최적 parameter를 찾으라는 내용의 수식이다
+    | ![](https://latex.codecogs.com/gif.latex?\mathbb{E}) | expectation | ![](https://latex.codecogs.com/gif.latex?\epsilon) | perturbation |
+    | ![](https://latex.codecogs.com/gif.latex?x,y) | data | ![](https://latex.codecogs.com/gif.latex?\mathbb{D}) | dataset |
+    
+    - 섭동을 주어서 Loss를 최대화하는 sample ![](https://latex.codecogs.com/gif.latex?x+\epsilon)에서의 최적 parameter를 찾으라는 내용의 수식이다
     - 정확히는 PGD가 사용되었는데 반복적인 step을 통해서 최적 공격지점을 찾는 방법이라 이해하면 되겠다
 
     #### Adversarial Training on Transformers
@@ -208,7 +209,7 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 
 - 결과1(T:DeiT, S:ResNet) : 알려진 상식과 다르게 Student가 더 나쁜 성능. DeiT가 더 좋은 성능
 - 결과2(T:ResNet, S:DeiT) : DeiT가 더 좋은 성능
-- **5.1과 5.2의 결과로 미루어볼 때, DeiT의 강력한 일반화 성능은 training setup과 knowledge distillation이 아닌 Transformer의 구조 자체에서 온다고 해석할 수 있다**
+- **4.2.1과 4.2.2의 결과로 미루어볼 때, DeiT의 강력한 일반화 성능은 training setup과 knowledge distillation이 아닌 Transformer의 구조 자체에서 온다고 해석할 수 있다**
 
 ### 4.2.3 Hybrid Architecture
 
