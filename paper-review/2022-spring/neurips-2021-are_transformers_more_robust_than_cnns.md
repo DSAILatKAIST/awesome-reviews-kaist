@@ -112,7 +112,7 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
     \argmin_{\theta}\mathbb E_{(x,y)\sim\mathbb D}[\max_{\epsilon\in\mathbb S}L(\theta,x+\epsilon,y)]
     $$
 
-    | ⁍ | parameters | ⁍ | max ⁍ |
+    | ![](https://latex.codecogs.com/gif.latex?\theta) | parameters | ⁍ | max ![](https://latex.codecogs.com/gif.latex?\epsilon) |
     | --- | --- | --- | --- |
     | ⁍ | expectation | ⁍ | perturbation |
     | ⁍ | data | ⁍ | dataset |
@@ -131,7 +131,7 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 
     #### CNNs with Transformers’ Training Recipes
 
-    ![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F2582dadc-09e2-4efd-a35f-122ab9f221a0%2FUntitled.png?table=block&id=8ff952c2-ab75-4383-900e-8222603c5c14&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F2582dadc-09e2-4efd-a35f-122ab9f221a0%2FUntitled.png?table=block&id=8ff952c2-ab75-4383-900e-8222603c5c14&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
 
     - ResNet-50 + ReLU의 결과를 보면 ViT보다 덜 강건하다. 이런 실험결과에 끝나지 않고 저자들은 새로운 실험을 해볼 motivation을 얻었다고한다. Transformer의 recipes를 CNN에 적용해 비교해보는 것이다
     - Transformer가 쓰는 optimizer와 strong regularization는 별 효과가 없거나 학습에서 collapse를 일으켰다
