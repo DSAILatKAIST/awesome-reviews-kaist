@@ -54,22 +54,21 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 
 ## 3.2 Robustness Evaluations
 
-### Adversarial Attack
-    - PGD(Projected Gradient Descent) : 사람은 확인하기 어렵지만 기계를 속일 수 있는 섭동
-    - TPA : texture가 있는 patch를 붙여 네트워크를 속이는 attack
-    - 예시
+### 3.2.1 Adversarial Attack
+#### PGD
+- PGD(Projected Gradient Descent) : 사람은 확인하기 어렵지만 기계를 속일 수 있는 섭동
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F42d2c8ef-1b52-4718-a081-9f6d2426de53%2FUntitled.png?table=block&id=c8d0616a-d5f1-492b-8c77-a31b94d5b362&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+#### TPA
+- TPA : texture가 있는 patch를 붙여 네트워크를 속이는 attack
+
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc37dcc0d-a43c-4f71-a9c6-cf7f25bf73e8%2FUntitled.png?table=block&id=0da98098-a42c-45d4-98ee-f9187cb9e2cd&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=1030&userId=&cache=v2)
         
-        #### PGD
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6764d1d3-4b81-4d2b-9bb1-87e945c2d3c4%2FUntitled.png?table=block&id=2687d828-3a4f-4982-804a-c8119aa82f0f&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=1610&userId=&cache=v2)
         
-        ![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F42d2c8ef-1b52-4718-a081-9f6d2426de53%2FUntitled.png?table=block&id=c8d0616a-d5f1-492b-8c77-a31b94d5b362&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
-        
-        #### TPA
-        
-        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%201.png)
-        
-        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%202.png)
-        
-### OOD 
+### 3.2.2 OOD 
 - 논문과 PaperWithCode에 있는 설명이 조금 다른데 PWC를 기준으로 적었다
     - ImageNet-A : ResNet model이 강한 확신으로 틀린 이미지셋. 기계학습 모델이 어려워하는 즉 학습 분포랑은 좀 다른 이미지들의 모임이다. 실제 이미지를 보면 왜 그런 틀린 답을 냈는지 알 것도 같다
     - ImageNet-A 예시
