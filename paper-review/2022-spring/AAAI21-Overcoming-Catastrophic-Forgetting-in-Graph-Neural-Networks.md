@@ -250,6 +250,7 @@ $$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{(T)}tanh(h_j^{(l-1)}W^{(l)})$$
   * $$\lambda_{l}$$: 100 or 10,000 for different datasets
   * $$\beta$$: 0.1 or 0.01 for different datasets
   
+\
 
 ### **Result**
 
@@ -263,19 +264,77 @@ $$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{(T)}tanh(h_j^{(l-1)}W^{(l)})$$
 
 ![Node classification performance](https://user-images.githubusercontent.com/99710438/170866564-6d37e4df-e480-407c-8daf-4d55771ef9fe.png)
 
-저자들이 제시한 방법론은 모든 `GNN`모델, 모든 데이터셋에 대해서 best or second best performance를 보였습니다. 
+\
+
+Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `GNN`모델, 모든 데이터셋에 대해서 best or second best performance를 보였습니다. 
+
+\
 
 ![Evolution of performance](https://user-images.githubusercontent.com/99710438/170867125-09fe7247-e12d-4397-b8e7-465d3c341b98.png)
 
-위
+\
+
+위 그림은 Corafull dataset에서 `GAT`를 base model로 했을 때 9개의 task동안의 training curve를 그린 것입니다. 저자들은 자신들의 모델이 topological information까지 고려하기 때문에 task가 진행되더라도 크게 이전 task의 성능이 떨어지지 않는 것이라고 주장했습니다. 
+
+\
+
+![Perofrmance of the first task](https://user-images.githubusercontent.com/99710438/170867937-6c8bad1f-58ca-4bfb-800f-d1ac769e637b.png)
 
 
+![Average Performance](https://user-images.githubusercontent.com/99710438/170868107-024d2d65-80d9-4bd2-a262-e07208df46b2.png)
+
+\
+
+좀 더 자세히 보자면, 위 그림 중 첫 번째 그림은 첫 번째 task의 성능이 task가 진행됨에 따라 변화하는 모습을 보인 그림이고, 두 번째 그림은 평균적인 performance를 나타낸 그림입니다. (a)부터 (d)까지는 각각 Corafull, Amazon Computers, PPI, Reddit 데이터셋입니다.
+
+`Joint train` 방법을 제외한다면 저자들의 방법론이 제일 적은 `Catastrophic forgetting` 현상을 보이고 있는 것을 확인할 수 있습니다. 
+
+이 `Joint train` 방법은 task가 계속 추가됨에 따라 과거의 data까지 **전부 다** 포함하여 학습하는 방법입니다.
+
+하지만 Computation & Memory cost 때문에 모든 data를 계속 저장하고 학습하는 것은 현실성이 떨어지므로, `Continual learning` 성능의 upper bound라고 생각하시면 되겠습니다.
+
+이를 고려했을 때, 저자들의 방법론이 task가 진행됨에 따라 이전 task를 가장 잘 기억한다는(Catastrophic forgetting이 적다는) 것을 확인할 수 있습니다.
+
+\
 
 
 * Graph Classification
+저자들의 방법론은 graph classification task에서도 좋은 성능을 보였습니다.
 
+![Graph classification performance](https://user-images.githubusercontent.com/99710438/170868529-08576d78-b8ec-4ea4-bb2f-b68684278cc9.png)
+
+\
+
+위 테이블에서 확인할 수 있듯이, 저자들의 방법이 Graph classification task에서도 가장 좋은 성능을 내고 있습니다.
+
+\
+
+![Performances across all tasks](https://user-images.githubusercontent.com/99710438/170868472-3bf928c9-9146-45d6-a7e9-0b4f7e78256f.png)
+
+\
+
+Node classification과 마찬가지로 task가 진행됨에 따라 성능이 어떻게 변화하는지 위 그림을 통해 확인할 수 있습니다.
+
+왼쪽 그림은 first task의 performance 변화, 오른쪽 그림은 평균 performance의 변화입니다.
+
+\
 
 * Ablation Study
+앞서 설명드린대로 저자들의 방법론은 두 가지 모듈(Minimized Loss Preserving, Topological Structure Preserving)을 사용했는데요, 이 각각의 모듈이 과연 모델에 도움을 주는지 확인하기 위해 ablation study도 진행했습니다.
+
+\
+
+![Ablation study](https://user-images.githubusercontent.com/99710438/170868926-5c86f974-2001-4ed2-820d-d368b746efb7.png)
+
+\
+
+위 표에서 W/Loss는 Minimized Loss Preserving 모듈을 빼고, W/TWP는 Topological Structure Preserving 모듈을 빼고 학습을 진행한 결과를 나타내고, Full은 두 모듈 다 사용한 모델입니다. 
+
+Corafull과 Amazon Computers dataset에서 실험을 한 결과, Full이 나머지 두 경우보다 성능이 좋은 것으로 말미암아 두 모듈 다 모델의 성능을 높이는데 기여를 한 것으로 볼 수 있습니다.
+
+\
+
+\
 
 ## **5. Conclusion**
 
