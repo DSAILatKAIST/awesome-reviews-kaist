@@ -108,9 +108,10 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 
     #### Adversarial Training
 
-    $$
+    ![](https://latex.codecogs.com/gif.latex?\theta)
+    
     \argmin_{\theta}\mathbb E_{(x,y)\sim\mathbb D}[\max_{\epsilon\in\mathbb S}L(\theta,x+\epsilon,y)]
-    $$
+    
 
     | ![](https://latex.codecogs.com/gif.latex?\theta) | parameters | ⁍ | max ![](https://latex.codecogs.com/gif.latex?\epsilon) |
     | --- | --- | --- | --- |
