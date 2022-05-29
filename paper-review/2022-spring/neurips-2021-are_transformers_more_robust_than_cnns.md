@@ -93,12 +93,72 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 1. 적대적 공격에 대한 강건성
 2. OOD Sample에 대한 강건성
 
-### **Experiment setup**  
-* Dataset  
-* baseline  
-* Evaluation Metric  
+### **4.1 Adversarial Robustness**  
 
-### **Result**  
+
+
+- 5000장의 ImageNet 검증데이터를 사용하였음
+    
+### 4.1.1 Robustness to Perturnation-Based Attacks
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fba30da01-1ae5-4c23-8e2f-b7978ba7c328%2FUntitled.png?table=block&id=6b36f65d-49dc-43db-80c8-9066b77e8310&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=1720&userId=&cache=v2)
+
+- AutoAttack의 섭동을 높이니 완전히 fooled
+- 그러나 두 모델이 전혀 Adversarial training되지 않았음을 기억하자
+
+    #### Adversarial Training
+
+    $$
+    \argmin_{\theta}\mathbb E_{(x,y)\sim\mathbb D}[\max_{\epsilon\in\mathbb S}L(\theta,x+\epsilon,y)]
+    $$
+
+    | ⁍ | parameters | ⁍ | max ⁍ |
+    | --- | --- | --- | --- |
+    | ⁍ | expectation | ⁍ | perturbation |
+    | ⁍ | data | ⁍ | dataset |
+    - 섭동을 주어서 Loss를 최대화하는 sample $x+\epsilon$에서의 최적 parameter를 찾으라는 내용의 수식이다
+    - 정확히는 PGD가 사용되었는데 반복적인 step을 통해서 최적 공격지점을 찾는 방법이라 이해하면 되겠다
+
+    #### Adversarial Training on Transformers
+
+    - CNN은 문제 없었으나 Transformer는 강한 Augmentation이 PGD와 함께 적용되니 collapse되어버리는 문제가 있었다
+    - 따라서 Augmentation을 eph증가에 따라 점점 강도를 높여가며 학습한 결과 44%의 robustness를 얻었다
+
+    #### Transformers with CNNs’ Training Recipes
+
+    - CNN에서 사용된 학습조건(M-SGD, 강한 Augmentation 배제)을 Transformer에 사용했더니 학습이 안정되긴 했지만 clean data에 대한 성능과 PGD-100에 대한 방어율이 하락했다
+    - 이러한 현상이 나타난 이유는 강한 Augmentation을 규제해 overfitting이 쉽게 일어났기 때문이고 이전 연구에서 밝혀졌듯이 Transformer 자체가 SGD와같은 optimizer에서 최적점을 잘 찾지 못하기 때문이다
+
+    #### CNNs with Transformers’ Training Recipes
+
+    ![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F2582dadc-09e2-4efd-a35f-122ab9f221a0%2FUntitled.png?table=block&id=8ff952c2-ab75-4383-900e-8222603c5c14&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+    - ResNet-50 + ReLU의 결과를 보면 ViT보다 덜 강건하다. 이런 실험결과에 끝나지 않고 저자들은 새로운 실험을 해볼 motivation을 얻었다고한다. Transformer의 recipes를 CNN에 적용해 비교해보는 것이다
+    - Transformer가 쓰는 optimizer와 strong regularization는 별 효과가 없거나 학습에서 collapse를 일으켰다
+    - non-smooth한 특성을 가진 ReLU를 transoformer가 쓰는 GELU로 대체했다. ReLU는 적대적 공격에 취약한 activation임이 알려져있다
+    - **그 결과 ResNet-50 + GELU는 DeiT에 필적하는 적대적 공격에대한 성능을 내었으며 이는 기존 연구의 결론을 반박하는 것이다**
+
+
+### 4.1.2 Robustness to Patch-Based Attacks
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F2dfb3c60-828a-471a-b938-f698c9661cc8%2FUntitled.png?table=block&id=b2385299-43ed-440d-94ee-e2a9ef8e8a02&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+- default로 4개의 patch로 대상 이미지의 전체 면적에 10%안쪽이 되게 attack했다. 두 모델 모두 TPA에 대한 적대적 학습은 하지 않았다. 그 이유가 좀 헷갈리는데 적대적 학습시에 non-trivial 그러니까, 성능이 너무 좋아져서 비교가 어렵다는 취지로 해석했다
+- Table 3의 결과를 보면 CNN은 Transformer의 강건성에 미치지 못하고 기존 연구들의 주장이 맞아보인다
+- 하지만 저자들은 TPA의 특성에 주목하여 새로운 지적을 한다. TPA는 이미지위에 인위적인 patch가 붙는 형태이다. 이는 patch를 잘라 붙이거나 삭제하는 CutMix와 유사하며 CutMix는 ViT에만 적용되었기때문에 ViT에게 TPA가 당연히 유리한 task라는 것이다
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffa8c3d16-f52a-4edc-af2b-262d2b981013%2FUntitled.png?table=block&id=12f54bf2-8f4f-4a25-8ce2-9f1546fe3dec&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+- 그에대한 증명으로 ViT에 적용되었던 3개의 strong augmentation을 적용해 ResNet-50을 학습시켜 TPA에대한 성능을 살폈더니 table 4와 같았다
+    - 가설대로 CutMix의 유무가 성능을 크게 좌우했다
+    - **RandAug+CutMix에서 DeiT의 TPA에대한 강건성보다 높은 성능을 보였고 이는 기존 연구들이 주장한 patch-based 공격에대한 transformer의 강건성이 CNN보다 좋다는 주장을 반박한다**
+
+
+
+
+
+
+### **4.2 **  
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
   
