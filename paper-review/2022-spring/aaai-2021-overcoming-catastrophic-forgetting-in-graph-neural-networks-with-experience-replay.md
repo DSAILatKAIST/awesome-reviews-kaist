@@ -4,7 +4,7 @@ description : Fan Zhou / Overcoming Catastrophic Forgetting in Graph Neural Netw
 
 # **Title** 
 
-Title of paper that you are going to write  
+Overcoming Catastrophic Forgetting in Graph Neural Networks with Experience Replay
 
 ## **1. Problem Definition**  
 
