@@ -75,9 +75,40 @@ distortion이란 한 metric space에서 다른 metric space로 임베딩하는 f
 
 위 예시는 `Theorem 1`에서 정의한 Bourgain Theorem을 만족시키는 예를 들고 있다. 위 방법대로 이해하기 쉽도록 구체적인 예시를 들어보겠다.  
 
+### Example of Anchor-set Selection  
+
+![image](https://user-images.githubusercontent.com/37684658/170872392-1e1221ad-7c67-487b-9c0a-a58f4661cac7.png) 인 경우, ![image](https://user-images.githubusercontent.com/37684658/170872432-ac81bf52-4ec6-4928-a142-b36d55423dd3.png) 이다. 즉, ![image](https://user-images.githubusercontent.com/37684658/170872591-c6bb5f81-ce0a-4176-99a2-3b4e7f535b3b.png) 는 각각 (1,2), (1,2,3,4)의 경우의 수로 존재할 수 있는데 따라서 총 ![image](https://user-images.githubusercontent.com/37684658/170872630-98f0b352-362a-4382-a08e-e8074402f2c2.png)개의 anchor-set를 생성하게 된다. 각각의 anchor-set에 노드를 할당하는 경우, 그래프의 모든 노드에 대해서 해당 anchor-set 속할 확률은 ![image](https://user-images.githubusercontent.com/37684658/170872705-1b278f8f-9825-4392-a822-c03710417591.png) 이므로, ![image](https://user-images.githubusercontent.com/37684658/170872720-6f02f09e-ca1c-4867-abb4-7e57bfb4f971.png) 인 set는 50%의 확률로 할당하고, ![image](https://user-images.githubusercontent.com/37684658/170872747-ae48fc12-f21e-4ff0-92b4-0d651ca7166b.png)ㅇ
+![image](https://user-images.githubusercontent.com/37684658/170872392-1e1221ad-7c67-487b-9c0a-a58f4661cac7.png) 인 경우, ![image](https://user-images.githubusercontent.com/37684658/170872432-ac81bf52-4ec6-4928-a142-b36d55423dd3.png) 이다. 즉, ![image](https://user-images.githubusercontent.com/37684658/170872591-c6bb5f81-ce0a-4176-99a2-3b4e7f535b3b.png) 는 각각 (1,2), (1,2,3,4)의 경우의 수로 존재할 수 있는데 따라서 총 ![image](https://user-images.githubusercontent.com/37684658/170872630-98f0b352-362a-4382-a08e-e8074402f2c2.png)개의 anchor-set를 생성하게 된다. 각각의 anchor-set에 노드를 할당하는 경우, 그래프의 모든 노드에 대해서 해당 anchor-set 속할 확률은 ![image](https://user-images.githubusercontent.com/37684658/170872705-1b278f8f-9825-4392-a822-c03710417591.png) 이므로, ![image](https://user-images.githubusercontent.com/37684658/170872720-6f02f09e-ca1c-4867-abb4-7e57bfb4f971.png) 인 set는 50%의 확률로 할당하고, ![image](https://user-images.githubusercontent.com/37684658/170872772-72c604ed-6b91-4e98-bf07-150de6e6a869.png) 인 set는 25% 확률로 할당을 하게 된다.  
+![image](https://user-images.githubusercontent.com/37684658/170872820-2a071891-504c-481b-8cc1-a26cb7e53bcd.png)  
+
+이런식으로 할당을 하게 되면, anchor-set의 사이즈가 exponential하게 다양하게 만들어진다. 즉, 노드가 적게 포함된 set와, 많이 포함되는 set가 다양하게 만들어지게 된다. 노드가 적게 포함된 set는 position을 특정하기에 좋은 정보를 주지만, 애초에 어떤 노드를 포함시킬 확률이 낮기 때문에, 만약에 그 노드를 anchor-set에 포함시키지 못하게 된다면, 그 노드의 정보 자체를 반영하지 못한다는 단점이 있다. 이에 반해, 노드가 많은 set는 각 노드들이 포함될 확률이 높기 때문에 위와 같이 노드를 놓쳐서 정보를 반영하지 못하는 문제는 없지만, 포함된 노드가 너무 많으면 position을 특정하기 어렵다는 문제가 있다. 그렇기 때문에 여러가지 사이즈의 anchor-set를 사용함으로써 위 2가지 케이스의 trade-off를 균형있게 맞출 수 있다고 보면 된다. 
+
+### **PGNN**  
+위와 같이 Bourgain Theorem을 만족시키는 함수를 generalization한 것이 PGNN이며, Bourgain Theorem 1의 식에 포함된 distance metric d를 message computation하는 function ![image](https://user-images.githubusercontent.com/37684658/170873366-f653b910-ad32-45f0-b6fc-850f6bf3cfb8.png) 와 aggregation function 
+![image](https://user-images.githubusercontent.com/37684658/170873433-2851c872-6905-45d2-a32c-4050bdcfc9f1.png) 을 정의했다. 
+
+![image](https://user-images.githubusercontent.com/37684658/170873752-295d82d9-4ecf-403e-a600-1a2e14526f9e.png)
+
+> **Message Passing Function, F**  
+![image](https://user-images.githubusercontent.com/37684658/170873528-7b9d0de1-e484-41ba-a421-d410bce69c73.png)  
+> Position 정보를 담는 빨간 박스 부분과, 기존의 일반적인 message passing을 할 때 쓰이는 feature를 전달하는 부분이 있다. 여기서 두 노드들의 feature를 concat하여 전달하게 된다.  
+![image](https://user-images.githubusercontent.com/37684658/170873614-727738b8-16fa-4273-9590-187a4ea14535.png)  
+> function s는 q-hop내의 노드들에 대해서 shortest path distance를 구하는 함수이다.  
+
+> **Aggregation function, AGG**  
+> Aggregation function은 anchor-set 위치에 대해서 invariant한 성질을 줄 수 있는 MEAN, MIN, MAX, SUM 등을 사용할 수 있는데, 여기서는 MEAN을 사용하였다.   
+
+### **Summary**  
+<img width="967" alt="image" src="https://user-images.githubusercontent.com/37684658/170822199-7e47b798-1689-41b6-b33d-95b2d637f4ac.png">  
 
 
-
+다시 정리하면, 2 layer라고 가정했을 때 최종 output을 생성하는 과정은 다음과 같다.  
+> 1. Anchor-set를 생성  
+> 2. 각 노드들에 대해서 다른 노드들과 페어를 만든 후  
+> 3. function F로 message computation  
+> 4. 같은 Anchor set에서 나온 message들을 aggregation하는 데, 다음 layer에 임베딩을 전달해주기 위해서 MEAN aggregation  
+> 5. 다음 layer에서 다시 anchor-set를 생성  
+> 6. 각 노드들에 대해서 다시 임베딩한 후, 각 anchor-set에서 나온 messsage들을 w라는 weight를 이용하여 최종 output 생성
 
 
 
@@ -85,11 +116,22 @@ distortion이란 한 metric space에서 다른 metric space로 임베딩하는 f
 
 ## **4. Experiment**  
 
-In this section, please write the overall experiment results.  
-At first, write experiment setup that should be composed of contents.  
+본 논문에서는 link-prediction과 node classification task 2가지의 실험을 진행하였다.
 
 ### **Experiment setup**  
 * Dataset  
+> **Link Prediction Dataset** 
+- **Grid** : 2D (20x20)의 grid graph 데이터이며, 노드의 개수는 400개, 노드 feature는 존재하지 않는다. 
+- **Communities** : 1%의 edges들이 랜덤으로 rewired된 Connected caveman graph이다. 각각 20개의 노드로 이루어진 20개의 communities로 이루어져있다.  
+- **PPI** 24개의 Protein-Protein interaction networks이다. 각 그래프는 3000개의 노드로 이루어져 있고, 평균적으로 28.8개의 degree를 가지고 있다. 각 노드들은 50dim의 feature를 가지고 있다.  
+
+> **Node Prediction Dataset**  
+- **Communities** : Link prediction dataset에서 설명한 바와 같다.  
+- **Emails** : 7개의 real-world email communication graphs from SNAP. 노드 feature는 없으며, 각 그래프는 6개의 communites가 있고, 각 노드들은 어떤 community에 속하는 지 라벨링되어 있는 데이터셋이다.
+- **Protein** 1113개의 protein graphs이다. 각 노드들은 protein에서 어떤 functional role을 하고 있는 지에 대해 라벨링 되어있고, 각 노드 feature는 29dim이다. 
+
+
+
 * baseline  
 * Evaluation Metric  
 
