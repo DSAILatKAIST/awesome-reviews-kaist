@@ -15,9 +15,19 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 
 ## **2. Motivation**  
 
-Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
+- Pure-attention based model인 transformer가 inductive bias없이 CNN의 성능을 뛰어넘었고 Detection, instance segmentation, sementic segmentation에서도 연구되고있다
+- 또한 최근 연구들에서 Transformer는 OOD와 적대적 공격에 CNN보다 강건함이 밝혀졌다
+    - *하지만*, 저자는 이런 결과가 unfair한 환경에서 도출되었다고 주장한다
+    - #params가 Transformer쪽이 많았고 training dataset, epochs and augmentation 전략 등이 동일하게 맞춰지지 않았다(뒤에 실험에서 확인할 수 있듯이 ViT에게 유리한 조건이 다수 있다)
+- 이 연구에서 공정한 비교를 통해 적대적 공격과 OOD에 대한 강건성을 확인할 것이다
+    - CNN이 Transformer의 training recipes를 따른다면 perturbation과 patch에 기반한 attack에 더 강건함을 발견했다
+    - 여전히 Transformer가 OOD에 강건함을 발견했고 이는 pre-training이 없어도 가능했다. Ablation study에서 self-attention이 이런 현상의 이유임을 발견했다
 
-After writing the motivation, please write the discriminative idea compared to existing works briefly.
+<aside>
+💡  이 연구가 다른 Architecture끼리의 강건성을 비교하는 표준이 되길 바란다고 저자는 밝히고 있습니다
+
+</aside>
+
 
 
 ## **3. Method**  
