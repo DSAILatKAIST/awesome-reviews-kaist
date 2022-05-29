@@ -151,18 +151,85 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 ![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffa8c3d16-f52a-4edc-af2b-262d2b981013%2FUntitled.png?table=block&id=12f54bf2-8f4f-4a25-8ce2-9f1546fe3dec&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
 
 - 그에대한 증명으로 ViT에 적용되었던 3개의 strong augmentation을 적용해 ResNet-50을 학습시켜 TPA에대한 성능을 살폈더니 table 4와 같았다
-    - 가설대로 CutMix의 유무가 성능을 크게 좌우했다
-    - **RandAug+CutMix에서 DeiT의 TPA에대한 강건성보다 높은 성능을 보였고 이는 기존 연구들이 주장한 patch-based 공격에대한 transformer의 강건성이 CNN보다 좋다는 주장을 반박한다**
+- 가설대로 CutMix의 유무가 성능을 크게 좌우했다
+- **RandAug+CutMix에서 DeiT의 TPA에대한 강건성보다 높은 성능을 보였고 이는 기존 연구들이 주장한 patch-based 공격에대한 transformer의 강건성이 CNN보다 좋다는 주장을 반박한다**
 
 
 
 
 
 
-### **4.2 **  
-Then, show the experiment results which demonstrate the proposed method.  
-You can attach the tables or figures, but you don't have to cover all the results.  
+### **4.2 Robustness on OOD Samples**  
+- 이 챕터에서는 DeiT의 Recipes 중 어떤 것을 어떻게 ResNet에 적용할 것인지 정한 뒤에 ResNet을 학습 후 성능을 DeiT와 비교하는 내용을 담고있다
   
+
+### 4.2.1 Aligning Training Recipes
+    
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F75d0a14e-e22e-414d-bfc2-ea400cfc30e3%2FUntitled.png?table=block&id=b19f60d9-0388-46c5-ae5a-a6a336ced8ba&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+- 대용량 데이터에 pre-training없이도 ViT가 더 robust했다(ResNet-50* 은 후술)
+
+#### A Fully Aligned Version(Step 0)
+
+- ResNet-50* 은 DeiT의 recipe를 따라 opimizer(Adam-W), lr scheduler and strong augmentation을 적용했지만 ResNet-50에 비해서 눈에 띄는 성능 향상은 없었다(Table 5)
+    - 따라서 세 스텝을 거쳐 DeiT와 조건을 같이하는 최적의 setup을 찾아본다(Ablation)
+
+#### Step 1 : Aligning Learning Rate Scheduler
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0c01f9e2-f46e-45f4-84b8-942bed068ebb%2FUntitled.png?table=block&id=1ad859f3-1fe2-49d1-8b76-d8e45d7bc05e&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+- Table 6에서, step decay보다 cosine schedule decay를 쓰는 것이 성능이 향상되었으므로 사용
+
+#### Step 2 : Aligning Optimizer
+
+- Table 6에서, Adam-W를 사용하는 것은 ResNet의 성능과 강건성을 모두 해쳤다. 따라서 M-SGD사용
+
+#### Step 3 : Aligning Augmentation Strategies
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd72d53b4-165c-457e-b200-8a5e0cb2a3d4%2FUntitled.png?table=block&id=b83065cc-0032-4def-9fda-9222d4f6405a&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+- 다양한 조합을 조사했는데 일단 strong aug의 존재가 OOD에서의 성능을 향상시킴. 그럼에도 불구하고 제일 좋은 성능은 여전히 DeiT였다
+
+#### Comparing ResNet With Best Training Recipes To DeiT-S
+
+- Step을 거쳐 세가지 training recipe를 조사했음에도 ResNet은 DeiT의 OOD성능을 따라가지 못했다
+    - **이것은 Transformer와 CNN사이 OOD성능을 가른 key가 training recipe에 있지 않을 수 있음을 암시한다**
+
+#### Model Size
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd3c90f31-4df2-49d1-ac82-28d17a8d0a13%2FUntitled.png?table=block&id=aaa41c37-ccb1-42a3-b935-2d68a9ad9890&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+- #params에 따른 비교도 하기위해 새로운 실험을 하였다. ResNet에 * 이 붙은 것은 세 가지 recipe을 모두 적용한 것이고 Best는 위에서 찾은 조합이다
+- 전체적으로 DeiT가 parameter 수의 변화에도 제일 좋은 OOD성능을 보였다
+
+### 4.2.2 Distillation
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffa5bb1f6-fea4-4c8b-9687-c7c1fa11baca%2FUntitled.png?table=block&id=adfdb9ee-7ef8-4478-a770-81a1ffd5cffd&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+- 결과1(T:DeiT, S:ResNet) : 알려진 상식과 다르게 Student가 더 나쁜 성능. DeiT가 더 좋은 성능
+- 결과2(T:ResNet, S:DeiT) : DeiT가 더 좋은 성능
+- **5.1과 5.2의 결과로 미루어볼 때, DeiT의 강력한 일반화 성능은 training setup과 knowledge distillation이 아닌 Transformer의 구조 자체에서 온다고 해석할 수 있다**
+
+### 4.2.3 Hybrid Architecture
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F83acabba-926e-401e-90ad-3a32015f25b8%2FUntitled.png?table=block&id=d861a6b9-a59d-4374-9d96-d28df94dc734&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+- Hybrid-DeiT는 ResNet-18의 res_4 block의 output을 DeiT-Mini에게 넘겨주는 hybrid모델이다
+- CNN(ResNet)에 transformer구조가 더해지니 ResNet-50보다 더 강건해졌다. 하지만 pure한 transformer자체보다는 못했다. **이것은 Transformer의 self-attention mechanism이 강건성 향상에 필수적인 요소임을 증명한다**
+
+### 4.2.4 300-Epoch Training
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc617bd9b-729d-491b-97bf-16b2a7dbf5e4%2FUntitled.png?table=block&id=83662768-3347-454d-9f98-71b5982a5d09&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd6da19c3-5e41-4f0f-bcc1-a34b56f57afc%2FUntitled.png?table=block&id=5832f034-16d7-4865-aaf8-bc9336a67789&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
+
+- CNN구조는 100eph학습되는게 일반적이지만 Transformer는 300eph 정도로 많이 학습된다. 이런 형평성에 맞추어 학습했더니 Table 9와 같았다
+- 더 공정한 비교를 위해서 ResNet의 clean acc가 DeiT보다 높은 101,200을 가져와 실험했다. 역시 DeiT가 더 높은 OOD성능을 보였다
+- **이것으로 Transformer가 CNN보다 OOD에 더 강건하다고 말할 수 있게 되었다**
+
+
+
+
 
 
 
