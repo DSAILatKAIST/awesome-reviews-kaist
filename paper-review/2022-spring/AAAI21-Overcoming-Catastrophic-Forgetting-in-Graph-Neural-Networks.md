@@ -97,7 +97,7 @@ $$e_{ij}^{(l)} = S_{j \subset \mathcal{N}(i)}a(h_{i}^{(l-1)}W^{(l)},h_{j}^{(l-1)
 
 > ### Problem Formulation
 
-연속적인 학습 과정에서, 모델은 일련의 task $$\mathcal{T} = \lbrace \mathcal{T_{1}} \mathcal{T_{2}}, ..., \mathcal{T_{K}}  \rbrace $$ 을 받습니다.
+연속적인 학습 과정에서, 모델은 일련의 task $$\mathcal{T} = \lbrace \mathcal{T_{1}}, \mathcal{T_{2}}, ..., \mathcal{T_{K}}  \rbrace $$ 을 받습니다.
 
 각 task $$\mathcal{T_{k}}$$는 training node set $$\mathcal{V_{k}^{tr}}$$과 testing node set$$\mathcal{V_{k}^{te}}$$으로 구성되어 있고, 이들 각각은 feature sets $$X_{k}^{tr}$$, $$X_{k}^{te}$$를 포함하고 있습니다. 각 task의 label은 겹치지 않습니다. (다른 task에는 다른 class의 node들이 학습된다는 의미입니다.)
 
@@ -117,7 +117,7 @@ Parameter가 아주 조금($$\Delta W = \lbrace \Delta w_m \rbrace$$) 변할 때
 
 $$\mathcal{L}(X_{k}^{(tr)};W+\Delta W)-\mathcal{L}(X_{k}^{tr};W) \approx \sum_{m} f_{m}(X_{k}^{tr}) \Delta w_m$$
 
-이 때, $$f_{m}(X_{k}^{tr}$$는 $$w_m$$에 해당되는 loss의 gradient입니다. 
+이 때, $$f_{m}(X_{k}^{tr})$$는 $$w_m$$에 해당되는 loss의 gradient입니다. 
 
 미래의 Task를 진행하는 동안, 이 task $$\mathcal{T_{k}}$$를 기억하기 위해서 저자들은 Minimized Loss Preserving module을 통해 해당 task를 학습하는데 중요한 parameter들을 최대한 보존하고자 합니다. 
 
@@ -138,11 +138,11 @@ $$e_{ij}^{(l)}=a(H_{i,j}^{(l-1)};W^{(l)})$$
 
 앞서 보여드린 **Minimizing Loss Preserving**과 비슷하게, Parameter가 아주 조금($$\Delta W = \lbrace \Delta w_m \rbrace$$) 변할 때, $$e_{ij}^{(l)}$$의 변화량은 다음과 같이 나타낼 수 있습니다.
 
-$$a(H_{i,j}^{(l-1)};W^{(l)}+ \Delta W^{(l)})-a(H_{i,j}^{(l-1)};W^{(l)}) \approx \sum_{m} g_{m}(H_{(i,j)}^{(l-1)}) \Delta w_m $$
+$$a(H_{i,j}^{(l-1)};W^{(l)}+ \Delta W^{(l)})-a(H_{i,j}^{(l-1)};W^{(l)}) \approx \sum_{m} g_{m}(H_{i,j}^{(l-1)}) \Delta w_m $$
 
 마찬가지로, $$g_{m}(H_{(i,j)}^{(l-1)})$$는 파라미터 $$w_m$$의 attention coefficient에 대한 gradient입니다. 
 
-Training set의 모든 node에 대한 topological loss $$g_{m}(H^{(l-1)})$$는 모든 node $$e_i{(l)}$$의 $$l_2$$ squared norm의 gradient으로 계산합니다. 
+Training set의 모든 node에 대한 topological loss $$g_{m}(H^{(l-1)})$$는 $$e_i^{(l)}$$의 $$l_2$$ squared norm의 gradient으로 계산합니다. 
 
 Parameter $$w_{m}$$의 중요도는 $$g_{m}$$의 크기로 나타내며, $$\mathcal{T_{k}}$$에서의 전체 파라미터 $$W$$의 중요도는 $$I_{k}^{ts} = [\lVert g_m(H_{k}^{(l-1)}) \rVert]$$ 로 나타냅니다. 
 
@@ -176,13 +176,13 @@ $$\mathcal{L_{k+1}^{new}}(W)$$는 새로운 task의 loss function이고, $$I_n$$
 
 > ### Promoting Minimized Importance Scores
 
-더 나아가, 모델의 capacity는 한정되어 있으므로, 위에서 구했던 loss function에 importance score의 $$l_1$$norm을 추가시켜서 다음과 같은 최종 loss function을 얻습니다.
+더 나아가, 모델의 capacity는 한정되어 있으므로, 위에서 구했던 loss function에 importance score의 $$l_{1}$$ norm을 추가시켜서 다음과 같은 최종 loss function을 얻습니다.
 
 $$\mathcal{L_{k+1}}(W) = \mathcal{L_{k+1}^{'}}(W)+ \beta \lVert I_{k+1} \rVert_1$$
 
 이 식을 해석해보면, loss function을 구할 때 importance score 도 어느정도 규제를 해서 importance score가 과도하게 높아지는 것을 방지하는 것입니다. 현재 task에서 parameter들의 importance score가 과도하게 높아지면, 다음 task에서는 optimize 할 수 있는(중요도가 낮은) parameter들이 적어지게 되기 때문입니다.
 
-Continual learning에서 task는 지속적으로 들어오는 것을 감안했을 때 합리적인 regularization입니다. 
+`Continual learning`에서 task는 지속적으로 들어오는 것을 감안했을 때 합리적인 regularization입니다. 
 
 $$\beta$$가 높아지면 미래의 task를 위해 더 많은 learning capacity를 보존하겠다는 의미가 됩니다.
 
@@ -190,19 +190,19 @@ $$\beta$$가 높아지면 미래의 task를 위해 더 많은 learning capacity�
 
 > ### Extension to General GNNs
 
-지금까지는 `GAT`에 대해서만 TWP모듈을 적용했지만, 저자들은 다른 `GNN`모델들에 대해서도 쉽게 적용이 가능하다고 합니다. 
+지금까지는 `GAT`에 대해서만 `TWP`모듈을 적용했지만, 저자들은 다른 `GNN`모델들에 대해서도 쉽게 적용이 가능하다고 합니다. 
 
 여기서는 topological structure를 다음과 같이 정의합니다.
 
-$$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{(T)}tanh(h_j^{(l-1)}W^{(l)})$$
+$$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{T}tanh(h_j^{(l-1)}W^{(l)})$$
 
 이를 통해서 attention weights가 node $$v_i$$와 $$v_j$$ 사이의 거리에 dependent하게 구해질 수 있습니다. 
 
-위 식을 통해서 TWP 모듈을 구성하면, `GAT`뿐 아니라 임의의 `GNN`모델에 이 방법론을 적용할 수 있습니다.
+위 식을 통해서 `TWP` 모듈을 구성하면, `GAT`뿐 아니라 임의의 `GNN`모델에 이 방법론을 적용할 수 있습니다.
 
 \
 
-이 논문에서 제시한 방법론의 전체적인 개요는 다음 그림과 같습니다.
+지금까지의 설명을 바탕으로, 이 논문에서 제시한 방법론의 전체적인 개요는 다음 그림과 같습니다.
 
 
 ![Overview of the proposed method](https://user-images.githubusercontent.com/99710438/170720633-9cf611e6-fc8b-47ff-a46b-c268ebf7fb96.png)
@@ -219,7 +219,7 @@ $$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{(T)}tanh(h_j^{(l-1)}W^{(l)})$$
 
 > 본 논문에서 저자들은 다양한 baseline과 실험을 통해 제시한 방법론의 성능을 평가했습니다. 
 
-`GNN`모델을 위해 만들어진 `Continual learning` 방법론이 없으므로, `CNN`을 위해 만들어진 모델들을 그래프 도메인에 적용시켜 비교했습니다. GNN, GAT, GIN에 여러 baseline들을 접목시켜 성능을 평가했습니다.
+`GNN`모델을 위해 만들어진 `Continual learning` 방법론이 없으므로, `CNN`을 위해 만들어진 모델들을 그래프 도메인에 적용시켜 비교했습니다. `GNN`, `GAT`, `GIN`에 여러 baseline들을 접목시켜 성능을 평가했습니다.
 
 ### **Experiment setup**
 
@@ -229,7 +229,7 @@ $$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{(T)}tanh(h_j^{(l-1)}W^{(l)})$$
   * Protein-Protein interaction(PPI) (node classification)
   * Reddit posts (node classification)
   * Tox21 (graph classification)
-* baseline (GAT, GCN, GIN과 합쳐서 쓴 module들)
+* baseline (`GAT`, `GCN`, `GIN`과 합쳐서 쓴 module들)
   * Fine-tune (Girshick et al., 2014)
   * LWF (Li and Hoiem, 2017)
   * EWC (Kirkpatrick et al., 2017)
@@ -264,7 +264,6 @@ $$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{(T)}tanh(h_j^{(l-1)}W^{(l)})$$
 
 ![Node classification performance](https://user-images.githubusercontent.com/99710438/170866564-6d37e4df-e480-407c-8daf-4d55771ef9fe.png)
 
-\
 
 Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `GNN`모델, 모든 데이터셋에 대해서 best or second best performance를 보였습니다. 
 
@@ -272,7 +271,6 @@ Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `
 
 ![Evolution of performance](https://user-images.githubusercontent.com/99710438/170867125-09fe7247-e12d-4397-b8e7-465d3c341b98.png)
 
-\
 
 위 그림은 Corafull dataset에서 `GAT`를 base model로 했을 때 9개의 task동안의 training curve를 그린 것입니다. 저자들은 자신들의 모델이 topological information까지 고려하기 때문에 task가 진행되더라도 크게 이전 task의 성능이 떨어지지 않는 것이라고 주장했습니다. 
 
@@ -287,13 +285,13 @@ Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `
 
 좀 더 자세히 보자면, 위 그림 중 첫 번째 그림은 첫 번째 task의 성능이 task가 진행됨에 따라 변화하는 모습을 보인 그림이고, 두 번째 그림은 평균적인 performance를 나타낸 그림입니다. (a)부터 (d)까지는 각각 Corafull, Amazon Computers, PPI, Reddit 데이터셋입니다.
 
-`Joint train` 방법을 제외한다면 저자들의 방법론이 제일 적은 `Catastrophic forgetting` 현상을 보이고 있는 것을 확인할 수 있습니다. 
+`Joint train` 방법을 제외한다면 저자들의 방법론이 제일 적은 **Catastrophic forgetting** 현상을 보이고 있는 것을 확인할 수 있습니다. 
 
 이 `Joint train` 방법은 task가 계속 추가됨에 따라 과거의 data까지 **전부 다** 포함하여 학습하는 방법입니다.
 
 하지만 Computation & Memory cost 때문에 모든 data를 계속 저장하고 학습하는 것은 현실성이 떨어지므로, `Continual learning` 성능의 upper bound라고 생각하시면 되겠습니다.
 
-이를 고려했을 때, 저자들의 방법론이 task가 진행됨에 따라 이전 task를 가장 잘 기억한다는(Catastrophic forgetting이 적다는) 것을 확인할 수 있습니다.
+이를 고려했을 때, 저자들의 방법론이 task가 진행됨에 따라 이전 task를 가장 잘 기억한다는(**Catastrophic forgetting**이 적다는) 것을 확인할 수 있습니다.
 
 \
 
@@ -303,7 +301,6 @@ Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `
 
 ![Graph classification performance](https://user-images.githubusercontent.com/99710438/170868529-08576d78-b8ec-4ea4-bb2f-b68684278cc9.png)
 
-\
 
 위 테이블에서 확인할 수 있듯이, 저자들의 방법이 Graph classification task에서도 가장 좋은 성능을 내고 있습니다.
 
@@ -311,7 +308,6 @@ Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `
 
 ![Performances across all tasks](https://user-images.githubusercontent.com/99710438/170868472-3bf928c9-9146-45d6-a7e9-0b4f7e78256f.png)
 
-\
 
 Node classification과 마찬가지로 task가 진행됨에 따라 성능이 어떻게 변화하는지 위 그림을 통해 확인할 수 있습니다.
 
@@ -326,7 +322,6 @@ Node classification과 마찬가지로 task가 진행됨에 따라 성능이 어
 
 ![Ablation study](https://user-images.githubusercontent.com/99710438/170868926-5c86f974-2001-4ed2-820d-d368b746efb7.png)
 
-\
 
 위 표에서 W/Loss는 Minimized Loss Preserving 모듈을 빼고, W/TWP는 Topological Structure Preserving 모듈을 빼고 학습을 진행한 결과를 나타내고, Full은 두 모듈 다 사용한 모델입니다. 
 
@@ -350,10 +345,11 @@ Corafull과 Amazon Computers dataset에서 실험을 한 결과, Full이 나머�
 
 더 나아가 ablation study를 통해 각 모듈이 중요하다는 것도 증명했습니다.
 
+\
 
 > **내 생각...**
 
-Continual learning은 domain을 막론하고 연구되어야 할 주제라고 생각합니다. 새로운 data는 항상 생겨나며 이전에 학습된 정보를 유지하는 것이 중요하기 때문입니다.
+`Continual learning`은 domain을 막론하고 연구되어야 할 주제라고 생각합니다. 새로운 data는 항상 생겨나며 이전에 학습된 정보를 유지하는 것이 중요하기 때문입니다.
 
 인간이 새로운 지식을 학습하지만 이전에 학습했던 지식을 잊지 않는 것 처럼, 인공지능이 나아가야 할 궁극적인 방향이라고 생각합니다.
 
@@ -361,9 +357,13 @@ Continual learning은 domain을 막론하고 연구되어야 할 주제라고 �
 
 중요한 weight를 최대한 보존하면서 덜 중요한 weight로 학습을 진행하는 것은, task가 많아지면 많아질수록 의미없는 방식이 될 것 같습니다.(언젠가는 이전에 중요하다고 판단되었던 weight들도 전부 수정이 될 것이기에..)
 
-Continual learning의 최종적인 목표는 무한히 들어오는 새 data를 학습하는 것이라고 생각하며, 이러한 setting을 염두에 둔 연구가 필요할 것 같습니다. 
+`Continual learning`의 최종적인 목표는 무한히 들어오는 새 data를 학습하는 것이라고 생각하며, 이러한 setting을 염두에 둔 연구가 필요할 것 같습니다. 
 
 ***
+
+\
+
+\
 
 ## **Author Information**
 
@@ -371,6 +371,11 @@ Continual learning의 최종적인 목표는 무한히 들어오는 새 data를 
   * Affiliation: [DSAIL@KAIST](http://dsail.kaist.ac.kr)
   * Research Topic: GNN, NeuralODE, Active learning, Continual learning
   * Contact: wjkim@kaist.ac.kr
+
+\
+
+\
+
 
 ## **6. Reference & Additional materials**
 
