@@ -69,11 +69,10 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 ![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6764d1d3-4b81-4d2b-9bb1-87e945c2d3c4%2FUntitled.png?table=block&id=2687d828-3a4f-4982-804a-c8119aa82f0f&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=1610&userId=&cache=v2)
         
 ### 3.2.2 OOD 
-- 논문과 PaperWithCode에 있는 설명이 조금 다른데 PWC를 기준으로 적었다
+- 논문과 PaperWithCode(PWC)에 있는 설명이 조금 다른데 PWC를 기준으로 적었다
+    
     - ImageNet-A : ResNet model이 강한 확신으로 틀린 이미지셋. 기계학습 모델이 어려워하는 즉 학습 분포랑은 좀 다른 이미지들의 모임이다. 실제 이미지를 보면 왜 그런 틀린 답을 냈는지 알 것도 같다
-    - ImageNet-A 예시
-        
-        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%203.png)
+      ![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc7c1a4b6-25a3-4a24-bb46-5ffb43f1f7f2%2FUntitled.png?table=block&id=4b49d8f7-468b-4c9c-a6c4-5b7c5056c74e&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
         
     - ImageNet-C : 이미지당 다양한 Augmentation이 적용된 이미지셋
     - ImageNet-C 예시
