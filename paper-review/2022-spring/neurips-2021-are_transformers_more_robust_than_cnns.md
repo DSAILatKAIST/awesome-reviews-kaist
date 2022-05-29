@@ -55,8 +55,13 @@ You can attach the tables or figures, but you don't have to cover all the result
 
 ## **5. Conclusion**  
 
-Please summarize the paper.  
-It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
+- unfair한 조건에서 실행되던 실험을 적절한 조치를 통해 비교하니 Transformer는 적대적 공격에서 CNN보다 강건하지 않았다
+- 또한 OOD에서의 Transformer성능은 self-attention과 관련이 있음을 확인했다
+- 이 연구로 transformer에 대한 이해가 향상되고 transformer과 CNN사이 공정한 비교가 가능해지길 바란다
+
+### 개인적 의견으로..
+- ViT의 등장은 많은 이슈를 낳았습니다. 처음 CNN이후 Image분류를 위한 근원적인 새로운 방법론 제시였고 무엇보다 성능이 좋았습니다. 심지어 최근 연구들에서는 ViT가 CNN보다 강건하기까지 하다는 결과를 도출하면서 Vision의 영역은 이제 (엄청난 pretrain dataset을 가진 사업체가 학습한) ViT가 모두 가져갈 것이라는 예상을 하기도 했습니다. 따라서 학계의 이런 믿음 자체에 의문을 가지고 도전하는게 쉬운일이 아니었을 것이라고 생각합니다. 이런 연구를 내놓은 연구자들의 실력과 자신감에서 또 한번 겸손해야함을 느낍니다.
+
 
 ---  
 ## **Author Information**  
