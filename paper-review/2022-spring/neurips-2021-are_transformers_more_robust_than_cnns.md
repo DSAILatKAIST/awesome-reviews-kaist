@@ -107,7 +107,11 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 - 그러나 두 모델이 전혀 Adversarial training되지 않았음을 기억하자
 
     #### Adversarial Training
-
+    
+    <aside>
+    ![](https://latex.codecogs.com/gif.latex?x)
+    </aside>
+    
     <aside>
     ![](https://latex.codecogs.com/gif.latex?\argmin_{\theta}\mathbb{E}_{(x,y)\sim\mathbb{D}}[\max_{\epsilon\in\mathbb{S}}L(\theta,x+\epsilon,y)])
     
