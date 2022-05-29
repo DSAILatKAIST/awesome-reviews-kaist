@@ -255,5 +255,5 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 
 Please write the reference. If paper provides the public code or other materials, refer them.  
 
-* Github Implementation  ![LINK](https://github.com/ytongbai/ViTs-vs-CNNs)
+* Github Implementation  [LINK](https://github.com/ytongbai/ViTs-vs-CNNs)
 
