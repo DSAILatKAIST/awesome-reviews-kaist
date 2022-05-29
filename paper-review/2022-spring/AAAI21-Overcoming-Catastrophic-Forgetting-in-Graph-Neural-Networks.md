@@ -340,19 +340,28 @@ Corafull과 Amazon Computers dataset에서 실험을 한 결과, Full이 나머�
 
 > **Summary**
 
-이 논문에서는 hidden state dynamics를 `Neural ODE`로 구성한 `ODE-RNN`을 소개했습니다.
+본 논문에서는 Graph domain에 적용될 수 있는 `Continual learning` 방법론을 제시했습니다.
 
-또한 이 모델을 `VAE`의 encoder로 사용한 `Latent ODE`도 제안했습니다.
+파라미터가 이전 task의 성능에 미치는 중요도와 graph data에서 필요한 topological information에 미치는 중요도를 동시에 고려해, 중요한 파라미터는 최대한 보존하고 덜 중요한 파라미터가 새로운 task를 학습하는데 사용되도록 모델을 구성했습니다.
 
-이를 통해 지금까지 **discrete한 hidden layer**를 가졌던 모형들이 아닌, **continuous한 hidden layer**를 가진 모형으로서 기존 방법론들의 단점(irregular time step, sparse data에서 성능이 저하되는 현상)을 극복할 수 있었습니다.
+이 방법론은 어떠한 `GNN`모델과도 결합되어 사용할 수 있습니다.
 
-`Latent ODE`는 비교적 hidden state에 대한 설명력을 가지며 **observation time에 구애받지도, 전처리 과정에 data를 impute 할 필요도 없습니다**.
+또한 이 모델을 기존의 `CNN`에 적용될 수 있는 `Continual learning`방법론들과 비교했습니다. `GAT`, `GCN`, `GIN`과 결합하여 실험했을 때, 다양한 dataset에서 좋은 성능을 내는 것을 확인했습니다.
 
-이에 수많은 irregularly-sampled time series data에 적용 가능할 것으로 보입니다.
+더 나아가 ablation study를 통해 각 모듈이 중요하다는 것도 증명했습니다.
+
 
 > **내 생각...**
 
-흠터레스팅..
+Continual learning은 domain을 막론하고 연구되어야 할 주제라고 생각합니다. 새로운 data는 항상 생겨나며 이전에 학습된 정보를 유지하는 것이 중요하기 때문입니다.
+
+인간이 새로운 지식을 학습하지만 이전에 학습했던 지식을 잊지 않는 것 처럼, 인공지능이 나아가야 할 궁극적인 방향이라고 생각합니다.
+
+하지만 본 방법론은 한정된 parameter(weight)들로 학습하는데 이것이 가장 큰 한계라고 생각합니다.
+
+중요한 weight를 최대한 보존하면서 덜 중요한 weight로 학습을 진행하는 것은, task가 많아지면 많아질수록 의미없는 방식이 될 것 같습니다.(언젠가는 이전에 중요하다고 판단되었던 weight들도 전부 수정이 될 것이기에..)
+
+Continual learning의 최종적인 목표는 무한히 들어오는 새 data를 학습하는 것이라고 생각하며, 이러한 setting을 염두에 둔 연구가 필요할 것 같습니다. 
 
 ***
 
