@@ -71,18 +71,16 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 ### 3.2.2 OOD 
 - 논문과 PaperWithCode(PWC)에 있는 설명이 조금 다른데 PWC를 기준으로 적었다
     
-    - ImageNet-A : ResNet model이 강한 확신으로 틀린 이미지셋. 기계학습 모델이 어려워하는 즉 학습 분포랑은 좀 다른 이미지들의 모임이다. 실제 이미지를 보면 왜 그런 틀린 답을 냈는지 알 것도 같다
+    - *mageNet-A* : ResNet model이 강한 확신으로 틀린 이미지셋. 기계학습 모델이 어려워하는 즉 학습 분포랑은 좀 다른 이미지들의 모임이다. 실제 이미지를 보면 왜 그런 틀린 답을 냈는지 알 것도 같다
       ![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc7c1a4b6-25a3-4a24-bb46-5ffb43f1f7f2%2FUntitled.png?table=block&id=4b49d8f7-468b-4c9c-a6c4-5b7c5056c74e&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
         
-    - ImageNet-C : 이미지당 다양한 Augmentation이 적용된 이미지셋
-    - ImageNet-C 예시
+    - *ImageNet-C* : 이미지에 다양한 Augmentation이 적용된 이미지셋
         
-        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%204.png)
+      ![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3802b66c-15d1-47f4-8702-7160fbb557c2%2FUntitled.png?table=block&id=c9fb7059-3a0e-4dd5-a9d2-6b413ed3c73b&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
         
-    - Stylized ImageNet :  이미지당 다양한 texture를 입한 데이터셋
-    - Stylized ImageNet 예시
+    - *Stylized ImageNet* :  이미지당 다양한 texture를 입한 데이터셋
         
-        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%205.png)
+      ![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6ebce612-8a69-4031-8c37-1a34b32c60b9%2FUntitled.png?table=block&id=ce5c92ce-3ea5-4672-b32a-1f55c8b11ec9&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
         
 
 
@@ -91,9 +89,9 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 
 
 ## **4. Experiment**  
-
-In this section, please write the overall experiment results.  
-At first, write experiment setup that should be composed of contents.  
+- 실험은 크게 두 개의 파트로 구성되어있습니다.
+1. 적대적 공격에 대한 강건성
+2. OOD Sample에 대한 강건성
 
 ### **Experiment setup**  
 * Dataset  
