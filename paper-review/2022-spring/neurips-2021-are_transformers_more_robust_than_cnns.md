@@ -4,11 +4,14 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 
 # **Are Transformers More Robust Than CNNs?** 
 
-Title of paper that you are going to write  
 
 ## **1. Problem Definition**  
 
-Please write the problem definition on here  
+- Vision Transformer(ViT) Network는 CNN보다 강력하고 robust하다고 알려져있다.
+- 하지만 이 연구에서는 몇가지 실험을 통해서 기존의 이런 믿음에 의문을 제기하고 공정하게 설계된 실험조건에서 강건성을 다시 조사한다.
+- 결론적으로 adversarial attack에 CNN도 충분히 강건할 수 있음을 확인했다
+- 강건성에대한 실험 도중에, 방대한 양의 데이터를 사용한 pre-training이 transformer가 CNN의 성능을 넘는데 꼭 필요한 것은 아님도 부가적으로 확인했다.
+
 
 ## **2. Motivation**  
 
