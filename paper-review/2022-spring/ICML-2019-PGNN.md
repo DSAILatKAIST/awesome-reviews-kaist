@@ -90,13 +90,16 @@ distortion이란 한 metric space에서 다른 metric space로 임베딩하는 f
 ![image](https://user-images.githubusercontent.com/37684658/170873752-295d82d9-4ecf-403e-a600-1a2e14526f9e.png)
 
 > **Message Passing Function, F**  
+
 ![image](https://user-images.githubusercontent.com/37684658/170873528-7b9d0de1-e484-41ba-a421-d410bce69c73.png)  
-> Position 정보를 담는 빨간 박스 부분과, 기존의 일반적인 message passing을 할 때 쓰이는 feature를 전달하는 부분이 있다. 여기서 두 노드들의 feature를 concat하여 전달하게 된다.  
+Position 정보를 담는 빨간 박스 부분과, 기존의 일반적인 message passing을 할 때 쓰이는 feature를 전달하는 부분이 있다. 여기서 두 노드들의 feature를 concat하여 전달하게 된다.  
+
 ![image](https://user-images.githubusercontent.com/37684658/170873614-727738b8-16fa-4273-9590-187a4ea14535.png)  
-> function s는 q-hop내의 노드들에 대해서 shortest path distance를 구하는 함수이다.  
+function s는 q-hop내의 노드들에 대해서 shortest path distance를 구하는 함수이다.  
 
 > **Aggregation function, AGG**  
-> Aggregation function은 anchor-set 위치에 대해서 invariant한 성질을 줄 수 있는 MEAN, MIN, MAX, SUM 등을 사용할 수 있는데, 여기서는 MEAN을 사용하였다.   
+
+Aggregation function은 anchor-set 위치에 대해서 invariant한 성질을 줄 수 있는 MEAN, MIN, MAX, SUM 등을 사용할 수 있는데, 여기서는 MEAN을 사용하였다.   
 
 ### **Summary**  
 <img width="967" alt="image" src="https://user-images.githubusercontent.com/37684658/170822199-7e47b798-1689-41b6-b33d-95b2d637f4ac.png">  
@@ -119,7 +122,7 @@ distortion이란 한 metric space에서 다른 metric space로 임베딩하는 f
 본 논문에서는 link-prediction과 node classification task 2가지의 실험을 진행하였다.
 
 ### **Experiment setup**  
-* Dataset  
+#### Dataset  
 > **Link Prediction Dataset** 
 - **Grid** : 2D (20x20)의 grid graph 데이터이며, 노드의 개수는 400개, 노드 feature는 존재하지 않는다. 
 - **Communities** : 1%의 edges들이 랜덤으로 rewired된 Connected caveman graph이다. 각각 20개의 노드로 이루어진 20개의 communities로 이루어져있다.  
@@ -130,47 +133,55 @@ distortion이란 한 metric space에서 다른 metric space로 임베딩하는 f
 - **Emails** : 7개의 real-world email communication graphs from SNAP. 노드 feature는 없으며, 각 그래프는 6개의 communites가 있고, 각 노드들은 어떤 community에 속하는 지 라벨링되어 있는 데이터셋이다.
 - **Protein** 1113개의 protein graphs이다. 각 노드들은 protein에서 어떤 functional role을 하고 있는 지에 대해 라벨링 되어있고, 각 노드 feature는 29dim이다. 
 
-* baseline  
+#### baseline  
 baseline 모델들은 기존의 GNN에서 대표적인 모델들과 비교를 하였다. 본 논문 이전에 position을 explicit하게 반영하는 GNN 모델들이 없기 때문이다.  
 - **GCN** : GCN은 Fourier transform을 그래프에 접목시켜서 graph convolution을 가능하게 한 모델이다. GAT에 비해서 graph의 global한 feature를 반영하기에 적합하다.
 - **GAT** : GAT는 GCN과는 다르게 주변 노드들을 aggregation하여 임베딩하는 데, 이렇게 때문에 GCN에 비해서 더 flexible하며, adaptive한 성질을 가지고 있다.
 - **GraphSAGE** : 이웃 노드들 중에서 고정된 개수의 노드들을 샘플링하여 feature를 aggregation하는 방법으로 효과적으로 노드 임베딩하는 모델이다.  
 - **GIN** : 동형(isomorphic)이 아닌 그래프를 구분할 수 있는 모델이다.  
 
-* Evaluation Metric 
+#### Evaluation Metric 
 > **Link Prediction Dataset**  
+
 두 노드가 link로 연결되어 있는 지에 대해 prediction하고 이에 대한 ROC AUC를 측정하였다.  
+
 > **Pairwise node classification**  
+
 두 노드가 같은 community에 속해 있는 지, 아닌 지에 대해서 prediction하는 task이다. 일반적으로는 node의 label을 맞추는 task를 node classification이라고 하나, 본 논문에서는 비슷한 
 neighbor structure를 가지고 있는 두 노드들을 구분할 수 있는 지에 대한 정확도를 측정하기 위하여 이와 같이 실험하였다고 한다. 이 또한 ROC AUC를 측정하였다.  
 
 ### **Result**  
 > **Link Prediction**  
+
 ![image](https://user-images.githubusercontent.com/37684658/170875982-50cdd0b8-a104-4341-8ab2-f03a604480d0.png)  
 
 위 실험에서, 노드 feature가 없는 데이터셋에 대해서는 feature가 있는 PPI 데이터셋보다 성능이 굉장히 높은 것을 확인할 수 있다. 하지만 PPI의 경우에는 성능이 기존 모델들에 비해서 겨우 좋은 성능을 보이고 있다. 이에 대해서 feature가 어느 정도 높은 dimension을 가지고 있는 경우에는 노드 feature 자체가 position의 정보를 어느 정도 대체할 수 있지 않은 지 생각해볼 수 있다. 본 논문에서 노드 feature가 position의 정보를 얼만큼 담고 있는지에 대한 future work도 함께 던지고 있다.  
 
 > **Node Classification**  
+
 ![image](https://user-images.githubusercontent.com/37684658/170876021-5802571d-c4b5-4629-9acf-4ae56c076ffd.png)
 
-위 실험에서도 노드 feature가 없는 
+위 실험에서도 노드 feature가 없는 데이터셋에 대해서는 성능이 좋은 모습을 보이고 있다. Protein 데이터셋에서도 29 dimension의 노드 feature가 있음에도, position을 함께 반영하는 것이 더 좋은 성능을 보이고 있다. 하지만 본 실험만 봐서는 노드 feature가 있는 데이터셋들에 대해서 position이 과연 얼마나 더 좋은 영향을 미치고 있는가를 파악하기 어려운 점이 있다. 이에 대해서 노드 feature가 있는 데이터셋을 dimension에 따라 더 많이 실험을 해줬으면 어땠을까라는 생각이 든다.  
 
 ## **5. Conclusion**  
 
-Please summarize the paper.  
-It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
+요약하자면, PGNN은 기존의 Structure-aware한 GNN의 성질을 유지하면서, Position-aware한 성질까지 결합한 GNN 모델이다. Bourgain Theorem으로 그 이론적 근거에 대해서 탄탄히 설명을 하였고, 이를 기반으로 Anchor-set를 생성하여 Complexity를 줄이면서 position을 효과적으로 임베딩하는 방법에 대해서 제시하였다. 
+
+> Discussion  
+
+개인적으로 아쉬운 점은 노드 feature의 dimension이 충분히 높은 데이터셋에 대해서도 position의 정보를 explicit하게 반영하는 것이 얼마나 효과가 있는 지에 대해서 더 자세하게 다뤄줬으면 좋았을 것 같다. 
+
 
 ---  
 ## **Author Information**  
 
-* Author name  
-    * Affiliation  
-    * Research Topic
+* **김성원 (Sungwon Kim)**
+  * [Data Science & Artificial Intelligence Laboratory (DSAIL)](http://dsail.kaist.ac.kr) at KAIST
+  * Graph Neural Network, Meta-Learning, Few-shot Learning
+  * [github](https://github.com/sung-won-kim)
 
 ## **6. Reference & Additional materials**  
 
-Please write the reference. If paper provides the public code or other materials, refer them.  
+You, Jiaxuan, Rex Ying, and Jure Leskovec. "[Position-aware graph neural networks.](https://arxiv.org/pdf/1906.04817.pdf)" International Conference on Machine Learning. ICML, 2019.
 
-* Github Implementation  
-* Reference  
-
+[github](https://github.com/JiaxuanYou/P-GNN)
