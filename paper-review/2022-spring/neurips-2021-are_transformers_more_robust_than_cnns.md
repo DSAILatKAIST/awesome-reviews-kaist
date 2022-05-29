@@ -24,17 +24,72 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
     - 여전히 Transformer가 OOD에 강건함을 발견했고 이는 pre-training이 없어도 가능했다. Ablation study에서 self-attention이 이런 현상의 이유임을 발견했다
 
 <aside>
-```
+
 💡  이 연구가 다른 Architecture끼리의 강건성을 비교하는 표준이 되길 바란다고 저자는 밝히고 있습니다
-```
+
 </aside>
 
 
 
 ## **3. Method**  
+- 이 챕터에서는 다음과 같은 내용을 다룬다. 모두 실험에서 자주 등장할 내용이므로 주의깊게 숙지하길 바랍니다.
+1. CNN과 ViT의 학습조건 비교
+2. 다양한 Attack과 OOD Dataset
 
-Please write the methodology author have proposed.  
-We recommend you to provide example for understanding it more easily.  
+## 3.1 Training CNNs and Transformer
+
+- 학습 후 CNN와 ViT의 Top-1 Acc는 76.8, 76.9로 매우 비슷한 성능을 냄
+
+### CNN
+
+- ResNet-50이 ViT와 비슷한 #params를 가지므로 채택
+- ImageNet에 학습
+- 기타 학습 디테일(SGD-momentum, 100eph, L2규제)
+
+### ViT
+
+- 외부 데이터없이 좋은 성능을 낸 DeiT의 recipe를 따라서 DeiT-S(#params가 ResNet50과 비슷)를 default ViT로 채택함
+- AdamW, 3개의 Aug(Rand, Cut, MixUp)
+- ResNet과 학습 환경을 맞추기위해 Erasing, Stochastic Depth, Repeated Aug를 사용하지 않음. DeiT는 300eph학습되지만 같은 이유로 100eph만 학습
+
+## 3.2 Robustness Evaluations
+
+- Adversarial Attack
+    - PGD(Projected Gradient Descent) : 사람은 확인하기 어렵지만 기계를 속일 수 있는 섭동
+    - TPA : texture가 있는 patch를 붙여 네트워크를 속이는 attack
+    - 예시
+        
+        ### PGD
+        
+        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled.png)
+        
+        ### TPA
+        
+        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%201.png)
+        
+        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%202.png)
+        
+- OOD : 논문과 PaperWithCode에 있는 설명이 조금 다른데 PWC를 기준으로 적었다
+    - ImageNet-A : ResNet model이 강한 확신으로 틀린 이미지셋. 기계학습 모델이 어려워하는 즉 학습 분포랑은 좀 다른 이미지들의 모임이다. 실제 이미지를 보면 왜 그런 틀린 답을 냈는지 알 것도 같다
+    - 예시
+        
+        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%203.png)
+        
+    - ImageNet-C : 이미지당 다양한 Augmentation이 적용된 이미지셋
+    - 예시
+        
+        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%204.png)
+        
+    - Stylized ImageNet :  이미지당 다양한 texture를 입한 데이터셋
+    - 예시
+        
+        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%205.png)
+        
+
+
+
+
+
 
 ## **4. Experiment**  
 
