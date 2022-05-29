@@ -47,7 +47,7 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 ---  
 ## **Author Information**  
 
-* Author name  
+* Seungyoon Choi  
     * Affiliation  
     * Research Topic
 
