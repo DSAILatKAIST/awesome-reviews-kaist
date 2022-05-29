@@ -24,8 +24,9 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
     - 여전히 Transformer가 OOD에 강건함을 발견했고 이는 pre-training이 없어도 가능했다. Ablation study에서 self-attention이 이런 현상의 이유임을 발견했다
 
 <aside>
+```
 💡  이 연구가 다른 Architecture끼리의 강건성을 비교하는 표준이 되길 바란다고 저자는 밝히고 있습니다
-
+```
 </aside>
 
 
