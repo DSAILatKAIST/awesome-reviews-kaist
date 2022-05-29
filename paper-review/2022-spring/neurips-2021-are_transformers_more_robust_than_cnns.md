@@ -54,34 +54,35 @@ description : Y Bai et al., / Are Transformers More Robust Than CNNs? / Neurips-
 
 ## 3.2 Robustness Evaluations
 
-- Adversarial Attack
+### Adversarial Attack
     - PGD(Projected Gradient Descent) : 사람은 확인하기 어렵지만 기계를 속일 수 있는 섭동
     - TPA : texture가 있는 patch를 붙여 네트워크를 속이는 attack
     - 예시
         
-        ### PGD
+        #### PGD
         
-        ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled.png)
+        ![Untitled](https://erratic-tailor-f01.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F42d2c8ef-1b52-4718-a081-9f6d2426de53%2FUntitled.png?table=block&id=c8d0616a-d5f1-492b-8c77-a31b94d5b362&spaceId=ad2a71b5-1b0d-4734-bbc4-60a807442e5d&width=2000&userId=&cache=v2)
         
-        ### TPA
+        #### TPA
         
         ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%201.png)
         
         ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%202.png)
         
-- OOD : 논문과 PaperWithCode에 있는 설명이 조금 다른데 PWC를 기준으로 적었다
+### OOD 
+- 논문과 PaperWithCode에 있는 설명이 조금 다른데 PWC를 기준으로 적었다
     - ImageNet-A : ResNet model이 강한 확신으로 틀린 이미지셋. 기계학습 모델이 어려워하는 즉 학습 분포랑은 좀 다른 이미지들의 모임이다. 실제 이미지를 보면 왜 그런 틀린 답을 냈는지 알 것도 같다
-    - 예시
+    - ImageNet-A 예시
         
         ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%203.png)
         
     - ImageNet-C : 이미지당 다양한 Augmentation이 적용된 이미지셋
-    - 예시
+    - ImageNet-C 예시
         
         ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%204.png)
         
     - Stylized ImageNet :  이미지당 다양한 texture를 입한 데이터셋
-    - 예시
+    - Stylized ImageNet 예시
         
         ![Untitled](%5BPresentation%5DAre%20Transformers%20More%20Robust%20Than%20CN%20c8d0616ad5f1492b8c77a31b94d5b362/Untitled%205.png)
         
