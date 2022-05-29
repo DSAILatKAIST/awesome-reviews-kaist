@@ -48,8 +48,8 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 ## **Author Information**  
 
 * Seungyoon Choi  
-    * Affiliation  
-    * Research Topic
+    * Affiliation : [DSAIL@KAIST](dsail.kaist.ac.kr)
+    * Research Topic : GNN, Continual Learning, Active Learning
 
 ## **6. Reference & Additional materials**  
 
