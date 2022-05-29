@@ -30,25 +30,25 @@ description : Jiaxuan You / Position-aware Graph Neural Networks / ICML(2019)
 ## **2. Motivation**  
 
 기존 GNN은 노드들이 symmetric이나 isomorphic한 position에 있는 경우 이 두 노드들을 구분할 수 없다는 문제점이 있다. 
-<img width="410" alt="image" src="https://user-images.githubusercontent.com/37684658/170819612-0958ee85-f6f8-4b64-b188-3b85b5fc1545.png">  
+<img width="410" alt="기존 GNN의 문제점" src="https://user-images.githubusercontent.com/37684658/170819612-0958ee85-f6f8-4b64-b188-3b85b5fc1545.png">  
 이 문제를 다루기 위해서 heuristic한 방법을 쓰기도 하는데, 각 노드들마다 unique identifier를 할당시켜주거나, ![image](https://user-images.githubusercontent.com/37684658/170819647-485151fa-8061-4b9f-b6db-55fd2b8c07a1.png)와 같이 position의 기준이 되는 identifier를 정해준 뒤, transductive하게 그래프를 사전학습시키는 방법이 있다. 허나 이러한 방법들은 모두 scalable하지 못하고, 처음보는 그래프에 대해서는 기존에 정해두었던 identifier를 활용할 수가 없기 때문에 general하지 못한 단점이 있다.  
 따라서 PGNN은 기존의 Structure-aware GNN의 장점을 그대로 가져가면서 positional 정보도 함께 임베딩하는 것을 목표로 한다.  
 
 
 ## **3. Method**  
 ### **Architecture**
-<img width="967" alt="image" src="https://user-images.githubusercontent.com/37684658/170822199-7e47b798-1689-41b6-b33d-95b2d637f4ac.png">  
+<img width="967" alt="Architecture of PGNNs" src="https://user-images.githubusercontent.com/37684658/170822199-7e47b798-1689-41b6-b33d-95b2d637f4ac.png">  
 
 PGNN의 전체 Architecture는 위와 같다. 먼저 k개의 anchor-set를 만들고, 각각에 anchor-set에 노드들을 할당한다. k는 어떻게 정해지는 지, 그리고 노드들의 할당은 어떻게하는 지는 후술하도록 하겠다. 그리고 각 노드에 대해서 임베딩을 하게 되는데 ![image](https://user-images.githubusercontent.com/37684658/170822684-b5717bf9-9e2b-48a9-90ab-17c2324c0d01.png)
 을 임베딩한다고 하면, ![image](https://user-images.githubusercontent.com/37684658/170822709-5f73d420-153c-4511-8672-9c1cc212898d.png)
 과 나머지 노드들에 대해서 짝을 짓고, 각 anchor-set에 속하는 노드들의 정보만 모아서 anchor-set 개수만큼의 메시지를 만든다. 그 후 총 2개의 output이 나오게 된다.  
 
-<img width="956" alt="image" src="https://user-images.githubusercontent.com/37684658/170822445-64e09402-036a-464a-9727-3f3c48aba3d8.png">
+<img width="956" alt="2 outputs of PGNNs" src="https://user-images.githubusercontent.com/37684658/170822445-64e09402-036a-464a-9727-3f3c48aba3d8.png">
 
 하나는 anchor-set 위치에 대해서 invariant한 임베딩(![image](https://user-images.githubusercontent.com/37684658/170822395-db11b231-e74a-4c55-b077-0a71bca158d6.png))이 나오게되고, 나머지 하나는 최종적으로 우리가 task를 수행하는 데 필요한 임베딩(![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png))이 나온다.  
 이렇게 2개의 output을 둔 이유는, 모델의 expressive power를 높이려면 layer를 여러 개 쌓는 것이 필요한데, 최종 output인 ![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png)는 다음 layer에 전달을 줄 수가 없기 때문이다. 그 이유는 anchor-sets는 한 사이클이 돌 때 마다 다시 뽑히게 되는데, ![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png)가 담고 있는 정보들은 이전 layer에서 뽑힌 anchor-set에 대해서 relative한 정보를 담고 있기 때문에, 다음 layer에서는 쓸 수 없는 정보이다. 그렇기 때문에 multi-layer를 쌓기 위해서, 각 set에서 나온 메시지들을 mean aggregation을 통해 set들에 대해 invariant한 output을 만들고, 이를 다음 layer로 전달하게 된다. 결국 ![image](https://user-images.githubusercontent.com/37684658/170822395-db11b231-e74a-4c55-b077-0a71bca158d6.png)임베딩은 multi-layer 학습을 할 때만 쓰이고, 마지막 output인 ![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png)는 마지막 layer에서 뽑힌 anchor-set를 기준으로 positional한 정보를 담고있는 임베딩이 된다. 
 
-<img width="267" alt="image" src="https://user-images.githubusercontent.com/37684658/170823846-fe1973a8-58fd-43c7-81d3-69aa63623740.png">
+<img width="267" alt="output z" src="https://user-images.githubusercontent.com/37684658/170823846-fe1973a8-58fd-43c7-81d3-69aa63623740.png">
 
 ![image](https://user-images.githubusercontent.com/37684658/170822432-2038c757-5a53-4f17-8504-b7d55ffb3536.png)의 dimension은 anchor-set의 개수만큼 나오고, 각각의 dimension은 그 anchor-set와의 distance 정보를 담고 있다.
 
@@ -69,7 +69,7 @@ distortion이란 한 metric space에서 다른 metric space로 임베딩하는 f
 > **Theorem 2 : Constructive Proof of Bourgain Theorem**  
 > For metric space ![image](https://user-images.githubusercontent.com/37684658/170824750-ac77dbd4-86a4-4aa0-abb9-fd346df069f1.png), given ![image](https://user-images.githubusercontent.com/37684658/170824758-0c382bd9-5a8f-4d96-a4b5-1733b049c9dc.png) random sets ![image](https://user-images.githubusercontent.com/37684658/170824812-c727e351-dacf-474e-b033-00be49f9b3f3.png)
  where ![image](https://user-images.githubusercontent.com/37684658/170824824-c1fdf4a8-d7f3-4e70-92da-056c7fd0d68b.png)is constant, ![image](https://user-images.githubusercontent.com/37684658/170824847-7d16abcf-1d93-4a86-be88-c7de8f57181d.png)is chosen by including each point in ![image](https://user-images.githubusercontent.com/37684658/170824869-9764bd98-b340-4b53-9861-f282708b42ac.png) independently with probability ![image](https://user-images.githubusercontent.com/37684658/170824909-83c099a0-f195-4a4d-a0cd-e3f8852fde5b.png). An embedding method for ![image](https://user-images.githubusercontent.com/37684658/170824923-f11cc4a1-6e80-4aa4-9bb2-f5917c02809e.png) is defined as :  
- <img width="497" alt="image" src="https://user-images.githubusercontent.com/37684658/170824938-35c04510-bb6d-4c4e-bc51-cb3418dc933b.png">  
+ <img width="497" alt="theorem 2" src="https://user-images.githubusercontent.com/37684658/170824938-35c04510-bb6d-4c4e-bc51-cb3418dc933b.png">  
  
 > where ![image](https://user-images.githubusercontent.com/37684658/170825009-584c9d6d-27c3-4d7a-ae33-03cf73ccfa23.png). Then ![image](https://user-images.githubusercontent.com/37684658/170825016-a7f4b139-f85b-442c-986d-9f271f94ac16.png) is an embedding method that satisfies Theorem 1.  
 
@@ -79,7 +79,7 @@ distortion이란 한 metric space에서 다른 metric space로 임베딩하는 f
 
 ![image](https://user-images.githubusercontent.com/37684658/170872392-1e1221ad-7c67-487b-9c0a-a58f4661cac7.png) 인 경우, ![image](https://user-images.githubusercontent.com/37684658/170872432-ac81bf52-4ec6-4928-a142-b36d55423dd3.png) 이다. 즉, ![image](https://user-images.githubusercontent.com/37684658/170872591-c6bb5f81-ce0a-4176-99a2-3b4e7f535b3b.png) 는 각각 (1,2), (1,2,3,4)의 경우의 수로 존재할 수 있는데 따라서 총 ![image](https://user-images.githubusercontent.com/37684658/170872630-98f0b352-362a-4382-a08e-e8074402f2c2.png)개의 anchor-set를 생성하게 된다. 각각의 anchor-set에 노드를 할당하는 경우, 그래프의 모든 노드에 대해서 해당 anchor-set 속할 확률은 ![image](https://user-images.githubusercontent.com/37684658/170872705-1b278f8f-9825-4392-a822-c03710417591.png) 이므로, ![image](https://user-images.githubusercontent.com/37684658/170872720-6f02f09e-ca1c-4867-abb4-7e57bfb4f971.png) 인 set는 50%의 확률로 할당하고, ![image](https://user-images.githubusercontent.com/37684658/170872747-ae48fc12-f21e-4ff0-92b4-0d651ca7166b.png)ㅇ
 ![image](https://user-images.githubusercontent.com/37684658/170872392-1e1221ad-7c67-487b-9c0a-a58f4661cac7.png) 인 경우, ![image](https://user-images.githubusercontent.com/37684658/170872432-ac81bf52-4ec6-4928-a142-b36d55423dd3.png) 이다. 즉, ![image](https://user-images.githubusercontent.com/37684658/170872591-c6bb5f81-ce0a-4176-99a2-3b4e7f535b3b.png) 는 각각 (1,2), (1,2,3,4)의 경우의 수로 존재할 수 있는데 따라서 총 ![image](https://user-images.githubusercontent.com/37684658/170872630-98f0b352-362a-4382-a08e-e8074402f2c2.png)개의 anchor-set를 생성하게 된다. 각각의 anchor-set에 노드를 할당하는 경우, 그래프의 모든 노드에 대해서 해당 anchor-set 속할 확률은 ![image](https://user-images.githubusercontent.com/37684658/170872705-1b278f8f-9825-4392-a822-c03710417591.png) 이므로, ![image](https://user-images.githubusercontent.com/37684658/170872720-6f02f09e-ca1c-4867-abb4-7e57bfb4f971.png) 인 set는 50%의 확률로 할당하고, ![image](https://user-images.githubusercontent.com/37684658/170872772-72c604ed-6b91-4e98-bf07-150de6e6a869.png) 인 set는 25% 확률로 할당을 하게 된다.  
-![image](https://user-images.githubusercontent.com/37684658/170872820-2a071891-504c-481b-8cc1-a26cb7e53bcd.png)  
+![Probability of node assignments](https://user-images.githubusercontent.com/37684658/170872820-2a071891-504c-481b-8cc1-a26cb7e53bcd.png)  
 
 이런식으로 할당을 하게 되면, anchor-set의 사이즈가 exponential하게 다양하게 만들어진다. 즉, 노드가 적게 포함된 set와, 많이 포함되는 set가 다양하게 만들어지게 된다. 노드가 적게 포함된 set는 position을 특정하기에 좋은 정보를 주지만, 애초에 어떤 노드를 포함시킬 확률이 낮기 때문에, 만약에 그 노드를 anchor-set에 포함시키지 못하게 된다면, 그 노드의 정보 자체를 반영하지 못한다는 단점이 있다. 이에 반해, 노드가 많은 set는 각 노드들이 포함될 확률이 높기 때문에 위와 같이 노드를 놓쳐서 정보를 반영하지 못하는 문제는 없지만, 포함된 노드가 너무 많으면 position을 특정하기 어렵다는 문제가 있다. 그렇기 때문에 여러가지 사이즈의 anchor-set를 사용함으로써 위 2가지 케이스의 trade-off를 균형있게 맞출 수 있다고 보면 된다. 
 
@@ -87,14 +87,14 @@ distortion이란 한 metric space에서 다른 metric space로 임베딩하는 f
 위와 같이 Bourgain Theorem을 만족시키는 함수를 generalization한 것이 PGNN이며, Bourgain Theorem 1의 식에 포함된 distance metric d를 message computation하는 function ![image](https://user-images.githubusercontent.com/37684658/170873366-f653b910-ad32-45f0-b6fc-850f6bf3cfb8.png) 와 aggregation function 
 ![image](https://user-images.githubusercontent.com/37684658/170873433-2851c872-6905-45d2-a32c-4050bdcfc9f1.png) 을 정의했다. 
 
-![image](https://user-images.githubusercontent.com/37684658/170873752-295d82d9-4ecf-403e-a600-1a2e14526f9e.png)
+![Embedding computation for node v](https://user-images.githubusercontent.com/37684658/170873752-295d82d9-4ecf-403e-a600-1a2e14526f9e.png)
 
 > **Message Passing Function, F**  
 
-![image](https://user-images.githubusercontent.com/37684658/170873528-7b9d0de1-e484-41ba-a421-d410bce69c73.png)  
+![Message Passing Function, F](https://user-images.githubusercontent.com/37684658/170873528-7b9d0de1-e484-41ba-a421-d410bce69c73.png)  
 Position 정보를 담는 빨간 박스 부분과, 기존의 일반적인 message passing을 할 때 쓰이는 feature를 전달하는 부분이 있다. 여기서 두 노드들의 feature를 concat하여 전달하게 된다.  
 
-![image](https://user-images.githubusercontent.com/37684658/170873614-727738b8-16fa-4273-9590-187a4ea14535.png)  
+![distance functions](https://user-images.githubusercontent.com/37684658/170873614-727738b8-16fa-4273-9590-187a4ea14535.png)  
 function s는 q-hop내의 노드들에 대해서 shortest path distance를 구하는 함수이다.  
 
 > **Aggregation function, AGG**  
@@ -102,7 +102,7 @@ function s는 q-hop내의 노드들에 대해서 shortest path distance를 구�
 Aggregation function은 anchor-set 위치에 대해서 invariant한 성질을 줄 수 있는 MEAN, MIN, MAX, SUM 등을 사용할 수 있는데, 여기서는 MEAN을 사용하였다.   
 
 ### **Summary**  
-<img width="967" alt="image" src="https://user-images.githubusercontent.com/37684658/170822199-7e47b798-1689-41b6-b33d-95b2d637f4ac.png">  
+<img width="967" alt="Architecture" src="https://user-images.githubusercontent.com/37684658/170822199-7e47b798-1689-41b6-b33d-95b2d637f4ac.png">  
 
 
 다시 정리하면, 2 layer라고 가정했을 때 최종 output을 생성하는 과정은 다음과 같다.  
@@ -153,13 +153,13 @@ neighbor structure를 가지고 있는 두 노드들을 구분할 수 있는 지
 ### **Result**  
 > **Link Prediction**  
 
-![image](https://user-images.githubusercontent.com/37684658/170875982-50cdd0b8-a104-4341-8ab2-f03a604480d0.png)  
+![Result of Link prediction](https://user-images.githubusercontent.com/37684658/170875982-50cdd0b8-a104-4341-8ab2-f03a604480d0.png)  
 
 위 실험에서, 노드 feature가 없는 데이터셋에 대해서는 feature가 있는 PPI 데이터셋보다 성능이 굉장히 높은 것을 확인할 수 있다. 하지만 PPI의 경우에는 성능이 기존 모델들에 비해서 겨우 좋은 성능을 보이고 있다. 이에 대해서 feature가 어느 정도 높은 dimension을 가지고 있는 경우에는 노드 feature 자체가 position의 정보를 어느 정도 대체할 수 있지 않은 지 생각해볼 수 있다. 본 논문에서 노드 feature가 position의 정보를 얼만큼 담고 있는지에 대한 future work도 함께 던지고 있다.  
 
 > **Node Classification**  
 
-![image](https://user-images.githubusercontent.com/37684658/170876021-5802571d-c4b5-4629-9acf-4ae56c076ffd.png)
+![Result of Node prediction](https://user-images.githubusercontent.com/37684658/170876021-5802571d-c4b5-4629-9acf-4ae56c076ffd.png)
 
 위 실험에서도 노드 feature가 없는 데이터셋에 대해서는 성능이 좋은 모습을 보이고 있다. Protein 데이터셋에서도 29 dimension의 노드 feature가 있음에도, position을 함께 반영하는 것이 더 좋은 성능을 보이고 있다. 하지만 본 실험만 봐서는 노드 feature가 있는 데이터셋들에 대해서 position이 과연 얼마나 더 좋은 영향을 미치고 있는가를 파악하기 어려운 점이 있다. 이에 대해서 노드 feature가 있는 데이터셋을 dimension에 따라 더 많이 실험을 해줬으면 어땠을까라는 생각이 든다.  
 
