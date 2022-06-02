@@ -24,7 +24,7 @@ description: >-
 ## 2) Axiomatic Attributions
 
 본 논문의 motivation이 된 [Axiomatic Attributions for Neural Networks (2017)](https://arxiv.org/abs/1703.01365)의 저자는 좋은 Attribution method가 가져야할 6가지 공리를 정의하고, 이를 모두 만족하는 Integrated Gradient(IG)를 제시했다.\
-![Axioms](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/Axioms.png)\
+![Axioms](../../.gitbook/2022-spring-assets/junghurnkim\_1/Axioms.png)\
 다양한 이유로 위의 성질을 모두 만족하는 기존의 Attribution 방법은 없으며, IG는 Gradient Saturation Effect를 해결함으로서 위의 성질을 모두 만족한다고 설명한다.
 
 Gradient Saturation Effect란.\
@@ -34,7 +34,7 @@ Gradient Saturation Effect란.\
 (이하 그림에 대한 설명은 저자의 자세한 설명을 구할 수 없어서 주관적인 해석이 포함되어 있음)
 
 * 첫번째 줄은 실제 input image의 픽셀값을 0에서 조금씩 증가시키는 과정이고,
-* 두번째 줄은 이에 따른 각 픽셀의 gradient 값을 강조해 보여준 결과이다 ![Gradient\_Saturation\_Effect 설명](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/Gradient\_Saturation\_Effect.png)
+* 두번째 줄은 이에 따른 각 픽셀의 gradient 값을 강조해 보여준 결과이다 ![Gradient\_Saturation\_Effect 설명](../../.gitbook/2022-spring-assets/junghurnkim\_1/Gradient\_Saturation\_Effect.png)
 
 왼쪽에서 오른쪽으로 갈수록 사진의 밝기가 밝아지는 양상인데, 사람의 눈으로 볼때는 밝기만 다른 비슷한 사진으로 보이지만 학습결과는 다르게 나타난다. 스코어가 급격히 증가한 구간(interesting gradient)에서는 fireboat와 관련된 물줄기 부분이 잘 강조되어 보이는 반면, 유의미한 증가값이 없는 구간(Uninteresting gradient)에서는 fireboat와 관련이 없는 부분이 강조되어 있다.
 
@@ -44,11 +44,11 @@ Gradient Saturation Effect란.\
 
 위의 논문에서 소개된 위에 언급된 6가지 axiom을 모두 만족하는 방법이다. Gradient Saturation Effect를 해결하기 위해 \[baseline, input feature] 직선 이동경로 구간에서 누적 gradient를 계산한다. 즉, baseline에서 원래의 input 값으로 각 픽셀의 값을 linear하게 증가시키면서 누적된 gradient값을 Attribution score로 사용하는 방법이다.
 
-수식으로는 다음과 같다. ![IG 수식](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/IG\_math.png)\
+수식으로는 다음과 같다. ![IG 수식](../../.gitbook/2022-spring-assets/junghurnkim\_1/IG\_math.png)\
 x와 x'은 각각 input과 baseline을 의미하며, 대부분의 image task에서는 baseline으로 black image를 사용한다.\
 
 
-일반적으로 위의 수식의 input 변화값에 대한 모든 값을 적분하기에는 오버헤드가 심하기 때문에 실제 구현은 적분에 대한 리만근사값을 사용하는 것으로 대체한다. ![IG 근사 수식](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/IG\_math\_approximation.png)\
+일반적으로 위의 수식의 input 변화값에 대한 모든 값을 적분하기에는 오버헤드가 심하기 때문에 실제 구현은 적분에 대한 리만근사값을 사용하는 것으로 대체한다. ![IG 근사 수식](../../.gitbook/2022-spring-assets/junghurnkim\_1/IG\_math\_approximation.png)\
 m은 스텝사이즈(적분근사범위)를 의미하고, 실험적으로 20\~300 사이로 선택할 수 있다고 논문에 제시되어 있다.
 
 ## **2. Motivation : Efficient Attribution Method**
@@ -61,13 +61,13 @@ m은 스텝사이즈(적분근사범위)를 의미하고, 실험적으로 20\~30
 ## **1) Convergence of Integrated Gradients**
 
 아래는 논문의 appendix에 첨부된 IG(step=300)와 IG(각 step size)를 비교해놓은 그림이다. step=300을 기준으로 했을때 어느정도 합리적인(300일때의 성능으로 수렴하는) step의 크기는 100을 넘어가는 것을 확인 할 수 있다.\
-![IG costs 설명](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/IG\_costs.png)\
+![IG costs 설명](../../.gitbook/2022-spring-assets/junghurnkim\_1/IG\_costs.png)\
 따라서 저자는 기존의 IG는 최소 100회 이상의 gradient를 계산해야하는 효율적이지 않은 방법이라고 주장한다.
 
 ## **2) Attribution Priors**
 
 저자는 Attribution method의 효율성을 개선해야 하는 또 다른 이유로 Attribution Priors를 소개한다.\
-![Attribution priors 수식](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/Attribution\_priors.png)\
+![Attribution priors 수식](../../.gitbook/2022-spring-assets/junghurnkim\_1/Attribution\_priors.png)\
 Attribution Priors는 domain knowledge를 인코딩하는 방법중에 하나로, 일반적인 loss 뒤에 feature attribution _A_의 가중치를 조절하는 조건을 추가함으로서 원치 않는 feature에 패널티를 주고 모델이 bias 되는 경향을 줄여주는 방법이다. 이 방법은 모델을 컨트롤 하는 목적으로 학습 중간에 개입하기 때문에, Attribution을 계산하는 연산속도는 모델의 학습속도에 직접적인 영향을 줄 수 있다. 이 외에도 Attribution은 다양한 방법으로 모델의 구성요소가 될 수 있을 것이다.
 
 ## **3. Method**
@@ -81,7 +81,7 @@ $$F(\alpha x) = \alpha^k F(x)$$, ($$\alpha > 0$$) 를 만족하는 함수 $$F$$�
 
 | Positive homogeneous                                                                                              |
 | ----------------------------------------------------------------------------------------------------------------- |
-| ![positive homoegeneous](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/positive\_homoegeneous.png) |
+| ![positive homoegeneous](../../.gitbook/2022-spring-assets/junghurnkim\_1/positive\_homoegeneous.png) |
 
 (2)번식은 IG정의에 의해서 모든 수식이 명백하게 이해가 가는 부분이지만, (3)식의 경우 왜 $$\beta$$를 0으로 보내는 식을 썼는지 정확한 이유는 알 수 없다. 다만 (2)번식 적분의 시작이 0인 것은 IG정의에서 비롯된 값임을 고려했을 때, (3)번식의 적분의 시작이 0인 것 은 우리가 baseline을 0으로 설정한 부분이기 때문에 이 점을 강조하기 위함이 아닐까 추측한다.
 
@@ -89,7 +89,7 @@ $$F(\alpha x) = \alpha^k F(x)$$, ($$\alpha > 0$$) 를 만족하는 함수 $$F$$�
 
 | Nonnegative homogeneous                                                                                               |
 | --------------------------------------------------------------------------------------------------------------------- |
-| ![nonnegative homogeneous](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/nonnegative\_homogeneous.png) |
+| ![nonnegative homogeneous](../../.gitbook/2022-spring-assets/junghurnkim\_1/nonnegative\_homogeneous.png) |
 
 한가지 본 논문의 흐름에서 어색한 점은 X-DNN을 정의하는 이 부분부터는 homogeneous degree가 1인 DNN만 다루고 있다는 것이다. Integrated Gradient와 InputXGradient의 동일성은 이미 다른 연구에서 증명된 내용이지만, 저자는 homogeneous degree가 1보다 큰 경우에 대해서도 동일함을 보여주었기 때문에 본 논문이 novelty를 가진다고 설명한다.
 
@@ -105,7 +105,7 @@ $$F(\alpha x) = \alpha^k F(x)$$, ($$\alpha > 0$$) 를 만족하는 함수 $$F$$�
 
 ## **1) Removing the bias term in DNNs**
 
-![regular X-DNN 비교](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/regular\_x\_dnn.png)\
+![regular X-DNN 비교](../../.gitbook/2022-spring-assets/junghurnkim\_1/regular\_x\_dnn.png)\
 X-DNN을 구성할때 bias term을 제거할 경우 DNN 성능이 떨어질 수 있기 때문에 저자는 이에 대한 정당성을 먼저 제시한다. X-DNN의 경우 Top5 accuracy의 경우 1퍼센트 미만의 조금의 성능을 희생하고 IG와 Input×Gradient의 차이는 거의 없음을 보여주기 때문에 이점이 있다고 주장한다.
 
 ## **2) gradient-based attribution method**
@@ -138,7 +138,7 @@ X-DNN을 구성할때 bias term을 제거할 경우 DNN 성능이 떨어질 수 
 
 ### **Result**
 
-![Attribution method 실험결과](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/experimental\_result.png)\
+![Attribution method 실험결과](../../.gitbook/2022-spring-assets/junghurnkim\_1/experimental\_result.png)\
 제시된 gradient 방법들중 IG와 XG만 앞서 motivation에서 제시된 Axiom을 만족하기 때문에, 실험결과에서도 뛰어난 Attribution 성능을 보여주는 것을 확인할 수 있다. 저자는 그 중에서도 XG는 단 한번의 역전파된 gradient만으로 IG 만큼의 Attribution 성능을 보여주고 있다고 강조한다.
 
 ## **3) Training with attribution priors**
@@ -153,7 +153,7 @@ X-DNN을 구성할때 bias term을 제거할 경우 DNN 성능이 떨어질 수 
 | Unreg    | Unregularized model         | attribution priors loss에서 regularize term을 제거한 baseline |
 | RRR      | Right for the Right Reasons | log prediction에 대한 gradient를 사용                         |
 
-![Attribution prior 실험결과](../../2022-Spring/.gitbook/2022-spring-assets/junghurnkim\_1/experimental\_result2.png)\
+![Attribution prior 실험결과](../../.gitbook/2022-spring-assets/junghurnkim\_1/experimental\_result2.png)\
 한번의 gradient를 사용하는 다른 모델과 비교했을 때 월등히 좋은 성능을 보여준다.\
 (IG는 오래걸리기 때문에 Attribution Prior 모델에 적용할 수 없다는 단점이 있다.)
 
@@ -175,14 +175,10 @@ Limitation
 
 ## **Author Information**
 
-* Robin Hesse
-  * PhD Technical University of Darmstadt
-  * Intern : Amazon, Fraunhofer Institute for Computer Graphics Research
-  * Robust and explainable deep learning methods
-  * https://visinf.github.io/fast-axiomatic-attribution/
-  * https://github.com/visinf/fast-axiomatic-attribution
+* 김정헌(JUNGHURN KIM): Master student, KSE, KAIST
 
 ## **6. Reference & Additional materials**
-
+* https://visinf.github.io/fast-axiomatic-attribution/
+* https://github.com/visinf/fast-axiomatic-attribution
 * Integrated Gradient github https://github.com/ankurtaly/Integrated-Gradients
 * Expected Gradient https://arxiv.org/abs/1906.10670
