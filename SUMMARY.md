@@ -7,6 +7,7 @@
 * [\[2022 Spring\] Paper Review](paper-review/2022-spring-paper-review/README.md)
   * [Template](paper-review/2022-spring/template.md)
   * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
+  * [continuous_alertness_assessments](paper-review/2022-spring/chi-2019-continuous_alertness_assessments.md)
   * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
   * [Latent ODEs](paper-review/2022-spring/NeurIPS-2020-LatentODE.md)
   * [G-Meta](paper-review/2022-spring/NeurIPS-2020-G-Meta.md)
