@@ -1,10 +1,12 @@
 ---
-description : 1st author / title / conference-year(description)  
+description : Tag et al. / Continuous Alertness Assessments; Using EOG Glasses to Unobtrusively Monitor Fatigue Levels In-The-Wild / CHI-2019 conference-year
 ---
 
-# **Title** 
+# **Continuous Alertness Assessments** 
 
-Title of paper that you are going to write  
+[소개할 연구](https://doi.org/10.1145/3290605.3300694)는 2019년에 CHI (Conference on Human Factors in Computing Systems)에서 발표되었으며,  
+~~을 소개하고자 합니다.  
+_keyword: Cognition-Aware Systems, Circadian Computing, Fatigue, Eye Blink, Electrooculography_
 
 ## **1. Problem Definition**  
 
