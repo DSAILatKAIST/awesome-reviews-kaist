@@ -41,7 +41,7 @@ Recent self-supervised representation learning techniques have largely closed th
 
 As a result, the authors set out to investigate contrastive self-supervised learning on four different large-scale datasets (INat21, ImageNet, Places365, and GLC20) in order to address the aforementioned problem. 
 
-> By looking through the lenses of data quantity, data domain, data quality, and task granularity, the authors **provide new insights into the necessary conditions for successful self-supervised learning.**
+> **By looking through the lenses of data quantity, data domain, data quality, and task granularity, the authors provide new insights into the necessary conditions for successful self-supervised learning**
 > 
 
 Their key findings include observations such as:
@@ -91,27 +91,29 @@ The authors tested in the same configurations as SimCLR V2 for pretraining and e
 
 The gap between the 500k (blue) and 1M (orange) pretraining image curves are typically less than 1-2% in top-1 accuracy. This means for a dataset with one million images, we can **trade a small decrease in accuracy for a 50% decrease in pretraining time.**
 
-> SimCLR seems to saturate well before we get to ImageNet-sized pretraining sets
+> **SimCLR seems to saturate well before we get to ImageNet-sized pretraining sets**
 > 
-1. **Self-supervised pretraining can be a good initializer when there is limited supervision available**
+
+2. **Self-supervised pretraining can be a good initializer when there is limited supervision available**
 
 <p align="center">
-  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_2/linear_vs_finetuning.png"
+  <img width="1000" src="../../.gitbook/2022-spring-assets/BryanWong_2/linear_vs_finetuning.png"
 </p>
 <p align="center">Figure 3: Linear Evaluation and Fine-Tuning across several datasets</p>
 
 In the bottom row of figure 3, we can see that when only 10k or 50k labelled images are available, **fine-tuning a SimCLR representation is significantly better than training from scratch.**
 
-> When supervision is plentiful, fine-tuned SimCLR representation achieves performance similar to supervised training from scratch
+> **When supervision is plentiful, fine-tuned SimCLR representation achieves performance similar to supervised training from scratch**
 > 
-1. **Self-supervised representations can approach fully supervised performance for some datasets, but only by using lots of labelled images**
+
+3. **Self-supervised representations can approach fully supervised performance for some datasets, but only by using lots of labelled images**
 
 The ultimate goal of SSL is to match supervised performance without the need for large amounts of labelled data. In figure 3, the gap between SimCLR (pretrained on 1M images) and “good” supervised performance is quite large unless well over 100k labelled images are used.
 
-> Although SSL works well when lots of supervision is available, further innovation is needed to improve the utility of self-supervised representations in the low-to-moderate supervision regime
+> **Although SSL works well when lots of supervision is available, further innovation is needed to improve the utility of self-supervised representations in the low-to-moderate supervision regime**
 > 
 
-1. **INat21 is a valuable SSL benchmark**
+4. **INat21 is a valuable SSL benchmark**
 
 Figure 3 shows a surprisingly large gap (~30%) between supervised and self-supervised performance on iNat21 in the high supervision regime.
 
@@ -122,7 +124,7 @@ Figure 3 shows a surprisingly large gap (~30%) between supervised and self-super
 
 The newer BYOL outperforms MoCo and SimCLR, but a considerable gap (~25%) remains.
 
-> It seems that INat21 reveals challenges for SSL that are not apparent in ImageNet and it can be a valuable benchmark for future SSL research
+> **It seems that INat21 reveals challenges for SSL that are not apparent in ImageNet and it can be a valuable benchmark for future SSL research**
 > 
 
 ### 4.2 Data Domain
@@ -136,9 +138,10 @@ The newer BYOL outperforms MoCo and SimCLR, but a considerable gap (~25%) remain
 
 In table 1, we see that **in-domain pretraining (diagonal entries) consistently beats cross-domain pretraining (off-diagonal entries)**. It also shows that **training SimCLR on ImageNet leads to the best cross-domain performance**, while GLC20 leads to the worst cross-domain performance
 
-> The strong cross-domain performance of SimCLR pre-trained on ImageNet may be due to semantic similarity because there are classes in ImageNet that are similar to classes in other datasets
+> **The strong cross-domain performance of SimCLR pre-trained on ImageNet may be due to semantic similarity because there are classes in ImageNet that are similar to classes in other datasets**
 > 
-1. **Adding cross-domain pretraining data does not necessarily lead to more general representations**
+
+2. **Adding cross-domain pretraining data does not necessarily lead to more general representations**
 
 <p align="center">
   <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_2/dataset_pooling.png"
@@ -147,16 +150,16 @@ In table 1, we see that **in-domain pretraining (diagonal entries) consistently 
 
 If we compare the “In-Domain (500k)” row against the (equally sized) pooled datasets in the first rows of table 2, we see that the **in-domain pretraining is always better** on 500k.
 
-> The more diverse pooled pretraining sets always lead to worse performance compared to the more homogeneous pretraining sets of the same size
+> **The more diverse pooled pretraining sets always lead to worse performance compared to the more homogeneous pretraining sets of the same size**
 > 
 
 They hypothesized that the reason for this performance is that diverse images are easier to tell apart, which makes the contrastive pretext task easier → the quality of the representation will suffer
 
-1. **Self-supervised representations can be largely redundant**
+3. **Self-supervised representations can be largely redundant**
 
 Combining ImageNet SimCLR and iNat21 SimCLR is worse than ImageNet SimCLR alone on ImageNet (-0.6%), but better than iNat21 SimCLR alone on iNat21 (+1.4%).
 
-> This suggests that the two self-supervised representations are largely redundant
+> **This suggests that the two self-supervised representations are largely redundant**
 > 
 
 ### 4.3 Data Quality
@@ -170,39 +173,40 @@ Combining ImageNet SimCLR and iNat21 SimCLR is worse than ImageNet SimCLR alone 
 
 **Downsample (2x) and downsample (4x) are by far the most damaging corruptions for SimCLR,** reducing accuracy by around 15% and 34% respectively. Since SimCLR already involves extreme cropping, we might expect more robustness to changes in image resolution.
 
-> This finding could be partially explained by the difficulty of generalizing to higher resolution images during linear classifier training
+> **This finding could be partially explained by the difficulty of generalizing to higher resolution images during linear classifier training**
 > 
 1. **SSL is relatively robust to high-frequency noise**
 
 JPEG and Salt & Pepper both add high-frequency noise to the image. For SimCLR, **these corruptions have a much milder impact than the downsampling corruptions.**
 
-> Downsampling destroys texture information, which is known to be a particularly important signal for CNN
+> **Downsampling destroys texture information, which is known to be a particularly important signal for CNN**
 > 
 
 ### 4.4 Task Granularity
 
-1. **The performance gap between SSL and supervised learning grows as task granularity becomes finer**
+2. **The performance gap between SSL and supervised learning grows as task granularity becomes finer**
 
 <p align="center">
-  <img width="500" src="../../.gitbook/2022-spring-assets/BryanWong_2/label_granularity.png"
+  <img width="1000" src="../../.gitbook/2022-spring-assets/BryanWong_2/label_granularity.png"
 </p>
 <p align="center">Figure 6: Performance depends on Label Granularity</p>
 
 The supervised and SimCLR pretrained models perform similarly at the coarsest levels of the label hierarchy (”Kingdom”) in the iNat21 dataset. Both models perform worse as task granularity increases, but the SimCLR model degrades much more rapidly (”Species”).
 
-> SimCLR may fail to capture fine-grained semantic information as effectively as supervised pretraining
+> **SimCLR may fail to capture fine-grained semantic information as effectively as supervised pretraining**
 > 
-1. **Are the augmentations destructive?**
+
+3. **Are the augmentations destructive?**
 
 If color is a key fine-grained feature for species classification then the “color-jitter” augmentation used by SimCLR may destroy important information for iNat21 classification.  Could this explain the rapid drop in performance exhibited by iNat21 SimCLR for fine-grained classes?
 
-> Since the ImageNet-tuned augmentations are presumably not destructive for ImageNet, it does not seem likely that this fully explains their observations
+> **Since the ImageNet-tuned augmentations are presumably not destructive for ImageNet, it does not seem likely that this fully explains their observations**
 > 
 1. **Does contrastive learning have a coarse-grained bias?**
 
 They hypothesized that **contrastive loss tends to cluster images based on overall visual similarity**. The intuition is that fine-grained features are often subtle, and subtle features are unlikely to be very useful for distinguishing between pairs of images in the contrastive pretext task. 
 
-> They also hypothesized that the boundaries between different clusters would not be well-aligned with the boundaries between fine-grained classes.
+> **They also hypothesized that the boundaries between different clusters would not be well-aligned with the boundaries between fine-grained classes**
 > 
 
 ## **5. Conclusion**
