@@ -126,9 +126,32 @@ Replay할 node를 선정하는데 사용되는 3가지 방법을 소개하겠다
 각 class마다 선정하는 experience node ![](https://latex.codecogs.com/gif.latex?e)개가 적을 경우 본 방법을 사용하는 것이 효과적이다.  
 정해진 거리 안에 다른 label을 가진 node의 개수가 가장 적은, 즉, coverage가 가장 넓은 node를 사용하는 방법이다. 식으로 표현하면 아래와 같다.  
 ![Coverage_maximization](https://user-images.githubusercontent.com/89853986/171857055-2808b564-d57a-47fe-a79d-539bdde59f42.PNG)  
-![](https://latex.codecogs.com/gif.latex?%5Cleft%20%7C%20%5Cmathcal%20N%28v_i%29%20%5Cright%20%7C) 값이 가장 작은 ![](https://latex.codecogs.com/gif.latex?e)개의 node를 buffer에 추가하는 방법이다.
+그 후, ![](https://latex.codecogs.com/gif.latex?%5Cleft%20%7C%20%5Cmathcal%20N%28v_i%29%20%5Cright%20%7C) 값이 가장 작은 ![](https://latex.codecogs.com/gif.latex?e)개의 node를 buffer에 추가하는 방법이다.
 
 **3. Influence Maximization (IM)**
+
+각 task ![](https://latex.codecogs.com/gif.latex?%7B%5Cmathcal%20T%7D%20_%20i)를 학습할 때 특정 node ![](https://latex.codecogs.com/gif.latex?v_*)를 training set에서 제거한 새로운 training set을 ![](https://latex.codecogs.com/gif.latex?%5Cmathcal%20D%20_%7Bi*%7D%20%5E%7Btr%7D)이라고 하자.  
+이 때 새롭게 계산되는 optimal parameters는 아래와 같다.  
+
+![new_optimal_parameter](https://user-images.githubusercontent.com/89853986/171860164-47a38b48-1016-44ba-80b5-4054eb56aa7f.PNG)  
+그리고 이 때의 parameter change (![](https://latex.codecogs.com/gif.latex?%5Ctheta%20_*%20-%20%5Ctheta))를 관찰한다.
+
+하지만, 모든 node를 제거해가면서 optimal parameter의 변화를 관찰하는 것은 computational cost 측면에서 매우 비효율적이다.  
+
+이에, 저자는 model을 retraining하지 않고 parameter의 변화를 추정할 수 있는 **influence function**을 적용한다.  
+
+![](https://latex.codecogs.com/gif.latex?v_*)를 small ![](https://latex.codecogs.com/gif.latex?%5Cepsilon)만큼 upweight 했을 때 얻게되는 new optimal parameter는 아래와 같이 정의할 수 있다.  
+
+![epsilon_upweight](https://user-images.githubusercontent.com/89853986/171861381-5fe22588-49a0-42bd-88c4-e9019418fbd2.PNG)  
+
+그리고 이 때, ![](https://latex.codecogs.com/gif.latex?v_*)를 upweighting한 영향력(influence)는 아래와 같이 계산된다.  
+
+![upweighting_influence](https://user-images.githubusercontent.com/89853986/171862281-c04ea4f4-9f9c-4dcc-9283-94a5956de52b.PNG)  
+
+Hessian matrix는 다음과 같이 계산된다.  
+
+![hessian](https://user-images.githubusercontent.com/89853986/171862497-9a315cdd-b6d4-4c0b-9277-6cc8a17072de.PNG)
+
 
 
 
