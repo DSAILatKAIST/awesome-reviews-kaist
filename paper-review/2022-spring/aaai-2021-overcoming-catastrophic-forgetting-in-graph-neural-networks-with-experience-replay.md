@@ -152,6 +152,13 @@ Hessian matrix는 다음과 같이 계산된다.
 
 ![hessian](https://user-images.githubusercontent.com/89853986/171862497-9a315cdd-b6d4-4c0b-9277-6cc8a17072de.PNG)
 
+여기서, 다시 본론으로 돌아가 앞서 구하고자 했던 ![](https://latex.codecogs.com/gif.latex?v_*)를 제거했을 때의 optimal parameter 변화는 upweighting ![](https://latex.codecogs.com/gif.latex?%5Cepsilon)을 ![](https://latex.codecogs.com/gif.latex?%5Cepsilon%20%3D%20-%281/%28%5Cleft%20%7C%20%5Cmathcal%20D%20_i%20%5E%7Btr%7D%20%5Cright%20%7C%20&plus;%20%5Cleft%20%7C%20B%20%5Cright%20%7C%29%29)로 설정했을 때와 동일한 경우이다.  
+
+그렇다면 retraining 없이 아래와 같이 optimal parameter의 변화를 계산할 수 있다.  
+![without_retraining](https://user-images.githubusercontent.com/89853986/171863673-7f4f5691-6d8d-4692-82ad-1d0d56a7be3b.PNG)  
+
+
+
 
 
 
