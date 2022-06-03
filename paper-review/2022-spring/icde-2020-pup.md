@@ -57,7 +57,7 @@ $$p = \{ p_1, p_2, ..., p_N \},c = \{ c_1, c_2, ..., c_N \}$$ : item 의 가격/
 
 ## 3.1 Overview
 
-![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review2/Untitled.png)
+![Overall model](../../.gitbook/2022-spring-assets/KimDaehee_1/review2/Untitled.png)
 
 저자들은 모델에 세가지 특성이 있다고 이야기 하는데 간략한 요약은 다음과 같음, 아래 각 파트에서 보다 더 자세하게 다룬다.
 
@@ -119,7 +119,7 @@ $$
 
 GCN에서 영감을 받아, 이웃 노드들을 aggregate 함으로서 이웃한 노드 사이의 embedding 을 가깝게 만듦. → 논문에서는 aggregator로 average pooling에 nonlinear activation function을 사용하나, 노드 종류에 따라 다른 룰 적용
 
-![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review2/Untitled%201.png)
+![Graph structure](../../.gitbook/2022-spring-assets/KimDaehee_1/review2/Untitled%201.png)
 
 ![(category는 price 와 같음)](../../.gitbook/2022-spring-assets/KimDaehee_1/review2/Untitled%202.png)
 
@@ -203,7 +203,7 @@ $$
 
 두개의 데이터셋 사용
 
-![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review2/Untitled%204.png)
+![Dataset](../../.gitbook/2022-spring-assets/KimDaehee_1/review2/Untitled%204.png)
 
 - **Yelp** : Yelp2018 open dataset
   - 미국의 맛집 정보 사이트, interaction, price, category 존재
@@ -244,7 +244,7 @@ NCF의 setting을 사용했다고 밝힘
 
 저자들은 RQ를 따로 정의한 것은 아니나. main result table을 분석하며 이에 대한 네가지 문제를 제기하고, 이를 설명해 보임
 
-![Untitled](../../.gitbook/2022-spring-assets/KimDaehee_1/review2/Untitled%205.png)
+![Main result](../../.gitbook/2022-spring-assets/KimDaehee_1/review2/Untitled%205.png)
 
 1. **Incorporating Price into Recommendation Improves the Accuracy**
 
@@ -321,8 +321,8 @@ NCF의 setting을 사용했다고 밝힘
 # Author Information
 
 - Kim Daehee(김대희)
-- M.S student in the Graduate school of Knowledge Service Engineering of the Korea Advanced Institute of Science and Technology(KAIST)
-- Research interest is applying graph neural network to product search and recommendation
+   - M.S student in the Graduate school of Knowledge Service Engineering of the Korea Advanced Institute of Science and Technology(KAIST)
+   - Research interest is applying graph neural network to product search and recommendation
 
 # 6. Reference
 
