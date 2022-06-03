@@ -15,7 +15,7 @@ Static한 graph setting에 맞춰져 있는 현재의 Graph Neural Networks (GNN
 ## **2. Motivation**  
 
 
-### Continual Learning과 Catastrophic Forgetting
+### 2.1 Continual Learning과 Catastrophic Forgetting
 
 Graph Neural Networks (GNNs)은 많은 관심을 받고 있는 연구 분야이며, 눈에 띌만한 성장세를 보이고 있다.
 현재까지의 GNN은 static한 graph setting에 초점이 맞춰져 개발되었다. 하지만 현실에서의 setting은 graph가 고정되어 있지 않고, 새로운 node와 edge 등이 끊임없이 추가된다. 이러한 상황에서 model은 정확성을 지속적으로 유지할 수 있어야 한다. 그렇다면 이러한 setting에서 새로운 task까지 잘 해내는 모델을 학습해야 한다면 어떻게 해야할까?
@@ -37,7 +37,7 @@ Graph Neural Networks (GNNs)은 많은 관심을 받고 있는 연구 분야이�
 Catastrophic forgetting은 neural network의 더욱 general한 problem인 "stability-plasticity" dilema의 결과이다. 
 이 때, stability는 previously acquired knowledge의 보존을 의미하고, plasticity는 new knowledge를 integrate하는 능력을 의미한다. 
 
-### Limitation
+### 2.2 Limitation
 
 Graph domain에서는 continual learning에 대한 연구가 놀랍도록 얼마 없다.  
 이는 몇가지 한계점이 존재하기 때문이다.  
@@ -45,13 +45,13 @@ Graph domain에서는 continual learning에 대한 연구가 놀랍도록 얼마
 2. graphs can be irregular, noisy and exhibit more complex relations among nodes.  
 3. apart from the node feature information, the topological structure in graph plays a crucial role in addressing graph-related tasks.
 
-### Purpose
+### 2.3 Purpose
 
 1. 새로운 task를 학습할 때 이전 task에 대한 catastrophic forgetting 방지.  
 2. 새로운 task 학습을 용이하게 하기 위해 이전 task의 knowledge를 사용.  
 3. Influence function을 이용, previous task에서 영향력이 높은 node들을 buffer에 저장하여 새로운 task 학습에 함께 사용하도록 하는 **"Experience Replay GNN (ER-GNN)"** method 고안.
 
-### Contributions
+### 2.4 Contributions
 
 * Continual Graph Learning (CGL) paradigm을 제시하여 single task가 아닌 multiple consecutive task (continual) setting에서 node classification task를 수행할 수 있도록 함.
 * Continual node classification task에 기존 GNN을 적용할 때 발생하는 catastrophic forgetting 문제를 해결함.
@@ -62,6 +62,23 @@ Graph domain에서는 continual learning에 대한 연구가 놀랍도록 얼마
 
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily.  
+
+### 3.1 Problem Definition
+
+Continual Node Classification (task incremental learning) setting에서 등장하는 sequence of task의 notation은 다음과 같다.
+
+$$ \mathcal T = ( {\mathcal T}_1, {\mathcal T}_2, ..., {\mathcal T}_i, ..., {\mathcal T}_M ) $$
+
+Node classification task의 정의는 아래와 같다.
+
+#### Definition 1 (Node Classification)
+각 task ![](https://latex.codecogs.com/gif.latex?%7B%5Cmathcal%20T%7D%20_%20i) 마다 dataset이 training node set ( ![](https://latex.codecogs.com/gif.latex?%7B%5Cmathcal%20D%7D%20_%20i%20%5E%7Btr%7D) )과 testing node set (![](https://latex.codecogs.com/gif.latex?%7B%5Cmathcal%20D%7D%20_%20i%20%5E%7Bte%7D))로 나뉘어 있다.  
+Node classification task의 목적은 ![](https://latex.codecogs.com/gif.latex?%7B%5Cmathcal%20D%7D%20_%20i%20%5E%7Btr%7D) 을 사용하여 task-specific classifier를 학습시킨 후 ![](https://latex.codecogs.com/gif.latex?%7B%5Cmathcal%20D%7D%20_%20i%20%5E%7Bte%7D) 의 각 node를 알맞은 class(![](https://latex.codecogs.com/gif.latex?y_i%5El%20%5Cin%20%5Cmathcal%20Y%20_i)) 로 분류하도록 하는 것이다. (![](https://latex.codecogs.com/gif.latex?%5Cmathcal%20Y%20_i%20%3D%20%5C%7By_i%5E1%2C%20y_i%5E2%2C%20...%2C%20y_i%5El%2C%20...%2C%20y_i%5EL%20%5C%7D))
+  
+  
+### 3.2 Experience Node Replay
+
+
 
 ## **4. Experiment**  
 
