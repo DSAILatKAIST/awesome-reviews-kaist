@@ -157,7 +157,13 @@ Hessian matrix는 다음과 같이 계산된다.
 그렇다면 retraining 없이 아래와 같이 optimal parameter의 변화를 계산할 수 있다.  
 ![without_retraining](https://user-images.githubusercontent.com/89853986/171863673-7f4f5691-6d8d-4692-82ad-1d0d56a7be3b.PNG)  
 
+하지만, ![](https://latex.codecogs.com/gif.latex?%5Ctheta%20_*%20-%20%5Ctheta)의 Frobenius norm이 매우 작아 정확한 ![](https://latex.codecogs.com/gif.latex?%5Ctheta%20_%20*)을 찾기 어렵고, hessian matrix의 inverse를 구하는 것은 computationally expensive하므로 우리는 training node ![](https://latex.codecogs.com/gif.latex?v_*) 대신 testing node ![](https://latex.codecogs.com/gif.latex?v_%7Btest%7D)를 upweighting했을 때의 influence를 계산하도록 한다.  
 
+<div align="center">
+
+![testing_influence](https://user-images.githubusercontent.com/89853986/171865438-6ad2f248-3611-4b80-a608-259278cd958c.PNG)
+
+</div>
 
 
 
