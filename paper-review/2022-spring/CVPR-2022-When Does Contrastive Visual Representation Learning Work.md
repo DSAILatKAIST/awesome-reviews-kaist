@@ -175,7 +175,8 @@ Combining ImageNet SimCLR and iNat21 SimCLR is worse than ImageNet SimCLR alone 
 
 > **This finding could be partially explained by the difficulty of generalizing to higher resolution images during linear classifier training**
 > 
-1. **SSL is relatively robust to high-frequency noise**
+
+2. **SSL is relatively robust to high-frequency noise**
 
 JPEG and Salt & Pepper both add high-frequency noise to the image. For SimCLR, **these corruptions have a much milder impact than the downsampling corruptions.**
 
@@ -184,7 +185,7 @@ JPEG and Salt & Pepper both add high-frequency noise to the image. For SimCLR, *
 
 ### 4.4 Task Granularity
 
-2. **The performance gap between SSL and supervised learning grows as task granularity becomes finer**
+1. **The performance gap between SSL and supervised learning grows as task granularity becomes finer**
 
 <p align="center">
   <img width="1000" src="../../.gitbook/2022-spring-assets/BryanWong_2/label_granularity.png"
@@ -196,13 +197,14 @@ The supervised and SimCLR pretrained models perform similarly at the coarsest le
 > **SimCLR may fail to capture fine-grained semantic information as effectively as supervised pretraining**
 > 
 
-3. **Are the augmentations destructive?**
+2. **Are the augmentations destructive?**
 
 If color is a key fine-grained feature for species classification then the “color-jitter” augmentation used by SimCLR may destroy important information for iNat21 classification.  Could this explain the rapid drop in performance exhibited by iNat21 SimCLR for fine-grained classes?
 
 > **Since the ImageNet-tuned augmentations are presumably not destructive for ImageNet, it does not seem likely that this fully explains their observations**
 > 
-1. **Does contrastive learning have a coarse-grained bias?**
+
+3. **Does contrastive learning have a coarse-grained bias?**
 
 They hypothesized that **contrastive loss tends to cluster images based on overall visual similarity**. The intuition is that fine-grained features are often subtle, and subtle features are unlikely to be very useful for distinguishing between pairs of images in the contrastive pretext task. 
 
