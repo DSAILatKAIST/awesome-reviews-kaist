@@ -14,9 +14,6 @@ Static한 graph setting에 맞춰져 있는 현재의 Graph Neural Networks (GNN
 
 ## **2. Motivation**  
 
-Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
-
-After writing the motivation, please write the discriminative idea compared to existing works briefly.
 
 ### Continual Learning과 Catastrophic Forgetting
 
@@ -54,6 +51,11 @@ Graph domain에서는 continual learning에 대한 연구가 놀랍도록 얼마
 2. 새로운 task 학습을 용이하게 하기 위해 이전 task의 knowledge를 사용.  
 3. Influence function을 이용, previous task에서 영향력이 높은 node들을 buffer에 저장하여 새로운 task 학습에 함께 사용하도록 하는 **"Experience Replay GNN (ER-GNN)"** method 고안.
 
+### Contributions
+
+* Continual Graph Learning (CGL) paradigm을 제시하여 single task가 아닌 multiple consecutive task (continual) setting에서 node classification task를 수행할 수 있도록 함.
+* Continual node classification task에 기존 GNN을 적용할 때 발생하는 catastrophic forgetting 문제를 해결함.
+* 유명한 GNN model에 적용 가능한 ER-GNN model을 개발하고, 이는 buffer로 들어갈 replay node를 선정할 때 기존 방법과는 다르게 influence function을 사용함.
 
   
 ## **3. Method**  
