@@ -15,9 +15,9 @@ However, current methods
 either use additional post-processing blocks on the decoder end to improve compression
 or propose an end-to-end compression scheme based on heuristics. For the majority of
 these, the trained deep neural networks (DNNs) are not compatible with standard encoders
-and would be dicult to deply on personal computers and cellphones.
+and would be difficult to deply on personal computers and cellphones.
 
-Current compression methods are still lacking some important improvements. xx
+
 
 
 ## **2. Motivation**  
@@ -31,6 +31,18 @@ of applications. Recently, these methods have been successfully employed to impr
 rate-distortion performance in the task of image compression.
 
 * Previous works xx
+* research in deep neural networks (DNNs)
+has begun to turn its attention to improving the rate-distortion performance of im-
+age compression frameworks.
+
+Though this set of approaches has yielded impressive results, they
+unfortunately require a speciffcally trained decoder during the post-processing stage
+or a complex DNN-based decoder. As such they are not supported by the commonly
+used image viewers in most computers and smartphones. In addition, there is no
+guarantee that the compression results uncovered would hold when the input data
+distribution shifts, e.g., images of a completely different kind are presented to the sys-
+tem, presenting a challenge to DNN-driven approaches.
+
 
 * xx
 
