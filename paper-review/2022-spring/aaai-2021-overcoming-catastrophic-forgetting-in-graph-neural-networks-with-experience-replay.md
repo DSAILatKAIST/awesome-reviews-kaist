@@ -28,24 +28,31 @@ Graph Neural Networks (GNNs)은 많은 관심을 받고 있는 연구 분야이�
 
 첫째, 기존 데이터에 새로운 데이터까지 추가해서 모델을 처음부터 다시 학습하는 방법이다. 이 방법이 직관적일 수 있지만, 새로운 데이터가 수집될 때마다 전체 데이터셋에 대하여 모델의 모든 가중치값들을 학습하는 것은 시간과 computational cost 측면에서 큰 손실이다. 
 
-그렇다면, 모델을 새로운 데이터로만 retraining 시키면 어떻게 될까? 이전에 학습했던 데이터와 유사한 데이터셋을 학습하더라도 이전의 데이터셋에 대한 정보를 잊어버리게 될 것이다. 이 문제를 일컬어 **Catastrophic Forgetting** 이라고 부른다.
+그렇다면, 모델을 새로운 데이터로만 retraining 시키면 어떻게 될까? 이전에 학습했던 데이터와 유사한 데이터셋을 학습하더라도 아래의 그림처럼 이전의 데이터셋에 대한 정보를 잊어버리게 될 것이다. 이 문제를 일컬어 **Catastrophic Forgetting** 이라고 부른다.
 > Catastrophic Forgetting : Single task에 대해서 뛰어난 성능을 보인 모델을 활용하여 다른 task를 위해 학습했을 때 이전에 학습했던 task에 대한 성능이 현저하게 떨어지는 현상
+
+<div align="center">
+
+![CGL example](https://user-images.githubusercontent.com/89853986/171803616-6104ebdb-34e3-4cb8-903f-aa9148b5e0e8.PNG)
+
+</div>
 
 Catastrophic forgetting은 neural network의 더욱 general한 problem인 "stability-plasticity" dilema의 결과이다. 
 이 때, stability는 previously acquired knowledge의 보존을 의미하고, plasticity는 new knowledge를 integrate하는 능력을 의미한다. 
 
-### Limitation과 Purpose
+### Limitation
 
-<Limitation>
-Graph domain에서는 continual learning에 대한 연구가 놀랍도록 얼마 없다.
-이는 몇가지 한계점이 존재하기 때문이다.
-1. graph (non-Euclidean data) is not independent and identically distributed data.
-2. graphs can be irregular, noisy and exhibit more complex relations among nodes.
+Graph domain에서는 continual learning에 대한 연구가 놀랍도록 얼마 없다.  
+이는 몇가지 한계점이 존재하기 때문이다.  
+1. graph (non-Euclidean data) is not independent and identically distributed data.  
+2. graphs can be irregular, noisy and exhibit more complex relations among nodes.  
 3. apart from the node feature information, the topological structure in graph plays a crucial role in addressing graph-related tasks.
 
-<Purpose>
-1. 새로운 task를 학습할 때 이전 task에 대한 catastrophic forgetting 방지
-2. 새로운 task 학습을 용이하게 하기 위해 이전 task의 knowledge를 사용
+### Purpose
+
+1. 새로운 task를 학습할 때 이전 task에 대한 catastrophic forgetting 방지.  
+2. 새로운 task 학습을 용이하게 하기 위해 이전 task의 knowledge를 사용.  
+3. Influence function을 이용, previous task에서 영향력이 높은 node들을 buffer에 저장하여 새로운 task 학습에 함께 사용하도록 하는 **"Experience Replay GNN (ER-GNN)"** method 고안.
 
 
   
