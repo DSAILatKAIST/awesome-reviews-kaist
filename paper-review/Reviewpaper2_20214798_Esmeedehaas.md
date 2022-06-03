@@ -9,6 +9,14 @@ Neural JPEG: End-to-End Image Compression Leveraging a Standard JPEG Encoder-Dec
 
 ## **1. Problem Definition**  
 
+
+
+However, current methods
+either use additional post-processing blocks on the decoder end to improve compression
+or propose an end-to-end compression scheme based on heuristics. For the majority of
+these, the trained deep neural networks (DNNs) are not compatible with standard encoders
+and would be dicult to deply on personal computers and cellphones.
+
 Current compression methods are still lacking some important improvements. xx
 
 
@@ -18,12 +26,24 @@ In this paper, the authors want to improve xx
 
 ### **Existing works**
 
+Recent advances in deep learning have led to superhuman performance across a variety
+of applications. Recently, these methods have been successfully employed to improve the
+rate-distortion performance in the task of image compression.
+
 * Previous works xx
 
 * xx
 
  ### **Significance**
 Most of the current works have xx
+
+In light of this,
+we propose a system that learns to improve the encoding performance by enhancing its
+internal neural representations on both the encoder and decoder ends, an approach we call
+Neural JPEG. We propose frequency domain pre-editing and post-editing methods to optimize
+the distribution of the DCT coecients at both encoder and decoder ends in order to
+improve the standard compression (JPEG) method. Moreover, we design and integrate a
+scheme for jointly learning quantization tables within this hybrid neural compression framework.
 
 ## **3. Method**  
 
@@ -63,6 +83,9 @@ The results of the previously mentioned procedure xx
 
 ## **5. Conclusion**  
 
+Experiments demonstrate that our approach successfully improves the rate-distortion
+performance over JPEG across various quality metrics, such as PSNR and MS-SSIM, and
+generate visually appealing images with better color retention quality.
 
 
 
