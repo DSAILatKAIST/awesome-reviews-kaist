@@ -165,8 +165,30 @@ Hessian matrix는 다음과 같이 계산된다.
 
 </div>
 
+본 process를 진행하는 과정에서 Hessian-vector products (HVPs)를 사용하여 아래의 식을 근사한다.  
+
+<div align="center">
+
+![HVPs](https://user-images.githubusercontent.com/89853986/171865817-82688c79-018a-4429-b027-28c1ce1aa30f.PNG)  
+  
+![](https://latex.codecogs.com/gif.latex?%5CDownarrow)  
+  
+![hvp](https://user-images.githubusercontent.com/89853986/171866522-e7af0ab6-ce3a-456d-b75f-df2292c1fa96.PNG)
+
+</div>
+
+이 때, Hessian matrix는 positive semi-definite이므로 아래와 같이 식이 변형되고,  
+
+<div align="center">
+
+![psd](https://user-images.githubusercontent.com/89853986/171866994-84c50cdf-e2b5-439a-8d9d-b1d0d0a13697.PNG)  
+
+</div>
+  
+이로써 ![](https://latex.codecogs.com/gif.latex?H_%7B%5Ctheta%7D%5E%7B-1%7D)를 직접적으로 구하는 것이 아닌 ![](https://latex.codecogs.com/gif.latex?H_%7B%5Ctheta%7D%5Calpha)를 사용하여 conjugate gradient로 ![](https://latex.codecogs.com/gif.latex?%5Calpha)를 구하여 위의 식(influence)을 손쉽게 계산할 수 있게된다.
 
 
+우리는 이 때, influence가 큰 ![](https://latex.codecogs.com/gif.latex?v_*)일수록 ![](https://latex.codecogs.com/gif.latex?v_*)가 더욱 representative하다고 가정하기 때문에 influence가 가장 큰 ![](https://latex.codecogs.com/gif.latex?e)개의 node를 뽑아 buffer에 추가한다.
 
 ## **4. Experiment**  
 
