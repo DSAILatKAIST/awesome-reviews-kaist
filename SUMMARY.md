@@ -42,6 +42,7 @@
   * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
   * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
   * [VGRNN](paper-review/2022-spring/VGRNN.md)
+  * [PUP(Price-aware User Preference-modeling)](paper-review/2022-spring/icde-2020-pup.md)
 
 ## How to contribute
 
