@@ -78,6 +78,58 @@ Node classification task의 목적은 ![](https://latex.codecogs.com/gif.latex?%
   
 ### 3.2 Experience Node Replay
 
+본 논문에서 제시한 ER-GNN의 outline은 아래의 Algorithm에서 확인 가능하다.
+
+<div align="center">
+
+![algorithm1](https://user-images.githubusercontent.com/89853986/171842818-11dcb89b-c813-4de6-b169-63bb57eaad75.PNG)
+
+</div>
+
+Task ![](https://latex.codecogs.com/gif.latex?%7B%5Cmathcal%20T%7D%20_%20i)를 학습시킬 때 experience buffer ![](https://latex.codecogs.com/gif.latex?%5Cmathbb%20B) 로 부터 example ![](https://latex.codecogs.com/gif.latex?B)를 골라 ![](https://latex.codecogs.com/gif.latex?%7B%5Cmathcal%20D%7D%20_%20i%20%5E%7Bte%7D)와 함께 training 시킨다.  
+일반적인 node classification task에서 loss function은 아래와 같은 cross-entropy loss function을 사용한다. 
+
+![cross_entropy](https://user-images.githubusercontent.com/89853986/171843705-4e1fda63-7512-47aa-afb7-247ab6d92775.PNG)
+
+
+생각해보면 training set인 ![](https://latex.codecogs.com/gif.latex?%7B%5Cmathcal%20D%7D%20_%20i%20%5E%7Bte%7D)의 크기는 buffer ![](https://latex.codecogs.com/gif.latex?B)의 크기보다 훨씬 클 것이다. 따라서 model이 특정 node 집합을 선호하지 않도록 방지하기 위해 loss function에 weight factor ![](https://latex.codecogs.com/gif.latex?%5Cbeta)를 적용한다.  
+![](https://latex.codecogs.com/gif.latex?%5Cbeta)의 값은 아래와 같다. 
+
+![beta](https://user-images.githubusercontent.com/89853986/171844522-34347ab6-ad8e-403a-bbab-a9cdda5a09e3.PNG)
+
+
+이러한 weight factor를 통해 재구성한 loss function은 다음과 같다. 
+
+  
+![final_loss](https://user-images.githubusercontent.com/89853986/171844972-533c52b2-1a83-49f5-867b-fb05edb7565c.PNG)
+
+
+그 이후에는 다음과 같이 loss를 최소화할 수 있는 optimal parameters를 구하면 된다. 
+
+![optimal_parameter](https://user-images.githubusercontent.com/89853986/171845732-dee5f68f-cc1b-4c73-9bf5-79fc1c30a7c7.PNG)
+
+이렇게 parameter updating을 한 다음, ![](https://latex.codecogs.com/gif.latex?%7B%5Cmathcal%20D%7D%20_%20i%20%5E%7Btr%7D)에서 replay 시킬 experience nodes ![](https://latex.codecogs.com/gif.latex?%5Cepsilon)를 선정하여 buffer ![](https://latex.codecogs.com/gif.latex?%5Cmathbb%20B)에 추가한다. 
+
+![](https://latex.codecogs.com/gif.latex?%5Cepsilon%20%3D%20Select%28%5Cmathcal%20D%20_i%20%5E%7Btr%7D%2Ce%29) 는 각 class에서 ![](https://latex.codecogs.com/gif.latex?e)개의 nodes를 뽑아서 buffer에 저장한다는 의미이다.
+
+#### 3.2.1 Experience Selection Strategy
+
+Replay할 node를 선정하는데 사용되는 3가지 방법을 소개하겠다.
+
+**1. Mean of Feature (MF)**
+
+가장 직관적인 방법이다.  
+각 class에 대하여 average attribute vector 혹은 average embedding vector등의 prototype을 선정한 후 해당 prototype과 가장 가까운 ![](https://latex.codecogs.com/gif.latex?e)개의 node를 buffer에 추가하는 방법이다. 
+
+**2. Coverage Maximization (CM)**
+
+각 class마다 선정하는 experience node ![](https://latex.codecogs.com/gif.latex?e)개가 적을 경우 본 방법을 사용하는 것이 효과적이다.  
+정해진 거리 안에 다른 label을 가진 node의 개수가 가장 적은, 즉, coverage가 가장 넓은 node를 사용하는 방법이다. 식으로 표현하면 아래와 같다.  
+![Coverage_maximization](https://user-images.githubusercontent.com/89853986/171857055-2808b564-d57a-47fe-a79d-539bdde59f42.PNG)  
+![](https://latex.codecogs.com/gif.latex?%5Cleft%20%7C%20%5Cmathcal%20N%28v_i%29%20%5Cright%20%7C) 값이 가장 작은 ![](https://latex.codecogs.com/gif.latex?e)개의 node를 buffer에 추가하는 방법이다.
+
+**3. Influence Maximization (IM)**
+
 
 
 ## **4. Experiment**  
