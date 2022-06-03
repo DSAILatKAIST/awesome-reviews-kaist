@@ -42,7 +42,7 @@
   * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
   * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
   * [VGRNN](paper-review/2022-spring/VGRNN.md)
-
+  * [OCGAN](paper-review/2022-spring/CVPR-2019-OCGAN.md)
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
