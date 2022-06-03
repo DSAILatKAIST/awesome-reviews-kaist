@@ -40,3 +40,5 @@ layout: landing
 * [\[ICML 21\] Slot Machines- Discovering Winning Combinations of Random Weights in Neural Networks](../2022-spring/ICML-2021-SlotMachines.md)
 * [\[ICML 20\] Time Series Deconfounder: Estimating Treatment Effects over Time in the Presence of Hidden Confounders](../2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
 * [\[NeurIPS 19\] Varitional Graph Recurrent Neural Network](../2022-spring/VGRNN.md)
+* [\[ICDE 20\] Price-aware Recommendation with Graph Convolutional Networks](../2022-spring/icde-2020-pup.md)
+
