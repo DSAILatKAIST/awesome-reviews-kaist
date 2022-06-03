@@ -100,12 +100,16 @@ RSPO가 일반적인 강화학습 적용 분야에 사용될 수 있다는 것�
 또한 실험 환경마다 에이전트가 달성해야 하는 작업의 목적이 조금씩 다르고, 연구의 취지가 에이전트가 얼마나 새로운 전략을 잘 찾는지 확인하는 것인만큼 일정하게 통일되어 정형화 된 평가 지표를 도입하지는 않았지만 각 실험마다 해당 실험 환경에서 RSPO가 baseline 알고리즘들 대비 어느정도 우수한 성능을 보였는지 알 수 있는 자료들을 정리했다.
 
 ### **4.1 Single-Agent Particle-World Environment**
-
+![1](/.gitbook/2022-spring-assets/heemang_park_2/1.png)
 첫 번째 실험은 희박한 보상이 주어졌을 때 목적지를 찾아가야 하는 4-Goals 시나리오에서 진행됐다. 에이전트는 중앙에서 출발하고 랜드마크를 찾으면 보상을 획득한다. 시나리오에 총 3가지 난이도가 있는데, 쉬운 난이도는 랜드마크의 위치가 고정되어 있고, 중간 난이도는 랜드마크가 무작위로 분포하고, 어려운 난이도는 랜드마크의 위치와 크기가 무작위로 설정된다. Figure 2(a)에 알고리즘이 발견한 서로 다른 종류의 전략들의 수가 정리됐고, Figure 2(b)에 어려운 난이도에서 알고리즘의 에이전트가 얻은 보상이 정리됐다. 주목할만한 점은 RSPO가 유일하게 어려운 난이도에서 랜드마크로 도달할 수 있는 전략을 찾은 알고리즘이라는 것이다.
+![2](/.gitbook/2022-spring-assets/heemang_park_2/2.png)
 
 ### 4.2 2-Agent Markov Stag-Hunt Games
 
 두 번째 실험은 좌표 공간 상에 두 개의 에이전트와 두 개의 사과와 한 개의 괴물이 존재하는 Stag-Hunt game에서 진행됐다. 보상을 얻는 방법은 다음과 같다: 만약 한 개의 에이전트가 괴물을 만난다면 -2의 보상을 얻고, 두 개의 에이전트가 동시에 괴물을 만난다면 괴물을 잡고 +5의 보상을 얻고, 에이전트가 사과에 도달하면 +2의 보상을 얻는다. Figure 4는 20번의 반복 시행 동안 RSPO가 발견한 모든 전략들을 나타낸다. Figure 5는 내재적인 보상이 없을 때 학습이 이루어지는 동안 수락된 trajectory의 비율이 낮다는 것을 보여준다.
+![3](/.gitbook/2022-spring-assets/heemang_park_2/3.png)
+![4](/.gitbook/2022-spring-assets/heemang_park_2/4.png)
+![5](/.gitbook/2022-spring-assets/heemang_park_2/5.png)
 
 ### 4.3 Continuous Control in MuJoCo
 
@@ -114,6 +118,9 @@ RSPO가 일반적인 강화학습 적용 분야에 사용될 수 있다는 것�
 ### 4.4 Starcraft Multi-Agent Challenge
 
 마지막 실험은 SMAC에 포함된 쉬운 난이도의 2m_vs_1z와 어려운 난이도의 2c_vs_64zg 환경에서 진행됐다. 결과의 비교에 육안으로 확인 할 수 있는 다른 전략들의 수를 이용했는데, 두 난이도의 환경 모두에서 RSPO가 가장 많은 수의 서로 다른 전략을 발견했다는 것을 알 수 있다.
+![6](/.gitbook/2022-spring-assets/heemang_park_2/6.png)
+![7](/.gitbook/2022-spring-assets/heemang_park_2/7.png)
+![8](/.gitbook/2022-spring-assets/heemang_park_2/8.png)
 
 ## **5. Conclusion**
 
