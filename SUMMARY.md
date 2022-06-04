@@ -35,6 +35,7 @@
   * [XGradient](paper-review/2022-spring/NeurIPS-2021-XGradient.md)
   * [Review paper COIN] (awesome-reviews-kaist/paper-review/Reviewpaper_20214798_Esmeedehaas.md)
   * [Hypergraph with DHT](paper-review/2022-spring/neurlps-2021-hypergraphs_with_dht.md)
+  * [gMLPs](paper-review/2022-spring/neurips-2021-pay_attention_to_mlps.md)
   
 ## How to contribute
 
