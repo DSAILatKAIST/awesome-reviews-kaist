@@ -16,11 +16,11 @@ AGGREGATE function은 주변에서 모아온 정보를 어떻게 취합할 것�
 
 # 2. Motivation
 
-GNN의 대표 baseline으로 Graph Convolutional Neural Network (GCN) [2]을 소개하겠다. 이는 모든 node에 self-loop을 추가해 자기 자신도 neighborhood set에 포함되어 $\bold{AGGREGATE}$과 $\bold{COMBINE}$ function이 통합된 형태이다.  
+GNN의 대표 baseline으로 Graph Convolutional Neural Network (GCN) [2]을 소개하겠다. 이는 모든 node에 self-loop을 추가해 자기 자신도 neighborhood set에 포함되어 $AGGREGATE$과 $COMBINE$ function이 통합된 형태이다.  
 
 ![gcn.PNG](../../.gitbook/2022-spring-assets/GAT2/gcn.PNG)
 
-GCN은 주변 node 정보를 가져올 때 degree normalization으로 가중치를 조절한다. 이 과정에서 생각해볼 수 있는 것은 주변 node들이 모두 동일하게 target node에게 중요할까 하는 것이다. 따라서 이 가중치 정도를 parameterization하여 target node representation 학습에 도움이 되는 node는 가중치를 크게, 그렇지 않은 node는 가중치를 낮게 하는 attention 기반의 방법론 Graph Attention Network (GAT) [3]이 제안되었다. 즉, $\bold{AGGREGATE}$ function이 attention weight function으로 modeling된 것이다.  
+GCN은 주변 node 정보를 가져올 때 degree normalization으로 가중치를 조절한다. 이 과정에서 생각해볼 수 있는 것은 주변 node들이 모두 동일하게 target node에게 중요할까 하는 것이다. 따라서 이 가중치 정도를 parameterization하여 target node representation 학습에 도움이 되는 node는 가중치를 크게, 그렇지 않은 node는 가중치를 낮게 하는 attention 기반의 방법론 Graph Attention Network (GAT) [3]이 제안되었다. 즉, $AGGREGATE$ function이 attention weight function으로 modeling된 것이다.  
 
 ![gat.PNG](../../.gitbook/2022-spring-assets/GAT2/gat.PNG)
 
