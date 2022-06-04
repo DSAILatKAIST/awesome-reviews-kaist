@@ -124,7 +124,7 @@ description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention t
 
 
 
-## Conclusion
+## 5. Conclusion
 
 - 본 연구는 Transformer의 self-attention이 중요한 역할을 하는가에서 시작하여 연구를 진행함
 - 따라서 본 연구에서는 multi-head self-attention layer를 대신할 수 있는 간단한 방법을 제시
@@ -133,5 +133,11 @@ description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention t
 - 또, Transformer의 multi-head self-attention이 문장과의 관계를 고려하는 task에서 유용함을 알 수 있었음
 - 모델 사이즈를 늘리는 것보다 small single-head self attention 을 추가하는 것이 gMLP가 더 좋은 성능을 가지게 한다는 것을 보임
 
+## Author Information
+- Kaist, 지식서비스공학대학 20213383 원예은
+- 관심 분야: System analysis, ASRS
 
-
+## 6. Reference & Additional materials
+- 논문 Appendix
+- Identity mapping: https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=siniphia&logNo=221387516366
+- Transformer 구조: https://wikidocs.net/31379
