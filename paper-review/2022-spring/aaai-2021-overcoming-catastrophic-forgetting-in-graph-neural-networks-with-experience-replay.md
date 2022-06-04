@@ -236,8 +236,36 @@ ER-GNN과의 비교를 위해 continual setting에서 아래의 GNN 모델들과
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
   
+#### **4.2.1 Performance Mean
+
+<div align="center">
+
+![PM1](https://user-images.githubusercontent.com/89853986/172018509-e48c19b6-ccfe-4eda-8a7a-1a8a9a61ebb1.png)
+
+</div>
+
+<div align="center">
+
+![PM2](https://user-images.githubusercontent.com/89853986/172018607-46974fef-a3b3-453b-af67-9673420fac75.png)
+ 
+</div>
 
 
+#### **4.2.2 Forgetting Mean
+
+<div align="center">
+
+![FM](https://user-images.githubusercontent.com/89853986/172018571-0ccbdbc1-6642-4b39-ab4b-ab5191a2b0e9.png)
+
+</div>
+
+#### **4.2.3 Influence of ![](https://latex.codecogs.com/svg.image?e)
+
+<div align="center">
+  
+![e](https://user-images.githubusercontent.com/89853986/172018666-448666be-1d91-4456-b392-001558ae5348.png)
+
+</div>
 
 ## **5. Conclusion**  
 
