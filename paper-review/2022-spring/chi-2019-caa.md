@@ -31,9 +31,14 @@ _keyword: Cognition-Aware Systems, Circadian Computing, Fatigue, Eye Blink, Elec
 
 ## **2. Motivation**  
 
-Please write the motivation of paper. The paper would tackle the limitations or challenges in each fields.
+### **2.1 피로 수준을 측정하는 기존 연구들 및 한계점**  
 
-After writing the motivation, please write the discriminative idea compared to existing works briefly.
+<br>
+
+  [1] 번거로운 전통적인 방식  
+  * [Kleitman](https://doi.org/10.1152/ajplegacy.1923.66.1.67)는 항문체온계를 사용하여 신체 내부의 온도를 측정하여 의식의 변화를 측정하였습니다.
+  * [Hofstra and Weerd](https://doi.org/10.1016/j.yebeh.2008.06.002)에서는 수면 중인 사람을 대상으로 뇌파, 심전도 등을 측정하여 피로 수준을 파악하는 수면다원검사를 소개하였습니다.
+  * 
 
   
 <br>
