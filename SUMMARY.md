@@ -40,6 +40,7 @@
   * [ESAN](paper-review/2022-spring/ESAN.md)
   * [RobustSSL](paper-review/2022-spring/RobustSSL_.md)
   * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
+  * [GATv2](paper-review/2022-spring/ICLR-2022-GATv2.md)
 
 ## How to contribute
 
