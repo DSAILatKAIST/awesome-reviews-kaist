@@ -1,5 +1,5 @@
 # Title
-1st author/ How attentive are graph neural network? / ICLR-2022
+Shaked Brody/ How attentive are graph neural network? / ICLR-2022
 
 # 1. Problem Definition
 
@@ -12,7 +12,7 @@ Graph Neural Network(GNN)는 graph structure data의 representation learning을 
 
 ![notation.PNG](../../.gitbook/2022-spring-assets/GAT2/notation.PNG)
 
-AGGREGATE function은 주변에서 모아온 정보를 어떻게 취합할 것인가를 결정하고, COMBINE function은 자신의 정보와 어떻게 합쳐서 update할 것인가를 결정한다. 따라서 GNN 연구 모델은 AGGREGATE과 COMBINE의 modeling에 의해 결정된다.  
+AGGREGATE function은 주변에서 모아온 정보를 어떻게 취합할 것인가를 결정하고, COMBINE function은 자신의 정보와 어떻게 합쳐서 update할 것인가를 결정한다. 따라서 GNN 연구 모델은 $AGGREGATE$과 $COMBINE$의 modeling에 의해 결정된다.  
 
 # 2. Motivation
 
