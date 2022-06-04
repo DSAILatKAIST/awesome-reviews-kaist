@@ -5,7 +5,7 @@ description : Tag et al. / Continuous Alertness Assessments; Using EOG Glasses t
 # **Continuous Alertness Assessments** 
 
 [소개할 연구](https://doi.org/10.1145/3290605.3300694)는 2019년에 CHI (Conference on Human Factors in Computing Systems)에서 발표되었으며,  
-하루 동안의 눈 깜빡임 빈도를 EOG (Electrooculography)로 측정함으로써 간편하게 대상자의 **`Continuous Alertness Assessments`**를 모니터링하는 기술을 소개하고자 합니다.  
+하루 동안의 눈 깜빡임 빈도를 EOG (Electrooculography)로 측정함으로써 간편하게 대상자의 **`Continuous Alertness Assessments`** 를 모니터링하는 기술을 소개하고자 합니다.  
 _keyword: Cognition-Aware Systems, Circadian Computing, Fatigue, Eye Blink, Electrooculography_
   
 <br>
