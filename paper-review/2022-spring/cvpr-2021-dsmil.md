@@ -60,7 +60,7 @@ Training the MIL and embedding networks end-to-end might be challenging due to t
 Because of the large image dimensions, it is typical to examine features from several magnifications for WSI analysis. The authors recommended that feature pyramids be built utilizing embeddings from several magnifications, with lower magnification embeddings being repeated and concatenated with higher magnification embeddings that belong to the same lower magnification patch. If the embeddings are spatially adjacent to each other, they will have the same parts. This technique imposes a spatial constraint on the attention scores, which are generated using similarity measurements and also include multiscale information.
 
 <figure>
-<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Figure2.png"><figcaption align = "center"><i>Figure 3. Pyramidal concatenation of multiscale features in WSI. Feature vector from a lower magnification patch is duplicated and concatenated to feature vectors of its higher magnification patches.</i>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Figure4.png"><figcaption align = "center"><i>Figure 3. Pyramidal concatenation of multiscale features in WSI. Feature vector from a lower magnification patch is duplicated and concatenated to feature vectors of its higher magnification patches.</i>
 </figcaption>
 </figure>
 
