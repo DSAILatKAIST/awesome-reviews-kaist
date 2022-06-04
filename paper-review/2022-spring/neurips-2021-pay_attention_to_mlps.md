@@ -54,7 +54,8 @@ description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention t
 - 또, s(Z)를 연산할 때, Z를 나누어 연산하는 것이 더 효율적이라고 함
 	- ![](https://latex.codecogs.com/svg.image?s(Z)&space;=&space;Z_1&space;\odot&space;f_{W,b}(Z_2))
 
-### 3.3 gMLP Overview ![](../../.gitbook/2022-spring-assets/WYE/gMLP_overview.png)
+### 3.3 gMLP Overview 
+![](../../.gitbook/2022-spring-assets/WYE/gMLP_overview.png)
 
 ## 4. Experiment
 - 본 논문에서는 크게 2가지 분야에서 gMLP 검증
@@ -66,7 +67,8 @@ description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention t
 	- Vision Transformer (ViT)
 	- DeiT (ViT with improved regularization)
 	- several other representative convolutional networks
-- Architecture specifications of gMLP models for vision ![](../../.gitbook/2022-spring-assets/WYE/vision_setting.png)
+- Architecture specifications of gMLP models for vision 
+![](../../.gitbook/2022-spring-assets/WYE/vision_setting.png)
 - **Results**
 	![](../../.gitbook/2022-spring-assets/WYE/vision_result.png)
 	- 위 결과를 통해 gMLPs가 DeiT와 견줄만 하다는 것을 보임
@@ -89,17 +91,20 @@ description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention t
 	- Tranformer에서의 multi-head attention을 대체하는 MLP-Mixer 모델
 	- Metric으로 언어모델의 성능을 판단할 수 있는 지표인 perplexity를 사용
 		- 값이 낮을 수록 모델이 잘 학습되었다는 것을 의미
-- **Results**![](../../.gitbook/2022-spring-assets/WYE/bert_result1.png)
+- **Results**
+![](../../.gitbook/2022-spring-assets/WYE/bert_result1.png)
 	- gMLP with SGU가 Transformer 만큼의 perplexity를 얻음
 
 #### 4.2.2  Case Study: The Behavior of gMLP as Model Size Increases
 - 모델의 크기가 커질 때마다 성능이 어떻게 변하는지 확인하였음
-- **Results**![](../../.gitbook/2022-spring-assets/WYE/bert_result2.png)
+- **Results**
+![](../../.gitbook/2022-spring-assets/WYE/bert_result2.png)
   - gMLP 모델이 deep 해질 수록 Transformer와 성능이 비슷해지며, 심지어는 outperform 하는 경우도 존재함
  - ![](../../.gitbook/2022-spring-assets/WYE/bert_result3.png)
 	 -  SST-2, 즉 sentiment analysis task 측면에서도 같은 개수의 파라미터일 때, gMLP 모델이 Transformer 보다 뛰어나다는 것을 보임
 	 - 하지만, natural language inference task 측면에서는 Transformer가 더 좋은 성능을 보였음
-		 - 왜냐하면, 이 task에서는 모델이 2 문장을 다루어야 하는데, 여기서 self-attention 이 유용한 역할을 했기 때문 -> self-attention을 가지고 있는 Transformer 가 훨씬 유리
+		 - 왜냐하면, 이 task에서는 모델이 2 문장을 다루어야 하는데, 여기서 self-attention 이 유용한 역할을 했기 때문 
+		 -> **self-attention을 가지고 있는 Transformer 가 훨씬 유리**
 
 
 
@@ -108,8 +113,11 @@ description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention t
 - 위의 MNLI-m 결과에서 gMLP가 Transformer 모델보다 성능이 낮았던 것을 개선하기 위해 tiny self-attention block을 모델에 추가하였음
 	- 이미 gMLP가 spatial 관계를 파악할 수 있기 때문에 self-attention 모듈이 heavy 할 필요는 없다고 생각
 	- 사이즈가 64인 single head -> "aMLP" 라고 함
-- aMLP Overview ![](../../.gitbook/2022-spring-assets/WYE/aMLP.png)
-- ![](../../.gitbook/2022-spring-assets/WYE/bert_result4.png) ![](../../.gitbook/2022-spring-assets/WYE/bert_result5.png)
+- aMLP Overview 
+![](../../.gitbook/2022-spring-assets/WYE/aMLP.png)
+- **Results**
+![](../../.gitbook/2022-spring-assets/WYE/bert_result4.png) 
+![](../../.gitbook/2022-spring-assets/WYE/bert_result5.png)
 	- aMLP가 모두 Transformer 보다 좋은 성능을 보임
 
 
@@ -119,8 +127,10 @@ description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention t
 
 - full BERT setup에서 실험을 진행함
 - 공정한 비교를 위해 gMLP의 depth와 width를 조정해줌
-- Model specifications ![](../../.gitbook/2022-spring-assets/WYE/bert_setting.png)
-- ![](../../.gitbook/2022-spring-assets/WYE/a_bert_result.png)
+- Model specifications
+![](../../.gitbook/2022-spring-assets/WYE/bert_setting.png)
+- **Results**
+![](../../.gitbook/2022-spring-assets/WYE/a_bert_result.png)
 	- gMLP가 Transformer와 견줄만 하다는 것을 알 수 있음
 	- 앞서 계속 언급했지만, gMLP의 크기가 커질 수록 Transformer와의 성능 갭이 줄어드는 것을 확인 할 수 있음
 	- 또, tiny single-head self-attention을 사용하기만 해도 Transformer보다 좋은 성능이 나올 수 있다는 것을 알 수 있음
