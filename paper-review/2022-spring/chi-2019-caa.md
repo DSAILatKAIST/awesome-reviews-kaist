@@ -35,12 +35,24 @@ _keyword: Cognition-Aware Systems, Circadian Computing, Fatigue, Eye Blink, Elec
 
 <br>
 
-  [1] 번거로운 전통적인 방식  
-  * [Kleitman](https://doi.org/10.1152/ajplegacy.1923.66.1.67)는 항문체온계를 사용하여 신체 내부의 온도를 측정하여 의식의 변화를 측정하였습니다.
-  * [Hofstra and Weerd](https://doi.org/10.1016/j.yebeh.2008.06.002)에서는 수면 중인 사람을 대상으로 뇌파, 심전도 등을 측정하여 피로 수준을 파악하는 수면다원검사를 소개하였습니다.
-  * 
+  [1] 전통적인 방식의 피로 수준 측정 방법  
+  * [Kleitman](https://doi.org/10.1152/ajplegacy.1923.66.1.67)는 항문체온계를 사용하여 신체 내부의 온도를 측정하여 의식의 변화를 측정하였습니다.  
+  * [Hofstra and Weerd](https://doi.org/10.1016/j.yebeh.2008.06.002)는 수면 중인 사람을 대상으로 뇌파, 심전도 등을 측정하여 피로 수준을 파악하는 수면다원검사를 소개하였습니다.
 
+★★★항문체온계, 수면다원검사 그림 필요함  
+
+<br>
+
+  [2] 스마트폰을 활용한 피로 수준 측정 방법  
+  * [Abdullah et al.](https://doi.org/10.1145/2971648.2971712)은 스마트폰을 사용하여 사용자의 Continuous Alertness를 모니터링하는 시스템을 개발하였습니다.
+  * [Dingler et al.](https://doi.org/10.1145/2968219.2968565)은 스마트폰 기반의 집중력 수준 감시 시스템을 개발하여 생산 효율성을 증대하였습니다.
   
+★★★스마트폰 그림 필요함  
+
+<br>
+
+
+
 <br>
 
 ## **3. Method**  
