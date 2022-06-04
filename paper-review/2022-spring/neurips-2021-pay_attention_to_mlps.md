@@ -53,7 +53,8 @@ description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention t
 - 이런 초기화가 모델의 각 블럭이 학습 초기 단계에서 regular FFN처럼 행동하도록 함
 - 또, s(Z)를 연산할 때, Z를 나누어 연산하는 것이 더 효율적이라고 함
 	- ![](https://latex.codecogs.com/svg.image?s(Z)&space;=&space;Z_1&space;\odot&space;f_{W,b}(Z_2))
-- gMLP Overview ---> 그림 넣기
+
+### 3.3 gMLP Overview ![](/WYE/gMLP_overview.png)
 
 ## 4. Experiment
 - 본 논문에서는 크게 2가지 분야에서 gMLP 검증
