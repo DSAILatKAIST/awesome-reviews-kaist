@@ -195,12 +195,45 @@ Hessian matrix는 다음과 같이 계산된다.
 In this section, please write the overall experiment results.  
 At first, write experiment setup that should be composed of contents.  
 
-### **Experiment setup**  
-* Dataset  
-* baseline  
-* Evaluation Metric  
+### **4.1 Experiment setup**  
 
-### **Result**  
+
+#### 4.1.1 Dataset  
+
+실험에서 사용한 dataset의 구성은 아래의 표와 같다.  
+
+<div align="center">
+
+![dataset](https://user-images.githubusercontent.com/89853986/172016299-e66d7d93-0c16-4498-8bed-04e971c23b89.png)
+
+</div>
+
+#### 4.1.2 baseline  
+
+ER-GNN과의 비교를 위해 continual setting에서 아래의 GNN 모델들과 비교하였다.  
+
+~~~
+  - Deepwalk : random walk를 한 후 NLP에서 사용되는 skip-gram model을 학습.
+  - Node2Vec : network에 있는 node의 neighborhood 정보를 가장 잘 보존하는 low-dimensional feature를 extract.
+  - GCN : spectral convolution을 first-order approximation하여 효과적인 layer-wise propagation 진행.
+  - GraphSAGE : node의 local neighborhood로부터 feature를 sampling / aggregating하여 embedding.
+  - GAT : attention-based architecture를 사용하여 node를 embedding.
+  - SGC : non-linearity를 제거하고, consecutive layer 간의 weight matrices를 조정하여 GCN을 simplify.
+  - GIN : Weisfeiler-Lehman graph isomorphism test 만큼 강력하고, GNN 중에 가장 표현력이 뛰어남.
+~~~
+
+저자는 GNN method 중 GAT를 사용하여 ER-GNN을 구성하였다.  
+위에서 설명한 3가지(MF, CM, IM) experience selection strategy에 대하여 모두 실험을 진행하였는데, 이는 ER-GNN 뒤에 표시되어 있다. (ex. ER-GAT-MF, ER-GAT-CM, ER-GAT-IM 등)  
+별(\*) 표시가 붙어있는 방법론도 있을 것이다. 그러한 경우는 위에서 언급 하였듯, MF와 CM method를 사용할 때 attribute가 아닌 embedding을 기준으로 mean과 coverage maximization을 계산한 것을 의미한다.  
+
+
+#### 4.1.3 Evaluation Metric  
+
+본 논문의 주된 목적은 continual learning에서 고질적으로 발생하는 문제인 catastrophic forgetting을 줄이기 위함이므로 이에 알맞은 evaluation metric을 저자는 제안한다.  
+
+
+
+### **4.2 Result**  
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
   
