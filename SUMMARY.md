@@ -15,7 +15,8 @@
   * [FNC](paper-review/2022-spring/WACV-2022-FNC.md)
   * [CITIES](paper-review/2022-spring/ICDM-2020-Cites.md)
   * [LILAC](paper-review/2022-spring/LILAC.md)
-  * [Unsupervised Detection of Adversarial Examples with Model Explanations](paper-review/2022-spring/kdd-2021-unsupervised-detection-of-adversarial-examples-with-model-explanations.md
+  * [Unsupervised Detection of Adversarial Examples with Model Explanations](paper-review/2022-spring/kdd-2021-unsupervised-detection-of-adversarial-examples-with-model-explanations.md)
+  * [Dual-stream Multiple Instance Learning Network for Whole Slide Image Classification with Self-supervised Contrastive Learning](paper-review/2022-spring/cvpr-2021-dsmil.md)
 
 
 ## How to contribute
