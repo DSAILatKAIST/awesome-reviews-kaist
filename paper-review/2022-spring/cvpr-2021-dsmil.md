@@ -67,13 +67,13 @@ Because of the large image dimensions, it is typical to examine features from se
 ## 4. Experiment
 
 ### Experiment setup
-* Dataset
+* Dataset  
 The suggested technique was tested on two publicly accessible WSI datasets, namely the Camelyon16 and TCGA lung cancer datasets. The Camelyon16 dataset contains 400 WSI and was intended to identify breast cancer. There are 1053 slides in the TCGA lung cancer dataset, including two subtypes of lung cancer. 
 
-* Baseline
+* Baseline  
 The proposed DSMIL model was evaluated and compared to deep models using traditional MIL pooling operators such as max-pooling and mean-pooling. For the tasks of WSI classification and tumor localization, the model was compared to recent deep MIL models (i.e. MIL-RNN, ABMIL, MS-ABMIL).
 
-* Evaluation Metrics
+* Evaluation Metrics  
 The authors used the classification area under the curve (AUC) and localization free-response receiver operating characteristics (FROC) as evaluation metrics to compare the method to several recent models. 
 
 ### Result
