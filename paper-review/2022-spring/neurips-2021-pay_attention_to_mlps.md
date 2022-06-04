@@ -1,9 +1,8 @@
-# Pay Attention to MLPs
 ---
 description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention to MLPs / NeurIPS - 2021
 ---
 
-
+# Pay Attention to MLPs
 
 
 ## 1. Problem Definition
