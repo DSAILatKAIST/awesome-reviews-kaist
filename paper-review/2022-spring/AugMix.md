@@ -31,7 +31,7 @@ augmentation을 섞는 것은 다양한 변형을 생성하는데, 이는 모델
 ![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig1.PNG?raw=true)
 
 AugMix는 여러 개의 augmentation chain들로부터의 결과 이미지를 convex combination을 통해 믹스함으로써 image degradation 문제를 해결하면서 augmentation 다양성은 유지할 수 있다. 구체적인 AugMix 알고리즘은 아래 pseudo-code에서 확인할 수 있다.
-![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig2.PNG?raw=true)
+![figure2](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig2.PNG?raw=true)
 
 ### **Augmentations**  
 앞서 언급하였듯이, AugMix는 여러 개의 augmentation 기법들로 이루어진 augmentation chain으로부터의 결과를 mix하는 방식이다. 이 때 augmentation 기법은 AutoAugment 방법을 이용한다. ImageNet-C 에 대해서 test하기 때문에 ImageNet-C에 적용된 변동들과 중복되는 augmentation operation(contrast, color, brightness, sharpness, cutout, noising, blurring)은 제외하였다. 따라서 ImageNet-C에 적용된 변동들은 모델이 test시에 처음 마주치도록 하였다. 
@@ -75,22 +75,26 @@ In this section, please write the overall experiment results.
 At first, write experiment setup that should be composed of contents.  
 
 ### **Experiment setup**  
-* Dataset
+* **Dataset**
   * Training Dataset   
-    * CIFAR-10 : 32x32 사이즈의 컬러 natural images로 10개의 카테고리로 구성됨. (50000 training images / 10000 testing images)
-    * CIFAR-100 : 32x32 사이즈의 컬러 natural images로 100개의 카테고리로 구성됨. (50000 training images / 10000 testing images)
-    * ImageNet : 1000개의 카테고리로 구성됨
+    * `CIFAR-10` : 32x32 사이즈의 컬러 natural images로 10개의 카테고리로 구성됨. (50000 training images / 10000 testing images)
+    * `CIFAR-100` : 32x32 사이즈의 컬러 natural images로 100개의 카테고리로 구성됨. (50000 training images / 10000 testing images)
+    * `ImageNet` : 1000개의 카테고리로 구성됨
   * Teset Dataset
-    * CIFAR-10-C : original CIFAR-10 데이터에 변형(corruption)을 준 데이터셋
-    * CIFAR-100-C : original CIFAR-100 데이터에 변형을 준 데이터셋
-    * ImageNet-C : original ImageNet 데이터에 변형을 준 데이터셋
+    * `CIFAR-10-C` : original CIFAR-10 데이터에 변형(corruption)을 준 데이터셋
+    * `CIFAR-100-C` : original CIFAR-100 데이터에 변형을 준 데이터셋
+    * `ImageNet-C` : original ImageNet 데이터에 변형을 준 데이터셋
     각 데이터셋은 noise, blur, weather, digital corruption을 각각 5가지의 강도로 주어 총 15가지의 corruption으로 이루어진 데이터셋이다. 데이터 변동에 대한 모델의 영향을 확인하기 위한 실험이므로 training 과정에서는 이 15가지의 corruption은 포함하지 않았다.
-* baseline  
-* Evaluation Metric  
-  * Clean Error : corruption이 추가되지 않은 clean data에 대한 classification error
-  * Corruption Error : corruption이 추가된 data에 대한 classification error  
-  * RMS Calibration Error : 모델의 불확실성 추정에 대한 평가 지표
 
+* **Baseline**  
+  * `CIFAR-10 & CIFAR-100` : AllConvNet, DenseNet, WideResNet, ResNeXt 아키텍쳐에 대해서 Standard, Cutout, Mixup, CutMix, AutoAugment, Adversarial Training 등의 다양한 augmentation 방법을 적용한 결과와 AugMix를 적용한 결과를 비교하였다.
+  * `ImageNet` : ResNet50에 Standard, Patch Uniform, AutoAugment, Random AA, MaxBlur Pooling, SIN을 적용한 결과와 AugMix를 비교하였다.
+
+* **Evaluation Metric**  
+  * `Clean Error` : corruption이 추가되지 않은 clean data에 대한 classification error
+  * `Corruption Error` : corruption이 추가된 data에 대한 classification error  
+  * `RMS Calibration Error` : 모델의 불확실성 추정에 대한 평가 지표   
+   
 #### **`(1) Corruption Error (CE)`**  
 $$E_{c,s}$$
 - corruption c가 severity s로 주어졌을 때의 error rate
@@ -112,6 +116,17 @@ $$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
 
 
 ### **Result**  
+
+* **`CIFAR-10-C & CIFAR-100-C`**
+![figure5](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig5.PNG?raw=true)
+
+위의 그림은 ResNeXt backbone에 다양한 방법의 augmentation을 적용하여 훈련시킨 후 CIFAR-10-C test dataset에 대한 standard clean error rate을 나타낸 것이다. AugMix가 기존의 augmentation 방법들인 Standard, Cutout, Mixup, CutMix, AutoAugment, Adversarial Training보다 절반 이하 수준의 error rate을 보여주고 있다. 다음은 ResNeXt이외의 backbone에 augmentation 방법들을 적용했을 때의 average classification error를 비교한 표이다. AugMix는 CIFAR-10-C, CIFAR-100-C 두 test dataset 모두 backbone 네트워크에 상관없이 가장 낮은 error rate을 보여주었다. 
+![figure6](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig6.PNG?raw=true)
+
+* **`ImageNet`**
+
+
+
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
   
