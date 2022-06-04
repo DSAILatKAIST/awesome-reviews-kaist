@@ -1,5 +1,8 @@
 # Pay Attention to MLPs
-Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention to MLPs / NeurIPS - 2021
+---
+description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention to MLPs / NeurIPS - 2021
+---
+
 
 
 
