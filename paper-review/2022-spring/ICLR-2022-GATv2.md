@@ -5,7 +5,7 @@
 
 Graph Neural Network(GNN)는 graph structure data의 representation learning을 위한 deep learning based framework이다. 아래 그림[1]과 같이 GNN에서는 graph structure data와 node나 edge의 attribute data를 활용한다. Arbitrary structure를 가진 graph data로부터 meaningful feature를 학습하기 위해서 새로운 구조의 model design이 필요하다.  따라서 message passing의 개념을 도입해 neighborhood node로부터 가져온 정보를 자신과 combine하여 update하는 방식의 process를 고안한다.
 
-![gnn_framework.PNG](../../.gitbook/2022-spring-assets/GAT2/gnn_framework.PNG)
+![gnn_framework.png](../../.gitbook/2022-spring-assets/GAT2/gnn_framework.png)
 
 
 먼저 Notation을 다음과 같이 정리할 수 있다. 
@@ -30,7 +30,7 @@ GCN은 주변 node 정보를 가져올 때 degree normalization으로 가중치�
 
 ![toy_framework.PNG](../../.gitbook/2022-spring-assets/GAT2/toy_framework.PNG)
 
-![toy_example_graph.PNG](../../.gitbook/2022-spring-assets/GAT2/toy_example_graph.PNG)
+![toy_example_graph.png](../../.gitbook/2022-spring-assets/GAT2/toy_example_graph.png)
 
 	- Upper row : Query node
 	- Bottom row : Key node
@@ -38,7 +38,7 @@ GCN은 주변 node 정보를 가져올 때 degree normalization으로 가중치�
 
 - Attention coefficient distribution when $k=10$
 
-![toy_example_att.PNG](../../.gitbook/2022-spring-assets/GAT2/toy_example_att.PNG)
+![toy_example_att.png](../../.gitbook/2022-spring-assets/GAT2/toy_example_att.png)
 
 toy example에서 attention coefficient distribution을 보면 GAT는 query node에 상관없이 key node의 importance ranking이 모두 동일한 것을 알 수 있다.  따라서 GAT2에서는 attention mechanism이 query node에 dependent하게 이뤄지도록 하고자 한다. 
 
@@ -56,17 +56,17 @@ Motivation section에서 본 기존 GAT의 limitation을 formulation하기 위�
 
 > Analysis of expressive power of GAT
 
-![gatv1.PNG](../../.gitbook/2022-spring-assets/GAT2/gatv1.PNG)
+$$e_{ij}=leakyrelu \Big( a^T(Wh_i ||Wh_j) \Big)$$
 
 ![theorem1.PNG](../../.gitbook/2022-spring-assets/GAT2/theorem1.PNG)
 
-![theorem_proof.PNG](../../.gitbook/2022-spring-assets/GAT2/theorem_proof.PNG)
+![theorem_proof.png](../../.gitbook/2022-spring-assets/GAT2/theorem_proof.png)
 
 이 분석을 기반으로 본 논문은 Definition 3.2의 dynamic attention을 계산할 수 있는 attention mechanism으로 GAT의 attention layer와 nonlinear activation의 위치를 바꿔주는 간단한 방법을 제안한다. 
 
 > Proposed methodology, GATv2
 
-![gatv2.PNG](../../.gitbook/2022-spring-assets/GAT2/gatv2.PNG)
+$$e_{ij}=a^Tleakyrelu \Big( W(h_i ||h_j) \Big)$$
 
 
 제안한 방법론이 dynamic attention을 계산할 수 있음을 밝히는 요지는 간단하다. query node와 key node의 좀 더 복잡한 관계를 반영하는 dynamic function을 학습하고싶은 것인데, 기존의 GAT는 parameter $a$와 $W$가 바로 붙어서 계산되고, 그 뒤에 nonlinear가 오면서 almost linear하다고 볼 수 있는 반면,  GATv2는 하나의 hidden layer를 포함한 MLP로써 좀 더 복잡한 function을 approximation할 수 있게 된다는 것이다. 
@@ -91,7 +91,7 @@ GAT와 GATv2는 서로 exclusive한 property를 가지지만, complementary한 �
 
 또 다른 실험으로 noise에 대한 robustness를 분석했다. original graph에 없는 edge를 $|E|\times \rho$만큼 randomly sample하여 noise edge set $E'$를 만들고, $G=(V, E \bigcup E')$으로 GAT와 GATv2를 각각 학습한다. 아래는 각각의 Accuracy를 서로 다른 dataset에서 비교한 모습이다.
 
-![result2.PNG](../../.gitbook/2022-spring-assets/GAT2/result2.PNG)
+![result2.png](../../.gitbook/2022-spring-assets/GAT2/result2.png)
 
 noise ratio에 따라 성능을 비교해보면 GATv2가 우위의 성능을 유지하며, dynamic attention score가 static attention score에 비해 noise setting에서 좀 더 robust함을 알 수 있다. 
 
