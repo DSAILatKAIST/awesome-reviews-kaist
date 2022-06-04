@@ -192,9 +192,6 @@ Hessian matrix는 다음과 같이 계산된다.
 
 ## **4. Experiment**  
 
-In this section, please write the overall experiment results.  
-At first, write experiment setup that should be composed of contents.  
-
 ### **4.1 Experiment setup**  
 
 
@@ -222,16 +219,18 @@ ER-GNN과의 비교를 위해 continual setting에서 아래의 GNN 모델들과
   - GIN : Weisfeiler-Lehman graph isomorphism test 만큼 강력하고, GNN 중에 가장 표현력이 뛰어남.
 ~~~
 
-저자는 GNN method 중 GAT를 사용하여 ER-GNN을 구성하였다.  
-위에서 설명한 3가지(MF, CM, IM) experience selection strategy에 대하여 모두 실험을 진행하였는데, 이는 ER-GNN 뒤에 표시되어 있다. (ex. ER-GAT-MF, ER-GAT-CM, ER-GAT-IM 등)  
-별(\*) 표시가 붙어있는 방법론도 있을 것이다. 그러한 경우는 위에서 언급 하였듯, MF와 CM method를 사용할 때 attribute가 아닌 embedding을 기준으로 mean과 coverage maximization을 계산한 것을 의미한다.  
+* 저자는 GNN method 중 GAT를 사용하여 ER-GNN을 구성하였다.  
+* 위에서 설명한 3가지(MF, CM, IM) experience selection strategy에 대하여 모두 실험을 진행하였는데, 이는 ER-GNN 뒤에 표시되어 있다. (ex. ER-GAT-MF, ER-GAT-CM, ER-GAT-IM 등)  
+* 별(\*) 표시가 붙어있는 방법론도 있을 것이다. 그러한 경우는 위에서 언급 하였듯, MF와 CM method를 사용할 때 attribute가 아닌 embedding을 기준으로 mean과 coverage maximization을 계산한 것을 의미한다.  
 
 
 #### 4.1.3 Evaluation Metric  
 
 본 논문의 주된 목적은 continual learning에서 고질적으로 발생하는 문제인 catastrophic forgetting을 줄이기 위함이므로 이에 알맞은 evaluation metric을 저자는 제안한다.  
 
+* Performance Mean (PM) : 일반적인 accuracy value이다. 단, Reddit dataset에서는 class 간의 imbalance 문제 때문에 Micro F1 score를 사용한다.
 
+* Forgetting Mean (FM) : 이후 task를 학습하고 난 뒤, task의 accuracy가 떨어지는 정도를 측정한 값이다.
 
 ### **4.2 Result**  
 Then, show the experiment results which demonstrate the proposed method.  
