@@ -5,16 +5,20 @@ description : Tag et al. / Continuous Alertness Assessments; Using EOG Glasses t
 # **Continuous Alertness Assessments** 
 
 [소개할 연구](https://doi.org/10.1145/3290605.3300694)는 2019년에 CHI (Conference on Human Factors in Computing Systems)에서 발표되었으며,  
-하루 동안의 눈 깜빡임 빈도를 EOG (Electrooculography)로 측정함으로써 대상자의 피로 정도를 간편하게 모니터링하는 기술을 소개하고자 합니다.  
+하루 동안의 눈 깜빡임 빈도를 EOG (Electrooculography)로 측정함으로써 간편하게 대상자의 `피로 수준을 모니터링`하는 기술을 소개하고자 합니다.  
 _keyword: Cognition-Aware Systems, Circadian Computing, Fatigue, Eye Blink, Electrooculography_
   
 <br>
 
 ## **1. Problem Definition**  
+> 눈깜박임빈도 감지 센서를 활용한 피로 수준 모니터링 시스템
+
 사람의 집중력과 업무 능력은 24시간 일주기와 관련이 깊기 때문에, 일주기 리듬이 생물학적 사이클에서 벗어날 경우 심각한 건강 문제를 초래할 수 있습니다.  
 예를 들어 오랫동안 쉬지 않고 업무를 지속할 경우 실수와 사고를 일으킬 가능성이 증가하며, 이는 교대근무와 장기간 근무가 필요한 조종사, 의료인들에게서 흔히 나타납니다.
 
-Please write the problem definition on here  
+수면부족은 업무 효율에 악영향을 미치며, 이로 인한 피로감은 추론능력, 작업기억 등의 정신기능에도 영향을 줍니다.  
+따라서 이러한 **정신기능의 변화들을 감지하고 예측할 수 있는 자동화된 시스템** 개발이 필요합니다.  
+이러한 시스템을 통해 업무 순서를 효율적으로 배정하거나, 휴식이나 수면시간을 알려주거나, 생산성이 높아져 있는 상태에서는 일부 알림을 끔으로써 사용자를 방해하지 않는 등의 효율성 증가를 기대할 수 있습니다.
   
 <br>
 
@@ -72,7 +76,7 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 
 ## **6. Reference & Additional materials**  
 * 논문 원문 : [Continuous Alertness Assessments](https://doi.org/10.1145/3290605.3300694)
-
 * Github Implementation  
+  * [Fatigue_EOG_Raw](https://github.com/tagbenja/Fatigue_EOG_Raw)
 * Reference  
 
