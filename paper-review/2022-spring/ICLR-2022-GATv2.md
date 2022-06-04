@@ -54,6 +54,8 @@ Motivation section에서 본 기존 GAT의 limitation을 formulation하기 위�
 
 즉, 기존의 GAT는 Definition 3.1의 static attention을 계산한다는 건데, 다음의 theorem을 통해 간단히 증명할 수 있다. 사실 GAT의 attention score 계산 식을 뜯어보면 linear sum으로써 증명과정 없이도 직관적으로 받아들일 수 있는 문제이다. 
 
+
+
 > Analysis of expressive power of GAT
 
 $$e_{ij}=leakyrelu \Big( a^T(Wh_i ||Wh_j) \Big)$$
@@ -63,6 +65,8 @@ $$e_{ij}=leakyrelu \Big( a^T(Wh_i ||Wh_j) \Big)$$
 ![theorem_proof.png](../../.gitbook/2022-spring-assets/GAT2/theorem_proof.png)
 
 이 분석을 기반으로 본 논문은 Definition 3.2의 dynamic attention을 계산할 수 있는 attention mechanism으로 GAT의 attention layer와 nonlinear activation의 위치를 바꿔주는 간단한 방법을 제안한다. 
+
+
 
 > Proposed methodology, GATv2
 
