@@ -99,12 +99,12 @@ description : Hanxiao Liu, Zihang Dai, David R. So, Quoc V. Le / Pay Attention t
 - 모델의 크기가 커질 때마다 성능이 어떻게 변하는지 확인하였음
 - **Results**
 - ![](../../.gitbook/2022-spring-assets/WYE/bert_result2.png)
-    	- gMLP 모델이 deep 해질 수록 Transformer와 성능이 비슷해지며, 심지어는 outperform 하는 경우도 존재함
+	- gMLP 모델이 deep 해질 수록 Transformer와 성능이 비슷해지며, 심지어는 outperform 하는 경우도 존재함
 - ![](../../.gitbook/2022-spring-assets/WYE/bert_result3.png)
-	 -  SST-2, 즉 sentiment analysis task 측면에서도 같은 개수의 파라미터일 때, gMLP 모델이 Transformer 보다 뛰어나다는 것을 보임
-	 - 하지만, natural language inference task 측면에서는 Transformer가 더 좋은 성능을 보였음
-		 - 왜냐하면, 이 task에서는 모델이 2 문장을 다루어야 하는데, 여기서 self-attention 이 유용한 역할을 했기 때문 
-		 -> **self-attention을 가지고 있는 Transformer 가 훨씬 유리**
+	-  SST-2, 즉 sentiment analysis task 측면에서도 같은 개수의 파라미터일 때, gMLP 모델이 Transformer 보다 뛰어나다는 것을 보임
+	- 하지만, natural language inference task 측면에서는 Transformer가 더 좋은 성능을 보였음
+	- 왜냐하면, 이 task에서는 모델이 2 문장을 다루어야 하는데, 여기서 self-attention 이 유용한 역할을 했기 때문 
+	-> **self-attention을 가지고 있는 Transformer 가 훨씬 유리**
 
 
 
