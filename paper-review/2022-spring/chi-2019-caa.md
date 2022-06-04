@@ -79,4 +79,4 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 * Github Implementation  
   * [Fatigue_EOG_Raw](https://github.com/tagbenja/Fatigue_EOG_Raw)
 * Reference  
-
+  * [J!NS MEME glasses](https://jinsmeme.com/en/)
