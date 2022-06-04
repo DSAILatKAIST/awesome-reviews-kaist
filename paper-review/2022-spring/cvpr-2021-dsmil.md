@@ -103,7 +103,7 @@ The authors used the classification area under the curve (AUC) and localization 
    </figcaption>
    </figure>  
    
-### Results on General MIL Benchmark Datasets
+#### Results on General MIL Benchmark Datasets
 
 At last, the study tested the model on several MIL benchmark datasets and compared the performance to several recent MIL models. The proposed model showed a clear-cut improvement in classification accuracy over the recent models and demonstrates state-of-the-art performance. 
 
