@@ -23,7 +23,7 @@ _keyword: Cognition-Aware Systems, Circadian Computing, Fatigue, Eye Blink, Elec
 
 ★![J!NS MEME glasses](https://이미지링크.png)
 
-이러한 자동화 시스템은 아래의 장점을 갖고 있습니다:
+**`Continuous Alertness Assessments`** 시스템은 아래의 장점을 갖고 있습니다:
  * 피로 수준에 따른 업무 순서 배치로 효율성 증대 가능
  * 사용자에게 휴식이나 수면이 필요한 경우 알림 생성
   
