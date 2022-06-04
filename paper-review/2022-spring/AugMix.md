@@ -123,6 +123,9 @@ $$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
 위의 그림은 ResNeXt backbone에 다양한 방법의 augmentation을 적용하여 훈련시킨 후 CIFAR-10-C test dataset에 대한 standard clean error rate을 나타낸 것이다. AugMix가 기존의 augmentation 방법들인 Standard, Cutout, Mixup, CutMix, AutoAugment, Adversarial Training보다 절반 이하 수준의 error rate을 보여주고 있다. 다음은 ResNeXt이외의 backbone에 augmentation 방법들을 적용했을 때의 average classification error를 비교한 표이다. AugMix는 CIFAR-10-C, CIFAR-100-C 두 test dataset 모두 backbone 네트워크에 상관없이 가장 낮은 error rate을 보여주었다. 
 ![figure6](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig6.PNG?raw=true)
 
+다음 그림은 ResNeXt backbone에 Standard, Cutmix, AugMix를 적용하여 훈련시킨 모델의 CIFAR-10-C에 대한 RMS Calibration Error를 나타낸다. AugMix는 corruption이 없는 CIFAR-10 데이터와 corruption이 존재하는 CIFAR-10-C 모두에 대해서 calibration error를 감소시킴을 알 수 있다. 특히, corrption이 있는 데이터셋에 대해서 다른 augmentation 방법론에 비해 매우 큰 차이로 error를 줄였다.  
+![figure7](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig7.PNG?raw=true)
+
 * **`ImageNet`**
 
 
