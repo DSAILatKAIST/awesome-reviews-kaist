@@ -110,7 +110,9 @@ You can attach the tables or figures, but you don't have to cover all the result
   * 
 
 > My opinion, Take home message  
-  *
+  * HCI분야에서 안경을 사용하여 신체 및 인지 데이터를 수집하는 연구들이 활발하게 이뤄져있습니다. 기존에 리뷰했던 [FaceSight](https://dsail.gitbook.io/isyse-review/paper-review/2022-spring-paper-review/chi-2021-facesight) 연구도 
+  ![FaceSight](https://github.com/bananaorangel/awesome-reviews-kaist/raw/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig1_facesight.PNG?raw=true)
+  * 센서들을 신체에 직접 부착하여 데이터를 
 
   
 <br>
