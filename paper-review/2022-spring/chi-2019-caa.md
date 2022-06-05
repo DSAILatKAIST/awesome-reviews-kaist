@@ -5,7 +5,7 @@ description : Tag et al. / Continuous Alertness Assessments; Using EOG Glasses t
 # **Continuous Alertness Assessments** 
 
 [소개할 연구](https://doi.org/10.1145/3290605.3300694)는 2019년에 CHI (Conference on Human Factors in Computing Systems)에서 발표되었으며,  
-하루 동안의 눈 깜빡임 빈도를 EOG (Electrooculography)로 측정함으로써 간편하게 대상자의  **`Continuous Alertness Assessments`** 를 모니터링하는 기술을 소개하고자 합니다.  
+하루 동안의 눈 깜빡임 빈도를 EOG (Electrooculography)로 측정함으로써 간편하게 대상자의 피로도 수준인  **`Continuous Alertness Assessments`** 를 모니터링하는 기술을 소개하고자 합니다.  
 _keyword: Cognition-Aware Systems, Circadian Computing, Fatigue, Eye Blink, Electrooculography_
   
 <br>
@@ -81,14 +81,27 @@ EOG를 통해 얻을 수 있는 안구 운동, 눈깜박임 데이터를 활용�
 
 ## **3. Method**  
 
+이 연구의 목적은, 하루 동안의 EOG 데이터를 지속적으로 측정함으로서 의식 수준의 변화와 눈깜빡임 빈도 사이의 관계를 밝히는 것입니다.
+
+따라서, 먼저 일상생활에서의 피로도 변화를 자유롭게 측정 및 기록하는 방식을 dataset에 사용하였습니다.
+
+이 연구에서는 피로의 개념을 [Van Dongen and Dinges](https://doi.org/10.1002/ppul.1065)가 정의한, ’실행을 지속할 수 있는 욕구나 능력을 잃어버리는 것’으로 정의하였다
+
 ### **3.1 EOG 안경 기반의 피로 수준 모니터링 시스템**  
 
+EO
 
 
 ### **3.2 피로 수준 측정 Toolkit**  
 
+본 연구에서는 데이터 수집을 위해 [Dinger et al.](https://doi.org/10.1145)이 도입한 모바일 도구 Toolkit을 사용하였습니다.  
+Toolkit은 Android 기반으로 각성 수준 및 피로 수준을 아래와 같이 3가지 방법으로 측정할 수 있습니다.
+
 ★★★toolkit 그림 필요함  
 
+3가지 방법은 순서대로 Psychomotor Vigilance Task (PVT),  Go/No-Go task, Multiple Object Tracking task입니다.
+
+PVT가 피로 수준을 측정하는데 가장 정확하고 데이터의 양도 많으므로, 본 연구에서는 PVT 방법을 피로 수준을 모니터링하는데 활용하였습니다.
 
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily.  
@@ -148,3 +161,5 @@ You can attach the tables or figures, but you don't have to cover all the result
 * Reference  
   * 안경 : [J!NS MEME glasses](https://jinsmeme.com/en/)
   * 모바일 toolkit : [Dingler](https://doi.org/10.1145)
+  * 피로 수준 정의 : [Van Dongen and Dinges](https://doi.org/10.1002/ppul.1065)
+  * 피로 수준 측정 시스템 : [Kleitman](https://doi.org/10.1152/ajplegacy.1923.66.1.67), [Hofstra and Weerd](https://doi.org/10.1016/j.yebeh.2008.06.002), [Abdullah et al.](https://doi.org/10.1145/2971648.2971712), [Dingler et al.](https://doi.org/10.1145/2968219.2968565)
