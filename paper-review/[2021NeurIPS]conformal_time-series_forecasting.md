@@ -8,3 +8,8 @@ ground truth 값 yt+h가 충분히 높은 확률로 ![]([https://latex.codecogs.
 즉, 아래의 식을 만족하게 한다.
 https://latex.codecogs.com/svg.image?y__%7Bt:t%27%7D
 ![](https://latex.codecogs.com/svg.image?y__%7Bt:t%27%7D)
+
+![](https://latex.codecogs.com/gif.latex?N): Surface normal image,
+>
+![image](https://user-images.githubusercontent.com/100551559/172048129-74053baf-9319-4d54-8be7-e523491d7f4b.png)
+
