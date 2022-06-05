@@ -262,7 +262,7 @@ Figure3 에서 보이듯 우리는 EGI를 특정 그래프에서 학습하고 �
 
 ## 4.2 Few-shot learning on relation prediction
 
-이 파트에서는 EGI를 보다 일반적으로 평가하기 위해 few-shot learning 기반의 실험을 진행합니다. 그래프 구조와 관계가 적은 관계예측 테스크를 통해 평가를 진행하였습니다. 소스 그래프는 579k 의 엔티티를 포함한 YAGO 데이터를 사용하며, 20-shot relation prediction 을 타겟 그래프에서 24가지 relation type 에 대해 수행합니다. 115K 개의 엔티티의 sub-graph 에 대해 수행합니다. post-fine-tuning 에서 모델은 source 그래프에서 unsupervised loss 로 pre-trained 되고 target graph 에서 task-specific loss 로 fine-tuned 됩니다. joint-finetuning 에서는 같은 pre-trained 모델들이 타겟 그래프에 대한 unsupervised pre-training loss 와 task-specific fine-tuning loss 로  jointly optimized 됩니다. 
+이 파트에서는 EGI를 보다 일반적으로 평가하기 위해 few-shot learning 기반의 실험을 진행합니다. 그래프 구조와 관계가 적은 관계예측 테스크를 통해 평가를 진행하였습니다. 소스 그래프는 579k 의 엔티티를 포함한 YAGO 데이터를 사용하며, 20-shot relation prediction 을 타겟 그래프에서 24가지 relation type 에 대해 수행합니다. fine-tuning은 같은 그래프에서 추출된 115K 개의 엔티티의 sub-graph 에 대해 수행합니다. post-fine-tuning 에서 모델은 source 그래프에서 unsupervised loss 로 pre-trained 되고 target graph 에서 task-specific loss 로 fine-tuned 됩니다. joint-finetuning 에서는 같은 pre-trained 모델들이 타겟 그래프에 대한 unsupervised pre-training loss 와 task-specific fine-tuning loss 로  jointly optimized 됩니다. 
 
 Table3 에서 우리는 대부분의 기존 모델이 joint-fine-tuning 에 대해 pre-training, fine-tuning task 를 통한 전이에 실패하는 것을 관찰하였습니다. 특히 Mask-GIN 과 ContextPred-GIN은 task-specific fine-tuning 에 많이 의존하는 반면, EGI 는 그래프간에 전이할 수 잇는 유사한 ego-graph 구조 포착에 중점을 둡니다. MI 기반의 방식인 GMI 역시 전이가능성을 보여주며 그래프 구조를 포착하는 것이 핵심임을 알 수 있습니다. 결과적으로 EGI 는 두가지 setting 모두에서 베이스라인 대비 높은 성능을 보여줍니다.
 
