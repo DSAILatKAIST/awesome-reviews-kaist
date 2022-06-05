@@ -43,11 +43,9 @@ IThe main contributions of this paper are as followed:
 
 ## **3. Method**  
 
-In this method, the authors construct a system that leverages an encoder and decoder
-that are each driven by sparse recurrent neural networks (SMRNNs) trained within
-the effective framework of neural iterative refinement while the recurrent decoder learns to reduce artifacts
-in the reconstructed image.
+In this method, the authors construct a system that leverages an encoder and decoder that are each driven by sparse recurrent neural networks (SMRNNs) trained within the effective framework of neural iterative refinement while the recurrent decoder learns to reduce artifacts in the reconstructed image.
 
+In the following sub paragraphs will be explained how each part of the architecture and the loss are formulated and changed.
 
 ### **JPEG algorithm & architecture**
 
@@ -89,25 +87,33 @@ Modifications:
 * Rounding module: the authors removed the entropy encoding that is being used in JPEG and replaced the hard rounding operation with a differentiable third order approximation as shown below:
 
  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig7.png">
+ 
 
 ### **Loss formulation**
 
-* Disortion loss:
+General loss formulation:
 
  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig8.png">
 
+In where the ideal value for lamba is obtained based on the validation performance.
 
-* Rate loss:
+* Disortion loss:
 
  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig9.png">
 
+The distortion loss is responsible for measuring similarity between compressed and original images. To achieve this, as shwon above, the combination of the MSE and LPIPS metrics.
 
-* Alignment loss:
+* Rate loss:
 
  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig10.png">
 
+The authors use rate loss formulation proposed by one of the related works and replace attention map with sparse map obtained from SMRNN that is represented as shown above.
 
+* Alignment loss:
 
+ <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig11.png">
+
+The aligment loss should ensure that signals are robust at decoder end. To achieve this the authors use a combination of MSE and Mean Absolute Error (MAE) as shown above.
 
 
 ## **4. Experiment**  
