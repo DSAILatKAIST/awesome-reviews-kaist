@@ -6,3 +6,5 @@
 ground truth 값 yt+h가 충분히 높은 확률로 ![]([https://latex.codecogs.com/svg.image?[{\\hat{y}](https://latex.codecogs.com/svg.image?%5B%7B%5C%5Chat%7By%7D)}*{t+h}^{L},&space;{\hat{y}}*{t+h}^{U}]), h ∈ {1, . . . , H} 구간에 포함되도록 한다. 전체 시계열 궤적의 실제 값이 간격 내에 포함되도록 원하는 유의 수준(또는 오류율) α를 수정한다. 
 
 즉, 아래의 식을 만족하게 한다.
+https://latex.codecogs.com/svg.image?y__%7Bt:t%27%7D
+![](https://latex.codecogs.com/svg.image?y__%7Bt:t%27%7D)
