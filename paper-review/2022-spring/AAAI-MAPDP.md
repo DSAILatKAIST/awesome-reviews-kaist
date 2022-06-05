@@ -4,8 +4,7 @@ Delivery Problems
  / AAAI-2022  
 ---
 
-# **MAPDP(Cooperative Multi-Agent Reinforcement Learning to Solve Pickup and
-Delivery Problems)** 
+# **MAPDP(Cooperative Multi-Agent Reinforcement Learning to Solve Pickup and Delivery Problems)** 
  
 
 ## **1. Problem Definition**  
@@ -56,13 +55,13 @@ MAPDP 모델은 paired context embedding → context encoder → cooperated deco
 
 ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a604f851-6ad4-49ac-9791-2e7922a796ce/Untitled.png)
 
-###paired context embedding
+### paired context embedding
 
 ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6374abfd-53d1-4330-bdf9-77dd752aff62/Untitled.png)
 
 paired context embedding은 위의 식에서 알 수 있듯이 각 embedding된 pickup node와 delivery node에 대해 pickup node가 delivery node에 대한 정보를 가지고 있을 수 있도록 concat 후 다시 linear layer를 통해 embedding하는 과정이다.
 
-###context encoding(transformer encoding)
+### context encoding(transformer encoding)
 
 ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3a462475-e3bc-4345-acea-2a11da43159d/Untitled.png)
 
@@ -70,7 +69,7 @@ context encoding은 transformer의 encoding구조를 따르는 multi attention l
 
 Cooperative Multi-agent Decoder
 
-###Communication Embedding
+### Communication Embedding
 
 각 agent들의 update된 state들을 저장하는 layer입니다.
 
