@@ -160,4 +160,4 @@ $$
 * GCN: [https://arxiv.org/abs/1609.02907](https://arxiv.org/abs/1609.02907)
   * PDF 자료: [https://github.com/SukwonYun/GNN-Papers](https://github.com/SukwonYun/GNN-Papers)
   * 윤훈상 연구원님 자료: [https://www.youtube.com/watch?v=F-JPKccMP7k\&t=635s](https://www.youtube.com/watch?v=F-JPKccMP7k\&t=635s)
-* Github Review (본문 사진이 잘 안보일 경우): [https://github.com/SukwonYun/awesome-reviews-kaist/blob/2022-Spring/paper-review/2022-spring/AAAI-2020-GDE.md](https://github.com/SukwonYun/awesome-reviews-kaist/blob/2022-Spring/paper-review/2022-spring/AAAI-2020-GDE.md)
+* Github Review (본문 사진이 잘 안보일 경우): [https://github.com/SukwonYun/awesome-reviews-kaist/blob/2022-Spring/paper-review/2022-spring/AAAI-2020-MAD.md](https://github.com/SukwonYun/awesome-reviews-kaist/blob/2022-Spring/paper-review/2022-spring/AAAI-2020-MAD.md)
