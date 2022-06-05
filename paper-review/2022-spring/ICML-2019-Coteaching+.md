@@ -27,7 +27,7 @@ Noisy labels을 고려한 deep neural network 학습을 위하여 memorization e
     
     이 현상의 직관적인 이해를 돕는 논문[2]이 있어 소개하자면
     
-    ![fig0.png]([https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig0.png?raw=true](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig0))
+    ![fig0.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig0)
     
     experiment setting: 4 layer neural network(2 CNN lavers, 2 fully-connected layers, 4.8M parameters),  MINST(train(noise 포함) 50000, val 10000, test(only clean) 10000)
     
@@ -45,7 +45,7 @@ Noisy labels을 고려한 deep neural network 학습을 위하여 memorization e
         
 - Influenced studies
 
-![Untitled](Untitled%201.png)
+![fig1.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig1)
 
 - MentorNet(M-net)
     
@@ -53,7 +53,7 @@ Noisy labels을 고려한 deep neural network 학습을 위하여 memorization e
     
     → 단점) 단일 모델만을 이용하여 noisy label을 판단하기에 라벨이 올바르더라도 한번 학습에서 제외한 데이터는 추후 학습에서도 제외됨 
     
-    ![Untitled](Untitled%202.png)
+    ![fig2.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig2)
     
 
 - Decoupling
@@ -62,7 +62,7 @@ Noisy labels을 고려한 deep neural network 학습을 위하여 memorization e
     
     → 단점) 정확히 어떤 instance가 noisy label인지 파악 불가(설명력 부족)
     
-    ![Untitled](Untitled%203.png)
+    ![fig3.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig3)
     
 
 Co-teaching은 기존 방법론의 단점을 보완하기 위해
@@ -82,7 +82,7 @@ Co-teaching은 기존 방법론의 단점을 보완하기 위해
 
 - Consensus issue in Co-teaching
 
-![Untitled](Untitled%204.png)
+![fig4.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig4)
 
 Co-teaching의 학습과정을 구현해보면 초기 epoch에는 두 네트워크가 서로 다른 에러를 filter할 수 있는 상이한 학습능력을 가지고 있으나 epoch이 증가할수록 두 네트워크가 점차 일치하게 수렴해버리는 현상이 발생합니다(Mentornet 방식과 같아져버림). 이는 모델의 성능 저하에 큰 영향을 미치게 됩니다.
 
@@ -92,7 +92,7 @@ Co-teaching의 학습과정을 구현해보면 초기 epoch에는 두 네트워�
     
     두 분류기의 예측이 일치하지 않은 경우의 data로만 update 하여 두 네트워크가 계속해서 서로 다른 (diverge) 상태를 유지하도록 하는 방법론으로 저자는 본 논문으로부터 영감을 받아 **Co-teaching에 Disagreement strategy를 추가한 Co-teaching+를 제안**합니다.  
     
-    ![Untitled](Untitled%205.png)
+    ![fig5.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig5)
     
 
 ---
@@ -110,11 +110,11 @@ Co-teaching+은 크게 4단계로 구성됩니다.
 
 ### 3.1 Algorithm
 
-![Untitled](Untitled%206.png)
+![fig6.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig6)
 
 - Step 4 (**Disagreement-update step**)
     
-    두 네트워크는 학습 과정에서 같은 mini-batch data $\bar{\mathcal{D}}=\{(x_1, y_1), (x_2, y_2), ... (x_B, y_B)\}$에 대한 예측을 수행합니다. 그리고 예측이 일치하지 않은 disagreement data $\bar{\mathcal{D^\prime}}$을 keep 합니다.
+    두 네트워크는 학습 과정에서 같은 mini-batch data $\bar{\mathcal{D}}=\{(x_1, y_1), (x_2, y_2), ... (x_B, y_B)\}$ 에 대한 예측을 수행합니다. 그리고 예측이 일치하지 않은 disagreement data $\bar{\mathcal{D^\prime}}$을 keep 합니다.
     
     $w^{(1)}$에 의한 예측을 $\{\bar{y_1}^{(1)}, \bar{y_2}^{(1)}, ...,\bar{y_3}^{(1)}\}$, $w^{(2)}$에 의한 예측을 $\{\bar{y_1}^{(2)}, \bar{y_2}^{(2)}, ...,\bar{y_3}^{(2)}\}$이라 할 때 Eq.1 은 $\bar{\mathcal{D^\prime}} = \{(x_i, y_i): \bar{y_i}^{(1)} {\neq \bar{y_i}^{(2)}}\}$, $i \in \{1,...,B\}$ 을 나타냅니다.
     
@@ -157,7 +157,7 @@ Co-teaching+은 크게 4단계로 구성됩니다.
     
     이때, 노이즈의 가정 중 Pair이란 혼동되는 Class간의 label이 섞이는 경우를 나타내고, Symmetry란 uniform/random noise와 같이 label이 임의로 섞이는 경우를 나타냅니다.
     
-    ![Untitled](Untitled%207.png)
+    ![fig7.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig7)
     
 - Baselines
     
@@ -183,7 +183,7 @@ Co-teaching+은 크게 4단계로 구성됩니다.
         
         noisy dataset을 그대로 학습시킨 standard deep network이다.
         
-        ![Untitled](Untitled%208.png)
+![fig8.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig8)
         
 - Network structure
     
@@ -193,7 +193,7 @@ Co-teaching+은 크게 4단계로 구성됩니다.
     
     Tiny-ImageNet에는 Resnet18을 이용했고 자세한 정보는 아래의 표와 같습니다.
     
-    ![Untitled](Untitled%209.png)
+    ![fig9.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig9)
     
 
 - Optimizer
@@ -212,7 +212,8 @@ Co-teaching+은 크게 4단계로 구성됩니다.
     
     Co-teaching과 Co-teaching+는 noise rate $\tau$를 알고 있다고 가정하고 있는데 사전에 $\tau$를 알지 못한다면 validation set을 가지고 추론하는 과정이 필요하다고 합니다.
     
-    저자는 $\lambda(e)$이 특정 데이터셋이 아닌 memorization effect에 의존함을 강조하며 공정한 비교를 위해 Co-teaching과 동일한 업데이트 룰 $\lambda(e)= 1-min{e \over E_k}\tau, \tau\}$, $E_k=10$ 을 적용했습니다.
+    저자는 $\lambda(e)$이 특정 데이터셋이 아닌 memorization effect에 의존함을 강조하며 공정한 비교를 위해 Co-teaching과 동일한 업데이트 룰 
+    $\lambda(e)=1-min{e\over E_k}\tau$, $E_k=10$을 적용했습니다.
     
 - Evaluation Metric
     
@@ -221,15 +222,15 @@ Co-teaching+은 크게 4단계로 구성됩니다.
 
 ### 4.2 Result
 
-![Untitled](Untitled%2010.png)
+![fig10.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig10)
 
-![Untitled](Untitled%2011.png)
+![fig11.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig11)
 
-![Untitled](Untitled%2012.png)
+![fig12.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig12)
 
-![Untitled](Untitled%2013.png)
+![fig13.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig13)
 
-![Untitled](Untitled%2014.png)
+![fig14.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig14)
 
 요약하자면 대부분의 실험에서 Co-teaching+가 높은 분류 성능을 보였습니다. cross-update와 small-loss trick을 이용하여 두 네트워크를 diverge 상태를 유지하는 것이 보다 noise robust한 학습에 분명하게 도움이 됨을 보여주고 있습니다. 
 
