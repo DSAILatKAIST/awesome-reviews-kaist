@@ -286,10 +286,20 @@ ER-GNN과의 비교를 위해 continual setting에서 아래의 GNN 모델들과
 * Hyperparameter tuning을 통해 catastrophic forgetting과 computational cost 간의 trade-off 관계에서 균형을 찾을 필요가 있을 것이다. 
 
 
-## ** 5. Conclusion**  
+## **5. Conclusion**  
 
-Please summarize the paper.  
-It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
+#### 5.1 Summary
+
+* Graph-based continual learning problem에 GNN을 활용하여 catastrophic forgetting을 방지할 수 있는 framework를 제안함.
+* Continual learning의 큰 줄기 중에서 replay 방식을 채택하였고, influence function을 접목시켜 가장 영향력이 높은 node를 buffer에 저장하도록 함.
+* Graph domain에서 유명한 Cora, Citeseer, Reddit 등의 datastet에 적용시켜 실험하였고, PM, FM이라는 두 가지 metric을 토대로 효과가 있음을 입증함.
+
+#### 5.2 Discussion
+
+* 본 논문의 가장 주요한 novelty는 replay를 할 때, influence function을 접목시킨 것이다.
+* 이렇듯 replay 방식에서는 buffer에 넣을 node를 선택하는 방법론이 매우 주요할 것이고, experience selection strategy에 대하여 연구해보는 것도 좋은 future research topic이 될 것 같다.
+* 또한, 본 논문의 algorithm을 살펴보면 buffer의 크기에 제한이 없이 task가 진행됨에 따라 계속 node를 추가시킨다. 이러한 경우 replay되는 node에 대해 overfitting이 발생할 수 있고, real-world dataset에서는 task가 굉장히 많을 것이기 때문에 computational cost가 많이 증가할 것으로 예상된다. 이에 따라 buffer size와 buffer 내의 node 관리에 대한 연구도 필요할 것이라 생각된다. 
+
 
 ---  
 ## **Author Information**  
@@ -300,8 +310,12 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 
 ## **6. Reference & Additional materials**  
 
-Please write the reference. If paper provides the public code or other materials, refer them.  
+#### 6.1 Github Implementation  
 
-* Github Implementation  
-* Reference  
+* [https://github.com/hhliu79/TWP](https://github.com/hhliu79/TWP)
+
+#### 6.2 Reference  
+
+* Fan Zhou, and Chengtai Cao. "Overcoming Catastrophic Forgetting in Graph Neural Network with Experience Replay." 
+* Liu, Huihui, Yiding Yang, and Xinchao Wang. "Overcoming catastrophic forgetting in graph neural networks."
 
