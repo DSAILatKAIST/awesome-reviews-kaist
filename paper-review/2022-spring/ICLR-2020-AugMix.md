@@ -20,28 +20,29 @@ AugMix
 그러나 이 방법은 네트워크가 training 과정에서 특정 corruption들을 외우도록 하여 새로운 corruption이 있는 데이터에는 일반화 성능이 떨어진다. 또한, translation augmentation (ex. 이미지의 위치를 이동)을 적용하는 경우에는 image의 single pixel의 변동에도 매우 민감하게 반응하는 문제점이 존재하였다. 이 외에도 많은 데이터 augmentation 방법들이 제안되었지만, 대부분 강건성(robustness)과 불확실성 추정(uncertainty estimate) 간에 trade-off 관계를 가져 두 영역에 있어 모두 성능을 향상시키지 못해왔다.
 
 따라서, 본 논문에서는 모델이 데이터의 분포 변동에 대해 강건하고 불확실성을 좀 더 정확하게 추정할 수 있도록 하는 새로운 데이터 augmentation 방법 AugMix를 제안한다.
-AugMix는 표준 벤치마크 데이터셋에 대해 분류 정확도를 유지하면서 강건성과 불확실성 추정을 모두 향상시킨다. AugMix는 확률성(stochasticity)과 다양한 augementation 기법들을 적용하여 여러 개의 augmented image들을 mix한 후 Jensen-Shannon Divergence consistency loss를 통해 네트워크를 학습하는 방법론이다.
+AugMix는 표준 벤치마크 데이터셋에 대해 분류 정확도를 유지하면서 강건성과 불확실성 추정을 모두 향상시킨다. AugMix는 확률성(stochasticity)과 다양한 augementation 기법들을 적용하여 생성된 여러 개의 augmented image들을 mix한 후 Jensen-Shannon Divergence consistency loss를 통해 네트워크를 학습하는 방법론이다.
 
 
 ## **3. Method**  
 
-AugMix는 간단한 augmentation 방법들을 consistency loss와 함께 사용한 점이 특징이다. 여러 augmentation 방법들이 확률적으로 샘플된 후 층층이 적용됨으로써 매우 다양한 augmented image를 생성한다. 이 후, 같은 input image에 대한 여러 개의 augmented image들이 classifier에 의해 consistent embedding (일관성 있는 embedding)을 갖도록 Jensen-Shannon divergence consistency loss를 이용하여 학습시킨다.
+AugMix는 간단한 augmentation 방법들을 consistency loss와 함께 사용한 점이 특징이다. 여러 augmentation 방법들이 확률적으로 샘플된 후 층층이 적용됨으로써 매우 다양한 augmented image를 생성한다. 이 후, 같은 input image에 대한 여러 개의 augmented image들이 classifier에 의해 `consistent embedding` (일관성 있는 embedding)을 갖도록 `Jensen-Shannon divergence consistency loss`를 이용하여 학습시킨다.
 
-augmentation을 섞는 것은 다양한 변형을 생성하는데, 이는 모델의 강건성을 향상시키는 데에 매우 중요한 요소이다. 대부분의 Deep Network 모델들이 변동에 대해 강건하지 못한 이유는 모델이 고정된 augmentation 방법들을 외우기 때문이다. 이를 해결하기 위해 이전 연구들은 augmentation 방법들을 chain으로 구성하여 바로 적용하는 시도를 해왔지만, 이는 이미지가 data manifold 상에서 너무 동떨어진 이미지를 생성해낸다. 즉, 다음 그림에서와 같이 image degradation을 초래한다.
+augmentation을 섞는 것은 다양한 변형을 생성하는데, 이는 모델의 강건성을 향상시키는 데에 매우 중요한 요소이다. 대부분의 Deep Network 모델들이 변동에 대해 강건하지 못한 이유는 모델이 고정된 augmentation 방법들을 외우기 때문이다. 이를 해결하기 위해 이전 연구들은 augmentation 방법들을 chain으로 구성하여 바로 적용하는 시도를 해왔지만, 이는 이미지가 data manifold 상에서 너무 동떨어진 이미지를 생성해낸다. 즉, 다음 그림에서와 같이 데이터의 중요한 semantic 정보를 잃게 되는 `image degradation`을 초래한다.
 ![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig1.PNG?raw=true)
 
-AugMix는 여러 개의 augmentation chain들로부터의 결과 이미지를 convex combination을 통해 믹스함으로써 image degradation 문제를 해결하면서 augmentation 다양성은 유지할 수 있다. 구체적인 AugMix 알고리즘은 아래 pseudo-code에서 확인할 수 있다.
+AugMix는 여러 개의 augmentation chain들로부터 생성된 이미지들을 convex combination을 통해 믹스함으로써 image degradation 문제를 해결하면서도 augmentation 다양성은 유지할 수 있다. 구체적인 AugMix 알고리즘은 아래 pseudo-code에서 확인할 수 있다.
 ![figure2](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig2.PNG?raw=true)
 
 ### **Augmentations**  
-앞서 언급하였듯이, AugMix는 여러 개의 augmentation 기법들로 이루어진 augmentation chain으로부터의 결과를 mix하는 방식이다. 이 때 augmentation 기법은 AutoAugment 방법을 이용한다. ImageNet-C 에 대해서 test하기 때문에 ImageNet-C에 적용된 변동들과 중복되는 augmentation operation(contrast, color, brightness, sharpness, cutout, noising, blurring)은 제외하였다. 따라서 ImageNet-C에 적용된 변동들은 모델이 test시에 처음 마주치도록 하였다. Rotation과 같은 augmentation operation적용 시에는 2도 에서 -15도 등 severity(강도)를 각 적용 시마다 랜덤하게 샘플링하여 적용하였다.   
+앞서 언급하였듯이, AugMix는 여러 개의 augmentation 기법들로 이루어진 augmentation chain으로부터 생성된 결과를 mix하는 방식이다. 이 때 augmentation 기법은 AutoAugment 방법을 이용한다. ImageNet-C 에 대해서 test하기 때문에 ImageNet-C에 적용된 변동들과 중복되는 augmentation operation(contrast, color, brightness, sharpness, cutout, noising, blurring)은 제외하였다. 따라서 ImageNet-C에 적용된 변동들은 모델이 test시에 처음 마주치도록 하였다. Rotation과 같은 augmentation operation적용 시에는 2도 에서 -15도 등 severity(강도)를 각 적용 시마다 랜덤하게 샘플링하여 적용하였다.   
 
-이 후 k개의 augmentation chain을 샘플링하는데, k=3을 기본값으로 설정하였다. 각 augmentation chain은 랜덤으로 선택된 1~3개의 augmentation operation들로 이루어져 있다.
+이 후 k개의 augmentation chain을 샘플링하는데, `k=3`을 기본값으로 설정하였다. 각 augmentation chain은 랜덤으로 선택된 1~3개의 augmentation operation들로 이루어져 있다.
 
-여기서 augmentation chain과 augmentation operation이 헷갈릴 수 있는데, 여러 개의 augmentation operation으로 구성된 하나의 chain이 augmentation chain이고, 이러한 augmentation chain을 다시 여러 개 사용하는 것이다.   
+여기서 `augmentation chain`과 `augmentation operation`이 헷갈릴 수 있는데, 여러 개의 `augmentation operation`으로 구성된 하나의 chain이 `augmentation chain`이고, 이러한 `augmentation chain`을 다시 여러 개 사용하는 것이다.   
 
 ### **Mixing**  
-각 augmentation chain으로부터 생성된 이미지들은 mixing을 통해 결합된다. 즉 k=3인 경우 각 augmentation chain들로부터 생성된 3개의 이미지들이 결합된다. AugMix는 간단하게 elementwise convex combination을 이용하여 이미지들을 결합하였는데, 이 때 사용되는 k개의 convex coefficients(계수)들은 Dirichelet 분포로부터 랜덤하게 샘플링된다. k개의 이미지들이 mix되고 나면, skip-connection을 이용하여 mix된 이미지와 원본 이미지를 결합한다. 이 때에도 convex combinatioin을 이용하여 결합하며, convex 계수는 Beta 분포로부터 샘플링된다. 이렇게 mix된 이미지와 원본 이미지가 결합된 이미지가 최종 augmented image이다. 
+각 augmentation chain으로부터 생성된 이미지들은 mixing을 통해 결합된다. 즉 k=3인 경우 각 augmentation chain들로부터 생성된 3개의 이미지들이 결합된다. AugMix는 간단하게 elementwise convex combination을 이용하여 이미지들을 결합하였는데, 이 때 사용되는 k개의 convex coefficients(계수)들은 Dirichelet 분포로부터 랜덤하게 샘플링된다. k개의 이미지들이 mix되고 나면, skip-connection을 이용하여 mix된 이미지와 원본 이미지를 결합한다. 이 때에도 convex combinatioin을 이용하여 결합하며, convex 계수는 Beta 분포로부터 샘플링된다. 이렇게 mix된 이미지와 원본 이미지가 결합되고 나면 최종 augmented image가 생성된다. 
+
 따라서, 최종 augmented image는  
 
 `(1) augmentation operation 선택에 대한 randomness`  
@@ -56,8 +57,9 @@ Augmix로 augemented된 image들이 주어질 때 모델은 `Jensen-Shannon Dive
 $$x_{orig}$$
 $$x_{augmix1}$$
 $$x_{augmix2}$$
-원본 이미지와 augmented image들을 유사하게 임베딩하도록 훈련된다. 
-이는 원본 데이터와 augmented data의 사후 분포 (posterior distribution) 간에 Jensen-Shannon Divergence를 최소화하도록 함으로써 구현된다. 여기서 각 posterior 분포는 다음과 같다.  
+즉, 원본 이미지와 augmented image들을 유사하게 임베딩하도록 훈련된다. 
+
+이는 `원본 데이터와 augmented data의 사후 분포 (posterior distribution) 간에 Jensen-Shannon Divergence를 최소화`하도록 함으로써 구현된다. 여기서 각 posterior 분포는 다음과 같다.  
 $$p_{orig}=\hat{p}(y|x_{orig})$$
 $$p_{augmix1}=\hat{p}(y|x_{augmix1})$$
 $$p_{augmix2}=\hat{p}(y|x_{augmix2})$$
@@ -67,7 +69,7 @@ $$L(p_{orig}, y) + \lambda JS(p_{orig};p_{augmix1};p_{augmix2})$$
 $$JS(p_{orig};p_{augmix1};p_{augmix2}) = \frac{1}{3}\[ KL(p_{orig}||M) + KL(p_{augmix1}||M) + KL(p_{augmix2}||M) \]$$
 $$M = (p_{orig} + p_{augmix1} + p_{augmix2}) / 3$$
 
-결국, Jensen-Shannon Consistency Loss는 모델이 다양한 분포의 input에 대해서 안정적이고 일관성있는 output을 생성하도록 한다.
+결국, `Jensen-Shannon Consistency Loss는 모델이 다양한 분포의 input에 대해서 안정적이고 일관성있는 output을 생성하도록 한다.`
  
 
 ## **4. Experiment**  
@@ -82,11 +84,11 @@ $$M = (p_{orig} + p_{augmix1} + p_{augmix2}) / 3$$
     * `CIFAR-10-C` : original CIFAR-10 데이터에 변형(corruption)을 준 데이터셋
     * `CIFAR-100-C` : original CIFAR-100 데이터에 변형을 준 데이터셋
     * `ImageNet-C` : original ImageNet 데이터에 변형을 준 데이터셋
-    각 데이터셋은 noise, blur, weather, digital corruption을 각각 5가지의 강도로 주어 총 15가지의 corruption으로 이루어진 데이터셋이다. 데이터 변동에 대한 모델의 영향을 확인하기 위한 실험이므로 training 과정에서는 이 15가지의 corruption은 포함하지 않았다.
+    * 각 test dataset은 `noise, blur, weather, digital corruption`을 각각 `5가지의 강도`로 주어 `총 15가지의 corruption`으로 이루어진 데이터셋이다. 데이터 변동에 대한 모델의 영향을 확인하기 위한 실험이므로 training 과정에서는 이 15가지의 corruption은 포함하지 않고, test시 모델이 처음 마주하도록 하였다.
 
 * **Baseline**  
-  * `CIFAR-10 & CIFAR-100` : AllConvNet, DenseNet, WideResNet, ResNeXt 아키텍쳐에 대해서 Standard, Cutout, Mixup, CutMix, AutoAugment, Adversarial Training 등의 다양한 augmentation 방법을 적용한 결과와 AugMix를 적용한 결과를 비교하였다.
-  * `ImageNet` : ResNet50에 Standard, Patch Uniform, AutoAugment, Random AA, MaxBlur Pooling, SIN을 적용한 결과와 AugMix를 비교하였다.
+  * `CIFAR-10 & CIFAR-100` : `AllConvNet, DenseNet, WideResNet, ResNeXt` 아키텍쳐에 대해서 `Standard, Cutout, Mixup, CutMix, AutoAugment, Adversarial Training` 등의 다양한 augmentation 방법을 적용한 결과와 `AugMix`를 적용한 결과를 비교하였다.
+  * `ImageNet` : `ResNet50`에 `Standard, Patch Uniform, AutoAugment, Random AA, MaxBlur Pooling, SIN`을 적용한 결과와 `AugMix`를 비교하였다.
 
 * **Evaluation Metric**  
   * `Clean Error` : corruption이 추가되지 않은 clean data에 대한 classification error
