@@ -44,9 +44,9 @@ Session에서 Item들이 ![](https://latex.codecogs.com/svg.image?s=\{i_1,i_2,i_
 
 $$
 
-r_t = \sigma(W_r\cdot[v_{t-1},emb(i_t)]) \\
-z_t=\sigma(W_z\cdot[v_{t-1},emb(i_t)]) \\
-\hat{v}_t=tanh(W_h\cdot[r_t\odot v_{t-1},emb(i_t)]) \\
+r_t = \sigma(W_r\cdot[v_{t-1},emb(i_t)])\\
+z_t=\sigma(W_z\cdot[v_{t-1},emb(i_t)])\\
+\hat{v}_t=tanh(W_h\cdot[r_t\odot v_{t-1},emb(i_t)])\\
 v_t=(1-z_t)\odot v_{t-1}+z_t\odot \hat{v}_t
 
 $$
