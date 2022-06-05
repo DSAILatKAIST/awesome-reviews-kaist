@@ -182,10 +182,6 @@ EOG안경을 통한 눈깜박임 측정 알고리즘과 그 타당성 검증, �
   본 연구에서는 PVT 평가가 시행된 시간을 기록하고, 각 평가가 시행되기 전 선행된 10분 동안의 EOG data를 추출하였습니다. 
   
   **`Holm-Bonferroni method`** 를 이용해 다중분석 multiple comparisons를 시행하였습니다.
-  
-  [1] linaer mixed model  
-  사람이 오래 깨어 있을수록 수면 압력은 증가하며, 업무 성과는 감소합니다.  
-  본 연구에서는 실측 자료 ground truth (PVT 측정값 등)을 입증하고 측정된 성과의 변화를 감지하기 위해 선형혼합모형 linear mixed model을 사용하였습니다.
  
 참고로, 본 연구에서는 시스템의 성능 평가 시 다른 baseline과의 비교를 수행하지 않았습니다.
 
