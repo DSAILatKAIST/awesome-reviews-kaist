@@ -41,6 +41,7 @@
   * [RobustSSL](paper-review/2022-spring/RobustSSL\_.md)
   * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
   * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
+  * [Handling Distribution Shifts on Graphs: An Invariance Perspective](paper-review/2022-spring/iclr-2022-eerm.md)
 
 ## How to contribute
 
