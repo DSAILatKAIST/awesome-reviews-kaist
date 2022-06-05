@@ -23,7 +23,9 @@ RNN에 대한 불확실성 추정을 위해 개발된 이전 방법들에는 베
 
 저자가 본격적으로 참고한 이전 연구는 등각예측 방법(CP)이기 때문에 지금부터 이에 대해 집중적으로 알아보겠다. 이는 회귀문제(예시: 시계열 예측) 추가 보정 세트와 기본 모델을 사용하여 귀납적으로 작동하도록 수정되고 이를 귀납적 등각 예측(ICP)라고 한다. 
 
+
 ![그림1](/.gitbook/2022-spring-assets/YeoJeong_1/figure1.png)
+
 
 (시계열 관찰 패러다임; 왼쪽 부분의 데이터 세트는 단일 시계열로 구성되어 있다고 가정하고 관측값은 시계열 내의 개별 시간 단계이며 이러한 관찰은 시간적으로 종속적이다. 반면에 오른쪽 데이터셋은 독립적인 시계열 세트로 구성되며 전체 시리즈가 관측값으로 처리되고 시계열의 독립성은 교환 가능성을 의미한다.)
 
@@ -34,9 +36,11 @@ RNN에 대한 불확실성 추정을 위해 개발된 이전 방법들에는 베
 
 저자는 이러한 ICP의 특성을 이용하여 본 연구에서는 inductive conformal prediction[3] framework를 시계열 예측으로 확장시켜 기존 방법들의 문제점들(앞 문단에서 언급된 제한점들)을 해결하는 lightweight uncertainty estimation 과정을 제안한다. 이 접근 방식은 모든 multi-horizon forecast predictor와 모든 dataset에 대해 minimal exchangeability 가정을 하면서 불확실성 간격에 대해 frequentist 범위에 대한 이론적 보장을 제공한다. 본 연구를 진행한 이론적 동기에 대해서 더 구체적으로는 3. Method의 CF-RNN: ICP for multi-horizon RNNs에서 보일 것이다.
 
+
 [1] multi-horizon 시계열 예측: 3. Method 영역의 다중 수평 시계열 예측 부분을 참고
 [2] 표준 feed-forward 신경망: 노드의 연결이 루프를 형성하지 않는 인공 신경망 유형
 [3] inductive conformal prediction(ICP): 3. Method 영역의 귀납적 등각 예측 부분을 참고
+
 
 
 
@@ -47,11 +51,12 @@ RNN에 대한 불확실성 추정을 위해 개발된 이전 방법들에는 베
 
 
 **[다중 수평 시계열 예측(Multi-horizon time-series forecasting)]**
-![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?(y__{t},&space;y__{t&plus;1},&space;...&space;,&space;y__{t'})가 d차원 시계열 관측값이고 ![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?(y__%7Bt%7D,&space;y__%7Bt&plus;1%7D,&space;...&space;,&space;y__%7Bt%27%7D)가 주어지면, multi-horizon 시계열 예측은 ![](https://latex.codecogs.com/svg.image?\\hat{y}__{t'&plus;1:t'&plus;H})인 미래 값을 예측한다. 이는 H x d 차원이고 H는 예측할 steps의 수(예측 horizon)이다.
+
+![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?(y__{t},&space;y__{t&plus;1},&space;...&space;,&space;y__{t'}))가 d차원 시계열 관측값이고 ![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?)가 주어지면, multi-horizon 시계열 예측은 ![](https://latex.codecogs.com/svg.image?\\hat{y}__{t'&plus;1:t'&plus;H})인 미래 값을 예측한다. 이는 H x d 차원이고 H는 예측할 steps의 수(예측 horizon)이다.
 
 
 중요한 응용 프로그램의 경우 예측과 관련된 불확실성에 관심이 있다. 예측 범위의 각 시간 단계(h)에 대해
-ground truth 값 yt+h가 충분히 높은 확률로 ![](https://latex.codecogs.com/svg.image?[{\\hat{y})}*{t+h}^{L},&space;{\hat{y}}*{t+h}^{U}), h ∈ {1, . . . , H}) 구간에 포함되도록 한다. 전체 시계열 궤적의 실제 값이 간격 내에 포함되도록 원하는 유의 수준(또는 오류율) α를 수정한다. 
+ground truth 값 yt+h가 충분히 높은 확률로 ![](https://latex.codecogs.com/svg.image?[{\\hat{y}}{t+h}^{L},&space;{\hat{y}}{t+h}^{U}]), h ∈ {1, . . . , H}) 구간에 포함되도록 한다. 전체 시계열 궤적의 실제 값이 간격 내에 포함되도록 원하는 유의 수준(또는 오류율) α를 수정한다. 
 
 즉, 아래의 식을 만족하게 한다.
 
@@ -70,6 +75,7 @@ ground truth 값 yt+h가 충분히 높은 확률로 ![](https://latex.codecogs.c
 
 
 **[CF-RNN: ICP for multi-horizon RNNs]**
+
 이제 등각 예측 절차의 세부 사항에 대해 설명하겠다.
 지금까지 레이블 y ∈ R이 스칼라이지만 다중 수평 시계열 예측이 H(d-차원) 값을 반환하는 경우를 고려했다. 저자는 다중 수평선 예측 간격을 내보내는 것의 타당성을 유지하면서 다중 예측 환경에서도 다룰 수 있도록 ICP 프레임워크를 확장했다. 이를 등각 예측 프레임워크(Conformal prediction framework)라고 한다.
 H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 원하는 오류율 α를 유지하기 위해 임계 보정 점수에 Bonferroni 보정을 적용한다. 특히, 원래의 α를 H로 나누므로 임계 부적합 점수 εˆ1, . . . , εˆH는 대응하는 부적합 점수 분포에서 [(m + 1)(1 − α/H)]-번째 가장 작은 잔차가 된다. 따라서 예측 구간의 결과 집합은 다음과 같다.
@@ -190,6 +196,9 @@ H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 �
 위의 그래프는 왼쪽 및 중간 패널은 훈련 데이터 세트 크기에 따른 CF-RNN, MQ-RNN 및 DPRNN 기준선의 평균 성능을 보여 준다. CF-RNN은 제한된 수의 예제로 필요한 joint 범위 비율을 달성하고 유지하는 유일한 모델이다. 또한 더 많은 데이터(더 큰 교정 데이터세트)를 사용하면 불일치 점수의 분포를 더 정확하게 지정할 수 있으므로 간격의 너비가 감소한다. 
 
 마지막으로 오른쪽 패널에서 예측 간격 너비를 고정하고 각 수평선에 대해 H는 CF-RNN에 의해 유지되는 가장 큰 커버리지 수준 1-α를 계산한다. 위의 세번째 그림에서 볼 수 있듯이 목표 범위 수준이 낮으면 먼 미래까지 유효한 예측을 할 수 있으며 이상적인 범위 수준은 예측 지점 근처의 수평선에서만 달성할 수 있습니다. 모든 순환 신경망 모델 M에 대해 전체 추세가 유지된다.
+
+
+
 
 #### **[현실 시계열 데이터]**
 
