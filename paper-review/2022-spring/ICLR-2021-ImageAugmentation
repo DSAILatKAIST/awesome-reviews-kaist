@@ -1,0 +1,182 @@
+| description                                                  |
+| ------------------------------------------------------------ |
+| Ilya Kostrikov  / Image Augmentation Is All You Need: Regularizing Deep Reinforcement Learning from Pixels / ICLR-2021 |
+
+# Image Augmentation Is All You Need : Regularizing Deep Reinforcement Learning from Pixels
+
+------
+
+## **1. Problem Definition**
+
+![augmentation](C:\Users\user\Desktop\images\augmentation.png)
+
+위 figure과 같이 Image에 대한 Augmentation을 수행하고, 이를 추가적인 학습 데이터로 활용함으로써 모델의 over-fitting을 방지하고 성능을 높이는 방법은 Computer Vision에서 활발하게 사용되는 테크닉이며, 딥러닝에 관심이 있는 분들에게는 대부분 익숙한 테크닉일 것이라 생각합니다.
+
+본 논문에서는 이러한 Image Augmentation 테크닉을 supervised learning뿐만 아니라,  model-free reinforcement learning 알고리즘에도 적용할 수 있도록 하는 간단하지만 유용한 테크닉에 대해서 소개하고 있습니다. 
+
+이 테크닉은 Image Augmentation을 수행하는 것과 동시에, Augmented된 image에 대하여 Q-value regularization까지 수행하여 기존 Image Augmentation 테크닉을 강화 학습 framework에서도 사용 가능하게 만듭니다. 이에 대한 자세한 내용은 3. Method에 정리되어 있습니다.
+
+이 테크닉은 강화 학습 알고리즘 자체에 대한 수정이 필요하지 않고, auxiliary loss등과 같은 추가적인 loss function 또한 필요로 하지 않기에 다양한 강화학습 framework에 쉽게 적용할 수 있습니다.
+
+본 논문에서는 Soft Actor-Critic 강화학습 framework를 사용하여 해당 테크닉을 적용하였고, DeepMind control suite에서 성능 실험을 진행하였습니다. 실험 결과 기존의 model-based RL approach의 성능을 능가하는 것 뿐만 아니라,  최근 제안된 constrastive learning 기반 모델의 성능을 능가하는 등, 기존 SOTA 성능을 능가하는 결과를 보였습니다.
+
+## **2. Motivation**
+
+Image Pixel 자체를 input으로 활용하여 직접 학습하는 RL 알고리즘은 robotics분야를 포함하여 다양한 control 분야에서 실제로 적용되고 있습니다. 
+
+한편으로, continuous한 action에 대한 control을 수행하기 위해서는 강화학습 agent의 policy에 대한 직접적인 학습이 필요하기 때문에 이러한 policy-based RL의 중요성은 계속해서 커지고 있습니다.
+
+![network](C:\Users\user\Desktop\images\network.png)
+
+하지만, Soft Actor-Critic과 같이 policy에 대한 학습을 수행하는 RL 알고리즘에서는 image를 사용한 학습이 효과적으로 이루어지기 힘들다는 한계가 있습니다. 그 이유는 image를 사용하여 학습을 수행하기 위해서는 image encoder에 대한 학습이 필요하고, 이와 더불어 Q-value와 Policy에 대한 학습까지 필요하기 때문입니다. 위 figure을 통해 다시 정리하자면, 파란색 동그라미로 표시된 image encoder에 대한 학습, 초록색으로 표시된 Q-value network에 대한 학습, 빨간색으로 표시된 policy network에 대해 모두 학습이 이루어져야 하는데, 이는 충분한 양의 데이터가 주어지지 않는다면 학습이 제대로 이루어지지 않습니다. 
+
+문제는 강화학습 framework에서는 agent와 environment의 상호작용으로 인해 학습 데이터가 만들어지는데, 이러한 상호작용의 경우의 수는 어느 정도의 한계가 있기 때문에 supervised learning framework처럼 수많은 학습 데이터를 만들 수가 없다는 것입니다.
+
+이러한 데이터 부족 문제를 *Limited Supervision*이라고 하는데, 이 *Limited Supervision*은 ML의 domain을 막론하고 중요한 문제이며, 이러한 문제를 해결하기 위하여 다양한 노력들이 이루어지고 있습니다. 대표적으로 세 가지를 꼽자면
+
+1.  pre-training with self-supervised learning(SSL), followed by standard supervised learning
+2. supervised learning with an additional auxiliary loss
+3. **supervised learning with data augmentation**
+
+와 같습니다. 
+
+강화학습 framework에서도 위 approach들에 대해서 elf-supervised learning에 대해서 활발한 연구가 이루어지고 있습니다. 다만 Self-supervised Learning 의 경우 data가 풍부한 상황에서 굉장히 효과적이며, 이 때문에 실제로 Computer Vision, Natural Language Processing과 같이 이미 충분한 데이터가 존재하는 domain에서 활발하게 사용되고 있습니다.
+
+본 논문에서는 위 3가지 approach 중 세 번째에 집중하여 문제를 해결하고자 하였고, 이를 해결하기 위하여 다음과 같은 Augmentation&Regularization 테크닉을 소개합니다.
+
+## **3. Method**
+
+**Reinforcement Learning from Images**
+
+image를 사용하여 학습하는 강화학습에서, MDP는 다음과 같이 정의합니다. 
+
+- ![](https://latex.codecogs.com/svg.image?O&space;) : high-dimensional observation space (image pixels)
+
+- ![](https://latex.codecogs.com/svg.image?A) : the action space
+
+- transition dynamics ![](https://latex.codecogs.com/svg.image?p=Pr(o_t'|o\leq&space;t,a_t))
+
+  probability distribution over the next observation $o_t’$ given the history of previous observations $o_t$ and current action $a_t$
+
+- ![](https://latex.codecogs.com/svg.image?r:O*A\to&space;R)
+
+  the reward function that **maps the current observation and action to a reward** $r_t = r(o_{<=t},a_t)$
+
+- ![](https://latex.codecogs.com/svg.image?\gamma) : discount factor [0, 1)
+
+- ![](https://latex.codecogs.com/svg.image?s_t&space;=&space;\{o_t,o_{t-1},o_{t-2},...\})
+
+  기존의 이미지 1장이 observation이었던 POMDP(partially observable Markov decision process)는 image set을 state로 사용함으로써 MDP로 바뀌게 됩니다.
+
+**Soft Actor-Critic**
+
+SAC는 state-action value Q,  stochastic policy function ![](https://latex.codecogs.com/svg.image?\pi), temperature ![](https://latex.codecogs.com/svg.image?\alpha)에 대한 학습을 수행합니다.
+
+쉽게 말해 주어진 state에서 어떠한 action을 취할 것인지 나타내는 policy를 reward를 통해 학습함과 동시에, 이러한 policy 함수가 현재 얼마나 바람직한지를 state-action pair에 대한 Q-value를 통해 판단함으로써 계속해서 더 좋은 policy를 향해 학습하게 됩니다. 전체적인 network 구조는 다음과 같습니다.
+
+![SAC](C:\Users\user\Desktop\images\SAC.png)
+
+**Image Augmentation**
+
+당연하게도, Image Augmentation을 Reinforcement Learning에 적용하는 것은 기존의 Computer Vision분야에 적용하는 것과 차이가 존재합니다. 그 이유는 Label의 변화 유무입니다. Image Recognition을 생각했을 때, 아래 figure에서 모든 사진은 똑같이 "cat"이라는 label을 같습니다. 
+
+![augmentation](C:\Users\user\Desktop\images\augmentation.png)
+
+하지만 강화학습에서는 상황이 다릅니다. agent가 image를 하나의 state라고 생각한다면, 상하좌우로 조금씩 shift된 image, 약간 회전된 image는 agent에게 분명히 다른 state가 될 것이며 이에 대해 똑같은 action을 취하더라도 agent가 받는 reward는 달라질 수 있을 것입니다. 이러한 문제를 해결하기 위하여, 본 논문에서는 다음과 같은 Image Transformation을 사용합니다.
+
+**Optimality Invariant State Transformation**
+
+![eqn1](C:\Users\user\Desktop\images\eqn1.png)
+
+위 식에서 f는 image transformation 함수이며, v는 f의 parameter 입니다. 본 논문에서는 이러한 이미지 변환 함수로 4 pixel-random-shift를 사용하였습니다. 즉, 주어진 image에 대하여 상하좌우로 random하게 4 pixel을 shift하였으며, 논문에서는 이러한 transformation이 가장 성능이 좋았기 때문에 사용했다고 이야기하고 있습니다.
+
+위와 같은 transformation을 통해서, augmented image를 활용한 state는 원래의 image를 활용한 state와 같은 action을 택했을 때 동일한 Q-value 값을 갖습니다. 이러한 성질을 이용하여, 여러 개의 augmented state을 이용하여 Q-value를 계산하면 optimal Q-value는 변하지 않으면서도 Q-value 계산의 variance는 줄여서 더욱 빠르고 정확하게 Q-value를 계산할 수 있습니다.
+
+이러한 성질을 이용하여, 본 테크닉에서는 Q-target value와 Q-value function 을 계산할 때 이를 위한 augmentation을 수행합니다. 이 때, 여러 개의 augmented state를 이용하여 Q-value를 계산하는 것이 곧 논문에서 이야기하는 Regularization이 됩니다. 이러한 Regularization 과정은 다음과 같은 수식으로 더욱 명확하게 이해할 수 있습니다.
+
+![eqn2](C:\Users\user\Desktop\images\eqn2.png)
+
+전체적인 알고리즘에 대한 수도 코드는 다음과 같습니다. Orange, Green, Blue로 표현된 부분은 각각 Image Transformation, target Q-value를 regularization하기 위한 augmentation, Q-function 자체를 regularization하기 위한 augmentation입니다.
+
+![algorithm](C:\Users\user\Desktop\images\algorithm.png)
+
+정리하자면 agent가 environment와 상호작용하는 매 step마다 replay buffer에서 mini-batch size 만큼의 sample을 뽑고, 하나의 sample을 이용하여 Q-value를 update할 때 target Q에 대해 K개의 augmentation과 Q-value function자체에 대해 M개의 augmentation을 수행하여 Q-value를 계산하게 됩니다. 이 때 K와 M은 hyper-parameter이며 K와 M이 각각 1이면 해당 regularization을 수행하지 않는다는 의미가 됩니다.
+
+## **4. Experiment**
+
+본 논문에서는 Image Augmentation 자체의 성능을 보여주는 experiment와, Regularization의 성능을 보여주는 experiment, 최종적으로 K=2, M=2를 사용하여 Image Augmentation & Regularization 모두를 수행한 알고리즘의 성능을 기존 baseline과 비교한 experiment를 수행합니다.
+
+### **Experiment setup**
+
+- Dataset
+
+  본 논문에서는 DeepMind control suite를 활용하여 실험을 진행합니다. 이 suite에서는 Image를 input으로 사용하여 학습시키는 RL agent가 다양한 게임을 얼마나 잘 수행하는지를 테스트할 수 있습니다. 각 Experiments에서는 모두 같은 common settings를 사용하는데 해당 settings는 다음과 같습니다.
+
+  ![setting](C:\Users\user\Desktop\images\setting.png)
+
+### **Results**
+
+**Experiment 1**
+
+![experiment1](C:\Users\user\Desktop\images\experiment1.png)
+
+해당 실험에서는 Image Transformation을 해서 다양한 sample 데이터를 확보했을 때의 성능을 보여줍니다.
+
+위쪽 (a)가 vanilla soft Actor-Critic을 사용한 결과이고 아래쪽 (b)가 Data augmentation을 수행한 SAC알고리즘입니다. baseline들은 모두 SAC framework를 사용하였는데, 각각의 model은 다른 image encoder를 사용하였고 이 image encoder들의 network 크기는 모두 제각각입니다.
+
+ (a)의 경우 image encoder의 network가 클수록 높은 성능을 보이고, image encoder의 network가 작아짐에 따라 성능이 급감하는 모습을 보입니다. 이를 통해 data가 충분하지 않을 때 over-fitting문제가 발생하는 것을 확인할 수 있습니다. 또한 (a)의 경우, 비교적 어려운 게임인 *Walker Walk*에 대해서는 image encoder가 큰 모델조차 좋은 성능을 보이지 못하는 것을 확인할 수 있습니다.
+
+반면 (b)의 경우 모든 모델에 대하여 동등한 성능을 보임을 통해 over-fitting문제를 해결하고, *Walker Walk*게임에 대하여도 우수한 성능을 보임을 확인할 수 있습니다. 또한, 학습 속도 또한 (a)보다 훨씬 빠른 것을 알 수 있습니다.
+
+
+
+**Experiment 2**
+
+![Experiment2](C:\Users\user\Desktop\images\Experiment2.png)
+
+해당 실험은 Regularization의 성능을 나타낸 것입니다. 파란색은 Regularization을 수행하지 않은 경우, 빨간색은 target Q에 대해서만 Regularization을 수행한 경우, 보라색은 target Q와 Q-function 모두 Regularization을 수행한 결과입니다.
+
+보라색 그래프가 모든 게임에 대하여 가장 우수한 성능을 보임을 확인할 수 있습니다.
+
+ㅁ
+
+**Experiment 3**
+
+![experiment3_table](C:\Users\user\Desktop\images\experiment3_table.png)
+
+![experiment3](C:\Users\user\Desktop\images\experiment3.png)
+
+**Experiment 4**
+
+![experiment4](C:\Users\user\Desktop\images\experiment4.png)
+
+![experiment4_2](C:\Users\user\Desktop\images\experiment4_2.png)
+
+**Experiment 5**
+
+![experiment5](C:\Users\user\Desktop\images\experiment5.png)
+
+Experiment 3~5는 모두 다양한 게임과 setting에 대하여 실험을 진행하였을 때, 제안한 모델이 가장 우수한 성능을 보이고 학습 속도 또한 가장 빠른 모습을 보여줍니다.
+
+## **5. Conclusion**
+
+본 논문의 Contribution은 다음과 같습니다.
+
+1. 간단한 Image Augmentation 메커니즘이 RL 알고리즘 자체에 대한 수정 없이도  과적합을 얼마나 크게 감소시키는지 보여준다.
+2. MDP 구조를 활용하여, model-free RL 의 맥락에서 간단하게 적용해볼 수 있는 쉽지만 강력한 메커니즘을 소개한다.
+3. 바닐라 SAC와 결합하고 모든 작업에 걸쳐 고정된 하이퍼 매개 변수를 사용하여, DeepMind control suite에서 기존 SOTA 성능을 능가하는 성능을 보인다
+4. DQN -에이전트와 결합하여, discrete한 control에 대하여도 Atari-100k 벤치마크에서 기존 SOTA보다 우수한 성능을 보인다.
+5. SSL이나 auxiliary loss와 같은 복잡한 메커니즘을 사용하지 않고도 우수하고 강건한 성능을 보인다.
+
+또한 이 논문을 읽고 제가 개인적으로 느낀 생각은 다음과 같습니다.
+
+1. 이미지를 input으로 활용한다는 조건이 있지만, discrete / continuous control 모두에 적용할 수 있다는 관점에서 볼 때 다양한 RL-based research에 적용할 수 있으며 적용 또한 어렵지 않을 것이라 생각합니다.
+2. auxiliary loss, SSL 과 같은 방법론과 함께 결합하여 사용한다면 성능이 얼마나 개선될지에 대한 추가적인 연구도 가능할 것이라 생각합니다.
+
+------
+
+## **Author Information**
+
+- Author name : 신동휘
+  - Affiliation : Industrial and System Engineering, KAIST
+  - Research Topic : AMHS Design and Operation
