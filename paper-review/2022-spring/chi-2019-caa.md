@@ -159,7 +159,6 @@ You can attach the tables or figures, but you don't have to cover all the result
 * Github Implementation  
   * [Fatigue_EOG_Raw](https://github.com/tagbenja/Fatigue_EOG_Raw)
 * Reference  
-  * 안경 : [J!NS MEME glasses](https://jinsmeme.com/en/)
-  * 모바일 toolkit : [Dingler](https://doi.org/10.1145)
+  * 본 연구에서 활용한 안경 : [J!NS MEME glasses](https://jinsmeme.com/en/), 모바일 toolkit : [Dingler](https://doi.org/10.1145)
   * 피로 수준 정의 : [Van Dongen and Dinges](https://doi.org/10.1002/ppul.1065)
   * 피로 수준 측정 시스템 : [Kleitman](https://doi.org/10.1152/ajplegacy.1923.66.1.67), [Hofstra and Weerd](https://doi.org/10.1016/j.yebeh.2008.06.002), [Abdullah et al.](https://doi.org/10.1145/2971648.2971712), [Dingler et al.](https://doi.org/10.1145/2968219.2968565)
