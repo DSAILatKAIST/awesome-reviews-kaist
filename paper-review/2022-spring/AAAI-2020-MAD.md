@@ -67,7 +67,7 @@ description: >-
 
 
 ### (3) MADGap
-이렇게 Hop(i.e., Order)이 커질수록 noise가 커지는 상황을 우리는 두 가지 케이스로 구분하여 바라보려고 한다. 바로 order가 작은 상황(i.e., neighboring nodes) 그리고 order가 큰 상황(i.e., remote nodes)이다. 아래 정리된 그림을 통해 보면, ![](https://latex.codecogs.com/svg.image?MADGap)은 멀리 떨어졌을 때의 식별성, ![](https://latex.codecogs.com/svg.image?MAD^{rmt})과 가까이 있을 때의 식별성, ![](https://latex.codecogs.com/svg.image?MAD^{neb})의 차를 통해 정의되는 것을 확인할 수 있고 이를 통해 우리는 드디어 `Over-smoothing 이 언제 발생하는지`, 이를 `수칙적으로` 이해할 수 있게된다. 즉, ![](https://latex.codecogs.com/svg.image?MADGap)이 크면 그만큼 멀리 떨어진 노드의 식별성이 좋은 상황이므로, 우리에게 좋은 상황이되고 이와 달리 ![](https://latex.codecogs.com/svg.image?MADGap)이 작거나 음수 값을 가지게 되면 멀리 떨어진 노드들의 식별성이 가까운 노드들보다 안좋은, 바로 **Over-smoothing** 이 발생하는 순간임을 알 수 있다.
+이렇게 Hop(i.e., Order)이 커질수록 noise가 커지는 상황을 우리는 두 가지 케이스로 구분하여 바라보려고 한다. 바로 order가 작은 상황(i.e., neighboring nodes, 논문에서는 3-hop 이내) 그리고 order가 큰 상황(i.e., remote nodes, 논문에서는 8-hop 이상)이다. 아래 정리된 그림을 통해 보면, ![](https://latex.codecogs.com/svg.image?MADGap)은 멀리 떨어졌을 때의 식별성, ![](https://latex.codecogs.com/svg.image?MAD^{rmt})과 가까이 있을 때의 식별성, ![](https://latex.codecogs.com/svg.image?MAD^{neb})의 차를 통해 정의되는 것을 확인할 수 있고 이를 통해 우리는 드디어 `Over-smoothing 이 언제 발생하는지`, 이를 `수치적으로` 이해할 수 있게된다. 즉, ![](https://latex.codecogs.com/svg.image?MADGap)이 크면 그만큼 멀리 떨어진 노드의 식별성이 좋은 상황이므로, 우리에게 좋은 상황이되고 이와 달리 ![](https://latex.codecogs.com/svg.image?MADGap)이 작거나 음수 값을 가지게 되면 멀리 떨어진 노드들의 식별성이 가까운 노드들보다 안좋은, 바로 **Over-smoothing** 이 발생하는 순간임을 알 수 있다.
 
 ![](../../.gitbook/2022-spring-assets/SukwonYun\_2/madgap.png)
 
