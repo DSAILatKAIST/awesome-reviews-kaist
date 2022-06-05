@@ -12,7 +12,7 @@ description : Ahn et al. / Spanning Tree-based Graph Generation for Molecules / 
 
 Generative Model 에 대한 탐구는 많이 이루어졌지만, 거의 대부분이 Image, Speech 등 연속적인 데이터를 다뤘었다. Graph 처럼 불연속 적이고 특이한 데이터를 생성하는 것은 특유의 어려움이 따른다. 
 
-특히 Chemical Graph는 옥텟 룰을 만족시켜야 하며, 화학적은 특수한 성질을 부여하고 싶은 경우가 많기 때문에 Generation 문제는 더욱 까다롭게 된다. 
+특히 Chemical Graph는 chemcal rule 을 만족시켜야 하며, 화학적은 특수한 성질을 부여하고 싶은 경우가 많기 때문에 Generation 문제는 더욱 까다롭게 된다. 
 
 기존에 VAE 기반 방법들로 Chemical Graph Generation을 주로 Tackle 하였지만, 만족할 만한 성능을 내지는 못하고 있는 상황이다. 
 
