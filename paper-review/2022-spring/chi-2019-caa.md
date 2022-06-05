@@ -104,9 +104,13 @@ You can attach the tables or figures, but you don't have to cover all the result
 
 
 ## **5. Conclusion**  
+> Summarize the Papaer  
+  * 본 연구에서는 상용화된 안경인 `J!NS MEME glasses`에 EOG센서를 부착하여 피로 수준을 모니터링하는, 착용하기 쉬운 시스템을 개발하였습니다.
+  * 개발된 시스템은 일상 생활 도중의 눈 깜박임 빈도를 측정함으로써 하루 동안의 피로 수준을 확인할 수 있습니다.
+  * 
 
-Please summarize the paper.  
-It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
+> My opinion, Take home message  
+  *
 
   
 <br>
@@ -126,4 +130,5 @@ It is free to write all you want. e.g, your opinion, take home message(오늘의
 * Github Implementation  
   * [Fatigue_EOG_Raw](https://github.com/tagbenja/Fatigue_EOG_Raw)
 * Reference  
-  * [J!NS MEME glasses](https://jinsmeme.com/en/)
+  * 안경 : [J!NS MEME glasses](https://jinsmeme.com/en/)
+  * 모바일 toolkit : [Dingler](https://doi.org/10.1145)
