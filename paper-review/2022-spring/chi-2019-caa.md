@@ -167,6 +167,10 @@ EOG안경을 통한 눈깜박임 측정 알고리즘과 그 타당성 검증, �
   
   눈깜박임 횟수를 추정하기 위해서, J!NS Meme으로 수집한 EOG 데이터의 수직 성분 vertical components 을 peak detection algorithm에 적용시켰습니다. 장치의 전송 속도 transmission rate는 50 Hz로, EOG sampling rate인 100 Hz의 절반 수준이었으므로, original vertical value인 EOGV를 EOGV 1 와 EOGV 2 패키지로 나누었습니다.
   
+  [2] Validation
+  눈깜박임 감지 알고리즘을 입증하고 눈 깜빡임 감지의 역치 값을 확인하기 위해서, 측정된 눈깜빡임 횟수 및 EOG data sets를 비디오 녹화를 통해 직접 카운트한 눈 깜빡임 횟수와 비교하였습니다.
+  
+  eye tracking cameras의 비디오로 녹화한 눈 깜빡임은 양쪽 눈이 자연스레 감긴 뒤 1초 이상 지속되지 않는 경우로 정의하였습니다. 
 
   
   [1] linaer mixed model  
@@ -176,12 +180,21 @@ EOG안경을 통한 눈깜박임 측정 알고리즘과 그 타당성 검증, �
 참고로, 본 연구에서는 시스템의 성능 평가 시 다른 baseline과의 비교를 수행하지 않았습니다.
 
 ### **4.2 Result**  
-Then, show the experiment results which demonstrate the proposed method.  
-You can attach the tables or figures, but you don't have to cover all the results.  
   
   [1] Blink Detection  
-  vertical EOG 값인 EOGV 1과 EOGV 2 값을 묶은 다음 데이터의 노이즈 값을 제거하기 위해 저역 필터low pass filter (Butterworth filter)를 사용하였습니다. 눈깜빡임이 a peak followed by a dip (한번 튀었다가 한번 빠지는 것: -^--∨- 모양)으로 특징지어지는 만큼, 알고리즘은 눈깜빡임을 측정하기 위해 두 개의 변수인 th_right 과 th_up_to_down 을 사용하였습니다.
+  vertical EOG 값인 EOGV 1과 EOGV 2 값을 묶은 다음 데이터의 노이즈 값을 제거하기 위해 저역 필터low pass filter (Butterworth filter)를 사용하였습니다. 눈깜빡임이 a peak followed by a dip (한번 튀었다가 한번 빠지는 것: -^--∨- 모양)으로 특징지어지는 만큼, 알고리즘은 눈깜빡임을 측정하기 위해 두 개의 변수인 th_right 과 th_up_to_down 을 사용하였습니다.  
   
+  th_right 는 양의 피크의 높이 the height of the positive peak를 묘사하며, th_up_to_down 는 두 피크 사이의 수직 거리 vertical distance를 묘사합니다(즉 첫 번째 피크의 가장 높은 점과 두 번째 피크의 가장 낮은 점 사이의 거리).
+  
+  눈깜박임을 완전히 묘사하기 위해서는 세 가지 조건이 충족되어야 합니다.
+  * 첫 번째로, 첫 번째 피크의 높이가 th_r보다 커야 한다.
+  * 두 번째로, 수직 거리 the vertical distance (두 피크 사이의 y-values 차이)가 th_u_d보다 커야 한다.
+  * 세 번째로, 아래 그림에서처럼 더 큰 크기의 peak가 먼저 발생한 뒤 더 작은 lower peak가 뒤따라야 한다.
+  
+  ★★★Figure5 그림 필요함  
+
+  [2] Validation  
+
 <br>
 
 
