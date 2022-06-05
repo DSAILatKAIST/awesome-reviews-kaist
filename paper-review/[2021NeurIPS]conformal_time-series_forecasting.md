@@ -125,9 +125,7 @@ H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 �
         
         
         >합성 데이터 만드는 방법
-        
         >: Autoregressive process와 noise process가 포함된 합성 시계열데이터 생성
-        
         >: (수학적으로 표현) ![](https://latex.codecogs.com/svg.image?y_t) = from k = 0 to t(a^kx_k+e_t, all k {1,…,T}
         
         where ![]([https://latex.codecogs.com/svg.image?x_t](https://latex.codecogs.com/svg.image?x_t)) ~ ![](https://latex.codecogs.com/svg.image?N(\\mu&space;_x,&space;\\sigma_x^2), a = 0.9, ![](https://latex.codecogs.com/svg.image?e_t&space) ~ ![](https://latex.codecogs.com/svg.image?N(0,\\sigma_t^2), ![](https://latex.codecogs.com/svg.image?\\sigma&space;_t^2)) = 0.1n for n = {1,…,5}
