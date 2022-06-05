@@ -60,8 +60,6 @@ Graph domain에서는 continual learning에 대한 연구가 놀랍도록 얼마
   
 ## **3. Method**  
 
-Please write the methodology author have proposed.  
-We recommend you to provide example for understanding it more easily.  
 
 ### 3.1 Problem Definition
 
@@ -233,10 +231,9 @@ ER-GNN과의 비교를 위해 continual setting에서 아래의 GNN 모델들과
 * Forgetting Mean (FM) : 이후 task를 학습하고 난 뒤, task의 accuracy가 떨어지는 정도를 측정한 값이다.
 
 ### **4.2 Result**  
-Then, show the experiment results which demonstrate the proposed method.  
-You can attach the tables or figures, but you don't have to cover all the results.  
-  
-#### **4.2.1 Performance Mean
+
+
+#### 4.2.1 Performance Mean
 
 <div align="center">
 
@@ -244,14 +241,25 @@ You can attach the tables or figures, but you don't have to cover all the result
 
 </div>
 
+* GNN model들과 다른 두 model (DeepWalk, Node2Vec) 모두 일정 수준의 catastrophic forgetting은 발생하는 것을 관찰할 수 있다.
+* GNN model에 비해 DeepWalk와 Node2Vec은 PM의 관점에서 더 좋지 않은 결과를 보이지만, FM의 관점에서는 더 좋은 결과가 관찰된다. 이는 DeepWalk나 Node2Vec이 새로운 task를 학습하는 것을 희생하여 이전 task들의 학습을 기억하는 것에 더 초점을 맞추는 것으로 해석 가능하다. 
+* GNN model 중 GAT는 PM과 FM의 관점 모두에서 좋은 결과를 보인다. 이는 attention mechanism이 continual graph-related task learning에서 new task 학습과 existing task 학습 내용을 기억하는데에 모두 장점이 있다는 것을 보여준다. 
+* 저자가 고안한 ER-GNN의 경우 IM strategy를 사용한 경우 가장 좋은 performance가 도출되었다. Influence function이 node를 replay하는데에 효과가 있음을 입증한다. 
+* MF와 CM strategy에서는 embedding space를 기준으로 한 model (명칭에 \*가 붙어있는)이 attribute space를 기준으로 한 model들보다 좋은 결과를 나타내었다.
+
+
 <div align="center">
 
 ![PM2](https://user-images.githubusercontent.com/89853986/172018607-46974fef-a3b3-453b-af67-9673420fac75.png)
  
 </div>
 
+* Dataset 별 task가 진행됨에 따른 accuracy를 plot
+* Figure를 보면 세가지 dataset 모두에서 catastrophic forgetting이 발생한다.
+* ER-GNN model과 함께 influence function을 쓴 model이 catastrophic forgetting을 가장 잘 완화하는 결과이다.
 
-#### **4.2.2 Forgetting Mean
+
+#### 4.2.2 Forgetting Mean
 
 <div align="center">
 
@@ -259,7 +267,13 @@ You can attach the tables or figures, but you don't have to cover all the result
 
 </div>
 
-#### **4.2.3 Influence of ![](https://latex.codecogs.com/svg.image?e)
+* SGC와 GIN model에 대해서 ER-GNN model을 적용하였다. 
+* 위의 table과 비교해보면, ER-GNN을 적용하지 않은 natural SGC/GIN일 때보다 FM 값이 확연히 줄어든 것으로 보아 catastrophic forgetting을 줄이는데 도움을 준다는 것을 보여준다.
+* 3가지 experience selection stragtegies 중에서 저자가 제안한 IM 방법이 가장 좋은 performance를 보인다.
+
+
+
+#### 4.2.3 Influence of ![](https://latex.codecogs.com/svg.image?e)
 
 <div align="center">
   
@@ -267,7 +281,12 @@ You can attach the tables or figures, but you don't have to cover all the result
 
 </div>
 
-## **5. Conclusion**  
+* Buffer에 들어가는 node의 개수를 지정하는 파라미터인 ![](https://latex.codecogs.com/svg.image?e)는 model의 성능과 직결된다.
+* 예측한 바와 동일하게 buffer에 저장하는 node의 개수를 늘리면 catastrophic forgetting을 예방하는데에 큰 도움이 된다. ![](https://latex.codecogs.com/svg.image?e) 값이 무분별하게 늘어날 경우 computational cost가 증가하여 결국 retraining과 다를 바가 없게 될 수 있다.
+* Hyperparameter tuning을 통해 catastrophic forgetting과 computational cost 간의 trade-off 관계에서 균형을 찾을 필요가 있을 것이다. 
+
+
+## ** 5. Conclusion**  
 
 Please summarize the paper.  
 It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
