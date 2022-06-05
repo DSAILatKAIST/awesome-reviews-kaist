@@ -34,9 +34,10 @@ AugMix는 여러 개의 augmentation chain들로부터의 결과 이미지를 co
 ![figure2](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig2.PNG?raw=true)
 
 ### **Augmentations**  
-앞서 언급하였듯이, AugMix는 여러 개의 augmentation 기법들로 이루어진 augmentation chain으로부터의 결과를 mix하는 방식이다. 이 때 augmentation 기법은 AutoAugment 방법을 이용한다. ImageNet-C 에 대해서 test하기 때문에 ImageNet-C에 적용된 변동들과 중복되는 augmentation operation(contrast, color, brightness, sharpness, cutout, noising, blurring)은 제외하였다. 따라서 ImageNet-C에 적용된 변동들은 모델이 test시에 처음 마주치도록 하였다. 
-Rotation과 같은 augmentation operation적용 시에는 2도 에서 -15도 등 severity(강도)를 각 적용 시마다 랜덤하게 샘플링하여 적용하였다.   
+앞서 언급하였듯이, AugMix는 여러 개의 augmentation 기법들로 이루어진 augmentation chain으로부터의 결과를 mix하는 방식이다. 이 때 augmentation 기법은 AutoAugment 방법을 이용한다. ImageNet-C 에 대해서 test하기 때문에 ImageNet-C에 적용된 변동들과 중복되는 augmentation operation(contrast, color, brightness, sharpness, cutout, noising, blurring)은 제외하였다. 따라서 ImageNet-C에 적용된 변동들은 모델이 test시에 처음 마주치도록 하였다. Rotation과 같은 augmentation operation적용 시에는 2도 에서 -15도 등 severity(강도)를 각 적용 시마다 랜덤하게 샘플링하여 적용하였다.   
+
 이 후 k개의 augmentation chain을 샘플링하는데, k=3을 기본값으로 설정하였다. 각 augmentation chain은 랜덤으로 선택된 1~3개의 augmentation operation들로 이루어져 있다.
+
 여기서 augmentation chain과 augmentation operation이 헷갈릴 수 있는데, 여러 개의 augmentation operation으로 구성된 하나의 chain이 augmentation chain이고, 이러한 augmentation chain을 다시 여러 개 사용하는 것이다.   
 
 ### **Mixing**  
@@ -70,9 +71,6 @@ $$M = (p_{orig} + p_{augmix1} + p_{augmix2}) / 3$$
  
 
 ## **4. Experiment**  
-
-In this section, please write the overall experiment results.  
-At first, write experiment setup that should be composed of contents.  
 
 ### **Experiment setup**  
 * **Dataset**
@@ -126,8 +124,11 @@ $$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
 다음 그림은 ResNeXt backbone에 Standard, Cutmix, AugMix를 적용하여 훈련시킨 모델의 CIFAR-10-C에 대한 RMS Calibration Error를 나타낸다. AugMix는 corruption이 없는 CIFAR-10 데이터와 corruption이 존재하는 CIFAR-10-C 모두에 대해서 calibration error를 감소시킴을 알 수 있다. 특히, corrption이 있는 데이터셋에 대해서 다른 augmentation 방법론에 비해 매우 큰 차이로 error를 줄였다.  
 ![figure10](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig10.PNG?raw=true)
 
-* **`ImageNet`**
+* **`ImageNet`**   
+
+
 다음은 ImageNet-C testdataset에 대한 여러 augmentation 방법의 효과를 Clean Error, Corruption Error(CE), mCE를 통해 평가한 표이다. mCE는 앞서 metric에서 설명하였듯이 15가지 corruption의 CE를 평균낸 것이다. 모든 augmentation은 ResNet-50 backbone으로 훈련되었다.
+![figure8](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig8.PNG?raw=true)
 
 AugMix는 다른 augmentation 방법론들에 비해 Clean Error뿐만 아니라 Corruption Error를 감소시켰다. 특히, AugMix를 SIN과 결합하여 적용하였을 때 가장 corruption에 강건함을 보여주었다. 여기서 SIN은 Stylized ImageNet으로 원본 ImageNet 데이터뿐만 아니라 style transfer가 적용된 데이터에도 모델을 훈련시킴으로써 corruption에 대한 강건성을 높이는 augmentation 방법론이다.
 
@@ -137,6 +138,7 @@ AugMix는 다른 augmentation 방법론들에 비해 Clean Error뿐만 아니라
 
 ## **5. Conclusion**  
 * Summary
+
 AugMix는 랜덤하게 생성된 augmented image를 mix하고 Jensen-Shannon loss를 사용하여 데이터의 consistency를 유지하는 데이터 처리 기법이다. CIFAR-10-C, CIFAR-100-C, ImageNet-C 데이터셋 모두에 대해서 기존의 존재하던 augmentation 방법들보다 좋은 성능을 보여주었다. 특히, AugMix는 데이터 변동이 일어나도 calibration을 유지하며 안정성과 강건성을 보여주었다. 따라서, AugMix는 모델을 더 신뢰할 수 있도록 하므로, safety-critical 환경에서 효과적으로 적용될 수 있을 것으로 기대된다.
 
 * Opinion
