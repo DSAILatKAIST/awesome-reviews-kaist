@@ -124,74 +124,39 @@ The overall experiment results show that the approach of the authors successfull
 
 The modifactions of the theories as mentioned before are baseline for these expeperiments. However, there are 2 more things to consider for doing the experiments. These are the evaluation metrics, the datasets to be used and the training procedure.
 
-* Evaluation metrics:
-  We use widely used compression optimization metric for measuring image similarity
-the Mean Squared Error (MSE) and the Peak Signal to Noise Ratio (PSNR). Similarly
-to [29, 10] we dene the MSE and PSNR for the tensors x; ^x 2 hcalX of arbitrary
-dimension as follows (x is also the input image I):
+* Evaluation metrics: For the evaluation of the models'succes the authors chose a standard compression optimization metric for measuring image similarity
+the Mean Squared Error (MSE) and the Peak Signal to Noise Ratio (PSNR). This can be visualized as on the picture below:
 
  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig12.png">
 
-To better
-measure the visual appeal of images we also use the Multi-Scale Structural Similarity
-(MS-SSIM) [30], converted to a logarithmic scale as follows:
+To improvement the measuring of the visual appeal of images the author also uses the Multi-Scale Structural Similarity (MS-SSIM) [30], converted to a logarithmic scale as shown below:
 
  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig13.png">
 
 
-* Datasets and training procedure:
-  
-
-The Neural JPEG network is trained on the dataset provided in prior work [32, 10].
-It consists of 3640 HDR images. For training, we use the merged HDR images and
-extract image patches of size 256 obtained from random cropping. We follow the
-same extraction process and experimental protocol proposed by [10] We evaluate our
-model on the Kodak dataset, consisting of 24 uncompressed images of size 768512.
-Additionally, we validate our model on validation set from DIV2K [33, 34] containing
-100 high quality images with 2040 pixels. Our model is optimized using Adam with
-initial learning rate 1:0 reduced to 10􀀀8 using polynomial decay. We use batch size
-of 32 for all experiments and performed grid search to nd optimal hidden sizes for
-SMRNN, sparsity level k, and . We use pre-trained VGG-19 model (trained on
-ImageNet) and ne-tune these layers while training. The 1  1 convolutional layer
-is initialized using orthogonal matrices. We follow prior experimental protocol [10],
-hence the quantization table variables in this work are also initialized uniformly in
-the interval [1s; 2s] and are limited to be in the range [1s; 255s]. Where the scaling
-factor is always s > 0 and in this experiments is set to is a s = 10􀀀5. Then we
-can get the nal quantization tables by multiplying factor by s􀀀1. We use standard
-evaluation metrics such as PSNR, MSE, MS-SSIM to report our model performance.
-
+* Datasets and training procedure: The Neural JPEG network is trained on the dataset provided in works of other authors. It consists of 3640 HDR images. As for the training, the authors chose to use the merged HDR images and extract image patches of size 256 obtained from random cropping. Here they follow the same extraction process and experimental protocol as done by authors of their related works. They use the Kodak dataset toe elvaluate their model. In addition to this they validate the model on validation set from DIV2K containing
+100 high quality images with 2040 pixels. The model is optimized by using Adam with initial learning rate 1:0 reduced to 10 to the power of -8 using polynomial decay. A batch size of 32 was used for all experiments and performed grid search to find optimal hidden sizes for SMRNN, sparsity level k, and lambda. A pre-trained VGG-19 model (trained on ImageNet) was used and these layers were fine-tuned while training. The 1 x 1 convolutional layer is initialized using orthogonal matrices.
 
 ### **Results**  
 
-The results of the previously mentioned procedure xx
+The results of the previously mentioned procedure can be seen in figure 1, table 1 and table 2 below.
 
-We evaluated our model on 2 out of 6 benchmarks used in prior work [6] using 3 met-
-rics [35]. These metrics are Peak Signal to Noise Ratio (PSNR), structural similarity
-
-(SSIM), and multi-scale structural similarity (MS-SSIM [36], or MS3IM. We com-
-pare our model against wide variety of compression approaches such pure neural-based
-GOOG[17] and E2E [12]. We also compare to the models of [6] and [10]. Results are
-reported in Table 2 { we see all models perform stably, however, when the bit rates are
-reduced (see Table 1) all hybrid models start struggling, whereas neural-based models
-stay consistent. This suggests that the performance of these hybrid models is limited
-due to the xed map used by JPEG. This support our hypothesis that at lower bit
-rates enhancing JPEG signals further improves performance and that Neural JPEG
-does this eciently.
-
-Graph:
 | <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig14.png"> |
 |:--:| 
 | *Figure 1, performance of various compression model with various bit rate setting.* |
 
-Table:
 | <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig15.png"> |
 |:--:| 
 | *Table 1, test results for Kodak (bpp 0.38), 8-bit compression benchmark (CB, bpp, 0.371).* |
 
-Table:
 | <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig16.png"> |
 |:--:| 
 | *Table 2, test results for Kodak (bpp 0.37), 8-bit compression benchmark (CB, bpp, 0.341)* |
+
+
+The results of the previously mentioned procedure can be seen in Table 2 {you can see that all models perform stably, however, when the bit rates are
+reduced (see Table 1) all hybrid models start struggling, whereas neural-based models stay consistent. This suggests that the performance of these hybrid models is limited due to the fixed map used by JPEG. This supports hypothesis (as mentioned before by the authors) that at lower bit rates enhancing JPEG signals further improves performance and that Neural JPEG does this efficiently.
+
 
 ## **5. Conclusion**  
 
