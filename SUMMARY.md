@@ -39,6 +39,7 @@
   * [DataAug](paper-review/2022-spring/aaai-2020-dataaugmentationforgraph.md)
   * [Learning\_Large\_Neighborhood\_Search\_Policy\_for\_Integer\_Programming](paper-review/2022-spring/NeurIPS-2021-Learning-Large-Neighborhood-Search-Policy-for-Integer-Programming.md)
   * [LooC](paper-review/2022-spring/iclr-2021-what\_should\_not\_be\_contrastive.md)
+  * [PFGNN](paper-review/2022-spring/iclr-2022-pfgnn.md)
 
 ## How to contribute
 
