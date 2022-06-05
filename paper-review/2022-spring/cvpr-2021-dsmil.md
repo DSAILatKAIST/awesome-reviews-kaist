@@ -27,7 +27,9 @@ However, there are two challenges in building deep MIL models for weakly-supervi
    Because only a small percentage of patches are positive, models that use a simple aggregation method like max-pooling are prone to misclassify those positive cases. Max-pooling, when compared to fully-supervised training, can cause a shift in the decision boundary under MIL assumptions. Because of the limited supervisory signal, the model is prone to overfitting and is unable to learn rich feature representations.
 
    <figure>
-   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Figure1.png"><figcaption align = "center"><i>Figure 1. Decision boundary learned in MIL. Left: Max-pooling delineates the decision boundary according to the highest-score instances in each bag Right: DSMIL measures the distance between each instance and the highest-score instance.</i>
+   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Figure1.png"><figcaption align = "center">
+   
+   <i>Figure 1. Decision boundary learned in MIL. Left: Max-pooling delineates the decision boundary according to the highest-score instances in each bag Right: DSMIL measures the distance between each instance and the highest-score instance.</i>
    </figcaption>
    </figure>
 
@@ -45,7 +47,9 @@ The proposed model was built based on the existing research on attention-based M
 In the suggested method, patches are first extracted from WSIs at multiple magnifications. Using self-supervised contrastive learning, an embedder network is trained on the patches for each magnification. Afterwards, the patches are projected into embeddings, concatenated, and arranged into feature pyramids. After the embeddings are generated, they are fed into the MIL network. 
 
 <figure>
-<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Figure2.png"><figcaption align = "center"><i>Figure 2. Overview of the DSMIL model. Patches extracted from each magnification of the WSIs are used for self-supervised contrastive learning separately. The trained feature extractors are used to compute embeddings of patches. Embeddings of different scales of a WSI are concatenated to form feature pyramids to train the MIL aggregator. The figure shows an example of two magnifications (20× and 5×). The 5× feature vector is duplicated and concatenated with each of the 20× feature vectors of the sub-images within this 5× patch.</i>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Figure2.png"><figcaption align = "center">
+   
+<i>Figure 2. Overview of the DSMIL model. Patches extracted from each magnification of the WSIs are used for self-supervised contrastive learning separately. The trained feature extractors are used to compute embeddings of patches. Embeddings of different scales of a WSI are concatenated to form feature pyramids to train the MIL aggregator. The figure shows an example of two magnifications (20× and 5×). The 5× feature vector is duplicated and concatenated with each of the 20× feature vectors of the sub-images within this 5× patch.</i>
 </figcaption>
 </figure>
 
@@ -88,7 +92,9 @@ Training the MIL and embedding networks end-to-end might be challenging due to t
 Because of the large image dimensions, it is typical to examine features from several magnifications for WSI analysis. The authors recommended that feature pyramids be built utilizing embeddings from several magnifications, with lower magnification embeddings being repeated and concatenated with higher magnification embeddings that belong to the same lower magnification patch. If the embeddings are spatially adjacent to each other, they will have the same parts. This technique imposes a spatial constraint on the attention scores, which are generated using similarity measurements and also include multiscale information.
 
 <figure>
-<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Figure4.png"><figcaption align = "center"><i>Figure 3. Pyramidal concatenation of multiscale features in WSI. Feature vector from a lower magnification patch is duplicated and concatenated to feature vectors of its higher magnification patches.</i>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Figure4.png"><figcaption align = "center">
+   
+<i>Figure 3. Pyramidal concatenation of multiscale features in WSI. Feature vector from a lower magnification patch is duplicated and concatenated to feature vectors of its higher magnification patches.</i>
 </figcaption>
 </figure>
 
@@ -111,7 +117,9 @@ The authors used the classification area under the curve (AUC) and localization 
    Based on tumor detection experiments on WSI datasets, it was known that the proposed method outperforms previous state-of-the-art methods with an average of 2%.  
    
    <figure>
-   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Table0.png"><figcaption align = "center"><i>Table 1. Classification results on Camelyon16 and TCGA datasets. DSMIL/DSMIL-LC denote DSMIL model with/without the proposed multiscale attention mechanism. Instance embeddings are produced by the feature extractor trained using SimCLR for all MIL models.</i>
+   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Table0.png"><figcaption align = "center">
+   
+   <i>Table 1. Classification results on Camelyon16 and TCGA datasets. DSMIL/DSMIL-LC denote DSMIL model with/without the proposed multiscale attention mechanism. Instance embeddings are produced by the feature extractor trained using SimCLR for all MIL models.</i>
    </figcaption>
    </figure>  
 
@@ -119,7 +127,9 @@ The authors used the classification area under the curve (AUC) and localization 
    The authors also further visualize the attention map generated by the models. The results showed that the proposed model performed better in delineating tumor regions in WSIs.  
    
    <figure>
-   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Figure5.png"><figcaption align = "center"><i>Figure 4: Tumor localization in WSI using different MIL models. (a) A WSI from Camelyon16 testing set. (b)-(e) zoomed in area in the orange box of (a). (b) Max-pooling. (c) ABMIL. (d) DSMIL. (e) DSMIL-LC Note: for (b), classifier confidence scores are used for patch intensities; for (c) (d) and (e), attention weights are re-scaled from min-max to [0, 1] and used for patch intensities.</i>
+   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Figure5.png"><figcaption align = "center">
+   
+   <i>Figure 4: Tumor localization in WSI using different MIL models. (a) A WSI from Camelyon16 testing set. (b)-(e) zoomed in area in the orange box of (a). (b) Max-pooling. (c) ABMIL. (d) DSMIL. (e) DSMIL-LC Note: for (b), classifier confidence scores are used for patch intensities; for (c) (d) and (e), attention weights are re-scaled from min-max to [0, 1] and used for patch intensities.</i>
    </figcaption>
    </figure>  
    
@@ -127,7 +137,9 @@ The authors used the classification area under the curve (AUC) and localization 
    The paper compared the features learned using different pretraining approaches to highlight the effect of utilizing self-supervised learning features. Self-supervised learning produced superior features when compared to ImageNet features, and was even better than features learned using end-to-end training with max-pooling.  
    
    <figure>
-   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Table3.png"><figcaption align = "center"><i>Table 2. Comparison of features learned by different methods for a fixed MIL aggregator.</i>
+   <img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Table3.png"><figcaption align = "center">
+   
+   <i>Table 2. Comparison of features learned by different methods for a fixed MIL aggregator.</i>
    </figcaption>
    </figure>  
    
@@ -136,7 +148,9 @@ The authors used the classification area under the curve (AUC) and localization 
 At last, the study tested the model on several MIL benchmark datasets and compared the performance to several recent MIL models. The proposed model showed a clear-cut improvement in classification accuracy over the recent models and demonstrates state-of-the-art performance. 
 
 <figure>
-<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Table5.png"><figcaption align = "center"><i>Table 3. Performance comparison on classical MIL dataset (MUSK1, MUSK2, Fox, TIGER, and ELEPHANT). Experiments were run 5 times each with a 10-fold cross-validation. The mean and standard deviation of the classification accuracy is reported (mean ± std).</i>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/Table5.png"><figcaption align = "center">
+   
+<i>Table 3. Performance comparison on classical MIL dataset (MUSK1, MUSK2, Fox, TIGER, and ELEPHANT). Experiments were run 5 times each with a 10-fold cross-validation. The mean and standard deviation of the classification accuracy is reported (mean ± std).</i>
 </figcaption>
 </figure>
 
