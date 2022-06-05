@@ -157,12 +157,30 @@ App에는 총 3가지 다른 종류의 설문조사가 제공되었다.
 
 #### 4.1.3 **Evaluation Metric**
 
+EOG안경을 통한 눈깜박임 측정 알고리즘과 그 타당성 검증, 그리고 데이터의 evaluation에 대하여 서술합니다. 
+
+
+  [1] Blink Detection
+  본 연구에서는 한 사람의 EOG 데이터를 두 가지 방식으로 측정하였습니다. 먼저 J!NS Meme 프레임에 두 개의 [Pupil Labs eyetracker](https://doi.org/10.1145/2638728.2641695) cameras 를 설치하였는데, 한 쪽 다리에 하나씩을 설치해서 카메라가 착용자의 눈을 조준하도록 하였습니다.  
+  이를 통해 착용자가 복잡한 장비나 센서를 몸에 착용하지 않고도 안경에 있는 센서를 통해 EOG 신호와 안구의 운동을 동시에 측정할 수 있었습니다.  
+  단, 눈 깜빡임은 자연적인 상태에서도 변화가 큰 편이므로 최소 5분 이상 눈깜빡임 횟수를 측정하였습니다.
+  
+  눈깜박임 횟수를 추정하기 위해서, J!NS Meme으로 수집한 EOG 데이터의 수직 성분 vertical components 을 peak detection algorithm에 적용시켰습니다. 장치의 전송 속도 transmission rate는 50 Hz로, EOG sampling rate인 100 Hz의 절반 수준이었으므로, original vertical value인 EOGV를 EOGV 1 와 EOGV 2 패키지로 나누었습니다.
+  
+
+  
+  [1] linaer mixed model  
+  사람이 오래 깨어 있을수록 수면 압력은 증가하며, 업무 성과는 감소합니다.  
+  본 연구에서는 실측 자료 ground truth (PVT 측정값 등)을 입증하고 측정된 성과의 변화를 감지하기 위해 선형혼합모형 linear mixed model을 사용하였습니다.
+ 
 참고로, 본 연구에서는 시스템의 성능 평가 시 다른 baseline과의 비교를 수행하지 않았습니다.
 
 ### **4.2 Result**  
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
   
+  [1] Blink Detection  
+  vertical EOG 값인 EOGV 1과 EOGV 2 값을 묶은 다음 데이터의 노이즈 값을 제거하기 위해 저역 필터low pass filter (Butterworth filter)를 사용하였습니다. 눈깜빡임이 a peak followed by a dip (한번 튀었다가 한번 빠지는 것: -^--∨- 모양)으로 특징지어지는 만큼, 알고리즘은 눈깜빡임을 측정하기 위해 두 개의 변수인 th_right 과 th_up_to_down 을 사용하였습니다.
   
 <br>
 
@@ -200,6 +218,6 @@ You can attach the tables or figures, but you don't have to cover all the result
 * Github Implementation  
   * [Fatigue_EOG_Raw](https://github.com/tagbenja/Fatigue_EOG_Raw)
 * Reference  
-  * 본 연구에서 활용한 안경 : [J!NS MEME glasses](https://jinsmeme.com/en/), 모바일 toolkit : [Dingler](https://doi.org/10.1145)
+  * 본 연구에서 활용한 안경 : [J!NS MEME glasses](https://jinsmeme.com/en/), 모바일 toolkit : [Dingler](https://doi.org/10.1145), [Pupil Labs eyetracker](https://doi.org/10.1145/2638728.2641695), 
   * 피로 수준 정의 : [Van Dongen and Dinges](https://doi.org/10.1002/ppul.1065)
   * 피로 수준 측정 시스템 : [Kleitman](https://doi.org/10.1152/ajplegacy.1923.66.1.67), [Hofstra and Weerd](https://doi.org/10.1016/j.yebeh.2008.06.002), [Abdullah et al.](https://doi.org/10.1145/2971648.2971712)
