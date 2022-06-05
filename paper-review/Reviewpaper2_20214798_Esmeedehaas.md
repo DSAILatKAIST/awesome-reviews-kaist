@@ -9,13 +9,7 @@ Neural JPEG: End-to-End Image Compression Leveraging a Standard JPEG Encoder-Dec
 
 ## **1. Problem Definition**  
 
-
-
-However, current methods
-either use additional post-processing blocks on the decoder end to improve compression
-or propose an end-to-end compression scheme based on heuristics. For the majority of
-these, the trained deep neural networks (DNNs) are not compatible with standard encoders
-and would be difficult to deply on personal computers and cellphones.
+The usage off the internet has been increasing over the years resulting in a need for improvement of compressing visual data. Current methods use either use additional post-processing blocks on the decoder end to improve compression or propose an end-to-end compression scheme based on heuristics. For most of these methods the trained deep neural networks (DNNs) are not compatible with standard encoders which makes it difficult to extend these technologies to personal computers and cellphones.
 
 
 
