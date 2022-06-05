@@ -77,8 +77,18 @@ EOG를 통해 얻을 수 있는 안구 운동, 눈깜박임 데이터를 활용�
   * EOG 센서 데이터와 그에 따른 눈깜박임 빈도를 활용하여 피로도 수준 변화를 예측하는 모델을 제시함
   * 16명의 피실험자가 시행한 EOG 데이터의 dataset을 제시함
 
+<br>
 
 ## **3. Method**  
+
+### **3.1 EOG 안경 기반의 피로 수준 모니터링 시스템 **  
+
+
+
+### **3.2 피로 수준 측정 Toolkit*  
+
+★★★toolkit 그림 필요함  
+
 
 Please write the methodology author have proposed.  
 We recommend you to provide example for understanding it more easily.  
@@ -107,15 +117,12 @@ You can attach the tables or figures, but you don't have to cover all the result
 > Summarize the Papaer  
   * 본 연구에서는 상용화된 안경인 `J!NS MEME glasses`에 EOG센서를 부착하여 피로 수준을 모니터링하는, 착용하기 쉬운 시스템을 개발하였습니다.
   * 개발된 시스템은 일상 생활 도중의 눈 깜박임 빈도를 측정함으로써 하루 동안의 피로 수준을 확인할 수 있습니다.
-  * 하루 일과 중에 시간이 지나갈수록 피로 수준은 증가하며, 이러한 피로 수준의 변화를 측정하는 것은 사용자들의 효율적인 업무 능력 향상에 도움이 될 수 있습니다.
-  * 본 논문의 의의는, 더 이상 복잡한 장비를 착용하지 않고 일상생활에서 안경을 착용하는 것으로 피로 수준을 모니터링 할 수 있다는 것입니다.
+  * 
 
 > My opinion, Take home message  
-  * HCI분야에서 안경을 사용하여 신체 및 인지 데이터를 수집하는 연구들이 활발하게 이뤄져있습니다. 기존에 리뷰했던 [FaceSight](https://dsail.gitbook.io/isyse-review/paper-review/2022-spring-paper-review/chi-2021-facesight) 연구에서도 안경을 활용하여 제스처를 탐지하는 시스템을 개발한 바 있습니다.
+  * HCI분야에서 안경을 사용하여 신체 및 인지 데이터를 수집하는 연구들이 활발하게 이뤄져있습니다. 기존에 리뷰했던 [FaceSight](https://dsail.gitbook.io/isyse-review/paper-review/2022-spring-paper-review/chi-2021-facesight) 연구도 
   ![FaceSight](https://github.com/bananaorangel/awesome-reviews-kaist/raw/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig1_facesight.PNG?raw=true)
-  * 안경을 사용하여 데이터를 수집하면, 센서들을 신체에 직접 부착해야 하는 불편함이나 번거로움이 훨씬 적기 때문에 일상생활에 더 적합한 강점을 갖고 있습니다. 앞으로도 안경을 활용한 연구가 활발하게 이뤄질 것으로 판단됩니다.
-  * 다만 안경 기반의 데이터수집에서의 공통적인 한계점으로, **안경을 정확한 위치의 코와 귀에 착용했는지 여부가 데이터의 노이즈에 영향**을 줄 것으로 보입니다. 같은 사람이 어떤 날에는 안경을 달라진 위치에 착용하게 되면 잘못된 시그널을 주게될 수 있습니다. 그런 측면에서 데이터를 어떤 방식으로 normalize하여 사용할 것인지가 키포인트가 될 것이라 생각됩니다.
-  * 점점 많은 신기술들이 개발되고 있지만, **기술에 취약한 계층들(노인, 장애인 등)** 이 쉽고 편하게 쓸 수 있도록 이들을 대상으로 하는 실험도 추가된다면 좋을 것 같습니다.
+  * 센서들을 신체에 직접 부착하여 데이터를 
 
   
 <br>
