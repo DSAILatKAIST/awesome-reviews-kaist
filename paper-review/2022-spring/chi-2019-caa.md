@@ -21,7 +21,7 @@ _keyword: Cognition-Aware Systems, Circadian Computing, Fatigue, Eye Blink, Elec
 
 본 리뷰에서는 상용화된 안경을 활용하여 피로 수준을 모니터링하는, EOG 센서 기반의 **`Continuous Alertness Assessments`** 시스템을 소개하려 합니다.
 
-★![J!NS MEME glasses](https://이미지링크.png)
+![J!NS MEME glasses](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_2/J!NS%20MEME.png?raw=true)
 
 **`Continuous Alertness Assessments`** 시스템은 아래의 장점을 갖고 있습니다:
  * 피로 수준에 따른 업무 순서 배치로 효율성 증대 가능
@@ -40,7 +40,7 @@ _keyword: Cognition-Aware Systems, Circadian Computing, Fatigue, Eye Blink, Elec
   * [Kleitman](https://doi.org/10.1152/ajplegacy.1923.66.1.67)는 항문체온계를 사용하여 신체 내부의 온도를 측정하여 의식의 변화를 측정하였습니다.  
   * [Hofstra and Weerd](https://doi.org/10.1016/j.yebeh.2008.06.002)는 수면 중인 사람을 대상으로 뇌파, 심전도 등을 측정하여 피로 수준을 파악하는 수면다원검사를 소개하였습니다.
 
-★★★항문체온계, 수면다원검사 그림 필요함  
+  ![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_2/traditional.png?raw=true)
 
 <br>
 
