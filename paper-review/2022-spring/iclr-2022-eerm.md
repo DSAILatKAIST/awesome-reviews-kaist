@@ -130,7 +130,7 @@ $$\begin{equation}y_v=\frac{1}{|N_v|}\sum_{u \in N_v}{x_u^{(1)} + n_{v}^{(1)}}, 
 
 로 가정하고, 이 때 ![](https://latex.codecogs.com/svg.image?n_v^{(1)},n_v^{(2)})는 independent standard normal noise이고, ![](https://latex.codecogs.com/svg.image?\epsilon)은 평균이 0이고 분산은 0이 아닌 환경 변수 e에 종속적인 random variable 입니다.
 
-이를 바탕으로 vanilla GCN이 예측 모델이라면 ![](https://latex.codecogs.com/svg.image?\hat{y}_v=\frac{1}{|N_v|}\sum_{u&space;\in&space;N_v}{\theta_1&space;x_{u}^{(1)}&plus;\theta_2&space;x_{u}^{(2)}}이고, solution은 ![](https://latex.codecogs.com/svg.image?[\theta_1,&space;\theta_2]=[1,0]) 입니다. 즉, GCN은 invariant feature (i.e. https://latex.codecogs.com/svg.image?x_{u}^{(1)})을 알아낼 수 있다는 것을 의미합니다. 하지만, 아래의 명제를 보다시피 __일반적인 empirical risk minimization(ERM)를 사용할 때, 우리는 ideal solution을 도출할 수 없음__ 을 확인하게 됩니다 (자세한 증명은 논문의 Appendix 참고).
+이를 바탕으로 vanilla GCN이 예측 모델이라면 ![](https://latex.codecogs.com/svg.image?\hat{y}_v=\frac{1}{|N_v|}\sum_{u&space;\in&space;N_v}{\theta_1&space;x_{u}^{(1)}&plus;\theta_2&space;x_{u}^{(2)}})이고, solution은 ![](https://latex.codecogs.com/svg.image?[\theta_1,&space;\theta_2]=[1,0]) 입니다. 즉, GCN은 invariant feature (i.e. ![](https://latex.codecogs.com/svg.image?x_{u}^{(1)}))을 알아낼 수 있다는 것을 의미합니다. 하지만, 아래의 명제를 보다시피 __일반적인 empirical risk minimization(ERM)를 사용할 때, 우리는 ideal solution을 도출할 수 없음__ 을 확인하게 됩니다 (자세한 증명은 논문의 Appendix 참고).
 
 <p align="center">
   <img src="../../.gitbook/2022-spring-assets/yunhak2/motivation1.png">
@@ -159,6 +159,7 @@ $$\begin{equation}y_v=\frac{1}{|N_v|}\sum_{u \in N_v}{x_u^{(1)} + n_{v}^{(1)}}, 
 앞선 toy example에서 벗어나 일반적인 케이스로 돌아오면 2장에서의 발견을 통해 새로운 학습 목표를 다음과 같이 정의할 수 있습니다.
 
 $$\begin{equation}\min_{\theta}\mathbb{V}_{\mathbf{e}}{[L(G^{(e)}, Y^{(e)};\theta)]}+\beta\mathbb{E}_{\mathbf{e}}{[L(G^{(e)}, Y^{(e)};\theta)]},\end{equation}$$
+
 where ![](https://latex.codecogs.com/svg.image?L(G^{(e)},&space;Y^{(e)};\theta)=\frac{1}{|V_e|}\sum_{v\in&space;V_e}{l(f_{\theta}(G_{v}^{(e)}),y_{v}^{(e)})}) and ![](https://latex.codecogs.com/svg.image?\beta) is trading hyperparameter.
 
 Eq. 4는 바람직한 extrapolation을 위해 다양한 환경에서 부터 생성된 data가 필요하다는 것을 의미하지만, node-level task는 하나의 환경에서 training 데이터로 하나의 graph만을 가지기 때문에 Eq. 4에 대한 변경이 필요합니다.
