@@ -101,10 +101,13 @@ Where the ideal value for Lamba is obtained based on the validation performance.
 
 The distortion loss is responsible for measuring the similarity between compressed and original images. To achieve this, as shown above, the combination of the MSE and LPIPS metrics.
 
+
 * Rate loss:
 
  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig10.png">
+
 The authors use the rate loss formulation proposed by one of the related works and replace the attention map with sparse map obtained from a SMRNN that is represented as shown above.
+
 
 * Alignment loss:
 
