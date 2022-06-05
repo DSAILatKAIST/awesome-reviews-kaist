@@ -28,7 +28,7 @@ RNN에 대한 불확실성 추정을 위해 개발된 이전 방법들에는 베
 저자가 본격적으로 참고한 이전 연구는 등각예측 방법(CP)이기 때문에 지금부터 이에 대해 집중적으로 알아보겠다. 이는 회귀문제(예시: 시계열 예측) 추가 보정 세트와 기본 모델을 사용하여 귀납적으로 작동하도록 수정되고 이를 귀납적 등각 예측(ICP)라고 한다. 
 
 
-![그림1](/.gitbook/2022-spring-assets/YeoJeong_1/figure1.png)
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/figure1.png)
 
 
 (시계열 관찰 패러다임; 왼쪽 부분의 데이터 세트는 단일 시계열로 구성되어 있다고 가정하고 관측값은 시계열 내의 개별 시간 단계이며 이러한 관찰은 시간적으로 종속적이다. 반면에 오른쪽 데이터셋은 독립적인 시계열 세트로 구성되며 전체 시리즈가 관측값으로 처리되고 시계열의 독립성은 교환 가능성을 의미한다.)
@@ -57,7 +57,7 @@ RNN에 대한 불확실성 추정을 위해 개발된 이전 방법들에는 베
 
 
 
-**[다중 수평 시계열 예측(Multi-horizon time-series forecasting)]**
+**[1. 다중 수평 시계열 예측(Multi-horizon time-series forecasting)]**
 
 ![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?(y__{t},&space;y__{t&plus;1},&space;...&space;,&space;y__{t'}))가 d차원 시계열 관측값이고 ![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?)가 주어지면, multi-horizon 시계열 예측은 ![](https://latex.codecogs.com/svg.image?\\hat{y}__{t'&plus;1:t'&plus;H})인 미래 값을 예측한다. 이는 H x d 차원이고 H는 예측할 steps의 수(예측 horizon)이다.
 
@@ -68,13 +68,13 @@ ground truth 값 yt+h가 충분히 높은 확률로 ![](https://latex.codecogs.c
 
 즉, 아래의 식을 만족하게 한다.
 
-![식1](/.gitbook/2022-spring-assets/YeoJeong_1/3.1공식.png)
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/3.1f.png)
 
 
 
 
 
-**[귀납적 등각 예측(Inductive conformal prediction, ICP)]**
+**[2. 귀납적 등각 예측(Inductive conformal prediction, ICP)]**
 
 회귀 작업에 대한 귀납적 등각 예측(ICP)에 대한 필요한 배경을 설명하겠다.
 관측값 세트 및 새로운 데이터가 주어지면 ICP 절차는 다음과 같은 예측 간격을 반환한다. 그렇기 때문에 **타당성 속성이 충족**된다.
@@ -83,20 +83,20 @@ ground truth 값 yt+h가 충분히 높은 확률로 ![](https://latex.codecogs.c
 
 
 
-**[CF-RNN: ICP for multi-horizon RNNs]**
+**[3. CF-RNN: ICP for multi-horizon RNNs]**
 
 이제 등각 예측 절차의 세부 사항에 대해 설명하겠다.
 지금까지 레이블 y ∈ R이 스칼라이지만 다중 수평 시계열 예측이 H(d-차원) 값을 반환하는 경우를 고려했다. 저자는 다중 수평선 예측 간격을 내보내는 것의 타당성을 유지하면서 다중 예측 환경에서도 다룰 수 있도록 ICP 프레임워크를 확장했다. 이를 등각 예측 프레임워크(Conformal prediction framework)라고 한다.
 H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 원하는 오류율 α를 유지하기 위해 임계 보정 점수에 Bonferroni 보정을 적용한다. 특히, 원래의 α를 H로 나누므로 임계 부적합 점수 εˆ1, . . . , εˆH는 대응하는 부적합 점수 분포에서 [(m + 1)(1 − α/H)]-번째 가장 작은 잔차가 된다. 따라서 예측 구간의 결과 집합은 다음과 같다.
 
 
-![그림1](/.gitbook/2022-spring-assets/YeoJeong_1/figure1.png)
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/f7.png)
 
 
 요약하면, CF-RNN(Conformal Forecasting RNN) 모델은 RNN 발행 지점 예측과 불확실성을 도출하기 위한 등각 예측 절차로 구성된다. CF-RNN에서 예측 구간을 구성하는 전체 절차는 아래의 그림에 설명되어 있고 아래의 알고리즘에 요약되어 있다.
 
 
-![그림1](/.gitbook/2022-spring-assets/YeoJeong_1/figure1.png)
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/figure2.png)
 
 
 
@@ -105,20 +105,23 @@ H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 �
 다음 D를 교환 가능한 시계열 관측치 데이터 세트이고 H-단계 예측값을 동일한 기본 확률 분포에서 얻는다고 가정해보자. 
 
 
-![그림1](/.gitbook/2022-spring-assets/YeoJeong_1/figure1.png)
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/f8.png)
 
 
 그리고 M을 직접 전략을 사용하는 H-단계 예측을 예측하는 순환 신경망이라고 하자. 모든 유의 수준 α ∈ [0, 1]에 대해 ICP 기반 등각 예측 알고리즘으로 얻은 간격(interval)은 최대 α의 오류율을 갖는다. 
 즉, 아래 식을 만족하게 된다.
 
-![그림1](/.gitbook/2022-spring-assets/YeoJeong_1/figure1.png)
+
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/f9.png)
+
 
 (증명은 Vovk[51]에서 ICP의 조건부 타당성과 Boole’s inequality에서 따라나온다.)
 
 
 알고리즘은 다음과 같다:
 
-![알고리즘1](/.gitbook/2022-spring-assets/YeoJeong_1/algorithm.png)
+
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/algorithm.png)
 
 
 
@@ -142,17 +145,19 @@ H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 �
         
         
         >합성 데이터 만드는 방법
+        >
         >: Autoregressive process와 noise process가 포함된 합성 시계열데이터 생성
-        >: (수학적으로 표현) ![](https://latex.codecogs.com/svg.image?y_t) = from k = 0 to t(a^kx_k+e_t, all k {1,…,T}
+        >
+        >: (수학적으로 표현)
+        >
+        >먼저 시계열의 추세를 결정하는 자기회귀 프로세스와 데이터 세트의 고유한 불확실성을 나타내는 노이즈 프로세스의 두 가지 구성요소로 구성된 합성 시계열을 생성한다.
+        >길이 T의 시계열에 대해 다음과 같이 표현된다.
+        >
+        >![그림1](/.gitbook/2022-spring-assets/paperreview_result/f10.png)
+        >
+        >(xt ~ N(μx, σ2x), a = 0.9는 메모리 매개변수, t ~ N(0, σ2t)은 노이즈 프로세스 5개의 정적 노이즈 분산 프로파일 σ2t = 0.1n, n = {1, . . . , 5})
         
-        where ![]([https://latex.codecogs.com/svg.image?x_t](https://latex.codecogs.com/svg.image?x_t)) ~ ![](https://latex.codecogs.com/svg.image?N(\\mu&space;_x,&space;\\sigma_x^2), a = 0.9, ![](https://latex.codecogs.com/svg.image?e_t&space) ~ ![](https://latex.codecogs.com/svg.image?N(0,\\sigma_t^2), ![](https://latex.codecogs.com/svg.image?\\sigma&space;_t^2)) = 0.1n for n = {1,…,5}
-        
-        먼저 시계열의 추세를 결정하는 자기회귀 프로세스와 데이터 세트의 고유한 불확실성을 나
-        타내는 노이즈 프로세스의 두 가지 구성요소로 구성된 합성 시계열을 생성합니다.3 길이 T
-        의 시계열에 대해 다음과 같이 표현됩니다. 수학적으로 xt ~ N(μx, σ2x), a = 0.9는 메모리 매
-        개변수이고 t ~ N(0, σ2t)은 노이즈 프로세스입니다. 5개의 정적 잡음 분산 프로파일 σ2t =
-        0.1n, n = {1, . . . , 5}.
-        
+  
     - 3개의 현실 의료 데이터들(MIMIC-3, EEG, COVID-19)
         
         > 실시간 시계열의 다양한 시나리오를 나타내기 위해 이러한 데이터세트를 선택했다.
@@ -191,9 +196,11 @@ H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 �
 
 아래의 표 2와 3은 모델의 joint coverage 불확실성 간격을 비교한다. CF-RNN과 BJ-RNN은 모두 정적(static) 및 시간 의존적인 노이즈 환경 둘 다에서 요구된대로 유한 표본 frequentist 범위 보장을 만족시키면서 90%(α = 0.1)인 목표 공동 커버리지를 경험적으로 능가한다.
 
-![table2.PNG](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4cfc9f2b-90e1-4128-b164-4b6821795ac2/table2.png)
 
-![table3.PNG](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5ffdf337-3c85-4588-8bc0-a67dd60e8b51/table3.png)
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/table2.png)
+
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/table3.png)
+
 
 표 3은 추가로 CF-RNN 간격이 데이터 세트의 시간적 역학 특성에 적응함을 보여준다. 노이즈가 static일 때, CF-RNN 예측 간격 폭은 증가하는 기본에 따라 크게 변하지 않는다. 반면에 노이즈 프로파일이 시간 종속적일 때, 평균 간격은 데이터 세트 불확실성이 증가함에 따라 넓어진다. 
 
@@ -201,7 +208,9 @@ H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 �
 
 반면에 MQ-RNN 및 DP-RNN과 같은 대안적(비빈도적) 패러다임을 따르는 기준선은 모두 목표 적용 범위를 달성하지 못하며 때때로 적용 범위 비율이 0으로 나온다. 이러한 이유로 두 모델은 더 좁은(더 효율적인) 간격으로 제공되지만 적용 범위 보장이 부족하여 위험이 큰 실제 응용 프로그램에서 덜 유용하다.
 
-![figure3.PNG](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8195cc29-fed8-4094-97cb-2ecae4e1225b/figure3.png)
+
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/figure3.png)
+
 
 제어된 속성이 있는 데이터에 대한 실험을 통해 원하는 적용 범위와 미래에 얼마나 멀리 예측을 안정적으로 수행할 수 있는지 간의 균형에 대한 추가 통찰력을 얻을 수 있었다. 
 
@@ -217,7 +226,8 @@ H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 �
 
 CF-RNN, MQ-RNN, DP-RNN 모델들을 아래의 표4에서 처럼 3개의 데이터셋에 대해 훈련시켰다. 
 
-![table4.PNG](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1690c113-0ced-4376-b2e1-ef084753b66b/table4.png)
+
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/table4.png)
 
 
 
@@ -237,7 +247,9 @@ CF-RNN, MQ-RNN, DP-RNN 모델들을 아래의 표4에서 처럼 3개의 데이�
 
 아래의 표5에서 모델의 성능을 확인할 수 있다. 
 
-![table5.PNG](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f42a512b-a28a-4bb6-a87b-0a0e638d59f7/table5.png)
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/table5.png)
+
+
 
 제안된 CF-RNN 아키텍처의 기본 LSTM 모델은 일부 예제가 보정 절차에 사용되었기 때문에 경쟁 기준과 동일한 하이퍼파라미터를 갖지만 훈련 인스턴스는 더 적었다. 그럼에도 불구하고 CF-RNN은 모든 데이터 세트에 대해 가장 높은 Coverage를 얻었고 목표 Joint Coverage 비율을 경험적으로 달성한 유일한 모델이다. 따라서 제안된 모델의 예측은 데이터 세트 및 시나리오 범위에서 실제로 신뢰할 수 있다. 
 
@@ -246,7 +258,7 @@ CF-RNN, MQ-RNN, DP-RNN 모델들을 아래의 표4에서 처럼 3개의 데이�
 아래의 표6에서 모델의 joint coverage, independent coverage에 대한 실험 결과를 통해 CF-RNN 교정(calibration) 절차에서 오류율의 Bonferroni correction 수정의 중요성과 동기(motivation)를 실험적으로 살펴볼 수 있다.
 
 
-![table6.PNG](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0f86d162-41ff-4fe8-8996-6cc9fef144a8/table6.png)
+![그림1](/.gitbook/2022-spring-assets/paperreview_result/table6.png)
 
 
 독립적인 범위(independent coverage) 비율이 일반적으로 목표 범위를 달성함에도 불구하고, Bonferroni correction가 없는 경우에는 보정 점수(calibration scores)는 낮은 joint coverage를 나오게 한다. 특히 예측의 어려움으로 선택되었던 COVID-19 데이터 세트가 가장 눈에 띄는 예외이다.
