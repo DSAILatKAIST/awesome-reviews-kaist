@@ -49,7 +49,7 @@ Reward : 모든 agent는 누적 거리의 합을 최소화시키는 공통의 �
 
 - $r_k^t$ = - $e_{I_k^t,I_k^{t+1}}$ : one step reward
 - total reward
-- ![](../../.gitbook/2022-spring-assets/jiwoo2/1.png)
+- ![](../../.gitbook/2022-spring-assets/jiwooson2/1.png)
 
 
 MAPDP 모델은 paired context embedding → context encoder → cooperated decoder로 구성이 되어있는데 아래 그림이 그 구조에 대해 보여주고 있고, 이제부터 각각의 구조에 대해서 알아보겠습니다. 
