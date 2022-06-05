@@ -23,7 +23,7 @@ Transferring Robustness for Graph Neural Network Against Poisoning Attacks
 * 한편, Deep learning-based model 들은 adversarial attack 에 취약하다는 것이 많은 연구들로부터 증명되어 왔고, 그에 따라 이러한 attack 을 막아내는 defense 방법 또한 많이 연구되고 있습니다.
 * 아래 그림으로부터 우리는 눈에 보이지 않는, 인식할 수 없는 변화가 classifier 의 예측 값을 완전히 뒤바꾸어 버린다는 것을 알 수 있습니다.
 * 즉, adversarial attack 은 의도적으로 생성된 imperceptible small perturbation 이고, 이러한 작은 변화가 Deep Learning model 의 성능을 매우 망가트리게 됩니다.
-<p align='center'><img width="700" src="./yeonjunin2/fig1.png"></p> 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin2/fig1.png"></p> 
 
 ### Adversarial attack on graphs
 
@@ -35,7 +35,7 @@ Transferring Robustness for Graph Neural Network Against Poisoning Attacks
 <p align='center'><img width="700" src="https://d3i71xaburhd42.cloudfront.net/346c5e5d28c45ad3460277699bf8e244cd33c2cf/2-Figure1-1.png"></p> 
 
 ### Existing adversarial defense methods on graphs
-<p align='center'><img width="700" src="./yeonjunin2/fig3.png"></p> 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin2/fig3.png"></p> 
 
 * 이러한 adversarial attack 하에서도 robust 한 예측을 하기 위해서, 다양한 defense 방법들이 연구되고 있습니다.
 * 크게 두 갈래로 나누어보자면 다음과 같이 나눌 수가 있습니다. 
@@ -131,7 +131,7 @@ $$
 ---
 *Background: Model-Agnostic Meta Learning for Fast Adaptation of Deep Networks (MAML)*
 
-<p align='center'><img width="700" src="./yeonjunin2/fig6.png"></p> 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin2/fig6.png"></p> 
 
 * Meta learning 이란?
     * 우리는 굉장히 적은 경험을 통해서 어떤 기술을 쉽게 습득하기도 하고, 굉장히 적은 사진만 보고도 그 사진이 무엇인지를 쉽게 분류해낼 수 있습니다
@@ -147,10 +147,10 @@ $$
 * Key idea 는 많은 task 에 적합한 "internal 한 representation" 을 학습해놓으면 아주 적은 gradient step 만으로도 다양한 task 에 금방 fine tuning 이 가능하다는 것입니다. 아래 그림으로 좀 더 자세히 설명해보자면, 
     * (a) 우리가 다른 task 는 신경쓰지 않고 task 1에 대한 loss 가 작아지는 방향으로만 모델을 학습해놨다고 합시다. 그럼 task 2나 task 3 에 대해 fine tuning 을 할 때, 굉장히 많은 training 이 필요할 것입니다. task 2와 3의 loss 가 작아지는 방향은 task 1의 방향과 매우 다르니 말입니다.
     * (b) 그렇다면, task 1,2,3 의 loss 가 공통적으로 작아질 수 있는 방향으로 모델을 학습하면 모든 task 에 대해 적은 training 만으로도 빠르게 fine tuning 이 가능할 것입니다
-<p align='center'><img width="700" src="./yeonjunin2/fig7.png"></p> 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin2/fig7.png"></p> 
 
 * 그래서 MAML 은 모든 task 에 대한 loss 를 작게 만들 수 있는 방향을 찾아 parameter 를 update 합니다. 자세한 procedure 는 다음과 같습니다
-<p align='center'><img width="700" src="./yeonjunin2/fig5.png"></p> 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin2/fig5.png"></p> 
 
 ---
 
@@ -162,7 +162,7 @@ $$
 * 이렇게 meta model 의 학습이 완료되면, ![](https://latex.codecogs.com/svg.image?\theta) 를 가지고 우리가 target 하는 poisoned graph ![](https://latex.codecogs.com/svg.image?\mathcal{G})  에 대해 cross entropy loss 로 fine tuning 합니다. meta model 은 이미 true edge 와 attacked edge 를 구별하면서 classification 을 잘할 수 있게 하는 지식을 가지고 있는 상태기 때문에 poisoned graph 에도 쉽게 fine tuning 할 수 있습니다.
 * 자세한 알고리즘은 아래 그림을 참고하시면 됩니다.
 
-<p align='center'><img width="700" src="./yeonjunin2/fig8.png"></p> 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin2/fig8.png"></p> 
 
 ## **4. Experiment**  
 
@@ -183,12 +183,12 @@ $$
 
 ### **Result**  
 
-<p align='center'><img width="700" src="./yeonjunin2/fig9.png"></p> 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin2/fig9.png"></p> 
 
 * 전체적으로 attack 의 강도가 강해질수록 더 robust 한 성능을 보입니다.
 * 이것으로 penalized aggregation도 잘 되었고, meta learning 도 잘 된것으로 생각할 수 있습니다.
 
-<p align='center'><img width="700" src="./yeonjunin2/fig10.png"></p> 
+<p align='center'><img width="700" src="../../.gitbook/2022-spring-assets/yeonjunin2/fig10.png"></p> 
 
 * Penalizing regularizer 가 있을 때, attacked edge 에 attention weight 가 더 작게 할당되는 것을 알 수 있습니다.
 
