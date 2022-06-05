@@ -33,36 +33,22 @@ to remove artifacts at the decoder end, thus compromising compression quality in
 
 
  ### **Significance**
-Most of the current works have xx
+The related works as mentioned before are still lacking some features, which this paper will make up for.
 
-In light of this,
-we propose a system that learns to improve the encoding performance by enhancing its
-internal neural representations on both the encoder and decoder ends, an approach we call
-Neural JPEG. We propose frequency domain pre-editing and post-editing methods to optimize
-the distribution of the DCT coefficients at both encoder and decoder ends in order to
-improve the standard compression (JPEG) method. Moreover, we design and integrate a
-scheme for jointly learning quantization tables within this hybrid neural compression framework.
-
-In summary, our contributions are as follows:
-* We extend on prior work and improve system rate-distortion performance by optimizing the JPEG encoder in the frequency domain.
-* We facilitate better coefficient construction at the decoder end by optimizing the JPEG decoder.
-* A sparse recurrent network (Neural JPEG) is adapted to learn how to edit the DCT coefficients at both decoder and encoder ends.
+IThe main contributions of this paper are as followed:
+* The authors extend their prior work and improve system rate-distortion performance by optimizing the JPEG encoder in the frequency domain.
+* The authors facilitate better coefficient construction at the decoder end by optimizing the JPEG decoder.
+* The neural JPEG is adapted to learn how to edit the discrete cosine transform (DCT) coefficients at both decoder and encoder ends.
 * A learnable quantization table that is optimized jointly with the sparse recurrent encoder/decoder to improve rate-distortion performance, yielding an end-to-end, differentiable JPEG compression system.
 
 ## **3. Method**  
 
-In this method, xx
-
-Speciffically, we construct a system that leverages an encoder and decoder
+In this method, the authors construct a system that leverages an encoder and decoder
 that are each driven by sparse recurrent neural networks (SMRNNs) trained within
-the effective framework of neural iterative refinement [6] { the recurrent encoder learns
-to \pre-edit" an input image in the frequency domain (producing values that serve as
-the necessary DCT coefficients) while the recurrent decoder learns to reduce artifacts
+the effective framework of neural iterative refinement while the recurrent decoder learns to reduce artifacts
 in the reconstructed image.
 
-| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig123.png"> |
-|:--:| 
-| *Figure 1, proposed method.* |
+
 
 
 ### **JPEG algorithm & architecture**
@@ -126,19 +112,19 @@ generate visually appealing images with better color retention quality.
 The results of the previously mentioned procedure xx
 
 Graph:
-| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding1.png"> |
+| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig14.png"> |
 |:--:| 
-| *Figure 1, proposed method.* |
+| *Figure 1, performance of various compression model with various bit rate setting.* |
 
 Table:
-| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding1.png"> |
+| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig15.png"> |
 |:--:| 
-| *Table 1, proposed method.* |
+| *Table 1, test results for Kodak (bpp 0.38), 8-bit compression benchmark (CB, bpp, 0.371).* |
 
 Table:
-| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding1.png"> |
+| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig16.png"> |
 |:--:| 
-| *Table 1, proposed method.* |
+| *Table 2, test results for Kodak (bpp 0.37), 8-bit compression benchmark (CB, bpp, 0.341)* |
 
 ## **5. Conclusion**  
 
