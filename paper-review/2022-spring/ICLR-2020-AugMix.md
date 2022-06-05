@@ -110,7 +110,7 @@ $$CE_{c} =  {\sum_{s=1}^5 E_{c,s}}/{\sum_{s=1}^5 E_{c,s}^{AlexNet}}$$
 - 15개의 normalized CE 값의 평균을 최종 error로 사용하였다.  
 
 #### **`(2) RMS Calibaration Error`**   
-모델의 불확실성 추정에 대한 평가로서 miscalibration을 측정하였다. calibration이란   
+모델의 불확실성 추정에 대한 평가로서 miscalibration을 측정하였다. Calibration 이란 모형의 출력값이 실제 confidence를 반영하도록 만드는 것이다. 예를 들어, 어떤 input의 특정 class에 대한 모델의 output이 0.8이라면, 80 % 확률로 그 class이다 라는 의미를 갖도록 만드는 것이다. 따라서 miscalibation error는 주어진 confidence level에서의 classification accuracy와 실제 confidence level에서의 classification accuracy 간의 RMS를 통해 측정하였다. 이렇게 정의된 RMS Calibarion Error의 수식은 다음과 같다.
 
 $$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
 
@@ -124,22 +124,22 @@ $$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
 ![figure6](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig6.PNG?raw=true)
 
 다음 그림은 ResNeXt backbone에 Standard, Cutmix, AugMix를 적용하여 훈련시킨 모델의 CIFAR-10-C에 대한 RMS Calibration Error를 나타낸다. AugMix는 corruption이 없는 CIFAR-10 데이터와 corruption이 존재하는 CIFAR-10-C 모두에 대해서 calibration error를 감소시킴을 알 수 있다. 특히, corrption이 있는 데이터셋에 대해서 다른 augmentation 방법론에 비해 매우 큰 차이로 error를 줄였다.  
-![figure7](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig7.PNG?raw=true)
+![figure10](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig10.PNG?raw=true)
 
 * **`ImageNet`**
+다음은 ImageNet-C testdataset에 대한 여러 augmentation 방법의 효과를 Clean Error, Corruption Error(CE), mCE를 통해 평가한 표이다. mCE는 앞서 metric에서 설명하였듯이 15가지 corruption의 CE를 평균낸 것이다. 모든 augmentation은 ResNet-50 backbone으로 훈련되었다.
 
+AugMix는 다른 augmentation 방법론들에 비해 Clean Error뿐만 아니라 Corruption Error를 감소시켰다. 특히, AugMix를 SIN과 결합하여 적용하였을 때 가장 corruption에 강건함을 보여주었다. 여기서 SIN은 Stylized ImageNet으로 원본 ImageNet 데이터뿐만 아니라 style transfer가 적용된 데이터에도 모델을 훈련시킴으로써 corruption에 대한 강건성을 높이는 augmentation 방법론이다.
 
-
-Then, show the experiment results which demonstrate the proposed method.  
-You can attach the tables or figures, but you don't have to cover all the results.  
-  
-
+또한 AugMix는 데이터 corruption의 강도(severity)가 점점 높아질 때, RMS claibration error에 대해 매우 안정적이고 강건함을 보여주었다. severity가 높아질수록 classification error가 증가함에도 불구하고 calibartion error는 거의 유지됨을 알 수 있다.
+![figure11](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig11.PNG?raw=true)
 
 
 ## **5. Conclusion**  
+* Summary
+AugMix는 랜덤하게 생성된 augmented image를 mix하고 Jensen-Shannon loss를 사용하여 데이터의 consistency를 유지하는 데이터 처리 기법이다. CIFAR-10-C, CIFAR-100-C, ImageNet-C 데이터셋 모두에 대해서 기존의 존재하던 augmentation 방법들보다 좋은 성능을 보여주었다. 특히, AugMix는 데이터 변동이 일어나도 calibration을 유지하며 안정성과 강건성을 보여주었다. 따라서, AugMix는 모델을 더 신뢰할 수 있도록 하므로, safety-critical 환경에서 효과적으로 적용될 수 있을 것으로 기대된다.
 
-Please summarize the paper.  
-It is free to write all you want. e.g, your opinion, take home message(오늘의 교훈), key idea, and etc.
+* Opinion
 
 ---  
 ## **Author Information**  
@@ -154,3 +154,7 @@ Please write the reference. If paper provides the public code or other materials
 * Github Implementation
 https://github.com/google-research/augmix  
 * Reference  
+  * \[1\] Dan Hendrycks and Thomas Dietterich. Benchmarking neural network robustness to common corruptions and perturbations. ICLR, 2019.
+  * \[2\] Yaniv Ovadia, Emily Fertig, Jie Ren, Zachary Nado, D Sculley, Sebastian Nowozin, Joshua V Dillon, Balaji Lakshminarayanan, and Jasper Snoek. Can you trust your model’s uncertainty? Evaluating predictive uncertainty under dataset shift. NeurIPS, 2019.
+  * https://3months.tistory.com/490
+
