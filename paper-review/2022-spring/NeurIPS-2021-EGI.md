@@ -205,6 +205,9 @@ pre-train을 위한 2개 이상의 그래프가 있는경우,  어떤 그래프�
 
 이번 파트에서는 앞서 설명한 이론을 바탕으로 실제 데이터셋에서 진행한 실험에 대해 설명합니다.
 
+본 실험에 앞서 두가지 방식으로 생성한 그래프를 통해 앞서 설명한 이론들을 검증하기 위한 합성 실험을 진행하였습니다. F,B 는 각각 다른 방식을 사용하여 생성한 40개의 그래프입니다. F-F 는 유사한 그래프에 대한 결과를 보여주며, B-F 는 서로 다른 그래프 간의 전이 학습을 보여줍니다. 실험 결과는 아래와 같습니다. 
+
+![스크린샷 2022-04-10 오후 9.14.31.png](handonghee_2/스크린샷_2022-04-10_오후_9.14.31.png)
 ### Baselines
 
 실험에서 저자는 제안하는 모델을 self-supervised, pre-training GNN 과 비교합니다. 
@@ -230,10 +233,6 @@ other node features : spectral, pre-computed node embeddings
 평가 측면에서 두가지 현실적인 실험 설계를 하였습니다.
 1) 노드 피쳐 없이 전이 가능성을 평가 하기위한 structure-relevant task of role identification
 2) 일반화 성능 평가를 위한 task-specific 노드 피쳐 기반의 관계예측, Few-shot learning 
-
-실험 결과는 아래와 같습니다.
-
-![스크린샷 2022-04-10 오후 9.14.31.png](handonghee_2/스크린샷_2022-04-10_오후_9.14.31.png)
 
 ## 4.1 Direct-transfering on role identification
 
