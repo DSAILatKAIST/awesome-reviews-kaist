@@ -120,9 +120,11 @@ You can attach the tables or figures, but you don't have to cover all the result
   * 
 
 > My opinion, Take home message  
-  * HCI분야에서 안경을 사용하여 신체 및 인지 데이터를 수집하는 연구들이 활발하게 이뤄져있습니다. 기존에 리뷰했던 [FaceSight](https://dsail.gitbook.io/isyse-review/paper-review/2022-spring-paper-review/chi-2021-facesight) 연구도 
+  * Human-Computer Interaction (HCI) 분야에서 안경을 사용하여 신체 및 인지 데이터를 수집하는 연구들이 활발하게 이뤄지고 있습니다. 기존에 리뷰했던 [FaceSight](https://dsail.gitbook.io/isyse-review/paper-review/2022-spring-paper-review/chi-2021-facesight) 연구도 안경을 활용하여 사용자들의 제스처 데이터를 수집한 바 있습니다.
   ![FaceSight](https://github.com/bananaorangel/awesome-reviews-kaist/raw/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_1/fig1_facesight.PNG?raw=true)
-  * 센서들을 신체에 직접 부착하여 데이터를 
+  * 안경을 활용하여 데이터를 수집하는 경우, 센서들을 신체에 직접 부착해야 하는 불편함이나 번거로움이 적으며 일상생활에서 사용하기 편리합니다. 이러한 장점들을 기반으로 앞으로도 HCI 분야에서 안경을 사용한 연구들이 활발히 이뤄질 것으로 보입니다.
+  * 데이터 노이즈, 어디에 착용했는지
+  * 장애인 얘기
 
   
 <br>
