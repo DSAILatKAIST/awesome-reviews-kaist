@@ -133,7 +133,6 @@ To improvement the measuring of the visual appeal of images the author also uses
 
  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig13.png">
 
-
 * Datasets and training procedure: The Neural JPEG network is trained on the dataset provided in works of other authors. It consists of 3640 HDR images. As for the training, the authors chose to use the merged HDR images and extract image patches of size 256 obtained from random cropping. Here they follow the same extraction process and experimental protocol as done by authors of their related works. They use the Kodak dataset toe elvaluate their model. In addition to this they validate the model on validation set from DIV2K containing
 100 high quality images with 2040 pixels. The model is optimized by using Adam with initial learning rate 1:0 reduced to 10 to the power of -8 using polynomial decay. A batch size of 32 was used for all experiments and performed grid search to find optimal hidden sizes for SMRNN, sparsity level k, and lambda. A pre-trained VGG-19 model (trained on ImageNet) was used and these layers were fine-tuned while training. The 1 x 1 convolutional layer is initialized using orthogonal matrices.
 
@@ -160,39 +159,14 @@ reduced (see Table 1) all hybrid models start struggling, whereas neural-based m
 
 ## **5. Conclusion**  
 
-Our experiments show that our approach, Neural JPEG, improves JPEG encoding
-and decoding through sparse RNN smoothing and learned quantization tables that
-are trained end-to-end in an dierentiable framework. The proposed model leads to
-better compression/reconstruction at lowest bit rates when evluated using metrics
+The experiments show that the proposed approach, Neural JPEG, improves JPEG encoding and decoding through sparse RNN smoothing and learned quantization tables that
+are trained end-to-end in an differentiable framework. The proposed model leads to better compression/reconstruction at lowest bit rates when evluated using metrics such as MSE, PSNR and also using perceptual metrics (LPIPS, MS-SSIM) that are
+known to be much closer to human perception. Not to forget the most important contribution, the improved encoder-decoder remains entirely compatible with any standard JPEG algorithm but produces signiffcantly better colors than standard JPEG. The authors show that they can achieve improvement without directly estimating the entropy of the DCT coefficients, by only regularizing the sparse maps and quantization tables.
 
-such as MSE, PSNR and also using perceptual metrics (LPIPS, MS-SSIM) that are
-known to be much closer to human perception. Most importantly, the improved
-encoder-decoder remains entirely compatible with any standard JPEG algorithm but
-produces signicantly better colors than standard JPEG. We have shown that we can
-achieve improvement without directly estimating the entropy of the DCT coecients,
-only regularizing the sparse maps and quantization tables.
-
-
-
-### **Summary** 
-
-How ever ,
-Our model does struggles due to some artifacts, but these can be
-removed with JPEG artifact removal and we note that our overall model ensures the
-structure/content of image is kept intact. In other words, whenever we operate at the
-lowest bit rates (see Figure 2), JPEG completely loses image information while the
-Neural JPEG makes up the dierence since it can recover majority of missing chunks
-of features. Since JPEG quality based on PSNR at 0.25bpp is equivalent to Neural
-JPEG image quality at 0.19bpp, we conclude that even at the lowest bit rates, our
-model tries to remember majority of the signal.
-Conclusions and Future Work
-
-
-### **Future ideas** 
-
-* xx
-*	xx
-
+A view ideas on this paper:
+* The authors later mention that their model struggles due to some artifacts> They mention that they can be removed with JPEG artifact removal and note that the overall model ensures the structure/content of image is kept intact. It does not seem to affect the work much, but maybe in the future this can be improved too. 
+* As the authors explain in their method section that each discrete cosine transform (DCT) coefficient is multiplied by the original JPEG encoder with corresponding edit score as retrieved the process mentioned in part 3. They did not do any experimenting with this encoder, maybe future works can do more experiments regarding this. 
+* They also do not really mention anything thing of why they specifically chose these datasets so I wonder what results would be like using more complicated datasets.
 
 ---  
 ## **Author Information**  
