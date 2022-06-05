@@ -43,10 +43,12 @@ Session Recommendation도 Long-Tail 문제가 존재한다.
 Session에서 Item들이 ![](https://latex.codecogs.com/svg.image?s=\{i_1,i_2,i_3,...i_t\}) 시간 순서대로 나열되어 있다고 하자. 그럼 이 Item들의 Sequential Pattern에 따라서 encode해야되는데 이 때 GRU를 사용한다. 즉, 수식으로 나타내면 아래와 같다.
 
 $$
+
 r_t = \sigma(W_r\cdot[v_{t-1},emb(i_t)]) \\
-z_t=\sigma(W_z\cdot[v_{t-1},emb(i_t)])\\
-\hat{v}_t=tanh(W_h\cdot[r_t\odot v_{t-1},emb(i_t)])\\
+z_t=\sigma(W_z\cdot[v_{t-1},emb(i_t)]) \\
+\hat{v}_t=tanh(W_h\cdot[r_t\odot v_{t-1},emb(i_t)]) \\
 v_t=(1-z_t)\odot v_{t-1}+z_t\odot \hat{v}_t
+
 $$
 
 
