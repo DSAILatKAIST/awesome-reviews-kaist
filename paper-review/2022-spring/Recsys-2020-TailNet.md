@@ -49,6 +49,17 @@ z_t=\sigma(W_z\cdot[v_{t-1},emb(i_t)])\\
 v_t=(1-z_t)\odot v_{t-1}+z_t\odot \hat{v}_t\\
 $$
 
+<div align="center">
+
+![](https://latex.codecogs.com/svg.image?r_t=\sigma(W_r\cdot[v_t,emb(i_t)]))  
+
+![](https://latex.codecogs.com/svg.image?z_t=\sigma(W_z\cdot[v_{t-1},emb(i_t)]))  
+
+![](https://latex.codecogs.com/svg.image?l&space;:&space;Number\\;of\\;Item,\\;d:Embedding\\;length,\\;s:A\\,Item\\,Embedding)
+
+</div>
+
+
 
 ![](https://latex.codecogs.com/svg.image?emb(i_t))는 item embedding을 나타내며 ![](https://latex.codecogs.com/svg.image?v_t)는 t까지의 session represention을 나타낸다. 즉, t까지에서의 GRU Output을 나타낸다. ![](https://latex.codecogs.com/svg.image?W)는 학습가능한 파라미터를 나타낸다.
 
@@ -60,7 +71,6 @@ $$
 
 $$
 TE(v_i)=
-
 \begin{cases}
  & v_i + \{1,1,1,....\} \text{ if } \tau(v_i)\in I^T\\
  & v_i + \{0,0,0,....\} \text{ if } \tau(v_i) \in I^H 
