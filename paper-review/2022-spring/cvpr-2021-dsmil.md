@@ -53,36 +53,33 @@ In the suggested method, patches are first extracted from WSIs at multiple magni
 ### Dual-Stream MIL Network
 The MIL network is made up of two branches. The first branch utilizes max-pooling to select the important instance with the highest score from the scores obtained by a linear classification head acting on the examples. The second branch of the algorithm learns a bag representation, which is a weighted sum of the instances. The distances between the instances and the critical instance determine the weights. The two branches combine to generate a masked nonlocal block in which only attentions between the critical instance and all other instances are calculated. The suggested approach can therefore lead to a better decision boundary than existing operators such as max-pooling by using similarity to the critical instance as a regularization.
 
-1. First stream - critical instance identification  
-   Let $B = \{x_1, ..., x_n\}$ denote a bag of patches of a WSI. Given a feature extractor $f$, each instance $x_i$ can be projected into an embedding $h_i = f(x_i) ∈ R^{L×1}$. The first stream uses an instance classifier on each instance embedding, followed by max-pooling on the scores to determine the critical instance with $W_0$ as a weight vector.  
-   ![eq1](https://latex.codecogs.com/gif.latex?%5Cbegin%7Baligned%7D%20c_m%28B%29%20%26%3D%20g_m%28f%28x_i%29%2C%20...%2C%20f%28x_n%29%29%5C%5C%20%26%3D%20max%5C%7BW_0h_0%2C%20.%20.%20.%20%2CW_0h_%7BN-1%7D%5C%7D%20%5Cend%7Baligned%7D)
-2. Second stream - instance embeddings aggregation  
-   The second stream aggregates the above instance embeddings into a bag embedding which is further scored by a bag classifier. We obtain the embedding $h_m$ of the critical instance, and transform each instance embedding $h_i$ (including $h_m$) into two vectors, query $q_i ∈ R^{L×1}$ and information $v_i ∈ R^{L×1}$, with $W_q$ and $W_v$ each is a weight matrix. A distance measurement $U$ between an arbitrary instance to the critical instance is then defined by taking inner products of two query vectors.  
+#### First stream - critical instance identification  
+Let $B = \{x_1, ..., x_n\}$ denote a bag of patches of a WSI. Given a feature extractor $f$, each instance $x_i$ can be projected into an embedding $h_i = f(x_i) ∈ R^{L×1}$. The first stream uses an instance classifier on each instance embedding, followed by max-pooling on the scores to determine the critical instance with $W_0$ as a weight vector.  
+<figure>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/eq1.png">
+</figure>
+   
+#### Second stream - instance embeddings aggregation  
+The second stream aggregates the above instance embeddings into a bag embedding which is further scored by a bag classifier. We obtain the embedding $h_m$ of the critical instance, and transform each instance embedding $h_i$ (including $h_m$) into two vectors, query $q_i ∈ R^{L×1}$ and information $v_i ∈ R^{L×1}$, with $W_q$ and $W_v$ each is a weight matrix. A distance measurement $U$ between an arbitrary instance to the critical instance is then defined by taking inner products of two query vectors.  
 
-   $U\left(\mathbf{h}_{i}, \mathbf{h}_{m}\right)=\frac{\exp \left(\left\langle\mathbf{q}_{i}, \mathbf{q}_{m}\right\rangle\right)}{\sum_{k=0}^{N-1} \exp \left(\left\langle\mathbf{q}_{k}, \mathbf{q}_{m}\right\rangle\right)}$
+<figure>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/eq2.png">
+</figure>
 
-   The bag embedding $b$ is the weighted element-wise sum of the information vectors $v_i$ of all instances, using the distances to the critical instance as the weights.
+The bag embedding $b$ is the weighted element-wise sum of the information vectors $v_i$ of all instances, using the distances to the critical instance as the weights.   
+<figure>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/eq3.png">
+</figure>  
+   
+With $W_b$ as a weight vector for binary classification, the bag score $c_b$ is then calculated as follow.  
+<figure>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/eq4.png">
+</figure>
 
-   $$
-   b=\sum_{i}^{N-1} U\left(\mathbf{h}_{i}, \mathbf{h}_{m}\right) \mathbf{v}_{i}
-   $$
-
-   With $W_b$ as a weight vector for binary classification, the bag score $c_b$ is then calculated as follow.
-
-   $$
-   \begin{aligned}
-   c_{b}(B) &=g_{b}\left(f\left(x_{i}\right), \ldots, f\left(x_{n}\right)\right) \\
-   &=\mathbf{W}_{b} \sum_{i}^{N-1} U\left(\mathbf{h}_{i}, \mathbf{h}_{m}\right) \mathbf{v}_{i}=\mathbf{W}_{b} \mathbf{b}
-   \end{aligned}
-   $$
-
-The final bag score is the average of the scores of the two streams.
-$$
-\begin{aligned}
-c(B) &=\frac{1}{2}\left(g_{m}\left(f\left(x_{i}\right), \ldots, f\left(x_{n}\right)\right)+g_{b}\left(f\left(x_{i}\right), \ldots, f\left(x_{n}\right)\right)\right.\\
-&=\frac{1}{2}\left(\mathbf{W}_{0} \mathbf{h}_{m}+\mathbf{W}_{b} \sum_{i} U\left(\mathbf{h}_{i}, \mathbf{h}_{m}\right) \mathbf{v}_{i}\right)
-\end{aligned}
-$$
+The final bag score is the average of the scores of the two streams.  
+<figure>
+<img src="/.gitbook/2022-spring-assets/NabilahMuallifah/eq5.png">
+</figure>
 
 ### Self-Supervised Contrastive Learning for Embeddings
 Training the MIL and embedding networks end-to-end might be challenging due to the massive prohibitive memory requirements to see the enormous bags at once. In addition to that, the occurrence of imbalanced bags where a positive bag only includes a limited number of positive instances makes it hard to converge. As a result, the article proposed that the embedder network be pre-trained using self-supervised contrastive learning. This allows for the learning of good representations from a large number of unlabeled patches while also reducing the memory requirements for large bags by precomputing the patch embeddings. 
