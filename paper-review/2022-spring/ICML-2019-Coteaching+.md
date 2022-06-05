@@ -1,10 +1,5 @@
 # How does Disagreement Help Generalization against Label Corruption?
 
-: No
-Tag: noiselabel
-URL: https://arxiv.org/pdf/1901.04215.pdf
-작성일시: 2022년 6월 1일 오후 1:24
-
 Xingrui Yu et al./ How does Disagreement Help Generalization against Label Corruption? / ICML(2019)
 
 # 1. Problem Definition
@@ -32,7 +27,7 @@ Noisy labels을 고려한 deep neural network 학습을 위하여 memorization e
     
     이 현상의 직관적인 이해를 돕는 논문[2]이 있어 소개하자면
     
-    ![Untitled](Untitled.png)
+    ![fig0.png]([https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig0.png?raw=true](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig0))
     
     experiment setting: 4 layer neural network(2 CNN lavers, 2 fully-connected layers, 4.8M parameters),  MINST(train(noise 포함) 50000, val 10000, test(only clean) 10000)
     
