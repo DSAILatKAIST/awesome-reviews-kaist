@@ -138,13 +138,15 @@ You can attach the tables or figures, but you don't have to cover all the result
 ---  
 ## **Author Information**  
 
-* Author name  
-    * Affiliation  
-    * Research Topic
+* Jiwoo Son(손지우)  
+    * Master Student in ISySE, KAIST
+    * Interested in NCO(Neural Combinatorial Optimization), GNN
 
 ## **6. Reference & Additional materials**  
 
 Please write the reference. If paper provides the public code or other materials, refer them.  
 
-* Github Implementation  
-* Reference  
+  
+* Paper :   https://www.aaai.org/AAAI22Papers/AAAI-7512.ZongZ.pdf
+* VRP for Reinforce Learning: https://data-newbie.tistory.com/780
+* transformer 구조: https://ratsgo.github.io/nlpbook/docs/language_model/transformers/
