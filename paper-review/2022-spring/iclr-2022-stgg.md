@@ -29,7 +29,7 @@ Generative Model 에 대한 탐구는 많이 이루어졌지만, 거의 대부�
 <img width="500" src="../../.gitbook/2022-spring-assets/KimMinsu_1/fig11.PNG">  
 
 
-해당 논문이 굉장히 잘 한 부분은 Chemical Graph의 Branch, Residual 특성을 굉장히 잘 반영했다는 것이다. 밑에 그림에서 1 이라고 나타난 부분이 Branch 이다. Branch가 만들어지면, Leaf node까지 생성한 후 Pointer를 다시 돌려 놓는다. 
+해당 논문이 굉장히 잘 한 부분은 Chemical Graph의 Branch, Residual 특성을 잘 반영했다는 것이다. 밑에 그림에서 1 이라고 나타난 부분이 Branch 이다. Branch가 만들어지면, Leaf node까지 생성한 후 Pointer를 다시 돌려 놓는다. 
 
 Residual 은 2로 표현을 하고 이는 마지막 Branch를 의미한다. 즉 2번 node로 부터 파생된 tree 들은 leaf 가 생성되며 construction 이 마무리 되게 된다. 
 
