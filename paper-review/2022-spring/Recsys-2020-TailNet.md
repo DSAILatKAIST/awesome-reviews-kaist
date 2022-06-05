@@ -42,12 +42,6 @@ Session Recommendation도 Long-Tail 문제가 존재한다.
 
 Session에서 Item들이 ![](https://latex.codecogs.com/svg.image?s=\{i_1,i_2,i_3,...i_t\}) 시간 순서대로 나열되어 있다고 하자. 그럼 이 Item들의 Sequential Pattern에 따라서 encode해야되는데 이 때 GRU를 사용한다. 즉, 수식으로 나타내면 아래와 같다.
 
-$$
-r_t = \sigma(W_r\cdot[v_{t-1},emb(i_t)])\\
-z_t=\sigma(W_z\cdot[v_{t-1},emb(i_t)])\\
-\hat{v}_t=tanh(W_h\cdot[r_t\odot v_{t-1},emb(i_t)])\\
-v_t=(1-z_t)\odot v_{t-1}+z_t\odot \hat{v}_t\\
-$$
 
 <div align="center">
 
@@ -71,13 +65,12 @@ $$
 
 우선 모델에게 Interacted Item이 Head인지 Tail인지 알려준다. 즉, 
 
-$$
-TE(v_i)=
-\begin{cases}
- & v_i + \{1,1,1,....\} \text{ if } \tau(v_i)\in I^T\\
- & v_i + \{0,0,0,....\} \text{ if } \tau(v_i) \in I^H 
-\end{cases}
-$$
+<div align="center">
+
+![](https://latex.codecogs.com/svg.image?TE(v_i)=\begin{cases}&v_i&plus;\{1,1,1,...\}\text{&space;if&space;}\tau(v_i)\in&space;I^H\\&v_i&plus;\{0,0,0,...\}\text{&space;if&space;}\tau(v_i)\in&space;I^T&space;\end{cases})  
+
+
+</div>
 
 여기에서는 ![](https://latex.codecogs.com/svg.image?v_{i})가 GRU Encoder를 통해서 나온 Item i에 대한 Output이다. 그리고 ![](https://latex.codecogs.com/svg.image?\tau)는 item ![](https://latex.codecogs.com/svg.image?i)의 mapping function으로 보면 된다. 즉, 해당 Item이 head에 속하고 있으면 ![](https://latex.codecogs.com/svg.image?\tau) ![](https://latex.codecogs.com/svg.image?\in) ![](https://latex.codecogs.com/svg.image?I^H)를 의미한다.  
 
@@ -85,82 +78,116 @@ $$
 만약 Item이 Head에 속하면 Item embedding에 1을 더해줘서 head item이라는 것을 모델에게 알려주는 것이다.   
 
 그 다음은 아래와 같은 Attention Mechanism을 통해서 Session Preference ![](https://latex.codecogs.com/svg.image?S_{p})를 얻는다.
-$$
-a_i^m=W_o^mtanh(W_1^mTE(v_t)+W_2^mTE(v_i)+b^m)\\
-S_l^m=TE(v_t)\\
-S_g^m=\sum^t_{i=1}a_i^m TE(v_i)\\
-S_p=[S_l^m;S_g^m]W_3
-$$
+
+<div align="center">
+
+![](https://latex.codecogs.com/svg.image?a_i^m=W_o^mtanh(W_1^mTE(v_t)&plus;W_2^mTE(v_i)&plus;b^m))  
+
+![](https://latex.codecogs.com/svg.image?S_l^m=TE(v_t))  
+
+![](https://latex.codecogs.com/svg.image?S_g^m=\sum_{i=1}^{t}a_i^{m}TE(v_i)) 
+
+![](https://latex.codecogs.com/svg.image?S_p=[S_l^m;S_g^m]W_3)
+
+</div>
+
 
 ![](https://latex.codecogs.com/svg.image?TE(v_t))는 위의 head이면 1을 더하고 tail이면 0을 더하는 수식을 지난 session에서 마지막 click된 item의 embedding이고,![](https://latex.codecogs.com/svg.image?TE(v_i))는 item ![](https://latex.codecogs.com/svg.image?i)의 embedding이다. 맨 첫 줄을 통해서 마지막 click item과의 attention을 구하는 식이고 ![](https://latex.codecogs.com/svg.image?S_g^m)은 attention score를 더한 representation이다.  
 
 이를 통해서 ![](https://latex.codecogs.com/svg.image?S_p)는 Scalar값을 갖으며 Session preference를 지니게 된다.
 
-$$
-R_{head}=1/(1+e^{-S_p})\\
-R_tail=1-R_{head}
-$$
+
+<div align="center">
+
+![](https://latex.codecogs.com/svg.image?R_{head}=1/(1&plus;e^{-S_{p}}))  
+
+![](https://latex.codecogs.com/svg.image?R_{tail}=1-R_{head}) 
+
+</div>
+
 
 그리고 위와 같은 sigmoid를 통해서 해당 session이 head에 preference가 강한지, tail에 강한지 판별하는 **Rectification factor**를 갖는다.
 
 ### **Session Pooling**  
 
-위와 같은 Me
+위와 같은 Attention Mechanism과 동일한 방식으로 어떤 Item이 더 중요한지를 반영하여 Pooling한다.  
+
+<div align="center">
+
+![](https://latex.codecogs.com/svg.image?a_i=W_otanh(W_1v_t&plus;W_2v_i&plus;b))  
+
+![](https://latex.codecogs.com/svg.image?S_l=v_t)  
+
+![](https://latex.codecogs.com/svg.image?S_g=\sum_{i=1}^{t}a_iv_i) 
+
+![](https://latex.codecogs.com/svg.image?\hat{c}=[S_l;S_g]W_4)
+
+</div>
+
+위의 식에서 첫 번째 줄은 Session에서 마지막 Item과 그 중간에 있는 item i와의 attention score를 구하는 것이다. 그리고 세 번째 줄의 식이 attention score를 통해서 합치는 과정이다.
+
+
+그리고 마지막 줄은 마지막 item이 session에서의 current interest를 나타내기 때문에 마지막 item과 global interest를 나타내는 ![](https://latex.codecogs.com/svg.image?S_g)를 linear transformation하는 과정이다.  ![](https://latex.codecogs.com/svg.image?\hat{c})의 크기는 전체 item 크기의 size이므로 다음 item이 일어날 score를 나타낸다.   
+
+<div align="center">
+
+![](https://latex.codecogs.com/svg.image?\hat{y}=softmax(\hat{c}\odot&space;R))  
+
+</div>
+
+따라서 Preference Mechanism에서 구한 rectification factor를 각 Item마다 곱하여 만약 해당 session이 head쪽의 preference를 갖고 있다면 head item의 score가 높아지게 될 것이고, tail prefrence를 갖고 있다면 tail item의 score가 높아지게 될 것이다.
+
+## **Summary**
+
+정리하자면, preference Mechanism을 통해서 해당 session이 head 또는 tail preference를 갖는지 rectification factor를 얻어낸 다음에 마지막 prediction item score에 곱해줘서 tail preference를 갖는 session인 경우에는 tail item이 더 추천되게 한다.  
+
 
 ## **4. Experiment**  
 
 ### **Experiment setup**  
 * Dataset  
-**Yelp** : Local Business에 대한 user의 review이다. 예를 들어, 레스토랑, 바와 같은 곳을 들렀을 때의 review를 남긴 dataset이다.   
-**Movies&TV** : Amazon dataset에서 movies 카테고리의 상품에 대해서 review와 rating을 남긴 dataset이다.
+**30Music** : Real world dataset으로 플레이리스트에서 노래를 들었던 기록 데이터이다.
+**Yoochoose1/4** : Recsys에서 2015년도에 있던 challenge로 상품 click 데이터이다.
 
 * baseline  
-**POP** : Item을 training set에서의 popularity에 따라서 re-rank하여 추천한다.  
-**S-POP** : Target User의 Sequence에서 Popularity에 따라서 item을 re-rank하여 추천한다.  
-**FOMC** : Markov 가정을 이용하여, transition probability에 따라서 item을 re-rank한다.  
-**Bert4Rec** : Sequence Modeling할 때 Transformer를 활용하여 User의 Sequence를 모델링한다.  
-**GRU4Rec** : Sequence Modeling할 때 GRU를 활용하여 User의 Sequence를 모델링한다.  
-**S-Div** : Content Feature를 활용하여 Tail item을 Clustering하여 tail item에 pseudo ground truth를 준다. pseudo ground truth를 이용하여 ranking loss로 학습한다.  
+**POP**, **S-POP**: Frequency기반으로 추천하는 모델
+**GRU4REC,NARM** : GRU기반의 모델  
+**Item-KNN,** : Item의 Neighboring기반의 모델
+**RepeatNet** : Repeat Explore기반의 방법 
+**STAMP** : Attention기반의 방법 
+**FPMC,BPR-MF** : Marokov chin의 모델의 방법론과 전통적인 matrix factorization의 모델 
+**SR-GNN**: GNN기반의 Sequential Modeling 방법론이다.
 * Evaluation Metric    
-**HR@k(Hit Ratio)** : Top K 추천 item list안에 ground truth item이 있는지 확인하는 protocol이다.  
-**MRR(Mean Reciprocal Rank)** : Top K 추천 Item list안에서 순서까지 고려한 protocol이다.  
-
+**Coverage@k** : 해당 metric은 전체 item 중에 얼마나 많은 item이 추천되었는지, cover되었는지의 metric이다.  
+**Tail Coverage@K** : tail item중에서 얼마나 추천되었는지, cover되었는지의 지표이다.
+**Tail@K**: Tail item이 Top K에 들었는지의 지표이다.
+**Recall@K**: Next Item이 Top K에 포함되어있는지의 지표이다.
 ### **Result**  
 
 <p align="center">
-<img width="900" src="../../.gitbook/2022-spring-assets/KimKibum_1/4.png">  
+<img width="900" src="../../.gitbook/2022-spring-assets/Kibum_2/3.png">  
 </p>
 
 <p align="center">Experiment Result</p>  
 
-이 논문은 Model Agnostic하기 때문에 Bert4Rec과 GRU4Rec에 실험을 한다. 실험 결과에서는 Yelp에서 Head Item에서 Ber4Rec은 약간의 성능 저하가 있었지만, Tail Item에서 성능이 크게 향상되어 전반적인 성능이 올라간 것을 확인 할 수 있다. GRU4Rec에서는 Head, Tail Item에서 모두 성능 향상이 존재하여 Long-Tail 문제를 완화시켰다.  
+이 논문에서 보면 알 수 있듯이 Preference Mechanism(PM)을 사용했을 때, tail item의 coverage가 올라간 것을 확인할 수 있었다. 그리고 Tail@K에서도 볼 수 있듯이, Long-Tail Item이 많이 추천되어 Tail Coverage@K의 지표가 많이 올라갔고, 이에 따라서 Tail@K의 성능도 많이 올라갔다. 하지만, 전반적인 성능인 Recall@K의 성능은 아직 GRU4Rec 또는 SR-GNN의 성능보다 낮음을 확인할 수 있었다. 이는 Head의 성능을 희생하고 Tail Item의 성능을 향상시킨 것을 볼 수 있었다.
 
-Movies&TV에서는 Bert4Rec, GRU4Rec에서 head와 tail item에서 모두 성능을 향상시켜 전반적인 성능을 가져왔다. 
+이 논문에서는 PM을 강한 Contribution으로 내새우고 있고 이에 대해서 Tail에서의 성능 향상이 있음을 알 수 있다.
 
-
-### **Ablation Study**  
+### **Performance Comparison in Graph**  
 
 <p align="center">
-<img width="443" src="../../.gitbook/2022-spring-assets/KimKibum_1/5.png">  
-<img width="443" src="../../.gitbook/2022-spring-assets/KimKibum_1/6.png">  
+<img width="900" src="../../.gitbook/2022-spring-assets/Kibum_2/4.png">  
 </p>
 
-<p align="center">Left: Tail Threshold에 따른 성능 변화, Right: Context 반영 개수에 따른 성능 변화</p>  
-  
-#### **Tail Item 비중**  
-
-Head와 Tail Item을 나눌 때 Pareto 법칙에 따라서 2:8 비율로 나눈다. 하지만, 이 논문에서는 head와 tail기준에 따른 성능 변화를 관찰한다. 왼쪽이 Yelp, 오른쪽이 Movies&TV 성능 변화를 나타낸다. Yelp에서는 Tail Item의 비중이 높아질수록 성능 변화를 얻는 것을 관찰 할 수 있다. 이는 Head Item을 통해 좋은 Quality의 embedding 추론할 때 소수의 Item만이 중요하다는 것을 알 수 있다. 반면, Movies&TV에서는 반드시 Tail 비중을 올린다고 해서 성능 향상이 있는 것은 아니다.  
-
-#### **Context 반영 수에 따른 성능 변화**  
-
-Few shot task setting을 이용하면서 head item의 context를 모두 이용하는 것이 아니라 일부만을 이용한다. 반영 context 수에 따른 성능 변화를 나타낸다. 왼쪽이 Yelp, 오른쪽이 Movies&TV 성능 변화를 나타낸다. Movies&TV에서는 Context 수가 많아졌을 때 성능 저하를 가져오는 것을 볼 수 있다. 이는 few shot task 설정이 중요함을 알려준다.  
+위는 Top K의 변화에 따라서 다른 baseline과의 성능 비교를 나타낸 것이다. 맨 왼쪽부터 해서, Coverage, Tail@K, Tail Coverage@K으로 순서대로 성능을 나타낸 것이다. 그래프에서 볼 수 있듯이 Tail-Net이 다른 Baseline보다 성능에서 우위에 있음을 알 수 있다.
 
 
 ## **5. Conclusion**  
 
-General Recommendation에서는 long-tail item 문제를 많이 다루지만, sequential recommendation에서는 많이 다루어지지 않고 있다. 이 논문에서는 Sequential Recommendation에서 long-tail item의 성능 향상을 크게 가져오면서 전체적은 성능 향상을 가져왔다. 
+General Recommendation에서 Long-Tail문제를 많이 다루지만, Session 또는 Sequential Recommendation에서는 Long-Tail 문제가 잘 다루어지지 않고 있다. 만약, 추천과 Long-Tail 문제에 동시에 관심을 갖고 있다면 이쪽 분야로 연구하는 것도 좋은 방향이라고 생각한다.
 
-이 논문은 자연어 처리에서 문장에 별로 등장하지 않은 단어의 embedding quality를 높이는 방법론을 가져와서 적용시킨 논문이다. 이와 같은 방법으로 다른 도메인의 방법론을 자신이 연구하고 있는 도메인으로 가져와서 해결을 하는 것이 좋은 연구임을 알게 되었다.  
+이 논문은 Short paper이지만 처음으로 session에서 long-tail문제를 풀고자 했다는 점에서 의미있다고 생각한다. 그리고 PM으로 간단하지만 Tail에서 효과를 밝혔기 때문에 accept이 되었다고 생각한다. 하지만 head item에는 1을 더하고 tail에는 0을 더하는 것이 정말로 효과가 있는지의 ablation study가 추가적으로 있었으면 좋았다고 생각한다.
 
 ---  
 ## **Author Information**  
@@ -171,17 +198,16 @@ General Recommendation에서는 long-tail item 문제를 많이 다루지만, se
 
 ## **6. Reference & Additional materials**  
 
-* Github Implementation  
-[Implementation](https://github.com/swonj90/CITIES)
 
 * Reference  
 
 1. Chris Anderson. 2006. The long tail: Why the future of business is selling less of
 more. Hachette Books.  
-2. Sun, F., Liu, J., Wu, J., Pei, C., Lin, X., Ou, W., & Jiang, P. (2019, November). BERT4Rec: Sequential recommendation with bidirectional encoder representations from transformer. In Proceedings of the 28th ACM international conference on information and knowledge management (pp. 1441-1450).
-3. Hidasi, B., Karatzoglou, A., Baltrunas, L., & Tikk, D. (2015). Session-based recommendations with recurrent neural networks. arXiv preprint arXiv:1511.06939.
-4. Kim, Y., Kim, K., Park, C., & Yu, H. (2019, August). Sequential and Diverse Recommendation with Long Tail. In IJCAI (Vol. 19, pp. 2740-2746).
-5. Rendle, S., Freudenthaler, C., & Schmidt-Thieme, L. (2010, April). Factorizing personalized markov chains for next-basket recommendation. In Proceedings of the 19th international conference on World wide web (pp. 811-820).  
+2. Balázs Hidasi, Alexandros Karatzoglou, Linas Baltrunas, and Domonkos Tikk. Session-based recommendations with recurrent neural networks. arXiv
+preprint arXiv:1511.06939 (2015).
+3.  Shu Wu, Yuyuan Tang, Yanqiao Zhu, Liang Wang, Xing Xie, and Tieniu Tan. 2019.
+Session-based Recommendation with Graph Neural Networks. AAAI (2019).
+4. Qiao Liu, Yifu Zeng, Refuoe Mokhosi, and Haibin Zhang. 2018. STAMP: Shortterm attention/memory priority model for session-based recommendation. In KDD.  
 ....
 
 
