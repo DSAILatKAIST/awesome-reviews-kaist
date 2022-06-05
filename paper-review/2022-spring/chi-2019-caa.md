@@ -161,18 +161,27 @@ App에는 총 3가지 다른 종류의 설문조사가 제공되었다.
 EOG안경을 통한 눈깜박임 측정 알고리즘과 그 타당성 검증, 그리고 데이터의 evaluation에 대하여 서술합니다. 
 
 
-  [1] Blink Detection
+  [1] Blink Detection  
   본 연구에서는 한 사람의 EOG 데이터를 두 가지 방식으로 측정하였습니다. 먼저 J!NS Meme 프레임에 두 개의 [Pupil Labs eyetracker](https://doi.org/10.1145/2638728.2641695) cameras 를 설치하였는데, 한 쪽 다리에 하나씩을 설치해서 카메라가 착용자의 눈을 조준하도록 하였습니다.  
   이를 통해 착용자가 복잡한 장비나 센서를 몸에 착용하지 않고도 안경에 있는 센서를 통해 EOG 신호와 안구의 운동을 동시에 측정할 수 있었습니다.  
   단, 눈 깜빡임은 자연적인 상태에서도 변화가 큰 편이므로 최소 5분 이상 눈깜빡임 횟수를 측정하였습니다.
   
   눈깜박임 횟수를 추정하기 위해서, J!NS Meme으로 수집한 EOG 데이터의 수직 성분 vertical components 을 peak detection algorithm에 적용시켰습니다. 장치의 전송 속도 transmission rate는 50 Hz로, EOG sampling rate인 100 Hz의 절반 수준이었으므로, original vertical value인 EOGV를 EOGV 1 와 EOGV 2 패키지로 나누었습니다.
   
-  [2] Validation
-  눈깜박임 감지 알고리즘을 입증하고 눈 깜빡임 감지의 역치 값을 확인하기 위해서, 측정된 눈깜빡임 횟수 및 EOG data sets를 비디오 녹화를 통해 직접 카운트한 눈 깜빡임 횟수와 비교하였습니다.
+  [2] Validation  
+  눈깜박임 감지 알고리즘을 입증하고 눈 깜빡임 감지의 역치 값을 확인하기 위해서, 측정된 눈깜빡임 횟수 및 EOG data sets를 비디오 녹화를 통해 직접 카운트한 눈 깜빡임 횟수와 비교하여 **오차 범위**로 evaluate 하였습니다.
   
   eye tracking cameras의 비디오로 녹화한 눈 깜빡임은 양쪽 눈이 자연스레 감긴 뒤 1초 이상 지속되지 않는 경우로 정의하였습니다. 
 
+  [3] Correlation Analysis  
+  눈깜박임 감지 알고리즘을 입증된 역치값과 window size settings로 실행한 다음, 원자료값 raw data에 선형혼합모형 linear mixed model을 적용하였습니다.  
+  
+  이 때 PVT를 시행함에 따라 얻은 RT 값과 BF를 종속변인 dependent variable으로 사용하였습니다.  
+  참가자들은 무선요인 random factor로 간주하였습니다.  
+  
+  본 연구에서는 PVT 평가가 시행된 시간을 기록하고, 각 평가가 시행되기 전 선행된 10분 동안의 EOG data를 추출하였습니다. 
+  
+  **`Holm-Bonferroni method`** 를 이용해 다중분석 multiple comparisons를 시행하였습니다.
   
   [1] linaer mixed model  
   사람이 오래 깨어 있을수록 수면 압력은 증가하며, 업무 성과는 감소합니다.  
@@ -195,6 +204,19 @@ EOG안경을 통한 눈깜박임 측정 알고리즘과 그 타당성 검증, �
   ★★★Figure5 그림 필요함  
 
   [2] Validation  
+  직접 카운트한 5분간 눈 깜빡임 횟수는 휴식시 54회, 보행시 84회였습니다.  
+  가장 정확한 눈깜빡임 감지의 th_r 은 0.8, th_u_d는 2.0. 이었으며, 가장 정확한 sliding window size는 0.34초로 측정되었습니다.  
+  
+  저자들의 알고리즘은 휴식 시 61 blinks/5min (12.2 blinks/min), 보행시 81 blinks/5min (16.2 blinks/min)으로 깜빡임 횟수를 감지하였고, 오차범위는 휴식시 +12.5% (+7 blinks), 보행시 -3.7% (3 blinks less)였습니다.
+
+  [3] Correlation Analysis  
+  분석된 623개의 EOG 데이터에서 평균 눈깜빡임 횟수는 11.4 blinks/min (SD = 12.7)였습니다.  
+  
+  분석 결과 BF와 RT값의 변화는 (χ2(1) = 4.32,p = 0.001) 로서, RT는 약 1.64 milliseconds ±0.38 (standard error), BF는 약 +1 blink/min 증가하는 것으로 나타났습니다.
+  
+  Holm-Bonferroni method를 이용한 다중분석 multiple comparisons를 시행 결과, 반응 속도의 증가로 표현되는 피로도를 측정하는 데 눈깜박임을 indicator로 사용할 수 있었습니다. 
+  
+★★★Figure6 그림 필요함  
 
 <br>
 
