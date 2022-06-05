@@ -33,9 +33,9 @@ to remove artifacts at the decoder end, thus compromising compression quality in
 
 
  ### **Significance**
-The related works as mentioned before are still lacking some features, which this paper will make up for.
+ 
+The related works as mentioned before are still lacking some features, which this paper will make up for.The main contributions of this paper are as followed:
 
-IThe main contributions of this paper are as followed:
 * The authors extend their prior work and improve system rate-distortion performance by optimizing the JPEG encoder in the frequency domain.
 * The authors facilitate better coefficient construction at the decoder end by optimizing the JPEG decoder.
 * The neural JPEG is adapted to learn how to edit the discrete cosine transform (DCT) coefficients at both decoder and encoder ends.
