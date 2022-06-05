@@ -203,12 +203,11 @@ Adjacency 방식보다 Top down 방식이 효과적인 것을 알 수 있고, �
 
 ## 5. Conclusion
 
-본 LooC 논문에서는 Contrastive Learning 에서 Augmentation이 수반하는 Inductive Bias 문제를
-제시하고 다루었습니다. 모델이 Augmentation을 학습해도, 해당 Property를 잃지 않고 인지할 수 있도록 프레임워크를 제안하였습니다
+본 논문에서는 SGG 에서 Visual/Language Feature 의 Multi-Modality 문제를 해결하고, Class Imbalanced 문제를 풀 수 있는 프레임워크를 제안하였습니다
 
 ### Take home message 
-이미지 뿐만 아니라 다른 도메인에서도, Augmentation은 특별하게 중요시 여겨지는 경우가 많습니다
-그 상황에 맞게 Inductive Bias가 무엇인지 생각해보고, 개선해본다면 충분히 적용가능하거나 확장가능한 논문으로 보입니다
+SGG 모델들이 각광을 받고 있는만큼, 다른 분야에서의 연구가 SGG로 차용되는 경우의 논문들이 많이 Accept 되는 추세로 보입니다.
+SGG 상황에 맞게 적용할 수 있는 기존 Vision 연구에서의  아이디어들이 무엇이 있는지 살펴보고, SGG를 연구한다면, 좋은 기여를 할 수 있는 연구가 많이 남아있는 분야로 생각 됩니다.
 
 
 ### Author
