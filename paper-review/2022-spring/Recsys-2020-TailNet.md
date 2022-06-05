@@ -55,7 +55,9 @@ $$
 
 ![](https://latex.codecogs.com/svg.image?z_t=\sigma(W_z\cdot[v_{t-1},emb(i_t)]))  
 
-![](https://latex.codecogs.com/svg.image?l&space;:&space;Number\\;of\\;Item,\\;d:Embedding\\;length,\\;s:A\\,Item\\,Embedding)
+![](https://latex.codecogs.com/svg.image?\hat{v}_t=tanh(W_h\cdot[r_t\odot&space;v_{t-1},emb(i_t)]))
+
+![](https://latex.codecogs.com/svg.image?v_t=(1-z_t)\odot&space;v_{t-1}&plus;z_t\odot&space;\hat{v}_t)
 
 </div>
 
