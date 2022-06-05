@@ -107,7 +107,8 @@ You can attach the tables or figures, but you don't have to cover all the result
 > Summarize the Papaer  
   * 본 연구에서는 상용화된 안경인 `J!NS MEME glasses`에 EOG센서를 부착하여 피로 수준을 모니터링하는, 착용하기 쉬운 시스템을 개발하였습니다.
   * 개발된 시스템은 일상 생활 도중의 눈 깜박임 빈도를 측정함으로써 하루 동안의 피로 수준을 확인할 수 있습니다.
-  * 
+  * 하루 일과 중에 시간이 지나갈수록 피로 수준은 증가하며, 이러한 피로 수준의 변화를 측정하는 것은 사용자들의 효율적인 업무 능력 향상에 도움이 될 수 있습니다.
+  * 본 논문의 의의는, 더 이상 복잡한 장비를 착용하지 않고 일상생활에서 안경을 착용하는 것으로 피로 수준을 모니터링 할 수 있다는 것입니다.
 
 > My opinion, Take home message  
   * HCI분야에서 안경을 사용하여 신체 및 인지 데이터를 수집하는 연구들이 활발하게 이뤄져있습니다. 기존에 리뷰했던 [FaceSight](https://dsail.gitbook.io/isyse-review/paper-review/2022-spring-paper-review/chi-2021-facesight) 연구에서도 안경을 활용하여 제스처를 탐지하는 시스템을 개발한 바 있습니다.
