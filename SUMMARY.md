@@ -42,7 +42,8 @@
   * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
   * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
   * [VGRNN](paper-review/2022-spring/VGRNN.md)
-  * [SDCN](paper-review/2022-spring/WWW-2020-Structural_Deep_Clustering_Network.md![image](https://user-images.githubusercontent.com/70645689/172040838-92a99017-3eb8-4820-bd15-5bc5ef6f0afd.png)
+  * [SDCN](paper-review/2022-spring/WWW-2020-Structural-Deep-Clustering-Network.md)
+
 )
 
 ## How to contribute
