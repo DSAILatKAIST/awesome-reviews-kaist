@@ -1,8 +1,8 @@
-# How does Disagreement Help Generalization against Label Corruption?
-
 ---
 description: Xingrui Yu et al./ How does Disagreement Help Generalization against Label Corruption? / ICML(2019)
 --- 
+
+# How does Disagreement Help Generalization against Label Corruption?
 
 # 1. Problem Definition
 
