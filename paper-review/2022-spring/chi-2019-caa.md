@@ -139,7 +139,7 @@ PVT가 피로 수준을 측정하는데 가장 정확하고 데이터의 양도 
 피실험자들은 깨어 있는 동안 하루 종일 J!NS Meme을 착용하였으며, 아침에 안경을 착용하여 App에 접속하고, 매일 저녁에 연결을 해제하였습니다.  
 App에는 총 3가지 다른 종류의 설문조사가 제공되었다.
 
-★★★Figure2 그림 필요함  
+  ![figure2](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_2/figure2.png?raw=true)  
 
 안경을 착용하는 동안 피실험자들은 2시간(±20분)마다 PVT를 수행하였습니다.  
 시각 자극이 시작됨과 동시에 2-8초 지연 간격을 두고 반응 속도를 측정하였으며, 20-120초로 이루어진 task를 수행하였습니다.
@@ -183,6 +183,7 @@ EOG안경을 통한 눈깜박임 측정 알고리즘과 그 타당성 검증, �
  
 참고로, 본 연구에서는 시스템의 성능 평가 시 다른 baseline과의 비교를 수행하지 않았습니다.
 
+
 ### **4.2 Result**  
   
   [1] Blink Detection  
@@ -195,7 +196,7 @@ EOG안경을 통한 눈깜박임 측정 알고리즘과 그 타당성 검증, �
   * 두 번째로, 수직 거리 the vertical distance (두 피크 사이의 y-values 차이)가 th_u_d보다 커야 한다.
   * 세 번째로, 아래 그림에서처럼 더 큰 크기의 peak가 먼저 발생한 뒤 더 작은 lower peak가 뒤따라야 한다.
   
-  ★★★Figure5 그림 필요함  
+  ![figure5](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_2/figure5.png?raw=true)  
 
   [2] Validation  
   직접 카운트한 5분간 눈 깜빡임 횟수는 휴식시 54회, 보행시 84회였습니다.  
@@ -210,7 +211,7 @@ EOG안경을 통한 눈깜박임 측정 알고리즘과 그 타당성 검증, �
   
   Holm-Bonferroni method를 이용한 다중분석 multiple comparisons를 시행 결과, 반응 속도의 증가로 표현되는 피로도를 측정하는 데 눈깜박임을 indicator로 사용할 수 있었습니다. 
   
-★★★Figure6 그림 필요함  
+  ![figure6](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_2/figure6.png?raw=true)  
 
 <br>
 
