@@ -177,5 +177,8 @@ A view ideas on this paper:
 
 ## **6. Reference & Additional materials**  
 
-* Reference of paper: Dupont, E., Goliński, A., Alizadeh, M., Teh, Y. W., & Doucet, A. (2021). Coin: Compression with implicit neural representations. arXiv preprint arXiv:2103.03123.
-* Link to public materials: https://github.com/EmilienDupont/coin  
+* Reference of paper: Mali, A., Ororbia, A., Kifer, D., & Giles, L. (2022). Neural JPEG: End-to-End Image Compression Leveraging a Standard JPEG Encoder-Decoder. arXiv preprint arXiv:2201.11795.
+* Reference of the authors' previous works: 
+  1. Mali, A., Ororbia, A. G., & Giles, C. L. (2020, March). The sibling neural estimator: Improving iterative image decoding with gradient communication. In 2020 Data Compression Conference (DCC) (pp. 23-32). IEEE.
+  2. Mali, A., Ororbia, A., Kifer, D., & Giles, L. (2022). An empirical analysis of recurrent learning algorithms in neural lossy image compression systems. arXiv preprint arXiv:2201.11782.
+* No public materials on this work were found.
