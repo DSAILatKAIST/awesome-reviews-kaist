@@ -44,7 +44,7 @@
   * [VGRNN](paper-review/2022-spring/VGRNN.md)
   * [SDCN](paper-review/2022-spring/WWW-2020-Structural-Deep-Clustering-Network.md)
 
-)
+
 
 ## How to contribute
 
