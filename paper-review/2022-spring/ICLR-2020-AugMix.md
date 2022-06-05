@@ -88,7 +88,7 @@ $$M = (p_{orig} + p_{augmix1} + p_{augmix2}) / 3$$
 
 * **Baseline**  
   * `CIFAR-10 & CIFAR-100` : `AllConvNet, DenseNet, WideResNet, ResNeXt` 아키텍쳐에 대해서 `Standard, Cutout, Mixup, CutMix, AutoAugment, Adversarial Training` 등의 다양한 augmentation 방법을 적용한 결과와 `AugMix`를 적용한 결과를 비교하였다.
-  * `ImageNet` : `ResNet50`에 `Standard, Patch Uniform, AutoAugment, Random AA, MaxBlur Pooling, SIN`을 적용한 결과와 `AugMix`를 비교하였다.
+  * `ImageNet` : `ResNet50`에 `Standard, Patch Uniform, AutoAugment, Random AutoAugment, MaxBlur Pooling, SIN`을 적용한 결과와 `AugMix`를 비교하였다.
 
 * **Evaluation Metric**  
   * `Clean Error` : corruption이 추가되지 않은 clean data에 대한 classification error
@@ -96,12 +96,12 @@ $$M = (p_{orig} + p_{augmix1} + p_{augmix2}) / 3$$
   * `RMS Calibration Error` : 모델의 불확실성 추정에 대한 평가 지표   
    
 #### **`(1) Corruption Error (CE)`**  
-$$E_{c,s}$$
+$$E_{c,s}$$  
 - corruption c가 severity s로 주어졌을 때의 error rate
 
-`(i) CIFAR-10-C & CIFAR-100-C`
+`(i) CIFAR-10-C & CIFAR-100-C`  
 $$uCE_{c} = \sum_{s=1}^5 E_{c,s}$$ 
-- corruption c에 대한 unnormalized Corruption Error. corruption c에서 각 severity마다의 Error 값들의 평균을 의미한다.   
+- corruption c에 대한 unnormalized Corruption Error(uCE). corruption c에서 각 severity마다의 Error 값들의 평균을 의미한다.   
 - 15개의 corruption들의 uCE 값의 평균을 최종 error로 사용하였다.  
 
 `(ii) ImageNet-C`  
@@ -110,7 +110,7 @@ $$CE_{c} =  {\sum_{s=1}^5 E_{c,s}}/{\sum_{s=1}^5 E_{c,s}^{AlexNet}}$$
 - 15개의 normalized CE 값의 평균을 최종 error로 사용하였다.  
 
 #### **`(2) RMS Calibaration Error`**   
-모델의 불확실성 추정에 대한 평가로서 miscalibration을 측정하였다. Calibration 이란 모형의 출력값이 실제 confidence를 반영하도록 만드는 것이다. 예를 들어, 어떤 input의 특정 class에 대한 모델의 output이 0.8이라면, 80 % 확률로 그 class이다 라는 의미를 갖도록 만드는 것이다. 따라서 miscalibation error는 주어진 confidence level에서의 classification accuracy와 실제 confidence level에서의 classification accuracy 간의 RMS를 통해 측정하였다. 이렇게 정의된 RMS Calibarion Error의 수식은 다음과 같다.
+모델의 불확실성 추정에 대한 평가로서 miscalibration을 측정한다. Calibration 이란 모델의 출력값이 실제 confidence를 반영하도록 만드는 것이다. 예를 들어, 어떤 input의 특정 class에 대한 모델의 output이 0.8이라면, 80 % 확률로 그 class라는 의미를 갖도록 만드는 것이다. 따라서 miscalibation error는 주어진 confidence level에서의 classification accuracy와 실제 confidence level에서의 classification accuracy 간의 RMS를 통해 측정하였다. 이렇게 정의된 RMS Calibarion Error의 수식은 다음과 같다.
 
 $$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
 
@@ -120,7 +120,7 @@ $$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
 * **`CIFAR-10-C & CIFAR-100-C`**
 ![figure5](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig5.PNG?raw=true)
 
-위의 그림은 ResNeXt backbone에 다양한 방법의 augmentation을 적용하여 훈련시킨 후 CIFAR-10-C test dataset에 대한 standard clean error rate을 나타낸 것이다. AugMix가 기존의 augmentation 방법들인 Standard, Cutout, Mixup, CutMix, AutoAugment, Adversarial Training보다 절반 이하 수준의 error rate을 보여주고 있다. 다음은 ResNeXt이외의 backbone에 augmentation 방법들을 적용했을 때의 average classification error를 비교한 표이다. AugMix는 CIFAR-10-C, CIFAR-100-C 두 test dataset 모두 backbone 네트워크에 상관없이 가장 낮은 error rate을 보여주었다. 
+위의 그림은 ResNeXt backbone에 다양한 방법의 augmentation을 적용하여 훈련시킨 후 CIFAR-10-C test dataset에 대한 standard clean error rate을 나타낸 것이다. AugMix가 기존의 augmentation 방법들인 Standard, Cutout, Mixup, CutMix, AutoAugment, Adversarial Training보다 절반 이하 수준의 error rate을 보여주고 있다. 다음은 ResNeXt이외의 backbone에 augmentation 방법들을 적용했을 때의 average classification error를 비교한 표이다. AugMix는 CIFAR-10-C, CIFAR-100-C 두 test dataset에 대해서 모두 backbone 네트워크에 상관없이 가장 낮은 error rate을 보여주었다. 
 ![figure6](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig6.PNG?raw=true)
 
 다음 그림은 ResNeXt backbone에 Standard, Cutmix, AugMix를 적용하여 훈련시킨 모델의 CIFAR-10-C에 대한 RMS Calibration Error를 나타낸다. AugMix는 corruption이 없는 CIFAR-10 데이터와 corruption이 존재하는 CIFAR-10-C 모두에 대해서 calibration error를 감소시킴을 알 수 있다. 특히, corrption이 있는 데이터셋에 대해서 다른 augmentation 방법론에 비해 매우 큰 차이로 error를 줄였다.  
@@ -128,11 +128,10 @@ $$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
 
 * **`ImageNet`**   
 
-
 다음은 ImageNet-C testdataset에 대한 여러 augmentation 방법의 효과를 Clean Error, Corruption Error(CE), mCE를 통해 평가한 표이다. mCE는 앞서 metric에서 설명하였듯이 15가지 corruption의 CE를 평균낸 것이다. 모든 augmentation은 ResNet-50 backbone으로 훈련되었다.
 ![figure8](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig8.PNG?raw=true)
 
-AugMix는 다른 augmentation 방법론들에 비해 Clean Error뿐만 아니라 Corruption Error를 감소시켰다. 특히, AugMix를 SIN과 결합하여 적용하였을 때 가장 corruption에 강건함을 보여주었다. 여기서 SIN은 Stylized ImageNet으로 원본 ImageNet 데이터뿐만 아니라 style transfer가 적용된 데이터에도 모델을 훈련시킴으로써 corruption에 대한 강건성을 높이는 augmentation 방법론이다.
+AugMix는 다른 augmentation 방법론들에 비해 Clean Error뿐만 아니라 Corruption Error를 감소시켰다. 특히, AugMix를 SIN과 결합하여 적용하였을 때 가장 corruption에 강건함을 보여주었다. 여기서 SIN은 Stylized ImageNet으로 원본 ImageNet 데이터뿐만 아니라 style transfer가 적용된 ImageNet데이터에도 모델을 훈련시킴으로써 corruption에 대한 강건성을 높이는 augmentation 방법론이다.
 
 또한 AugMix는 데이터 corruption의 강도(severity)가 점점 높아질 때, RMS claibration error에 대해 매우 안정적이고 강건함을 보여주었다. severity가 높아질수록 classification error가 증가함에도 불구하고 calibartion error는 거의 유지됨을 알 수 있다.
 ![figure11](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig11.PNG?raw=true)
@@ -142,6 +141,11 @@ AugMix는 다른 augmentation 방법론들에 비해 Clean Error뿐만 아니라
 * Summary
 
 AugMix는 랜덤하게 생성된 augmented image를 mix하고 Jensen-Shannon loss를 사용하여 데이터의 consistency를 유지하는 데이터 처리 기법이다. CIFAR-10-C, CIFAR-100-C, ImageNet-C 데이터셋 모두에 대해서 기존의 존재하던 augmentation 방법들보다 좋은 성능을 보여주었다. 특히, AugMix는 데이터 변동이 일어나도 calibration을 유지하며 안정성과 강건성을 보여주었다. 따라서, AugMix는 모델을 더 신뢰할 수 있도록 하므로, safety-critical 환경에서 효과적으로 적용될 수 있을 것으로 기대된다.
+
+* Opinion  
+
+기존에 다양한 augmentation 방법론들이 존재하지만, 여러 augmentation을 적용할수록 그 조합에 따라 image degradation 문제가 발생하는 경우가 빈번히 발생하여 이미지 관련 실험을 할 때 augmentation 조합에 대한 고민을 많이 해왔었는데, AugMix를 통해 augmentation의 다양성을 유지하면서도 이미지의 semantic information 또한 유지할 수 있어 굉장히 인상 깊은 연구였다. 개인적으로 augmentation을 통해서가 아니라 모델 아키텍쳐 수준에서 miscalibration문제를 해결할 수 있는 방법에 대해서 연구해보고 싶다는 생각이 들었다.
+
 
 ---  
 ## **Author Information**  
