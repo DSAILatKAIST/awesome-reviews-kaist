@@ -153,7 +153,7 @@ Nabilah Muallifah
 
 ## 6. Reference & Additional Materials
 
-* Github code: ttps://github.com/binli123/dsmil-wsi
+* Github code: https://github.com/binli123/dsmil-wsi
 
 * Reference:
   * [Dual-stream Multiple Instance Learning Network for Whole Slide Image Classification with Self-supervised Contrastive Learning](https://arxiv.org/abs/2011.08939)
