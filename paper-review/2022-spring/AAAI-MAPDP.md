@@ -143,9 +143,6 @@ You can attach the tables or figures, but you don't have to cover all the result
     * Interested in NCO(Neural Combinatorial Optimization), GNN
 
 ## **6. Reference & Additional materials**  
-
-Please write the reference. If paper provides the public code or other materials, refer them.  
-
   
 * Paper :   https://www.aaai.org/AAAI22Papers/AAAI-7512.ZongZ.pdf
 * VRP for Reinforce Learning: https://data-newbie.tistory.com/780
