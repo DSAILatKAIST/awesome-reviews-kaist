@@ -148,7 +148,9 @@ message에 대한 부분은 애초에 equivariant property를 생각하지 않�
 
 ## **4. Experiment**  
 
-### Modeling a dynamical system - N-body system
+Modeling a dynamical system - N-body system
+
+### Experiment setup
 
 [ 실험 설명 ]
 
@@ -164,9 +166,23 @@ message에 대한 부분은 애초에 equivariant property를 생각하지 않�
 - (input) $$p^{(0)}=\{p_1^{(0)},...,p_5^{(0)}\}$$, particle position
 - (input) $$v^{(0)}=\{v_1^{(0)},...,v_5^{(0)}\}$$, initial velocity
 - (input) $$c=\{c_1,...,c_5\}$$, charge
-- Mean squared error를 통해서 optimize
 
-[ 결과 ]
+
+[ Baselines ]
+
+- Linear Model : t시간 뒤의 위치를, 현재 위치와 속도를 단순 계산해서 예측 ($$p^t=p^0+v^0t$$)
+- SE(3) Transformer : GNN + equivariant 인 기존 방법론
+- Tensor Field Network : GNN + equivariant 인 기존 방법론
+- Radial Field : GNN + equivariant 인 기존 방법론
+- Graph Neural Network : 기본적인 GNN
+- EGNN : 제안된 모델
+
+[ Metric ]
+
+- Mean squared error : 예측값과 실제값의 MSE
+- Forward time : input을 이용해서 output을 얻어내는데까지 걸린 시간
+
+### Results
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%202.png) -->
 <!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image3.png">   -->
@@ -179,11 +195,13 @@ message에 대한 부분은 애초에 equivariant property를 생각하지 않�
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%203.png) -->
 <!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image4.png">   -->
 ![4](/.gitbook/2022-spring-assets/KanghoonLee_1/image4.png)
+
+
 E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기서 제안한 모델인 EGNN 세가지 모델을 학습 데이터 수에 대한 MSE를 나타낸 그래프이다. 예상과 비슷하게, EGNN과 Radial Field는 적은 데이터 샘플로도 잘 generalize하는 것을 보였다. 하지만, Radial Field의 경우 EGNN과 다르게 많은 데이터가 주어졌음에도 성능이 더욱 개선되지 않는 점을 보였다. EGNN과 GNN은 학습 데이터가 많아짐에 따라서 성능 개선이 이루어지는 것을 확인할 수 있었다.
 
 저자들은 이를, Radial Field 방법이 너무 모델에 대한 bias가 크기 때문에, 데이터 안에서 미세하게 변하는 부분을 학습하기 힘들다고 주장한다. 즉 정리하면, EGNN은 E(n) 의 high bias를 취하면서 동시에 일반적인 GNN이 갖고 있는 flexibility도 가지고 있다고 주장한다.
 
-### Graph Autoencoder
+<!-- ### Graph Autoencoder
 
 [ 실험 설명 ]
 
@@ -201,13 +219,15 @@ E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기�
     - 그래프 사이즈는 7개~ 16개의 노드
 - 5000 training set, 500 validation set, 500 testing set.
 
+
+
 [ 결과 ]
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%204.png) -->
 <!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image5.png">   -->
-![5](/.gitbook/2022-spring-assets/KanghoonLee_1/image5.png)
+<!-- ![5](/.gitbook/2022-spring-assets/KanghoonLee_1/image5.png)
 - EGNN이 두개의 데이터셋 모두에서 가장 좋은 성능을 보였다.
-- 위에서 언급한대로 noise를 추가한 noise-GNN은 GNN보다 좋은 성능을 보였다.
+- 위에서 언급한대로 noise를 추가한 noise-GNN은 GNN보다 좋은 성능을 보였다. -->
 
 ## **5. Conclusion**  
 
@@ -227,16 +247,11 @@ Supervised learning이나 Reinforcement learning에서 네트워크를 잘 gener
 
 ## **Author Information**  
 
-- **Victor Garcia Satorras**
-    - Affiliation: University of Amsterdam, Netherlands.
-    - Research Topics: AI, ML, Deep learning, Statistics
-- **Emiel Hoogeboom**
-    - Affiliation: University of Amsterdam, Netherlands.
-    - Research Topics: Generative Modelling, Bayesian Inference, Artificial Intelligence
-- **Max Welling**
-    - Affiliation: University of Amsterdam, Netherlands.
-    - Research Topics: ML, AI, Statistics
-    - [https://scholar.google.com/citations?user=8200InoAAAAJ&hl=en](https://scholar.google.com/citations?user=8200InoAAAAJ&hl=en)
+- **Kanghoon Lee**
+    - Affiliation: KAIST, Industrial & Systems Engineering Department Ph.D candidates at SILAB.
+    - Research Topics: Reinforcement Learning, Multi-Agent Reinforcement Learninig.
+    - Contacts: leehoon@kaist.ac.kr
+
     
 
 ## **6. Reference & Additional materials**  
