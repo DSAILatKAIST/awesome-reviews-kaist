@@ -6,8 +6,7 @@ description : Ahn et al. / Spanning Tree-based Graph Generation for Molecules / 
 
 ## **1. Problem Definition**  
 
-해당 논문이 다루는 문제는 Sparse Graph Generation 이다. Sparse Graph란 Node degree가 적은 형태의 graph를 지칭한다. 대표적으로는 Chemical Graph 가 있다. 이 논문에서는 Molecular Generation Task에 좀 
-더 집중해서 방법론을 검증한다. 
+해당 논문이 다루는 문제는 Sparse Graph Generation 이다. Sparse Graph란 Node degree가 적은 형태의 graph를 지칭한다. 대표적으로는 Chemical Graph 가 있다. 이 논문에서는 Molecular Generation Task (Chemical Graph Generation) 에 좀 더 집중해서 방법론을 검증한다. 
 
 ## **2. Motivation**  
 
