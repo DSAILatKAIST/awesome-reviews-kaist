@@ -104,7 +104,6 @@ The distortion loss is responsible for measuring the similarity between compress
 * Rate loss:
 
  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig10.png">
-
 The authors use the rate loss formulation proposed by one of the related works and replace the attention map with sparse map obtained from a SMRNN that is represented as shown above.
 
 * Alignment loss:
