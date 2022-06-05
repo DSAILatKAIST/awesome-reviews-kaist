@@ -66,8 +66,6 @@ _keyword: Cognition-Aware Systems, Circadian Computing, Fatigue, Eye Blink, Elec
 
 EOG를 통해 얻을 수 있는 안구 운동, 눈깜박임 데이터를 활용하여 피로 수준에 대한 모니터링을 가능하게 해줍니다.  
 
-★★★EOG안경 그림 필요함  
-
 > 개발된 피로 수준 측정 시스템은 아래의 이점을 갖고 있습니다:
   * 센서를 번거로운 방법으로 부착해야 하는 전통적인 방식과 달리, EOG 센서를 안경에 부착함으로써 편안한 방식으로 피로 수준을 측정하는 것이 가능합니다.  
   * 주간/야간, 실내/실외 등 빛의 변화에 관계 없이 피로 수준을 측정할 수 있습니다
@@ -99,14 +97,14 @@ EOG를 통해 얻을 수 있는 안구 운동, 눈깜박임 데이터를 활용�
     * 안경테에 Accelerator, Gyroscope을 장착하여 머리의 움직임과 자세를 측정하였습니다.
   * 데이터 전송은 Bluetooth LE 모듈을 통해 수행되었습니다.
 
-★★★Figure1 그림 필요함  
+  ![figure1](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_2/figure1.png?raw=true)  
 
 ### **3.2 피로 수준 측정 Toolkit**  
 
 본 연구에서는 데이터 수집을 위해 [Dinger et al.](https://doi.org/10.1145)이 도입한 모바일 도구 Toolkit을 사용하여 App을 만들었습니다.  
 App은 Android 기반으로 각성 수준 및 피로 수준을 아래와 같이 3가지 방법으로 측정할 수 있습니다.
 
-★★★toolkit 그림 필요함  
+  ![toolkit](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee_2/toolkit.png?raw=true)  
 
 3가지 방법은 순서대로 Psychomotor Vigilance Task (PVT),  Go/No-Go task, Multiple Object Tracking task입니다.
 
