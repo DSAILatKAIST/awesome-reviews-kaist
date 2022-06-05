@@ -9,46 +9,28 @@ Neural JPEG: End-to-End Image Compression Leveraging a Standard JPEG Encoder-Dec
 
 ## **1. Problem Definition**  
 
-The usage off the internet has been increasing over the years resulting in a need for improvement of compressing visual data. Current methods use either use additional post-processing blocks on the decoder end to improve compression or propose an end-to-end compression scheme based on heuristics. For most of these methods the trained deep neural networks (DNNs) are not compatible with standard encoders which makes it difficult to extend these technologies to personal computers and cellphones.
-
-
+The usage off the internet has been increasing over the years resulting in a need for improvement of compressing visual data. Current methods use either use additional post-processing blocks on the decoder end to improve compression or propose an end-to-end compression scheme based on heuristics. For most of these methods the trained deep neural networks (DNNs) are not compatible with standard encoders which makes it difficult to extend these methods to personal computers (PC) and smartphones. Later in the realted works the shortcomings and problems of the current works will be mentioned.
 
 
 ## **2. Motivation**  
 
-In this paper, the authors want to improve xx
+In this paper, the authors want to create a system that learns to improve the encoding performance by enhancing the
+internal neural representations on both encoder and decoder ends. This approach is a Neural JPEG. The authors propose frequency domain pre-editing and post-editing methods to optimize the distribution of the DCT coefficients at both encoder and decoder ends in order to improve the standard compression (JPEG) method.
+
 
 ### **Existing works**
 
-Recent advances in deep learning have led to superhuman performance across a variety
-of applications. Recently, these methods have been successfully employed to improve the
-rate-distortion performance in the task of image compression.
+The works related to this paper are mostly about end-to-end image compression systems using deep neural networks (DNN), hybrid decoders and hybrid encoders that enhances encoder signals resulting in an improvement of compression even at low bit rates.
 
-* Previous works xx
-* research in deep neural networks (DNNs)
-has begun to turn its attention to improving the rate-distortion performance of im-
-age compression frameworks.
+* Deep neural networks (DNNs): this is an approach that seems to improve the rate-disortion performance of image compression framworks.
+However, this method requires a speciffcally trained decoder during the post-processing stage or a complex DNN-based decoder. This makes it hard to apply this method for images that have to be compressed on the PC and smartphones. Besides that, there is no
+guarantee that the uncovered results would hold when the input data distribution shifts, e.g., images of a completely different kind are presented to the system.
 
-Though this set of approaches has yielded impressive results, they
-unfortunately require a speciffcally trained decoder during the post-processing stage
-or a complex DNN-based decoder. As such they are not supported by the commonly
-used image viewers in most computers and smartphones. In addition, there is no
-guarantee that the compression results uncovered would hold when the input data
-distribution shifts, e.g., images of a completely different kind are presented to the sys-
-tem, presenting a challenge to DNN-driven approaches.
+* Hybrid decoders: this appraoch gives good results but it does not operate well at the lowest bit rate. This is because the quantized signals that are used to reconstruct the original input signal are extremely sparse.
 
+* Hybrid encoders: these encoders enhance encoder signals resulting in an improvement of compression even at low bit rates. But these tupes of methods fail
+to remove artifacts at the decoder end, thus compromising compression quality in various situations.
 
-Recent approaches that craft hybrid decoders [6, 7, 8] have presented a very promising direction, yet they struggle
-to operate well at the lowest bit rate, given that the quantized signals they must work
-with to reconstruct the original input signal are extremely sparse.
-
-Another promising
-alternative is to design a hybrid encoder that enhances encoder signals resulting in
-better compression even at the lowest bit rates [9, 10]. However, these methods fail
-to remove artifacts at the decoder end, thus compromising compression quality in
-various situations.
-
-* xx
 
  ### **Significance**
 Most of the current works have xx
