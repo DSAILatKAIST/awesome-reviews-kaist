@@ -141,8 +141,6 @@ AugMix는 다른 augmentation 방법론들에 비해 Clean Error뿐만 아니라
 
 AugMix는 랜덤하게 생성된 augmented image를 mix하고 Jensen-Shannon loss를 사용하여 데이터의 consistency를 유지하는 데이터 처리 기법이다. CIFAR-10-C, CIFAR-100-C, ImageNet-C 데이터셋 모두에 대해서 기존의 존재하던 augmentation 방법들보다 좋은 성능을 보여주었다. 특히, AugMix는 데이터 변동이 일어나도 calibration을 유지하며 안정성과 강건성을 보여주었다. 따라서, AugMix는 모델을 더 신뢰할 수 있도록 하므로, safety-critical 환경에서 효과적으로 적용될 수 있을 것으로 기대된다.
 
-* Opinion
-
 ---  
 ## **Author Information**  
 
