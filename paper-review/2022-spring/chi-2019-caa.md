@@ -93,8 +93,13 @@ EOG를 통해 얻을 수 있는 안구 운동, 눈깜박임 데이터를 활용�
 
 ### **3.1 EOG 안경 기반의 피로 수준 모니터링 시스템**  
 
-EO
+피로 수준을 모니터링하기 위한 EOG 안경 기반의 시스템을 개발하였습니다.
+  * 안경은 [J!NS MEME glasses](https://jinsmeme.com/en/)를 사용하였습니다.
+    * 코 주변에 EOG 센서를 장착하여 안구 움직임, 눈깜박임을 측정하였습니다.
+    * 안경테에 Accelerator, Gyroscope을 장착하여 머리의 움직임과 자세를 측정하였습니다.
+  * 데이터 전송은 Bluetooth LE 모듈을 통해 수행되었습니다.
 
+★★★Figure1 그림 필요함  
 
 ### **3.2 피로 수준 측정 Toolkit**  
 
@@ -107,8 +112,6 @@ Toolkit은 Android 기반으로 각성 수준 및 피로 수준을 아래와 같
 
 PVT가 피로 수준을 측정하는데 가장 정확하고 데이터의 양도 많으므로, 본 연구에서는 PVT 방법을 피로 수준을 모니터링하는데 활용하였습니다.
 
-Please write the methodology author have proposed.  
-We recommend you to provide example for understanding it more easily.  
   
 <br>
 
@@ -117,12 +120,14 @@ We recommend you to provide example for understanding it more easily.
 In this section, please write the overall experiment results.  
 At first, write experiment setup that should be composed of contents.  
 
-### **Experiment setup**  
-* Dataset  
-* baseline  
-* Evaluation Metric  
+### **4.1 Experiment setup**  
+#### 4.1.1 **Dataset**
+> 사람을 대상으로 한 실험에서 수집된 센서 데이터
+> 
+#### 4.1.2 **Baseline**
+#### 4.1.3 **Evaluation Metric**
 
-### **Result**  
+### **4.2 Result**  
 Then, show the experiment results which demonstrate the proposed method.  
 You can attach the tables or figures, but you don't have to cover all the results.  
   
