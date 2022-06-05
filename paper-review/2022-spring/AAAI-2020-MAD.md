@@ -14,7 +14,7 @@ description: >-
 
 먼저, 시각적으로 이 상황을 이해해 볼 필요가 있다. 아래 첫번째 그림은 Input Graph와 node1, node2, node3, node4에 대한 1-hop neighbor 를 표현한 그림이다. 이때는 node1(노란색), node4(보라색)를 center로 한 그래프가 많이 다른 모습을 볼 수 있다. 이에 자기자신과 비슷한 node 에서 더욱 많은 정보들을 받으며 embedding을 업데이트 할 수 있다. 다만,두번째 그림에서는 상황이 달라진다. 첫번째 그림과 달리 node1(노란색), node4(보라색)를 center로 한 그래프가 많이 비슷한, 즉 공유하고 있는 노드들이 많이 겹치는 모습을 볼 수 있다. 이런 식으로, layer 을 더 쌓을수록 더 많은 노드들을 서로 공유하게 되어 최종 업데이트 된 embedding이 서로서로 비슷하지게 된다.  
 
-![](../../.gitbook/2022-spring-assets/SukwonYun\_2/oversmoothing1.png)
+![](../../.gitbook/2022-spring-assets/SukwonYun\_2/oversmoothing1.png)  
 
 ![](../../.gitbook/2022-spring-assets/SukwonYun\_2/oversmoothing2.png)  
 
