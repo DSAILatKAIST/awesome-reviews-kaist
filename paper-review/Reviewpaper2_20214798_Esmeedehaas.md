@@ -117,21 +117,66 @@ The aligment loss should ensure that signals are robust at decoder end. To achie
 
 
 ## **4. Experiment**  
-The overall experiment results show that xx
-
-Experiments demonstrate that our approach successfully improves the rate-distortion
-performance over JPEG across various quality metrics, such as PSNR and MS-SSIM, and
-generate visually appealing images with better color retention quality.
+The overall experiment results show that the approach of the authors successfully improves the rate-distortion performance over JPEG across various quality metrics, such as PSNR and MS-SSIM, and generate visually appealing images with better color retention quality.
 
 
 ### **Experiment setup**  
+
+The modifactions of the theories as mentioned before are baseline for these expeperiments. However, there are 2 more things to consider for doing the experiments. These are the evaluation metrics, the datasets to be used and the training procedure.
+
 * Evaluation metrics:
+  We use widely used compression optimization metric for measuring image similarity
+the Mean Squared Error (MSE) and the Peak Signal to Noise Ratio (PSNR). Similarly
+to [29, 10] we dene the MSE and PSNR for the tensors x; ^x 2 hcalX of arbitrary
+dimension as follows (x is also the input image I):
+
+ <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig12.png">
+
+To better
+measure the visual appeal of images we also use the Multi-Scale Structural Similarity
+(MS-SSIM) [30], converted to a logarithmic scale as follows:
+
+ <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig13.png">
+
+
 * Datasets and training procedure:
+  
+
+The Neural JPEG network is trained on the dataset provided in prior work [32, 10].
+It consists of 3640 HDR images. For training, we use the merged HDR images and
+extract image patches of size 256 obtained from random cropping. We follow the
+same extraction process and experimental protocol proposed by [10] We evaluate our
+model on the Kodak dataset, consisting of 24 uncompressed images of size 768512.
+Additionally, we validate our model on validation set from DIV2K [33, 34] containing
+100 high quality images with 2040 pixels. Our model is optimized using Adam with
+initial learning rate 1:0 reduced to 10􀀀8 using polynomial decay. We use batch size
+of 32 for all experiments and performed grid search to nd optimal hidden sizes for
+SMRNN, sparsity level k, and . We use pre-trained VGG-19 model (trained on
+ImageNet) and ne-tune these layers while training. The 1  1 convolutional layer
+is initialized using orthogonal matrices. We follow prior experimental protocol [10],
+hence the quantization table variables in this work are also initialized uniformly in
+the interval [1s; 2s] and are limited to be in the range [1s; 255s]. Where the scaling
+factor is always s > 0 and in this experiments is set to is a s = 10􀀀5. Then we
+can get the nal quantization tables by multiplying factor by s􀀀1. We use standard
+evaluation metrics such as PSNR, MSE, MS-SSIM to report our model performance.
 
 
 ### **Results**  
 
 The results of the previously mentioned procedure xx
+
+We evaluated our model on 2 out of 6 benchmarks used in prior work [6] using 3 met-
+rics [35]. These metrics are Peak Signal to Noise Ratio (PSNR), structural similarity
+
+(SSIM), and multi-scale structural similarity (MS-SSIM [36], or MS3IM. We com-
+pare our model against wide variety of compression approaches such pure neural-based
+GOOG[17] and E2E [12]. We also compare to the models of [6] and [10]. Results are
+reported in Table 2 { we see all models perform stably, however, when the bit rates are
+reduced (see Table 1) all hybrid models start struggling, whereas neural-based models
+stay consistent. This suggests that the performance of these hybrid models is limited
+due to the xed map used by JPEG. This support our hypothesis that at lower bit
+rates enhancing JPEG signals further improves performance and that Neural JPEG
+does this eciently.
 
 Graph:
 | <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig14.png"> |
@@ -166,17 +211,16 @@ only regularizing the sparse maps and quantization tables.
 
 ### **Summary** 
 
-In the table below you can find a summary of all the pros and cons of this newly proposed method gives.
-
-| Pros | Cons |
-| --- | --- |
-| xx | xx |
-| xx | xx |
-| xx | xx |
-
-
-Ideas on pros & cons:
-* xx
+How ever ,
+Our model does struggles due to some artifacts, but these can be
+removed with JPEG artifact removal and we note that our overall model ensures the
+structure/content of image is kept intact. In other words, whenever we operate at the
+lowest bit rates (see Figure 2), JPEG completely loses image information while the
+Neural JPEG makes up the dierence since it can recover majority of missing chunks
+of features. Since JPEG quality based on PSNR at 0.25bpp is equivalent to Neural
+JPEG image quality at 0.19bpp, we conclude that even at the lowest bit rates, our
+model tries to remember majority of the signal.
+Conclusions and Future Work
 
 
 ### **Future ideas** 
