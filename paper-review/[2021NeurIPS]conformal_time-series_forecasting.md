@@ -13,4 +13,4 @@ https://latex.codecogs.com/svg.image?y__%7Bt:t%27%7D
 >
 ![image](https://user-images.githubusercontent.com/100551559/172048129-74053baf-9319-4d54-8be7-e523491d7f4b.png)
 
-\[ https://latex.codecogs.com/svg.image?y__%7Bt:t%27%7D\]
+![](https://latex.codecogs.com/svg.image?y__%7Bt:t%27%7D\)
