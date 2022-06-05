@@ -238,7 +238,6 @@ Co-teaching+은 크게 4단계로 구성됩니다.
 
 # 5. Conclusion
 
----
 
 본 논문은 noisy 분류 상황에서의 deep neural network의 학습 방안인 Co-teaching+를 제안하였습니다. 핵심 아이디어는 두 네트워크를 동시에 유지하면서 disagreement data를 찾고 small loss data 만으로 cross-update 하는 것입니다.
 
@@ -248,9 +247,9 @@ Co-teaching+은 크게 4단계로 구성됩니다.
 
 하지만 개인적인 의견으로는 실제 application 단에서 대부분의 training data의 noise label 비율은 실험과 같이 많은 양의 noise label을 포함하지는 않을 것 같습니다. 데이터의 종류나 label의 수 등에 따라 매우 다를 것 같아 이를 고려한 보다 현실적인 실험 결과가 궁금해졌습니다. 예를들어 Pair noise, Symmetry noise, Open-set noise에 관하여 학습 데이터에서 1%, 5%, 10% 정도의 noise labeling 비율을 가지는 경우의 실험 결과도 제시했으면 Co-teaching+을 활용할 때 보다 도움이 될 것 같다는 생각을 했습니다.
 
-# Author Information
-
 ---
+
+# Author Information
 
 - 이 솔 (LEE SOL)
     - Affiliation
