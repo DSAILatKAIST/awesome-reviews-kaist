@@ -12,6 +12,10 @@ Kamilė Stankevičiūtė, Ahmed Alaa, Mihaela van der Schaar / Conformal Time-
 
 point가 아닌 interval 예측을 하고, 불확실성 간격(uncertainty interval)에 대해 frequentist 범위에 대한 이론적 보장을 제공하는 RNN 기반 시계열 예측 모델인 CF-RNN(Conformal Forecasting RNN)을 제안한다.
 
+
+
+
+
 ## **2. Motivation**
 
 시계열 예측은 주가, 서비스 수요, 의학적 예후 등 응용 영역의 핵심이며 RNN이 이 작업을 수행하는 일반적인 모델이다. RNN을 이용하는 multi-horizon 시계열 예측[1]에 대한 현재 접근 방식은  *point 예측*(시계열 미래 값에 대한 단일 추정치)에 집중하고 있다. 금융 및 의료와 같은 고부담 응용 영역의 경우에는 정확한 위험 평가와 의사결정을 위해서는 *불확실성 추정이 요구*되기 때문에 **point 예측은 충분하지 않다.**
@@ -45,14 +49,18 @@ RNN에 대한 불확실성 추정을 위해 개발된 이전 방법들에는 베
 
 
 
+
 ## **3. Method**
 
 저자는 motivation영역에서 언급한 기존 방법들에 대한 제한점을 타파하고자 conformal forecasting RNNs(CF-RNNs) 모델을 제안했다.
 
 
+
+
 **[다중 수평 시계열 예측(Multi-horizon time-series forecasting)]**
 
 ![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?(y__{t},&space;y__{t&plus;1},&space;...&space;,&space;y__{t'}))가 d차원 시계열 관측값이고 ![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?)가 주어지면, multi-horizon 시계열 예측은 ![](https://latex.codecogs.com/svg.image?\\hat{y}__{t'&plus;1:t'&plus;H})인 미래 값을 예측한다. 이는 H x d 차원이고 H는 예측할 steps의 수(예측 horizon)이다.
+
 
 
 중요한 응용 프로그램의 경우 예측과 관련된 불확실성에 관심이 있다. 예측 범위의 각 시간 단계(h)에 대해
@@ -71,6 +79,7 @@ ground truth 값 yt+h가 충분히 높은 확률로 ![](https://latex.codecogs.c
 회귀 작업에 대한 귀납적 등각 예측(ICP)에 대한 필요한 배경을 설명하겠다.
 관측값 세트 및 새로운 데이터가 주어지면 ICP 절차는 다음과 같은 예측 간격을 반환한다. 그렇기 때문에 **타당성 속성이 충족**된다.
 등각 예측 프레임워크는 분포가 없으며(즉, 기본 데이터 D의 분포에 대한 가정이 없음) **교환 가능성 가정이 충족**된다.
+
 
 
 
@@ -116,7 +125,9 @@ H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 �
 
 
 
-**4. Experiment**
+
+
+## **4. Experiment**
 
 다양한 합성 데이터와 실제 의료 데이터에 대해 기존에 존재하는 baseline과 본 연구에서 제안한 방법(CF-RNN)과의 3가지 기준으로의 성능 비교를 통해 conformal forecasting framework의 효율성을 본다. 합성데이터의 경우에는 BJ-RNN을 기준으로, 3개의 실제 의료 데이터의 경우에는 MQ-RNN, DP-RNN을 기준으로 비교한다.
 
@@ -168,6 +179,7 @@ H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 �
 
 
 
+
 ### **Result**
 
 
@@ -196,6 +208,7 @@ H 조건부 독립 예측은 동일한 임베딩에서 얻어지기 때문에 �
 위의 그래프는 왼쪽 및 중간 패널은 훈련 데이터 세트 크기에 따른 CF-RNN, MQ-RNN 및 DPRNN 기준선의 평균 성능을 보여 준다. CF-RNN은 제한된 수의 예제로 필요한 joint 범위 비율을 달성하고 유지하는 유일한 모델이다. 또한 더 많은 데이터(더 큰 교정 데이터세트)를 사용하면 불일치 점수의 분포를 더 정확하게 지정할 수 있으므로 간격의 너비가 감소한다. 
 
 마지막으로 오른쪽 패널에서 예측 간격 너비를 고정하고 각 수평선에 대해 H는 CF-RNN에 의해 유지되는 가장 큰 커버리지 수준 1-α를 계산한다. 위의 세번째 그림에서 볼 수 있듯이 목표 범위 수준이 낮으면 먼 미래까지 유효한 예측을 할 수 있으며 이상적인 범위 수준은 예측 지점 근처의 수평선에서만 달성할 수 있습니다. 모든 순환 신경망 모델 M에 대해 전체 추세가 유지된다.
+
 
 
 
@@ -241,6 +254,9 @@ CF-RNN, MQ-RNN, DP-RNN 모델들을 아래의 표4에서 처럼 3개의 데이�
 
 
 
+
+
+
 ## **5. Conclusion**
 
 본 논문에서는 ICP 프레임워크를 multi-horizon 시계열 예측 문제로 확장하여 frequentist coverage를 위한 이론적 보장하는 lightweight 알고리즘을 제공한다. 또한 이는 실험을 통해서 기존의 기준선보다 좋은 성능을 가지며, 목표 간격 범위를 충족시킨다.
@@ -251,11 +267,14 @@ future work로는 예측 간격의 너비를 줄여 보면서 전반적으로 �
 
 ---
 
+
+
 ## **Author Information**
 
 - Author name: 여정
     - Affiliation: CSD Lab
     - Research Topic: Healthcare Service
+
 
 ## **6. Reference & Additional materials**
 
