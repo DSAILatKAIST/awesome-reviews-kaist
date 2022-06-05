@@ -42,6 +42,7 @@
   * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
   * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
   * [VGRNN](paper-review/2022-spring/VGRNN.md)
+  * [3D Molecule generative model for structure-based drug design](paper-review/2022-spring/neurips-2021-3d-molecule-generative-model-for-structure-based-drug-design.md)
 
 ## How to contribute
 
