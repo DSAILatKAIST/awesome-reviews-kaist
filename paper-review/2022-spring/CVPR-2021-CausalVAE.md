@@ -20,12 +20,13 @@ The image is from this website https://lilianweng.github.io/posts/2018-08-12-vae
 
 One good example is shown in Fig. 2.
 
+<p align="center">
 <figure>
     <img src="../../.gitbook/2022-spring-assets/panyu_2/One_Example.png" style="zoom:80%;">
     <figcaption align = "center"><b>Fig. 2 - A swinging pendulum: an illustrative example</b>
     </figcaption>
 </figure>
-
+</p>
 In a swinging pendulum system,  there could be four concepts or latent variables including the position of the illumination source, the angle of the pendulum, the position, and the length of the shadow. These 4 latent variables are actually not independent of each other. The position of the illumination source and the angle of the pendulum are actually causing the position and length of the shadow. Theoretically, if we change either the position of the illumination source or the angle of the pendulum, the position and the length of the shadow will change accordingly as well. This is exactly the concept of "do-operation" in causality[1].
 
 In summary, the problem is how to add the causal relationship among latent variables to the VAE model. To represent this causal relationship, this paper proposes a new model called the CausalVAE model, which adds one causal representation learning layer to the encoder part and one masking layer(assigning intervention layer) to the decoder part. The causal layer and mask layer are based on the structural causal model. The causal representation learning layer transforms exogeneous independent factors into causal representations. 
