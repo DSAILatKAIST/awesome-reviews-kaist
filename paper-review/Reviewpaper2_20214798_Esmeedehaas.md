@@ -49,8 +49,6 @@ the effective framework of neural iterative refinement while the recurrent decod
 in the reconstructed image.
 
 
-
-
 ### **JPEG algorithm & architecture**
 
 Standard JPEG algorithm:
@@ -61,35 +59,53 @@ Standard JPEG architexture:
 
 <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig2.png">
 
+And standard JPEG architecture summazrized:
+
+<img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig3.png">
+
 Modifications:
 * Recurrent neural networks (RNN):
   1. Reduce channel dimension from 256 to 128
   2. Reshape channels to a 8x8x2 tensor for each block which will be split in two matrices of 8x8 afterwards.
-* The sparse multiplicative RNN (SM-RNN) component will be used to process both Hl and Hc for K steps. So the activation map in the case of Hl would look like this:
-  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding6.png">
-  The same algorithm can be used replacing Hc with Hl. A final set of sparse 'edit' values is conducted as followed:
-  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding6.png">
-  Each discrete cosine transform (DCT) coefficient is multiplied by the original JPEG encoder with corresponding edit score as retrieved in previous mentioned process.
-* Decoding method: For the decoder end of our system, we utilize a SM-RNN similar to the encoder
-process described above but tie its weights to those of the SM-RNN encoder module
-(both models would have the same dimensionalities for their parameters given they
-operate in the same internal latent space). In short, after applying the inverse DCT
-transform to the outputs of the quantization table and rounding modules (which
-produce ^ Z), the SM-RNN decoder takes in the ^Z, processes it K times (in a process
-similar to the one depicted above) and nally produces the reconstructed image ^ I.
-* Quantitzation table and rounding module:
-  
-* x
 
+* The sparse multiplicative RNN (SM-RNN) component will be used to process both Hl and Hc for K steps. So the activation map in the case of Hl would look like this:
+  
+  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig4.png">
+  
+  The same algorithm can be used replacing Hc with Hl. A final set of sparse 'edit' values is conducted as followed:
+  
+  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig5.png">
+  
+  Each discrete cosine transform (DCT) coefficient is multiplied by the original JPEG encoder with corresponding edit score as retrieved in previous mentioned process.
+
+* Decoding method: utilize a SM-RNN similar to the encoder is utilized to process described above but tie its weights to those of the SM-RNN encoder module.
+
+* Quantitzation table: After applying the inverse DCT transform to the outputs of the quantization table and rounding modules, the SM-RNN decoder takes this in, processes it K times and produces the reconstructed image. This overall proces is visualized as followed:
+  
+  <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig6.png">
+  
+  Here you can see that the authors use the differentiable JPEG pipeline to learn the quantization tables. They replace the attention mechanism with sparse RNN to better capture the importance of each representation associated with each channel. You can see that they use Q0 to the power of L and Q0 to power of C as optimization variables for luminance and chrominance. The range of quantization table values are clipped to [1; 255] which should help optimize the process.
+
+* Rounding module: the authors removed the entropy encoding that is being used in JPEG and replaced the hard rounding operation with a differentiable third order approximation as shown below:
+
+ <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig7.png">
 
 ### **Loss formulation**
 
 * Disortion loss:
+
+ <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig8.png">
+
+
 * Rate loss:
+
+ <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig9.png">
+
+
 * Alignment loss:
 
+ <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig10.png">
 
-<img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding6.png">
 
 
 
