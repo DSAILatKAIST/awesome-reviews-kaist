@@ -147,27 +147,156 @@ $$\begin{equation}y_v=\frac{1}{|N_v|}\sum_{u \in N_v}{x_u^{(1)} + n_{v}^{(1)}}, 
 
 ## **3. Method**  
 
+### **3-1. Stable Learning with Explore-to-Extrapolate Risk Minimization**
+
+<p align="center">
+  <img src="../../.gitbook/2022-spring-assets/yunhak2/figure1.png">
+</p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 3 - The proposed approach Explore-to-Extrapolate Risk Minimization which entails K context generators that generate graph data of different (virtual) environments based on input data from a single (real) environment. The GNN model is updated via gradient descent to minimize a weighted combination of mean and variance of risks from different environments, while the context generators are updated via REINFORCE to maximize the variance loss</em></span></p>
+</div>
+
+앞선 toy example에서 벗어나 일반적인 케이스로 돌아오면 2장에서의 발견을 통해 새로운 학습 목표를 다음과 같이 정의할 수 있습니다.
+
+$$\begin{equation}\min_{\theta}\mathbb{V}_{\mathbf{e}}{[L(G^{(e)}, Y^{(e)};\theta)]}+\beta\mathbb{E}_{\mathbf{e}}{[L(G^{(e)}, Y^{(e)};\theta)]},\end{equation}$$
+where ![](https://latex.codecogs.com/svg.image?L(G^{(e)},&space;Y^{(e)};\theta)=\frac{1}{|V_e|}\sum_{v\in&space;V_e}{l(f_{\theta}(G_{v}^{(e)}),y_{v}^{(e)})}) and ![](https://latex.codecogs.com/svg.image?\beta) is trading hyperparameter.
+
+Eq. 4는 바람직한 extrapolation을 위해 다양한 환경에서 부터 생성된 data가 필요하다는 것을 의미하지만, node-level task는 하나의 환경에서 training 데이터로 하나의 graph만을 가지기 때문에 Eq. 4에 대한 변경이 필요합니다.
+따라서, 저자들은 K-fold의 graph data ![](https://latex.codecogs.com/svg.image?\{G_k\}_{k=1}^{K})를 생성하기 위해  K auxiliary context generator ![](https://latex.codecogs.com/svg.image?g_{w_k}{(G)}{(K=1,&space;...,&space;K)})를 도입합니다. 이는 하나의 input 를 기반으로 다양한 환경에서의 training 데이터를 모사하기 위함입니다. 따라서 Generator는 GNN의 학습을 안정적으로 만들고 다양한 환경을 탐색하기 위해 variance loss를 maximize하는 방향으로 학습됩니다.
+
+<p align="center">
+  <img src="../../.gitbook/2022-spring-assets/yunhak2/method.png">
+</p>
+
+이제 남은 한 가지 문제는 ![](https://latex.codecogs.com/svg.image?g_{w_{k}}(G))를 어떻게 특정하느냐 입니다. 저자들은 최근 그래프에서의 adversarial robustness에 대한 연구를 따라, edge를 추가하거나 제거하는 것을 통해 그래프 구조를 변경하는 방법을 활용합니다.
+
+1. Boolean matrix ![](https://latex.codecogs.com/svg.image?B^k=\{0,&space;1\}^{N&space;\times&space;N}&space;(k=1,&space;\cdots,&space;K))를 가정하고, A의 대체 그래프로 ![](https://latex.codecogs.com/svg.image?\bar{A}=\mathbf{11}^{\top}-I-A)를 정의 (I 는 Identity matrix)
+2. View k에 대해 변형된 graph ![](https://latex.codecogs.com/svg.image?A^k=A+B^k\circ(\bar{A}-A)) (이 때, ![](https://latex.codecogs.com/svg.image?\circ)는 element-wise 곱)를 얻음
+
+![](https://latex.codecogs.com/svg.image?B^k)는 미분 불가능하기 때문에 최적화하기가 어렵습니다. 따라서, policy gradient 방법인 REINFORCE(graph generation 과정을 decision 과정으로 다루고 edge editing 과정을 action으로 다룸)를 활용해 최적화하는 방법을 도입합니다 (이에 대한 자세한 내용은 Appendix를 참고). 
+
+저자들은 이러한 Eq. 5 Explore-to-Extrapolate Risk Minimization (EERM)를 제안하였습니다.
+간단한 방법론의 구조는 그림 2에서 확인할 수 있으며, 아래와 같이 알고리즘으로 표현할 수 있습니다.
+
+<p align="center">
+  <img src="../../.gitbook/2022-spring-assets/yunhak2/algorithm.png">
+</p>
+
+### **3-2. Theoretical Discussion**
+
+> 이 후 나오는 Theorem에 대해서는 그 의미를 파악할 뿐 증명은 생략합니다. 자세한 증명은 논문의 Appendix를 참고해주세요.
+
+이론적인 논의를 위해 다음에 표기법(notation) 추가하고, 필요한 것들을 정의해보겠습니다.
+
+* GNN model ![](https://latex.codecogs.com/svg.image?f)는 encoder ![](https://latex.codecogs.com/svg.image?h)와 classifier ![](https://latex.codecogs.com/svg.image?c)로 구분 가능
+* Mutual Information: ![](https://latex.codecogs.com/svg.image?I(\mathbf{x};\mathbf{y}))
+* ![](https://latex.codecogs.com/svg.image?p_e(\cdot)=p(\cdot|\mathbf{e}=e)), ![](https://latex.codecogs.com/svg.image?I_e(\cdot)=I(\cdot|\mathbf{e}=e))
+* KL divergence: ![](../../.gitbook/2022-spring-assets//yunhak2/kl.png)
+
+새로운 목적함수 Eq. 4가 OOD 문제 (Eq. 2)의 타당한 해임을 보장하기 위해서는 아래와 같은 data-generating 분포에 관한 또 다른 가정이 필요합니다.
+
+![](../../.gitbook/2022-spring-assets/yunhak2/assumption2.png)
+
+결국, Assumption 1과 2는 Input data의 feature의 두 부분으로 나눌 수 있음을 의미합니다: 1) domain-invariant (![](https://latex.codecogs.com/svg.image?r)) 2) environment sensitive (![](https://latex.codecogs.com/svg.image?\bar{r}))
+
+![](../../.gitbook/2022-spring-assets/yunhak2/theorem1.png)
+
+Theorem 1을 통해 dnflsms invariance principle과 OOD 문제를 연결할 수 있습니다.
+
+![](../../.gitbook/2022-spring-assets/yunhak2/theorem2.png)
+
+Theorem 2를 통해 결국 Eq. 4가 그래프 구조 데이터의 OOD 문제에 대한 타당한 해임을 이론적으로 증명할 수 있게 됩니다.
+
+![](../../.gitbook/2022-spring-assets/yunhak2/theorem3.png)
+
+Theorem 3을 통해 OOD error에 대한 bound를 좁히는데 Eq. 4가 기여하는 것을 확인할 수 있으며, z가 다양한 환경에 걸쳐 sufficient representation이라면 이 조건을 만족하게 됩니다. 
+이로써, EERM은 OOD 데이터에 대한 generalization error를 줄이는데 기여하고 GNN의 extrapolation 능력을 강화할 수 있음을 의미합니다. 
 
 
 ## **4. Experiment**
 
-### **4-1. Datasets**
+### **4-1. Datasets & Evaluation Protocol**
+
+본 논문은 다양한 distribution shift에 대한 EERM의 효과를 확인하기 위해 Table 1과 같이 6개의 데이터 셋([Cora](https://paperswithcode.com/dataset/cora), Amazon-Photo<sup>[4](#fn4)</sup>, [Twitch-explicit](https://snap.stanford.edu/data/twitch-social-networks.html), [Facebook-100](https://masonporter.blogspot.com/2011/02/facebook100-data-set.html), [Elliptic](https://www.kaggle.com/datasets/ellipticco/elliptic-data-set), [OGB-Arxiv](https://ogb.stanford.edu/docs/nodeprop/#ogbn-arxiv))을 가지고 실험했습니다. Distribution shift는 다음과 같이 분류할 수 있습니다.
+
+* Artificial Tranformation: 인위적으로 전혀 상관없는 feature를 추가
+* Cross-Domain Transfer: 여러 개의 그래프가 있는 데이터를 가지고 특정 도메인에서 학습한 모델을 다른 domain으로 transfer
+* Temporal Evaluation: 시간이 따라 성장하는 그래프 데이터 셋에서 과거 시간으로 training 한 후 다음 시간의 데이터에 모델 적용
+
+Train/Val/Test split은 Domain 또는 Time을 기준으로 나눴고, 평가 척도로는 흔히 사용되는 [Accuracy](https://en.wikipedia.org/wiki/Accuracy_and_precision), [ROC-AUC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic), [F1-Score](https://en.wikipedia.org/wiki/F-score)를 사용했습니다.
+마지막으로 Baseline은 일반적인 ERM을 통해 학습시켰습니다.
+
+<p align="center">
+  <img src="../../.gitbook/2022-spring-assets/yunhak2/table1.png">
+</p>
 
 ### **4-2. Handling Distribution Shifts with Artificial Transformation**
 
+저자들은 Distribution Shift 중 Artificial Transformation에서의 모델 효과를 검증하기 위해 Cora, Amazon-photo 데이터에 다음과 같은 세팅으로 시험했습니다.
+
+1. original node feature를 가지고 node label 생성
+2. node label 및 environment id를 기반으로 상관없는 fetuare를 각각 생성
+
+서로 다른 environment id를 가진 10-fold의 그래프를 생성하고 1/1/8fh training/validation/testing을 나눴고, 2-layer vanilla GCN을 사용했습니다.
+
+그림 4의 (a)를 보시면, EERM이 ERM보다 모든 test graph에서 좋은 성능을 내는 것을 확인할 수 있습니다. 또한, Amazon-Photo 데이터의 EERM의 결과가 Cora에서의 결과보다 작은 variance를 가지는 것을 확인할 수 있는데, 이는 Cora는 주변의 feature가 prediction에 영향을 주는 많은 정보를 가지고 있는 반면, Photo는 그렇지 못함을 의미합니다. 이 결과를 토대로 invariant 한 feature와 spurious한 feature가 mixup 되면 Graph convolution에 좀더 의존하는 전자(Cora)의 경우, 분류에 어려움을 겪을 수 있음을 의미합니다.
+
+그림 4의 (b)는 validation accuracy가 가장 높은 epoch의 training accuracy로 spurious한 feature가 있는 경우와 없는 경우를 실험한 것입니다. ERM의 경우 spurious한 feature에 많은 영향을 받은 반면, EERM은 비교적 robust한 것을 확인할 수 있습니다. 또한, 그림 4 (c)는 여러 encoder의 test accuracy를 측정한 것으로 다양한 encoder에서도 성능 향상을 확인할 수 있습니다.
+한
+<p align="center">
+  <img src="../../.gitbook/2022-spring-assets/yunhak2/figure2.png">
+</p>
+<p align="center">
+  <img src="../../.gitbook/2022-spring-assets/yunhak2/figure3.png">
+</p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 4 - Artificial Transformation 결과</em></span></p>
+</div>
+
 ### **4-3. Generalizing to Unseen Domains**
+
+이 실험에서는 여러 개의 그래프를 가지고 있는 Twitch-Explicit, Facebook-100 데이터를 가지고 실험을 진행했습니다. 제한된 그래프 (e.g. 1 개)를 가지고 학습한 모델을 새로운 unseen graph에 일반화했을 경우의 성능을 비교하는 시험입니다.
+
+그림 5의 위 그래프는 하나의 그래프를 가지고 training한 후 unseen domain에 일반화한 결과이고, 아래의 표는 여러 개의 그래프를 가지고 학습해 unseen domain에 일반화한 결과입니다. 두 결과 모두를 통해 EERM이 일반적인 ERM에 비해 더 좋은 성능을 보임을 확인할 수 있습니다. 특히 그림 5의 아래의 그림을 통해 확인할 수 있듯이 EERM은 다양한 training 데이터에서도 robust하게 좋은 성능을 보임을 확인할 수 있습니다.
+
+
+<p align="center">
+  <img src="../../.gitbook/2022-spring-assets/yunhak2/figure4.png">
+</p>
+<p align="center">
+  <img src="../../.gitbook/2022-spring-assets/yunhak2/table2.png">
+</p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 5 - Generalizing to Unseen Domains 결과</em></span></p>
+</div>
 
 ### **4-4. Extrapolating over Dynamic Data**
 
+마지막 실험에서는 EERM이 dynamic graph에서도 좋은 성능을 보이는지 살펴 본 실험입니다. Dynamic graph 환경에서 특정시간의 그래프에서 학습을 진행하고 미래의 새로운 데이터를 다루는 성능을 평가하는 실험입니다. 
+
+그림 6의 왼쪽 그래프는 Dynamic Graph Snapshot을 다루는 능력을 실험하기 위한 것으로, 5/5/33 snapshot을 train/val/test로 분리했습니다. 보시다시피, EERM이 ERM에 비해 좋은 성능을 보이는 것을 확인할 수 있습니다. 다만, T7 이후에 두 방법론 모두 성능이 매우 하락하는데 이는 실제 T7 시점에 dark market이 shutdown 되었기 때문이며, 이런 갑작스러운 event는 외부요인에 의한 것으로 제한된 training 데이터를 통해 예측하기 어렵습니다.
+그림 6의 오른쪽 그래프는 시간에 따라 증가하는 새로운 노드들을 다루는 능력을 실험하기 위한 것으로, 2011년 이전까지의 그래프를 training으로 하고, 2011년 부터 2014년 사이를 validation으로 하고, 2014-2016/2016-2018/2018-2020을 각각 test 데이터로 실험하였습니다. 이 세팅에서서 또한 EERM이 ERM에 비해 우수한 성능을 보임을 확인할 수 있습니다.
+
+
+<p align="center">
+  <img src="../../.gitbook/2022-spring-assets/yunhak2/figure5&table3.png">
+</p>
+<div style="text-align:center;">
+<p><span style="color:grey; font-size:75%";><em>그림 6 - Extrapolating over Dynamic Data 결과</em></span></p>
+</div>
+
 ## **5. Conclusion**
 
+본 논문은 그래프 구조 데이터의 node-level task에서 OOD 문제를 해결하고 했습니다. 기존의 OOD 문제를 node-level task에 맞게 변형하고, variance를 활용한 목적함수로 기존의 접근법이 가지고 있는 한계점을 개선하여, 다양한 distribution shift 상황에서 좋은 성능을 보이는 모델을 제안하였습니다. 
 
+**Takeaway**
 
-**Contribution**
-
-
+Feature 중에서 environment에 영향을 받지 않고 어떤 상황에서든 downstream classifier에 대해 동일한 (최적의) 성능을 내는 invariant feature를 찾는 과정이 신선했습니다. 또한 Distribution shift를 다양한 관점에서 정의해 자신들의 모델의 우수성을 보여준 것도 매우 흥미로웠습니다.
 
 **Limitation**
+
+다만, 실제로 모든 상황에서 invariant property를 가지는지 의문이 들었습니다. 실제로 Openreview에서도 리뷰가 지적했듯이 invariant property를 도출하는 Assumption 1이 현실적인 가정인지 좀 더 확인해 볼 필요가 있을 것 같습니다.
+또한, Baseline을 일반적인 ERM만 가지고 실험한 것도 아쉬운 부분입니다. 비슷한 문제를 다루는 다른 방법론들과 같이 비교했으면 더 좋은 실험이 되지 않았을까 싶습니다.
 
 
 ***
@@ -186,22 +315,4 @@ $$\begin{equation}y_v=\frac{1}{|N_v|}\sum_{u \in N_v}{x_u^{(1)} + n_{v}^{(1)}}, 
 
 <a name="fn3">3</a>: Mingming Gong, Kun Zhang, Tongliang Liu, Dacheng Tao, Clark Glymour, and Bernhard Schölkopf. Domain adaptation with conditional transferable components. In International Conference on Machine Learning (ICML), pp. 2839–2848, 2016.
 
-<a name="fn4">4</a>: 
-
-<a name="fn5">5</a>: 
-
-<a name="fn6">6</a>: 
-
-<a name="fn7">7</a>: 
-
-<a name="fn8">8</a>: 
-
-<a name="fn9">9</a>: 
-
-<a name="fn10">10</a>: 
-
-<a name="fn11">11</a>: 
-
-<a name="fn12">12</a>: 
-
-<a name="fn13">13</a>: 
+<a name="fn4">4</a>: J. McAuley, C. Targett, Q. Shi, and A. Van Den Hengel. Image-based recommendations on styles and substitutes. In SIGIR, 2015.
