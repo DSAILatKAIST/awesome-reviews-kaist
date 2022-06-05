@@ -77,19 +77,19 @@ Transferring Robustness for Graph Neural Network Against Poisoning Attacks
 $$
 \alpha^l_{ij}=\frac{\text{exp}(a^l_{ij})}{\sum_{k\in \mathcal{N}_i}\text{exp}(a^l_{ik})}
 $$
-* $\alpha_{ij}^l$ 은 $l$ 번째 GNN layer 에서의 node $i, j$ 간의 normalized attention weight 이고, 이 값은 다음 식으로 계산할 수 있습니다
+* ![](https://latex.codecogs.com/svg.image?\alpha_{ij}^l) 은 ![](https://latex.codecogs.com/svg.image?l) 번째 GNN layer 에서의 node ![](https://latex.codecogs.com/svg.image?i), ![](https://latex.codecogs.com/svg.image?j) 간의 normalized attention weight 이고, 이 값은 다음 식으로 계산할 수 있습니다
 $$
 a_{ij}^l= \text{LeakyReLU}((\mathbf{a}^l)^\top[\mathbf{W^l h^l_i} \bigoplus \mathbf{W^l h^l_j}])
 $$
 
-* $\mathbf{a}^l$ 와 $\mathbf{W^l}^l$ 은 parameter 이고, $\top$ 은 transpose, $\bigoplus$ 는 vector의 concatenation 입니다.
-* $v_i$ 를 예로 들면, $a_{ij}^l$ 은 node $i$ 의 neighbors $j\in \mathcal{N}_i$ 에 대한 값들입니다.
+* ![](https://latex.codecogs.com/svg.image?\mathbf{a}^l) 와 ![](https://latex.codecogs.com/svg.image?\mathbf{W^l}^l) 은 parameter 이고, ![](https://latex.codecogs.com/svg.image?\top) 은 transpose, ![](https://latex.codecogs.com/svg.image?\bigoplus) 는 vector의 concatenation 입니다.
+* node ![](https://latex.codecogs.com/svg.image?i) 를 예로 들면, ![](https://latex.codecogs.com/svg.image?a_{ij}^l) 은 node ![](https://latex.codecogs.com/svg.image?i) 의 neighbors ![](https://latex.codecogs.com/svg.image?j\in \mathcal{N}_i) 에 대한 값들입니다.
 
 $$
 \mathbf{h}_i^{l+1}=\sigma( \sum_{j \in \mathcal{N}_j} \alpha_{ij}^l \mathbf{W}^l \mathbf{h}_j^l )
 $$
 
-* node embedding $\mathbf{h}_i^{l+1}$ 는 $l+1$ 번째 layer 에서의 node $i$ 의 embedding 이고, $l$ 번째 layer 에서의 attention weight 를 이용해 aggregation 된 값이 됩니다.
+* node embedding ![](https://latex.codecogs.com/svg.image?\mathbf{h}_i^{l+1})  는 ![](https://latex.codecogs.com/svg.image?l+1) 번째 layer 에서의 node ![](https://latex.codecogs.com/svg.image?i) 의 embedding 이고, ![](https://latex.codecogs.com/svg.image?l) 번째 layer 에서의 attention weight 를 이용해 aggregation 된 값이 됩니다.
 * 다시 요약해보면, 우리는 각 layer 에서 node pair 들의 attention weight 를 구할 수 있고, 그 weight 를 이용하여 node embedding 을 구할 수 있습니다.
 * 우리의 목표는 perturbed edge 에게 attention weight 가 매우 작게 assign 되는 것입니다. 하지만 문제는 이미 poison 된 graph 에서는 어떤 edge 가 perturbed edge 인지 알 수 없다는 점입니다. 
 
@@ -156,10 +156,10 @@ $$
 
 * 이제 다시 PA-GNN 으로 돌아와서 다음과 같은 방식으로 MAML 을 적용합니다
 * M 개의 같은 domain 의 clean graph 와 perturbed edge 가 있고, 이에 대해 specific 한 task (여기서는 모두 node classification task)가 있습니다. 이에 대한 loss 를 $\mathcal{L}_{\mathcal{T}_i}$ 라 정의하고 Penalized Aggregation section 에서 정의한 loss function 을 사용합니다.
-* 각 task 에 대해서 support node 를 사용하여 loss $\mathcal{L}_{\mathcal{T}_i}$ 를 구하고, single gradient descent updated parameter $\theta'_i$ 를 구합니다. 이 과정에서 parameter $\theta$ 는 아직 update 되지 않습니다.
-* 위 과정을 모든 task 에 대해 거치고 나서, query node 에 대해서 $\theta'_i$ 를 활용하여 loss 를 구하고 모든 task 에 대한 loss 의 합이 줄어드는 방향으로 parameter $\theta$ 를 update 합니다. 
+* 각 task 에 대해서 support node 를 사용하여 loss ![](https://latex.codecogs.com/svg.image?\mathcal{L}_{\mathcal{T}_i})  를 구하고, single gradient descent updated parameter ![](https://latex.codecogs.com/svg.image?\theta'_i)  를 구합니다. 이 과정에서 parameter ![](https://latex.codecogs.com/svg.image?\theta)  는 아직 update 되지 않습니다.
+* 위 과정을 모든 task 에 대해 거치고 나서, query node 에 대해서 ![](https://latex.codecogs.com/svg.image?\theta'_i)  를 활용하여 loss 를 구하고 모든 task 에 대한 loss 의 합이 줄어드는 방향으로 parameter ![](https://latex.codecogs.com/svg.image?\theta) 를 update 합니다. 
 * 이렇게 해서, 다양한 clean graph 로부터 perturbed edge 를 구별해내는 공통적인 "internal parameter" 를 학습하게 됩니다.
-* 이렇게 meta model 의 학습이 완료되면, $\theta$ 를 가지고 우리가 target 하는 poisoned graph $\mathcal{G}$ 에 대해 cross entropy loss 로 fine tuning 합니다. meta model 은 이미 true edge 와 attacked edge 를 구별하면서 classification 을 잘할 수 있게 하는 지식을 가지고 있는 상태기 때문에 poisoned graph 에도 쉽게 fine tuning 할 수 있습니다.
+* 이렇게 meta model 의 학습이 완료되면, ![](https://latex.codecogs.com/svg.image?\theta) 를 가지고 우리가 target 하는 poisoned graph ![](https://latex.codecogs.com/svg.image?\mathcal{G})  에 대해 cross entropy loss 로 fine tuning 합니다. meta model 은 이미 true edge 와 attacked edge 를 구별하면서 classification 을 잘할 수 있게 하는 지식을 가지고 있는 상태기 때문에 poisoned graph 에도 쉽게 fine tuning 할 수 있습니다.
 * 자세한 알고리즘은 아래 그림을 참고하시면 됩니다.
 
 <p align='center'><img width="700" src="./yeonjunin2/fig8.png"></p> 
