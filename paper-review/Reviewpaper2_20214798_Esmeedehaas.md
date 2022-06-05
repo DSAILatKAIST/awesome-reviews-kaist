@@ -60,7 +60,7 @@ to \pre-edit" an input image in the frequency domain (producing values that serv
 the necessary DCT coefficients) while the recurrent decoder learns to reduce artifacts
 in the reconstructed image.
 
-| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding1.png"> |
+| <img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig123.png"> |
 |:--:| 
 | *Figure 1, proposed method.* |
 
@@ -68,10 +68,12 @@ in the reconstructed image.
 ### **JPEG algorithm & architecture**
 
 Standard JPEG algorithm:
-<img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding6.png">
+
+<img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig1.png">
 
 Standard JPEG architexture:
-<img src="/.gitbook/2022-spring-assets/Esmeedehaas1/Afbeelding6.png">
+
+<img src="/.gitbook/2022-spring-assets/Esmeedehaas1/fig2.png">
 
 Modifications:
 * Recurrent neural networks (RNN):
