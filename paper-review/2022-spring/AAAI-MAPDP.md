@@ -54,17 +54,16 @@ Reward : 모든 agent는 누적 거리의 합을 최소화시키는 공통의 �
 
 MAPDP 모델은 paired context embedding → context encoder → cooperated decoder로 구성이 되어있는데 아래 그림이 그 구조에 대해 보여주고 있고, 이제부터 각각의 구조에 대해서 알아보겠습니다. 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a604f851-6ad4-49ac-9791-2e7922a796ce/Untitled.png)
+- ![](../../.gitbook/2022-spring-assets/jiwooson2/2.png)
 
 ### paired context embedding
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6374abfd-53d1-4330-bdf9-77dd752aff62/Untitled.png)
-
+- ![](../../.gitbook/2022-spring-assets/jiwooson2/3.png)
 paired context embedding은 위의 식에서 알 수 있듯이 각 embedding된 pickup node와 delivery node에 대해 pickup node가 delivery node에 대한 정보를 가지고 있을 수 있도록 concat 후 다시 linear layer를 통해 embedding하는 과정이다.
 
 ### context encoding(transformer encoding)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3a462475-e3bc-4345-acea-2a11da43159d/Untitled.png)
+- ![](../../.gitbook/2022-spring-assets/jiwooson2/4.png)
 
 context encoding은 transformer의 encoding구조를 따르는 multi attention layer, skip-connection layer, feed-forward layer, batch normalization layer로 구성되어있다. 이를 통해 pickup node, delivery node간의 관계에 대한 representation이 가능하도록 합니다.
 
@@ -74,7 +73,7 @@ Cooperative Multi-agent Decoder
 
 각 agent들의 update된 state들을 저장하는 layer입니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4f13c545-2691-448d-aaae-4534bd5627a0/Untitled.png)
+- ![](../../.gitbook/2022-spring-assets/jiwooson2/5.png)
 
 또한 $h_{k,(c)}^t$가 나타내는 것은 agent가 decision making을 하는데 global representation, agent의 현 state, t시점의 모든 agent들의 상태($Comm^t$)를 사용한다는 것입니다.
 
@@ -82,12 +81,12 @@ $h_{k,(c)}^t = [ \bar h;h_{I_k^t};C_k^t;Comm^t]$
 
 아래를 통해 $h_{k,(c)}^t$가  single query vector로 사용되며 attention과 softmax를 통해 나온 분포가 policy의 분포가 됩니다. 이때  모든 unfeasible한 노드의 compatibility를 -inf로 하는 Masking을 해주어 feasible한 solution을 만들도록 합니다. 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/33e4107c-770e-4a68-bf5b-9d720fa89226/Untitled.png)
+- ![](../../.gitbook/2022-spring-assets/jiwooson2/6.png)
 
 마지막으로 feasible한 solution을 낼 수 있도록 도와주는 보조적인 fleet Handler의 역할은 만약 2개의 decoder가 있다고 가정을 했을 때(agent가 2) 같은 decision(같은 노드)를 선택할 때, 하나의 노드만 action(target node change)하고 다른 노드는 그대로 유지합니다.
 
 ### A2C
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b6d11d80-7132-4dc7-b100-4b7caad8d33e/Untitled.png)
+- ![](../../.gitbook/2022-spring-assets/jiwooson2/7.png)
 agent수 만큼의 decoder가 있을텐데, decoder만큼의 policy network가 존재하며 critic network는 모두가 공유하도록 Actor-Critic 구조를 이용하고, Policy, Critic network에 대한 loss를 계산하여 학습을 합니다.
 
 ## **4. Experiment**  
@@ -110,19 +109,19 @@ agent수 만큼의 decoder가 있을텐데, decoder만큼의 policy network가 �
 
 (1) MAPDP의 Performance
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bf6b24e4-cdce-4fab-8efb-7f496131ff42/Untitled.png)
+- ![](../../.gitbook/2022-spring-assets/jiwooson2/8.png)
 
 위 결과는 각 다른 scale 마다의 결과는 MAPDP가 Cost(모든 vehicle이 움직인 거리)와 Time(해를 찾아내는 속도)측면 모두 성능이 가장 좋았다는 결과를 보여줍니다. 
 
 (2) Dataset에 따른 vehicle간의 balance
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4935178a-e543-47f2-b2e1-e7d495ca9010/Untitled.png)
+- ![](../../.gitbook/2022-spring-assets/jiwooson2/9.png)
 
 위에서 이미 설명했던 fleet handler를 통해 action이 미뤄진 횟수를 각 vehicle마다 측정을 하고 이를 전체 step으로 나눈 비율(haltingtimes / T)을 위 그래프에서 노란색 막대그래프로 표현된 halt ratio입니다. halt ratio가 큰 vehicle일 수록 적은 거리를 움직인 것을 확인할 수 있습니다. 또한 Random으로 generate된 Dataset이나 Real-World Dataset를 비교해보면 Real dataset에서 vehicle간의 balance가 잘 맞지않는 것을 확인할 수 있는데 이는 실제 pickup, delivery 노드의 위치의 불균형에 의해 발생한 것이라고 위 논문에서는 말하고 있습니다.
 
 (3) Ablation study
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/102716bf-569b-437d-8e0c-d80c468b169f/Untitled.png)
+- ![](../../.gitbook/2022-spring-assets/jiwooson2/10.png)
 
 MAPDP-SP, MAPDP-NC는 각각 agent가 모든 decoder를 공유하고 있는 모델, communicate embedding구조가 없는 모델인데 위 결과를 보면 MAPDP의 두 구조 모두 성능에 있어 기여하고 있다는 것을 확인할 수 있습니다.
 ### **Result**  
