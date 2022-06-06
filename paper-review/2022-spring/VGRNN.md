@@ -12,21 +12,15 @@ is widely used in social networks, citation networks and financial transaction n
 
 More precise, we consider a dynamic graph 
 
-```latex
-\mathcal{G} = \{G^{(1)}, \cdots, G^{(T)}\}, G^{(t)} = (\mathcal{V}^{(t)}, \mathcal{E}^{(t)})
-```
+$$\mathcal{G} = \{G^{(1)}, \cdots, G^{(T)}\}, G^{(t)} = (\mathcal{V}^{(t)}, \mathcal{E}^{(t)})$$
 
-<img src="VGRNN/eq1.png" width = 50% alt="Wrong Loading" align=center />
+where $$V^{(t)}$$ and $$E^{(t)}$$ corresponds node and edge set at time $$t$$. In particular, the cardinality of node and edge can change across time. So, we will have a **variable-length node attribute sequence** and a **variable-length adjacency matrix sequence** from the graph
 
-where `V^{(t)}` and `E^{(t)}` corresponds node and edge set at time `t`. In particular, the cardinality of node and edge can change across time. So, we will have a **variable-length node attribute sequence** and a **variable-length adjacency matrix sequence** from the graph
-
-```latex
+$$
 \mathcal{A} = \{\mathbf{A}^{(1)}, \cdots, \mathbf{A}^{(T)}\}, \mathcal{X} = \{\mathbf{X}^{(1)}, \cdots, \mathbf{X}^{(T)}\}
-```
+$$
 
-<img src="VGRNN/eq2.png" width = 55% alt="Wrong Loading" align=center />
-
-We aim to develop a model that is *universally compatible* with potential changes in both node and edge sets along time, i.e. predict future `A^{(t)}` and `X^{(t)}` status. 
+We aim to develop a model that is *universally compatible* with potential changes in both node and edge sets along time, i.e. predict future $$A^{(t)}$$ and $$X^{(t)}$$ status. 
 
 ## **2. Motivation**  
 
@@ -52,64 +46,54 @@ Let's follow the original paper's introduction process: 4 steps intotal, step by
 
 If you are familar with *maximum likelihood estimation* (**MLE**), it would be quite easy for you to understand this step. If not, don't worry, let's start by declear the notations, which will be used during all the rest steps. 
 
-- `h`: hidden state of node from *recurrent neural networks* (**RNN**);
-- `Z`: hidden features of node, follows normal distribution; 
-- `A`: adjacency matrix;
-- `X`: node attributes;
+- $$h$$: hidden state of node from *recurrent neural networks* (**RNN**);
+- $$Z$$: hidden features of node, follows normal distribution; 
+- $$A$$: adjacency matrix;
+- $$X$$: node attributes;
 
-So the first step would be only use previous time step's *h* to generate a prior hidden feature. What we do is 
+So the first step would be only use previous time step's $$h$$ to generate a prior hidden feature. What we do is 
 
-```latex
+$$
 \mathbf{Z}_i^{(t)}\sim \mathcal{N}(\mu_{i,\mathrm{prior}}^{(t)}, \mathrm{diag}((\sigma_{i, \mathrm{prior}}^{(t)})^2)), \{\mu_{\mathrm{prior}}^{(t)}, \sigma_{\mathrm{prior}}^{(t)}\}=\phi^{\mathrm{prior}}(\mathbf{h}_{t-1})
-```
+$$
 
-<img src="VGRNN/eq3.png" width = 70% alt="Wrong Loading" align=center /> 
-
-Here the `\phi` can be any flexible functions/neural networks. Now we based on previous hidden status get a prior gaussian simulation to this step's hidden featrues. 
+Here the $$\phi$$ can be any flexible functions/neural networks. Now we based on previous hidden status get a prior gaussian simulation to this step's hidden featrues. 
 
 ### Step 2. Generation
 
 In this step, we will infer the new adjacency matrix based on our prior infer
 
-```latex
+$$
 \mathbf{A}^{(t)}|\mathbf{Z}^{(t)}\sim\mathrm{Bernoulli}(\pi^{(t)}), \pi^{(t)} = \phi^{\mathrm{dec}}(\mathbf{Z}^{(t)})
-```
+$$
 
-<img src="VGRNN/eq4.png" width = 50% alt="Wrong Loading" align=center />
-
-Here the `\phi` can also be any flexible functions/neural networks.
+Here the $$\phi$$ can also be any flexible functions/neural networks.
 
 ### Step 3. Recurrence
 
 We use the features get in Step 1 and Step 2 to update the RNN by the recurrent equation
 
-```latex
+$$
 \mathbf{h}_t=f(\mathbf{A}^{(t)}, \phi^{\mathbf{x}}(\mathbf{X}^{(t)}), \phi^{\mathbf{z}}(\mathbf{Z}^{(t)}), \mathbf{h}_{t-1})
-```
+$$
 
-<img src="VGRNN/eq5.png" width = 45% alt="Wrong Loading" align=center />
-
-Here the `f` is originally the recurrent neural network, `\phi^x` and `phi^z` are deep neural networks which operate on each node independently. 
+Here the $$f$$ is originally the recurrent neural network, $$\phi^x$$ and $$phi^z$$ are deep neural networks which operate on each node independently. 
 
 ### Step 4. Inference
 
 Now it's time for us to consider this time step's input, to get the posterior simulation. 
 
-```latex
+$$
 \mathbf{Z}_i^{(t)}\sim \mathcal{N}(\mu_{i,\mathrm{post}}^{(t)}, \mathrm{diag}((\sigma_{i, \mathrm{post}}^{(t)})^2)), \mu_{i,\mathrm{post}}^{(t)} = \mathrm{GNN}_{\mu}(\mathbf{A}^{(t)}, \phi^{\mathbf{x}}(\mathbf{X}^{(t)})||\mathbf{h}_{t-1}), \sigma_{i,\mathrm{post}}^{(t)} = \mathrm{GNN}_{\sigma}(\mathbf{A}^{(t)}, \phi^{\mathbf{x}}(\mathbf{X}^{(t)})||\mathbf{h}_{t-1})
-```
-
-<img src="VGRNN/eq6.png" width = 100% alt="Wrong Loading" align=center />
+$$
 
 Here two GNNs are applied, which are encoder functions, can be any of various types of graph neural networks, such as *GCN*, *CGN* with *Chebyshev filter*, or *GraphSAGE*. 
 
 Till now we get all prior predictions and post predictions, then let's construct the loss function of this model. Follow MLE's framework, we can drive the loss function as following
 
-```latex
+$$
 \mathcal{L} = \sum_{t=1}^T\{\mathbb{E}_{\mathbf{Z}^{(t)}\sim q\{\mathbf{Z}^{(t)}|\mathbf{A}^{(\leq t)}, \mathbf{X}^{(\leq t)}, \mathbf{Z}^{(< t)}\}}\mathrm{log}\ p(\mathbf{A}^{(t)}|\mathbf{Z}^{(t)}-\mathbf{\mathrm{KL}}(q(\mathbf{Z}^{(t)}|\mathbf{A}^{(\leq t)}, \mathbf{X}^{(\leq t)}, \mathbf{Z}^{(<t)}) ||  p(\mathbf{Z}^{(t)}|\mathbf{A}^{(< t)}, \mathbf{X}^{(< t)}, \mathbf{Z}^{(<t)}) )\}
-```
-
-<img src="VGRNN/eq7.png" width = 100% alt="Wrong Loading" align=center />
+$$
 
 The first part is the **representation loss**, and the second part is the **prior-post distribution loss**.
 
@@ -162,8 +146,6 @@ Here I pick several key points from each experiment.
 - VGRNN improve new link prediction more substantially which shows that they can capture temporal trends better than the competing methods;
 - The prediction results are almost **the same** for all datasets. The reason is that although the posterior is more flexible in SI-VGRNN, the **prior** on which our predictions are based, is still **Gaussian**, hence the improvement is marginal.
 
-
-
 <img src="VGRNN/fig7.png" width = 80% alt="Wrong Loading" align=center />
 
 This figure shows the temporal evolution of density and clustering coefficients of COLAB, Enron, and Facebook datasets.
@@ -183,24 +165,8 @@ I have the following opinions about this paper:
 ---
 ## **Author Information**  
 
-* Ehsan Hajiramezanali
-    * Department of Electrical and Computer Engineering, Texas A&M University;
-    * Research Topic: Machine Learning, Deep Learning, Bayesian Statistics, Graph Neural Networks, Computational Biology;
-* Arman Hasanzadeh
-    * Department of Electrical and Computer Engineering, Texas A&M University;
-    * Research Topic: Graph Signal Processing, Graph Neural Networks, Representation Learning, Bayesian Inference;
-* Nick Duffield
-    * Department of Electrical and Computer Engineering, Texas A&M University;
-    * Research Topic: Network Measurement, Sampling, Network Tomography, Online Social Networks, Big Data Analysis;
-* Krishna Narayanan
-    * Department of Electrical and Computer Engineering, Texas A&M University;
-    * Research Topic: Coding theory, Information theory, Data Science, Wireless Communications;
-* Mingyuan Zhou
-    * McCombs School of Business, The University of Texas at Austin;
-    * Research Topic: Machine Learning, Bayesian Statistics, Deep Learning, Discrete Data Analysis;
-* Xiaoning Qian
-    * Department of Electrical and Computer Engineering, Texas A&M University;
-    * Research Topic: Computational Network Biology, Genomic Signal Processing, Biomedical Image Analysis.
+* Name: Chuanbo Hua
+* Affiliation: KAIST ISysE SILab
 
 ## **6. Reference & Additional materials**  
 

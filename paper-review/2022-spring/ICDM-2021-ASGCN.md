@@ -1,6 +1,6 @@
 ---
 description: >-
-  1st author / AS-GCN - Adoptive Semantic Architecture of Graph Convolutional
+  Zhizhi Yu / AS-GCN - Adoptive Semantic Architecture of Graph Convolutional
   Networks for Text-Rich Networks / 2021 IEEE International Conference on Data
   Mining (ICDM)
 ---
@@ -67,14 +67,14 @@ Topic representation 을 계산
 
 NTM 에서 얻은 분포를 바탕으로 추출한 단어를 기반으로 그래프를 생성합니다. 그래프는 문서, 토픽, 엔티티(단어) 의 3가지 노드로 구성됩니다. 이 노드들은 총 4가지의 엣지로 연결되는데 다음과 같습니다.
 
-* 문서간의 citation 엣지 $E\_D$
-* 문서와 토픽간의 엣지 $E\_{DT}$
-* 토픽과 엔티티간의 엣지 $E\_{TM}$
-* 엔티티 노드간의 연결 정보 $E\_M$
+* 문서간의 citation 엣지 $$E\_D$$
+* 문서와 토픽간의 엣지 $$E\_{DT}$$
+* 토픽과 엔티티간의 엣지 $$E\_{TM}$$
+* 엔티티 노드간의 연결 정보 $$E\_M$$
 
 엔티티 노드간의 엣지는 단어 간의 엣지로 볼 수 있는데 저자는 ‘local word sequence semantics’라고 표현 하고 있습니다. sliding window를 활용하여 단어의 시퀀스를 추출하고 PMI를 적용하여 단어들간의 관계정도를 수치로 변환합니다. PMI에 대한 자세한 설명은 아래 링크를 확인하시길 바랍니다. [https://en.wikipedia.org/wiki/Pointwise\_mutual\_information](https://en.wikipedia.org/wiki/Pointwise\_mutual\_information)
 
-global topic 구조정보는 $E\_{TD}, E\_{TM}$ 엣지를 통해 표현됩니다. 이 엣지들은 NTM으로부터 얻은 토픽 분포를 기반으로 생성됩니다.
+global topic 구조정보는 $$E\_{TD}, E\_{TM}$$ 엣지를 통해 표현됩니다. 이 엣지들은 NTM으로부터 얻은 토픽 분포를 기반으로 생성됩니다.
 
 \
 
@@ -152,7 +152,7 @@ NTM 모듈의 Loss 계산
 
 실험은 주로 doument citation dataset 으로 진행되었습니다. 추가로 e-commerce의 제품 검색 테스크에서 해당 모델에 대한 실험이 진행되었습니다.
 
-![스크린샷 2022-03-04\_오후\_2.20.01.png](handonghee\_1/스크린샷_2022-03-04\_오후\_2.20.01.png)
+![스크린샷 2022-03-04\_오후\_2.20.01.png](handonghee\_1/스크린샷\_2022-03-04\_오후\_2.20.01.png)
 
 1. Cora-Enrich\
    인용 네트워크 데이터셋인 Cora 데이터셋의 텍스트가 풍부한 버전입니다. 논문의 제목, 초록 등 모든 텍스트정보를 포함하고 학술 주제에 따라 7가지 범주로 분류됩니다.
@@ -242,9 +242,9 @@ GCN에서 그래프를 생성하는 부분에 VAE기반의 언어모델을 활�
 
 ## **Author Information**
 
-* Zhizhi Yu
-  * College of Intelligence and Computing, Tianjin University, Tianjin, China
-  * GNN, GCN, Deep Learning
+* Han, Donghee
+  * Knowledge Service Engineering, KAIST, Daejeon, Korea
+  * GNN, Recsys, Deeplearning
 
 ## **6. Reference & Additional materials**
 

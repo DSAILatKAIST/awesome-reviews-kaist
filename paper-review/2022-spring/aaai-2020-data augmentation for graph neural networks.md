@@ -1,5 +1,5 @@
 ---
-Zhao Tong, et al./ Data Augmentation for Graph Neural Networks / AAAI-2020
+description : Zhao Tong, et al./ Data Augmentation for Graph Neural Networks / AAAI-2020
 ---
 
 # **Data Augmentation for Graph Neural Networks** 
@@ -25,9 +25,9 @@ Graph 구조에서의 Data Augmentation의 가장 적합한 방법은 Node를 �
 
 따라서 Node와 Node를 연결하는 Edge를 추가 및 제거하는 방법이 Graph Data Augmentation을 위한 가장 좋은 선택이라고 할 수 있습니다. 이때 어떠한 Edge를 선택하느냐는 또 다른 과제가 될 수 있습니다. 이를 위한 기존의 연구들은 다음과 같습니다.
 
-- **DROPEDGE(Rong et al. 2019)**는 각 학습 epoch 이전에 Graph의 Edge를 랜덤하게 제거하는 방식으로 test-time 추론에 의의를 가지고 있으나, Edge를 추가하는 방안에서는 큰 영향을 얻지 못함
-- **ADAEDGE(Chen et al. 2019)**는 Graph의 Data Augmentation에 대해서 동일한 Label이라고 높은 신뢰도를 가지고 분류되는 두 노드 사이에 반복적으로 EDGE를 추가하는 방식임. 그러나 이 방식은 오류를 전파시키기 쉽고, 학습 데이터의 크기에 영향을 받음
-- **BGCN(Zhang et al. 2019b)**는 여러 개의 노이즈가 제거된 Graph를 생성하는 GCN 기반 stochastic block model을 반복적으로 훈련시키고, 이러한 GCN 결과들을 앙상블하는 방식임. 그러나 이 역시 오류 전파의 위험성을 가지고 있음
+- **DROPEDGE(Rong et al. 2019)** 는 각 학습 epoch 이전에 Graph의 Edge를 랜덤하게 제거하는 방식으로 test-time 추론에 의의를 가지고 있으나, Edge를 추가하는 방안에서는 큰 영향을 얻지 못함
+- **ADAEDGE(Chen et al. 2019)** 는 Graph의 Data Augmentation에 대해서 동일한 Label이라고 높은 신뢰도를 가지고 분류되는 두 노드 사이에 반복적으로 EDGE를 추가하는 방식임. 그러나 이 방식은 오류를 전파시키기 쉽고, 학습 데이터의 크기에 영향을 받음
+- **BGCN(Zhang et al. 2019b)** 는 여러 개의 노이즈가 제거된 Graph를 생성하는 GCN 기반 stochastic block model을 반복적으로 훈련시키고, 이러한 GCN 결과들을 앙상블하는 방식임. 그러나 이 역시 오류 전파의 위험성을 가지고 있음
 
 위 논문에서 제시한 핵심적인 idea는 같은 분류를 가지고 있는 Node Structure를 효과적으로 인코드하기 위해 intra-class(분류가 같은 노드 관계)의 edge들은 늘리고, inter-class(분류가 다른 노드 관계)의 edge들은 줄인다는 것입니다. 이는 직관적으로 same-class Node들끼리 임베딩되는 것을 장려하고 other-class Node에 대한 임베딩을 차별화하여 구분을 확실히 하는 효과를 가집니다.
 
@@ -53,17 +53,9 @@ Graph 구조에서의 Data Augmentation의 가장 적합한 방법은 Node를 �
 
 ### Modified and Original Graph Settings for Graph Data Augmentation
 
-Method에 앞서 Graph Modification의 기본 원리로 CV에서 사용되는 이미지 Data Augmentation 방법을 사용하는데요, 두가지 프로세스를 거친다고 볼 수 있습니다.
+Method에 앞서 Graph Modification의 기본 원리로 CV에서 사용되는 이미지 Data Augmentation 방법을 사용하는데요, 두가지 프로세스를 거친다고 볼 수 있습니다.464567
 
-1) Applying a transformation S to T 
-   $$
-   f : S → T
-   $$
-
-2. Utilizing S with T for model training
-   $$
-   S\cup T
-   $$
+<a href='https://ifh.cc/v-Aq8amp' target='_blank'><img src='https://ifh.cc/g/Aq8amp.png' border='0'></a>
 
 이를 통해 CV에서의 Data Augmentation과 마찬가지로 기본으로 주어진 데이터를 변환시키고, 원본 데이터와 변환된 데이터를 합쳐 모두 학습에 이용할 수 있게 되었습니다. 이와 같은 세팅을 거친 후에 그래프 데이터의 및 변환 함수 설정을 기준으로 다음과 같은 두 가지 방법으로 나누어서 학습을 진행할 수 있습니다.
 
@@ -78,10 +70,10 @@ Method에 앞서 Graph Modification의 기본 원리로 CV에서 사용되는 �
 
 먼저 Modified-Graph Setting의 경우, Edge predictor fuction을 통해 원본 그래프 ![](https://latex.codecogs.com/svg.image?G)에 있는 모든 Edge가 예측 확률을 구할 수 있습니다. 이를 기반으로 새로운(기존의) Edge를 추가(제거)하여 수정된 그래프 ![](https://latex.codecogs.com/svg.image?G_m)을 만들고 이를 GNN node-classifier의 인풋 값으로 사용할 수 있습니다.
 
-Edge predictor는 **![](https://latex.codecogs.com/svg.image?f_{ep}&space;:&space;A,&space;X&space;\to&space;&space;M) **와 같은 식으로 정의할 수 있는데요, input 그래프 데이터인 ![](https://latex.codecogs.com/svg.image?A)와 ![](https://latex.codecogs.com/svg.image?X)를  통해 각 Edge의 probability Matrix ![](https://latex.codecogs.com/svg.image?M)을 나타냅니다.  이때 ![](https://latex.codecogs.com/svg.image?M)의 각 원소 ![](https://latex.codecogs.com/svg.image?M_{u,v})는 Edge u와 v의 예측 확률을 나타냅니다. 수식은 아래와 같습니다.
-$$
-M=\sigma (ZZ^{T}))\;where\;Z=f^{(1)}_{GCL}(A,f^{(0)}_{GCL}(A,X)
-$$
+Edge predictor는 ![](https://latex.codecogs.com/svg.image?f_{ep}&space;:&space;A,&space;X&space;\to&space;&space;M) 와 같은 식으로 정의할 수 있는데요, input 그래프 데이터인 ![](https://latex.codecogs.com/svg.image?A)와 ![](https://latex.codecogs.com/svg.image?X)를  통해 각 Edge의 probability Matrix ![](https://latex.codecogs.com/svg.image?M)을 나타냅니다.  이때 ![](https://latex.codecogs.com/svg.image?M)의 각 원소 ![](https://latex.codecogs.com/svg.image?M_{u,v})는 Edge u와 v의 예측 확률을 나타냅니다. 수식은 아래와 같습니다.
+
+<a href='https://ifh.cc/v-YlrznO' target='_blank'><img src='https://ifh.cc/g/YlrznO.png' border='0'></a>
+
 위 수식에서 Edge probability를 계산할 때 Graph Auto-Encoder(GAE) 방법을 사용하게 되는데요, 해당 GAE는 two layer GCN 인코더와 한 개의 inner-product 디코더로 이루어져 있습니다. 이는 수식에서 간단히 확인할 수 있으며 GCL은 Graph Convolution Layer를 나타내어 ![](https://latex.codecogs.com/svg.image?Z)를 표현하는 인코더로 작용합니다.
 
 <a href='https://ifh.cc/v-kCW9sH' target='_blank'><img src='https://ifh.cc/g/kCW9sH.png' border='0'></a>
@@ -103,16 +95,15 @@ Original-Graph Setting 방식은 다음의 세 가지 구성요소로 이루어�
 첫 번째 구성요소인 Edge predictor는 GAUG-M과 마찬가지로 GAE 방법을 사용하여 연산을 진행할 수 있습니다. 
 
 두 번째 구성요소인 보간 및 샘플링 step은 Edge predictor가 원본 그래프 인근에서 벗어나는 것을 방지하기 위해서 예측된 변형 그래프 ![](https://latex.codecogs.com/svg.image?M)과 원본 그래프 ![](https://latex.codecogs.com/svg.image?A)를 ![](https://latex.codecogs.com/svg.image?\alpha&space;)와 ![](https://latex.codecogs.com/svg.image?1-\alpha&space;)로 combination 하여 인접행렬 ![](https://latex.codecogs.com/svg.image?P)를 만들고,  ![](https://latex.codecogs.com/svg.image?P)에 대한 비선형 함수로 새로운 인접행렬 ![](https://latex.codecogs.com/svg.image?A')을 생성합니다. 이를 식으로 표현하면 아래와 같습니다.
-$$
-A'_{ij}=[\frac{1}{1+e^{-(logP_{ij}+G)/r}}+\frac{1}{2}]
-\\where\quad P_{ij}=\alpha M_{ij} + (1-\alpha)A_{ij}
-$$
+
+<a href='https://ifh.cc/v-4oGtkh' target='_blank'><img src='https://ifh.cc/g/4oGtkh.png' border='0'></a>
+
 여기서의 ![](https://latex.codecogs.com/svg.image?r)는 Gumble-Softmax 분포의 파라미터이고, ![](https://latex.codecogs.com/svg.image?\alpha&space;)는 원본 그래프의 영향도를 추정할 수 있는 하이퍼파라미터 입니다.
 
 마지막 구성요소인 GNN에는 위를 통해 얻은 인접행렬 ![](https://latex.codecogs.com/svg.image?A')가 통과하여 Node를 분류할 수 있도록 합니다. 이 때 역전파 알고리즘을 이용하여 Node-classification의 loss ![](https://latex.codecogs.com/svg.image?L_{nc})와 Edge-prediction의 loss ![](https://latex.codecogs.com/svg.image?L_{ep})을 구할 수 있으며, 이를 종합한 loss ![](https://latex.codecogs.com/svg.image?L) 역시 사용할 수 있습니다. 해당 식은 아래와 같습니다.
-$$
-L = L_{nc} + \beta L_{ep},\\where \; L_{nc} = CE(\check{y},y)\\and \; L_{ep}= BCE(\sigma (f_{ep}(A,X)),A)
-$$
+
+<a href='https://ifh.cc/v-yqZSX0' target='_blank'><img src='https://ifh.cc/g/yqZSX0.png' border='0'></a>
+
 위 식에서의 ![](https://latex.codecogs.com/svg.image?\beta&space;)는 reconstruction(재건) loss에 할당된 하이퍼파라미터이고, ![](https://latex.codecogs.com/svg.image?\sigma)는 기본 시그모이드 함수이며, ![](https://latex.codecogs.com/svg.image?y,\check{y})는 실제 Node class label 및 예측 확률을 표현합니다. 마지막으로 ![](https://latex.codecogs.com/svg.image?BCE/CE)는 표준(이진) cross-entropy loss를 의미합니다. 
 
 위 구성요소들을 바탕으로 GAUG-O를 단계적으로 표현하면 다음 그림과 같습니다.
