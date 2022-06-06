@@ -58,3 +58,4 @@ layout: landing
 * [\[ICML 19\] How does Disagreement Help Generalization against Label Corruption?](../2022-spring/ICML-2019-Coteaching+.md)
 * [\[WSDM 20\] Transferring Robustness for Graph Neural Network Against Poisoning Attacks](../2022-spring/WSDM20-PA-GNN.md)
 * [\[ICLR 22\] PF-GNN- Differentiable particle filtering based approximation of universal graph representations](../2022-spring/iclr-2022-pfgnn.md)
+* [\[CHI 19\] Continuous Alertness Assessments; Using EOG Glasses to Unobtrusively Monitor Fatigue Levels In-The-Wild](../2022-spring/chi-2019-caa.md)
