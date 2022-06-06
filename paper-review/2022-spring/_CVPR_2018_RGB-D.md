@@ -56,7 +56,7 @@ description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single 
 
 위의 식에서 보이듯이, 목적  함수(_E_)는  4개의  항으로  되어  있고  제곱  오차의  가중치  합으로  정의된다.
 
->![](https://latex.codecogs.com/gif.latex?N): Surface normal image,
+>![](https://latex.codecogs.com/svg.image?y__{t:t'}): Surface normal image,
 >
 >![](https://latex.codecogs.com/gif.latex?B): Occlusion boundary image ,
 >
