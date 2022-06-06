@@ -40,4 +40,5 @@ layout: landing
 * [\[ICML 21\] Slot Machines- Discovering Winning Combinations of Random Weights in Neural Networks](../2022-spring/ICML-2021-SlotMachines.md)
 * [\[ICML 20\] Time Series Deconfounder: Estimating Treatment Effects over Time in the Presence of Hidden Confounders](../2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
 * [\[NeurIPS 19\] Varitional Graph Recurrent Neural Network](../2022-spring/VGRNN.md)
+* [\[ICLR 20\] Mixup Inference Better Exploiting Mixup to Defend Adversarial Attacks](../2022-spring/ICLR-2020-Mixup-Inference.md)
 

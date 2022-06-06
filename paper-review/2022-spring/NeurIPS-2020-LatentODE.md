@@ -18,7 +18,7 @@ description: >-
 
 ## **2. Motivation**
 
-> 기존 시계열 데이터를 다루는 `RNN`은 **irregurlarly-sampled time series data**를 잘 fitting하지 못한다!
+> 기존 `Continual learning` 방법들은 Image같은 grid domain에만 집중하고, Graph같은 non-grid domain은 간과했다!
 
 `RNN`은 regularly-sampled time series data에 대해 좋은 성능을 보이나, data의 time-gap이 불규칙적인 경우 좋은 성능을 내지 못합니다.
 
