@@ -6,9 +6,7 @@ description: >-
 
 # Sequential GCN for AL
 
-Sequential Graph Convolutional Network for Active Learning\
-\
-
+Sequential Graph Convolutional Network for Active Learning
 
 ## **1. Problem Definition**
 
@@ -16,9 +14,6 @@ Sequential Graph Convolutional Network for Active Learning\
 
 * GCN의 **message-passing** 특성을 활용하여 강하게 연결된 노드를 비슷하게 embedding한다.
 * 그 후 _CorSet_, _uncertainty-based methods_ 등의 active learning 방법론을 적용하여 sampling할 data를 선정하고, 이를 통해 **labeling cost를 효과적으로 줄인다**.
-
-\
-
 
 ## **2. Motivation**
 
@@ -41,10 +36,6 @@ Sequential Graph Convolutional Network for Active Learning\
   하지만 이 연구들은 labeled와 unlabeled images 간의 연관성을 탐색하는 mechanism이 부족하다는 단점이 존재한다.
 
 본 논문에서는 task-agnostic하면서 (learner와 sampler가 구분된 model-based AL method이기 때문) labeled, unlabeled 간의 연관성을 표현하지 못한다는 VAAL, Learning Loss의 문제점을 GCN을 적용하여 해결한다.
-
-\
-\
-
 
 ## **3. Method**
 
@@ -116,7 +107,7 @@ Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최�
 
 > 1. Graph Structure 구성
 >
-> > Graph는 node와 edge로 구성되며, node ![](https://latex.codecogs.com/gif.latex?v%20%5Cin%20%5Cmathbb%20R%5E%7B%28m%5Ctimes%20N%29%7D) 는 ![](https://latex.codecogs.com/gif.latex?)개의 data (labeled, unlabeled 모두 포함)와 각각의 ![](https://latex.codecogs.com/gif.latex?m) dimension feature로 표현된다. Edge는 adjacency matrix ![](https://latex.codecogs.com/gif.latex?A)로 표현이 가능하다. Edge는 node간의 similarity를 나타내야하므로 다음과 같은 과정을 거쳐 adjacency matrix를 구성한다.
+> > Graph는 node와 edge로 구성되며, node ![](https://latex.codecogs.com/gif.latex?v%20%5Cin%20%5Cmathbb%20R%5E%7B%28m%5Ctimes%20N%29%7D) 는 ![](https://latex.codecogs.com/gif.latex?N)개의 data (labeled, unlabeled 모두 포함)와 각각의 ![](https://latex.codecogs.com/gif.latex?m) dimension feature로 표현된다. Edge는 adjacency matrix ![](https://latex.codecogs.com/gif.latex?A)로 표현이 가능하다. Edge는 node간의 similarity를 나타내야하므로 다음과 같은 과정을 거쳐 adjacency matrix를 구성한다.
 > >
 > > 1. learner에서 넘어온 feature를 ![](https://latex.codecogs.com/gif.latex?l\_2) normalize한다.
 > > 2. ![](https://latex.codecogs.com/gif.latex?S\_%7Bij%7D%20%3D%20v\_i%5ETv\_j%2C%20%7Bi%2Cj%7D%20%5Cin%20N) (vector product를 통해 ![](https://latex.codecogs.com/gif.latex?S\_%7Bij%7D)를 생성)
@@ -203,20 +194,15 @@ Sampling method ![](https://latex.codecogs.com/gif.latex?A)를 이용하여 최�
 
     > * 10 classes
     > * 1000개의 seed labeled datas
-    > * budget : 1000 images\
-    >
+    > * budget : 1000 images\\
 
 ![dataset](https://user-images.githubusercontent.com/89853986/164958132-229d62cb-293f-4745-9202-c5625754a29a.PNG)
-
-\
-
 
 **4.1.2 Implementation details**
 
 * 모든 data에 대해 10번의 cycle만큼 실험 진행한다.
 * Selection을 모든 unlabeled pooled-dataset에 대해 하는 것이 아닌, randomly selected subset ![](https://latex.codecogs.com/gif.latex?D\_S%20%5Csubset%20D\_U) 에서 진행한다. 이는 dataset에서 중복되는 부분이 여러번 등장하는 것을 피하기 위함이다.
-* ![](https://latex.codecogs.com/gif.latex?D\_S)의 크기는 모든 실험에서 10000으로 설정한다.\
-
+* ![](https://latex.codecogs.com/gif.latex?D\_S)의 크기는 모든 실험에서 10000으로 설정한다.
 * _Learner_
   * ResNet-18을 classification model로 사용
 * _Sampler_
@@ -270,9 +256,6 @@ ResNet-18로 learner를 구성하여 전체 dataset을 사용하여 training을 
     > * 매 selection stage에서 training data의 10%를 ![](https://latex.codecogs.com/gif.latex?D\_S)로 설정
     > * 매 selection stage에서 100개의 unlabeled data를 select
 
-\
-
-
 **4.2.2 Implementation details**
 
 * _DeepPrior_ 를 learner로 사용
@@ -323,12 +306,12 @@ ResNet-18로 learner를 구성하여 전체 dataset을 사용하여 training을 
 
 ## **Author Information**
 
-* **Razvan Caramalau**
-  * Imperial College London
-  * Deep Learning, Avtive Learning, 3D Hand Pose Estimation, Graph Neural Network
+* **Seungyoon Choi**
+  * KAIST
+  * Deep Learning, Avtive Learning, Graph Neural Network
 
 ## **6. Reference & Additional materials**
 
 * Reference
-  * https://openaccess.thecvf.com/content/CVPR2021/html/Caramalau\_Sequential\_Graph\_Convolutional\_Network\_for\_Active\_Learning\_CVPR\_2021\_paper.html
+  * https://arxiv.org/abs/2006.10219
   * https://openaccess.thecvf.com/content/CVPR2021/supplemental/Caramalau\_Sequential\_Graph\_Convolutional\_CVPR\_2021\_supplemental.pdf

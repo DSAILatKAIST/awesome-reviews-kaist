@@ -1,8 +1,8 @@
+---
+description: Ramprasaath R. Selvaraju, Prithvijit et al./ Choose Your Neuron- Incorporating Domain Knowledge through Neuron-Importance / ECCV(2018)   
+---  
 
 # Choose Your Neuron: Incorporating Domain Knowledge through Neuron-Importance
-
- Ramprasaath R. Selvaraju, Prithvijit et al./ Choose Your Neuron: Incorporating Domain
-Knowledge through Neuron-Importance / ECCV(2018)     
 
 # 1. Problem Definition
 
@@ -19,7 +19,7 @@ neuron-level description을 zero-shot learning classifier에도 적용하기 위
 
 먼저, zero-shot learning이란 deep classifier가 학습 시 보지 못한 unseen class data를 분류하도록 하는 방법이며 massive labeled datasets 없이도 모델 학습의 일반화 성능을 개선할 수 있다는 점에서 주목받고 있다. 다양한 방법론(attribute-based, Text-based)이 존재하지만 unseen class data에 대한  network decision의 interpretability를 제공하기 위한 연구가 부족하며, 관련 연구가 필요함을 주장한다.
 
-저자는 external domain knowledge(text based or otherwise)를 neuron과의 직접 mapping을 통해 zero-shot learning과 동시에 interpretable explanation을 제공하는 방법론을 제안했다.
+저자는 external domain knowledge(text based or otherwise)를 neuron과의 직접 mapping을 통해 zero-shot learning과 동시에 interpretable explanation을 제공하는 방법론을 제시한다.
 
 
 ![fig0.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig0.png?raw=true)
@@ -70,7 +70,7 @@ Gradient-based Localization. ICCV (2017) 참고*
 
  ![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_\mathcal{S}(.))의 한 layer을 L이라 하고 seen classes instances을  ![](https://latex.codecogs.com/gif.latex?(x_i,y_i)\in\mathcal{D_s})이라 할때, ![](https://latex.codecogs.com/gif.latex?a_c=\{a^n_c|n\in{L}\})는 L layer로부터 계산된 class c에 대한 neuron importance vectors이다.
 
-Domain knowledge와 neuron importance vector를 linear mapping(transformation)하기 위해 먼저, importance vectors ![](https://latex.codecogs.com/gif.latex?a_{y_i})를 계산한 후 해당 class와 관련있는 domain knowledge(![](https://latex.codecogs.com/gif.latex?k_{y_i}))를 매칭한다(![](https://latex.codecogs.com/gif.latex?a_{y_i}),![](https://latex.codecogs.com/gif.latex?k_{y_i})). ![](https://latex.codecogs.com/gif.latex?W_{\mathcal{K}\rightarrowa})를 추정하기 위해 cosine distance를 이용하여 loss를 정의하고 gradient를 이용하여 이를 minimize한다. 
+Domain knowledge와 neuron importance vector를 linear mapping(transformation)하기 위해 먼저, importance vectors ![](https://latex.codecogs.com/gif.latex?a_{y_i})를 계산한 후 해당 class와 관련있는 domain knowledge(![](https://latex.codecogs.com/gif.latex?k_{y_i}))를 매칭한다(![](https://latex.codecogs.com/gif.latex?a_{y_i}),![](https://latex.codecogs.com/gif.latex?k_{y_i})). ![](https://latex.codecogs.com/svg.image?W_{\mathcal{K}\rightarrow&space;a})를 추정하기 위해 cosine distance를 이용하여 loss를 정의하고 gradient를 이용하여 이를 minimize한다. 
 
 ![fig2.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig2.png?raw=true)
 
@@ -79,11 +79,11 @@ Domain knowledge와 neuron importance vector를 linear mapping(transformation)�
 
 unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predicted importance를 사용한다.
 
-1. Seen class를 기반으로 학습한 network ![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_\mathcal{S})의 output space에 unseen class를 포함시키기 위해 마지막 fully connected layer에 unseen classes weight vectors ![](https://latex.codecogs.com/gif.latex?\mathrm{w}^1,...,\mathrm{w}^)을 추가하여 output scores를 ![](https://latex.codecogs.com/gif.latex?\{o_c|c\in\mathcal{U}\})로 확장시킨다(![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_{\mathcal{S}\cup\mathcal{U}})). 
+1. Seen class를 기반으로 학습한 network ![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_\mathcal{S})의 output space에 unseen class를 포함시키기 위해 마지막 fully connected layer에 unseen classes weight vectors ![](https://latex.codecogs.com/svg.image?\mathrm{w}^1,...,\mathrm{w}^u)을 추가하여 output scores를 ![](https://latex.codecogs.com/gif.latex?\{o_c|c\in\mathcal{U}\})로 확장시킨다(![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_{\mathcal{S}\cup\mathcal{U}})). 
     
     이때, unseen classes의 초기 weight vector은 multivariate normal distribution으로부터 랜덤하게 샘플링 한 것이며, 이로부터 도출된 output score은 uninformative한 상태이다.
     
-2. 3.3에서 도출한 ![](https://latex.codecogs.com/gif.latex?W_{\mathcal{K}\rightarrowa})과 unseen class domain knowledge ![](https://latex.codecogs.com/gif.latex?\mathcal{K}_\mathcal{U})을 바탕으로 unseen class importance ![](https://latex.codecogs.com/gif.latex?A_\mathcal{U}=\{a_1,...,a_u})를 예측한다. ![](https://latex.codecogs.com/gif.latex?a_c=W_{\mathcal{K}\rightarrowa}k_c)(unseen class c). 
+2. 3.3에서 도출한 ![](https://latex.codecogs.com/svg.image?W_{\mathcal{K}\rightarrow&space;a})과 unseen class domain knowledge ![](https://latex.codecogs.com/gif.latex?\mathcal{K}_\mathcal{U})을 바탕으로 unseen class importance ![](https://latex.codecogs.com/gif.latex?A_\mathcal{U}=\{a_1,...,a_u})를 예측한다. ![](https://latex.codecogs.com/svg.image?a_c=W_{\mathcal{K}\rightarrow&space;a}k_c)(unseen class c). 
 4. ![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_{\mathcal{S}\cup\mathcal{U}})으로 부터 unseen class c에 대한 importance vector을 계산하고 (![](https://latex.codecogs.com/gif.latex?\hat{a}^c))  weight parameter ![](https://latex.codecogs.com/gif.latex?w^c)를 gradient descent를 통해 optimize한다. (predicted importance vector(![](https://latex.codecogs.com/gif.latex?a_c)), observed importance vector(![](https://latex.codecogs.com/gif.latex?\hat{a}^c)) 사이의 cosine distance를 minimize)
 5. Cosine distance는 scale을 고려하지 않으며 regularization가 없으면 seen class weight나 unseen class weight 한쪽으로의 bias을 초래할 수 있다. 이러한 문제점을 해결하기 위해 unseen weight를 seen weight의 평균(![](https://latex.codecogs.com/gif.latex?\bar{\mathrm{w}}_\mathcal{S}))과 유사한 scale로 학습할 수 있도록 하는 L2 regualization term을 추가했다(![](https://latex.codecogs.com/gif.latex?\Lambda)는 regulization의 정도를 control).
 
@@ -190,7 +190,7 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
         
     - Textual Explanation
         
-        3.3에서 external domain knowledge(attribute or caption)과 neuron과의 mapping(![](https://latex.codecogs.com/gif.latex?W_{\mathcal{K}\rightarrowa}))을 학습했다. 이와 유사하게 neuron importance에서 attribute or caption과의 inverse mapping을 통해 모델의 decision에 있어서 text explannation을 제공할 수 있다 (inverse mapping(![](https://latex.codecogs.com/gif.latex?W_{a\rightarrow\mathcal{K}}))에서  ![](https://latex.codecogs.com/gif.latex?a_c) (unseen class neuron importance)가 주어졌을때 가장 높은 score의 ![](https://latex.codecogs.com/gif.latex?k_c)(attribute) 도출).
+        3.3에서 external domain knowledge(attribute or caption)과 neuron과의 mapping(![](https://latex.codecogs.com/svg.image?W_{\mathcal{K}\rightarrow&space;a}))을 학습했다. 이와 유사하게 neuron importance에서 attribute or caption과의 inverse mapping을 통해 모델의 decision에 있어서 text explannation을 제공할 수 있다 (inverse mapping(![](https://latex.codecogs.com/gif.latex?W_{a\rightarrow\mathcal{K}}))에서  ![](https://latex.codecogs.com/gif.latex?a_c) (unseen class neuron importance)가 주어졌을때 가장 높은 score의 ![](https://latex.codecogs.com/gif.latex?k_c)(attribute) 도출).
         
         ![fig6.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/LEESOL_1/fig6.png?raw=true)
 
@@ -211,7 +211,7 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
 - 이 솔 (LEE SOL)
     - Affiliation
         
-        KIAST, Industrial & System Engineering(Graduate School of Knowledge Service Engineering)
+        KAIST, Industrial & System Engineering(Graduate School of Knowledge Service Engineering)
         
     - Research Topic
         
