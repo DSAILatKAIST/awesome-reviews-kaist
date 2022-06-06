@@ -32,6 +32,7 @@
   * [NIWT](paper-review/2022-spring/ECCV-2018-NIWT.md)
   * [GRAND](paper-review/2022-spring/icml-2021-grand.md)
   * [GDE](paper-review/2022-spring/AAAI-2020-GDE.md)
+  * [MAD](paper-review/2022-spring/AAAI-2020-MAD.md)
   * [PAIRED](paper-review/2022-spring/neurips-2020-paired.md)
   * [XGradient](paper-review/2022-spring/NeurIPS-2021-XGradient.md)
   * [Review paper COIN](paper-review/2022-spring/Reviewpaper\_20214798\_Esmeedehaas.md)
