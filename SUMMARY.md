@@ -54,6 +54,7 @@
   * [Dual-stream Multiple Instance Learning Network for Whole Slide Image Classification with Self-supervised Contrastive Learning](paper-review/2022-spring/cvpr-2021-dsmil.md)
   * [GATv2](paper-review/2022-spring/ICLR-2022-GATv2.md)
   * [ER-GNN](aaai-2021-overcoming-catastrophic-forgetting-in-graph-neural-networks-with-experience-replay.md)
+  * [Coteaching+](paper-review/2022-spring/ICML-2019-Coteaching+.md)
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
