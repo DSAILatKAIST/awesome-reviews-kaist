@@ -1,5 +1,5 @@
 ---
-description : Jiachen Li / EvloveGraph: Multi-Agent Trajectory Prediction with Dynamic Relational Reasoning / NeurIPS-2020
+description : Jiachen Li / EvloveGraph- Multi-Agent Trajectory Prediction with Dynamic Relational Reasoning / NeurIPS-2020
 ---
 
 # EvolveGraph: Multi-Agent Trajectory Prediction with Dynamic Relational Reasoning
