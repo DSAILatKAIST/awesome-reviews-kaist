@@ -56,6 +56,7 @@
   * [ER-GNN](aaai-2021-overcoming-catastrophic-forgetting-in-graph-neural-networks-with-experience-replay.md)
   * [Coteaching+](paper-review/2022-spring/ICML-2019-Coteaching+.md)
   * [PA-GNN](paper-review/2022-spring/WSDM20-PA-GNN.md)
+  * [PFGNN](paper-review/2022-spring/iclr-2022-pfgnn.md)
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
