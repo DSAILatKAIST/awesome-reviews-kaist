@@ -7,14 +7,17 @@
 * [\[2022 Spring\] Paper Review](paper-review/2022-spring-paper-review/README.md)
   * [Template](paper-review/2022-spring/template.md)
   * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
+  * [CAA](paper-review/2022-spring/chi-2019-caa.md)
   * [DevNet](paper-review/2022-spring/SIGKDD-2019-DevNet.md)
   * [Latent ODEs](paper-review/2022-spring/NeurIPS-2020-LatentODE.md)
+  * [Overcoming Catastrophic Forgetting in Graph Neural Networks](paper-review/2022-spring/AAAI-2021-Overcoming-Catastrophic-Forgetting-in-Graph-Neural-Networks.md)
   * [G-Meta](paper-review/2022-spring/NeurIPS-2020-G-Meta.md)
   * [graph based 3d multi person pose estimation using multi view images](paper-review/2022-spring/iccv-2021-graph-based-3d-multi-person-pose-estimation-using-multi-view-images.md)
   * [FaceSight](paper-review/2022-spring/chi-2021-facesight.md)
   * [FNC](paper-review/2022-spring/WACV-2022-FNC.md)
   * [CITIES](paper-review/2022-spring/ICDM-2020-Cites.md)
   * [LILAC](paper-review/2022-spring/LILAC.md)
+  * [CaDM](paper-review/2022-spring/CaDM.md)
   * [Unsupervised Detection of Adversarial Examples with Model Explanations](paper-review/2022-spring/kdd-2021-unsupervised-detection-of-adversarial-examples-with-model-explanations.md)
   * [When Vision Transformers Outperform Resnets without Pre-training or Strong Data Augmentations](paper-review/2022-spring/iclr-2022-when\_vision\_transformer\_outperform\_resnets\_without\_pre-training\_or\_strong\_data\_augmentations.md)
   * [flan](paper-review/2022-spring/iclr-2022-flan.md)
@@ -42,7 +45,10 @@
   * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
   * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
   * [VGRNN](paper-review/2022-spring/VGRNN.md)
+  * [PGNN](paper-review/2022-spring/ICML-2019-PGNN.md)
+  * [When Does Contrastive Visual Representation Learning Work?](paper-review/2022-spring/CVPR-2022-When-Does-Contrastive-Visual-Representation-Learning-Work.md)  
   * [OCGAN](paper-review/2022-spring/CVPR-2019-OCGAN.md)
+  
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
