@@ -46,7 +46,8 @@
   * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
   * [VGRNN](paper-review/2022-spring/VGRNN.md)
   * [PGNN](paper-review/2022-spring/ICML-2019-PGNN.md)
-
+  * [When Does Contrastive Visual Representation Learning Work?](paper-review/2022-spring/CVPR-2022-When-Does-Contrastive-Visual-Representation-Learning-Work.md)  
+  
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
