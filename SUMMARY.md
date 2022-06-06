@@ -48,7 +48,9 @@
   * [PGNN](paper-review/2022-spring/ICML-2019-PGNN.md)
   * [When Does Contrastive Visual Representation Learning Work?](paper-review/2022-spring/CVPR-2022-When-Does-Contrastive-Visual-Representation-Learning-Work.md)  
   * [OCGAN](paper-review/2022-spring/CVPR-2019-OCGAN.md)
-  * [Points as queries: Weakly semi-supervised object detection by points](paper-review/2022-spring/cvpr-2021-points-as-queries-weakly-semi-supervised-object-detection-by-points.md)  
+  * [Points as queries: Weakly semi-supervised object detection by points](paper-review/2022-spring/cvpr-2021-points-as-queries-weakly-semi-supervised-object-detection-by-points.md) 
+  * [RSPO](paper-review/2022-spring/iclr-2022-rspo.md)  
+  
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
