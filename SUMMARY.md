@@ -60,7 +60,8 @@
   * [Tail-Net](paper-review/2022-spring/Recsys-2020-TailNet.md)
   * [Handling Distribution Shifts on Graphs: An Invariance Perspective](paper-review/2022-spring/iclr-2022-eerm.md)
   * [3D Molecule generative model for structure-based drug design](paper-review/2022-spring/neurips-2021-3d-molecule-generative-model-for-structure-based-drug-design.md)
-
+  * [DNNGP](paper-review/2022-spring/WWW-2020-Structural-Deep-Clustering-Network.md)
+  * 
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
