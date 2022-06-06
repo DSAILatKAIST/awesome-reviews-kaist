@@ -1,18 +1,29 @@
+## Description
+
+* Tete Xiao et al. / WHAT SHOULD NOT BE CONTRAST IN CONTRASTIVE LEARNING / ICLR 2021
+
 ---
-description: Tete Xiao et al. / WHAT SHOULD NOT BE CONTRAST IN CONTRASTIVE LEARNING / ICLR 2021
----
 
 
 
-##  1. Contrastive Learning
+##  1. Problem Definition
+
+본 논문에서는 Contrastive Learning 의 문제를 풀고자 합니다
+
+기존 Contrastive Learning 에서의 모든 Augmentation을 아무 의식 없이 적용할 때 나타난 문제를 찾아, 이를 해결하고자하는 것이 본 논문의 요지입니다
+
+
+#### Contrastive Learning
 
 우선 Contrastive Learning 이 무엇인지 간략히 소개하겠습니다
 
 Contrastive Learning 은 레이블 정보 없이 이미지의 임베딩을 학습하는 Self-supervised Learning의 하나로,
 
-하나의 이미지를 여러 Augmentation 으로 만들어 이들을 유사하게 (positive pair),  다른 이미지들가는 다르게, (negative pair)
+하나의 이미지를 여러 Augmentation 으로 만들어 이들을 유사하게 (positive pair),  다른 이미지들과는 다르게, (negative pair)
 
 하도록 학습하는 것 입니다.
+
+아래 그림을 보면 Contrastive Learning의 원리를 쉽게 이해할 수 있습니다
 
 
 ![1](/.gitbook/2022-spring-assets/KanghoonYoon_1/figure1.png) 
@@ -32,19 +43,18 @@ query Image를 기준으로 positive key 를 끌어당기고, negative key를 �
 
 
 
-
 ## 2. Motivation
 
-이제 본 논문의 제목 "What Should Not Be CONTRAST IN CONTRASTIVE LEARNING" 에 대해서 생각해 보겠습니다.
+이제 본 논문의 제목 *"What Should Not Be CONTRAST IN CONTRASTIVE LEARNING"* 에 대해서 생각해 보겠습니다.
 
 기존에는 어떠한 Positive Pair 든 당기고, 어떠한 Negative Pair를 멀도록 학습하였습니다.
 
 저자는, Augmentation + Contrastive Learning 이 Inductive Bias를 사람이 인위적으로 정한다고 합니다.
 
 
-*Inductive Bias*
+#### Inductive Bias
 
-Inductive Bias라 함은, 학습한 모델이 가지고 있는 특성 (Bias) 입니다.
+**Inductive Bias**라 함은, 학습한 모델이 가지고 있는 특성 (Bias) 입니다.
 
 예를들어, CNN 의 경우, 이미지를 Translation 해도 같은 결과가 나오도록 하는 "Translation Invariance" 한 Inductive Bias를
 
@@ -66,9 +76,9 @@ Contrastive Learning은 같은 이미지로 파생된 Augmentation은 모두 Pos
 e.g., Color Augmentation을 수행한다면, Color가 다른 모든 새들도 모양이 같다면, 같은 새로 학습할 것입니다 (Color Invariant)
 
 
-### Challenge
+#### Challenge
 
-하지만, Color (또는 다른 Augmentation)이 Fine-grained Classification을 위해서는, 필요한 정보일 수 있습니다.
+**하지만, Color (또는 다른 Augmentation)이 Fine-grained Classification을 위해서는, 필요한 정보일 수 있습니다.**
 
 예를들면, 거의 유사한 새의 형태여도, 색깔에 따라 다른 새인 경우가 많아 Color Invariance는 모델의 Generalization을 저해할 수 있습니다
 
@@ -76,19 +86,19 @@ e.g., Color Augmentation을 수행한다면, Color가 다른 모든 새들도 �
 
 
 
+#### Idea
 
+따라서 본 논문은 **"Augmentation에 따라 다른 Embedding Space를 만들자"** 라는 아이디어로 위 문제를 해결합니다
 
-### Idea
+제안된 모델은, 
 
-따라서 본 논문은 다음과 같은 아이디어로 위 문제를 해결합니다
+1) 기존의 SIMCLR와 같은 모델에서 사용하던 임베딩 공간과 같은 역할 수 있는  **General Embedding Space**
 
-**Augmentation에 따라 다른 Embedding Space를 만들자**
+2) 그 공간으로 부터 파생된, Augmentation별로 분리된 임베딩공간을 만들어,  **Projection Embedding Space**
 
-기존의 SIMCLR와 같은 모델에서 사용하던 임베딩 공간을 General Embedding Space로 학습하고,
+두 가지 공간을 모두 생성하고, 이를 통해 Augmentation을 수행해도 손실되던 정보 (Color Invariant) 를 줄이고자 합니다
 
-그 공간으로 부터 다른 Augmentation별로 분리된 임베딩공간을 만들어, Augmentation을 수행해도
-
-손실되던 정보 (Color Invariant) 를 줄이고자 합니다.
+즉, General Embedding Space만 사용해서 손실되던 기존의 정보들을 Projection Embedding Space를 통해 보완한 것입니다
 
 
 ## 3. Method
@@ -162,29 +172,56 @@ i번째 Project Head는 Augmentation i만 고정한채 나머지를 바꿨을 �
 실험에서는 Augmentation의 Inductive Bias에 대한 확인과, Fine-grained Representation을 인식하는지에 대해서 검증합니다
 
 
-### Inductive Bias of Augmentation
 
-이 실험에서는 Augmentation에 대해 민감한 Task를 수행하여, 제안된 임베딩이 Bias를 없앴는지 확인합니다
+### 실험1. Inductive Bias of Augmentation
 
-**Task A: Rotation degree를 맞추는 태스크. (Rotation에 민감)**
+이 실험에서는 Augmentation에 대해 민감한 Task를 수행하여, 제안된 임베딩이 Inductive Bias를 없앴는지 확인합니다
+
+#### Data
+
+**Training**: 100 category 를 사용한 Image Net 데이터에 (IN-100) 대하여 학습
+**Test**: IN-100 Validation Set
+
+#### Setup
+**Task A: Rotation degree (4-category)를 맞추는 태스크. (Rotation에 민감)**
 **Task B: 100-category Classification.**
 
 하나의 임베딩에 Linear Classifier를 각각 만들어 두가지 태스크를 수행하여 진행하며, 결과는 아래와 같습니다
 
-![5](/.gitbook/2022-spring-assets/KanghoonYoon_1/table1.png) 
+#### Metric
+Task A, Task B 모두 Classification이 얼마나 정확히 잘 되었는지에 대한 Accuracy를 측정합니다.
 
+
+
+
+#### Result
+
+![5](/.gitbook/2022-spring-assets/KanghoonYoon_1/table1.png) 
 
 Rotation augmentation을 수행하면, 성능이 떨어진 MoCo와는 달리,
 제안된 모델은 Rotation에 민감한 Task에서 더 잘 수행하며, 동시에 Classification 성능도 기존방법과 유사한 수준이기 때문에
 모든 Augmentation을 수행하고도 정보를 잘 담고 있는 표현을 배웠다고 할 수 있습니다.
 
-### Fine-grained Representation
+### 실험 2. Fine-grained Representation
 
-Table 2는 iNat-1k, CUB-200, Flowers-102 데이터를 통해 Transferability를 확인하였습니다.
+#### Data
+
+**Training**: 100 category 를 사용한 Image Net 데이터에 (IN-100) 대하여 학습
+**Test**:   1) The Naturalist 2019 (iNat-1k) Dataset, 2) CUB-200, 3) Flowers-102, 4) IN-100
+
+1): 1010 category를 가진 이미지 데이터셋
+2): 200종류의 새를 가진 이미지 데이터셋
+3): 102 종류의 꽃 category를 가진 데이터셋
+
+#### Setup
+**Task A: Rotation degree (4-category)를 맞추는 태스크. (Rotation에 민감)**
+**Task B: 100-category Classification.**
 
 
-같은 Color Augmentation만 수행해도, MoCO보다 LooC가 더 많은 정보를 보존하며,
-LooC는 다른 Augmentation을 함에 따라 계속해서 성능이 오르는 것 을 확인할 수 있습니다
+Table 2는 iNat-1k, CUB-200, Flowers-102 데이터를 통해 Transferability를 확인함과 동시에 좀더 Fine-grained Task를 잘 예측하는지 확인하였습니다.
+
+**같은 Color Augmentation만 수행해도, MoCO보다 LooC가 더 많은 정보를 보존하며,**
+**LooC는 다른 Augmentation을 함에 따라 계속해서 성능이 오르는 것 을 확인할 수 있습니다**
 
 
 

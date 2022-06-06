@@ -47,7 +47,10 @@ Equivariant 에 대한 정의는 다음과 같다.
 - 3번 그림의 그래프를 rotation transformation을 통해 얻은 결과는 4번 그림이 그래프가 된다.
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled.png) -->
-<img src=".gitbook/2022-spring-assets/KanghoonLee_1/image1.png">  
+<!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image1.png">   -->
+
+![1](/.gitbook/2022-spring-assets/KanghoonLee_1/image1.png)
+
 
 ### 2. Graph Neural Network (GNN)
 
@@ -56,10 +59,9 @@ Graph Neural Network는 Graph를 input으로 받아서 Graph를 output으로 내
 저자들은 graph convolutional layer를 다음과 같이 정의하였다.
 
 > Given a graph $$\mathcal{G}=(\mathcal{V},\mathcal{E})$$ with nodes $$v_i \in \mathcal{V}$$ and edges $$e_{ij} \in \mathcal{E}$$, we define a graph layer convolutional layer following notation from (Glimer et al., 2017) as:
-> $$\bold{m}_{ij}=\phi_e(\bold{h}_i^l,\bold{h}_j^l,a_{ij})$$
-> $$\bold{m}_i=\sum_{j\in \mathcal{N}(i)} \bold{m}_{ij}$$
-> $$\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$$
-> 
+- $$\bold{m}_{ij}=\phi_e(\bold{h}_i^l,\bold{h}_j^l,a_{ij})$$
+- $$\bold{m}_i=\sum_{j\in \mathcal{N}(i)} \bold{m}_{ij}$$
+- $$\bold{h}_i^{l+1}=\phi_h(\bold{h}_i^l,\bold{m}_i)$$
 
 각 element에 대한 설명은 다음과 같다.
 
@@ -75,7 +77,8 @@ Graph Neural Network는 Graph를 input으로 받아서 Graph를 output으로 내
 딥러닝을 더욱 발전시킨 방법들 중 많은 것들은 inductive bias와 관련이 깊다. 뉴럴넷에 inductive bias를 주는 대표적인 방법으로 ‘translation equivariance가 있는 CNN’ 그리고 ‘permutation equivariance가 있는 GNN’ 이 있다. 이를 잘 정리한 내용을 ‘Relational inductive biases, deep learning, and graph networks’ 라는 paper에서 가져와 보았다. 자세한 것은 해당 논문을 보면 좋을 것 같다.
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%201.png) -->
-<img src=".gitbook/2022-spring-assets/KanghoonLee_1/image2.png">  
+<!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image2.png">   -->
+![2](/.gitbook/2022-spring-assets/KanghoonLee_1/image2.png)
 
 문제의 이러한 특성을 이용해서 뉴럴넷을 디자인하는 것은 매우 효과적이다. 왜냐하면, 우리가 탐헌해야 할 함수를 매우 큰 범위에서 작은 범위로 축소시킬 수 있기 때문이다. (이에 대한 더 좋은 설명은 [https://youtu.be/VN2biLjqJXc?t=742](https://youtu.be/VN2biLjqJXc?t=742) 이 링크를 참조하면 좋을 것 같다.)
 
@@ -98,11 +101,11 @@ Graph Neural Network는 Graph를 input으로 받아서 Graph를 output으로 내
 
 이를 간단히, $$h^{l+1}, x^{l+1}=\text{EGCL}[h^l,x^l,\mathcal{E}]$$ 로 나타낼 수 있다. 이 과정은 다음과 같다. 
 
-> $$m_{ij}=\phi_e(h_i^l,h_j^l,||x_i^l-x_j^l||^2,a_{ij})$$
-$$x_i^{l+1}=x_i^l+C \sum_{j\neq i}(x_i^l-x_j^l)\phi_x(m_{ij})$$
-$$m_i=\sum_{j \neq i} m_{ij}$$
-$$h_i^{l+1}=\phi_h(h_i^l,m_i)$$
-> 
+- $$m_{ij}=\phi_e(h_i^l,h_j^l,||x_i^l-x_j^l||^2,a_{ij})$$
+- $$x_i^{l+1}=x_i^l+C \sum_{j\neq i}(x_i^l-x_j^l)\phi_x(m_{ij})$$
+- $$m_i=\sum_{j \neq i} m_{ij}$$
+- $$h_i^{l+1}=\phi_h(h_i^l,m_i)$$
+
 
 사실 기존의 GNN과 달라지는 부분은 첫 번째와 두 번째 수식밖에 없다. 오로지 이 과정을 통해서 위에서 언급한 2개의 equivariant한 성질을 얻어낼 수 있다고 이야기한다.
 
@@ -118,18 +121,17 @@ EGCL의 첫 번째 식을 살펴보면, 기존의 GNN과 비슷하게 각 node e
 
 증명 과정이 생각보다 간단하니 눈으로 봐도 쉽게 따라갈 수 있다. 간단히 이야기하면, translation 부분은 서로 소거되고, rotation 부분은 두개가 곱해져서 identity matrix가 되어서 사라지는 방식으로 증명이 이루어진다.
 
-> $$Qx^{l+1}+g,h^{l+1}=EGCL(Qx^l+g,h^l)$$
-
+- $$Qx^{l+1}+g,h^{l+1}=EGCL(Qx^l+g,h^l)$$
 , where $$g\in \mathbb{R}^n$$ is a translation vector and $$Q \in \mathbb{R}^{n\times n}$$ is a orthogonal matrix.
-> 
+ 
 
 ### Extending EGNNs for vector type representations
 
 이 subsection에서는 약간의 수정을 통해서 particle의 momentum을 explicit하게 계속 track할 수 있는 방법을 제안한다. 이 방법은 particle의 estimate velocity를 매 layer에서 얻는 것 뿐만 아니라, particle의 초기 속도를 매 layer에 제공할 수 있다는 장점이 있다고 한다. (equivariant property를 유지한 채 velocity information을 제공할 수 있다는 것이 핵심인 것 같다.) 다음과 같은 modification을 통해서 momentum 정보를 포함할 수 있다고 한다. ($$v^{\text{init}}=0$$인 경우는 일반적인 EGNN과 똑같은 것을 알 수 있다.)
 
-> $$v_i^{l+1}=\phi_v(h_i^l)v_i^{\text{init}}+C\sum_{j \neq i}(x_i^l-x_j^l)\phi_x(m_{ij})$$
-$$x_i^{l+1}=x_i^l+v_i^{l+1}$$
-> 
+- $$v_i^{l+1}=\phi_v(h_i^l)v_i^{\text{init}}+C\sum_{j \neq i}(x_i^l-x_j^l)\phi_x(m_{ij})$$
+- $$x_i^{l+1}=x_i^l+v_i^{l+1}$$
+
 
 ### Inferring the edge
 
@@ -146,7 +148,9 @@ message에 대한 부분은 애초에 equivariant property를 생각하지 않�
 
 ## **4. Experiment**  
 
-### Modeling a dynamical system - N-body system
+Modeling a dynamical system - N-body system
+
+### Experiment setup
 
 [ 실험 설명 ]
 
@@ -162,24 +166,42 @@ message에 대한 부분은 애초에 equivariant property를 생각하지 않�
 - (input) $$p^{(0)}=\{p_1^{(0)},...,p_5^{(0)}\}$$, particle position
 - (input) $$v^{(0)}=\{v_1^{(0)},...,v_5^{(0)}\}$$, initial velocity
 - (input) $$c=\{c_1,...,c_5\}$$, charge
-- Mean squared error를 통해서 optimize
 
-[ 결과 ]
+
+[ Baselines ]
+
+- Linear Model : t시간 뒤의 위치를, 현재 위치와 속도를 단순 계산해서 예측 ($$p^t=p^0+v^0t$$)
+- SE(3) Transformer : GNN + equivariant 인 기존 방법론
+- Tensor Field Network : GNN + equivariant 인 기존 방법론
+- Radial Field : GNN + equivariant 인 기존 방법론
+- Graph Neural Network : 기본적인 GNN
+- EGNN : 제안된 모델
+
+[ Metric ]
+
+- Mean squared error : 예측값과 실제값의 MSE
+- Forward time : input을 이용해서 output을 얻어내는데까지 걸린 시간
+
+### Results
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%202.png) -->
-<img src=".gitbook/2022-spring-assets/KanghoonLee_1/image3.png">  
+<!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image3.png">   -->
+![3](/.gitbook/2022-spring-assets/KanghoonLee_1/image3.png)
 - 기존 모델들 중 가장 좋은 성능을 보임.
 - Forward time도 매우 작은 것을 확인할 수 있었음.
 
 저자들은 여기서 training sample의 수에 따른 실험도 하였다. inductive bias를 가한 network의 특징은 해당 bias가 유효한 문제에 대해서 빠르게 generalize된다는 점이다. 즉, 적은 데이터로도 잘 학습될 수 있을것이란 결과가 예상된다. 하지만 그것 말고도 재미있는 점이 있는데, 다음의 그래프를 보면 알 수 있다.
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%203.png) -->
-<img src=".gitbook/2022-spring-assets/KanghoonLee_1/image4.png">  
+<!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image4.png">   -->
+![4](/.gitbook/2022-spring-assets/KanghoonLee_1/image4.png)
+
+
 E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기서 제안한 모델인 EGNN 세가지 모델을 학습 데이터 수에 대한 MSE를 나타낸 그래프이다. 예상과 비슷하게, EGNN과 Radial Field는 적은 데이터 샘플로도 잘 generalize하는 것을 보였다. 하지만, Radial Field의 경우 EGNN과 다르게 많은 데이터가 주어졌음에도 성능이 더욱 개선되지 않는 점을 보였다. EGNN과 GNN은 학습 데이터가 많아짐에 따라서 성능 개선이 이루어지는 것을 확인할 수 있었다.
 
 저자들은 이를, Radial Field 방법이 너무 모델에 대한 bias가 크기 때문에, 데이터 안에서 미세하게 변하는 부분을 학습하기 힘들다고 주장한다. 즉 정리하면, EGNN은 E(n) 의 high bias를 취하면서 동시에 일반적인 GNN이 갖고 있는 flexibility도 가지고 있다고 주장한다.
 
-### Graph Autoencoder
+<!-- ### Graph Autoencoder
 
 [ 실험 설명 ]
 
@@ -197,12 +219,15 @@ E(n)-equivariant한 Radial Field 방법과, 일반적인 GNN, 그리고 여기�
     - 그래프 사이즈는 7개~ 16개의 노드
 - 5000 training set, 500 validation set, 500 testing set.
 
+
+
 [ 결과 ]
 
 <!-- ![Untitled](E(n)%20Equivariant%20Graph%20Neural%20Networks%202887f247cf004d9584e18f81cac4ca0e/Untitled%204.png) -->
-<img src=".gitbook/2022-spring-assets/KanghoonLee_1/image5.png">  
+<!-- <img src=".gitbook/2022-spring-assets/KanghoonLee_1/image5.png">   -->
+<!-- ![5](/.gitbook/2022-spring-assets/KanghoonLee_1/image5.png)
 - EGNN이 두개의 데이터셋 모두에서 가장 좋은 성능을 보였다.
-- 위에서 언급한대로 noise를 추가한 noise-GNN은 GNN보다 좋은 성능을 보였다.
+- 위에서 언급한대로 noise를 추가한 noise-GNN은 GNN보다 좋은 성능을 보였다. -->
 
 ## **5. Conclusion**  
 
@@ -222,16 +247,11 @@ Supervised learning이나 Reinforcement learning에서 네트워크를 잘 gener
 
 ## **Author Information**  
 
-- **Victor Garcia Satorras**
-    - Affiliation: University of Amsterdam, Netherlands.
-    - Research Topics: AI, ML, Deep learning, Statistics
-- **Emiel Hoogeboom**
-    - Affiliation: University of Amsterdam, Netherlands.
-    - Research Topics: Generative Modelling, Bayesian Inference, Artificial Intelligence
-- **Max Welling**
-    - Affiliation: University of Amsterdam, Netherlands.
-    - Research Topics: ML, AI, Statistics
-    - [https://scholar.google.com/citations?user=8200InoAAAAJ&hl=en](https://scholar.google.com/citations?user=8200InoAAAAJ&hl=en)
+- **Kanghoon Lee**
+    - Affiliation: KAIST, Industrial & Systems Engineering Department Ph.D candidates at SILAB.
+    - Research Topics: Reinforcement Learning, Multi-Agent Reinforcement Learninig.
+    - Contacts: leehoon@kaist.ac.kr
+
     
 
 ## **6. Reference & Additional materials**  
