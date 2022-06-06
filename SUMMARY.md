@@ -50,6 +50,7 @@
   * [OCGAN](paper-review/2022-spring/CVPR-2019-OCGAN.md)
   * [Points as queries: Weakly semi-supervised object detection by points](paper-review/2022-spring/cvpr-2021-points-as-queries-weakly-semi-supervised-object-detection-by-points.md) 
   * [RSPO](paper-review/2022-spring/iclr-2022-rspo.md)  
+  * [PUP(Price-aware User Preference-modeling)](paper-review/2022-spring/icde-2020-pup.md)
   
 ## How to contribute
 
