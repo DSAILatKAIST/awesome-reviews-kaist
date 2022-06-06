@@ -1,5 +1,5 @@
 ---
-description : Liangye Chen et al. / Points as Queries: Weakly Semi-supervised Object Detection by Points / CVPR-2021
+description : Liangye Chen et al. / Points as Queries- Weakly Semi-supervised Object Detection by Points / CVPR-2021
 ---
 
 # Points as Queries: Weakly Semi-supervised Object Detection by Points
