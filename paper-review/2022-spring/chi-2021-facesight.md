@@ -320,3 +320,4 @@ segmentation 알고리즘의 경우 35ms, CNN 분류의 경우 13ms의 계산효
   * 논문 원문 : [FaceSight](https://doi.org/10.1145/3411764.3445484)
   * [Accuracy, Recall, Precision, and F1Score](https://eunsukimme.github.io/ml/2019/10/21/Accuracy-Recall-Precision-F1-score/)
   * AR안경 기반의 다양한 제스처 상호작용 연구들 : [Itchy Nose](https://doi.org/10.1145/3123021.3123060), [CheekInput](https://doi.org/10.1145/3139131.3139146), [FaceRubbing](https://doi.org/10.1145/3174910.3174924), [PrivateTalk](https://doi.org/10.1145/3332165.3347950), [EarBuddy](https://doi.org/10.1145/3313831.3376836)
+ 
