@@ -161,17 +161,9 @@ latent variable를 off-policy환경에서 어떻게 학습할 수 있는지 좋�
 ---  
 ## **Author Information**  
 
-* Annie Xie
-    * Affiliation: third-year PhD student in CS at Stanford University
+* Haewon Jung
+    * Affiliation: second-year master student in IE at KAIST
     * Research Topic: reinforcement learning, meta-learning, latent representation
-
-* James Harrison
-    * Affiliation:  Ph.D. candidate in the Autonomous Systems Lab
-    * Research Topic:  few-shot, incremental, and adaptive learning algorithms, model-based and model-free reinforcement learning, and safe learning control
-
-* Chelsea Finn
-    * Affiliation: Assistant Professor in Computer Science and Electrical Engineering at Stanford University
-    * Research Topic: intelligence through robotic interaction at scale
 
 ## **6. Reference & Additional materials**  
 
