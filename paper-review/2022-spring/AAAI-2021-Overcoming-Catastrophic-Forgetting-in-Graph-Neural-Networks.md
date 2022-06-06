@@ -6,17 +6,16 @@ description: >-
 
 # Overcoming Catastrophic Forgetting in Graph Neural Networks
 
-\
+  
 
 ## **1. Problem Definition**
 
-\
+  
 
 > ### **과거의 정보를 유지**하면서 계속해서 들어오는 **새로운 정보를 학습**한다
 
 본 논문은 Graph domain에서 **Catastrophic Forgetting**을 최대한 방지하는 `Continual learning` 모델을 제시합니다. 
 
-\
 
 > ### `Continual learning`이란?
 
@@ -32,17 +31,16 @@ description: >-
 
 그리고 Task가 진행됨에 따라 이전 Task에서 학습했던 node들에 대한 예측 성능이 낮아지는 것을 볼 수 있습니다. 예를 들어 Task 1에서 파란 node들은 95%의 예측성능을 보였지만, Task 2에서는 55%로 줄었고, Task 2에서 보라색 node들은 94%의 성능을 보인 반면 Task 3에서는 56%에 불과합니다. 이렇게 Task가 진행됨에 따라 앞서 학습했던 정보를 잊는 것을 **Catastrophic Forgetting**이라고 합니다.
 
-\
 
 _**저자들은 Catastrophic Forgetting을 최대한 줄이는 `Graph Continual Learning` 모델을 제시하고자 합니다.**_
 
-\
-
-\
+  
+   
+   
 
 ## **2. Motivation**
 
-\
+  
 
 > ### Non-grid domain에서의 `Continual learning`
 
@@ -52,7 +50,7 @@ _**저자들은 Catastrophic Forgetting을 최대한 줄이는 `Graph Continual 
 
 이 모듈을 제시함으로써 parameter를 update할 때 **node-level learning** 뿐 아니라 **node 사이의 propagation**까지 고려할 수 있게 되는 것입니다. 
 
-\
+  
 
 > ### Computation & memory cost!
 
@@ -61,13 +59,12 @@ _**저자들은 Catastrophic Forgetting을 최대한 줄이는 `Graph Continual 
 반면에, 저자들은 이전 task를 학습하는데 **중요했던 parameter들을 최대한 보존**하고, **중요하지 않은 parameter들을 이후 학습에 최대한 활용**하는 방식으로 computation & memory cost를 줄이려고 합니다.
 
 
-\
-
-\
+  
+  
 
 ## **3. Method**
 
-\
+  
 
 > ### **Preliminaries**: `GNN`
 
@@ -93,7 +90,7 @@ $$e_{ij}^{(l)} = S_{j \subset \mathcal{N}(i)}a(h_{i}^{(l-1)}W^{(l)},h_{j}^{(l-1)
 
 `GAT`에 관해 자세한 부분은 [원 논문](https://arxiv.org/abs/1710.10903)을 참고하시기 바랍니다. 
 
-\
+  
 
 > ### Problem Formulation
 
@@ -101,7 +98,7 @@ $$e_{ij}^{(l)} = S_{j \subset \mathcal{N}(i)}a(h_{i}^{(l-1)}W^{(l)},h_{j}^{(l-1)
 
 각 task $$\mathcal{T_{k}}$$는 training node set $$\mathcal{V_{k}^{tr}}$$과 testing node set$$\mathcal{V_{k}^{te}}$$으로 구성되어 있고, 이들 각각은 feature sets $$X_{k}^{tr}$$, $$X_{k}^{te}$$를 포함하고 있습니다. 각 task의 label은 겹치지 않습니다. (다른 task에는 다른 class의 node들이 학습된다는 의미입니다.)
 
-\
+  
 
 > ### Topology-aware Weight Preserving
 
@@ -109,9 +106,11 @@ $$e_{ij}^{(l)} = S_{j \subset \mathcal{N}(i)}a(h_{i}^{(l-1)}W^{(l)},h_{j}^{(l-1)
 
 TWP 모듈은 두가지 서브 모듈로 구성됩니다. 첫 번째는 minimized loss preserving 모듈이고, 두 번째는 topological structure preserving 모듈입니다.
 
+  
+
 **1. Minimized Loss Preserving**
 
-Task $$\mathcal{T_{k}}$$를 학습한 뒤에, 모델은 해당 task에서 loss를 최소화하는 optimal parameter $$W_{k}^{\*}$$ 를 가지고 있습니다. 
+Task $$\mathcal{T_{k}}$$를 학습한 뒤에, 모델은 해당 task에서 loss를 최소화하는 optimal parameter $$W_{k}^{*}$$ 를 가지고 있습니다. 
 
 Parameter가 아주 조금($$\Delta W = \lbrace \Delta w_m \rbrace$$) 변할 때, loss의 변화량은 다음과 같이 나타낼 수 있습니다.
 
@@ -124,6 +123,8 @@ $$\mathcal{L}(X_{k}^{(tr)};W+\Delta W)-\mathcal{L}(X_{k}^{tr};W) \approx \sum_{m
 Parameter $$w_{m}$$의 중요도는 $$f_{m}$$의 크기로 나타내며, $$\mathcal{T_{k}}$$에서의 전체 파라미터 $$W$$의 중요도는 $$I_{k}^{loss} = [\lVert f_m(X_{k}^{tr}) \rVert]$$ 로 나타냅니다. 
 
 이는 전체 파라미터의 loss preserving importance score를 포함하는 matrix가 되는 것입니다.
+
+  
 
 
 **2. Topological Structure Preserving**
@@ -152,7 +153,8 @@ Parameter $$w_{m}$$의 중요도는 $$g_{m}$$의 크기로 나타내며, $$\math
 
 여기서 $$\lambda_{l}$$ 와 $$\lambda_{t}$$는 hyperparameter로, 어떤 score를 중점적으로 고려할지 사용자가 정할 수 있습니다.
 
-\
+
+  
 
 > ### `Continual Learning` on `GNN`
 
@@ -162,17 +164,18 @@ Parameter $$w_{m}$$의 중요도는 $$g_{m}$$의 크기로 나타내며, $$\math
 
 이는 다음과 같은 loss function을 정의해서 이루어집니다.
 
-$$\mathcal{L_{k+1}^{'}}(W) = \mathcal{L_{k+1}^{new}}(W) + \sum_{n=1}^k I_n \otimes (W-W_n^{(\*)})^2$$
+$$\mathcal{L_{k+1}^{'}}(W) = \mathcal{L_{k+1}^{new}}(W) + \sum_{n=1}^k I_n \otimes (W-W_n^{(*)})^2$$
 
 이 때, $$\otimes$$는 element-wise multiplication입니다. 
 
-$$\mathcal{L_{k+1}^{new}}(W)$$는 새로운 task의 loss function이고, $$I_n$$은 old task의 parameter importance matrix입니다. $$W_n^{(\*)}$$는 $$\mathcal{T_n}$$의 optimal parameter입니다. 
+$$\mathcal{L_{k+1}^{new}}(W)$$는 새로운 task의 loss function이고, $$I_n$$은 old task의 parameter importance matrix입니다. $$W_n^{(*)}$$는 $$\mathcal{T_n}$$의 optimal parameter입니다. 
 
 위 loss function을 해석해보면, 이전 task들에서 importance score가 높았던 parameter가 새로운 task에서 많이 바뀌게 될 경우 penalty를 받는 형식입니다. 
 
 이를 통해 모델은 이전 task들에서 importance score가 높았던 parameter를 최대한 보존하면서 새로운 task를 학습하게 됩니다.
 
-\
+  
+  
 
 > ### Promoting Minimized Importance Scores
 
@@ -186,7 +189,7 @@ $$\mathcal{L_{k+1}}(W) = \mathcal{L_{k+1}^{'}}(W)+ \beta \lVert I_{k+1} \rVert_1
 
 $$\beta$$가 높아지면 미래의 task를 위해 더 많은 learning capacity를 보존하겠다는 의미가 됩니다.
 
-\
+  
 
 > ### Extension to General GNNs
 
@@ -200,7 +203,7 @@ $$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{T}tanh(h_j^{(l-1)}W^{(l)})$$
 
 위 식을 통해서 `TWP` 모듈을 구성하면, `GAT`뿐 아니라 임의의 `GNN`모델에 이 방법론을 적용할 수 있습니다.
 
-\
+  
 
 지금까지의 설명을 바탕으로, 이 논문에서 제시한 방법론의 전체적인 개요는 다음 그림과 같습니다.
 
@@ -208,14 +211,14 @@ $$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{T}tanh(h_j^{(l-1)}W^{(l)})$$
 ![Overview of the proposed method](https://user-images.githubusercontent.com/99710438/170720633-9cf611e6-fc8b-47ff-a46b-c268ebf7fb96.png)
 
 
-\
+  
 
-\
+  
 
 
 ## **4. Experiment**
 
-\
+  
 
 > 본 논문에서 저자들은 다양한 baseline과 실험을 통해 제시한 방법론의 성능을 평가했습니다. 
 
@@ -250,7 +253,7 @@ $$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{T}tanh(h_j^{(l-1)}W^{(l)})$$
   * $$\lambda_{l}$$: 100 or 10,000 for different datasets
   * $$\beta$$: 0.1 or 0.01 for different datasets
   
-\
+  
 
 ### **Result**
 
@@ -267,21 +270,21 @@ $$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{T}tanh(h_j^{(l-1)}W^{(l)})$$
 
 Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `GNN`모델, 모든 데이터셋에 대해서 best or second best performance를 보였습니다. 
 
-\
+  
 
 ![Evolution of performance](https://user-images.githubusercontent.com/99710438/170867125-09fe7247-e12d-4397-b8e7-465d3c341b98.png)
 
 
 위 그림은 Corafull dataset에서 `GAT`를 base model로 했을 때 9개의 task동안의 training curve를 그린 것입니다. 저자들은 자신들의 모델이 topological information까지 고려하기 때문에 task가 진행되더라도 크게 이전 task의 성능이 떨어지지 않는 것이라고 주장했습니다. 
 
-\
+  
 
 ![Perofrmance of the first task](https://user-images.githubusercontent.com/99710438/170867937-6c8bad1f-58ca-4bfb-800f-d1ac769e637b.png)
 
 
 ![Average Performance](https://user-images.githubusercontent.com/99710438/170868107-024d2d65-80d9-4bd2-a262-e07208df46b2.png)
 
-\
+  
 
 좀 더 자세히 보자면, 위 그림 중 첫 번째 그림은 첫 번째 task의 성능이 task가 진행됨에 따라 변화하는 모습을 보인 그림이고, 두 번째 그림은 평균적인 performance를 나타낸 그림입니다. (a)부터 (d)까지는 각각 Corafull, Amazon Computers, PPI, Reddit 데이터셋입니다.
 
@@ -293,7 +296,7 @@ Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `
 
 이를 고려했을 때, 저자들의 방법론이 task가 진행됨에 따라 이전 task를 가장 잘 기억한다는(**Catastrophic forgetting**이 적다는) 것을 확인할 수 있습니다.
 
-\
+  
 
 
 * Graph Classification
@@ -304,7 +307,7 @@ Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `
 
 위 테이블에서 확인할 수 있듯이, 저자들의 방법이 Graph classification task에서도 가장 좋은 성능을 내고 있습니다.
 
-\
+  
 
 ![Performances across all tasks](https://user-images.githubusercontent.com/99710438/170868472-3bf928c9-9146-45d6-a7e9-0b4f7e78256f.png)
 
@@ -313,12 +316,12 @@ Node classification과 마찬가지로 task가 진행됨에 따라 성능이 어
 
 왼쪽 그림은 first task의 performance 변화, 오른쪽 그림은 평균 performance의 변화입니다.
 
-\
+  
 
 * Ablation Study
 앞서 설명드린대로 저자들의 방법론은 두 가지 모듈(Minimized Loss Preserving, Topological Structure Preserving)을 사용했는데요, 이 각각의 모듈이 과연 모델에 도움을 주는지 확인하기 위해 ablation study도 진행했습니다.
 
-\
+  
 
 ![Ablation study](https://user-images.githubusercontent.com/99710438/170868926-5c86f974-2001-4ed2-820d-d368b746efb7.png)
 
@@ -327,9 +330,9 @@ Node classification과 마찬가지로 task가 진행됨에 따라 성능이 어
 
 Corafull과 Amazon Computers dataset에서 실험을 한 결과, Full이 나머지 두 경우보다 성능이 좋은 것으로 말미암아 두 모듈 다 모델의 성능을 높이는데 기여를 한 것으로 볼 수 있습니다.
 
-\
+  
 
-\
+  
 
 ## **5. Conclusion**
 
@@ -345,7 +348,7 @@ Corafull과 Amazon Computers dataset에서 실험을 한 결과, Full이 나머�
 
 더 나아가 ablation study를 통해 각 모듈이 중요하다는 것도 증명했습니다.
 
-\
+  
 
 > **내 생각...**
 
@@ -361,9 +364,9 @@ Corafull과 Amazon Computers dataset에서 실험을 한 결과, Full이 나머�
 
 ***
 
-\
+  
 
-\
+  
 
 ## **Author Information**
 
@@ -372,9 +375,9 @@ Corafull과 Amazon Computers dataset에서 실험을 한 결과, Full이 나머�
   * Research Topic: GNN, NeuralODE, Active learning, Continual learning
   * Contact: wjkim@kaist.ac.kr
 
-\
+  
 
-\
+  
 
 
 ## **6. Reference & Additional materials**
