@@ -1,7 +1,5 @@
-## Description
-
-* Xingning Dong et al. / Stacked Hybrid-Attention and Group Collaborative Learning for Unbiased Scene Graph Generation / CVPR 2022
-
+---
+description: Xingning Dong et al. / Stacked Hybrid-Attention and Group Collaborative Learning for Unbiased Scene Graph Generation / CVPR 2022
 ---
 
 
