@@ -13,7 +13,7 @@ Deep clustering은 딥러닝을 활용한 군집화 방법으로 최근 대두�
 ## 3-1. Deep Clustering
 
 \
-![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/fig1.png?raw=true)
+![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/fig1.png?raw=true)\
 
 
 
@@ -91,9 +91,8 @@ Deep clustering은 각 층(layer)마다 다른 잠재 정보를 가진다. 어�
 #
 ## 3-3. GCN Module
 이 section에서는 어떻게 GCN을 Deep clustering에 결합하여 사용할 수 있는지 살펴본다.
-<p align="center">
- <img src="/Users/anseongbin/Desktop/수업자료/fig2.png">
- </p>
+\
+![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/fig2.png?raw=true)\
 
 $$
 \text{<Figure 2>}
@@ -141,9 +140,8 @@ $$
 
 위의 Loss들을 사용하여 다음과 같은 과정으로 가중치 및 편차를 업데이트한다. 
 
-<p align="center">
-<img src="/Users/anseongbin/Desktop/수업자료/fig3.png">
-</p>
+\
+![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/fig3.png?raw=true)\
 
 위의 최종 Loss를 구하는 과정에서의 하이퍼 파라미터는 다음과 같은 조건을 가진다. 
 $$
@@ -156,9 +154,8 @@ $$
    
    총 6개의 데이터를 사용하였고 데이터에 관한 내용은 다음 표와 같다. 
 
-<p align="center">   
-<img src="/Users/anseongbin/Desktop/수업자료/fig4.png">
-</p>
+\
+![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/fig4.png?raw=true)\
   
   데이터에 대한 자세한 내용은 논문을 참고 바람.
 - Baseline
@@ -187,9 +184,8 @@ $$
   
   4가지 방법 전부 값이 클수록 좋은 성능임을 나타낸다. 
  
-<p align="center">
-<img src="/Users/anseongbin/Desktop/수업자료/fig5.png">
-</p> 
+\
+![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/fig5.png?raw=true)\
 
 ## 4-2. Result
 위의 결과표를 해석한 주요내용은 다음과 같다. 
@@ -203,21 +199,18 @@ $$
 
 - Layer의 수 : 잠재변수를 생성하기까지의 층의 수에 따라 결과가 다르게 나타났다. 
 
-<p align="center">
-<img src="/Users/anseongbin/Desktop/수업자료/fig6.png">
-</p>
+\
+![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/fig6.png?raw=true)\
 
 - DC와 Graph 의 반영비율 : 3-3 에서 GCN 과정내에서 epsilon으로 H와 Z의 비율을 조정하는 것을 보았다. 그 비율에 따라 값이 상당히 다름을 아래 그래프에 나타냈다. 0일경우 graph 정보만을 사용하는 것이기에 압도적으로 낮은 성능이 확인된다. 
 
-<p align="center">
-<img src="/Users/anseongbin/Desktop/수업자료/fig7.png">
-</p>
+\
+![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/fig7.png?raw=true)\
 
 - K의 수 : KNN Graph를 그리는 과정에서 K의 개수가 군집화에 영향을 줌을 알 수 있고 아래 그래프에서 확인가능한다. 
 
-<p align="center">
-<img src="/Users/anseongbin/Desktop/수업자료/fig8.png">
-</p>
+\
+![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/fig8.png?raw=true)\
 
 # 5. Conclusion
 Deep learning을 활용한 clustering방법에 데이터의 구조적 정보를 추가하여 더 뛰어난 군집화 방법을 보여준 논문이다. Auto Encoder를 기본적으로 사용하며 각 층마다의 데이터 구조를 KNN Graph 방식으로 생성한뒤 GCN방식으로 학습하였다. 이 과정에서 dual self-supervised module을 사용하여 DNN과 GCN 두가지 과정을 효율적으로 결합시켰다. 
