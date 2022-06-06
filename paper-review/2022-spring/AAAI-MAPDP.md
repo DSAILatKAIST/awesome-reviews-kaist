@@ -1,7 +1,5 @@
 ---
-description : Zefang Zong / MAPDP: Cooperative Multi-Agent Reinforcement Learning to Solve Pickup and
-Delivery Problems
- / AAAI-2022  
+description: Zefang Zong / MAPDP- Cooperative Multi-Agent Reinforcement Learning to Solve Pickup and Delivery Problems / AAAI-2022  
 ---
 
 # **MAPDP(Cooperative Multi-Agent Reinforcement Learning to Solve Pickup and Delivery Problems)** 
