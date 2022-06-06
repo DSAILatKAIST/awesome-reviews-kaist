@@ -1,12 +1,6 @@
-\---
-
- 
-
+---
 description : Yinda Zhang, Tomas Funkhouser / Deep Depth Completion of a Single RGB-D Image / 2018(CVPR)
-
- 
-
-\---
+---
 
  
 

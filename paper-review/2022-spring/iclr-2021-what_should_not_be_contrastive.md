@@ -1,7 +1,5 @@
-## Description
-
-* Tete Xiao et al. / WHAT SHOULD NOT BE CONTRAST IN CONTRASTIVE LEARNING / ICLR 2021
-
+---
+description: Tete Xiao et al. / WHAT SHOULD NOT BE CONTRAST IN CONTRASTIVE LEARNING / ICLR 2021
 ---
 
 
