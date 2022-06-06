@@ -12,9 +12,10 @@ Deep clustering은 딥러닝을 활용한 군집화 방법으로 최근 대두�
 
 ## 3-1. Deep Clustering
 
-<p align="center">
- <img src="/Users/anseongbin/Desktop/수업자료/fig1.png">
- </p>
+\
+![](https://github.com/Mos-start2092/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Seongbin_1/fig1.png?raw=true)\
+
+
 
 $$
 \text{<Figure 1>}
