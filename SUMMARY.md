@@ -53,7 +53,7 @@
   * [PUP(Price-aware User Preference-modeling)](paper-review/2022-spring/icde-2020-pup.md)
   * [Dual-stream Multiple Instance Learning Network for Whole Slide Image Classification with Self-superv](paper-review/2022-spring/cvpr-2021-dsmil.md)
   * [GATv2](paper-review/2022-spring/ICLR-2022-GATv2.md)
-  * [ER-GNN](paper-review/2022-spring-paper-review/er-gnn.md)
+  * [ER-GNN](paper-review/2022-spring/aaai-2021-overcoming-catastrophic-forgetting-in-graph-neural-networks-with-experience-replay.md)
   * [Coteaching+](paper-review/2022-spring/ICML-2019-Coteaching+.md)
   * [PA-GNN](paper-review/2022-spring/WSDM20-PA-GNN.md)
   * [PFGNN](paper-review/2022-spring/iclr-2022-pfgnn.md)
