@@ -31,8 +31,6 @@ Suppose we have a function f(represented by any deep network Resnet50 for exampl
 </p>
 <p align="center">Figure 1: Contrastive Learning</p>
 
- Figure 1: Contrastive Learning
-
 ## **1. Problem Definition**
 
 Recent self-supervised representation learning techniques have largely closed the gap between supervised and unsupervised learning on ImageNet classification. While the particulars of pretraining on ImageNet are now relatively well understood, **the field still lacks widely accepted best practices for replicating this success on other datasets.**
