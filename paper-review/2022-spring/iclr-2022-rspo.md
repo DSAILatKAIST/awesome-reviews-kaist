@@ -1,6 +1,6 @@
-```yaml
+---
 description: Zihan Zhou / Continuously Discovering Novel Strategies via Reward-Switching Policy Optimization / ICLR-2022  
-```
+---  
 
 # **Title**
 

@@ -4,7 +4,7 @@
 
 ## Paper Review
 
-* [\[2022 Spring\] Paper Review](paper-review/2022-spring-paper-review/README.md)
+* [\[2022 Spring\] Paper Review](paper-review/2022-spring/README.md)
   * [Template](paper-review/2022-spring/template.md)
   * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
   * [CAA](paper-review/2022-spring/chi-2019-caa.md)
@@ -46,18 +46,25 @@
   * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
   * [VGRNN](paper-review/2022-spring/VGRNN.md)
   * [PGNN](paper-review/2022-spring/ICML-2019-PGNN.md)
-  * [When Does Contrastive Visual Representation Learning Work?](paper-review/2022-spring/CVPR-2022-When-Does-Contrastive-Visual-Representation-Learning-Work.md)  
+  * [When Does Contrastive Visual Representation Learning Work?](paper-review/2022-spring/CVPR-2022-When-Does-Contrastive-Visual-Representation-Learning-Work.md)
   * [OCGAN](paper-review/2022-spring/CVPR-2019-OCGAN.md)
-  * [Points as queries: Weakly semi-supervised object detection by points](paper-review/2022-spring/cvpr-2021-points-as-queries-weakly-semi-supervised-object-detection-by-points.md) 
-  * [RSPO](paper-review/2022-spring/iclr-2022-rspo.md)  
+  * [Points as queries: Weakly semi-supervised object detection by points](paper-review/2022-spring/cvpr-2021-points-as-queries-weakly-semi-supervised-object-detection-by-points.md)
+  * [RSPO](paper-review/2022-spring/iclr-2022-rspo.md)
   * [PUP(Price-aware User Preference-modeling)](paper-review/2022-spring/icde-2020-pup.md)
-  * [Dual-stream Multiple Instance Learning Network for Whole Slide Image Classification with Self-supervised Contrastive Learning](paper-review/2022-spring/cvpr-2021-dsmil.md)
+  * [Dual-stream Multiple Instance Learning Network for Whole Slide Image Classification with Self-superv](paper-review/2022-spring/cvpr-2021-dsmil.md)
   * [GATv2](paper-review/2022-spring/ICLR-2022-GATv2.md)
   * [ER-GNN](paper-review/2022-spring/aaai-2021-overcoming-catastrophic-forgetting-in-graph-neural-networks-with-experience-replay.md)
+  * [Coteaching+](paper-review/2022-spring/ICML-2019-Coteaching+.md)
+  * [PA-GNN](paper-review/2022-spring/WSDM20-PA-GNN.md)
+  * [PFGNN](paper-review/2022-spring/iclr-2022-pfgnn.md)
+  * [Tail-Net](paper-review/2022-spring/Recsys-2020-TailNet.md)
+  * [Handling Distribution Shifts on Graphs: An Invariance Perspective](paper-review/2022-spring/iclr-2022-eerm.md)
+  * [3D Molecule generative model for structure-based drug design](paper-review/2022-spring/neurips-2021-3d-molecule-generative-model-for-structure-based-drug-design.md)
+
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
-* [Review Format](paper-review/template.md)
+* [Review Format](how-to-contribute/review-format.md)
 
 ***
 
