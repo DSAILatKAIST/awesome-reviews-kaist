@@ -14,13 +14,13 @@ description: >-
 
 예를 들어, 아래와 같이 두 개의 2-dimension gaussian distribution에서 100개씩 data를 sampling하고, 각각 하나씩만 label을 알고 있다고 하자. 작은 labeled dataset으로 학습한 실선의 decision boundary는 점선의 optimal decision boundary와 비교해 bias가 있음을 알 수 있다. 따라서 unlabeled data를 통해 얻을 수 있는 data distribution 정보를 활용해 optimal decision boundary에 보다 가까워지고자 하는 것이 semi-supervised learning의 목표이다\[1].
 
-![image1.png](../../.gitbook/2022-spring-assets/sungeun532/image1.png)
+![image1.png](../../.gitbook/2022-spring-assets/RobustSSL/image1.png)
 
 unlabeled dataset을 어떻게 학습에 활용할지 문제 상황을 수식적으로 formulation 해보면 다음과 같다.
 
 > Problem formulation
 
-![problem\_formulation.PNG](../../.gitbook/2022-spring-assets/sungeun532/problem\_formulation.PNG)
+![problem\_formulation.PNG](../../.gitbook/2022-spring-assets/RobustSSL/problem\_formulation.PNG)
 
 일반적으로 semi-supervised learning에서 supervised loss는 cross entropy loss이며, unsupervised loss의 desing에 따라 방법론들이 달라진다.
 
@@ -118,7 +118,7 @@ Eq.6 :
 
 $$\frac {\partial L_s(V, \theta^*(\Lambda))}{\partial \lambda_u} = -\nabla_\theta L_s(V,\theta^*)^T H^{-1}_{\theta^*} \nabla_\theta l_u(u,\theta^*)$$
 
-![image2.PNG](../../.gitbook/2022-spring-assets/sungeun532/image2.PNG)
+![image2.PNG](../../.gitbook/2022-spring-assets/RobustSSL/image2.PNG)
 
 ## 4. Experiment
 
@@ -160,13 +160,13 @@ Semi-supervised learning cluster assumption에 기반한 model들이다. Xu1와 
 
 > Synthetic dataset result
 
-![image3.png](../../.gitbook/2022-spring-assets/sungeun532/image3.png)
+![image3.png](../../.gitbook/2022-spring-assets/RobustSSL/image3.png)
 
 Unalbeled data가 검정색/분홍색에 가까울 때 각각 높은 weight/낮은 weight로 학습된 것이다. Decision boundary 근처 data는 model prediction이 틀릴 가능성이 높으므로 낮은 weight로 학습됨을 알 수 있다.
 
 > Benchmark dataset result
 
-![image4.PNG](../../.gitbook/2022-spring-assets/sungeun532/image4.PNG)
+![image4.PNG](../../.gitbook/2022-spring-assets/RobustSSL/image4.PNG)
 
 Baseline model들보다 performance가 일괄적으로 높아짐(Test error rate가 낮아짐)을 알 수 있다.
 
@@ -176,13 +176,13 @@ Baseline model들보다 performance가 일괄적으로 높아짐(Test error rate
   * Luketina et al \[7] : using identity matrix
   * Lorraine et al \[8] : approximation to all the model parameters
 
-![ablation.PNG](../../.gitbook/2022-spring-assets/sungeun532/ablation.PNG)
+![ablation.PNG](../../.gitbook/2022-spring-assets/RobustSSL/ablation.PNG)
 
 inverse Hessian의 approximation을 제시한 기존 연구들과 비교했을 때 본 연구에서 제시한 방법이 baseline들보다 작은 validation loss를 가진다.
 
 * Tuning a single weight
 
-![ablation2.png](../../.gitbook/2022-spring-assets/sungeun532/ablation2.png)
+![ablation2.png](../../.gitbook/2022-spring-assets/RobustSSL/ablation2.png)
 
 모든 unlabeled data가 동일한 weight를 가질 때와, 개별 weight를 가질 때를 비교한 결과다. 아예 학습에 쓰지 않은 baseline model (UDA)이 가장 높은 test error를 가진다.
 
