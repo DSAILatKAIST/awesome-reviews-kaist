@@ -62,6 +62,7 @@
   * [Handling Distribution Shifts on Graphs: An Invariance Perspective](paper-review/2022-spring/iclr-2022-eerm.md)
   * [3D Molecule generative model for structure-based drug design](paper-review/2022-spring/neurips-2021-3d-molecule-generative-model-for-structure-based-drug-design.md)
   * [Structural-Deep-Clustering-Network](paper-review/2022-spring/WWW-2020-Structural-Deep-Clustering-Network.md)
+  * [EGI](paper-review/2022-spring/NeurIPS-2021-EGI.md)
   
 ## How to contribute
 
