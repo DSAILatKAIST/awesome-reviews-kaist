@@ -237,7 +237,9 @@ Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `
 
 이를 고려했을 때, 저자들의 방법론이 task가 진행됨에 따라 이전 task를 가장 잘 기억한다는(**Catastrophic forgetting**이 적다는) 것을 확인할 수 있습니다.
 
-* Graph Classification 저자들의 방법론은 graph classification task에서도 좋은 성능을 보였습니다.
+* Graph Classification 
+
+저자들의 방법론은 graph classification task에서도 좋은 성능을 보였습니다.
 
 ![Graph classification performance](https://user-images.githubusercontent.com/99710438/170868529-08576d78-b8ec-4ea4-bb2f-b68684278cc9.png)
 
@@ -249,7 +251,9 @@ Node classification과 마찬가지로 task가 진행됨에 따라 성능이 어
 
 왼쪽 그림은 first task의 performance 변화, 오른쪽 그림은 평균 performance의 변화입니다.
 
-* Ablation Study 앞서 설명드린대로 저자들의 방법론은 두 가지 모듈(Minimized Loss Preserving, Topological Structure Preserving)을 사용했는데요, 이 각각의 모듈이 과연 모델에 도움을 주는지 확인하기 위해 ablation study도 진행했습니다.
+* Ablation Study 
+
+앞서 설명드린대로 저자들의 방법론은 두 가지 모듈(Minimized Loss Preserving, Topological Structure Preserving)을 사용했는데요, 이 각각의 모듈이 과연 모델에 도움을 주는지 확인하기 위해 ablation study도 진행했습니다.
 
 ![Ablation study](https://user-images.githubusercontent.com/99710438/170868926-5c86f974-2001-4ed2-820d-d368b746efb7.png)
 
