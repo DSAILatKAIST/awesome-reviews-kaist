@@ -12,6 +12,7 @@ description : Tianyu Pang, Kun Xu, Jun Zhu / Mixup Inference Better Exploiting M
 ## 1) Adversarial Attacks
 data label pair (x, y)에 추가로 adversaial binary 변수 z(1일 경우 adversarial)를 추가해서 사용한다.<br>
 본 논문에서는 $l_p$-norm 어택을 사용하며 $(||\delta||_p \leq\epsilon)$, clean sample $x_0$에 대해 노이즈가 추가된 $x$값은 다음과 같다.<br>
+
 ![adversarial input](../../.gitbook/2022-spring-assets/junghurnkim\_2/pre_adv_notation1.png)<br>
 
 ## 2) Mixup in Training
@@ -44,18 +45,28 @@ $G$ : extra non-linear part of F<br>
 본 논문에서는 이러한 선형결합으로 전개되는 내용에 대한 자세한 내용은 언급되어 있지 않고, [MixUp as Locally Linear Out-Of-Manifold Regularization](https://arxiv.org/abs/1809.02499) 논문을 참조하여 바로 사용하는 것으로 설명되어 있다.<br>
 
 다만, Adversarial Training 의 경우 noise에 대한 non-linear part G가 추가되고,<br>
+
 ![method_H_andG](../../.gitbook/2022-spring-assets/junghurnkim\_2/method_H_andG.png)<br>
+
 최종적으로 mixup 값 $\tilde x$에 대한 결과는 다음과 같이 전개된다.<br>
+
 ![method_H_xtilde](../../.gitbook/2022-spring-assets/junghurnkim\_2/method_H_xtilde.png)<br>
+
 Mixup Inference는 이 $F(\tilde x)$값의 N번 평균을 사용해서 model을 업데이트 하는 방법이다.
+
 ![method_MI](../../.gitbook/2022-spring-assets/junghurnkim\_2/method_MI.png)
 
 (5)식을 더 정리하면,<br>
 clean data $x_0$와 sampled data $x_s$에 대해 $H_y(x_0) = 1$, $H_{y_s}(x_S) = 1$ 이고, 아래 수식은 $F$ 결과를 각각 $y$, $\hat y$에 대해 아래와 같이 나타낼 수 있다.<br>
+
 ![method_MI_y_yhat](../../.gitbook/2022-spring-assets/junghurnkim\_2/method_MI_y_yhat.png)<br>
+
 $y$, $\hat y$ 두 경우 모두 $y_s$(sampled label)의 영향을 받기 때문에 논문에서는 MI-PL($y=\hat y$), MI-OL($y\neq\hat y$) 두 가지 버전을 나눠서 함께 살펴볼 필요가 있다고 설명한다<br>
+
 ![method_PL_OL](../../.gitbook/2022-spring-assets/junghurnkim\_2/method_PL_OL.png)<br>
+
 각각의 경우 $F$값을 요약하면 다음과 같다. ($z=1$인 경우 adversarial sample, $z=0$인 경우 clean sample을 의미한다.)<br>
+
 ![method_PL_OL](../../.gitbook/2022-spring-assets/junghurnkim\_2/method_PL_OL_tab.png)<br>
 
 추가로 Mixup Inference 전/후 robustness 향상정도, 실제 attack된 샘플 탐지정도에 대한 평가지표로 각각 Robustness Improving Condition(RIC)와 Detection Gap(DG)를 정의했다.<br>

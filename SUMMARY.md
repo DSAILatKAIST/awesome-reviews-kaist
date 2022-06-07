@@ -4,7 +4,7 @@
 
 ## Paper Review
 
-* [\[2022 Spring\] Paper Review](paper-review/2022-spring/README.md)
+* [\[2022 Spring\] Paper Review](paper-review/2022-spring-paper-review/README.md)
   * [Template](paper-review/2022-spring/template.md)
   * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
   * [CAA](paper-review/2022-spring/chi-2019-caa.md)
@@ -32,6 +32,7 @@
   * [NIWT](paper-review/2022-spring/ECCV-2018-NIWT.md)
   * [GRAND](paper-review/2022-spring/icml-2021-grand.md)
   * [GDE](paper-review/2022-spring/AAAI-2020-GDE.md)
+  * [MAD](paper-review/2022-spring/AAAI-2020-MAD.md)
   * [PAIRED](paper-review/2022-spring/neurips-2020-paired.md)
   * [XGradient](paper-review/2022-spring/NeurIPS-2021-XGradient.md)
   * [Review paper COIN](paper-review/2022-spring/Reviewpaper\_20214798\_Esmeedehaas.md)
@@ -53,13 +54,15 @@
   * [PUP(Price-aware User Preference-modeling)](paper-review/2022-spring/icde-2020-pup.md)
   * [Dual-stream Multiple Instance Learning Network for Whole Slide Image Classification with Self-superv](paper-review/2022-spring/cvpr-2021-dsmil.md)
   * [GATv2](paper-review/2022-spring/ICLR-2022-GATv2.md)
-  * [ER-GNN](paper-review/2022-spring-paper-review/er-gnn.md)
+  * [ER-GNN](paper-review/2022-spring/aaai-2021-overcoming-catastrophic-forgetting-in-graph-neural-networks-with-experience-replay.md)
   * [Coteaching+](paper-review/2022-spring/ICML-2019-Coteaching+.md)
   * [PA-GNN](paper-review/2022-spring/WSDM20-PA-GNN.md)
   * [PFGNN](paper-review/2022-spring/iclr-2022-pfgnn.md)
   * [Tail-Net](paper-review/2022-spring/Recsys-2020-TailNet.md)
   * [Handling Distribution Shifts on Graphs: An Invariance Perspective](paper-review/2022-spring/iclr-2022-eerm.md)
   * [3D Molecule generative model for structure-based drug design](paper-review/2022-spring/neurips-2021-3d-molecule-generative-model-for-structure-based-drug-design.md)
+  * [Structural-Deep-Clustering-Network](paper-review/2022-spring/WWW-2020-Structural-Deep-Clustering-Network.md)
+  * [EGI](paper-review/2022-spring/NeurIPS-2021-EGI.md)
 
 ## How to contribute
 
