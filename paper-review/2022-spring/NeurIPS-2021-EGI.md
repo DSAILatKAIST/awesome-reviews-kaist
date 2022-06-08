@@ -31,15 +31,14 @@ GNN은 다양한 테스크에 활용되고 있습니다. 대부분 아키텍쳐�
 
 💡 GNN의 전이 학습을 위한 이론기반 프레임워크를 설정하고, 전이학습이 가능한 GNN 모델을 설계.
 
-![스크린샷 2022-05-27 오후 12.40.39.png](handonghee\_2/스크린샷\_2022-05-27\_오후\_12.40.39.png)
+![](handonghee\_2/스크린샷\_2022-05-27\_오후\_12.40.39.png)
 
 그래프 정보와 유사도는 k-hop ego-graph 의 구조 및 node feature를 공유하는 분포의 샘플로 정의됩니다. 이러한 그래프 정보에 대한 정의를 바탕으로 그래프 정보 추출에 효과적인 ego-graph information maximization 방식을 활용하는 EGI 모델을 제안합니다. 전이 가능한 node feature의 요구사항을 확인하고, 로컬 그래프 라플라시안과 함께 활용하여 transferability를 분석합니다.
 
 이론적인 분석을 위해 다양한 개념이 introduction 에서 소개가 되는데, 여기에 대해서는 추후 자세한 설명이 나오게 됩니다.
 
 ## **3. Method**
-
-## 3. Transferable Graph Neural Networks
+## Transferable Graph Neural Networks
 
 본 연구에서는 EGI라는 모델을 제안하고 해당 모델이 전이학습이 가능하도록 training object를 설정합니다. 로컬 그래프 라플라시안을 기반으로 하는 소스그래프, 타겟그래프를 모델링하는 능력 차이를 통해 전이학습 가능성을 분석하였습니다. GNN의 아웃풋은 node feature, 고정 그래프 라플라시안, 학습가능한 그래프 필터로 정의 됩니다. 다운스트림 테스크를 모르는 경우, GNN의 일반적인 유용성을 위해 최적화하고 정량화 해야 합니다. GNN의 일반적인 transferability는 소스 그래프와 대상 그래프를 모델링하는 성능 차이로 정량화 됩니다.
 
@@ -47,51 +46,51 @@ GNN은 다양한 테스크에 활용되고 있습니다. 대부분 아키텍쳐�
 
 이 파트에서는 IM 기반의 전이학습을 위한 GNN의 원리와 구조에 대해 설명합니다.
 
-소스 그래프 $G\_a$에 대해서 unsupervised pre-training 을 진행한 후, 타겟 그래프 $G\_b$ 에 대해 fine-tuning 없이 전이가 되는지를 확인합니다. 두 그래프의 노드피쳐 및 구조가 유사하여 호환 되는 경우만 전이가 될 것입니다.그래프 커널은 그래프 간의 유사성을 측정합니다. k-hop ego graph 샘플을 GNN을 통해 인코딩 하기 때문에 구조적 정보에 대한 정의를 제공하고 그래프간의 유사성 측정에 용이합니다. 그러나 현재 GNN training objective 중에는 ego graph 의 distributional signal 을 복구 할 수 있는게 없습니다. 이러한 문제를 해결하기 위해 EGI 를 제안합니다.
+소스 그래프 $$G\_a$$에 대해서 unsupervised pre-training 을 진행한 후, 타겟 그래프 $$G\_b$$ 에 대해 fine-tuning 없이 전이가 되는지를 확인합니다. 두 그래프의 노드피쳐 및 구조가 유사하여 호환 되는 경우만 전이가 될 것입니다.그래프 커널은 그래프 간의 유사성을 측정합니다. k-hop ego graph 샘플을 GNN을 통해 인코딩 하기 때문에 구조적 정보에 대한 정의를 제공하고 그래프간의 유사성 측정에 용이합니다. 그러나 현재 GNN training objective 중에는 ego graph 의 distributional signal 을 복구 할 수 있는게 없습니다. 이러한 문제를 해결하기 위해 EGI 를 제안합니다.
 
-> **Definition 3.1 : K-hop ego-graph** 그래프 $g\_i$ 는 node $v\_i$ 를 중심으로하는 최대 hop이 k 인 k-layer 확장 그래프.
+> **Definition 3.1 : K-hop ego-graph** 그래프 $$g\_i$$ 는 node $$v\_i$$ 를 중심으로하는 최대 hop이 k 인 k-layer 확장 그래프.
 
-> **Definition 3.2** : Structural information $G$ 를 sub-graph 들의 토폴로지 공간이라고 했을때, 그래프 $g$ 를 $G$ 에서 $\mu$ 의 확률로 추출한 k-hop ego-graph 샘플 이라고 볼 수 있다. $g$ 의 structural information 은 k-hop ego-graph set 과 그들의 empirical distribution 으로 볼 수 있다.
+> **Definition 3.2** : Structural information $$G$$ 를 sub-graph 들의 토폴로지 공간이라고 했을때, 그래프 $$g$$ 를 $$G$$ 에서 $$\mu$$ 의 확률로 추출한 k-hop ego-graph 샘플 이라고 볼 수 있다. $$g$$ 의 structural information 은 k-hop ego-graph set 과 그들의 empirical distribution 으로 볼 수 있다.
 
 논문에서 제안하는 프레임워크는 ego-graph 를 통해 그래프 간의 구조적 유사성을 측정 하고, joint distribution P \~ (g\_i, x\_i) 를 통해 노드 임베딩을 얻습니다.
 
-Figure 1 을 보면 $G\_0, G\_1, G\_2$ 세 그래프는 1-hop ego-graph set 과 empirical distribution 으로 특정됩니다. 이러한 정보들을 통해 그래프간의 구조적 유사성을 정량화 할 수 있습니다. ( $G\_0$ 은 $G\_1$ 에 보다 유사합니다.) 실제로, 그래프 내부의 노드들은 k-hop ego-graph 구조 뿐만 아니라 node feature 와의 상호작용을 통해 정의됩니다. 그래프는 그래프 구조와, node feature 의 joint distribution 으로부터 얻을 수 있습니다.
+Figure 1 을 보면 $$G\_0, G\_1, G\_2$$ 세 그래프는 1-hop ego-graph set 과 empirical distribution 으로 특정됩니다. 이러한 정보들을 통해 그래프간의 구조적 유사성을 정량화 할 수 있습니다. ( $$G\_0$$ 은 $$G\_1$$ 에 보다 유사합니다.) 실제로, 그래프 내부의 노드들은 k-hop ego-graph 구조 뿐만 아니라 node feature 와의 상호작용을 통해 정의됩니다. 그래프는 그래프 구조와, node feature 의 joint distribution 으로부터 얻을 수 있습니다.
 
-![스크린샷 2022-05-27 오후 12.57.38.png](handonghee\_2/스크린샷\_2022-05-27\_오후\_12.57.38.png)
+![](handonghee\_2/스크린샷\_2022-05-27\_오후\_12.57.38.png)
 
-direct-transfering setting 은 소스 그래프 $G\_a$ 에 대해서 unsupervised 로 pre-train 을 진행하고 타겟그래프 $G\_b$ 에 대해 fine-tuning 없이 적용하는 방식입니다. k-hop subgraph 커널은 k-hop ego-graph 구조와 node feature 의 joint distribution 에서 샘플을 얻습니다.
+direct-transfering setting 은 소스 그래프 $$G\_a$$ 에 대해서 unsupervised 로 pre-train 을 진행하고 타겟그래프 $$G\_b$$ 에 대해 fine-tuning 없이 적용하는 방식입니다. k-hop subgraph 커널은 k-hop ego-graph 구조와 node feature 의 joint distribution 에서 샘플을 얻습니다.
 
 ### Ego-Graph Information Maximization
 
-Empirical joint distribution $\mathbb{P}$ 에서 얻어진 ego-graph set 에서 mutual information 을 최대화 하도록 GNN encoder 를 학습합니다. 이것은 k-hop ego-graph $g\_i$ 와 node embedding $z\_i = \Psi(g\_i,x\_i)$ 둘 사이의 MI가 최대가 되도록 하는 과정입니다. 이 과정을 통해 최대한 관계가 있도록… MI 를 최대화 하도록 또다른 discriminator $D(g\_i,z\_i) : E(g\_i)×z\_i \rightarrow \mathbb{R}^+$ 가 제안 되는데, 이것은 주어진 ego-graph $g\_i$ 에서의 edge e 의 확률을 계산합니다. 저자는 EGI 목적함수에 Jenson-Shannon MI estimator 를 사용합니다.
+Empirical joint distribution $$\mathbb{P}$$ 에서 얻어진 ego-graph set 에서 mutual information 을 최대화 하도록 GNN encoder 를 학습합니다. 이것은 k-hop ego-graph $$g\_i$$ 와 node embedding $$z\_i = \Psi(g\_i,x\_i)$$ 둘 사이의 MI가 최대가 되도록 하는 과정입니다. 이 과정을 통해 최대한 관계가 있도록… MI 를 최대화 하도록 또다른 discriminator $$D(g\_i,z\_i) : E(g\_i)×z\_i \rightarrow \mathbb{R}^+$$ 가 제안 되는데, 이것은 주어진 ego-graph $$g\_i$$ 에서의 edge e 의 확률을 계산합니다. 저자는 EGI 목적함수에 Jenson-Shannon MI estimator 를 사용합니다.
 
 💡 \*\*Jensen-Shannon MI estimator\*\* KLD 는 symmetric 하지 않아 distance 라고 할수 없기 때문에 이를 대체하기 위해 사용됩니다.
 
-![스크린샷 2022-04-04 오후 3.03.04.png](handonghee\_2/스크린샷\_2022-04-04\_오후\_3.03.04.png)
+![](handonghee\_2/스크린샷\_2022-04-04\_오후\_3.03.04.png)
 
-![스크린샷 2022-05-27 오후 6.36.04.png](handonghee\_2/스크린샷\_2022-05-27\_오후\_6.36.04.png)
+![](handonghee\_2/스크린샷\_2022-05-27\_오후\_6.36.04.png)
 
-Equation 1. 에서 SP 는 softplus function 으로 수식은 $sp(x) = log(1+e^x)$ 이고 sigmoid 와 비교하면 아래와 같습니다.
+Equation 1. 에서 SP 는 softplus function 으로 수식은 $$sp(x) = log(1+e^x)$$ 이고 sigmoid 와 비교하면 아래와 같습니다.
 
-![스크린샷 2022-04-04 오후 2.58.23.png](handonghee\_2/스크린샷\_2022-04-04\_오후\_2.58.23.png)
+![](handonghee\_2/스크린샷\_2022-04-04\_오후\_2.58.23.png)
 
-$(g\_i, z\_i^{\prime})$ 은 marginal distribution 의 product 로 부터 랜덤하게 추출된다. 수식으로 표현하면 다음과 같다. $z\_i^{\prime}=\Psi(g\_{i^{\prime\}}, x\_{i^{\prime\}}), (g\_{i^{\prime\}}, x\_{i^{\prime\}})$ \~ $\mathbb{P}$. 일반적으로 negative 한 그래프를 추출할때, 모든 그래프를 추출한다면 계산량이 많습니다.
+input으로 제공되는 $$(g_i, z_i^{\prime})$$ 은 marginal distribution 의 product 로 부터 랜덤하게 추출된다. 수식으로 표현하면 다음과 같다. $$z_i^{\prime}=\Psi(g_{i^{\prime}}, x_{i^{\prime}}), (g_{i^{\prime}}, x_{i^{\prime}})$$ \~ $$\mathbb{P}$$. 일반적으로 negative 한 그래프를 추출할때, 모든 그래프를 추출한다면 계산량이 많습니다.
 
-Eq. 1 에서 계산은 노드 순서에따라 이루어집니다. 일반적인 그래프 생성 방법론을 따르면 decision process D 는 고정된 순서의 그래프들로 이루어집니다 ( ex. BFS). D는 $D = f◦\Phi$ 로 엣지 시퀀스에 대한 스코어링 함수와 GNN 인코더의 결합으로 이루어집니다.
+Eq. 1 에서 계산은 노드 순서에따라 이루어집니다. 일반적인 그래프 생성 방법론을 따르면 decision process D 는 고정된 순서의 그래프들로 이루어집니다 ( ex. BFS). D는 $$D = f◦\Phi$$ 로 엣지 시퀀스에 대한 스코어링 함수와 GNN 인코더의 결합으로 이루어집니다.
 
-중심 노드 인코더 $\Psi$ 와 이웃노드 인코더 $\Phi$ 는 그래프와, 노드피쳐 쌍을 입력으로 받는 GNN 으로 구성됩니다. 중심노드 인코더는 중심노드의 임베딩 (n_1 벡터) 을 리턴하고, 이웃노드 인코더는 이웃노드 임베딩 벡터의 집합(n_노드개수) 을 리턴합니다. (하기 수식을 참고해주세요. A 는 각각의 그래프의 adjacency matrix 를 의미합니다.)
+중심 노드 인코더 $$\Psi$$ 와 이웃노드 인코더 $$\Phi$$ 는 그래프와, 노드피쳐 쌍을 입력으로 받는 GNN 으로 구성됩니다. 중심노드 인코더는 중심노드의 임베딩 (n_1 벡터) 을 리턴하고, 이웃노드 인코더는 이웃노드 임베딩 벡터의 집합(n_노드개수) 을 리턴합니다. (하기 수식을 참고해주세요. A 는 각각의 그래프의 adjacency matrix 를 의미합니다.)
 
-![스크린샷 2022-05-26 오전 7.10.46.png](handonghee\_2/스크린샷\_2022-05-26\_오전\_7.10.46.png)
+![](handonghee\_2/스크린샷\_2022-05-26\_오전\_7.10.46.png)
 
-노드 임베딩을 얻은 후, 이것을 활용하는 스코어링 함수 $f$ 를 설명하겠습니다. 각각의 노드쌍 (p,q)에 대해서 스코어링 함수는 아래와 같은 수식으로 정의 됩니다.
+노드 임베딩을 얻은 후, 이것을 활용하는 스코어링 함수 $$f$$ 를 설명하겠습니다. 각각의 노드쌍 (p,q)에 대해서 스코어링 함수는 아래와 같은 수식으로 정의 됩니다.
 
-![스크린샷 2022-05-29 오전 11.16.28.png](handonghee\_2/스크린샷\_2022-05-29\_오전\_11.16.28.png)
+![](handonghee\_2/스크린샷\_2022-05-29\_오전\_11.16.28.png)
 
-node pair (p,q) $h\_p$ : source node representation from $\Phi$ $x\_q$ : destination node feature $z\_i$ : center node embedding, output from $\Psi$ $\tau$ : ReLU function $\sigma$ : Sigmoid function
+node pair (p,q) $$h\_p$$ : source node representation from $$\Phi$$ $$x\_q$$ : destination node feature $$z\_i$$ : center node embedding, output from $$\Psi$$ $$\tau$$ : ReLU function $$\sigma$$ : Sigmoid function
 
-Discriminator $D$ 는 그래프 내부의 각각의 edge 에 대해 positive, negative 여부를 구별합니다.
+Discriminator $$D$$ 는 그래프 내부의 각각의 edge 에 대해 positive, negative 여부를 구별합니다.
 
-![스크린샷 2022-05-29 오전 11.20.48.png](handonghee\_2/스크린샷\_2022-05-29\_오전\_11.20.48.png)
+![](handonghee\_2/스크린샷\_2022-05-29\_오전\_11.20.48.png)
 
 여기서는 아래와같은 두가지 종류의 엣지쌍이 존재합니다.
 
@@ -103,7 +102,7 @@ a) type-a : 각각의 노드가 중심 노드로부터 다른 hop 수를 가지�
 
 EGI object 에 대해 좀더 인사이트를 제공하기 위해 저자들은 ego-graph 재구성을 dual problem 관점에서 분석하였습니다.
 
-![스크린샷 2022-05-30 오후 4.07.53.png](handonghee\_2/스크린샷\_2022-05-30\_오후\_4.07.53.png)
+![](handonghee\_2/스크린샷\_2022-05-30\_오후\_4.07.53.png)
 
 EGI가 mutual information 을 최대화 하면 upper error bound 는 최소화됩니다. VGAE 와의 차이는 그래프 내부의 엣지가 reconstruction 에서 독립적으로 구성된다는 것입니다. EGI에서는 decoding 중에 독립적으로 엣지 관찰됩니다. DGI, GMI 와 같은 MI 기반 GNN 에서는 명시적으로 노드 피쳐와 GNN output의 MI를 비교합니다. 이러한 기법들은 그래프 구조대신 노드피쳐에 주목하는 경향이 강하다고 합니다.
 
@@ -117,7 +116,7 @@ Table 1 은 유사한 그래프 (F-F) 간의 전이학습과 유사하지 않은
 
 **Table 1**
 
-![스크린샷 2022-04-10 오후 9.14.31.png](handonghee\_2/스크린샷\_2022-04-10\_오후\_9.14.31.png)
+![](handonghee\_2/스크린샷\_2022-04-10\_오후\_9.14.31.png)
 
 F-F : between similar graphs B-F : dissimilar graph
 
@@ -125,9 +124,9 @@ F-F : between similar graphs B-F : dissimilar graph
 
 이번 파트에서는 EGI 를 통해 구조정보 전이 가능성을 분석하는 과정에 대해 다루고 있습니다. GNN 을 통해 노드 피쳐와 graph laplacian 을 결합하게 됩니다. 따라서 노드피쳐가 구조적인 정보를 반영 (structure-respecting) 해야만 목표로 하는 것을 달성 할 수 있습니다. structure-respecting 에 대한 정의는 아래와 같습니다.
 
-> Definition 3.3 : **Structure-respecting node features $v\_i$** : center of ego-graph g\_i \*\*\*\*V\_p(g\_i) 가 g\_i 의 p-th hop 의 노드 집합일때,\
-> 노드피쳐가 모든노드 $v\_q \in V\_p(g\_i)$ 에 대해 다음을 만족 —> $x\_{p,q}^i = \[f(g\_i)]\_{p,q} \in \mathbb{R}^d$\
-> $f$ should be injective
+> Definition 3.3 : **Structure-respecting node features $$v\_i$$** : center of ego-graph g\_i \*\*\*\*V\_p(g\_i) 가 g\_i 의 p-th hop 의 노드 집합일때,\
+> 노드피쳐가 모든노드 $$ v\_q \in V\_p(g\_i) $$ 에 대해 다음을 만족 —> $$x_{p,q}^i = [f(g_i)]_{p,q} \in \mathbb{R}^d $$ 
+> & $$f$$ should be injective
 
 위 정의에 대해 다시 생각해 본다면, 노드 피쳐는 그래프 구조에 따라 달라지는 값이어야 합니다. 이것은 그래프의 구조 정보에만 의존하는 전이학습 가능성 분석에도 필수적입니다. 그래프 구조를 반영하는 노드 피쳐는 node degrees, PageRank scores, spectral embedding 를 비롯한 pre-comuted unsupervised network embedding 등을 통해 얻을 수 있습니다. 이러한 피쳐는 모두 structure-respecting 하다고 할 수 있습니다.
 
@@ -135,13 +134,16 @@ F-F : between similar graphs B-F : dissimilar graph
 
 이것은 실험을 통해 확인 되었는데, Table 1을 보면 non-transferable feature 를 사용한경우 대부분 전이가 잘 안되는 것을 확인 할 수 있습니다.
 
-> Theorem 3.1 : G\_a, G\_b 두 그래프가 있고, 노드피쳐가 structure-relevant 할 경우, GCN $\Psi$ 와 1-hop polynomianl filter $\Phi$ 가 있을때. G\_a, G-b 의 로컬 스펙트럼 에 대한 가정은 다음을 만족한다. 우항의 C 는 그래프 인코더와 노드피쳐에만 의존한다.
+> Theorem 3.1 : G\_a, G\_b 두 그래프가 있고, 노드피쳐가 structure-relevant 할 경우, GCN $$\Psi$$ 와 1-hop polynomianl filter $$\Phi$$ 가 있을때. G\_a, G-b 의 로컬 스펙트럼 에 대한 가정은 다음을 만족한다. 우항의 C 는 그래프 인코더와 노드피쳐에만 의존한다.
 >
-> <img src="handonghee_2/스크린샷_2022-05-31_오전_11.19.19.png" alt="스크린샷 2022-05-31 오전 11.19.19.png" data-size="original">
+> 
+![](handonghee_2/스크린샷_2022-05-31_오전_11.19.19.png)
+<!-- <img src="handonghee_2/스크린샷_2022-05-31_오전_11.19.19.png" alt="스크린샷 2022-05-31 오전 11.19.19.png" data-size="original"> -->
 >
 > ∆D(Ga, Gb) 는 아래와 같은 방식으로 두 그래프 사이의 구조적 차이를 측정한다. L 은 normalized graph Laplacian을 의미한다.
 >
-> <img src="handonghee_2/스크린샷_2022-05-31_오전_11.19.30.png" alt="스크린샷 2022-05-31 오전 11.19.30.png" data-size="original">
+<!-- > <img src="handonghee_2/스크린샷_2022-05-31_오전_11.19.30.png" alt="스크린샷 2022-05-31 오전 11.19.30.png" data-size="original"> -->
+![](handonghee_2/스크린샷_2022-05-31_오전_11.19.30.png)
 
 위 이론을 통해 G\_a 에 대해 EGI 를 트레인한 후, G\_b 에 대해서 얼마나 잘 작동할 지에 대해 G\_a, G\_b 의 로컬 그래프 라플라시안 만을 사용하여 확인 할 수 있습니다. EGI gap 은 ∆\_D 로 정의되는데 이것은 두 그래프 로스의 차이를 통해 전이 가능성을 계산하기 위해 사용됩니다.
 
@@ -174,7 +176,7 @@ Table 1에서 F-F, B-F 의 average structural difference 를 확인할 수 있�
 
 본 실험에 앞서 두가지 방식으로 생성한 그래프를 통해 앞서 설명한 이론들을 검증하기 위한 합성 실험을 진행하였습니다. F,B 는 각각 다른 방식을 사용하여 생성한 40개의 그래프입니다. F-F 는 유사한 그래프에 대한 결과를 보여주며, B-F 는 서로 다른 그래프 간의 전이 학습을 보여줍니다. 실험 결과는 아래와 같습니다.
 
-![스크린샷 2022-04-10 오후 9.14.31.png](handonghee\_2/스크린샷\_2022-04-10\_오후\_9.14.31.png)
+![](handonghee\_2/스크린샷\_2022-04-10\_오후\_9.14.31.png)
 
 ### Baselines
 
@@ -205,7 +207,7 @@ default node features : node degree one-hot encoding (transferable feature) othe
 
 아래 표는 Airport 데이터셋에 대한 실험결과를 보여줍니다. Untrained 모델 제외하고 모든 모델을 Europe 데이터에 대해 학습하고, 전체 3가지 지역(Europe, USA, Brazil)에 대해 테스트를 진행하였습니다.
 
-![스크린샷 2022-05-27 오전 10.02.22.png](handonghee\_2/스크린샷\_2022-05-27\_오전\_10.02.22.png)
+![](handonghee\_2/스크린샷\_2022-05-27\_오전\_10.02.22.png)
 
 node degree feature 로 MLP를 학습시킨 모델이 3가지 네트워크에대해 적절한 성능을 보여주었고, 인기도 기반의 공항 role 레이블이 node degree 와 유사하기 때문으로 분석하였습니다. GNN 인코더는 구조정보를 node feature과 함께 학습하기 때문에 학습되지 않은 GIN 인코더도 node feature 만 사용한 모델에 대해 성능이 향상되었습니다.
 
@@ -219,7 +221,7 @@ Figure3 에서는 네트워크 간의 구조적 차이를 EGI gap 으로 분석�
 
 EGI gap 과 performance gap (micro-F1) 을 고려하여 Gene 데이터셋에서 Equation.5 의 유용성을 추가 검증하고자 하였습니다. 성능 차이를 제거하는 몇가지 불균형한 레이블이 있는데, 우리는 레이블 밸런스가 잘 잡힌 오직 7가지 뇌 암 네트워크만을 사용합니다.
 
-![스크린샷 2022-05-27 오전 11.08.04.png](handonghee\_2/스크린샷\_2022-05-27\_오전\_11.08.04.png)
+![](handonghee\_2/스크린샷\_2022-05-27\_오전\_11.08.04.png)
 
 Figure3 에서 보이듯 우리는 EGI를 특정 그래프에서 학습하고 다른 그래프들에서 테스트 합니다. x축은 EGI ap 을 보여주고 y축은 untrained GIN 대비 micro-F1 성능 향상을 보여줍니다. x, y 축 사이의 음의 상관관계가 분명하게 보입니다. 구조적인 차이가 1보다 작으면 전이도니 EGI 성능이 더 우수하여 전이로 인한 성능향상이 관찰되고 (좌측 상단) 구조적인 차이가 1보다 크면 전이로 인한 부정적인 효과가 관찰된다. 또한 소스 그래프와 대상 그래프 G2 사이에 유사한 패턴 —> 단일 밀집 클러스터가 관찰 됩니다.
 
@@ -229,7 +231,7 @@ Figure3 에서 보이듯 우리는 EGI를 특정 그래프에서 학습하고 �
 
 Table3 에서 우리는 대부분의 기존 모델이 joint-fine-tuning 에 대해 pre-training, fine-tuning task 를 통한 전이에 실패하는 것을 관찰하였습니다. 특히 Mask-GIN 과 ContextPred-GIN은 task-specific fine-tuning 에 많이 의존하는 반면, EGI 는 그래프간에 전이할 수 잇는 유사한 ego-graph 구조 포착에 중점을 둡니다. MI 기반의 방식인 GMI 역시 전이가능성을 보여주며 그래프 구조를 포착하는 것이 핵심임을 알 수 있습니다. 결과적으로 EGI 는 두가지 setting 모두에서 베이스라인 대비 높은 성능을 보여줍니다.
 
-![스크린샷 2022-05-27 오전 11.54.37.png](handonghee\_2/스크린샷\_2022-05-27\_오전\_11.54.37.png)
+![](handonghee\_2/스크린샷\_2022-05-27\_오전\_11.54.37.png)
 
 ## **5. Conclusion**
 
