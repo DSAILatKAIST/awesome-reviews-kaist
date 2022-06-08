@@ -1,5 +1,5 @@
----
-description : Dupty et al. / PF-GNN- Differentiable particle filtering based approximation of universal graph representations / ICLR-2022  
+﻿---
+description : Dupty et al. / PF-GNN: Differentiable particle filtering based approximation of universal graph representations / ICLR-2022  
 ---
 
 # **PF-GNN: Differentiable particle filtering based approximation of universal graph representations** 
@@ -14,7 +14,9 @@ Graph neural network (GNN)은 이웃한 노드의 정보를 반복적으로 업�
 ## **2. Motivation**  
 
 1-WL color-refinement  각 스텝( = GNN 메시지 전달 hop)에서는 자신과 이웃한 노드의 정보를 모으고, 이 정보가 서로 다르다면 자신의 색(label, embedding)도 이웃 노드와 다르게 선택하는 과정을 수행한다 (자세한 내용은 [이곳](https://davidbieber.com/post/2019-05-10-weisfeiler-lehman-isomorphism-test/)을 참조). 
+
 ![enter image description here](https://www.researchgate.net/publication/338590038/figure/fig1/AS:847460675100673@1579061778427/Weisfeiler-Lehman-WL-relabeling-Two-iterations-of-Weisfeiler-Lehman-vertex-relabeling.png)
+
 그림출처: Graph kernels: A survey
 
 이 과정을 어느정도 반복하게 되면 더 이상 색이 변하지 않게 된다.  중요한 점은 그래프 구조의 symmety 때문에 1-WL 수행 후 동일한 결과가 나왔다고 해서 동형 그래프임을 보장하지 않는다 (**표현력의 한계**). 이를 극복하기 위해서 높은 차원의 WL (또는 k-GNN)이 제안되었지만 계산량이 지수적으로 증가하기 때문에 k 값이 크면 실용적이지 못하다. 논 연구에서는 1-WL의 표현력을 높이기 위해 정확한 동형 솔버 (exact isomorphism solvers)를 사용하고 샘플링 기법을 통해 계산량을 선형으로 유지한다. 본 논문에서는 주어진 그래프의 neural representation 이 그래프를 유일하게 구분할 수 있도록 하는 GNN 을 제안하고자 한다.
@@ -37,9 +39,20 @@ Individualization 과정에서는 노드 하나의 색(임베딩)을 의도적�
 #### Particle Filtering (Refer Appendix A)
 
 파티클 필터링은 비선형 다이나믹 시스템에서 제한적인 관찰이 이루어질 때 스테이트의 사후 분포를 sequentially 추정하는 몬테카를로 방법이다. (논문과 아래 그림의 노테이션이 다른 경우 논문, 그림 순으로 표기)
-$$x_t: state$$ $$o_t, y_t: observation $$ $$w_t, \omega_t: weight$$ $$ p(x_{t+1}|x_t): transition$$ $$p(o_t|x_t) : observation\_model$$ $$b_t(\mathcal{G})= \langle x_t^k, w_t^k \rangle, \{x_t^{(i)}, \omega_t^{(i)}\}, \left( \sum_k w^k_t=1 \right) : belief$$ $$p(x_T|o_{t=1:T}) : posterior\_distribution$$
+$$x_t: state$$ $$o_t, y_t: observation $$
+
+$$w_t, \omega_t: weight$$ $$ p(x_{t+1}|x_t): transition$$
+
+$$p(o_t|x_t) : observation\_model$$ 
+
+$$b_t(\mathcal{G})= \langle x_t^k, w_t^k \rangle, \{x_t^{(i)}, \omega_t^{(i)}\}, \left( \sum_k w^k_t=1 \right) : belief$$ 
+
+$$p(x_T|o_{t=1:T}) : posterior\_distribution$$
+
 이를 통해 K개의 파티클, 가중치로 이루어진 스테이트 공간에 대한 belief를 통해 사후 분보포 (가우시안이 아니어도 가능)를 추산하는 것을 목적으로 한다.
+
 ![enter image description here](https://d3i71xaburhd42.cloudfront.net/006e8089dad4183deeeda2e1f5038d7a3663e614/3-Figure1-1.png)
+
 그림출처: Two Stage Particle Filter for Nonlinear Bayesian Estimation
 
 매 스텝마다, 각 파티클들은 새로운 스테이트로 전이되고 이에 대한 새로운 가중치를 얻는다 (eta 는 normalizing factor). $$x^k_{t+1} \sim p(x^k_{t+1}|x^k_t)$$ $$ w^k_{t+1} = \eta \cdot p(o_{t+1}|x^k_{t+1})$$
@@ -53,6 +66,7 @@ $$x_t: state$$ $$o_t, y_t: observation $$ $$w_t, \omega_t: weight$$ $$ p(x_{t+1}
 
 #### Initialization
 먼저 노드 특성으로 (노드 특성이 없다면 특정 상수로) 노드 임베딩을 초기화하고 1-WL GNN을 정해진 수만큼 수행한다.  1/K 가중치로 K 개 임베딩으로 belief 형성한다 (n: 그래프 노드 수, d: latent dim ?). 
+
 $$b_1= \langle (\mathcal{G}, H^K_1), w^k_1 \rangle_{k=1:K}, H^k_1= node\_embedding (n\times d)$$
 
 #### Transition step
@@ -71,12 +85,18 @@ $$f_{obs}(H^k_{t+1}; \theta_o) : observation\_function,$$ $$w^k_{t+1} = \frac{f_
 
 #### Resampling step
 가중치의 degeneracy를 완화하기 위해서 이산 분포 $$\langle w^k_{t+1} \rangle_{k=1:K}$$에서 K개의 파티클을 resampling 하고 이들의 가중치를 1/K로 재설정하는 과정이 필수적이다. 그러나 이는 미분 가능한 operation이 아니기 때문에 이 논문에서는 Karkus et al. (2018)에서 제안된 soft-resapmling 전략을 사용하였다. 이 새로운 가중치는 importance sampling 을 통해 계산 가능하다. 
-$$q_t(k) = \alpha w^k_{t} + (1-\alpha) 1/K, \alpha \in [0, 1]$$ $${w'^k_t} = \frac{p_t(k)}{q_t(w)} = \frac{w^k_t}{\alpha w^k_{t} + (1-\alpha) 1/K} $$
+
+$$q_t(k) = \alpha w^k_{t} + (1-\alpha) 1/K, \alpha \in [0, 1]$$ 
+
+$${w'^k_t} = \frac{p_t(k)}{q_t(w)} = \frac{w^k_t}{\alpha w^k_{t} + (1-\alpha) 1/K} $$
 
 #### Readout
 T번의 IR 과정 수행 후 얻어진 노드 임베딩에 평균으로 readout을 수행한다.
+
 $$\sum_{k=1:K} w^k_T H^k_T$$
+
 여기까지 기술된 알고리즘의은 다음과 같다.
+
 ![.](/.gitbook/2022-spring-assets/HyeonahKim_2/algorithm1.png)
 
 
