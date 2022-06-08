@@ -265,10 +265,10 @@ Train/Val/Test split은 Domain 또는 Time을 기준으로 나눴고, 평가 척
 그림 4의 (b)는 validation accuracy가 가장 높은 epoch의 training accuracy로 spurious한 feature가 있는 경우와 없는 경우를 실험한 것입니다. ERM의 경우 spurious한 feature에 많은 영향을 받은 반면, EERM은 비교적 robust한 것을 확인할 수 있습니다. 또한, 그림 4 (c)는 여러 encoder의 test accuracy를 측정한 것으로 다양한 encoder에서도 성능 향상을 확인할 수 있습니다.
 
 <p align="center">
-  <img width="100%" src="../../.gitbook/2022-spring-assets/yunhak2/figure1.png">
+  <img width="100%" src="../../.gitbook/2022-spring-assets/yunhak2/figure2.png">
 </p>
 <p align="center">
-  <img width="100%" src="../../.gitbook/2022-spring-assets/yunhak2/figure2.png">
+  <img width="100%" src="../../.gitbook/2022-spring-assets/yunhak2/figure3.png">
 </p>
 <div style="text-align:center;color:grey;font-size:75%">
 <p><em>그림 4 - Artificial Transformation 결과</em></p>
