@@ -83,7 +83,7 @@ a_{ij}^l= \text{LeakyReLU}((\mathbf{a}^l)^\top[\mathbf{W^l h^l_i} \bigoplus \mat
 $$
 
 * ![](https://latex.codecogs.com/svg.image?\mathbf{a}^l) 와 ![](https://latex.codecogs.com/svg.image?\mathbf{W^l}^l) 은 parameter 이고, ![](https://latex.codecogs.com/svg.image?\top) 은 transpose, ![](https://latex.codecogs.com/svg.image?\bigoplus) 는 vector의 concatenation 입니다.
-* node ![](https://latex.codecogs.com/svg.image?i) 를 예로 들면, ![](https://latex.codecogs.com/svg.image?a_{ij}^l) 은 node ![](https://latex.codecogs.com/svg.image?i) 의 neighbors ![](https://latex.codecogs.com/svg.image?j\in \mathcal{N}_i) 에 대한 값들입니다.
+* node ![](https://latex.codecogs.com/svg.image?i) 를 예로 들면, ![](https://latex.codecogs.com/svg.image?a_{ij}^l) 은 node ![](https://latex.codecogs.com/svg.image?i) 의 neighbors ![](https://latex.codecogs.com/svg.image?j\in&space;\mathcal{N}_i) 에 대한 값들입니다.
 
 $$
 \mathbf{h}_i^{l+1}=\sigma( \sum_{j \in \mathcal{N}_j} \alpha_{ij}^l \mathbf{W}^l \mathbf{h}_j^l )
