@@ -8,7 +8,7 @@
 
 ## **1. Problem Definition**
 
-![augmentation](C:\Users\user\Documents\카카오톡 받은 파일\images\images\augmentation.png)
+<img width="140" src=".gitbook/2022-spring-assets/DonghwiShin_2/augmentation.png">
 
 위 figure과 같이 Image에 대한 Augmentation을 수행하고, 이를 추가적인 학습 데이터로 활용함으로써 모델의 over-fitting을 방지하고 성능을 높이는 방법은 Computer Vision에서 활발하게 사용되는 테크닉이며, 딥러닝에 관심이 있는 분들에게는 대부분 익숙한 테크닉일 것이라 생각합니다.
 
