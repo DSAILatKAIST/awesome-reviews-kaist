@@ -30,7 +30,7 @@ Reinforcement Learning에서 Agent는 특정 state에서 action을 취하고, �
 
 그런데 최근 Reinforcement Learning에서는 Policy뿐만 아니라 Q-value에 대한 학습 또한 같이 활용한 모델이 우수한 성능으로 많은 각광을 받고 있으며, 본 논문에서도 이러한 모델 중 하나인 Soft Actor-Critic모델을 사용하고 있습니다.
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/network.png">
+<img width="900" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/network.png">
 
 하지만, Soft Actor-Critic과 같이 policy와 Q-value에 대한 학습을 수행하는 RL 알고리즘에서는 image를 사용한 학습이 효과적으로 이루어지기 힘들다는 한계가 있습니다. 그 이유는 image를 사용하여 학습을 수행하기 위해서는 image encoder에 대한 학습이 필요하고, 이와 더불어 Q-value와 Policy에 대한 학습까지 필요하기 때문입니다. 위 figure을 통해 다시 정리하자면, 파란색 동그라미로 표시된 image encoder에 대한 학습, 초록색으로 표시된 Q-value network에 대한 학습, 빨간색으로 표시된 policy network에 대해 모두 학습이 이루어져야 합니다. 이를 위해서는 상당히 많은 양의 데이터가 필요할 것이고, 다시 말해 충분한 양의 데이터가 주어지지 않는다면 학습이 제대로 이루어지지 않을 것입니다.
 
@@ -98,7 +98,7 @@ Policy Improvement step에서는 현재 학습된 Q값을 이용하여 policy ![
 
 Soft Actor-Critic의 학습 과정은 쉽게 말해 *주어진 state에서 특정 action을 취하는 것*이 얼마나 가치있는지를 학습함과 동시에, 이 가치를 이용하여 *특정 상태에서 어떠한 action을 취할 것인지* policy를 학습합니다. 이러한 학습이 반복해서 이루어짐으로써, 결과적으로 Agent는 주어진 state에서 가장 좋은 action을 취하는 방향으로 학습하게 됩니다. 전체적인 network 구조를 그림으로 나타내면 다음과 같습니다.
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/SAC.png">
+<img width="800" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/SAC.png">
 
 
 
@@ -114,7 +114,7 @@ Soft Actor-Critic의 학습 과정은 쉽게 말해 *주어진 state에서 특�
 
 **Optimality Invariant State Transformation**
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/eqn1.png">
+<img width="500" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/eqn1.png">
 
 위 식에서 f는 image transformation 함수이며, v는 f의 parameter 입니다. 본 논문에서는 이러한 이미지 변환 함수로 4 pixel-random-shift를 사용하였습니다. 즉, 주어진 image에 대하여 상하좌우로 random하게 4 pixel을 shift하였으며, 논문에서는 이러한 transformation이 가장 성능이 좋았기 때문에 사용했다고 이야기하고 있습니다.
 
@@ -124,13 +124,13 @@ Soft Actor-Critic의 학습 과정은 쉽게 말해 *주어진 state에서 특�
 
 이 때, 여러 개의 augmented state를 이용하여 Q-value를 계산하는 것이 곧 논문에서 이야기하는 Regularization이 됩니다. 이러한 Regularization 과정은 다음과 같은 수식으로 더욱 명확하게 이해할 수 있습니다.
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/eqn2.png">
+<img width="800" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/eqn2.png">
 
 위 Figure에서 (1)식은 Q-target에 대한 Regularization, (2)식은 Q-function에 대한 Regularization, (3)식은 이 두 식을 합한 식을 나타냅니다. 
 
 이러한 Regularization 알고리즘을 Soft Actor-Critic 모델에 적용시킨 전체적인 강화학습 모델에 대한 수도 코드는 다음과 같습니다. Orange, Green, Blue로 표현된 부분은 각각 Image Transformation, target Q-value를 regularization하기 위한 augmentation, Q-function 자체를 regularization하기 위한 augmentation을 나타냅니다.
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/algorithm.png">
+<img width="800" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/algorithm.png">
 
 정리하자면 Agent가 environment와 상호작용하는 매 step마다 replay buffer에서 mini-batch size 만큼의 sample을 뽑고, **하나의 sample을 이용하여 Q-value를 update할 때** target Q에 대해 K개의 augmentation과 Q-value function자체에 대해 M개의 augmentation을 수행하여 Q-value를 학습하게 됩니다. 즉, replay buffer로부터 얻어진 하나의 sample data를 계산할 때 K*M개의 Q-value data를 사용하여 계산을 수행한다는 의미가 됩니다.
 
@@ -160,7 +160,7 @@ Soft Actor-Critic의 학습 과정은 쉽게 말해 *주어진 state에서 특�
 
 **Experiment 1**
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment1.png">
+<img width="1500" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment1.png">
 
 해당 실험에서는 Image Transformation을 해서 다양한 sample 데이터를 확보했을 때의 성능과 그렇지 않을 때의 성능을 비교합니다.
 
@@ -176,7 +176,7 @@ baseline들은 모두 SAC framework를 사용하였는데, 각각의 model은 �
 
 **Experiment 2**
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment2.png">
+<img width="1500" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment2.png">
 
 해당 실험은 Regularization의 성능을 나타낸 것입니다. 
 
@@ -192,9 +192,9 @@ baseline들은 모두 SAC framework를 사용하였는데, 각각의 model은 �
 
 **Experiment 3**
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment3_table.png">
+<img width="900" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment3_table.png">
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment3.png">
+<img width="1500" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment3.png">
 
 해당 실험은 ***PlaNet*** Benchmark에서 proposed model과 다른 model들을 비교한 결과입니다. 
 
@@ -218,9 +218,9 @@ baseline들은 모두 SAC framework를 사용하였는데, 각각의 model은 �
 
 **Experiment 4**
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment4.png">
+<img width="1200" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment4.png">
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment4_2.png">
+<img width="1200" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment4_2.png">
 
 해당 실험은 ***Dreamer*** Benchmark에서  *Dreamer*모델과 proposed model을 비교한 결과입니다. 
 
@@ -242,7 +242,7 @@ baseline들은 모두 SAC framework를 사용하였는데, 각각의 model은 �
 
 **Experiment 5**
 
-<img width="600" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment5.png">
+<img width="500" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment5.png">
 
 Experiment 5는 Soft Actor-Critic 대신 Efficient DQN에 테크닉을 적용하였습니다.
 
