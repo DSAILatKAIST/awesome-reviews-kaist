@@ -14,19 +14,19 @@ Graph Neural Network(GNN)는 graph structure data의 representation learning을 
 
 ![notation.PNG](../../.gitbook/2022-spring-assets/GAT2/notation.PNG)
 
-AGGREGATE function은 주변에서 모아온 정보를 어떻게 취합할 것인가를 결정하고, COMBINE function은 자신의 정보와 어떻게 합쳐서 update할 것인가를 결정한다. 따라서 GNN 연구 모델은 $AGGREGATE$과 $COMBINE$의 modeling에 의해 결정된다.  
+AGGREGATE function은 주변에서 모아온 정보를 어떻게 취합할 것인가를 결정하고, COMBINE function은 자신의 정보와 어떻게 합쳐서 update할 것인가를 결정한다. 따라서 GNN 연구 모델은 AGGREGATE과 COMBINE의 modeling에 의해 결정된다.  
 
 # 2. Motivation
 
-GNN의 대표 baseline으로 Graph Convolutional Neural Network (GCN) [2]을 소개하겠다. 이는 모든 node에 self-loop을 추가해 자기 자신도 neighborhood set에 포함되어 $AGGREGATE$과 $COMBINE$ function이 통합된 형태이다.  
+GNN의 대표 baseline으로 Graph Convolutional Neural Network (GCN) [2]을 소개하겠다. 이는 모든 node에 self-loop을 추가해 자기 자신도 neighborhood set에 포함되어 AGGREGATE과 COMBINE function이 통합된 형태이다.  
 
 ![gcn.PNG](../../.gitbook/2022-spring-assets/GAT2/gcn.PNG)
 
-GCN은 주변 node 정보를 가져올 때 degree normalization으로 가중치를 조절한다. 이 과정에서 생각해볼 수 있는 것은 주변 node들이 모두 동일하게 target node에게 중요할까 하는 것이다. 따라서 이 가중치 정도를 parameterization하여 target node representation 학습에 도움이 되는 node는 가중치를 크게, 그렇지 않은 node는 가중치를 낮게 하는 attention 기반의 방법론 Graph Attention Network (GAT) [3]이 제안되었다. 즉, $AGGREGATE$ function이 attention weight function으로 modeling된 것이다.  
+GCN은 주변 node 정보를 가져올 때 degree normalization으로 가중치를 조절한다. 이 과정에서 생각해볼 수 있는 것은 주변 node들이 모두 동일하게 target node에게 중요할까 하는 것이다. 따라서 이 가중치 정도를 parameterization하여 target node representation 학습에 도움이 되는 node는 가중치를 크게, 그렇지 않은 node는 가중치를 낮게 하는 attention 기반의 방법론 Graph Attention Network (GAT) [3]이 제안되었다. 즉, AGGREGATE function이 attention weight function으로 modeling된 것이다.  
 
 ![gat.PNG](../../.gitbook/2022-spring-assets/GAT2/gat.PNG)
 
-여기서 attention score $e_{ij}$는 node $i$에 대한 node $j$의 importance를 의미하며 학습과정에서 adaptive하게 조절되기를 바란다.
+여기서 attention score는 node i에 대한 node j의 importance를 의미하며 학습과정에서 adaptively 조절되기를 바란다.
 
 오늘 소개하는 논문은 이 GAT의 attention score가 target node(query node)에 dependent하게 neighbor node(key node)들이 학습되지 않음을 보인다. 이에 대한 직관을 다음의 toy example로 보인다. 
 
@@ -38,7 +38,7 @@ GCN은 주변 node 정보를 가져올 때 degree normalization으로 가중치�
 	- Bottom row : Key node
 	- Goal : Prediction the label of every query node according to its attribute
 
-- Attention coefficient distribution when $k=10$
+- Attention coefficient distribution when k=10
 
 ![toy_example_att.png](../../.gitbook/2022-spring-assets/GAT2/toy_example_att.png)
 
@@ -95,7 +95,7 @@ GAT와 GATv2는 서로 exclusive한 property를 가지지만, complementary한 �
 모든 case에서 GATv2가 baseline들보다 우위의 성능을 가짐을 알 수 있다. 심지어 single head의 GATv2가 8개의 multi attention head의 GAT보다도 우수한 성능을 보인다. GATv2에서 multi head가 single head보다 성능이 좋지 않은 것은 single head만으로 충분한 expressivity를 가지며, multi head는 오히려 overfitting되는 것으로 해석 가능하다. 
 
 
-또 다른 실험으로 noise에 대한 robustness를 분석했다. original graph에 없는 edge를 $|E|\times \rho$만큼 randomly sample하여 noise edge set $E'$를 만들고, $G=(V, E \bigcup E')$으로 GAT와 GATv2를 각각 학습한다. 아래는 각각의 Accuracy를 서로 다른 dataset에서 비교한 모습이다.
+또 다른 실험으로 noise에 대한 robustness를 분석했다. original graph에 없는 edge를 |E|xp만큼 randomly sample하여 noise edge set E'를 만들고, G=(V, E+E')으로 GAT와 GATv2를 각각 학습한다. 아래는 각각의 Accuracy를 서로 다른 dataset에서 비교한 모습이다.
 
 ![result2.png](../../.gitbook/2022-spring-assets/GAT2/result2.png)
 
