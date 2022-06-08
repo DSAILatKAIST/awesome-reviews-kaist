@@ -41,6 +41,7 @@
   * [RobustSSL](paper-review/2022-spring/RobustSSL\_.md)
   * [SlotMachines](paper-review/2022-spring/ICML-2021-SlotMachines.md)
   * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
+  * [GraphTrafficForecasting](paper-review/2022-spring/aaai-2020-multirangeattentivebicomponentgraphconvolutionalnetworkfortrafficforecastig.md)
 
 ## How to contribute
 
