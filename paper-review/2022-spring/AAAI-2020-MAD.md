@@ -66,7 +66,9 @@ description: >-
 
 이렇게 Hop(i.e., Order)이 커질수록 noise가 커지는 상황을 우리는 두 가지 케이스로 구분하여 바라보려고 한다. 바로 order가 작은 상황(i.e., neighboring nodes, 논문에서는 3-hop 이내) 그리고 order가 큰 상황(i.e., remote nodes, 논문에서는 8-hop 이상)이다. 아래 정리된 그림을 통해 보면, ![](https://latex.codecogs.com/svg.image?MADGap)은 멀리 떨어졌을 때의 식별성, ![](https://latex.codecogs.com/svg.image?MAD%5E%7Brmt%7D)과 가까이 있을 때의 식별성, ![](https://latex.codecogs.com/svg.image?MAD%5E%7Bneb%7D)의 차를 통해 정의되는 것을 확인할 수 있고 이를 통해 우리는 드디어 `Over-smoothing 이 언제 발생하는지`, 이를 `수치적으로` 이해할 수 있게된다. 즉, ![](https://latex.codecogs.com/svg.image?MADGap)이 크면 그만큼 멀리 떨어진 노드의 식별성이 좋은 상황이므로, 우리에게 좋은 상황이되고 이와 달리 ![](https://latex.codecogs.com/svg.image?MADGap)이 작거나 음수 값을 가지게 되면 멀리 떨어진 노드들의 식별성이 가까운 노드들보다 안좋은, 바로 **Over-smoothing** 이 발생하는 순간임을 알 수 있다.
 
-![](../../.gitbook/2022-spring-assets/SukwonYun\_2/madgap.png)
+정의한 MADGap이 실제로 Over-Smoothing을 잘 대변하는 효과적인 수치인지 역시 확인해 볼 필요가 있다. 저자는 아래 실험들을 통해 효과성을 검증한다. 해석해보면, 많은 경우 MADGap과 Accuracy가 같은 경향성을 가지고 있고 실제로 Pearson 계수까지 1에 가까운 수치를 가지고 있음을 확인할 수 있다. 이를 통해, 우리는 Layer가 커질수록 감소하는 Accuracy 와 같은 경향을 지닌 MADGap이 Measure로서 타당함을 확인할 수 있다. 첨언하면, MADGap 이 감소한다는 것은 멀리 떨어진 노드의 식별성이 떨어져서 Over-smoothing 이 발생하고 있다는 것이다.  
+
+![](../../.gitbook/2022-spring-assets/SukwonYun\_2/madgap_verification.png)
 
 정의한 MADGap이 실제로 Over-Smoothing을 잘 대변하는 효과적인 수치인지 역시 확인해 볼 필요가 있다. 저자는 아래 실험들을 통해 효과성을 검증한다. 해석해보면, 많은 경우 MADGap과 Accuracy가 같은 경향성을 가지고 있고 실제로 Pearson 계수까지 1에 가까운 수치를 가지고 있음을 확인할 수 있다. 이를 통해, 우리는 Layer가 커질수록 감소하는 Accuracy 와 같은 경향을 지닌 MADGap이 Measure로서 타당함을 확인할 수 있다. 첨언하면, MADGap 이 감소한다는 것은 멀리 떨어진 노드의 식별성이 떨어져서 Over-smoothing 이 발생하고 있다는 것이다. ![](../../.gitbook/2022-spring-assets/SukwonYun\_2/madgap\_verification.png)
 
@@ -115,13 +117,17 @@ $$
 
 ### **Result**
 
-**(1) MADReg and AdaEdge Results on **_**CORA/CiteSeer/PubMed**_
+**(1) MADReg and AdaEdge Results on *CORA/CiteSeer/PubMed***
+  
 
 ![](../../.gitbook/2022-spring-assets/SukwonYun\_2/experiment1.png)
 
 일반적으로 GNN은 2-3 layer 내에서 Best Performace가 나오지만 그 이후 layer 수에서는 performance가 급격하게 감소하게 된다. 이에 저자는 4 layer를 기준으로 삼고 기존 baseline과 baseline에 MADReg 그리고 AdaEdge를 적용해 본 버전을 실험군으로 두었다. 결과를 확인해보면 Acc, MADGap 모두에서 그리고 Cora, CiteSeer, PubMed 데이터에서 Oversmoothing을 개선한 방안인 두 방법론이 효과적임을 확인할 수 있다. 실험은 5개의 split 방법에서 각각 10개의 random seed를 두어 진행하였기에 그려진 box plot이 유의미하다고 볼 수 있다.
 
-**(2) MADReg with different layers and AdaEdge with GNN varaints** ![](../../.gitbook/2022-spring-assets/SukwonYun\_2/experiment2.png)
+**(2) MADReg with different layers and AdaEdge with GNN varaints**
+
+  
+![](../../.gitbook/2022-spring-assets/SukwonYun\_2/experiment2.png)
 
 위에는 MADReg을 GCN에 적용하여서 Acc, MADGap 측면에서 기존 GCN과 대비하여 성능향상이 얼마나 있었는지 살펴본 결과이다. 확실하게 Layer를 많이 쌓을수록 기존 GCN의 성능은 급격하게 떨어지는 면모를 살펴볼 수 있는데 비해 MADReg을 적용한 버전은 상대적으로 그 성능이 떨어지는 기울기가 덜 급격한 것을 확인할 수 있다. 이는 Oversmoothing이 상대적으로 덜 일어나고 있음을 확인할 수 있는 대목이다.
 
