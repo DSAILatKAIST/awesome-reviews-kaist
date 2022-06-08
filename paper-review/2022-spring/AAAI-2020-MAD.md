@@ -56,7 +56,7 @@ description: >-
 
 ### (2) Information-to-noise Ratio
 
-이로써 우리는 그래프의 임베딩 표현을 바탕으로 smoothness를 정량화할 수 있는 척도를 얻어냈다. 하지만 우리는 본래 목표했던 Over-smoothing 에 대해 더 이해해 볼 필요가 있다. Paper 는 Over-smoothing 의 원인을 `over-mixing of information and noise` 때문이라고 보고 있다. 즉, smoothness 를 토대로 장점을 얻지만 동시에 이 smoothness 때문에 되려 noise 가 발생할 수 있다는 것이고 이 noise 의 영향력이 커져 Over-smoothing이 일어난다는 것이다. 동시에 또, 현재까지 GNN이 성공적이었던 이유는 information의 비율이 noise의 비율보다 컸기 때문이라고 논문은 주장한다. 여기서 구체화해보면, _information_은 **intra-class** (같은 클래스 내) 그리고 _noise_는 **inter-class** (다른 클래스 간)로 이해할 수 있다.
+이로써 우리는 그래프의 임베딩 표현을 바탕으로 smoothness를 정량화할 수 있는 척도를 얻어냈다. 하지만 우리는 본래 목표했던 Over-smoothing 에 대해 더 이해해 볼 필요가 있다. Paper 는 Over-smoothing 의 원인을 `over-mixing of information and noise` 때문이라고 보고 있다. 즉, smoothness 를 토대로 장점을 얻지만 동시에 이 smoothness 때문에 되려 noise 가 발생할 수 있다는 것이고 이 noise 의 영향력이 커져 Over-smoothing이 일어난다는 것이다. 동시에 또, 현재까지 GNN이 성공적이었던 이유는 information의 비율이 noise의 비율보다 컸기 때문이라고 논문은 주장한다. 여기서 구체화해보면, \_information\_은 **intra-class** (같은 클래스 내) 그리고 \_noise\_는 **inter-class** (다른 클래스 간)로 이해할 수 있다.
 
 이러한 information 그리고 noise가 공존하는 상황을 역시 비율로써 정량화할 수 있는데 이를 정리해보면 아래와 같다. `Information-to-noise` 는 전체 노드 페어 중에서 intra-class(같은 클래스 간 연결된 페어)의 비율로 나타낼 수 있고, 예를 들어 2-hop 내에서 Information-to-noise 를 노드 관점, 그리고 그래프 관점에서 각각 구할 수 있다. 둘의 차이는 노드 관점에서는 2-hop내 실제 노드 수를 바탕으로 한다는 점과 그래프 관점에서는 2-hop내 실제 노드 페어 수를 바탕으로 한다는 점이다. 역시 정량화한 Information-to-noise가 유의미한지 확인해볼 필요가 있다. 오른쪽 그림을 보면, Order(Hop)가 높아질수록, Information-to-noise 비율이 급격하게 줄어드는 경향성을 확인할 수 있다. 이를 통해, 우리는 Hop 이 커질수록, intra-class 가 줄어들고(i.e., inter-class 는 늘어남) information에 비해 noise가 더욱 커지는 상황을 확인할 수 있다. 종합하면, 우리는 Over-smoothing의 원인을 **over-mixing of information and noise** 바라보았고 이는 information-to-noise 의 비율로서 살펴볼 수 있었고, 결과적으로 Hop이 커질수록 noise가 커지는 상황을 재차 확인하였다.
 
@@ -66,9 +66,9 @@ description: >-
 
 이렇게 Hop(i.e., Order)이 커질수록 noise가 커지는 상황을 우리는 두 가지 케이스로 구분하여 바라보려고 한다. 바로 order가 작은 상황(i.e., neighboring nodes, 논문에서는 3-hop 이내) 그리고 order가 큰 상황(i.e., remote nodes, 논문에서는 8-hop 이상)이다. 아래 정리된 그림을 통해 보면, ![](https://latex.codecogs.com/svg.image?MADGap)은 멀리 떨어졌을 때의 식별성, ![](https://latex.codecogs.com/svg.image?MAD%5E%7Brmt%7D)과 가까이 있을 때의 식별성, ![](https://latex.codecogs.com/svg.image?MAD%5E%7Bneb%7D)의 차를 통해 정의되는 것을 확인할 수 있고 이를 통해 우리는 드디어 `Over-smoothing 이 언제 발생하는지`, 이를 `수치적으로` 이해할 수 있게된다. 즉, ![](https://latex.codecogs.com/svg.image?MADGap)이 크면 그만큼 멀리 떨어진 노드의 식별성이 좋은 상황이므로, 우리에게 좋은 상황이되고 이와 달리 ![](https://latex.codecogs.com/svg.image?MADGap)이 작거나 음수 값을 가지게 되면 멀리 떨어진 노드들의 식별성이 가까운 노드들보다 안좋은, 바로 **Over-smoothing** 이 발생하는 순간임을 알 수 있다.
 
-정의한 MADGap이 실제로 Over-Smoothing을 잘 대변하는 효과적인 수치인지 역시 확인해 볼 필요가 있다. 저자는 아래 실험들을 통해 효과성을 검증한다. 해석해보면, 많은 경우 MADGap과 Accuracy가 같은 경향성을 가지고 있고 실제로 Pearson 계수까지 1에 가까운 수치를 가지고 있음을 확인할 수 있다. 이를 통해, 우리는 Layer가 커질수록 감소하는 Accuracy 와 같은 경향을 지닌 MADGap이 Measure로서 타당함을 확인할 수 있다. 첨언하면, MADGap 이 감소한다는 것은 멀리 떨어진 노드의 식별성이 떨어져서 Over-smoothing 이 발생하고 있다는 것이다.  
+정의한 MADGap이 실제로 Over-Smoothing을 잘 대변하는 효과적인 수치인지 역시 확인해 볼 필요가 있다. 저자는 아래 실험들을 통해 효과성을 검증한다. 해석해보면, 많은 경우 MADGap과 Accuracy가 같은 경향성을 가지고 있고 실제로 Pearson 계수까지 1에 가까운 수치를 가지고 있음을 확인할 수 있다. 이를 통해, 우리는 Layer가 커질수록 감소하는 Accuracy 와 같은 경향을 지닌 MADGap이 Measure로서 타당함을 확인할 수 있다. 첨언하면, MADGap 이 감소한다는 것은 멀리 떨어진 노드의 식별성이 떨어져서 Over-smoothing 이 발생하고 있다는 것이다.
 
-![](../../.gitbook/2022-spring-assets/SukwonYun\_2/madgap_verification.png)
+![](../../.gitbook/2022-spring-assets/SukwonYun\_2/madgap\_verification.png)
 
 정의한 MADGap이 실제로 Over-Smoothing을 잘 대변하는 효과적인 수치인지 역시 확인해 볼 필요가 있다. 저자는 아래 실험들을 통해 효과성을 검증한다. 해석해보면, 많은 경우 MADGap과 Accuracy가 같은 경향성을 가지고 있고 실제로 Pearson 계수까지 1에 가까운 수치를 가지고 있음을 확인할 수 있다. 이를 통해, 우리는 Layer가 커질수록 감소하는 Accuracy 와 같은 경향을 지닌 MADGap이 Measure로서 타당함을 확인할 수 있다. 첨언하면, MADGap 이 감소한다는 것은 멀리 떨어진 노드의 식별성이 떨어져서 Over-smoothing 이 발생하고 있다는 것이다. ![](../../.gitbook/2022-spring-assets/SukwonYun\_2/madgap\_verification.png)
 
@@ -104,12 +104,12 @@ $$
 
 ## **4. Experiment**
 
-다음은 위의 2가지 방안, MADReg 그리고 AdaEdge의 효과성을 입증하기 위한 실험이다. 실험은 node-classification을 대상으로 진행하였고 특정 방식의 GNN 모델링 혹은 알고리듬을 제안한게 아닌 각 GNN 모델에서 적용가능한, _Oversmoothing을 개선하는 하나의 Framework_를 제안하였기에 각 모델에 이를 적용해서 효과성을 입증하는 방식으로 실험이 진행되었다.
+다음은 위의 2가지 방안, MADReg 그리고 AdaEdge의 효과성을 입증하기 위한 실험이다. 실험은 node-classification을 대상으로 진행하였고 특정 방식의 GNN 모델링 혹은 알고리듬을 제안한게 아닌 각 GNN 모델에서 적용가능한, \_Oversmoothing을 개선하는 하나의 Framework\_를 제안하였기에 각 모델에 이를 적용해서 효과성을 입증하는 방식으로 실험이 진행되었다.
 
 ### **Experiment setup**
 
 * Dataset
-  * 총 7가지의 dataset, _Cora, CiteSeer, PubMed, Amazon Photo, Amazon Computers, Coauthor CS, Coauthor Physics_를 사용하였다. Dataset의 Statistics는 아래와 같이 요약된다. ![](../../.gitbook/2022-spring-assets/SukwonYun\_2/data.png)
+  * 총 7가지의 dataset, \_Cora, CiteSeer, PubMed, Amazon Photo, Amazon Computers, Coauthor CS, Coauthor Physics\_를 사용하였다. Dataset의 Statistics는 아래와 같이 요약된다. ![](../../.gitbook/2022-spring-assets/SukwonYun\_2/data.png)
 * baseline
   * 총 10가지의 GNN 베이스라인을 사용하였다. 가장 유명한 GCN부터 출발해서 ChebGCN, HyperGraph, FeatSt, GraphSAGE, GAT, ARMA, HighOrder, DNA, GGNN의 여러 GNN Variant를 다루었다.
 * Evaluation Metric
@@ -117,8 +117,7 @@ $$
 
 ### **Result**
 
-**(1) MADReg and AdaEdge Results on *CORA/CiteSeer/PubMed***
-  
+**(1) MADReg and AdaEdge Results on **_**CORA/CiteSeer/PubMed**_
 
 ![](../../.gitbook/2022-spring-assets/SukwonYun\_2/experiment1.png)
 
@@ -126,7 +125,6 @@ $$
 
 **(2) MADReg with different layers and AdaEdge with GNN varaints**
 
-  
 ![](../../.gitbook/2022-spring-assets/SukwonYun\_2/experiment2.png)
 
 위에는 MADReg을 GCN에 적용하여서 Acc, MADGap 측면에서 기존 GCN과 대비하여 성능향상이 얼마나 있었는지 살펴본 결과이다. 확실하게 Layer를 많이 쌓을수록 기존 GCN의 성능은 급격하게 떨어지는 면모를 살펴볼 수 있는데 비해 MADReg을 적용한 버전은 상대적으로 그 성능이 떨어지는 기울기가 덜 급격한 것을 확인할 수 있다. 이는 Oversmoothing이 상대적으로 덜 일어나고 있음을 확인할 수 있는 대목이다.

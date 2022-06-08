@@ -8,11 +8,11 @@ description: >-
 
 ## **1. Problem Definition**
 
-> #### **과거의 정보를 유지**하면서 계속해서 들어오는 **새로운 정보를 학습**한다
+> **과거의 정보를 유지하면서 계속해서 들어오는 새로운 정보를 학습한다**
 
 본 논문은 Graph domain에서 **Catastrophic Forgetting**을 최대한 방지하는 `Continual learning` 모델을 제시합니다.
 
-> #### `Continual learning`이란?
+> **`Continual learning`이란?**
 
 과거의 정보를 최대한 유지하면서 새로운 정보를 학습하는 방법으로, `Lifelong learning`, `Incremental learning`이라고도 부릅니다.
 
@@ -26,11 +26,11 @@ description: >-
 
 그리고 Task가 진행됨에 따라 이전 Task에서 학습했던 node들에 대한 예측 성능이 낮아지는 것을 볼 수 있습니다. 예를 들어 Task 1에서 파란 node들은 95%의 예측성능을 보였지만, Task 2에서는 55%로 줄었고, Task 2에서 보라색 node들은 94%의 성능을 보인 반면 Task 3에서는 56%에 불과합니다. 이렇게 Task가 진행됨에 따라 앞서 학습했던 정보를 잊는 것을 **Catastrophic Forgetting**이라고 합니다.
 
-_**저자들은 Catastrophic Forgetting을 최대한 줄이는**** ****`Graph Continual Learning`**** ****모델을 제시하고자 합니다.**_
+_**저자들은 Catastrophic Forgetting을 최대한 줄이는\*\*\*\***** ****`Graph Continual Learning`**** ****\*\*\*\*모델을 제시하고자 합니다.**_
 
 ## **2. Motivation**
 
-> #### Non-grid domain에서의 `Continual learning`
+> **Non-grid domain에서의 `Continual learning`**
 
 지금까지 주류를 이루는 `Continual learning` 방법론은 Image 데이터에 적용되는 `CNN` based 모델들이 많습니다. 하지만 실제 세계의 데이터는 non-grid 형태가 많은데, Graph 데이터에 적용되는 모델은 많이 없기 때문에 저자들은 `GNN`에 적용될 수 있는 `Continual learning` 방법론을 소개합니다.
 
@@ -38,7 +38,7 @@ _**저자들은 Catastrophic Forgetting을 최대한 줄이는**** ****`Graph Co
 
 이 모듈을 제시함으로써 parameter를 update할 때 **node-level learning** 뿐 아니라 **node 사이의 propagation**까지 고려할 수 있게 되는 것입니다.
 
-> #### Computation & memory cost!
+> **Computation & memory cost!**
 
 `Continual learning`의 대표적인 방법 중 하나로 replay apporach가 있습니다. 이는 이전 task에 있었던 data를 이후 task의 data를 학습시킬 때도 사용하는 방법인데요, task가 많아짐에 따라 replay approach는 computation cost와 memory cost가 증가하게 됩니다.
 
@@ -46,7 +46,7 @@ _**저자들은 Catastrophic Forgetting을 최대한 줄이는**** ****`Graph Co
 
 ## **3. Method**
 
-> #### **Preliminaries**: `GNN`
+> **Preliminaries: `GNN`**
 
 논문에서 제안한 방법론을 이해하기 위해서는 `GNN`의 개념을 알고 있어야 합니다.
 
@@ -70,13 +70,13 @@ $$e_{ij}^{(l)} = S_{j \subset \mathcal{N}(i)}a(h_{i}^{(l-1)}W^{(l)},h_{j}^{(l-1)
 
 `GAT`에 관해 자세한 부분은 [원 논문](https://arxiv.org/abs/1710.10903)을 참고하시기 바랍니다.
 
-> #### Problem Formulation
+> **Problem Formulation**
 
 연속적인 학습 과정에서, 모델은 일련의 task $$\mathcal{T} = \lbrace \mathcal{T_{1}}, \mathcal{T_{2}}, ..., \mathcal{T_{K}} \rbrace$$을 받습니다.
 
 각 task $$\mathcal{T_{k}}$$는 training node set $$\mathcal{V_{k}^{tr}}$$과 testing node set$$\mathcal{V_{k}^{te}}$$으로 구성되어 있고, 이들 각각은 feature sets $$X_{k}^{tr}$$, $$X_{k}^{te}$$를 포함하고 있습니다. 각 task의 label은 겹치지 않습니다. (다른 task에는 다른 class의 node들이 학습된다는 의미입니다.)
 
-> #### Topology-aware Weight Preserving
+> **Topology-aware Weight Preserving**
 
 본 논문에서 제시하는 TWP 모듈은 topology 정보를 구함과 동시에 각 task에서 학습 관련 중요한 파라미터, topology 관련 중요한 파라미터를 찾아냅니다.
 
@@ -124,7 +124,7 @@ Parameter $$w_{m}$$의 중요도는 $$g_{m}$$의 크기로 나타내며, $$\math
 
 여기서 $$\lambda_{l}$$ 와 $$\lambda_{t}$$는 hyperparameter로, 어떤 score를 중점적으로 고려할지 사용자가 정할 수 있습니다.
 
-> #### `Continual Learning` on `GNN`
+> **`Continual Learning` on `GNN`**
 
 위에서 구한 importance를 가지고, `Continual learning`에 어떻게 적용시킬 수 있을 지 보겠습니다.
 
@@ -142,7 +142,7 @@ $$\mathcal{L_{k+1}^{new}}(W)$$는 새로운 task의 loss function이고, $$I_n$$
 
 이를 통해 모델은 이전 task들에서 importance score가 높았던 parameter를 최대한 보존하면서 새로운 task를 학습하게 됩니다.
 
-> #### Promoting Minimized Importance Scores
+> **Promoting Minimized Importance Scores**
 
 더 나아가, 모델의 capacity는 한정되어 있으므로, 위에서 구했던 loss function에 importance score의 $$l_{1}$$ norm을 추가시켜서 다음과 같은 최종 loss function을 얻습니다.
 
@@ -154,7 +154,7 @@ $$\mathcal{L_{k+1}}(W) = \mathcal{L_{k+1}^{'}}(W)+ \beta \lVert I_{k+1} \rVert_1
 
 $$\beta$$가 높아지면 미래의 task를 위해 더 많은 learning capacity를 보존하겠다는 의미가 됩니다.
 
-> #### Extension to General GNNs
+> **Extension to General GNNs**
 
 지금까지는 `GAT`에 대해서만 `TWP`모듈을 적용했지만, 저자들은 다른 `GNN`모델들에 대해서도 쉽게 적용이 가능하다고 합니다.
 
@@ -207,7 +207,7 @@ $$e_{ij}^{(l)}=(h_i^{(l-1)}W^{(l)})^{T}tanh(h_j^{(l-1)}W^{(l)})$$
 
 ### **Result**
 
-> #### Performance
+> **Performance**
 
 * Node Classification
 
@@ -237,7 +237,7 @@ Table에서 확인할 수 있듯이 저자들이 제시한 방법론은 모든 `
 
 이를 고려했을 때, 저자들의 방법론이 task가 진행됨에 따라 이전 task를 가장 잘 기억한다는(**Catastrophic forgetting**이 적다는) 것을 확인할 수 있습니다.
 
-* Graph Classification 
+* Graph Classification
 
 저자들의 방법론은 graph classification task에서도 좋은 성능을 보였습니다.
 
@@ -251,7 +251,7 @@ Node classification과 마찬가지로 task가 진행됨에 따라 성능이 어
 
 왼쪽 그림은 first task의 performance 변화, 오른쪽 그림은 평균 performance의 변화입니다.
 
-* Ablation Study 
+* Ablation Study
 
 앞서 설명드린대로 저자들의 방법론은 두 가지 모듈(Minimized Loss Preserving, Topological Structure Preserving)을 사용했는데요, 이 각각의 모듈이 과연 모델에 도움을 주는지 확인하기 위해 ablation study도 진행했습니다.
 

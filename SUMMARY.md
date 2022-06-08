@@ -4,7 +4,7 @@
 
 ## Paper Review
 
-* [\[2022 Spring\] Paper Review](paper-review/2022-spring/README.md)
+* [\[2022 Spring\] Paper Review](paper-review/2022-spring-paper-review/README.md)
   * [Template](paper-review/2022-spring/template.md)
   * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
   * [CAA](paper-review/2022-spring/chi-2019-caa.md)
@@ -63,8 +63,8 @@
   * [3D Molecule generative model for structure-based drug design](paper-review/2022-spring/neurips-2021-3d-molecule-generative-model-for-structure-based-drug-design.md)
   * [Structural-Deep-Clustering-Network](paper-review/2022-spring/WWW-2020-Structural-Deep-Clustering-Network.md)
   * [EGI](paper-review/2022-spring/NeurIPS-2021-EGI.md)
-  * [GMLPs](paper-review/2022-spring/neurips-2021-pay_attention_to_mlps.md)
-  * [Are Transformers More Robust Than CNNs?](paper-review/2022-spring/neurips-2021-are_transformers_more_robust_than_cnns.md)
+  * [GMLPs](paper-review/2022-spring/neurips-2021-pay\_attention\_to\_mlps.md)
+  * [Are Transformers More Robust Than CNNs?](paper-review/2022-spring/neurips-2021-are\_transformers\_more\_robust\_than\_cnns.md)
 
 ## How to contribute
 
