@@ -22,7 +22,8 @@ AR(Augmented Reality) 기술이 점점 발전함에 따라, 사용자가 AR 환�
 마우스나 키보드와 같은 입력장치를 통해 컴퓨터와 상호작용하던 기존의 고정된 환경과 달리,\
 AR환경에서 손, 얼굴 등 신체를 활용하여 움직이면서 컴퓨터와 상호작용하는 기술이 점점 발전하고 있습니다.
 
-본 리뷰에서는 AR 안경을 활용하여 **hand-to-face** 제스처를 감지하는, 컴퓨터 비전 기반의 기술인 **`FaceSight`** 를 소개하려 합니다. **FaceSight**는 적외선 카메라를 AR 안경 다리에 고정하여 얼굴 아랫부분(뺨, 코, 입, 턱)에서의 손 제스처를 감지하는 기술입니다.
+본 리뷰에서는 AR 안경을 활용하여 **hand-to-face** 제스처를 감지하는, 컴퓨터 비전 기반의 기술인 **`FaceSight`** 를 소개하려 합니다.\
+**FaceSight**는 적외선 카메라를 AR 안경 다리에 고정하여 얼굴 아랫부분(뺨, 코, 입, 턱)에서의 손 제스처를 감지하는 기술입니다.
 
 \
 ![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig1\_facesight.PNG?raw=true)\
@@ -42,12 +43,15 @@ AR환경에서 손, 얼굴 등 신체를 활용하여 움직이면서 컴퓨터�
 
 ### 2.1 Hand-to-Face Interaction을 활용한 기존 연구들 및 한계점
 
+\
+
+
 \[1] 촉각정보 기반 상호작용
 
 * [Serano et al.](https://doi.org/10.1145/2556288.2556984)는 일상적인 작업을 할 때 뺨과 이마를 활용해서 hand-to-face 상호작용을 할 수 있음을 보였습니다.
-* [Lee et al.](https://doi.org/10.1145/3242587.3242642)은 얼굴에서 멀리 떨어진 귀, 목을 활용하면 hand-to-face 상호작용 설계에 적합할 수 있으며, 5개의 손을 모두 사용하는 큰 움직임보다 소수의 손가락을 사용하는 작은 움직임이 입력에 적합할 수 있음을 제안했습니다.\
+* [Lee et al.](https://doi.org/10.1145/3242587.3242642)은 얼굴에서 멀리 떨어진 귀, 목을 활용하면 hand-to-face 상호작용 설계에 적합할 수 있으며, 5개의 손을 모두 사용하는 큰 움직임보다 소수의 손가락을 사용하는 작은 움직임이 입력에 적합할 수 있음을 제안했습니다.
 
-
+\
 ![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/serano,lee.png?raw=true)\
 
 
@@ -110,12 +114,16 @@ AR 안경을 활용한 이전 연구들은 촉각적이거나 청각적인 정�
 
 ### 3.1 FaceSight 구성요소
 
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig2\_ARglasses.PNG?raw=true)
+\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig2\_ARglasses.PNG?raw=true)\
+
 
 FaceSight는 위 그림과 같이 AR안경의 안경코 부근에 비디오 카메라를 장착하는 것입니다. 본 연구에서는 [Nreal Light](https://www.nreal.ai) AR 안경을 사용했습니다.\
 그리고 안경에 광각 카메라를 장착하여 사용자의 얼굴 아랫부분(뺨, 코, 입, 턱)을 인식하며, 인식 범위는 아래와 같습니다.
 
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig3\_interactionspace.PNG?raw=true)
+\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/fig3\_interactionspace.PNG?raw=true)\
+
 
 카메라 렌즈 주변에는 적외선 전구 6개가 조명원을 제공하여 완전히 어두운 환경에서도 제스처를 인식할 수 있도록 구성했습니다.\
 또한, 적외선 조명값과 카메라의 노출값을 조정함으로써 얼굴 아랫부분만 안정적으로 이미지를 수집할 수 있습니다. 아래 그림은 조명값 및 노출값 설정에 따른 이미지 효과를 보여줍니다.\
@@ -140,15 +148,15 @@ FaceSight에서 지원할 수 있는 hand-to-face 제스처 상호작용에 대�
 
 이런 hand-to-face 제스처 종류는 AR 안경에 대한 입력 방법을 풍부하게 할뿐 아니라 상호작용에서의 효율성을 증진하여 사용자의 경험을 향상시킬 수 있는 장점을 갖고 있습니다.
 
-\[1] 터치 위치\
+_\[1] 터치 위치_\
 카메라 배치를 통해 FaceSight는 뺨, 코, 입, 턱을 포함한 얼굴 아랫부분의 대부분을 구분할 수 있습니다. 1) 뺨은 왼쪽과 오른쪽으로 구분되며, 2) 코는 코끝, 왼쪽과 오른쪽 코볼로구분되며, 3) 입은 왼쪽, 가운데, 오른쪽으로 구분됩니다. 이러한 걸굴 부위는 사람들이 자주 만지고 가장 자연스럽게 사용하는 부위입니다. 다만, 카메라의 위치(AR 안경코)의 제약 때문에 귀 윗부분은 상호작용에 사용할 수없다는 제한사항을 갖고 있습니다.
 
-\[2] 제스처\
+_\[2] 제스처_\
 tapping, swiping은 현대 터치스크린에서 가장 일반적이며 사용자들에게 굉장히 친숙한 입력 방법입니다. FaceSight에서는 한 번의 클릭, 두 번의 클릭, 긴 클릭(몇 초씩) 제스처를 사용합니다.\
 또한, 볼과 턱의 매끄러운 표면은 swiping 작업을 하기에 적합합니다. FaceSight에서는 뺨 한쪽을 수직으로 쓸어넘기기, 뺨 양쪽을 수직으로 쓸어넘기기, 턱을 수평으로 쓸어넘기는 제스처를 사용합니다.\
 더불어, 카메라를 사용하면 상징적인 제스처를 인식할 수 있다는 장점이 있습니다. 예를 들어, 검지와 새끼손가락을 귀에 붙이는 제스처로 전화를 걸거나, 검지를 입술에 붙여서 장치를 음소거하는 신호로 사용할 수 있습니다.
 
-\[3] 코 변형 및 손가락 접촉 횟수\
+_\[3] 코 변형 및 손가락 접촉 횟수_\
 카메라가 코 바로 위에 있어서 손가락에 의해 코가 밀리거나 움켜쥐었을 때 코의 미세한 변형을 감지할 수 있습니다. 예를 들어, FaceSight에서는 코를 부드럽게 누르는 동작과 코를 강하게 눌러서 일그러지는 동작을 구분할 수 있습니다.\
 손가락이 얼굴에 접촉하는 개수를 각각 다른 제스처로 인식하는 것도 현대 터치스크린에서 널리 사용되는 상호작용 기법입니다. 예를 들어, FaceSight에서는 턱에 1개의 손가락이 접촉하는 것과 2개의 손가락이 동시에 접촉하는 제스처를 구분합니다.
 
@@ -194,8 +202,7 @@ _\[stage2] recognizing touch location_\
 _\[stage3] gesture classification with CNN_\
 터치 위치가 주어지면 해당 위치에서 수행된 손 동작이 무엇인지를 convolutional neural network (CNN)을 사용하여 구분합니다. 본 연구에서는 코, 입, 턱, 왼쪽뺨, 오른쪽뺨에 대한 이미지에 대하여 CNN 모델을 별도로 훈련시켰습니다. 본 CNN 모델은 2개의 convolutional layer, 2x2 maximum pooling layer, fully connected layer를 포함합니다.\
 본 연구에서는 정확도 향상을 위하여 convolutional layer의 파라미터를 조정했습니다: 첫번째 layer는 11x11 kernal size, stride step값은 5, padding값은 3; 두번째 layer는 5x5 kernal size, stride step은 1, padding값은 2. Loss function으로 softmax와 cross-entropy를 사용했으며, 정확도에 대한 지표로 accuracy rate와 false recognition rate을 활용했습니다.\
-optimizer는 Adam을 사용했는데, KSE527의 Lecture 6에서 optimization 알고리즘 중에서 뭘 쓸지 모르겠을 때 Adam을 먼저 써보라는 말이 있었던 만큼 광범위하게 쓰이는 알고리즘을 본 연구에서도 사용했습니다.\
-learning rate coefficient은 0.003이었으며, 모델 입력은 200x200의 다운샘플링된 손 영역이며, 모델 출력은 특정 제스처에 해당하는 레이블입니다.
+optimizer는 Adam을 사용했는데, KSE527의 Lecture 6에서 optimization 알고리즘 중에서 뭘 쓸지 모르겠을 때 Adam을 먼저 써보라는 말이 있었던 만큼 광범위하게 쓰이는 알고리즘을 본 연구에서도 사용했습니다. learning rate coefficient은 0.003이었으며, 모델 입력은 200x200의 다운샘플링된 손 영역이며, 모델 출력은 특정 제스처에 해당하는 레이블입니다.
 
 _\[stage4.1] Locating the touching fingertip for continuous input_\
 분할된 손 영역을 기반으로 얼굴 영역까지의 거리에 따라 국소 최소값(local minima)을 달성한 윤곽선 상의 점들을 손끝의 후보들로 인식하였으며, 점들 중 가장 낮은 위치에 있는 점을 손끝의 위치로 정의하였습니다. 손끝 위치를 자연스럽게 하기 위하여 instant 프레임과 이전의 두 프레임에서 얻어진 값의 평균을 최종 계산하였습니다. 터치 접촉 감지 단계(stage1)를 실행하기 전에 손끝 위치를 지정합니다.
@@ -267,13 +274,13 @@ touch location 감지 알고리즘의 인식 정확도는 accuracy으로 평가�
 #### 4.3.2 **hand-to-gesture, nose pushing/swiping 인식 정확도**
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/HaehyunLee\_1/table3\_stage3.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/table3\_stage3.PNG?raw=true)\
 
 
 실험 참가자들이 자기만의 독특한 방식으로 제스처를 수행할 수 있고 카메라 뷰에 약간 차이가 있을 수 있음을 고려하여, 본 연구에서는 Leave-One-Out 교차 검증법을 사용했습니다. 모든 모델은 10개의 epoch로 훈련되었으며, 코 96.18% (5 classes), 입 99.53% (3 classes), 턱 94.00% (3 classes), 왼쪽뺨 94.65% (4 classes), 오른쪽뺨 97.73% (5 classes)의 정확도를 보였습니다. 5개 모델의 전체 정확도는 96.42%였습니다.
 
 \
-![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/table3\_stage3.PNG?raw=true)\
+![](https://github.com/bananaorangel/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/Haehyunlee\_1/table4\_stage4.PNG?raw=true)\
 
 
 양쪽 코볼에 있는 서로 다른 nose-pushing 제스처를 인식하는데 94.12% (4 classes)의 정확도를 보였습니다. swiping 제스처에 대한 인식 정확도는 94.67% (6 classes)였습니다.
@@ -313,3 +320,4 @@ segmentation 알고리즘의 경우 35ms, CNN 분류의 경우 13ms의 계산효
   * 논문 원문 : [FaceSight](https://doi.org/10.1145/3411764.3445484)
   * [Accuracy, Recall, Precision, and F1Score](https://eunsukimme.github.io/ml/2019/10/21/Accuracy-Recall-Precision-F1-score/)
   * AR안경 기반의 다양한 제스처 상호작용 연구들 : [Itchy Nose](https://doi.org/10.1145/3123021.3123060), [CheekInput](https://doi.org/10.1145/3139131.3139146), [FaceRubbing](https://doi.org/10.1145/3174910.3174924), [PrivateTalk](https://doi.org/10.1145/3332165.3347950), [EarBuddy](https://doi.org/10.1145/3313831.3376836)
+ 

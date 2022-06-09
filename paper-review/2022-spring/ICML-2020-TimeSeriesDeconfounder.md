@@ -40,7 +40,7 @@ Graphical factor model. Each Zt is built as a function of the history, such that
 
 The author uses RNN to learn the latent variables. The proposed framework is in the following graphs.
 
-![](../../.gitbook/2022-spring-assets/panyu\_1/result.jpg)
+![](../../.gitbook/2022-spring-assets/panyu\_1/RNN.jpg)
 
 ## **4. Experiment**
 
@@ -48,7 +48,7 @@ The author uses the MIMIC dataset to check the validity of the method. If the di
 
 The proposed multi-task RNN method outperforms MLPs and without multi-task model.
 
-![](../../.gitbook/2022-spring-assets/panyu\_1/RNN.jpg)
+![](../../.gitbook/2022-spring-assets/panyu\_1/result.jpg)
 
 ## **5. Results & Conclusion**
 
