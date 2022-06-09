@@ -136,7 +136,7 @@ Soft Actor-Critic의 학습 과정은 쉽게 말해 *주어진 state에서 특�
 
 이 때 K와 M은 hyper-parameter이며 K와 M이 각각 1이면 해당 regularization을 수행하지 않는다는 의미가 됩니다.
 
-본 논문에서는 제안한 모델을 ***DrQ(Data-regularized Q)***라 칭하고 있습니다. 
+본 논문에서는 제안한 모델을 ***DrQ(Data-regularized Q)*** 라 칭하고 있습니다. 
 
 ## **4. Experiment**
 
@@ -144,7 +144,7 @@ Soft Actor-Critic의 학습 과정은 쉽게 말해 *주어진 state에서 특�
 
 1. Image Augmentation 자체의 성능을 보여주는 experiment
 2. Regularization의 성능을 보여주는 experiment
-3. Image Augmentation & Regularization 모두를 수행한 모델 ***DrQ[K=2, M=2]***의 성능을 보여주는 experiment
+3. Image Augmentation & Regularization 모두를 수행한 모델 ***DrQ[K=2, M=2]*** 의 성능을 보여주는 experiment
 
 를 수행합니다.
 
@@ -162,7 +162,7 @@ Soft Actor-Critic의 학습 과정은 쉽게 말해 *주어진 state에서 특�
 
 <img width="1500" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment1.png">
 
-해당 실험에서는 Image Transformation을 해서 다양한 sample 데이터를 확보했을 때의 성능과 그렇지 않을 때의 성능을 비교합니다.
+해당 실험에서는 Image Transformation을 해서 다양한 sample 데이터를 확보했을 때의 성능과 그렇지 않을 때의 성능을 비교함으로써, ***DrQ*** 모델에서 **Image Transformation** 부분에 대한 성능을 보여줍니다.
 
 위쪽 (a)가 Image Transformation을 통한 Sample Data 증가 없이 soft Actor-Critic을 사용한 결과이고 아래쪽 (b)가 Data augmentation을 수행하여 soft Actor-Critic을 사용한 결과입니다. 
 
@@ -178,7 +178,7 @@ baseline들은 모두 SAC framework를 사용하였는데, 각각의 model은 �
 
 <img width="1500" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment2.png">
 
-해당 실험은 Regularization의 성능을 나타낸 것입니다. 
+해당 실험은 ***DrQ*** 모델에서 **Regularization**의 성능을 보여줍니다.
 
 - 파란색 그래프 : Regularization을 수행하지 않은 경우
 - 빨간색 그래프 : [K=2, M=1]. 즉, target Q에 대해서만 Regularization을 수행한 경우
@@ -196,7 +196,7 @@ baseline들은 모두 SAC framework를 사용하였는데, 각각의 model은 �
 
 <img width="1500" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment3.png">
 
-해당 실험은 ***PlaNet*** Benchmark에서 proposed model과 다른 model들을 비교한 결과입니다. 
+해당 실험은 ***PlaNet*** Benchmark에서 proposed model과 다른 model들을 비교한 결과입니다. 여기서 Proposed Model 은 soft Actor-Critic 기반 ***DrQ[K=2, M=2]*** Model 로, 앞선 실험에서 성능을 확인한 Image Transformation과 Q Regularization을 모두 적용한 Model입니다.
 
 *PlaNet* Benchmark란 *PlaNet*이라는 모델을 제안한 논문에서 사용한 testbed를 말하며, 위와 같이 6개의 게임에 대한 performance를 측정합니다.
 
@@ -222,7 +222,7 @@ baseline들은 모두 SAC framework를 사용하였는데, 각각의 model은 �
 
 <img width="1200" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment4_2.png">
 
-해당 실험은 ***Dreamer*** Benchmark에서  *Dreamer*모델과 proposed model을 비교한 결과입니다. 
+해당 실험은 ***Dreamer*** Benchmark에서  *Dreamer*모델과 proposed model을 비교한 결과입니다. 여기서도 Proposed Model은 ***DrQ[K=2, M=2]*** Model 로, Image Transformation과 Q Regularization을 모두 적용한 Model입니다.
 
 *Dreamer* benchmark는 *Dreamer* model을 제안한 논문에서 사용한 testbed이며, *PlaNet* benchmark에 비해 더 어려운 setting을 요구하고, 게임 종류 또한 15가지로 더욱 많고 어려운 게임들을 많이 포함하고 있는 testbed입니다.
 
