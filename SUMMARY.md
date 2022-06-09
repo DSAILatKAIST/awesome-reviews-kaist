@@ -4,7 +4,7 @@
 
 ## Paper Review
 
-* [\[2022 Spring\] Paper Review](paper-review/2022-spring/README.md)
+* [\[2022 Spring\] Paper Review](paper-review/2022-spring-paper-review/README.md)
   * [Template](paper-review/2022-spring/template.md)
   * [AS-GCN](paper-review/2022-spring/ICDM-2021-ASGCN.md)
   * [CAA](paper-review/2022-spring/chi-2019-caa.md)
@@ -68,7 +68,7 @@
   * [AugMix](paper-review/2022-spring/ICLR-2020-AugMix.md)
   * [GraphTrafficForecasting](paper-review/2022-spring/aaai-2020-multirangeattentivebicomponentgraphconvolutionalnetworkfortrafficforecastig.md)
   * [ImageAgumentation](paper-review/2022-spring/ICLR-2021-ImageAugmentation.md)
-  * [Neural JPEG](paper-review/2022-spring/Reviewpaper2_20214798_Esmeedehaas.md)
+  * [Neural JPEG](paper-review/2022-spring/Reviewpaper2\_20214798\_Esmeedehaas.md)
 
 ## How to contribute
 
