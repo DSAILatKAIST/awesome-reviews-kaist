@@ -67,6 +67,7 @@
   * [Are Transformers More Robust Than CNNs?](paper-review/2022-spring/neurips-2021-are\_transformers\_more\_robust\_than\_cnns.md)
   * [AugMix](paper-review/2022-spring/ICLR-2020-AugMix.md)
   * [GraphTrafficForecasting](paper-review/2022-spring/aaai-2020-multirangeattentivebicomponentgraphconvolutionalnetworkfortrafficforecastig.md)
+  * [ImageAgumentation](paper-review/2022-spring/ICLR-2021-ImageAugmentation.md)
 
 ## How to contribute
 
