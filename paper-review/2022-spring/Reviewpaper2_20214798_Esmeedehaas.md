@@ -1,9 +1,6 @@
-# Neural JPEG
-
-***
-
-### description: Ankur Mali / Neural JPEG- End-to-End Image Compression Leveraging a Standard JPEG Encoder-Decoder / 2022(DCC)
-
+---
+description: Ankur Mali / Neural JPEG- End-to-End Image Compression Leveraging a Standard JPEG Encoder-Decoder / 2022(DCC)
+---
 ## **Review paper Neural JPEG**
 
 Neural JPEG: End-to-End Image Compression Leveraging a Standard JPEG Encoder-Decoder
