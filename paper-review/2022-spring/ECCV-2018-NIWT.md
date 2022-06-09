@@ -22,7 +22,7 @@ neuron-level description을 zero-shot learning classifier에도 적용하기 위
 저자는 external domain knowledge(text based or otherwise)를 neuron과의 직접 mapping을 통해 zero-shot learning과 동시에 interpretable explanation을 제공하는 방법론을 제시한다.
 
 
-![fig0.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_1/fig0.png)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F10087729-63eb-4e1d-9065-3ce1fac6c043%2FUntitled.png?table=block&id=e12484c9-1ac9-4a90-b6c5-7c2ff7a83787&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1030&userId=&cache=v2)
 
 
 ---
@@ -53,7 +53,7 @@ domain knowledges : ![](https://latex.codecogs.com/gif.latex?\mathcal{K}=\{k_1,.
 
 ![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_\mathcal{s}(.))은 seen class 예측을 위해 학습한 네트워크를 의미하며(![](https://latex.codecogs.com/gif.latex?{o_c|c\in\mathcal{S}\})) ![](https://latex.codecogs.com/gif.latex?o_c)의 ![](https://latex.codecogs.com/gif.latex?a^n_{i,j})에 대한 gradient를 구한 후 global average pooling을 통해 class dependent neuron importance를 도출할 수 있다.
  
-![fig1.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_1/fig1.png)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F42c3b0c1-494a-496a-8f83-517d5b51c1a6%2FUntitled.png?table=block&id=8f63fd5a-fba7-4e0e-a2cd-609c0b57c0f9&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=770&userId=&cache=v2)
 
 
 ![](https://latex.codecogs.com/gif.latex?n): Channel dimesion
@@ -72,7 +72,7 @@ Gradient-based Localization. ICCV (2017) 참고*
 
 Domain knowledge와 neuron importance vector를 linear mapping(transformation)하기 위해 먼저, importance vectors ![](https://latex.codecogs.com/gif.latex?a_{y_i})를 계산한 후 해당 class와 관련있는 domain knowledge(![](https://latex.codecogs.com/gif.latex?k_{y_i}))를 매칭한다(![](https://latex.codecogs.com/gif.latex?a_{y_i}),![](https://latex.codecogs.com/gif.latex?k_{y_i})). ![](https://latex.codecogs.com/svg.image?W_{\mathcal{K}\rightarrow&space;a})를 추정하기 위해 cosine distance를 이용하여 loss를 정의하고 gradient를 이용하여 이를 minimize한다. 
 
-![fig2.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_1/fig2.png)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F650a7ab3-b553-4535-af05-3732c485f8f7%2FUntitled.png?table=block&id=0a509338-0ea2-4d1f-aa32-3321fd9b5025&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=910&userId=&cache=v2)
 
 
 ### 3.4 Neuron Importance to Classifier Weights
@@ -87,7 +87,7 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
 4. ![](https://latex.codecogs.com/gif.latex?\mathrm{NET}_{\mathcal{S}\cup\mathcal{U}})으로 부터 unseen class c에 대한 importance vector을 계산하고 (![](https://latex.codecogs.com/gif.latex?\hat{a}^c))  weight parameter ![](https://latex.codecogs.com/gif.latex?w^c)를 gradient descent를 통해 optimize한다. (predicted importance vector(![](https://latex.codecogs.com/gif.latex?a_c)), observed importance vector(![](https://latex.codecogs.com/gif.latex?\hat{a}^c)) 사이의 cosine distance를 minimize)
 5. Cosine distance는 scale을 고려하지 않으며 regularization가 없으면 seen class weight나 unseen class weight 한쪽으로의 bias을 초래할 수 있다. 이러한 문제점을 해결하기 위해 unseen weight를 seen weight의 평균(![](https://latex.codecogs.com/gif.latex?\bar{\mathrm{w}}_\mathcal{S}))과 유사한 scale로 학습할 수 있도록 하는 L2 regualization term을 추가했다(![](https://latex.codecogs.com/gif.latex?\Lambda)는 regulization의 정도를 control).
 
-![fig3.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_1/fig3.png)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa7d074c4-4558-423c-b661-faaa1741ba70%2FUntitled.png?table=block&id=f591b029-7c65-4eb0-8afb-d4b174c75df2&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=940&userId=&cache=v2)
 
 
 정리하면, ![](https://latex.codecogs.com/gif.latex?a^c)는 network gradient를 통해 계산할 수 있고, weight는 위의 loss를 이용하여 update하는 방식으로 학습을 진행한다.
@@ -147,7 +147,7 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
         
 
 ### Result
-![fig4.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_1/fig4.png)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffb438604-88d9-4537-bd02-4c27ed147dc2%2FUntitled.png?table=block&id=330e7e73-91c1-4c0b-a7d8-8bd8c4f5223c&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1270&userId=&cache=v2)
 
 
 실험 결과에서 도출할 수 있는 NIWT의 Contribution은 아래와 같다.
@@ -178,7 +178,7 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
     이러한 unseen class accuracy는 seen class accuracy와 같은 interval [![](https://latex.codecogs.com/gif.latex?\1e^{-5}), ![](https://latex.codecogs.com/gif.latex?\1e^{-4})]에서 약 3% 정도의 trade-off가 존재했다. 또한 $\Lambda$>$1e^-4$의 경우 regulation이 매우 크기 때문에 NIWT가 unseen class에 대한 학습에 어려움이 있었다고 해석할 수 있다.
     
 
-![fig5.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_1/fig5.png)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F33133d74-dd3c-4f53-aeba-73e4a6e0aac6%2FUntitled.png?table=block&id=b3270349-54b9-454f-ad89-f6c8a7eed27e&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=630&userId=&cache=v2)
 
 
 - Explaining NIWT
@@ -192,7 +192,7 @@ unseen class 예측을 할 수 있는 classifier를 학습하기 위해서 predi
         
         3.3에서 external domain knowledge(attribute or caption)과 neuron과의 mapping(![](https://latex.codecogs.com/svg.image?W_{\mathcal{K}\rightarrow&space;a}))을 학습했다. 이와 유사하게 neuron importance에서 attribute or caption과의 inverse mapping을 통해 모델의 decision에 있어서 text explannation을 제공할 수 있다 (inverse mapping(![](https://latex.codecogs.com/gif.latex?W_{a\rightarrow\mathcal{K}}))에서  ![](https://latex.codecogs.com/gif.latex?a_c) (unseen class neuron importance)가 주어졌을때 가장 높은 score의 ![](https://latex.codecogs.com/gif.latex?k_c)(attribute) 도출).
         
-![fig6.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_1/fig6.png)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fac8ada36-6d76-4249-bce4-35d547353fec%2FUntitled.png?table=block&id=d9b4616f-f77d-46d7-ad84-83646d81c0b6&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1090&userId=&cache=v2)
 
         
 
