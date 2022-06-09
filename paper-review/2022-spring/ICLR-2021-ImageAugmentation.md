@@ -162,7 +162,7 @@ Soft Actor-Critic의 학습 과정은 쉽게 말해 *주어진 state에서 특�
 
 <img width="1500" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment1.png">
 
-해당 실험에서는 Image Transformation을 해서 다양한 sample 데이터를 확보했을 때의 성능과 그렇지 않을 때의 성능을 비교합니다.
+해당 실험에서는 Image Transformation을 해서 다양한 sample 데이터를 확보했을 때의 성능과 그렇지 않을 때의 성능을 비교함으로써, ***DrQ*** 모델에서 Image Transformation 부분에 대한 성능을 보여줍니다.
 
 위쪽 (a)가 Image Transformation을 통한 Sample Data 증가 없이 soft Actor-Critic을 사용한 결과이고 아래쪽 (b)가 Data augmentation을 수행하여 soft Actor-Critic을 사용한 결과입니다. 
 
@@ -178,7 +178,7 @@ baseline들은 모두 SAC framework를 사용하였는데, 각각의 model은 �
 
 <img width="1500" src="../../.gitbook/2022-spring-assets/DonghwiShin_2/experiment2.png">
 
-해당 실험은 Regularization의 성능을 나타낸 것입니다. 
+해당 실험은 ***DrQ*** 모델에서 Regularization의 성능을 보여줍니다.
 
 - 파란색 그래프 : Regularization을 수행하지 않은 경우
 - 빨간색 그래프 : [K=2, M=1]. 즉, target Q에 대해서만 Regularization을 수행한 경우
