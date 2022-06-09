@@ -18,18 +18,18 @@ description: Xingrui Yu et al./ How does Disagreement Help Generalization agains
 
 ### 2.1 **Co-teaching: Robust Training of Deep Neural Network with Extremely Noisy Labels [1]**
 
-Noisy labels을 고려한 deep neural network 학습을 위하여 memorization effect과 Decoupling, Mentornet에 영감을 받아 제시된 방법론입니다. 알고리즘을 간략히 정리하자면 아래와 같습니다.
+Noisy labels을 고려한 deep neural network의 학습을 위하여 memorization effect과 Decoupling, Mentornet에 영감을 받아 제시된 방법론입니다. 알고리즘을 간략히 정리하자면 아래와 같습니다.
 
 1. *미니배치에서 상대적으로 loss가 큰 데이터를 일정 비율(R(t))만큼 배제하고 loss가 적은 데이터(small loss instances)를 이용하여 가중치 업데이트 (R(t)는 epoch가 늘어날수록 점차 증가)*
 2. *parameter initialization이 다른 두 모델이 서로 small loss instances를 교환하며 학습(cross update)*
 
 - memorization effect
     
-    deep network이 초기 epoch에서는 clean하고 쉬운 패턴을 학습하고 이후에는 세부 패턴을 학습하는 현상을 의미합니다. 이를 noisy label을 포함한 데이터로의 학습에 적용해보면 초기 epoch에서는 clean data를 학습하고, epoch이 증가할수록 noisy data에 overfit하게 될 것입니다.
+    deep network가 초기 epoch에서는 clean하고 쉬운 패턴을 학습하고 이후에는 세부 패턴을 학습하는 현상을 의미합니다. 이를 noisy label을 포함한 데이터로의 학습에 적용해보면 초기 epoch에서는 clean data를 학습하고, epoch이 증가할수록 noisy data에 overfit하게 될 것입니다.
     
     이 현상의 직관적인 이해를 돕는 논문[2]이 있어 소개하자면
     
-    ![fig0.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig0)
+    ![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb1e042bb-d763-46e0-9548-9f8518cbd3d9%2FUntitled.png?table=block&id=574aa778-c93f-4b86-b25c-c2c870b152f6&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1250&userId=&cache=v2)
     
     experiment setting: 4 layer neural network(2 CNN lavers, 2 fully-connected layers, 4.8M parameters),  MINST(train(noise 포함) 50000, val 10000, test(only clean) 10000)
     
@@ -41,13 +41,13 @@ Noisy labels을 고려한 deep neural network 학습을 위하여 memorization e
     
     - small loss trick
         
-        모델에게는 clean data가 noisy label data 보다 학습하기 쉬운 데이터 일텐데 (데이터와 레이블링 간의 일관성을 보이므로) 이 때문에 clean data가 noisy label data보다 training loss가 상대적으로 빠르게 감소합니다. 그렇기에 mini-batch에서 loss가 큰 일정 비율(R(t))의 데이터를 noisy data로 볼 수 있고 이를 제외하여 학습하는 것은 noisy data를 배제한 학습을 의미하게 됩니다. 이를 small loss trick이라 칭하며 관련된 다수의 연구가 존재합니다.
+        모델에게는 clean data가 noisy label data 보다 학습하기 쉬운 데이터 입니다(데이터와 레이블링 간의 일관성을 보이므로). 이 때문에 clean data가 noisy label data보다 training loss가 상대적으로 빠르게 감소할 것 입니다. 그렇기에 mini-batch에서 loss가 큰 일정 비율(R(t))의 데이터를 noisy data로 볼 수 있고 이를 제외하여 학습하는 것은 noisy data를 배제한 학습을 의미하게 됩니다. 이를 'small loss trick'이라 칭하며 관련된 다수의 연구가 존재합니다.
         
         → Co-teaching 학습 과정에서 epoch이 커질수록 R(t)(배제할 데이터의 비율)을 증가시키는 이유가 바로 위에서 언급한 “memorization effect”에서 기인한 것입니다! 
         
 - Influenced studies
 
-![fig1.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig1)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F7af7dcbd-4683-4859-9f1d-4904c066e40c%2FUntitled.png?table=block&id=f7d4aab6-1698-4725-ab89-d40ff0bfddb2&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=690&userId=&cache=v2)
 
 - MentorNet(M-net)
     
@@ -55,7 +55,7 @@ Noisy labels을 고려한 deep neural network 학습을 위하여 memorization e
     
     → 단점) 단일 모델만을 이용하여 noisy label을 판단하기에 라벨이 올바르더라도 한번 학습에서 제외한 데이터는 추후 학습에서도 제외됨 
     
-    ![fig2.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig2)
+    ![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Faeec7b84-58e0-46dc-adec-601de4387067%2FUntitled.png?table=block&id=a2c65f0e-88d6-43ea-acde-4d7b2096379a&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=770&userId=&cache=v2)
     
 
 - Decoupling
@@ -64,7 +64,7 @@ Noisy labels을 고려한 deep neural network 학습을 위하여 memorization e
     
     → 단점) 정확히 어떤 instance가 noisy label인지 파악 불가(설명력 부족)
     
-    ![fig3.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig3)
+    ![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc5c42020-5bfe-4dc2-a94a-b3660e3fc7f3%2FUntitled.png?table=block&id=e1c70591-9ede-445b-a44d-b33035b9b628&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=670&userId=&cache=v2)
     
 
 Co-teaching은 기존 방법론의 단점을 보완하기 위해
@@ -84,7 +84,7 @@ Co-teaching은 기존 방법론의 단점을 보완하기 위해
 
 - Consensus issue in Co-teaching
 
-![fig4.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig4)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F857e6f67-75eb-47e3-b749-5f837facbff9%2FUntitled.png?table=block&id=8e596c02-ead8-4cd8-ab9d-5c1101d0d9b3&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=670&userId=&cache=v2)
 
 Co-teaching의 학습과정을 구현해보면 초기 epoch에는 두 네트워크가 서로 다른 에러를 filter할 수 있는 상이한 학습능력을 가지고 있으나 epoch이 증가할수록 두 네트워크가 점차 일치하게 수렴해버리는 현상이 발생합니다(Mentornet 방식과 같아져버림). 이는 모델의 성능 저하에 큰 영향을 미치게 됩니다.
 
@@ -94,7 +94,7 @@ Co-teaching의 학습과정을 구현해보면 초기 epoch에는 두 네트워�
     
     두 분류기의 예측이 일치하지 않은 경우의 data로만 update 하여 두 네트워크가 계속해서 서로 다른 (diverge) 상태를 유지하도록 하는 방법론으로 저자는 본 논문으로부터 영감을 받아 **Co-teaching에 Disagreement strategy를 추가한 Co-teaching+를 제안**합니다.  
     
-    ![fig5.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig5)
+    ![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F1ea44249-3f70-4815-a04f-a22300f551c8%2FUntitled.png?table=block&id=5f332122-bf9f-4308-857b-c2f60cc05325&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=770&userId=&cache=v2)
     
 
 ---
@@ -103,7 +103,7 @@ Co-teaching의 학습과정을 구현해보면 초기 epoch에는 두 네트워�
 
 Co-teaching+은 크게 4단계로 구성됩니다.
 
-1. *서로 다른 파라미터 초기값을 가지는 두개의 deep neural network  학습*
+1. *서로 다른 파라미터 초기값을 가지는 두개의 deep neural network 학습*
 2. *mini-batch에 대해 두 network는 각각의 예측 수행*
 3. *두 예측이 상이한 데이터(disagreement data)들로부터 각 네트워크는 small-loss data 선택 (**Disagreement-update step**)*
 4. *서로의 small-loss data를 cross하여 파라미터 업데이트 (**Cross-update step**)*
@@ -112,27 +112,27 @@ Co-teaching+은 크게 4단계로 구성됩니다.
 
 ### 3.1 Algorithm
 
-![fig6.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig6)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F1696cb04-4425-4f4b-83c6-42b9d0584154%2FUntitled.png?table=block&id=0bca146d-c8db-4567-9bd2-d4f26d710bef&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=690&userId=&cache=v2)
 
 - Step 4 (**Disagreement-update step**)
     
-    두 네트워크는 학습 과정에서 같은 mini-batch data $\bar{\mathcal{D}}=\{(x_1, y_1), (x_2, y_2), ... (x_B, y_B)\}$ 에 대한 예측을 수행합니다. 그리고 예측이 일치하지 않은 disagreement data $\bar{\mathcal{D^\prime}}$을 keep 합니다.
+    두 네트워크는 학습 과정에서 같은 mini-batch data $$\bar{\mathcal{D}}=\{(x_1, y_1), (x_2, y_2), ... (x_B, y_B)\}$$ 에 대한 예측을 수행합니다. 그리고 예측이 일치하지 않은 disagreement data $$\bar{\mathcal{D^\prime}}$$을 keep 합니다.
     
-    $w^{(1)}$에 의한 예측을 $\{\bar{y_1}^{(1)}, \bar{y_2}^{(1)}, ...,\bar{y_3}^{(1)}\}$, $w^{(2)}$에 의한 예측을 $\{\bar{y_1}^{(2)}, \bar{y_2}^{(2)}, ...,\bar{y_3}^{(2)}\}$이라 할 때 Eq.1 은 $\bar{\mathcal{D^\prime}} = \{(x_i, y_i): \bar{y_i}^{(1)} {\neq \bar{y_i}^{(2)}}\}$, $i \in \{1,...,B\}$ 을 나타냅니다.
+    $$w^{(1)}$$에 의한 예측을 $$\{\bar{y_1}^{(1)}, \bar{y_2}^{(1)}, ...,\bar{y_3}^{(1)}\}$, $w^{(2)}$$에 의한 예측을 $$\{\bar{y_1}^{(2)}, \bar{y_2}^{(2)}, ...,\bar{y_3}^{(2)}\}$$이라 할 때 Eq.1 은 $$\bar{\mathcal{D^\prime}} = \{(x_i, y_i): \bar{y_i}^{(1)} {\neq \bar{y_i}^{(2)}}\}$$, $$i \in \{1,...,B\}$$ 을 나타냅니다.
     
     저자는 본 단계가 Co-training에서 아이디어를 얻었음을 명시하고 있고 두 분류기가 diverge 상태를 유지하면서 더 나은 ensemble effect를 얻을 수 있다 언급하고 있습니다.
     
 - Step 5-8 (**Cross-update step**)
     
-    $\bar{\mathcal{D^\prime}}$로부터 각 네트워크($w^{(1)}, w^{(2)}$)는 small-loss data($\bar{\mathcal{D}^{(1)}}, \bar{\mathcal{D}^{(2)}}$)를 선택하고 $\bar{\mathcal{D}^{(1)}}$은 $w^{(2)}$의 update를 위한 backprop을 $\bar{\mathcal{D}^{(2)}}$은 $w^{(1)}$의 update를 위한 backprop을 수행합니다. 
+    $$\bar{\mathcal{D^\prime}}$$로부터 각 네트워크($$w^{(1)}, w^{(2)}$$)는 small-loss data($$\bar{\mathcal{D}^{(1)}}, \bar{\mathcal{D}^{(2)}}$$)를 선택하고 $$\bar{\mathcal{D}^{(1)}}$$은 $$w^{(2)}$$의 update를 위한 backprop을 $$\bar{\mathcal{D}^{(2)}}$$은 $$w^{(1)}$$의 update를 위한 backprop을 수행합니다. 
     
     저자는 본 단계가 인간 뇌는 다른 인간으로부터 생성된 신호로부터 학습이 이루어질때 더욱 학습을 잘 할 수있다는 내용의 “Culture Evolving Hypothesis”에서 영감을 얻었다고 합니다. 
     
 - Step 9 (**update** $\lambda(e)$)
     
-    $\lambda(e)$는 각 training epoch에서 사용된 small-loss data의 수를 컨트롤하는 파라미터입니다. 강조하자면 memorization effect에 의해 deep network는 먼저 clean data에 fit하고 점차 noisy data에 overfit하는 특성을 가지고 있습니다. 
+    $$\lambda(e)$$는 각 training epoch에서 사용된 small-loss data의 수를 컨트롤하는 파라미터입니다. 강조하자면 memorization effect에 의해 deep network는 먼저 clean data에 fit하고 점차 noisy data에 overfit하는 특성을 가지고 있습니다. 
     
-    그러기에 초기 training에서는 각 mini-batch에서 더 많은 small-loss data(large $\lambda(e)$, dropping less data)를 사용하고 점차 적은 수의 small-loss data(small $\lambda(e)$. dropping more data)를 학습에 사용하도록 조절하는데에 본 파라미터를 사용하고 있습니다. 
+    그러기에 초기 training에서는 각 mini-batch에서 더 많은 small-loss data(large $$\lambda(e)$$, dropping less data)를 사용하고 점차 적은 수의 small-loss data(small $$\lambda(e)$$. dropping more data)를 학습에 사용하도록 조절하는데에 본 파라미터를 사용하고 있습니다. 
     
 
 ---
@@ -159,7 +159,7 @@ Co-teaching+은 크게 4단계로 구성됩니다.
     
     이때, 노이즈의 가정 중 Pair이란 혼동되는 Class간의 label이 섞이는 경우를 나타내고, Symmetry란 uniform/random noise와 같이 label이 임의로 섞이는 경우를 나타냅니다.
     
-    ![fig7.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig7)
+    ![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F72b8200d-9382-4781-a567-31652372b5cd%2FUntitled.png?table=block&id=c3504363-47d5-47c4-a6c1-a25ced2c2f1a&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=770&userId=&cache=v2)
     
 - Baselines
     
@@ -179,13 +179,13 @@ Co-teaching+은 크게 4단계로 구성됩니다.
         
     - F-correction
         
-        label transition matrix에 의해 prediction을 교정하는 방법론이다.  본 논문에서는 transition matrix  $Q$를 추정하기 위해 standard network를 학습했다고 한다.
+        label transition matrix에 의해 prediction을 교정하는 방법론이다.  본 논문에서는 transition matrix  $$Q$$를 추정하기 위해 standard network를 학습했다고 한다.
         
     - Simple baseline
         
         noisy dataset을 그대로 학습시킨 standard deep network이다.
         
-![fig8.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig8)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F10c0bd67-b5cd-4625-a696-bd3a4edc95b1%2FUntitled.png?table=block&id=2a2fd959-1a42-4660-81e5-38cd7b3bd8e8&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1340&userId=&cache=v2)
         
 - Network structure
     
@@ -195,7 +195,7 @@ Co-teaching+은 크게 4단계로 구성됩니다.
     
     Tiny-ImageNet에는 Resnet18을 이용했고 자세한 정보는 아래의 표와 같습니다.
     
-    ![fig9.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig9)
+    ![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F727cb921-4a0a-45f3-b9de-94c0b8038ba3%2FUntitled.png?table=block&id=689dbf89-96ac-4333-beef-60c111abfe31&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1540&userId=&cache=v2)
     
 
 - Optimizer
@@ -212,10 +212,10 @@ Co-teaching+은 크게 4단계로 구성됩니다.
     
 - Initialization
     
-    Co-teaching과 Co-teaching+는 noise rate $\tau$를 알고 있다고 가정하고 있는데 사전에 $\tau$를 알지 못한다면 validation set을 가지고 추론하는 과정이 필요하다고 합니다.
+    Co-teaching과 Co-teaching+는 noise rate $$\tau$$를 알고 있다고 가정하고 있는데 사전에 $$\tau$$를 알지 못한다면 validation set을 가지고 추론하는 과정이 필요하다고 합니다.
     
-    저자는 $\lambda(e)$이 특정 데이터셋이 아닌 memorization effect에 의존함을 강조하며 공정한 비교를 위해 Co-teaching과 동일한 업데이트 룰 
-    $\lambda(e)=1-min{e\over E_k}\tau$, $E_k=10$을 적용했습니다.
+    저자는 $$\lambda(e)$$이 특정 데이터셋이 아닌 memorization effect에 의존함을 강조하며 공정한 비교를 위해 Co-teaching과 동일한 업데이트 룰 
+    $$\lambda(e)=1-min{e\over E_k}\tau$$, $$E_k=10$$을 적용했습니다.
     
 - Evaluation Metric
     
@@ -224,15 +224,15 @@ Co-teaching+은 크게 4단계로 구성됩니다.
 
 ### 4.2 Result
 
-![fig10.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig10)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff7980a57-d50b-478c-86a4-8cdfee96d2cb%2FUntitled.png?table=block&id=450f5f8f-ddc6-4c0f-8ed5-3724e60eefe6&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1590&userId=&cache=v2)
 
-![fig11.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig11)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F2fc7dbcd-e543-46c8-bfe5-a4d64fbc75f5%2FUntitled.png?table=block&id=ee879f19-7aa0-4ac0-a829-a71eaba734af&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1570&userId=&cache=v2)
 
-![fig12.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig12)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc0de395b-9ed9-4aaa-b6b3-d444a7e9801a%2FUntitled.png?table=block&id=db96aac6-013d-40c8-9ce7-da772b6b7219&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1560&userId=&cache=v2)
 
-![fig13.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig13)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F89d5e9d7-ca1e-4332-ace1-20e21ff54d48%2FUntitled.png?table=block&id=a2fbd73d-1371-4197-8517-4cf3bda24bf9&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1580&userId=&cache=v2)
 
-![fig14.png](https://github.com/LOVELYLEESOL/awesome-reviews-kaist/blob/patch-5/.gitbook/2022-spring-assets/LEESOL_2/fig14)
+![Untitled](https://silicon-crocus-0fa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb937416c-8c83-47b2-bd9d-078b1ea903d3%2FUntitled.png?table=block&id=d9c3b5ab-1cc3-4d00-996d-964236ebfa94&spaceId=b090c10a-4e6b-4597-b6e6-67d931c38779&width=1440&userId=&cache=v2)
 
 요약하자면 대부분의 실험에서 Co-teaching+가 높은 분류 성능을 보였습니다. cross-update와 small-loss trick을 이용하여 두 네트워크를 diverge 상태를 유지하는 것이 보다 noise robust한 학습에 분명하게 도움이 됨을 보여주고 있습니다. 
 
