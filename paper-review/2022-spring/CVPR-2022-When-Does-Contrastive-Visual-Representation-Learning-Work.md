@@ -211,7 +211,7 @@ They hypothesized that **contrastive loss tends to cluster images based on overa
 
 ## **5. Conclusion**
 
-In this paper, the authors presented a comprehensive set of experiments on under what conditions self-supervised learning work well. They found that fewer than 500k pretraining images before encountering severe diminishing returns. However, even the best self-supervised representations are still much worse than peak supervised performance without hundreds of thousands of labelled images**.** They also found that simple methods for combining different datasets do not lead to large gains, and image resolution is critical for contrastive learning. Finally, they figured out that supervised pretraining retains a substantial edge when it comes to fine-grained classification.
+In this paper, the authors presented a comprehensive set of experiments on under what conditions self-supervised learning work well. They found that fewer than 500k pretraining images before encountering severe diminishing returns. However, even the best self-supervised representations are still much worse than peak supervised performance without hundreds of thousands of labelled images. They also found that simple methods for combining different datasets do not lead to large gains, and image resolution is critical for contrastive learning. Finally, they figured out that supervised pretraining retains a substantial edge when it comes to fine-grained classification.
 
 This paper also has limitations such as only focusing much on SimCLR and it is important to validate the results on other self-supervised methods, different base encoders (not only Resnet 50), and test it for segmentation or detection as well.
 
