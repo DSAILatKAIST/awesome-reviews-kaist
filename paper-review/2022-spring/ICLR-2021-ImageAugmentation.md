@@ -136,7 +136,7 @@ Soft Actor-Critic의 학습 과정은 쉽게 말해 *주어진 state에서 특�
 
 이 때 K와 M은 hyper-parameter이며 K와 M이 각각 1이면 해당 regularization을 수행하지 않는다는 의미가 됩니다.
 
-본 논문에서는 제안한 모델을 ***DrQ(Data-regularized Q)***라 칭하고 있습니다. 
+본 논문에서는 제안한 모델을 ***DrQ(Data-regularized Q)*** 라 칭하고 있습니다. 
 
 ## **4. Experiment**
 
@@ -144,7 +144,7 @@ Soft Actor-Critic의 학습 과정은 쉽게 말해 *주어진 state에서 특�
 
 1. Image Augmentation 자체의 성능을 보여주는 experiment
 2. Regularization의 성능을 보여주는 experiment
-3. Image Augmentation & Regularization 모두를 수행한 모델 ***DrQ[K=2, M=2]***의 성능을 보여주는 experiment
+3. Image Augmentation & Regularization 모두를 수행한 모델 ***DrQ[K=2, M=2]*** 의 성능을 보여주는 experiment
 
 를 수행합니다.
 
