@@ -68,6 +68,7 @@
   * [AugMix](paper-review/2022-spring/ICLR-2020-AugMix.md)
   * [GraphTrafficForecasting](paper-review/2022-spring/aaai-2020-multirangeattentivebicomponentgraphconvolutionalnetworkfortrafficforecastig.md)
   * [ImageAgumentation](paper-review/2022-spring/ICLR-2021-ImageAugmentation.md)
+  * [Neural JPEG](paper-review/2022-spring/Reviewpaper2_20214798_Esmeedehaas.md)
 
 ## How to contribute
 
