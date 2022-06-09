@@ -42,7 +42,9 @@ RNN에 대한 불확실성 추정을 위해 개발된 이전 방법들에는 베
 
 
 [1] multi-horizon 시계열 예측: 3. Method 영역의 다중 수평 시계열 예측 부분을 참고
+
 [2] 표준 feed-forward 신경망: 노드의 연결이 루프를 형성하지 않는 인공 신경망 유형
+
 [3] inductive conformal prediction(ICP): 3. Method 영역의 귀납적 등각 예측 부분을 참고
 
 
