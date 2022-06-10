@@ -1,3 +1,7 @@
+---
+description : Boling Yang / Motivating Physical Activity via Competitive Human-Robot Interaction / CORL-2021
+---
+
 # Motivating Physical Activity via Competitive Human-Robot Interaction
 
 ## 1. Problem Definition
