@@ -1,8 +1,6 @@
-description
-
 ---
 
-Kamilė Stankevičiūtė, Ahmed Alaa, Mihaela van der Schaar / Conformal Time-Series Forecasting / 2021(NeurIPS)
+description: Kamilė Stankevičiūtė, Ahmed Alaa, Mihaela van der Schaar / Conformal Time-Series Forecasting / 2021(NeurIPS)
 
 ---
 
