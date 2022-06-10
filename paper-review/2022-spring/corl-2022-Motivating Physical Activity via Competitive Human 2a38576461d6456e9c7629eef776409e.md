@@ -20,7 +20,7 @@ description : Boling Yang / Motivating Physical Activity via Competitive Human-R
 
 이들은 agent의 학습을 2개의 phase로 나누어서 진행하였다. 전체적인 알고리즘은 아래 그림과 같다.
 
-![Untitled](Motivating%20Physical%20Activity%20via%20Competitive%20Human%202a38576461d6456e9c7629eef776409e/Untitled.png)
+![1](/.gitbook/2022-spring-assets/KanghoonLee_2/Untitled.png)
 
 phase1 - Learning to Move and Play: 첫 번째 phase는 pre-training process와 같다. motor skill을 이용해서 움직이는 것과 게임의 규칙을 학습하는 과정이라고 생각하면 된다. 여기서는 양 쪽의 에이전트중 한쪽의 에이전트만 수렴할 때까지 학습이 된다. 이후 반대의 에이전트가 수렴할 때까지 학습이 된다. 이들은 이 과정을 2회 진행하였다. phase1이 끝날때의 policy를 warm-start policy라고 부른다.
 
@@ -48,7 +48,7 @@ game score
 
 대신 이들은 앞서 3개의 전략을 얻어낼때 사용한 방식으로 사람들의 정책을 분석해 보았는데, 다양한 시도를 한 사람일수록 더 높은 점수를 얻는 현상을 관측했다고 이야기한다. (점수 편차가 큰 사람들은 위험을 감수하며 다양한 전략을 썼고, 장기적으로 더 좋은 보상을 얻었다고 한다.)
 
-![Untitled](Motivating%20Physical%20Activity%20via%20Competitive%20Human%202a38576461d6456e9c7629eef776409e/Untitled%201.png)
+![2](/.gitbook/2022-spring-assets/KanghoonLee_2/Untitled_1.png)
 
 ## 5. Conclusions
 
