@@ -11,7 +11,7 @@ description : Shitong Luo /  A 3D Molecule Generative Model for Structure-Based 
 The goal seems relatively simple but the difficulty lies in the underlying complexity of molecul structures in space. As a reminder, a molecule can be defined as a group of atoms held together by chemical bonds. The primary structure can be described as an amino acid sequence with its own chemical characteristics. However the folding of the protein can change those characteristics by creating new interactions between atoms. As a result, proteins with the same primary structure but different conformations in space leads to totally different biological effects. Designing molecules that bind to a specific protein binding site is one of the most challenging tasks in structure-based drug discovery.  
 
 
-![Figure 1: Understanding the complexity of protein structures](../../.gitbook/assets/2022-spring-assets/EmelineBagoris2/levels-of-protein-structure-1.jpg)
+![Figure 1: Understanding the complexity of protein structures](../../.gitbook/2022-spring-assets/EmelineBagoris2/levels-of-protein-structure-1.jpg)
 
 
 ## **2. Motivation**  
@@ -25,13 +25,13 @@ The authors goal is to design a model able to capture the 3d structure of specif
 
 The model proposed by the authors is split into two parts. First, they predict the probability of atom occurence in 3D space of the binding site. Second, they use an auto-regressive sampling algorithm to generate multi-model molecules. 
 
-In order to represent molecules in the context of proteins, they decided to learn the probability density of atom occurences in the 3D space of the binding site $C$. This probability can be written $p(e|r, C)$, where $r ∈ R^3$ is a random coordinate in 3D space and $e$ is the type of the atom. To implement this probabilty, they used a context encoder to learn the representation of each atom in the context of the binding site $C$ as well as a spatial classifier to predict the probability density. The context encoder use an invariant graph neural netwok to encode the atoms using the distances as edge feature. Then the spatial classifier takes an arbitrary coordinate $r$, aggregate the features of the atom nearby $r$ and feed the aggregated feature to an MLP to predict the atom occupation. 
+In order to represent molecules in the context of proteins, they decided to learn the probability density of atom occurences in the 3D space of the binding site C. This probability can be written :$$p(e|r, C),  r ∈ R^3$$ where r is a random coordinate in 3D space and e is the type of the atom. To implement this probabilty, they used a context encoder to learn the representation of each atom in the context of the binding site C as well as a spatial classifier to predict the probability density. The context encoder use an invariant graph neural netwok to encode the atoms using the distances as edge feature. Then the spatial classifier takes an arbitrary coordinate r, aggregate the features of the atom nearby r and feed the aggregated feature to an MLP to predict the atom occupation. 
 
-![Figure 2: Representation of molecules in a context of proteins](../../.gitbook/assets/2022-spring-assets/EmelineBagoris2/method_1.png)
+![Figure 2: Representation of molecules in a context of proteins](../../.gitbook/2022-spring-assets/EmelineBagoris2/method_1.png)
 
 Now that we have the density map, how can we use it to generate 3D molecules ? The answer is to place atom one-by-one auto-regressively. After placing each atom, we can feed the protein structure along with the previously placed atoms to update the density map. This allows the model to capture dependencies between generated atoms. Finally, they used OpenBabel to construct bonds between atoms.
 
-![Figure 3: Representation of molecules in a context of proteins](../../.gitbook/assets/2022-spring-assets/EmelineBagoris2/method_3.png)
+![Figure 3: Representation of molecules in a context of proteins](../../.gitbook/2022-spring-assets/EmelineBagoris2/method_3.png)
 
 ## **4. Experiment**  
 
@@ -51,11 +51,11 @@ The authors performed an experiment on molecule design to test their model. The 
 
 The task here is to generate molecules for given binding sites. Table 1 shows the average and madian of the evaluation metrics for the authors model against the baseline. Overall, the authors model achieves greater performance on all metrics than the liGAN baseline. In fact, their model got higher scores on QED and SA which demonstrates realistic drug-like molecules. The lower VINA energy of their model demonstrates its ability to generate diverse molecules that have higher binding affinity for their target.  
 
-![Figure 4: Results of the Molecule Design experiment](../../.gitbook/assets/2022-spring-assets/EmelineBagoris2/results_1.png)
+![Figure 4: Results of the Molecule Design experiment](../../.gitbook/2022-spring-assets/EmelineBagoris2/results_1.png)
 
 We can visualize an example of generated molecules in the Figure 4. Each row contains six generated molecules plus the molecule used as reference for the binding site. The generated molecules possess very similar patterns to the reference. Furthermore, some of the generated molecules achieves a lower Vina and higher SA and QED than the reference. Those results demonstrates the ability of the generated molecules to fit well in the binding site while retaining high drug-like quality. 
 
-![Figure 5: Example of molecules generated](../../.gitbook/assets/2022-spring-assets/EmelineBagoris2/results_2.png)
+![Figure 5: Example of molecules generated](../../.gitbook/2022-spring-assets/EmelineBagoris2/results_2.png)
 
 
 ## **5. Conclusion**  
