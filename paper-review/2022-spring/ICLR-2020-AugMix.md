@@ -68,7 +68,7 @@ $$p_{augmix2}=\hat{p}(y|x_{augmix2})$$
 
 따라서, 원래의 loss _L_ 은 다음과 같은 loss로 대체된다.   
 $$L(p_{orig}, y) + \lambda JS(p_{orig};p_{augmix1};p_{augmix2})$$
-$$JS(p_{orig};p_{augmix1};p_{augmix2}) = \frac{1}{3}\[ KL(p_{orig}||M) + KL(p_{augmix1}||M) + KL(p_{augmix2}||M) \]$$
+$$JS(p_{orig};p_{augmix1};p_{augmix2}) = \frac{1}{3}( KL(p_{orig}||M) + KL(p_{augmix1}||M) + KL(p_{augmix2}||M) )$$
 $$M = (p_{orig} + p_{augmix1} + p_{augmix2}) / 3$$
 
 결국, `Jensen-Shannon Consistency Loss는 모델이 다양한 분포의 input에 대해서 안정적이고 일관성있는 output을 생성하도록 한다.`  
@@ -98,23 +98,26 @@ $$M = (p_{orig} + p_{augmix1} + p_{augmix2}) / 3$$
   * `RMS Calibration Error` : 모델의 불확실성 추정에 대한 평가 지표   
    
 #### **`(1) Corruption Error (CE)`**  
+
 $$E_{c,s}$$  
 - corruption c가 severity s로 주어졌을 때의 error rate
 
 `(i) CIFAR-10-C & CIFAR-100-C`  
-$$uCE_{c} = \sum_{s=1}^5 E_{c,s}$$ 
+
+$$uCE_{c} = \sum_{s=1}^5 E_{c,s}$$   
 - corruption c에 대한 unnormalized Corruption Error(uCE). corruption c에서 각 severity마다의 Error 값들의 평균을 의미한다.   
 - 15개의 corruption들의 uCE 값의 평균을 최종 error로 사용하였다.  
 
 `(ii) ImageNet-C`  
-$$CE_{c} =  {\sum_{s=1}^5 E_{c,s}}/{\sum_{s=1}^5 E_{c,s}^{AlexNet}}$$
+
+$$CE_{c} =  {\sum_{s=1}^5 E_{c,s}}/{\sum_{s=1}^5 E_{c,s}^{AlexNet}}$$   
 - corruption error를 AlexNet의 corruption error로 normalizing 해준다.  
 - 15개의 normalized CE 값의 평균을 최종 error로 사용하였다.  
 
 #### **`(2) RMS Calibaration Error`**   
 모델의 불확실성 추정에 대한 평가로서 miscalibration을 측정한다. Calibration 이란 모델의 출력값이 실제 confidence를 반영하도록 만드는 것이다. 예를 들어, 어떤 input의 특정 class에 대한 모델의 output이 0.8이라면, 80 % 확률로 그 class라는 의미를 갖도록 만드는 것이다. 따라서 miscalibation error는 주어진 confidence level에서의 classification accuracy와 실제 confidence level에서의 classification accuracy 간의 RMS를 통해 측정하였다. 이렇게 정의된 RMS Calibarion Error의 수식은 다음과 같다.
 
-$$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
+$$\sqrt {E_{C}((P(Y=\hat{Y}|C=c)-c)^{2})}$$
 
 
 ### **Result**  
