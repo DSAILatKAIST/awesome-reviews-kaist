@@ -27,10 +27,12 @@ AugMix는 표준 벤치마크 데이터셋에 대해 분류 정확도를 유지�
 
 AugMix는 간단한 augmentation 방법들을 consistency loss와 함께 사용한 점이 특징이다. 여러 augmentation 방법들이 확률적으로 샘플된 후 층층이 적용됨으로써 매우 다양한 augmented image를 생성한다. 이 후, 같은 input image에 대한 여러 개의 augmented image들이 classifier에 의해 `consistent embedding` (일관성 있는 embedding)을 갖도록 `Jensen-Shannon divergence consistency loss`를 이용하여 학습시킨다.
 
-augmentation을 섞는 것은 다양한 변형을 생성하는데, 이는 모델의 강건성을 향상시키는 데에 매우 중요한 요소이다. 대부분의 Deep Network 모델들이 변동에 대해 강건하지 못한 이유는 모델이 고정된 augmentation 방법들을 외우기 때문이다. 이를 해결하기 위해 이전 연구들은 augmentation 방법들을 chain으로 구성하여 바로 적용하는 시도를 해왔지만, 이는 이미지가 data manifold 상에서 너무 동떨어진 이미지를 생성해낸다. 즉, 다음 그림에서와 같이 데이터의 중요한 semantic 정보를 잃게 되는 `image degradation`을 초래한다.
+augmentation을 섞는 것은 다양한 변형을 생성하는데, 이는 모델의 강건성을 향상시키는 데에 매우 중요한 요소이다. 대부분의 Deep Network 모델들이 변동에 대해 강건하지 못한 이유는 모델이 고정된 augmentation 방법들을 외우기 때문이다. 이를 해결하기 위해 이전 연구들은 augmentation 방법들을 chain으로 구성하여 바로 적용하는 시도를 해왔지만, 이는 이미지가 data manifold 상에서 너무 동떨어진 이미지를 생성해낸다. 즉, 다음 그림에서와 같이 데이터의 중요한 semantic 정보를 잃게 되는 `image degradation`을 초래한다.   
+
 ![figure1](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig1.PNG?raw=true)
 
-AugMix는 여러 개의 augmentation chain들로부터 생성된 이미지들을 convex combination을 통해 믹스함으로써 image degradation 문제를 해결하면서도 augmentation 다양성은 유지할 수 있다. 구체적인 AugMix 알고리즘은 아래 pseudo-code에서 확인할 수 있다.
+AugMix는 여러 개의 augmentation chain들로부터 생성된 이미지들을 convex combination을 통해 믹스함으로써 image degradation 문제를 해결하면서도 augmentation 다양성은 유지할 수 있다. 구체적인 AugMix 알고리즘은 아래 pseudo-code에서 확인할 수 있다.   
+
 ![figure2](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig2.PNG?raw=true)
 
 ### **Augmentations**  
@@ -53,23 +55,23 @@ AugMix는 여러 개의 augmentation chain들로부터 생성된 이미지들을
 를 통합하고 있다.  
 
 ### **Jensen-Shannon Divergence Consistency Loss**
-Augmix로 augemented된 image들이 주어질 때 모델은 `Jensen-Shannon Divergence Loss`를 이용하여 학습한다. AugMix를 통해 원본 이미지의 의미 정보(semantic content)가 거의 유지되었다는 가정 하에, 모델은 
+Augmix로 augemented된 image들이 주어질 때 모델은 `Jensen-Shannon Divergence Loss`를 이용하여 학습한다. AugMix를 통해 원본 이미지의 의미 정보(semantic content)가 거의 유지되었다는 가정 하에, 모델은   
 $$x_{orig}$$
 $$x_{augmix1}$$
 $$x_{augmix2}$$
 즉, 원본 이미지와 augmented image들을 유사하게 임베딩하도록 훈련된다. 
 
-이는 `원본 데이터와 augmented data의 사후 분포 (posterior distribution) 간에 Jensen-Shannon Divergence를 최소화`하도록 함으로써 구현된다. 여기서 각 posterior 분포는 다음과 같다.  
+이는 `원본 데이터와 augmented data의 사후 분포 (posterior distribution) 간에 Jensen-Shannon Divergence를 최소화`하도록 함으로써 구현된다. 여기서 각 posterior 분포는 다음과 같다.   
 $$p_{orig}=\hat{p}(y|x_{orig})$$
 $$p_{augmix1}=\hat{p}(y|x_{augmix1})$$
 $$p_{augmix2}=\hat{p}(y|x_{augmix2})$$
 
-따라서, 원래의 loss _L_ 은 다음과 같은 loss로 대체된다.  
+따라서, 원래의 loss _L_ 은 다음과 같은 loss로 대체된다.   
 $$L(p_{orig}, y) + \lambda JS(p_{orig};p_{augmix1};p_{augmix2})$$
 $$JS(p_{orig};p_{augmix1};p_{augmix2}) = \frac{1}{3}\[ KL(p_{orig}||M) + KL(p_{augmix1}||M) + KL(p_{augmix2}||M) \]$$
 $$M = (p_{orig} + p_{augmix1} + p_{augmix2}) / 3$$
 
-결국, `Jensen-Shannon Consistency Loss는 모델이 다양한 분포의 input에 대해서 안정적이고 일관성있는 output을 생성하도록 한다.`
+결국, `Jensen-Shannon Consistency Loss는 모델이 다양한 분포의 input에 대해서 안정적이고 일관성있는 output을 생성하도록 한다.`  
  
 
 ## **4. Experiment**  
@@ -117,23 +119,28 @@ $$\sqrt {E_{C}\[(P(Y=\hat{Y}|C=c)-c)^{2}\]}$$
 
 ### **Result**  
 
-* **`CIFAR-10-C & CIFAR-100-C`**
+* **`CIFAR-10-C & CIFAR-100-C`**   
+
 ![figure5](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig5.PNG?raw=true)
 
-위의 그림은 ResNeXt backbone에 다양한 방법의 augmentation을 적용하여 훈련시킨 후 CIFAR-10-C test dataset에 대한 standard clean error rate을 나타낸 것이다. AugMix가 기존의 augmentation 방법들인 Standard, Cutout, Mixup, CutMix, AutoAugment, Adversarial Training보다 절반 이하 수준의 error rate을 보여주고 있다. 다음은 ResNeXt이외의 backbone에 augmentation 방법들을 적용했을 때의 average classification error를 비교한 표이다. AugMix는 CIFAR-10-C, CIFAR-100-C 두 test dataset에 대해서 모두 backbone 네트워크에 상관없이 가장 낮은 error rate을 보여주었다. 
+위의 그림은 ResNeXt backbone에 다양한 방법의 augmentation을 적용하여 훈련시킨 후 CIFAR-10-C test dataset에 대한 standard clean error rate을 나타낸 것이다. AugMix가 기존의 augmentation 방법들인 Standard, Cutout, Mixup, CutMix, AutoAugment, Adversarial Training보다 절반 이하 수준의 error rate을 보여주고 있다. 다음은 ResNeXt이외의 backbone에 augmentation 방법들을 적용했을 때의 average classification error를 비교한 표이다. AugMix는 CIFAR-10-C, CIFAR-100-C 두 test dataset에 대해서 모두 backbone 네트워크에 상관없이 가장 낮은 error rate을 보여주었다.  
+
 ![figure6](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig6.PNG?raw=true)
 
 다음 그림은 ResNeXt backbone에 Standard, Cutmix, AugMix를 적용하여 훈련시킨 모델의 CIFAR-10-C에 대한 RMS Calibration Error를 나타낸다. AugMix는 corruption이 없는 CIFAR-10 데이터와 corruption이 존재하는 CIFAR-10-C 모두에 대해서 calibration error를 감소시킴을 알 수 있다. 특히, corrption이 있는 데이터셋에 대해서 다른 augmentation 방법론에 비해 매우 큰 차이로 error를 줄였다.  
+
 ![figure10](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig10.PNG?raw=true)
 
 * **`ImageNet`**   
 
-다음은 ImageNet-C testdataset에 대한 여러 augmentation 방법의 효과를 Clean Error, Corruption Error(CE), mCE를 통해 평가한 표이다. mCE는 앞서 metric에서 설명하였듯이 15가지 corruption의 CE를 평균낸 것이다. 모든 augmentation은 ResNet-50 backbone으로 훈련되었다.
+다음은 ImageNet-C testdataset에 대한 여러 augmentation 방법의 효과를 Clean Error, Corruption Error(CE), mCE를 통해 평가한 표이다. mCE는 앞서 metric에서 설명하였듯이 15가지 corruption의 CE를 평균낸 것이다. 모든 augmentation은 ResNet-50 backbone으로 훈련되었다.  
+
 ![figure8](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig8.PNG?raw=true)
 
 AugMix는 다른 augmentation 방법론들에 비해 Clean Error뿐만 아니라 Corruption Error를 감소시켰다. 특히, AugMix를 SIN과 결합하여 적용하였을 때 가장 corruption에 강건함을 보여주었다. 여기서 SIN은 Stylized ImageNet으로 원본 ImageNet 데이터뿐만 아니라 style transfer가 적용된 ImageNet데이터에도 모델을 훈련시킴으로써 corruption에 대한 강건성을 높이는 augmentation 방법론이다.
 
-또한 AugMix는 데이터 corruption의 강도(severity)가 점점 높아질 때, RMS claibration error에 대해 매우 안정적이고 강건함을 보여주었다. severity가 높아질수록 classification error가 증가함에도 불구하고 calibartion error는 거의 유지됨을 알 수 있다.
+또한 AugMix는 데이터 corruption의 강도(severity)가 점점 높아질 때, RMS claibration error에 대해 매우 안정적이고 강건함을 보여주었다. severity가 높아질수록 classification error가 증가함에도 불구하고 calibartion error는 거의 유지됨을 알 수 있다.  
+
 ![figure11](https://github.com/TaeMiKim/awesome-reviews-kaist/blob/2022-Spring/.gitbook/2022-spring-assets/TaeMiKim_2/fig11.PNG?raw=true)
 
 
