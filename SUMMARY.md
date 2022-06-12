@@ -77,7 +77,7 @@
   * [EvolveGraph](paper-review/2022-spring/NeurIPS-2020-EvolveGraph.md)
   * [DSMIL](paper-review/2022-spring/cvpr-2021-dsmil.md)
   * [CausalVAE](paper-review/2022-spring/CVPR-2021-CausalVAE.md)
-  * [Motivating Physical Activity via Competitive Human-Robot Interaction](paper-review/2022-spring/corl-2022-Motivating Physical Activity via Competitive Human.md)
+  * [Motivating Physical Activity via Competitive Human-Robot Interaction](paper-review/2022-spring/corl-2022-Motivating-Physical-Activity-via-Competitive-Human.md)
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
