@@ -71,6 +71,7 @@ layout: landing
 * [\[CHI 19\] Continuous Alertness Assessments; Using EOG Glasses to Unobtrusively Monitor Fatigue Levels In-The-Wild](../2022-spring/chi-2019-caa.md)
 * [\[AAAI 21\] Overcoming Catastrophic Forgetting in Graph Neural Networks](../2022-spring/AAAI-2021-Overcoming-Catastrophic-Forgetting-in-Graph-Neural-Networks.md)
 * [\[ICML 20\] Context-aware Dynamics Model for Generalization in Model-Based Reinforcement Learning](../2022-spring/CaDM.md)
+* [\[CVPR 22\] When Does Contrastive Visual Representation Learning Work?](../2022-spring/CVPR-2022-When-Does-Contrastive-Visual-Representation-Learning-Work.md)
 * [\[AAAI 20\] Measuring and Relieving the Over-smoothing Problem for Graph Neural Networks from the Topological View](../2022-spring/AAAI-2020-MAD.md)
 * [\[AAAI 22\] MAPDP- Cooperative Multi-Agent Reinforcement Learning to Solve Pickup and Delivery Problems](../2022-spring/AAAI-MAPDP.md)
 * [\[ICLR 20\] Mixup Inference Better Exploiting Mixup to Defend Adversarial Attacks](../2022-spring/ICLR-2020-Mixup-Inference.md)
