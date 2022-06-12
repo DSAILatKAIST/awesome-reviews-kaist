@@ -63,7 +63,6 @@
   * [ImageAgumentation](paper-review/2022-spring/ICLR-2021-ImageAugmentation.md)
   * [Neural JPEG](paper-review/2022-spring/Reviewpaper2\_20214798\_Esmeedehaas.md)
   * [Conformal_Time Series_Forecasting](paper-review/2022-spring/[2021NeurIPS]conformal_time-series_forecasting.md)
-
   * [CAA](paper-review/2022-spring/chi-2019-caa.md) 
   * [Overcoming Catastrophic Forgetting in Graph Neural Networks](paper-review/2022-spring/AAAI-2021-Overcoming-Catastrophic-Forgetting-in-Graph-Neural-Networks.md)
   * [CaDM](paper-review/2022-spring/CaDM.md)
@@ -71,6 +70,14 @@
   * [Meta-learning Sparse Implicit Neural Representations](paper-review/2022-spring/neurips-2021-meta-learning-spare-implicit-neural-representations-eng.md)
   * [NIWT](paper-review/2022-spring/ECCV-2018-NIWT.md)
   * [MAD](paper-review/2022-spring/AAAI-2020-MAD.md)
+  * [MAPDP](paper-review/2022-spring/AAAI-MAPDP.md)
+  * [Mixup-Inference](paper-review/2022-spring/ICLR-2020-Mixup-Inference.md)
+  * [Finite_element_networks](paper-review/2022-spring/ICLR-2022-finite_element_networks.md)
+  * [Stacked Hybrid-Attention and Group Collaborative Learning for Unbiased Scene Graph Generation](paper-review/2022-spring/cvpr-2022-stack-hybrid-and-group-collaborative.md)
+  * [EvolveGraph](paper-review/2022-spring/NeurIPS-2020-EvolveGraph.md)
+  * [DSMIL](paper-review/2022-spring/cvpr-2021-dsmil.md)
+  * [CausalVAE](paper-review/2022-spring/CVPR-2021-CausalVAE.md)
+  * [Motivating Physical Activity via Competitive Human-Robot Interaction](paper-review/2022-spring/corl-2022-Motivating Physical Activity via Competitive Human 2a38576461d6456e9c7629eef776409e.md)
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
