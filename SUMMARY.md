@@ -75,7 +75,6 @@
   * [Finite_element_networks](paper-review/2022-spring/ICLR-2022-finite_element_networks.md)
   * [Stacked Hybrid-Attention and Group Collaborative Learning for Unbiased Scene Graph Generation](paper-review/2022-spring/cvpr-2022-stack-hybrid-and-group-collaborative.md)
   * [EvolveGraph](paper-review/2022-spring/NeurIPS-2020-EvolveGraph.md)
-  * [DSMIL](paper-review/2022-spring/cvpr-2021-dsmil.md)
   * [CausalVAE](paper-review/2022-spring/CVPR-2021-CausalVAE.md)
   * [Motivating Physical Activity via Competitive Human-Robot Interaction](paper-review/2022-spring/corl-2022-Motivating-Physical-Activity-via-Competitive-Human.md)
   * [STGG](paper-review/2022-spring/iclr-2022-stgg.md)
