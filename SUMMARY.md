@@ -78,6 +78,7 @@
   * [DSMIL](paper-review/2022-spring/cvpr-2021-dsmil.md)
   * [CausalVAE](paper-review/2022-spring/CVPR-2021-CausalVAE.md)
   * [Motivating Physical Activity via Competitive Human-Robot Interaction](paper-review/2022-spring/corl-2022-Motivating-Physical-Activity-via-Competitive-Human.md)
+  * [STGG](paper-review/2022-spring/iclr-2022-stgg.md)
 ## How to contribute
 
 * [How to contribute?](how-to-contribute.md)
