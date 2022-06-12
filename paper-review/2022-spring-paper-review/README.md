@@ -4,6 +4,8 @@ layout: landing
 
 # \[2022 Spring] Paper Review
 
+### Paper Review 1
+
 * [\[ICDM 21\] AS-GCN : Adoptive Semantic Architecture of Graph Convolutional Networks for Text-Rich Networks](../2022-spring/ICDM-2021-ASGCN.md)
 * [\[KDD 19\] Deep Anomaly Detection with Deviation Network](../2022-spring/SIGKDD-2019-DevNet.md)
 * [\[NeurIPS 19\] Latent ODEs for Irregularly-Sampled Time Series](../2022-spring/NeurIPS-2020-LatentODE.md)
@@ -40,6 +42,9 @@ layout: landing
 * [\[ICML 21\] Slot Machines- Discovering Winning Combinations of Random Weights in Neural Networks](../2022-spring/ICML-2021-SlotMachines.md)
 * [\[ICML 20\] Time Series Deconfounder: Estimating Treatment Effects over Time in the Presence of Hidden Confounders](../2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
 * [\[NeurIPS 19\] Varitional Graph Recurrent Neural Network](../2022-spring/VGRNN.md)
+
+### Paper Review 2
+
 * [\[ICML 19\] Position-aware Graph Neural Networks](../2022-spring/ICML-2019-PGNN.md)
 * [\[CVPR 19\] One-class Novelty Detection Using GANs with Constrained Latent Representations](../2022-spring/CVPR-2019-OCGAN.md)
 * [\[CVPR 21\] Points as Queries- Weakly Semi-supervised Object Detection by Points](../2022-spring/cvpr-2021-points-as-queries-weakly-semi-supervised-object-detection-by-points.md)
