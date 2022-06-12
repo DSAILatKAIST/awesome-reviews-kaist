@@ -26,7 +26,7 @@ description: >-
 
 그리고 Task가 진행됨에 따라 이전 Task에서 학습했던 node들에 대한 예측 성능이 낮아지는 것을 볼 수 있습니다. 예를 들어 Task 1에서 파란 node들은 95%의 예측성능을 보였지만, Task 2에서는 55%로 줄었고, Task 2에서 보라색 node들은 94%의 성능을 보인 반면 Task 3에서는 56%에 불과합니다. 이렇게 Task가 진행됨에 따라 앞서 학습했던 정보를 잊는 것을 **Catastrophic Forgetting**이라고 합니다.
 
-_**저자들은 Catastrophic Forgetting을 최대한 줄이는 `Graph Continual Learning` 모델을 제시하고자 합니다.**_
+_**저자들은 Catastrophic Forgetting을 최대한 줄이는**** ****`Graph Continual Learning`**** ****모델을 제시하고자 합니다.**_
 
 ## **2. Motivation**
 
