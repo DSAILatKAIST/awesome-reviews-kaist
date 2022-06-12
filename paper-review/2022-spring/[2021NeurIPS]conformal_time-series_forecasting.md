@@ -59,7 +59,7 @@ RNN에 대한 불확실성 추정을 위해 개발된 이전 방법들에는 베
 
 **[1. 다중 수평 시계열 예측(Multi-horizon time-series forecasting)]**
 
-![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?(y__{t},&space;y__{t&plus;1},&space;...&space;,&space;y__{t'}))가 d차원 시계열 관측값이고 ![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?)가 주어지면, multi-horizon 시계열 예측은 ![](https://latex.codecogs.com/svg.image?\\hat{y}__{t'&plus;1:t'&plus;H})인 미래 값을 예측한다. 이는 H x d 차원이고 H는 예측할 steps의 수(예측 horizon)이다.
+![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?(y__{t},&space;y__{t&plus;1},&space;...&space;,&space;y__{t'}))가 d차원 시계열 관측값이고 ![](https://latex.codecogs.com/svg.image?y__{t:t'}) = ![](https://latex.codecogs.com/svg.image?(y_t,y_{t&plus;1},...,y_{t'}))가 주어지면, multi-horizon 시계열 예측은 ![](https://latex.codecogs.com/svg.image?\\hat{y}__{t'&plus;1:t'&plus;H})인 미래 값을 예측한다. 이는 H x d 차원이고 H는 예측할 steps의 수(예측 horizon)이다.
 
 
 
