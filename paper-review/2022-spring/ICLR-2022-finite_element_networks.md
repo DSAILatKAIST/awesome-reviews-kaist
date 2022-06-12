@@ -17,7 +17,7 @@ $$
 \partial_t u  = F (t, x, u, \partial_x u, \partial_{x^2} u, \dots)
 $$
 
-where $u$ is a solution of the equation and $$F$$ are the _dynamics_ which can be a function of time, space, $$u$$ itself and its derivatives. PDEs are generally either very expensive to compute if not intractable altogether. For these reason, multiple algorithms have been developed over the centuries to try and solve this extremely complex endeavor. In particular, computers are very capable of handling _discretized_ data, in the form of digital bits instead of their continuous, analog counterparts. Can we apply some algorithm which is well suitable to computers?
+where $$u$$ is a solution of the equation and $$F$$ are the _dynamics_ which can be a function of time, space, $$u$$ itself and its derivatives. PDEs are generally either very expensive to compute if not intractable altogether. For these reason, multiple algorithms have been developed over the centuries to try and solve this extremely complex endeavor. In particular, computers are very capable of handling _discretized_ data, in the form of digital bits instead of their continuous, analog counterparts. Can we apply some algorithm which is well suitable to computers?
 
 ### The Finite Element Method
 
@@ -33,7 +33,7 @@ In particular, the domain with set of points $$\mathcal{X}$$ is divided into a s
 
 #### Basis Functions
 
-In general, the solution $$u$$ would lie in an infinite-dimensional space $$\mathcal{U}$$. What if, however, we cannot have infinite dimensions? Then, we need to approximate $u$ with a finite-dimensional subspace $$\mathcal{\tilde{U}}$$. To do so we employ _basis functions_ $\varphi$, which map points from $$\mathcal{U}$$ to $$\mathcal{\tilde{U}}$$. The simplest choice, which the authors use, is the P1 piecewise linear functions which map
+In general, the solution $$u$$ would lie in an infinite-dimensional space $$\mathcal{U}$$. What if, however, we cannot have infinite dimensions? Then, we need to approximate $$u$$ with a finite-dimensional subspace $$\mathcal{\tilde{U}}$$. To do so we employ _basis functions_ $$\varphi$$, which map points from $$\mathcal{U}$$ to $$\mathcal{\tilde{U}}$$. The simplest choice, which the authors use, is the P1 piecewise linear functions which map
 
 $$  
 \varphi^{(j)} (x^{(i)}) = \begin{cases}
@@ -121,12 +121,12 @@ $$
 M_{ik} = \langle F(t, x, u, \dots)_k, \varphi^{(i)} \rangle_\Omega = \sum_{\Delta} \langle F(t, x, u, \dots)_k, \varphi^{(i)} \rangle_{{CH(\Delta)}}
 $$
 
-where $\Delta$ is the set of mesh cells adjacent to $$x^{(i)}$$ and $$CH(\Delta)$$ is the _convex hull_ (i.e., smallest convex set of $\Delta$ that contains it). As we can see, evaluating $M$ (which we call the **message matrix**) is actually the same as operating **message passing** between adjacent cells. This means that we can represent these dynamics with a Message Passing Neural Network!
+where $$\Delta$$ is the set of mesh cells adjacent to $$x^{(i)}$$ and $$CH(\Delta)$$ is the _convex hull_ (i.e., smallest convex set of $$\Delta$$ that contains it). As we can see, evaluating $$M$$ (which we call the **message matrix**) is actually the same as operating **message passing** between adjacent cells. This means that we can represent these dynamics with a Message Passing Neural Network!
 
 <p align="center">
   <img src=".gitbook/../../../.gitbook/2022-spring-assets/FedericoBerto/FEN/FEN-catchy.png" width = 69% alt="Image">
 
-<figcaption align = "center">Figure .<i> Finite Element Networks: we can evaluate dynamics by message passing over adjacent cells and integrating this value to obtain the future values. </i></figcaption>
+<figcaption align = "center">Figure 3.<i> Finite Element Networks: we can evaluate dynamics by message passing over adjacent cells and integrating this value to obtain the future values. </i></figcaption>
 </p>
 
 Moreover, by factoring the inner product on the right side of the previous equation as
@@ -166,7 +166,7 @@ where $$v$$ is the divergence-free velocity term.
 <p align="center">
   <img src=".gitbook/../../../.gitbook/2022-spring-assets/FedericoBerto/FEN/airfoils-example-velocity-field.png" width = 100% alt="Image">
 
-<figcaption align = "center">Figure .<i> Example flow field around airfoils present convective components.</i></figcaption>
+<figcaption align = "center">Figure 4.<i> Example flow field around airfoils present convective components.</i></figcaption>
 </p>
 
 
@@ -195,7 +195,7 @@ The following dataset consists of simulated flow fields around a cylinder as col
 <p align="center">
   <img src=".gitbook/../../../.gitbook/2022-spring-assets/FedericoBerto/FEN/cylinder-flow.png" width = 80% alt="Image">
 
-<figcaption align = "center">Figure .<i> CylinderFlow snapshot. </i></figcaption>
+<figcaption align = "center">Figure 5.<i> CylinderFlow snapshot. </i></figcaption>
 </p>
 
 #### Black Sea 
@@ -204,7 +204,7 @@ This dataset is composed data on daily mean sea surface temperature and water ve
 <p align="center">
   <img src=".gitbook/../../../.gitbook/2022-spring-assets/FedericoBerto/FEN/black-sea.png" width = 80% alt="Image">
 
-<figcaption align = "center">Figure .<i> Learned flow fields of water velocities on the Black Sea dataset: T-FEN recognized the relationships between features. </i></figcaption>
+<figcaption align = "center">Figure 6.<i> Learned flow fields of water velocities on the Black Sea dataset: T-FEN recognized the relationships between features. </i></figcaption>
 </p>
 
 #### ScalarFlow
@@ -214,11 +214,11 @@ This dataset consists of 3D reconstructions generated by multiple camera views o
 <p align="center">
   <img src=".gitbook/../../../.gitbook/2022-spring-assets/FedericoBerto/FEN/scalarflow-comparison.png" width = 80% alt="Image">
 
-<figcaption align = "center">Figure .<i> Long-range extrapolations on the ScalarFlow dataset (60 time steps). FEN models perform better than the strongest baseline by also better modeling of sources and sinks. </i></figcaption>
+<figcaption align = "center">Figure 7.<i> Long-range extrapolations on the ScalarFlow dataset (60 time steps). FEN models perform better than the strongest baseline by also better modeling of sources and sinks. </i></figcaption>
 </p>
 
 ### Model Parameters
-Both networks $f_\theta$ and $g_\vartheta$ are _multi-layer perceptrons_ (MLPs) with $\tt tanh$ nonlinearities. The number of parameters of each network was kept similar between FEN and T-FEN models and lower than baseline to demonstrate their capabilities.
+Both networks $$f_\theta$$ and $$g_\vartheta$$ are _multi-layer perceptrons_ (MLPs) with $$\tt tanh$$ nonlinearities. The number of parameters of each network was kept similar between FEN and T-FEN models and lower than baseline to demonstrate their capabilities.
 
 
 ### Results
@@ -228,7 +228,7 @@ Both networks $f_\theta$ and $g_\vartheta$ are _multi-layer perceptrons_ (MLPs) 
 <p align="center">
   <img src=".gitbook/../../../.gitbook/2022-spring-assets/FedericoBerto/FEN/table-experiments.png" width = 100% alt="Image">
 
-<figcaption align = "center">Figure .<i> Multi-step Forecasting. </i></figcaption>
+<figcaption align = "center">Figure 8.<i> Multi-step Forecasting. </i></figcaption>
 </p>
 
 This experiments aims at predicting $$10$$ steps in the future. We can see that FEN models either outperform or achieve similar, competitive results with the baselines.
@@ -238,7 +238,7 @@ This experiments aims at predicting $$10$$ steps in the future. We can see that 
 <p align="center">
   <img src=".gitbook/../../../.gitbook/2022-spring-assets/FedericoBerto/FEN/plot-mae.png" width = 70% alt="Image">
 
-<figcaption align = "center">Figure .<i> Errors with super-resolution in the number of nodes. </i></figcaption>
+<figcaption align = "center">Figure 9.<i> Errors with super-resolution in the number of nodes. </i></figcaption>
 </p>
 
 This experiments aims at predicting $$10$$ steps in the future as before but with varying number of nodes, i.e. more nodes than those seen during training. FEN models outperform baselines in super-resolution: T-FEN models always perform better than FEN counterparts since they can better represent transport terms.
@@ -248,7 +248,7 @@ This experiments aims at predicting $$10$$ steps in the future as before but wit
 <p align="center">
   <img src=".gitbook/../../../.gitbook/2022-spring-assets/FedericoBerto/FEN/scalarflow-extrapolation.png" width = 70% alt="Image">
 
-<figcaption align = "center">Figure .<i> Extrapolation over 60 steps. </i></figcaption>
+<figcaption align = "center">Figure 10.<i> Extrapolation over 60 steps. </i></figcaption>
 </p>
 
 This experiments aims at predicting $$60$$ steps in the future with models trained on $$10$$ steps. FEN models outperform baselines since they can correctly represent sources and sinks.
@@ -258,7 +258,7 @@ This experiments aims at predicting $$60$$ steps in the future with models train
 <p align="center">
   <img src=".gitbook/../../../.gitbook/2022-spring-assets/FedericoBerto/FEN/freeform-transport.png" width = 30% alt="Image">
 
-<figcaption align = "center">Figure .<i> T-FEN model providing an interpretable splitting between free-form and transport term. </i></figcaption>
+<figcaption align = "center">Figure 11.<i> T-FEN model providing an interpretable splitting between free-form and transport term. </i></figcaption>
 </p>
 
 This experiments aims at providing interpretability and a justification for the T-FEN model. Plotting the free-form and transport term separately provides an interesting view into the learning process which is interpretable - the transport represents the differences in flow field.
