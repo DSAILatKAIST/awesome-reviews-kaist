@@ -40,7 +40,7 @@
   * [TimeSeriesConfounder](paper-review/2022-spring/ICML-2020-TimeSeriesDeconfounder.md)
   * [RGB-D](paper-review/2022-spring/\_CVPR\_2018\_RGB-D.md)
   * [Meta-learning Sparse Implicit Neural Representations](paper-review/2022-spring/neurips-2021-meta-learning-spare-implicit-neural-representations-eng.md)
-  * [When Does Contrastive Visual Representation Learning Work?](paper-review/2022-spring/CVPR-2022-When-Does-Contrastive-Visual-Representation-Learning-Work.md)
+  * [NIWT](paper-review/2022-spring/ECCV-2018-NIWT.md)
   * [VGRNN](paper-review/2022-spring/VGRNN.md)
   * [PGNN](paper-review/2022-spring/ICML-2019-PGNN.md)
   * [OCGAN](paper-review/2022-spring/CVPR-2019-OCGAN.md)
@@ -68,8 +68,7 @@
   * [CAA](paper-review/2022-spring/chi-2019-caa.md) 
   * [Overcoming Catastrophic Forgetting in Graph Neural Networks](paper-review/2022-spring/AAAI-2021-Overcoming-Catastrophic-Forgetting-in-Graph-Neural-Networks.md)
   * [CaDM](paper-review/2022-spring/CaDM.md)
-  
-  * [NIWT](paper-review/2022-spring/ECCV-2018-NIWT.md)
+  * [When Does Contrastive Visual Representation Learning Work?](paper-review/2022-spring/CVPR-2022-When-Does-Contrastive-Visual-Representation-Learning-Work.md)
   * [MAD](paper-review/2022-spring/AAAI-2020-MAD.md)
   * [MAPDP](paper-review/2022-spring/AAAI-MAPDP.md)
   * [Mixup-Inference](paper-review/2022-spring/ICLR-2020-Mixup-Inference.md)
