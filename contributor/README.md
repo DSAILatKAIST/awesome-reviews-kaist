@@ -1,12 +1,12 @@
 ---
-description : "2022년도 봄학기 심층학습 Contributors"
+description : "2022년도 봄학기 데이터사이언스를 위한 기계학습 Contributors"
 ---
 
 # Contributors  
 ---  
-논문 리뷰 프로젝트는 **KAIST: KSE527 지식 서비스를 위한 기계학습**의 강의자와 조교가 관리합니다.  
+논문 리뷰 프로젝트는 **KAIST: DS503 데이터사이언스를 위한 기계학습**의 강의자와 조교가 관리합니다.  
 
-The instructor and assistant of **KAIST: KSE527 Machine Learning For Knowledge Service Engineering** are in charge of paper review project.  
+The instructor and assistant of **KAIST: DS503 Machine Learning For Data Science** are in charge of paper review project.  
 
 ## Instructor and Assistant  
 
