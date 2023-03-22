@@ -19,7 +19,7 @@ This writing is the guideline of how to write review.
 You can easily follow the procedure of contribution from **Fork** to **Pull Request** through video.\
 If you have difficulty understanding on below explanation, please refer to video.
 
-[\[KSE527-Spring\] Paper Review Submission Guideline](https://youtu.be/3oPv\_uUPFw8)
+[\[DS503\] Paper Review Submission Guideline](https://youtu.be/3oPv\_uUPFw8)
 
 ### **Fork repository**
 
