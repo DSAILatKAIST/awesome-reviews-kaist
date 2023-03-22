@@ -16,7 +16,7 @@ description: Paper Review
 
 \--
 
-From 2022 Spring semester, we will upload reviews on recent deep learning papers as a course project of **KSE527: Machine Learning For Data Science**. A student will need to write reviews on 2 papers. The papers should not have been reviewed or summarized elsewhere on the internet.
+From 2022 Spring semester, we will upload reviews on recent deep learning papers as a course project of **DS503: Machine Learning For Data Science**. A student will need to write reviews on 2 papers. The papers should not have been reviewed or summarized elsewhere on the internet.
 
 Also, we are going to improve the quality of paper review by peer evaluation.
 
